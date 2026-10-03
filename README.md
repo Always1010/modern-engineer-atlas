@@ -18,7 +18,7 @@
 
 第一阶段研究与规划 V1，基准日期为 2026-10-03。
 
-全书按已确认的13篇、58章、232节目录继续完成，沿用已接受的专题样章写法。本次正文里程碑收录前四篇第一至第二十章，以及第五十五章完整扩展，共21章、84个既定主题、59幅原创SVG。正文采用中文章号与分节编号，稳定文件编号用于版本管理；其余章节与全书统一修订仍在进行，代码示例尚未编译、执行。
+全书按已确认的13篇、58章、232节目录继续完成，沿用已接受的专题样章写法。当前版本化正文已覆盖第一至第三十三章、第五十五章、第五十七与第五十八章，共36章、144个既定主题、92幅原创SVG和3张有明确来源与许可的实物照片。正文采用中文章号与分节编号，稳定文件编号用于版本管理；其余章节与全书统一修订仍在进行，代码示例尚未编译、执行。
 
 本仓库作为共同编辑的工作区。规划源稿、目录数据、来源清单、图示和导出工具纳入版本管理；合并稿、PDF、EPUB 和校验文件均在构建目录中生成，不提交到 Git。
 
@@ -36,11 +36,13 @@
 
 ## 当前正文里程碑
 
+- [工程交付、设备系统与能力证据正文](manuscript/chapters/engineering-systems-and-evidence/v0.1/README.md)：第二十一至三十三章、第五十七与第五十八章，共15章
+- [本批章节覆盖表](manuscript/chapters/engineering-systems-and-evidence/v0.1/coverage-ledger.csv)与[核验说明](manuscript/chapters/engineering-systems-and-evidence/v0.1/REVIEW.md)
 - [前四篇完整正文与第五十五章扩展](manuscript/chapters/core-foundations/v0.1/README.md)：21章阅读入口
 - [章节覆盖表](manuscript/chapters/core-foundations/v0.1/coverage-ledger.csv)、[内容与验证边界](manuscript/chapters/core-foundations/v0.1/REVIEW.md)及[技术版本基线](manuscript/chapters/core-foundations/v0.1/version-baseline.md)
 - [首批三章中文编号修订版](manuscript/chapters/batch01/v0.2/README.md)：第一、第四、第九章的编号修订历史
 
-第十三章从vector专题扩展为标准库与分配器完整章节，第五十五章补齐任务记忆、协议与多Agent协作等四个规划主题。全书继续编写与统一审读，完成整版修订后统一交付PDF、Markdown和EPUB；本次源稿里程碑不代表全书终稿，也不代表导出管线或全平台阅读兼容性已验收。
+新增正文连接构建、调试、测试、版本交付、架构、安全、运行可靠性、设备与网络系统，以及面试证据和跨层项目。此前第十三章和第五十五章的完整扩展继续保留。全书继续编写与统一审读，完成整版修订后统一交付PDF、Markdown和EPUB；本次源稿里程碑不代表全书终稿，也不代表导出管线或全平台阅读兼容性已验收。
 
 ## 首批正文历史 v0.1
 

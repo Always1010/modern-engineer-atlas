@@ -1,0 +1,41 @@
+[
+  {
+    "file": "c28-dma-ownership.svg",
+    "type": "original-diagram",
+    "author": "本书原创绘图",
+    "title": "c28-dma-ownership",
+    "sourceURL": null,
+    "license": "本书原创插图，未另行授予开放许可",
+    "licenseURL": null,
+    "modification": "原创矢量绘制",
+    "created": "2026-10-03",
+    "sha256": "15d255f122c17d55e95ef445e756b42e65b10d90048094063bdfb7fdaa7bdb08"
+  },
+  {
+    "file": "c28-memory-map.svg",
+    "type": "original-diagram",
+    "author": "本书原创绘图",
+    "title": "c28-memory-map",
+    "sourceURL": null,
+    "license": "本书原创插图，未另行授予开放许可",
+    "licenseURL": null,
+    "modification": "原创矢量绘制",
+    "created": "2026-10-03",
+    "sha256": "6c7b88b63753cabccdefe47ac771b47415ac0d4508931c2c9a39780182fe10bb"
+  },
+  {
+    "file": "stm32f4-discovery-front-teardown-central.jpg",
+    "type": "genuine-hardware-photograph",
+    "author": "Teardown Central",
+    "title": "STM32F4 Discovery",
+    "sourceURL": "https://commons.wikimedia.org/wiki/File:STM32F4_Discovery_(9067300323).jpg",
+    "originalSourceURL": "https://www.flickr.com/photos/84713982@N02/9067300323/",
+    "downloadURL": "https://upload.wikimedia.org/wikipedia/commons/7/7a/STM32F4_Discovery_%289067300323%29.jpg",
+    "license": "CC BY-SA 2.0 Generic",
+    "licenseURL": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "modification": "无；原图未裁切未改色，排版可等比例缩放",
+    "downloadDate": "2026-10-03",
+    "scope": "本照片独立按原许可证使用，不声明整本书开放许可",
+    "sha256": "ddd892fd716d0354d7777fc7bb33b33970133c08a16fb04857310c262fdafe52"
+  }
+]
