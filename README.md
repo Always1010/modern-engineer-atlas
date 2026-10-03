@@ -20,12 +20,12 @@
 
 目前已形成书籍定位、知识架构、三级目录、岗位阅读路径、图片体系、来源清单与后续研究流程。当前目录规划为 13 篇、58 章、232 节；正式章节正文和配套代码实验尚未开始。
 
-本仓库作为共同编辑的工作区。V1 规划、目录、来源清单、图示和文档导出工具已纳入版本管理；在形成阶段成果或完成实质性变更后提交，提交记录用于追踪变化。
+本仓库作为共同编辑的工作区。规划源稿、目录数据、来源清单、图示和导出工具纳入版本管理；合并稿、PDF、EPUB 和校验文件均在构建目录中生成，不提交到 Git。
 
 ## 阅读入口
 
-- [完整规划 V1](Modern-Engineering-Book-Plan-V1.zh-CN.md)：九项规划输出与证据附录
-- [完整三级目录](planning/02-complete-catalog.md)：13篇、58章、232节及章节属性
+- [规划源稿](planning/01-position-and-map.md)与[阅读路径源稿](planning/03-paths-and-workflow.md)：九项规划输出与证据附录
+- [三级目录结构源](planning/catalog-data.json)：章节、节和章节属性
 - [岗位阅读路径与后续流程](planning/03-paths-and-workflow.md)：13条路径、图片体系、在线配套和研究写作流程
 - [知识依赖边表](planning/dependency-edges.csv)与[原创知识架构图](assets/knowledge-map.png)
 - [技术来源台账](evidence/sources.md)、[招聘样本](evidence/jobs.md)、[2025年官方岗位补充](evidence/jobs-2025-supplement.md)
@@ -53,7 +53,7 @@
 
 - planning/01-position-and-map.md 和 planning/03-paths-and-workflow.md 是分段文字源
 - planning/catalog-data.json 是三级目录的结构化源
-- planning/02-complete-catalog.md 和 planning/chapter-metadata.csv 是目录数据生成的视图
+- build_source.py 生成被 .gitignore 排除的 build/book.md、build/catalog.md 和 build/chapter-metadata.csv
 - planning/dependency-edges.csv 维护章节与节之间的先修和交叉联系
 - evidence/ 保留来源、岗位样本与证据限制
 - assets/ 保留原创图、样式和[资产清单](assets/asset-manifest.csv)
@@ -62,30 +62,29 @@
 
 ## 文档导出
 
-现有工具不自动安装依赖，也不执行远程操作。使用前准备 Python 3、ReportLab、Pillow、PyMuPDF 和 Pandoc；create_map.py 当前使用 Linux Noto CJK 字体路径，其他平台需检查字体配置。
+导出依赖记录在 requirements-export.txt；Pandoc、Python、Java 和 EPUBCheck 的版本在 GitHub Actions 中固定。create_map.py 当前使用 Linux Noto CJK 字体路径，其他平台需检查字体配置。
 
-1. 在仓库根目录运行 python3 build_source.py，组装完整稿、目录视图和章节属性表
+1. 在仓库根目录运行 python3 build_source.py --output-dir build，组装完整稿、目录视图和章节属性表
 2. 需要更新知识图时，运行 python3 create_map.py
-3. 创建 exports 目录，运行 python3 render_pdf.py 导出 PDF
-4. 运行 python3 create_epub.py 生成窄屏友好文本，再用 Pandoc 导出 EPUB3
-5. PDF 和 EPUB 均已生成后，运行 python3 validate_artifacts.py 做结构与覆盖检查
+3. 安装 requirements-export.txt 中的 Python 依赖，并准备固定版本的 Pandoc
+4. 运行 render_pdf.py 和 create_epub.py，分别传入 --input build/book.md、--version 和 --date，输出到被忽略的 dist/
+5. 用官方 EPUBCheck 检查 EPUB，再运行 checksums.py write/verify 生成并核对 SHA-256 文件
+6. 运行 validate_artifacts.py，传入 --manuscript、--pdf、--epub 和可选的 --checksums 做结构、覆盖、图片路径和文件完整性检查
 
-EPUB 导出示例：
+EPUB 导出示例（具体发布版本由 book-v* 标签传入）：
 
 ```sh
-mkdir -p exports
-python3 create_epub.py
-pandoc qa/epub-input.md --from markdown --to epub3 \
-  --resource-path=. --css=assets/epub.css --toc \
-  --metadata lang=zh-CN \
-  --metadata title="现代 C++ 与软件工程师面试指南：第一阶段研究与规划 V1" \
-  -o exports/Modern-Engineering-Book-Plan-V1.zh-CN.epub
+python3 create_epub.py --input build/book.md \
+  --output dist/modern-engineer-atlas-1.0.0.epub \
+  --version 1.0.0 --date 2026-10-03
 ```
 
-这些工具尚未锁定跨平台环境，不承诺重建文件逐字节一致。重新导出的制品仍需检查版式和实际阅读效果。
+GitHub Actions 只响应 `book-v*` 推送，并额外要求 `book-vMAJOR.MINOR.PATCH`；构建 Job 只有 `contents: read`，发布 Job 使用自动提供的 `GITHUB_TOKEN` 和 `contents: write`。已有同名 Release 会使发布失败，上传不使用覆盖选项。仓库未启用 Git LFS。
+
+这些工具不承诺重建文件逐字节一致；每个正式标签的 PDF、EPUB 和 SHA-256 文件只作为 GitHub Release 附件发布，不回写 Git。
 
 ## 当前验证边界与素材权利
 
-V1 的58章232节覆盖、依赖节点、Markdown 图片路径及交付版 PDF/EPUB 结构已检查。EPUB 尚未完成 EPUBCheck 全量校验和真实手机/阅读器测试；PDF 未做所有品牌阅读器兼容验证。技术示例和硬件实验尚未开展。
+V1 的目录覆盖、依赖节点、Markdown 图片路径及交付版 PDF/EPUB 结构由 validate_artifacts.py 检查；正式标签构建还会运行 EPUBCheck 和 SHA-256 核对。真实手机/阅读器测试、PDF 全品牌阅读器兼容验证、技术示例和硬件实验仍未开展。
 
 知识图为本版原创。资产清单中的其他实物图片仅为计划，仍需取得并核对许可。来源台账保留链接和用途说明，未收录外部标准、教材或招聘页面的完整复制件。项目尚未另行指定再授权许可。
