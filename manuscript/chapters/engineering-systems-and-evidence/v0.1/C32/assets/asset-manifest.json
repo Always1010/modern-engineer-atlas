@@ -1,0 +1,34 @@
+[
+  {
+    "file": "ethernet-pci-card-sub.jpg",
+    "type": "genuine-hardware-photograph",
+    "author": "Sub",
+    "title": "Ethernet pci card",
+    "sourceURL": "https://commons.wikimedia.org/wiki/File:Ethernet_pci_card.jpg",
+    "downloadURL": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Ethernet_pci_card.jpg",
+    "license": "作者公有领域贡献（PD-self），并在不适用地区授予不附加条件的任意用途使用权，法律要求除外",
+    "licenseURL": "https://commons.wikimedia.org/wiki/File:Ethernet_pci_card.jpg#Licensing",
+    "modification": "无；原图未裁切未改色，排版仅等比例显示",
+    "downloadDate": "2026-10-03",
+    "declaredDate": "2007-10-03",
+    "sha256": "f5e885a6cb0924eb1f779fee42ebbeb3a5f6416d1bfa35da5d71e7c145b9f712"
+  },
+  {
+    "file": "c32-nic-queues.svg",
+    "type": "original-diagram",
+    "author": "本书原创绘图",
+    "sourceURL": null,
+    "licenseURL": null,
+    "created": "2026-10-03",
+    "sha256": "9825c8b80ac848e4e5ff452728c47e47184781bae5c16bb983251fba41198260"
+  },
+  {
+    "file": "c32-bypass-responsibilities.svg",
+    "type": "original-diagram",
+    "author": "本书原创绘图",
+    "sourceURL": null,
+    "licenseURL": null,
+    "created": "2026-10-03",
+    "sha256": "7a7ba5743259f71ab76606a9e06b29daa410437c1f27cb728a4b3e30e70a3327"
+  }
+]
