@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="490" viewBox="0 0 1000 490" role="img" aria-labelledby="title desc">
+<title id="title">图 13-3 批次所有权与借用阶段</title>
+<desc id="desc">所有者先构造 vector，停止影响读取的修改后把 span 借给消费者。消费完成以后才复用或释放存储。异步消费者需要另外设计所有权和同步。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#222"/></marker></defs>
+<rect width="1000" height="490" fill="white"/>
+<g font-family="Noto Sans CJK SC, sans-serif" fill="#111">
+<text x="30" y="43" font-size="25" font-weight="bold">图 13-3  消费完成后再复用或释放数据</text>
+<text x="30" y="81" font-size="22">时间从左向右。这是调用双方约定的阶段边界，不是容器内建的锁。</text>
+<g stroke="#222" stroke-width="2" fill="#f1f1f1"><rect x="30" y="130" width="210" height="120"/><rect x="275" y="130" width="200" height="120"/><rect x="510" y="130" width="210" height="120"/><rect x="755" y="130" width="215" height="120"/></g>
+<g text-anchor="middle" font-size="22"><text x="135" y="168">1 构造批次</text><text x="375" y="168">2 停止修改</text><text x="615" y="168">3 使用 span</text><text x="862" y="168">4 复用或释放</text></g>
+<g text-anchor="middle" font-size="22"><text x="135" y="206">允许追加元素</text><text x="375" y="206">建立借用</text><text x="615" y="206">在约定期间使用</text><text x="862" y="206">消费已真正结束</text></g>
+<g stroke="#222" stroke-width="2" marker-end="url(#arrow)"><path d="M242 190H272"/><path d="M477 190H507"/><path d="M722 190H752"/></g>
+<path d="M40 303H713" stroke="#222" stroke-width="5"/><path d="M40 293V313M713 293V313" stroke="#222" stroke-width="2"/>
+<text x="40" y="339" font-size="22">所有者及元素在消费结束前保持存活</text>
+<path d="M520 370H712" stroke="#222" stroke-width="3" stroke-dasharray="7 4"/>
+<text x="518" y="404" font-size="22">借用的访问区间</text>
+<text x="30" y="457" font-size="22">异步场景：释放必须等待真实完成，并另行定义所有权与同步。</text>
+</g></svg>

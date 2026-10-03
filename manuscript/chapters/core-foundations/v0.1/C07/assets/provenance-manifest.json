@@ -1,0 +1,42 @@
+{
+  "chapter": "C07",
+  "created": "2026-10-03",
+  "rights": "Original explanatory vector drawings for this manuscript. No external images, logos, screenshots or embedded font files. Font families are referenced by name only.",
+  "assets": [
+    {
+      "file": "C07-scheduling-timeline.svg",
+      "type": "original-svg",
+      "purpose": "Distinguish blocked, runnable and actually running states",
+      "basis": [
+        "https://man7.org/linux/man-pages/man7/sched.7.html"
+      ],
+      "not_to_scale": true,
+      "accessibility": "Chinese title/desc and labeled time/state regions"
+    },
+    {
+      "file": "C07-descriptor-lifetime.svg",
+      "type": "original-svg",
+      "purpose": "Distinguish descriptor entries, open file descriptions and file objects",
+      "basis": [
+        "https://man7.org/linux/man-pages/man2/open.2.html",
+        "https://man7.org/linux/man-pages/man2/dup.2.html"
+      ],
+      "not_to_scale": true,
+      "accessibility": "Chinese title/desc, labeled relationships"
+    },
+    {
+      "file": "C07-durable-replacement.svg",
+      "type": "original-svg",
+      "purpose": "Separate atomic visibility from crash durability in a conditional local-file update protocol",
+      "basis": [
+        "https://man7.org/linux/man-pages/man2/fsync.2.html",
+        "https://man7.org/linux/man-pages/man2/rename.2.html"
+      ],
+      "not_to_scale": true,
+      "accessibility": "Chinese title/desc, numbered state transitions and explicit failure consequences"
+    }
+  ],
+  "external_photos": [],
+  "render_qa": "SVGs rendered and visually checked on 2026-10-03; final whole-book layout review remains pending.",
+  "origin": "Original diagrams created for this book project"
+}
