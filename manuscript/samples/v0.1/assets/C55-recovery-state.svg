@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1080" viewBox="0 0 1200 1080" role="img" aria-labelledby="title desc">
+  <title id="title">超时之后先保存未知 再决定怎样恢复</title>
+  <desc id="desc">原创恢复状态图。准备并冻结操作标识后发起调用，获得匹配的提交证据可核验成功。超时、断线或崩溃进入结果未知，远端可能未收到、执行中或已提交。按操作标识向权威系统对账，若找到匹配提交则核验成功；结果仍不确定时检查去重契约和当前授权。只有去重有效、参数不变、授权有效且预算允许时，才复用原操作标识重试。否则等待或人工核查，并保留未知。查询未找到不等于没有副作用，取消请求不等于撤销工单。为聚焦未知恢复，图中省略了明确无副作用的终止失败分支。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#333"/>
+    </marker>
+  </defs>
+  <style>
+    text { font-family: "Noto Sans CJK SC", "Microsoft YaHei", "PingFang SC", sans-serif; fill: #171717; }
+    .title { font-size: 28px; font-weight: 700; }
+    .head { font-size: 26px; font-weight: 700; }
+    .body { font-size: 26px; }
+    .note { font-size: 26px; }
+    .box { fill: #fff; stroke: #333; stroke-width: 2.4; }
+    .unknown { fill: #e9e9e9; stroke: #222; stroke-width: 3; }
+    .edge { fill: none; stroke: #333; stroke-width: 2.4; marker-end: url(#arrow); }
+    .uncertain { stroke-dasharray: 8 6; }
+  </style>
+  <rect width="1200" height="1080" fill="#fff"/>
+  <text x="48" y="49" class="title">图 C55-A　超时之后先保存未知 再决定怎样恢复</text>
+  <text x="48" y="82" class="note">实线：控制转移；虚线：结果仍未知。所有分支均须遵守当前权限。</text>
+
+  <rect x="45" y="130" width="260" height="106" rx="10" class="box"/>
+  <text x="175" y="169" text-anchor="middle" class="head">准备并持久化</text>
+  <text x="175" y="203" text-anchor="middle" class="body">冻结参数与操作标识</text>
+
+  <path d="M305 183 H370" class="edge"/>
+  <rect x="375" y="130" width="290" height="106" rx="10" class="box"/>
+  <text x="520" y="169" text-anchor="middle" class="head">发起一次调用</text>
+  <text x="520" y="203" text-anchor="middle" class="body">同一意图使用同一标识</text>
+
+  <path d="M665 174 H850" class="edge"/>
+  <text x="756" y="147" text-anchor="middle" class="note">提交证据匹配</text>
+  <rect x="855" y="130" width="285" height="106" rx="10" class="box"/>
+  <text x="997" y="169" text-anchor="middle" class="head">核验成功</text>
+  <text x="997" y="203" text-anchor="middle" class="body">保存结果与证据</text>
+
+  <path d="M520 236 V322" class="edge uncertain"/>
+  <text x="543" y="284" class="note">超时 断线 崩溃</text>
+  <rect x="375" y="327" width="290" height="99" rx="10" class="unknown"/>
+  <text x="520" y="364" text-anchor="middle" class="head">结果未知 UNKNOWN</text>
+  <text x="520" y="398" text-anchor="middle" class="body">不等于执行失败</text>
+
+  <rect x="45" y="309" width="265" height="156" rx="8" fill="#f5f5f5" stroke="#777" stroke-width="1.6"/>
+  <text x="66" y="343" class="head">远端可能处于</text>
+  <text x="66" y="377" class="body">① 尚未收到请求</text>
+  <text x="66" y="408" class="body">② 仍在执行</text>
+  <text x="66" y="439" class="body">③ 已经提交</text>
+  <path d="M310 376 H375" fill="none" stroke="#777" stroke-width="1.8" stroke-dasharray="5 5"/>
+
+  <path d="M520 426 V507" class="edge"/>
+  <rect x="375" y="512" width="290" height="105" rx="10" class="box"/>
+  <text x="520" y="551" text-anchor="middle" class="head">按操作标识对账</text>
+  <text x="520" y="585" text-anchor="middle" class="body">查询权威业务系统</text>
+  <path d="M665 562 H997 V241" class="edge"/>
+  <text x="781" y="540" text-anchor="middle" class="note">找到匹配提交</text>
+
+  <path d="M520 617 V702" class="edge uncertain"/>
+  <text x="544" y="660" class="note">结果仍不确定</text>
+  <text x="544" y="686" class="note">含未找到或查询失败</text>
+  <rect x="375" y="707" width="290" height="108" rx="10" class="unknown"/>
+  <text x="520" y="746" text-anchor="middle" class="head">可以安全重试吗</text>
+  <text x="520" y="779" text-anchor="middle" class="body">不能只看“查不到”</text>
+
+  <path d="M375 761 H175 V875" class="edge"/>
+  <text x="262" y="742" text-anchor="middle" class="note">否</text>
+  <rect x="45" y="880" width="300" height="108" rx="10" class="box"/>
+  <text x="195" y="918" text-anchor="middle" class="head">等待或人工核查</text>
+  <text x="195" y="952" text-anchor="middle" class="body">保留未知与证据</text>
+
+  <path d="M665 761 H1040 V852 H850 V875" class="edge"/>
+  <text x="746" y="735" text-anchor="middle" class="note">是</text>
+  <text x="710" y="796" class="note">去重仍有效 参数不变</text>
+  <text x="710" y="824" class="note">当前授权与预算允许</text>
+  <rect x="700" y="880" width="300" height="108" rx="10" class="box"/>
+  <text x="850" y="918" text-anchor="middle" class="head">复用原标识重试</text>
+  <text x="850" y="952" text-anchor="middle" class="body">不生成新的业务意图</text>
+  <path d="M1000 934 H1164 V112 H520 V125" class="edge"/>
+
+  <text x="48" y="1030" class="note">边界：省略已知无副作用的终止失败；取消流程不等于撤销工单。</text>
+  <text x="48" y="1059" class="note">原创教学示意 · 不依赖颜色表达状态 · 2026-10-03</text>
+</svg>

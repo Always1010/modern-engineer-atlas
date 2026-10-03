@@ -1,0 +1,4 @@
+asset_id,path,chapter_id,kind,origin,rights,alt_text_location,print_min_width_mm,minimum_label_pt_at_width,validation
+C13-A,C13-storage-and-borrow.svg,C13,原创容量与借用关系图,项目原创SVG,不含第三方配图且对外许可证待确认,SVG title desc及正文替代文本,150,9.35,SVG渲染目视检查且正式版式未验收
+C13-B,C13-batch-phases.svg,C13,原创批次借用阶段图,项目原创SVG,不含第三方配图且对外许可证待确认,SVG title desc及正文替代文本,150,9.35,SVG渲染目视检查且正式版式未验收
+C55-A,C55-recovery-state.svg,C55,原创未知结果恢复状态图,项目原创SVG,不含第三方配图且对外许可证待确认,SVG title desc及正文替代文本,150,9.21,SVG渲染目视检查且正式版式未验收
