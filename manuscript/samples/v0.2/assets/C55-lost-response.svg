@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="720" viewBox="0 0 1000 720" role="img" aria-labelledby="title desc">
+<title id="title">C55-A 服务端已提交而调用方仍未知</title>
+<desc id="desc">调用方先保存操作标识，再向日历服务发送请求。服务端已创建会议，但响应丢失，调用方超时并记录结果未知。若接口支持，应按原操作核查结果；不能仅因超时便创建另一场会议。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#222"/></marker></defs>
+<rect width="1000" height="720" fill="white"/>
+<g font-family="Noto Sans CJK SC, sans-serif" fill="#111">
+<text x="30" y="42" font-size="25" font-weight="bold">C55-A  服务端已提交而调用方仍未知</text>
+<text x="30" y="78" font-size="22">时间向下。图中只画出超时背后的一种可能情况。</text>
+<g font-size="24" font-weight="bold" text-anchor="middle"><text x="210" y="122">调用方</text><text x="770" y="122">日历服务</text></g>
+<g stroke="#777" stroke-width="2" stroke-dasharray="6 6"><path d="M210 135V646"/><path d="M770 135V646"/></g>
+<g fill="#f1f1f1" stroke="#222" stroke-width="2"><rect x="30" y="150" width="360" height="64"/><rect x="570" y="280" width="400" height="78"/><rect x="30" y="419" width="360" height="78"/></g>
+<g text-anchor="middle" font-size="22"><text x="210" y="190">保存原操作标识与参数</text><text x="770" y="312">会议已经创建</text><text x="770" y="342">提交结果留在服务端</text><text x="210" y="450">调用超时</text><text x="210" y="480">本地记录为结果未知</text></g>
+<path d="M222 251H747" stroke="#222" stroke-width="2.5" marker-end="url(#arrow)"/>
+<text x="490" y="238" font-size="22" text-anchor="middle">发送请求，携带原操作标识</text>
+<path d="M750 394H232" stroke="#222" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#arrow)"/>
+<rect x="481" y="380" width="29" height="29" fill="white"/>
+<path d="M483 382L508 407M508 382L483 407" stroke="#111" stroke-width="3"/>
+<text x="498" y="376" font-size="22" text-anchor="middle">响应丢失</text>
+<path d="M222 552H747" stroke="#222" stroke-width="2.5" marker-end="url(#arrow)"/>
+<text x="490" y="538" font-size="22" text-anchor="middle">接口支持时，按原操作核查</text>
+<path d="M750 616H232" stroke="#222" stroke-width="2.5" marker-end="url(#arrow)"/>
+<text x="490" y="602" font-size="22" text-anchor="middle">返回可核验的原操作结果</text>
+<text x="30" y="680" font-size="22">超时本身不能排除请求未送达、仍在执行或已经提交。</text>
+</g></svg>
