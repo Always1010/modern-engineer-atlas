@@ -1,0 +1,12 @@
+asset_id,chapter_id,type,source_file,published_file,source,author,license,status,alt_text,permission_evidence,accessed_at,sha256,validated_environment
+FIG-MAP-01,planning,原创知识图,create_map.py,assets/knowledge-map.png,本次原创,,未另行指定再授权,已完成,共享基础语言与机器执行交叉连接并通向各岗位分支,,2026-10-03,3ab20f36a68d851de1b6e38bdec36a40b3f27b39c68a7751a3d79d7a62511906,本版PDF与EPUB资源检查
+PHOTO-MCU,C28,实物照片,,,,,,待取得并核对授权,MCU开发板接口与尺寸,,,,
+PHOTO-UART,C28,实物照片,,,,,,待取得并核对授权,USB转串口适配器与引脚,,,,
+PHOTO-CAN,C28,实物照片,,,,,,待取得并核对授权,CAN适配器与总线连接,,,,
+PHOTO-JTAG,C28,实物照片,,,,,,待取得并核对授权,JTAG或SWD调试器,,,,
+PHOTO-NIC,C32,实物照片,,,,,,待取得并核对授权,网卡队列与接口识别,,,,
+PHOTO-GPU,C44,实物照片,,,,,,待取得并核对授权,GPU板卡与设备接口,,,,
+PHOTO-LIDAR,C48,实物照片,,,,,,待取得并核对授权,LiDAR及安装坐标方向,,,,
+PHOTO-IMU,C48,实物照片,,,,,,待取得并核对授权,IMU与轴向标识,,,,
+PHOTO-MOTOR,C48,实物照片,,,,,,待取得并核对授权,电机执行器与驱动接口,,,,
+PHOTO-ENCODER,C48,实物照片,,,,,,待取得并核对授权,Encoder编码器与测量对象,,,,
