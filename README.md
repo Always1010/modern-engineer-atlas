@@ -18,7 +18,7 @@
 
 第一阶段研究与规划 V1，基准日期为 2026-10-03。
 
-目前已形成书籍定位、知识架构、三级目录、岗位阅读路径、图片体系、来源清单与后续研究流程。目录规划为 13 篇、58 章、232 节；现进入第二阶段专题样章 v0.5，以 C13 vector 与 C55 可恢复 Agent 两篇局部专题校准写法。它们不是两个已完成的全章，说明代码与故障场景均未执行。
+目前已形成书籍定位、知识架构、三级目录、岗位阅读路径、图片体系、来源清单与后续研究流程。目录规划为 13 篇、58 章、232 节；现进入第二阶段专题样章 v0.6，以 C13 vector 与 C55 可恢复 Agent 两篇完整专题稿校准写法。两篇覆盖各自选定的局部专题，不表示 C13、C55 的全部规划内容已经写完；说明代码与故障场景均未执行。
 
 本仓库作为共同编辑的工作区。规划源稿、目录数据、来源清单、图示和导出工具纳入版本管理；合并稿、PDF、EPUB 和校验文件均在构建目录中生成，不提交到 Git。
 
@@ -34,18 +34,19 @@
 
 重要方向仍以讨论后确定的结论为准；上传草稿不代表内容已定稿。
 
-## 第二阶段专题样章 v0.5
+## 第二阶段专题样章 v0.6
 
-- [样章阅读说明](manuscript/samples/v0.5/README.md)：专题范围、修订方向、图文与核验边界
-- [C13 从一组数据认识 vector](manuscript/samples/v0.5/C13-vector-lifetime.zh-CN.md)：行文路线、容器选择与知识骨架、基本使用、借用与工程取舍
-- [C55 从语言模型到可恢复的 Agent](manuscript/samples/v0.5/C55-agent-recovery.zh-CN.md)：行文路线、系统整体关系、只读任务、写入恢复与 MCP 边界
-- [复核说明](manuscript/samples/v0.5/REVIEW.md)与[来源索引](manuscript/samples/v0.5/source-audit.md)
+- [样章阅读说明](manuscript/samples/v0.6/README.md)：专题范围、修订方向、图文与核验边界
+- [C13 从一组数据认识 vector](manuscript/samples/v0.6/C13-vector-lifetime.zh-CN.md)：用途与选择、基本操作与存储、借用有效期、工程取舍与排障
+- [C55 从语言模型到可恢复的 Agent](manuscript/samples/v0.6/C55-agent-recovery.zh-CN.md)：适用范围、系统关系、只读协作、外部动作恢复与 MCP 边界
+- [复核说明](manuscript/samples/v0.6/REVIEW.md)与[来源索引](manuscript/samples/v0.6/source-audit.md)
+- [v0.5 历史样章](manuscript/samples/v0.5/README.md)
 - [v0.4 历史样章](manuscript/samples/v0.4/README.md)
 - [v0.3 历史样章](manuscript/samples/v0.3/README.md)
 - [v0.2 历史样章](manuscript/samples/v0.2/README.md)
 - [v0.1 历史样章](manuscript/samples/v0.1/README.md)
 
-v0.5 在每篇开头分别呈现行文路线与主题全貌：前者说明讲解的方面、顺序和联系，后者说明主题的位置、组成及关系。定义与使用背景先行，细节再沿正文逐步展开，保留故障排查与面试追问。对话只交付 PDF，权威 Markdown 与八幅原创图按版本维护。本版 PDF 为24页；图文、引用和逐页检查范围见复核记录，技术示例执行、故障实验和目标读者实测仍待完成。
+v0.6 精简开篇说明，删除重复的正文展开顺序与固定栏目预告，并通读两篇全文调整衔接。主题关系图随相关定义呈现，细节继续渐进展开，正文中的故障排查、面试追问与来源边界完整保留。对话只交付 PDF，权威 Markdown 与六幅原创图按版本维护。本版 PDF 为24页；图文、引用和逐页检查范围见复核记录，技术示例执行、故障实验和目标读者实测仍待完成。
 
 ## 内容与版本管理
 
