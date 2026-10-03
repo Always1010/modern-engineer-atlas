@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="740" viewBox="0 0 1000 740" role="img" aria-labelledby="title desc">
+  <title id="title">相同均值 不同耗时分布</title>
+  <desc id="desc">两组构造数据各有100个请求，平均耗时均为40毫秒。甲在20毫秒处有95个请求、420毫秒处有5个请求；乙的100个请求全部为40毫秒。横轴为耗时毫秒，纵轴为请求数，两幅分布采用相同尺度。</desc>
+  <rect width="1000" height="740" fill="#ffffff"/>
+  <g font-family="Noto Sans CJK SC, Source Han Sans SC, sans-serif" fill="#17212b">
+    <text x="44" y="45" font-size="31" font-weight="700">相同均值可以隐藏慢端差异</text>
+    <text x="44" y="84" font-size="23">每组 100 个构造请求，均值均为 40 ms；未执行性能测试</text>
+    <text x="100" y="128" font-size="23">请求数</text>
+    <text x="35" y="226" font-size="28" font-weight="700">甲</text>
+    <text x="35" y="507" font-size="28" font-weight="700">乙</text>
+    <g fill="none" stroke="#d9dfe4" stroke-width="1.5">
+      <path d="M100 150H910 M100 230H910 M100 430H910 M100 510H910"/>
+      <path d="M280 150V310 M460 150V310 M640 150V310 M820 150V310"/>
+      <path d="M280 430V590 M460 430V590 M640 430V590 M820 430V590"/>
+    </g>
+    <g fill="none" stroke="#333f48" stroke-width="2.5">
+      <path d="M100 150V310H910 M100 430V590H910"/>
+    </g>
+    <g text-anchor="end" font-size="22">
+      <text x="88" y="158">100</text><text x="88" y="238">50</text><text x="88" y="318">0</text>
+      <text x="88" y="438">100</text><text x="88" y="518">50</text><text x="88" y="598">0</text>
+    </g>
+    <g text-anchor="middle" font-size="22">
+      <text x="100" y="341">0</text><text x="280" y="341">100</text><text x="460" y="341">200</text>
+      <text x="640" y="341">300</text><text x="820" y="341">400</text><text x="910" y="341">450</text>
+      <text x="100" y="621">0</text><text x="280" y="621">100</text><text x="460" y="621">200</text>
+      <text x="640" y="621">300</text><text x="820" y="621">400</text><text x="910" y="621">450</text>
+    </g>
+    <g fill="#436782" stroke="#29465b" stroke-width="1.5">
+      <rect x="126" y="158" width="20" height="152"/>
+      <rect x="846" y="302" width="20" height="8"/>
+    </g>
+    <rect x="162" y="430" width="20" height="160" fill="#e3eee8" stroke="#365a49" stroke-width="3"/>
+    <text x="165" y="183" font-size="25" font-weight="600">95 个 × 20 ms</text>
+    <text x="651" y="279" font-size="25" font-weight="600">5 个 × 420 ms</text>
+    <path d="M824 285L854 300" fill="none" stroke="#5d6770" stroke-width="1.5"/>
+    <text x="500" y="184" font-size="24">p95 = 20 ms</text>
+    <text x="500" y="220" font-size="24">p99 = 420 ms</text>
+    <text x="201" y="464" font-size="25" font-weight="600">100 个 × 40 ms</text>
+    <text x="570" y="464" font-size="24">p95 = 40 ms</text>
+    <text x="570" y="500" font-size="24">p99 = 40 ms</text>
+    <text x="718" y="661" font-size="24">请求耗时 / ms</text>
+    <text x="44" y="707" font-size="22">百分位采用排序后向上取整名次；窄柱表示对应耗时的频数</text>
+  </g>
+</svg>

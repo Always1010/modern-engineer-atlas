@@ -18,7 +18,7 @@
 
 第一阶段研究与规划 V1，基准日期为 2026-10-03。
 
-目前已形成书籍定位、知识架构、三级目录、岗位阅读路径、图片体系、来源清单与后续研究流程，目录规划为 13 篇、58 章、232 节。C13 vector 与 C55 可恢复 Agent 专题样章 v0.6 的写法已获接受；现完成第一批正文 v0.1，收录 C01、C04、C09 三个完整章节，覆盖12个既定主题与八幅原创图。章号沿用全书规划，选章不连续，不代表目录重排或全书完成；代码示例尚未编译、执行。
+全书按已确认的13篇、58章、232节目录继续完成，沿用已接受的专题样章写法。本次正文里程碑收录前四篇第一至第二十章，以及第五十五章完整扩展，共21章、84个既定主题、59幅原创SVG。正文采用中文章号与分节编号，稳定文件编号用于版本管理；其余章节与全书统一修订仍在进行，代码示例尚未编译、执行。
 
 本仓库作为共同编辑的工作区。规划源稿、目录数据、来源清单、图示和导出工具纳入版本管理；合并稿、PDF、EPUB 和校验文件均在构建目录中生成，不提交到 Git。
 
@@ -34,21 +34,29 @@
 
 重要方向仍以讨论后确定的结论为准；上传草稿不代表内容已定稿。
 
-## 第一批正文 v0.1
+## 当前正文里程碑
+
+- [前四篇完整正文与第五十五章扩展](manuscript/chapters/core-foundations/v0.1/README.md)：21章阅读入口
+- [章节覆盖表](manuscript/chapters/core-foundations/v0.1/coverage-ledger.csv)、[内容与验证边界](manuscript/chapters/core-foundations/v0.1/REVIEW.md)及[技术版本基线](manuscript/chapters/core-foundations/v0.1/version-baseline.md)
+- [首批三章中文编号修订版](manuscript/chapters/batch01/v0.2/README.md)：第一、第四、第九章的编号修订历史
+
+第十三章从vector专题扩展为标准库与分配器完整章节，第五十五章补齐任务记忆、协议与多Agent协作等四个规划主题。全书继续编写与统一审读，完成整版修订后统一交付PDF、Markdown和EPUB；本次源稿里程碑不代表全书终稿，也不代表导出管线或全平台阅读兼容性已验收。
+
+## 首批正文历史 v0.1
 
 - [本批阅读说明](manuscript/chapters/batch01/v0.1/README.md)：章节范围、内容入口与验证边界
-- [C01 用约束描述工程问题](manuscript/chapters/batch01/v0.1/C01-engineering-constraints.zh-CN.md)：输入输出与不变量、复杂度与预算、实验可信度和按需数学
-- [C04 数据与协议的共同语言](manuscript/chapters/batch01/v0.1/C04-data-and-protocols.zh-CN.md)：数值与文字表示、时间单位、序列化兼容和流式解析
-- [C09 对象生命周期与资源所有权](manuscript/chapters/batch01/v0.1/C09-object-lifetime-and-ownership.zh-CN.md)：对象存续、借用、资源管理、所有权图和退出路径
+- [第一章 用约束描述工程问题](manuscript/chapters/batch01/v0.1/C01-engineering-constraints.zh-CN.md)：输入输出与不变量、复杂度与预算、实验可信度和按需数学
+- [第四章 数据与协议的共同语言](manuscript/chapters/batch01/v0.1/C04-data-and-protocols.zh-CN.md)：数值与文字表示、时间单位、序列化兼容和流式解析
+- [第九章 对象生命周期与资源所有权](manuscript/chapters/batch01/v0.1/C09-object-lifetime-and-ownership.zh-CN.md)：对象存续、借用、资源管理、所有权图和退出路径
 - [审读记录](manuscript/chapters/batch01/v0.1/REVIEW.md)与[来源复核](manuscript/chapters/batch01/v0.1/source-audit.md)
 
-本批沿用已接受的样章写法：开篇交代对象、用途与内容脉络，正文渐进展开并保持自然衔接，保留故障诊断和有回答的面试追问。同源 PDF 为48页，在对话中单独交付；代码验证、性能测量与目标读者实测仍待开展，下一批范围结合本批反馈确定。
+本批沿用已接受的样章写法：开篇交代对象、用途与内容脉络，正文渐进展开并保持自然衔接，保留故障诊断和有回答的面试追问。同源 PDF 为48页，在对话中单独交付；代码验证、性能测量与目标读者实测仍待开展，后续范围已按整书连续完成的决定推进。
 
 ## 已接受的专题样章 v0.6
 
 - [样章阅读说明](manuscript/samples/v0.6/README.md)：专题范围、修订方向、图文与核验边界
-- [C13 从一组数据认识 vector](manuscript/samples/v0.6/C13-vector-lifetime.zh-CN.md)：用途与选择、基本操作与存储、借用有效期、工程取舍与排障
-- [C55 从语言模型到可恢复的 Agent](manuscript/samples/v0.6/C55-agent-recovery.zh-CN.md)：适用范围、系统关系、只读协作、外部动作恢复与 MCP 边界
+- [第十三章 vector 专题](manuscript/samples/v0.6/C13-vector-lifetime.zh-CN.md)：用途与选择、基本操作与存储、借用有效期、工程取舍与排障
+- [第五十五章 Agent 专题](manuscript/samples/v0.6/C55-agent-recovery.zh-CN.md)：适用范围、系统关系、只读协作、外部动作恢复与 MCP 边界
 - [复核说明](manuscript/samples/v0.6/REVIEW.md)与[来源索引](manuscript/samples/v0.6/source-audit.md)
 - [v0.5 历史样章](manuscript/samples/v0.5/README.md)
 - [v0.4 历史样章](manuscript/samples/v0.4/README.md)

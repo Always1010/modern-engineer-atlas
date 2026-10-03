@@ -1,0 +1,356 @@
+[
+  {
+    "chapter": "C01",
+    "file": "C01/assets/C01-equal-mean-different-tail.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C01",
+    "file": "C01/assets/C01-feasible-budget.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C02",
+    "file": "C02/assets/C02-bloom-path.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C02",
+    "file": "C02/assets/C02-layouts.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C02",
+    "file": "C02/assets/C02-index-path.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C03",
+    "file": "C03/assets/C03-binary-boundary.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C03",
+    "file": "C03/assets/C03-dependency-frontier.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C03",
+    "file": "C03/assets/C03-cache-composition.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C04",
+    "file": "C04/assets/C04-text-lengths.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C04",
+    "file": "C04/assets/C04-frame-parser-states.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C04",
+    "file": "C04/assets/C04-value-and-byte-order.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C05",
+    "file": "C05/assets/C05-pipeline-dependency.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C05",
+    "file": "C05/assets/C05-sharing-numa.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C05",
+    "file": "C05/assets/C05-layout-locality.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C06",
+    "file": "C06/assets/C06-translation-path.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C06",
+    "file": "C06/assets/C06-allocation-layers.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C06",
+    "file": "C06/assets/C06-copy-on-write.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C07",
+    "file": "C07/assets/C07-scheduling-timeline.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C07",
+    "file": "C07/assets/C07-durable-replacement.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C07",
+    "file": "C07/assets/C07-descriptor-lifetime.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C08",
+    "file": "C08/assets/C08-build-and-load.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C08",
+    "file": "C08/assets/C08-sections-and-segments.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C08",
+    "file": "C08/assets/C08-abi-ownership.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C09",
+    "file": "C09/assets/C09-storage-lifetime.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C09",
+    "file": "C09/assets/C09-ownership-cycle.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C09",
+    "file": "C09/assets/C09-resource-exit.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C10",
+    "file": "C10/assets/C10-copy-move.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C10",
+    "file": "C10/assets/C10-forwarding.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C11",
+    "file": "C11/assets/C11-layout-padding.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C11",
+    "file": "C11/assets/C11-virtual-dispatch.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C12",
+    "file": "C12/assets/C12-constant-evaluation.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C12",
+    "file": "C12/assets/C12-instantiation.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C13",
+    "file": "C13/assets/C13-structure-map.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C13",
+    "file": "C13/assets/C13-storage-and-borrow.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C13",
+    "file": "C13/assets/C13-pmr-resource-lifetime.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C13",
+    "file": "C13/assets/C13-batch-phases.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C14",
+    "file": "C14/assets/C14-prepare-commit.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C14",
+    "file": "C14/assets/C14-error-boundaries.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C15",
+    "file": "C15/assets/C15-support-layers.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C15",
+    "file": "C15/assets/C15-standard-timeline.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C16",
+    "file": "C16/assets/C16-predicate-wait.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C16",
+    "file": "C16/assets/C16-lock-order.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C16",
+    "file": "C16/assets/C16-shutdown.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C17",
+    "file": "C17/assets/C17-happens-before.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C17",
+    "file": "C17/assets/C17-ordering-layers.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C17",
+    "file": "C17/assets/C17-store-buffering.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C18",
+    "file": "C18/assets/C18-reclamation.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C18",
+    "file": "C18/assets/C18-aba.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C18",
+    "file": "C18/assets/C18-validation.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C19",
+    "file": "C19/assets/C19-readiness-completion.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C19",
+    "file": "C19/assets/C19-structured-cancellation.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C19",
+    "file": "C19/assets/C19-coroutine-frame.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C20",
+    "file": "C20/assets/C20-latency-distribution.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C20",
+    "file": "C20/assets/C20-roofline.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C20",
+    "file": "C20/assets/C20-flame-graph.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C55",
+    "file": "C55/assets/C55-system-map.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C55",
+    "file": "C55/assets/C55-agent-loop.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C55",
+    "file": "C55/assets/C55-lost-response.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  },
+  {
+    "chapter": "C55",
+    "file": "C55/assets/C55-multi-agent-evidence.svg",
+    "origin": "original_educational_illustration",
+    "license_note": "随书稿提供；未新增项目开放许可证"
+  }
+]
