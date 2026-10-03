@@ -18,7 +18,7 @@
 
 第一阶段研究与规划 V1，基准日期为 2026-10-03。
 
-目前已形成书籍定位、知识架构、三级目录、岗位阅读路径、图片体系、来源清单与后续研究流程。目录规划为 13 篇、58 章、232 节；现进入第二阶段专题样章 v0.2，以 C13 vector 与 C55 可恢复 Agent 两篇局部专题校准写法。它们不是两个已完成的全章，说明代码与故障场景均未执行。
+目前已形成书籍定位、知识架构、三级目录、岗位阅读路径、图片体系、来源清单与后续研究流程。目录规划为 13 篇、58 章、232 节；现进入第二阶段专题样章 v0.3，以 C13 vector 与 C55 可恢复 Agent 两篇局部专题校准写法。它们不是两个已完成的全章，说明代码与故障场景均未执行。
 
 本仓库作为共同编辑的工作区。规划源稿、目录数据、来源清单、图示和导出工具纳入版本管理；合并稿、PDF、EPUB 和校验文件均在构建目录中生成，不提交到 Git。
 
@@ -34,15 +34,16 @@
 
 重要方向仍以讨论后确定的结论为准；上传草稿不代表内容已定稿。
 
-## 第二阶段专题样章 v0.2
+## 第二阶段专题样章 v0.3
 
-- [样章阅读说明](manuscript/samples/v0.2/README.md)：专题范围、修订方向、图文与核验边界
-- [C13 vector 的空间与时间](manuscript/samples/v0.2/C13-vector-lifetime.zh-CN.md)：容量、生命周期、借用、异常与工程取舍
-- [C55 可恢复的 Agent 与工具协议](manuscript/samples/v0.2/C55-agent-recovery.zh-CN.md)：未知结果、幂等、恢复证据、批准与 MCP 边界
-- [复核说明](manuscript/samples/v0.2/REVIEW.md)与[来源索引](manuscript/samples/v0.2/source-audit.md)
+- [样章阅读说明](manuscript/samples/v0.3/README.md)：专题范围、修订方向、图文与核验边界
+- [C13 从一组数据认识 vector](manuscript/samples/v0.3/C13-vector-lifetime.zh-CN.md)：动态数组、最小使用、容量、生命周期、借用与工程取舍
+- [C55 从语言模型到可恢复的 Agent](manuscript/samples/v0.3/C55-agent-recovery.zh-CN.md)：模型、工具与执行循环、只读任务、写入恢复与 MCP 边界
+- [复核说明](manuscript/samples/v0.3/REVIEW.md)与[来源索引](manuscript/samples/v0.3/source-audit.md)
+- [v0.2 历史样章](manuscript/samples/v0.2/README.md)
 - [v0.1 历史样章](manuscript/samples/v0.1/README.md)
 
-v0.2 将正文改为按知识关系展开的通俗技术论述，丰富案例，保留故障排查与面试追问，移除练习题。同版 PDF 已逐页检查并独立交付；技术示例执行、故障实验和读者试读仍待完成。
+v0.3 从基本概念和用途开始，以最小例子建立工作方式，再逐步进入实现、取舍、故障排查与面试追问。对话只交付 PDF，权威 Markdown 与四幅原创图仍按版本维护。PDF 逐页检查与独立审读范围见本版复核记录；技术示例执行、故障实验和目标读者实测仍待完成。
 
 ## 内容与版本管理
 
@@ -98,3 +99,4 @@ GitHub Actions 只响应 `book-v*` 推送，并额外要求 `book-vMAJOR.MINOR.P
 V1 的目录覆盖、依赖节点、Markdown 图片路径及交付版 PDF/EPUB 结构由 validate_artifacts.py 检查；正式标签构建还会运行 EPUBCheck 和 SHA-256 核对。真实手机/阅读器测试、PDF 全品牌阅读器兼容验证、技术示例和硬件实验仍未开展。
 
 知识图为本版原创。资产清单中的其他实物图片仅为计划，仍需取得并核对许可。来源台账保留链接和用途说明，未收录外部标准、教材或招聘页面的完整复制件。项目尚未另行指定再授权许可。
+
