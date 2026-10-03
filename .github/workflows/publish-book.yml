@@ -1,0 +1,200 @@
+name: Publish book artifacts
+
+on:
+  push:
+    tags:
+      - 'book-v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Build-only version label; this run never creates a Release'
+        required: false
+        default: 'ci'
+
+permissions:
+  contents: read
+
+env:
+  PYTHON_VERSION: '3.11.9'
+  PANDOC_VERSION: '3.8.3'
+  EPUBCHECK_VERSION: '5.4.0'
+
+jobs:
+  build:
+    name: Build and validate release files
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    outputs:
+      version: ${{ steps.meta.outputs.version }}
+      date: ${{ steps.meta.outputs.date }}
+      pdf: ${{ steps.meta.outputs.pdf }}
+      epub: ${{ steps.meta.outputs.epub }}
+      checksums: ${{ steps.meta.outputs.checksums }}
+    steps:
+      - name: Check out the tagged source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Prepare build metadata
+        id: meta
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "$GITHUB_EVENT_NAME" == "push" ]]; then
+            tag="${GITHUB_REF_NAME}"
+            if [[ ! "$tag" =~ ^book-v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+              echo "Expected a semantic version tag such as book-v1.0.0; got $tag" >&2
+              exit 1
+            fi
+            version="${tag#book-v}"
+          else
+            version="${{ inputs.version }}"
+            if [[ -z "$version" ]]; then version="ci-${GITHUB_SHA:0:7}"; fi
+            if [[ ! "$version" =~ ^[A-Za-z0-9._-]+$ ]]; then
+              echo "Invalid manual build version: $version" >&2
+              exit 1
+            fi
+          fi
+          date="$(date -u +%F)"
+          {
+            echo "version=$version"
+            echo "date=$date"
+            echo "pdf=modern-engineer-atlas-$version.pdf"
+            echo "epub=modern-engineer-atlas-$version.epub"
+            echo "checksums=SHA256SUMS.txt"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+          cache-dependency-path: requirements-export.txt
+
+      - name: Install pinned export dependencies
+        run: python -m pip install --requirement requirements-export.txt
+
+      - name: Set up Pandoc ${{ env.PANDOC_VERSION }}
+        uses: pandoc/actions/setup@v1
+        with:
+          version: ${{ env.PANDOC_VERSION }}
+
+      - name: Build generated manuscript
+        run: python build_source.py --output-dir build
+
+      - name: Render PDF and EPUB
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          python render_pdf.py \
+            --input build/book.md \
+            --output "dist/${{ steps.meta.outputs.pdf }}" \
+            --metadata book-metadata.json \
+            --version "${{ steps.meta.outputs.version }}" \
+            --date "${{ steps.meta.outputs.date }}"
+          python create_epub.py \
+            --input build/book.md \
+            --output "dist/${{ steps.meta.outputs.epub }}" \
+            --metadata book-metadata.json \
+            --css assets/epub.css \
+            --work-dir build/epub \
+            --version "${{ steps.meta.outputs.version }}" \
+            --date "${{ steps.meta.outputs.date }}"
+
+      - name: Set up Java 17 for EPUBCheck
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17.0.16'
+
+      - name: Install EPUBCheck ${{ env.EPUBCHECK_VERSION }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          archive="$RUNNER_TEMP/epubcheck.zip"
+          directory="$RUNNER_TEMP/epubcheck"
+          curl --fail --location --retry 3 \
+            "https://github.com/w3c/epubcheck/releases/download/v${EPUBCHECK_VERSION}/epubcheck-${EPUBCHECK_VERSION}.zip" \
+            --output "$archive"
+          mkdir -p "$directory"
+          unzip -q "$archive" -d "$directory"
+          jar_path="$(find "$directory" -type f -name 'epubcheck.jar' -print -quit)"
+          test -n "$jar_path"
+          echo "EPUBCHECK_JAR=$jar_path" >> "$GITHUB_ENV"
+
+      - name: Run structural and coverage checks
+        run: |
+          python validate_artifacts.py \
+            --manuscript build/book.md \
+            --epub "dist/${{ steps.meta.outputs.epub }}" \
+            --pdf "dist/${{ steps.meta.outputs.pdf }}"
+
+      - name: Run EPUBCheck
+        run: java -jar "$EPUBCHECK_JAR" "dist/${{ steps.meta.outputs.epub }}"
+
+      - name: Write and verify SHA-256 checksums
+        run: |
+          python checksums.py write \
+            --output "dist/${{ steps.meta.outputs.checksums }}" \
+            "dist/${{ steps.meta.outputs.pdf }}" \
+            "dist/${{ steps.meta.outputs.epub }}"
+          python checksums.py verify "dist/${{ steps.meta.outputs.checksums }}"
+          python validate_artifacts.py \
+            --manuscript build/book.md \
+            --epub "dist/${{ steps.meta.outputs.epub }}" \
+            --pdf "dist/${{ steps.meta.outputs.pdf }}" \
+            --checksums "dist/${{ steps.meta.outputs.checksums }}"
+
+      - name: Upload validated files for the publish job
+        uses: actions/upload-artifact@v4
+        with:
+          name: book-release-files-${{ github.ref_name }}
+          path: dist/
+          if-no-files-found: error
+          retention-days: 7
+
+  publish:
+    name: Create GitHub Release
+    if: github.event_name == 'push'
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      TAG: ${{ github.ref_name }}
+      PDF: ${{ needs.build.outputs.pdf }}
+      EPUB: ${{ needs.build.outputs.epub }}
+      CHECKSUMS: ${{ needs.build.outputs.checksums }}
+    steps:
+      - name: Download validated files
+        uses: actions/download-artifact@v4
+        with:
+          name: book-release-files-${{ github.ref_name }}
+          path: dist
+
+      - name: Refuse to modify an existing release
+        shell: bash
+        run: |
+          set -euo pipefail
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "Release $TAG already exists; refusing to overwrite it." >&2
+            exit 1
+          fi
+
+      - name: Create release and upload files
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh release create "$TAG" \
+            --repo "$GITHUB_REPOSITORY" \
+            --verify-tag \
+            --title "$TAG" \
+            --generate-notes
+          # gh release upload fails when an asset with the same name exists; no --clobber is intentional.
+          gh release upload "$TAG" \
+            --repo "$GITHUB_REPOSITORY" \
+            "dist/$PDF" "dist/$EPUB" "dist/$CHECKSUMS"

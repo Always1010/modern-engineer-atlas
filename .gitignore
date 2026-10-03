@@ -1,5 +1,10 @@
 exports/
 qa/
+build/
+dist/
 __pycache__/
 *.pyc
+*.epub
+*.pdf
+SHA256SUMS.txt
 .DS_Store
