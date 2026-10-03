@@ -1,0 +1,3 @@
+chapter_id,sample_id,title,logical_volume,coverage,baseline,status,code_execution,evidence_date
+C13,C13-S01-v02,vector 的空间与时间,卷一 共享基础,C13.02 主线及 C13.03 C13.04 局部,C++20,专题样章修订稿,未编译未执行未测量,2026-10-03
+C55,C55-S01-v02,可恢复的 Agent 与工具协议,卷三 智能计算与自主系统,C55.01 C55.02 C55.03 局部及 C56 连接,MCP 2025-11-25 固定协议参照,专题样章修订稿,未执行示例且无故障注入,2026-10-03

@@ -1,0 +1,4 @@
+asset_id,path,chapter_id,kind,origin,rights,alt_text_location,print_min_width_mm,minimum_label_pt_at_width
+C13-A,C13-storage-and-borrow.svg,C13,容量与元素图,沿用项目v0.1原创SVG,无第三方配图且对外许可证待确认,SVG title desc及正文替代文本,150,9.35
+C13-B,C13-batch-phases.svg,C13,批次生命周期图,沿用项目v0.1原创SVG,无第三方配图且对外许可证待确认,SVG title desc及正文替代文本,150,9.35
+C55-A,C55-lost-response.svg,C55,调用方与服务端时间线,项目v0.2原创SVG,无第三方配图且对外许可证待确认,SVG title desc及正文替代文本,150,9.35
