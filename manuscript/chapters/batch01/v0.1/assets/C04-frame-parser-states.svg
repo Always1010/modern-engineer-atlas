@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="900" viewBox="0 0 1000 900" role="img" aria-labelledby="title desc">
+<title id="title">C04-C 长度前缀帧与增量解析</title>
+<desc id="desc">示例帧头八字节，包含两字节标记、一字节帧版本、一字节消息类型、四字节大端序帧体长度。解析先收集帧头，通过校验后收集帧体；完整且内容有效后交付，再收集下一帧。头部或内容错误进入 Failed。输入未齐时等待更多数据，结束时半帧报截断。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#222"/></marker></defs>
+<rect width="1000" height="900" fill="#fff"/>
+<g font-family="Noto Sans CJK SC, sans-serif" fill="#111">
+<text x="32" y="43" font-size="25" font-weight="bold">C04-C  长度前缀帧与增量解析</text>
+<text x="32" y="86" font-size="22">长度 N 只计算帧体；本例拒绝空帧体，并限制 N ≤ 64 KiB。</text>
+<g stroke="#222" stroke-width="1.5"><rect x="40" y="113" width="170" height="80" fill="#edf2f5"/><rect x="210" y="113" width="130" height="80" fill="#edf2f5"/><rect x="340" y="113" width="130" height="80" fill="#edf2f5"/><rect x="470" y="113" width="255" height="80" fill="#dbe6ed"/><rect x="725" y="113" width="235" height="80" fill="#f6f6f6"/></g>
+<g text-anchor="middle" font-size="22"><text x="125" y="145">4D 45</text><text x="125" y="178">2 字节标记</text><text x="275" y="145">帧版本</text><text x="275" y="178">1 字节</text><text x="405" y="145">类型</text><text x="405" y="178">1 字节</text><text x="598" y="145">大端序长度 N</text><text x="598" y="178">4 字节</text><text x="842" y="145">UTF-8 JSON</text><text x="842" y="178">N 字节帧体</text></g>
+<path d="M40 208V220H725V208" fill="none" stroke="#666" stroke-width="1.5"/><text x="285" y="252" font-size="22">固定八字节帧头</text>
+<g stroke="#222" stroke-width="2"><rect x="75" y="302" width="345" height="96" rx="10" fill="#f6f6f6"/><rect x="565" y="302" width="345" height="96" rx="10" fill="#edf2f5"/><rect x="565" y="505" width="345" height="96" rx="10" fill="#f6f6f6"/><rect x="75" y="505" width="345" height="96" rx="10" fill="#edf2f5"/><rect x="320" y="705" width="360" height="76" rx="10" fill="#e8e8e8"/></g>
+<g text-anchor="middle" font-size="23"><text x="247" y="340" font-weight="bold">NeedHeader</text><text x="247" y="374">收集帧头，不齐则等待</text><text x="737" y="340" font-weight="bold">校验帧头</text><text x="737" y="374">标记 · 版本 · 类型 · 长度</text><text x="737" y="543" font-weight="bold">NeedBody</text><text x="737" y="577">只消费当前帧尚缺的字节</text><text x="247" y="543" font-weight="bold">校验内容并交付</text><text x="247" y="577">UTF-8 · JSON · Schema</text><text x="500" y="754" font-weight="bold">Failed　停止解释后续输入</text></g>
+<g fill="none" stroke="#222" stroke-width="2" marker-end="url(#arrow)"><path d="M420 350H555"/><path d="M737 398V493"/><path d="M565 553H432"/><path d="M247 505V410"/></g>
+<text x="441" y="331" font-size="21">头部已齐</text><text x="753" y="456" font-size="21">检查通过</text><text x="446" y="534" font-size="21">帧体已齐</text><text x="92" y="458" font-size="21">成功后收下一帧</text>
+<g fill="none" stroke="#666" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#arrow)"><path d="M910 350H946V665H610V693"/><path d="M247 601V653H390V693"/></g>
+<text x="748" y="644" font-size="21">非法或超限帧头</text><text x="82" y="638" font-size="21">内容校验失败</text>
+<text x="32" y="830" font-size="22">输入暂时不足：保留状态等待；输入确定结束：半帧报告截断。</text>
+<text x="32" y="868" font-size="22">同一输入块可包含多帧；下游不能接收时须暂停，不能无限排队。</text>
+</g></svg>
