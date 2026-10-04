@@ -1,0 +1,1150 @@
+[
+  {
+    "chapter": "C01",
+    "file": "resources/C01-C01-feasible-budget.svg",
+    "sha256": "31094db3a67323f00a56bb51facc85689c274f9f8bd30d43693cde301c45ad17",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C01",
+    "file": "resources/C01-C01-equal-mean-different-tail.svg",
+    "sha256": "4b90becf01d8be2ffe3beeef556b001f39ffc37422e979539d7e7a70c1636a46",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C02",
+    "file": "resources/C02-C02-layouts.svg",
+    "sha256": "fe2c350c30a85f57874de36b7c2aec4656283ade5b65b13c4eda69185111ff2f",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C02",
+    "file": "resources/C02-C02-bloom-path.svg",
+    "sha256": "814e263bd75a64a05feb24fcb7addd8dc4ad08bfe82a85a9e7b3d75fc090d35c",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C02",
+    "file": "resources/C02-C02-index-path.svg",
+    "sha256": "d7647382d5d2d93f88e5f4cd23c78c7cb690674678ee53c21e70da8e7867fc7e",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C03",
+    "file": "resources/C03-C03-binary-boundary.svg",
+    "sha256": "13c07a9624117ef0df5789550f93d8042ca43552295c8b224076350806232ded",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C03",
+    "file": "resources/C03-C03-dependency-frontier.svg",
+    "sha256": "167d2ccd7fc275098a1d1fa8672f715cbfd89440cbf652b5e18c972864edda9c",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C03",
+    "file": "resources/C03-C03-cache-composition.svg",
+    "sha256": "0f12a2e42fcd819a5151693a51c181f6501496676f69286c1fbc982c469e6d72",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C04",
+    "file": "resources/C04-C04-value-and-byte-order.svg",
+    "sha256": "b7cc64c7508fae937cc02a580117559be03515c1794b97470b4862cd14b63627",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C04",
+    "file": "resources/C04-C04-text-lengths.svg",
+    "sha256": "89a12702b7b8b50f1c3ae26ef4043fcbee617e696206c266813850e6c7edcf4e",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C04",
+    "file": "resources/C04-C04-frame-parser-states.svg",
+    "sha256": "bd4781d5ae4af6c0b15c748ef185f9de949e54b1c2475b22b9df54348fe1693e",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C05",
+    "file": "resources/C05-C05-pipeline-dependency.svg",
+    "sha256": "6a7b3f9198a349c29a1b3907b976f104a40dc3a1e80e1ddbd7a92cd7af02fac1",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C05",
+    "file": "resources/C05-C05-layout-locality.svg",
+    "sha256": "e236c1b6659105ad52baadf94d03f6d163b232d49f4a89be59e15cd33e7c1b87",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C05",
+    "file": "resources/C05-C05-sharing-numa.svg",
+    "sha256": "ad6aa80ac5ee11ae8827216ff0a1cac3b85eb4892002f89cb1f5f3b7f8ffbc27",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C06",
+    "file": "resources/C06-C06-translation-path.svg",
+    "sha256": "076051ca496831a166338190bba79a45951b3155720478bca4628addd4c29c73",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C06",
+    "file": "resources/C06-C06-copy-on-write.svg",
+    "sha256": "2b65751cc04afdc9c9726756001a9037ad894056bb00f1fcbe2adcc03088d630",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C06",
+    "file": "resources/C06-C06-allocation-layers.svg",
+    "sha256": "c225428533bd8003f64b2ae65576090d55d270c7f10bd5cf51ff59eb3c1edab3",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C07",
+    "file": "resources/C07-C07-scheduling-timeline.svg",
+    "sha256": "dbc639b36979efc879cfdbf88749ed26bf8d04cb679e43238b3cffbb103cdd68",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C07",
+    "file": "resources/C07-C07-descriptor-lifetime.svg",
+    "sha256": "3f42ef25cd39882b20cbeb7f975be56cfff58b20180584cf30ac8bab34043c6f",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C07",
+    "file": "resources/C07-C07-durable-replacement.svg",
+    "sha256": "93cf7dbc69e109bc57162dc27d4882008819c61b4b582fc886c611a8b76db311",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C08",
+    "file": "resources/C08-C08-build-and-load.svg",
+    "sha256": "648d6cccd7dc3b1617a2d15475ade89a52e5e65d16bba60f0666e144ce6fd2e5",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C08",
+    "file": "resources/C08-C08-sections-and-segments.svg",
+    "sha256": "1cbc0470acd40113f454a3cee53bd636bdb7a5c144b2745836408c528205567f",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C08",
+    "file": "resources/C08-C08-abi-ownership.svg",
+    "sha256": "7f782e83d4efa1962597892c5145b1c798f553c456975148a2ee27c3b50494b7",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C09",
+    "file": "resources/C09-C09-storage-lifetime.svg",
+    "sha256": "b87b62b4921238c78e7d4cf3f88926ef5e93a86d370b9f073aa27ced0a90a748",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C09",
+    "file": "resources/C09-C09-ownership-cycle.svg",
+    "sha256": "981c856d70ee9b0ba1e93a402b9ff7751194a844b22417e7ab3fbc1b6fdad91c",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C09",
+    "file": "resources/C09-C09-resource-exit.svg",
+    "sha256": "15b0cc4dc1b89bc0b0e78e7188217829e62c7a7be92d9094d85857254e62eb47",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C10",
+    "file": "resources/C10-C10-copy-move.svg",
+    "sha256": "8d45fe0b80f41f14814a94171d654c6d3fb20ead5df19cabf2740d8d412c80e6",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C10",
+    "file": "resources/C10-C10-forwarding.svg",
+    "sha256": "8fd9384c678e55c6c9882c571e689e9dbf6b1350a07f3ef1792fcf82b0095ff6",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C11",
+    "file": "resources/C11-C11-layout-padding.svg",
+    "sha256": "4811b1ac044cdd62c59e98c8f5301193888aaaa232fb25e446d92010751aae89",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C11",
+    "file": "resources/C11-C11-virtual-dispatch.svg",
+    "sha256": "f6c62221be4582cac9be2ffd3bfba1f33edaec0685a70d154c5da7741ada2476",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C12",
+    "file": "resources/C12-C12-instantiation.svg",
+    "sha256": "09a647a22ff335abd40391d25188117c0953fb680cff86156c641a70385a0106",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C12",
+    "file": "resources/C12-C12-constant-evaluation.svg",
+    "sha256": "7ccde047b0eb8212318876041e761ba71f223caa3ead474f4d54aec16813e673",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C13",
+    "file": "resources/C13-C13-structure-map.svg",
+    "sha256": "04e84d4bd226951c6bf063598966d6ecd018770ee442fb0bdffa49c965eef71f",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C13",
+    "file": "resources/C13-C13-storage-and-borrow.svg",
+    "sha256": "e9fbe4073d238ea00a3a3166aa110d4f2b819164b6c13b88d835640b16d8ee97",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C13",
+    "file": "resources/C13-C13-batch-phases.svg",
+    "sha256": "480bb02189a3179384e08aa8fe17d50b2aca7b630f7c49884e69039c988a0cc9",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C13",
+    "file": "resources/C13-C13-pmr-resource-lifetime.svg",
+    "sha256": "41110c38336708c0c0e6b3441fc6c86792d0c840717b0eb93ffe865ca43afef1",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C14",
+    "file": "resources/C14-C14-prepare-commit.svg",
+    "sha256": "3d1936e5ac12dd7d328cdd023f90e8a5a2810b87db31872c10fec1f9b422115d",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C14",
+    "file": "resources/C14-C14-error-boundaries.svg",
+    "sha256": "75c2b1a2fe5fb7f8c581b370df25ad1beaa3d957006fb4c1be00d13d21fd1dbf",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C15",
+    "file": "resources/C15-C15-standard-timeline.svg",
+    "sha256": "2ce3f4da9bdf27e57a135178058520c7e5199ab3946a8e3f6200a5176b8fb42a",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C15",
+    "file": "resources/C15-C15-support-layers.svg",
+    "sha256": "f8dd21a273e30b0e7a94a5bac13d3c8334fcd2729d1de262ebe428d1287be14d",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C16",
+    "file": "resources/C16-C16-lock-order.svg",
+    "sha256": "ec8e35bf54c18e1af4ba1d3965144f3d1f7b32be97b56d6a4413b349cb5229b1",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C16",
+    "file": "resources/C16-C16-predicate-wait.svg",
+    "sha256": "50152c3e0235325735859ed17e8477956723ab4e58146b789550cf78b2052fd3",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C16",
+    "file": "resources/C16-C16-shutdown.svg",
+    "sha256": "4dc520d4423643e609120db0d16a179663d1b3404bb773963dc4ba434f890a55",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C17",
+    "file": "resources/C17-C17-happens-before.svg",
+    "sha256": "8d44fe21f9a83dd1f8591864f8af728953302cea8a9cd81a0d3191fe449c36e4",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C17",
+    "file": "resources/C17-C17-store-buffering.svg",
+    "sha256": "108010ced3ccd3fed10383fc948e06f020b4763711bad13d382a9f8fe8b6ba6a",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C17",
+    "file": "resources/C17-C17-ordering-layers.svg",
+    "sha256": "719d9a9487eecc909c6d68c5579253e2e2cf95efb42f7e0b0f0c2d10fa9fdb79",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C18",
+    "file": "resources/C18-C18-aba.svg",
+    "sha256": "7f67a7ca9c1c27e6165b7907ede8350833da0e81db475e435e30ad58e07c06eb",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C18",
+    "file": "resources/C18-C18-reclamation.svg",
+    "sha256": "309d5ebd88a3bdcbe3d86dbeec0f2fdcaf5a391855f5e9b1abbbc4c78e395531",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C18",
+    "file": "resources/C18-C18-validation.svg",
+    "sha256": "cb34ae597e991c4bff00a9c2a94661654c27fe94a47852a639d2b6e432b0771d",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C19",
+    "file": "resources/C19-C19-readiness-completion.svg",
+    "sha256": "ea2a3445a265386c291c2fc7eb290e87aca0cfbbd2d0657be2bad5c20c3f98b6",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C19",
+    "file": "resources/C19-C19-coroutine-frame.svg",
+    "sha256": "1d0f59ed9b6d96d38cab328ada4f3053e1db024bf6dd78545eed3f38a6a6e9e4",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C19",
+    "file": "resources/C19-C19-structured-cancellation.svg",
+    "sha256": "dcbeaac1ac2f3715f3e5c7f4bcb31d12691ba46a6c0c3ed90c5cfc16e01b4fb9",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C20",
+    "file": "resources/C20-C20-latency-distribution.svg",
+    "sha256": "f6a8e5fcf6a727c4c80b784e577ba1323cce19ad3c897e70b83788da42764349",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C20",
+    "file": "resources/C20-C20-roofline.svg",
+    "sha256": "915817499764f45a703da76ca228fbba6581be2fbd40326992748f0476bb57c2",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C20",
+    "file": "resources/C20-C20-flame-graph.svg",
+    "sha256": "a8d9770632ff3a65ffb93d201bff26eafd466c8becefb4499951b1b11ac38826",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C21",
+    "file": "resources/C21-C21-build-graph.svg",
+    "sha256": "8298884d19682a3cc16d151c26204c47a60cffe6ba403c94d7593dd60c804d48",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C21",
+    "file": "resources/C21-C21-host-target.svg",
+    "sha256": "db60cfc527c2d140abd9dd5ce9fdfa03d0c91a00fe5dccccdfb76663818b98dd",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C22",
+    "file": "resources/C22-C22-evidence-chain.svg",
+    "sha256": "17e71c48e82c723cffaf297102db430caf69dc893fb95ee8f6d8165b1d6de368",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C22",
+    "file": "resources/C22-C22-tool-coverage.svg",
+    "sha256": "fc608e24f1d57f9d8d44d4da24d4e908795de8739326a5aed7e397f32bc5a30a",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C23",
+    "file": "resources/C23-C23-oracle-and-search.svg",
+    "sha256": "598c3dc9981683f838de828a6a564dcb816d4243ca6cc67e174b51c830b1856c",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C23",
+    "file": "resources/C23-C23-release-evidence.svg",
+    "sha256": "6a1bf26cb52f62cd2313233502ef1f3137e05be9a43f6f1c00a496204e371a33",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C24",
+    "file": "resources/C24-C24-release-rollback.svg",
+    "sha256": "7b4944b5a18ad81c36eeb5645b526f231713f9790483aca4ab923515af0ba0a1",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C24",
+    "file": "resources/C24-C24-supply-chain.svg",
+    "sha256": "8833cb2f8aabb62d7db3c5539c2914ced1967dab85df655c0953ef6a11ac6c68",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C25",
+    "file": "resources/C25-C25-boundaries-and-budgets.svg",
+    "sha256": "d8e8611c85427202794acdbfcb05035e95e14174b99b0c1de104333449fa67d0",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C25",
+    "file": "resources/C25-C25-evolution-stages.svg",
+    "sha256": "aa3c09cca3f88540ac680edf21d32cb2b698ecb3e4e897d21c23471513636bc9",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C26",
+    "file": "resources/C26-C26-trust-boundaries.svg",
+    "sha256": "9128df58927291bc32da9809905edf14978531806b35137530f5d8a500b136b0",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C26",
+    "file": "resources/C26-C26-ffi-contract.svg",
+    "sha256": "543c71d88352dd03426f052ea1573442f062f9c77a62f439a3d55218a2c6f46f",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C27",
+    "file": "resources/C27-C27-slo-feedback.svg",
+    "sha256": "777bff8fb58c1601b34b6598f97c1b8288f2da4c8f94998fd73e31785456e88c",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C27",
+    "file": "resources/C27-C27-platform-tenancy.svg",
+    "sha256": "a4d8d216e545a430f7b86c9153a5197ecdd59f3753ce7ae70b66aaabde4fe877",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C28",
+    "file": "resources/C28-stm32f4-discovery-front-teardown-central.jpg",
+    "sha256": "ddd892fd716d0354d7777fc7bb33b33970133c08a16fb04857310c262fdafe52",
+    "kind": "photograph",
+    "rights": "许可与署名见 photo-license-manifest.json 和正文图片来源附录"
+  },
+  {
+    "chapter": "C28",
+    "file": "resources/C28-c28-memory-map.svg",
+    "sha256": "6c7b88b63753cabccdefe47ac771b47415ac0d4508931c2c9a39780182fe10bb",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C28",
+    "file": "resources/C28-can-bus-shield-v2.jpg",
+    "sha256": "f6bbac6cad5cefc9b9af5b45a0f182ee48211cf088c1277915bab49ee8a7cbf6",
+    "kind": "photograph",
+    "rights": "许可与署名见 photo-license-manifest.json 和正文图片来源附录"
+  },
+  {
+    "chapter": "C28",
+    "file": "resources/C28-c28-dma-ownership.svg",
+    "sha256": "15d255f122c17d55e95ef445e756b42e65b10d90048094063bdfb7fdaa7bdb08",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C28",
+    "file": "resources/C28-sipeed-rv-debugger.jpg",
+    "sha256": "91418d38222d1c9272c8abb7057ccdb5961b09083e636099612b3108b6bc0394",
+    "kind": "photograph",
+    "rights": "许可与署名见 photo-license-manifest.json 和正文图片来源附录"
+  },
+  {
+    "chapter": "C29",
+    "file": "resources/C29-c29-priority-inheritance.svg",
+    "sha256": "e66323cbfad65fd5e6a2967cffd04b75eb5b73d4583345b3fbb2c58edf63f2f0",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C29",
+    "file": "resources/C29-c29-power-states.svg",
+    "sha256": "c2228ea64782984d709cf27befaf680da97c83d7f31da5b94753b21556859e6a",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C29",
+    "file": "resources/C29-c29-ota-state.svg",
+    "sha256": "0b7b1fbf2c2a88d93173f9e99e431521265d637924210c49f099f26cd62c586f",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C30",
+    "file": "resources/C30-c30-driver-lifecycle.svg",
+    "sha256": "d0e32402c27ad0a6fa01132caa031c4dc23264bde6733be0f5fc79825ace9dcb",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C30",
+    "file": "resources/C30-c30-dma-addresses.svg",
+    "sha256": "3d8c4db68a10fd885eae84a06490dfa8078287d9ba0abf0eb23c89db2a552fc1",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C31",
+    "file": "resources/C31-c31-qt-affinity.svg",
+    "sha256": "c44670aed6f5804fb9d8f83843744874511d8981b1ae60c9506336405234372d",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C31",
+    "file": "resources/C31-c31-cancellation-state.svg",
+    "sha256": "55c9c79d9329652e31a0ee9399378c29d867a1f926c7c3b0373b817d96f1f60f",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C31",
+    "file": "resources/C31-uart-to-usb-adapter-sunmist.jpg",
+    "sha256": "2a3ba401cc220f74f683551c97ff39786f55e1b897105e98003e283369b3ad40",
+    "kind": "photograph",
+    "rights": "许可与署名见 photo-license-manifest.json 和正文图片来源附录"
+  },
+  {
+    "chapter": "C32",
+    "file": "resources/C32-ethernet-pci-card-sub.jpg",
+    "sha256": "f5e885a6cb0924eb1f779fee42ebbeb3a5f6416d1bfa35da5d71e7c145b9f712",
+    "kind": "photograph",
+    "rights": "许可与署名见 photo-license-manifest.json 和正文图片来源附录"
+  },
+  {
+    "chapter": "C32",
+    "file": "resources/C32-c32-nic-queues.svg",
+    "sha256": "9825c8b80ac848e4e5ff452728c47e47184781bae5c16bb983251fba41198260",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C32",
+    "file": "resources/C32-c32-bypass-responsibilities.svg",
+    "sha256": "7a7ba5743259f71ab76606a9e06b29daa410437c1f27cb728a4b3e30e70a3327",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C33",
+    "file": "resources/C33-C33-completion-boundaries.svg",
+    "sha256": "a1bd24356c3e17a7a9762a60777a6d68231f334ba5acf59b328cb241e60e1c68",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C33",
+    "file": "resources/C33-C33-bounded-dataflow.svg",
+    "sha256": "e79288a7459a62984e077ca49b1eed4088d8197491275ed6e5dc859c89718384",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C33",
+    "file": "resources/C33-C33-request-timeline.svg",
+    "sha256": "214583c3df57434fc5b5867d5913e952569ff7e7240ea39af020866342f3946d",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C34",
+    "file": "resources/C34-C34-consistency-history.svg",
+    "sha256": "5aed305fbe96f66c220c3f117631bff2f54d5553c4cab19005d5440fb9096a40",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C34",
+    "file": "resources/C34-C34-quorum-and-fencing.svg",
+    "sha256": "45feef89180534e4f95094b77149e48769ee032fd2c0f3c0b09ad5b9c72f153a",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C34",
+    "file": "resources/C34-C34-outbox-boundaries.svg",
+    "sha256": "2f686ee1d3ab4b1ef88f06bc5ae94bad509bdc47673d2b1f6c02a4ec0ebd40f2",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C35",
+    "file": "resources/C35-C35-page-and-lsm.svg",
+    "sha256": "184b9c65502a14fc35da2eabd94c8ba792dd5c01f1c75fd687b99e38080ff40b",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C35",
+    "file": "resources/C35-C35-durable-prefix.svg",
+    "sha256": "ce8c830e0529b51cd98f7ed39c0ccc81e6293ddc5862dd6f800970d418807485",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C35",
+    "file": "resources/C35-C35-recovery-boundaries.svg",
+    "sha256": "85a82fa30d50ee4adb103da95b162f4064210c739252b2ac7ae2aedd43ba8630",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C36",
+    "file": "resources/C36-C36-query-plan.svg",
+    "sha256": "dd6ed1f702b2da04dca257876844479537cbb3ca05471abf1dbecfe94fb2c003",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C36",
+    "file": "resources/C36-C36-mvcc-write-skew.svg",
+    "sha256": "a06e043f4a6ab5924deb3241423994a45ba94f801f79b6ea302846cb084e0736",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C36",
+    "file": "resources/C36-C36-distributed-snapshot.svg",
+    "sha256": "0e7b5918a024350e4d40fd8606ed7249acdde48a18fc3fd5bdebc3fa97107d4e",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C37",
+    "file": "resources/C37-C37-watermark-and-late-data.svg",
+    "sha256": "c9e8382c75a843eb048440a4b8e3b3d433f8fd5960c98b46d83aa885faa0d465",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C37",
+    "file": "resources/C37-C37-ann-permissions.svg",
+    "sha256": "7b3ab1bfd54719d4b19efa2e1bc7288c838c6dfbaa91282d1ab4dab68722ba71",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C37",
+    "file": "resources/C37-C37-lineage-and-governance.svg",
+    "sha256": "14bbeb5d5a33261e02f0fcb0a8924216b9cbec8fd95f9a9173908b7894468ac0",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C38",
+    "file": "resources/C38-C38-media-representations.svg",
+    "sha256": "2265241bd0587dd4546b05b7c3e62d8bdcaf169c81f45c5886a908520977712e",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C38",
+    "file": "resources/C38-C38-pts-dts.svg",
+    "sha256": "a02ba87e08c9fc5644692c23557c82d50fdd5de0a0fdda04db3496d502bfac00",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C38",
+    "file": "resources/C38-C38-webrtc-observability.svg",
+    "sha256": "1c21bf4c5255d655439f412f2eebd7376d0f0533b0dc87ad25d2e1c5ae3c72af",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C39",
+    "file": "resources/C39-C39-coordinate-and-color.svg",
+    "sha256": "c08de29de79242614cabf6308680f061a543030cee82d1873b28f9e51aa281cc",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C39",
+    "file": "resources/C39-C39-resource-dependencies.svg",
+    "sha256": "316e0b66cb65041a5158b2fcf21f0200c712132c4bd1a681aa9fb6d52cd06cac",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C39",
+    "file": "resources/C39-C39-frame-budget.svg",
+    "sha256": "d176db0516f78c7b10c8545eb682c83057598d79f7452eab8cafef9e868922f3",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C40",
+    "file": "resources/C40-C40-scene-ecs-assets.svg",
+    "sha256": "57ea859d455828d5e9ba00feb7be33f24002de5293593b787b7d9dba428e46f1",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C40",
+    "file": "resources/C40-C40-time-and-collision.svg",
+    "sha256": "143e4ca07d4205600d1fd15f51552447fb476f7d8ae54016f76931c8dca5d69f",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C40",
+    "file": "resources/C40-C40-geometry-and-evidence.svg",
+    "sha256": "668639ade4c3e470d08e046a128e26a0659ca7ef86a29b3cb954ecf5d01f0592",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C41",
+    "file": "resources/C41-C41-frontend-contracts.svg",
+    "sha256": "9f4ba3abd61abe74337c902f1cd796f809642a8b51d49a0ba4f0d911a5e34100",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C41",
+    "file": "resources/C41-C41-ssa-and-memory.svg",
+    "sha256": "a3e24d711342035b39b7ab9ec9bf4120cc3ace26f3ebcdfb6c85ea8cec20667b",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C41",
+    "file": "resources/C41-C41-progressive-lowering.svg",
+    "sha256": "c08c1da91767080a76138adde95f51a53080b98064ecfa44ef5c3c085fa457d4",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C42",
+    "file": "resources/C42-C42-runtime-lifetimes.svg",
+    "sha256": "de65332aa96e25857e40d004ea65e25db3c3202de90675677c40e00cce5cb794",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C42",
+    "file": "resources/C42-C42-tool-snapshots.svg",
+    "sha256": "63fb6647e469f31e9242da7692d8ad562bdefec853c150ae0183c4da636b9546",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C42",
+    "file": "resources/C42-C42-interop-boundaries.svg",
+    "sha256": "fabb9c08d89fdd9381072441f90d3b197144f21e34c6fb3100da2be08acc5f7e",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C43",
+    "file": "resources/C43-C43-domain-and-overlap.svg",
+    "sha256": "713bba134ad474066ab6f8887461161be50201800c1ebd8838c14dfad640c1cf",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C43",
+    "file": "resources/C43-C43-roofline.svg",
+    "sha256": "a3a4677de7350260dfe32bdb0b0a840e53a7442a0258982cecc2a392e619218a",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C43",
+    "file": "resources/C43-C43-validation-chain.svg",
+    "sha256": "587c92fd0686832738fb1fb68706faeaf579fb520c5603e601c3c33bd36e8a1f",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C44",
+    "file": "resources/C44-C44-tesla-2075-photo.jpg",
+    "sha256": "9eea9bee72f82c960c264a1c67d0ff198e2631df6b9d5a636d2961bb7d2fe39d",
+    "kind": "photograph",
+    "rights": "许可与署名见 photo-license-manifest.json 和正文图片来源附录"
+  },
+  {
+    "chapter": "C44",
+    "file": "resources/C44-C44-execution-hierarchy.svg",
+    "sha256": "558cf17aa330a867e20dd41cf809fc839aba5cf2d1789d73a05a7b4d3bb20f72",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C44",
+    "file": "resources/C44-C44-memory-and-coalescing.svg",
+    "sha256": "911092decd01e5fd4b9cc370d98f10271b3ed39fa482700f16921c3f4b613389",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C44",
+    "file": "resources/C44-C44-stream-lifetimes.svg",
+    "sha256": "f4e491e6fc33271f3ba3313a36843c539438ca100a63c24f642f230e0fc52771",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C45",
+    "file": "resources/C45-C45-tensor-and-autograd.svg",
+    "sha256": "a7af1a25c3b7de6f055aa6c77f1446ca923e9f5f8478ccb768f2c780ecf93e91",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C45",
+    "file": "resources/C45-C45-export-contract.svg",
+    "sha256": "8a5543325224707bd49d1bb3c0670670c870e1011ea6052a3be42bf19b6e1835",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C45",
+    "file": "resources/C45-C45-engine-lifecycle.svg",
+    "sha256": "a94242e40424eda9d0b917a68fdf07ee35d44658eab8d9683758bb91d3251f68",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C46",
+    "file": "resources/C46-C46-fusion-boundary.svg",
+    "sha256": "2127797d234097804277391d2e1784845c319390bba6d294e112fbc61c1da02f",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C46",
+    "file": "resources/C46-C46-quantization-grid.svg",
+    "sha256": "9e0c5586f815036ab47fcd0bfe84269aa44a2706c54998b3f5c772354f16274a",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C46",
+    "file": "resources/C46-C46-heterogeneous-path.svg",
+    "sha256": "5ea697413a6700b5bfb0693f737255a4e6f2cc3e0a37cb18454a3d630f4fb7cd",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C47",
+    "file": "resources/C47-C47-generation-scheduling.svg",
+    "sha256": "095bd50d5448c9b6c2c4afee723bc701c3a007335f4be9ca1daf7f922a28e37e",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C47",
+    "file": "resources/C47-C47-memory-admission.svg",
+    "sha256": "8d9d6ee1ff7041580b94e9d3447b1f06d8c9b83e079019589d8bf8de4af1d099",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C47",
+    "file": "resources/C47-C47-version-and-recovery.svg",
+    "sha256": "00d71504a19e8d49e4b8bfe345bc48d7f66d2d9eb46df4afd455aafaf3a22c51",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C48",
+    "file": "resources/C48-C48-lidar-photo.jpg",
+    "sha256": "b3759673f9a088379fa0a00b6f525c8189d05fd6f61dd931aae6dbc171779f92",
+    "kind": "photograph",
+    "rights": "许可与署名见 photo-license-manifest.json 和正文图片来源附录"
+  },
+  {
+    "chapter": "C48",
+    "file": "resources/C48-C48-imu-photo.jpg",
+    "sha256": "26d529fdd5e01e57932fbab56b8e044a89b7954a2dcaf536b5ec09aac17e86c7",
+    "kind": "photograph",
+    "rights": "许可与署名见 photo-license-manifest.json 和正文图片来源附录"
+  },
+  {
+    "chapter": "C48",
+    "file": "resources/C48-C48-frame-contracts.svg",
+    "sha256": "cbbe8b409e87c23773f7f1deea51f858e11cfb59fb3af97e43f66f6a4d02408a",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C48",
+    "file": "resources/C48-C48-estimation-evidence.svg",
+    "sha256": "9c9d42aff4c674be0858b8c89297d892efd894233144d1dbba5968485b08527e",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C49",
+    "file": "resources/C49-C49-qos-and-age.svg",
+    "sha256": "ee95b64aa0862c03e6e197bf6913b9e28f73ce24fee9c6bb11bc74e73d9b1951",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C49",
+    "file": "resources/C49-C49-platform-boundaries.svg",
+    "sha256": "566b769da7aa848c7d4e54b5e4aeaa0e25d2ccaeabaa4d90240b87d1e28a5fd8",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C50",
+    "file": "resources/C50-C50-local-global-flow.svg",
+    "sha256": "f3331e7b764c54760112a3e0f95f8488d8d4eabe0c3f1b1111e6f94159e46da5",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C50",
+    "file": "resources/C50-C50-factor-observability.svg",
+    "sha256": "fb5d0f11728af64ac8046c31b0ebcb43b757a67effc34eb4a9113e3501dcd00b",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C50",
+    "file": "resources/C50-C50-evaluation-boundaries.svg",
+    "sha256": "947b9313d8c6244db17330cee36f0cd9f4756fba5ab4d27a40a692958b75c827",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C51",
+    "file": "resources/C51-C51-closed-loop-contracts.svg",
+    "sha256": "0c52e746dc7215e0df1466cc954062e3c3a3244fdb019ed41a06d512bf6556a3",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C51",
+    "file": "resources/C51-C51-motor-photo.jpg",
+    "sha256": "2420371b1fac76b03aa8f159ae78785159ee80e4fa8e4e8afb1df72edcea4df5",
+    "kind": "photograph",
+    "rights": "许可与署名见 photo-license-manifest.json 和正文图片来源附录"
+  },
+  {
+    "chapter": "C51",
+    "file": "resources/C51-C51-encoder-photo.jpg",
+    "sha256": "6be20f96bc0f94866e37c983f26b93b5106890cb2282c2cb5951e4f98a24552c",
+    "kind": "photograph",
+    "rights": "许可与署名见 photo-license-manifest.json 和正文图片来源附录"
+  },
+  {
+    "chapter": "C51",
+    "file": "resources/C51-C51-stopping-time-and-distance.svg",
+    "sha256": "dbfa7b506684e41769d1ea89b511a0dc1197f4a173e3c399ef7282731803d96a",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C52",
+    "file": "resources/C52-C52-odd-and-boundary.svg",
+    "sha256": "722eabd7063e80f222c97996517005194d34f1e84b371f79a480d358b29a06df",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C52",
+    "file": "resources/C52-C52-safety-case-evidence.svg",
+    "sha256": "671cc73ff9bba313db3329b194bf0db7b6d27e0eb90eded888d9d160b63cd930",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C53",
+    "file": "resources/C53-C53-validation-layers.svg",
+    "sha256": "36ae256279c0b4fc03810a37317baeffc063d616b8761915578bf8ec84f2a8d6",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C53",
+    "file": "resources/C53-C53-tool-execution.svg",
+    "sha256": "5dcc27f293610ee95677f88b6f72ccb88795cc053054f9d3ac28c0a8251f3759",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C53",
+    "file": "resources/C53-C53-task-budget.svg",
+    "sha256": "d498e9a154da799c68c5f271d35abf4054ea46b4d816f4df26377c3468617a8d",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C54",
+    "file": "resources/C54-C54-ingestion-and-query.svg",
+    "sha256": "0f003990e03bddad1441d6b7ad97ad326f8babc73b928f1f81d5efa4cf666d2b",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C54",
+    "file": "resources/C54-C54-evidence-chain.svg",
+    "sha256": "ba51c4a24e51ca9ca4027ea87426c6db0da85c583fe73b895081b8148a6230c0",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C54",
+    "file": "resources/C54-C54-evaluation-stages.svg",
+    "sha256": "7433f9951bc9f75126d038b3e2ebeb2bde3672d7a732538b4b1ca4340fa28153",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C55",
+    "file": "resources/C55-C55-system-map.svg",
+    "sha256": "ef11b945bdd9609391548c5db9a9c4f6a0a9aebc0ee0c5756cc5c1c8d11e6f57",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C55",
+    "file": "resources/C55-C55-agent-loop.svg",
+    "sha256": "62ca8e4da2f5e955b85e93f892f83620db380c025a280e42930bb47eaba7e93a",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C55",
+    "file": "resources/C55-C55-lost-response.svg",
+    "sha256": "71eca117886537d2a6bfad6608656caf0cd6e9c88eee2ec15a81cefbacb75256",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C55",
+    "file": "resources/C55-C55-multi-agent-evidence.svg",
+    "sha256": "440ed6633f5ceec23f7417b9d1670c7efc49b3ba450dc8e5429657bd9a3aa21e",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C56",
+    "file": "resources/C56-C56-evaluation-matrix.svg",
+    "sha256": "548f9bca059f95d6f04d8d99ccf66be59cd41ca96b97f399425b6745eb8a726a",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C56",
+    "file": "resources/C56-C56-trust-boundaries.svg",
+    "sha256": "84b6bb78c2fdb6f92c8736b2007b0b1ac9dfc7bffc8595758793b04448b345fc",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C56",
+    "file": "resources/C56-C56-recovery-states.svg",
+    "sha256": "9f1e52bc48a63e6aede923f22f67f5cc6da7a34d67f2136f62f2b3861a31adf5",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C57",
+    "file": "resources/C57-C57-role-evidence.svg",
+    "sha256": "268d5922e32d4475b1aadfcbeb5ddf38429be1d344c0c367225d132f961e80fc",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C57",
+    "file": "resources/C57-C57-question-depth.svg",
+    "sha256": "1176d5407ac8abe5d7efedb48e10c1e53a4457b61cc6db275a2188797de7823a",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C58",
+    "file": "resources/C58-C58-durable-request.svg",
+    "sha256": "436af5438976d989d7ac41dd62aca29c87c8e23a403de87a38835668682a1f8f",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C58",
+    "file": "resources/C58-C58-model-service.svg",
+    "sha256": "22f182277c0f04871b6259128718df42a46016a1b52ecaaee800943a411a35c8",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  },
+  {
+    "chapter": "C58",
+    "file": "resources/C58-C58-evidence-replay.svg",
+    "sha256": "9a82728fa99e4e8f0235e098d44249b891fa1509782a54a0010bd925f5e698ad",
+    "kind": "diagram",
+    "rights": "本书原创示意图，未另行授予开放许可"
+  }
+]

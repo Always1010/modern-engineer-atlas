@@ -8,3 +8,7 @@ __pycache__/
 *.pdf
 SHA256SUMS.txt
 .DS_Store
+
+# Generated combined manuscripts
+/book.md
+**/Modern-Engineer-Atlas-Complete-*.md

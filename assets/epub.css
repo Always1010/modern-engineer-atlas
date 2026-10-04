@@ -1,5 +1,17 @@
-body {font-family: sans-serif; line-height: 1.65; margin: 5%; color: #1b2730;}
-h1,h2,h3,h4 {line-height: 1.35; color:#122637; page-break-after:avoid;}
-h1{font-size:1.65em;} h2{font-size:1.4em;} h3{font-size:1.2em;} h4{font-size:1.1em;}
-p,li {overflow-wrap:anywhere;} img {max-width:100%;height:auto;} pre,code {white-space:pre-wrap;overflow-wrap:anywhere;}
-a {color:#205780;} .title {font-size:1.8em;} nav ol {list-style:none; padding-left:1em;}
+@font-face {font-family:Atlas;src:url('../fonts/AtlasSans-Regular.ttf');font-style:normal;font-weight:400;}
+@font-face {font-family:Atlas;src:url('../fonts/AtlasSans-Bold.ttf');font-style:normal;font-weight:700;}
+@font-face {font-family:DejaVu;src:url('../fonts/DejaVuSans.ttf');}
+@font-face {font-family:AtlasCode;src:url('../fonts/DejaVuSansMono.ttf');}
+nav ol, nav ol.toc {list-style-type:none;padding-left:1em;} nav#toc > ol {padding-left:0;} nav li {margin:0.3em 0;}
+.symbol {font-family:DejaVu !important;vertical-align:baseline;}
+html {line-height:1.75;} body {font-family:Atlas,DejaVu,sans-serif;margin:5%;font-size:1em;color:#111;background:#fff;}
+h1,h2,h3,h4 {font-family:Atlas,DejaVu,sans-serif;font-weight:bold;line-height:1.5;break-after:avoid;page-break-after:avoid;page-break-inside:avoid;}
+h1 {font-size:1.7em;margin-top:1em;} h2 {font-size:1.5em;} h3 {font-size:1.25em;} h4 {font-size:1.1em;}
+p {margin:0.6em 0;text-align:justify;widows:2;orphans:2;} a {color:#245471;text-decoration:none;overflow-wrap:anywhere;}
+img {display:block;max-width:100%;height:auto;margin:0.8em auto;}
+pre {font-family:AtlasCode,Atlas,DejaVu,monospace;font-size:0.73em;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere;background:#f3f5f7;padding:0;max-width:90%;width:90%;box-sizing:border-box;word-break:break-all;}
+pre code {white-space:pre-wrap;word-break:break-all;}
+code {font-family:AtlasCode,Atlas,DejaVu,monospace;overflow-wrap:anywhere;}
+table {width:100%;border-collapse:collapse;table-layout:fixed;font-size:0.85em;}
+td,th {border:1px solid #b8c4cc;padding:0.4em;overflow-wrap:anywhere;vertical-align:top;}
+th {background:#e6edf3;} .caption {font-size:0.85em;color:#556575;text-align:left;}

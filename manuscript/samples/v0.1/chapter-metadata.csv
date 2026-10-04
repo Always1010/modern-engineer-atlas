@@ -1,3 +1,0 @@
-chapter_id,sample_id,title,logical_volume,coverage,baseline,status,code_execution,evidence_date
-C13,C13-S01,从一次扩容理解 vector 的边界,卷一 共享基础,C13.02 主线及 C13.03 C13.04 局部,C++20 主线及 11 14 17 兼容导航,专题样章编辑评审稿,未编译未执行未测量,2026-10-03
-C55,C55-S01,可恢复的 Agent 与工具协议,卷三 智能计算与自主系统,C55.01 C55.02 C55.03 局部及 C56 连接,MCP 2025-11-25 固定协议参照,专题样章编辑评审稿,伪代码未执行且无故障注入,2026-10-03
