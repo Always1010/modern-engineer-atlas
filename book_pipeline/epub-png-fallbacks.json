@@ -1,0 +1,18 @@
+[
+  "C01-C01-feasible-budget.svg",
+  "C04-C04-frame-parser-states.svg",
+  "C06-C06-allocation-layers.svg",
+  "C06-C06-copy-on-write.svg",
+  "C07-C07-scheduling-timeline.svg",
+  "C09-C09-ownership-cycle.svg",
+  "C09-C09-resource-exit.svg",
+  "C09-C09-storage-lifetime.svg",
+  "C13-C13-batch-phases.svg",
+  "C13-C13-storage-and-borrow.svg",
+  "C26-C26-trust-boundaries.svg",
+  "C34-C34-consistency-history.svg",
+  "C34-C34-quorum-and-fencing.svg",
+  "C35-C35-durable-prefix.svg",
+  "C55-C55-agent-loop.svg",
+  "C55-C55-lost-response.svg"
+]

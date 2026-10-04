@@ -1,9 +1,0 @@
-asset_id,path,chapter_id,kind,origin,rights,alt_text_location,print_width_mm_in_pdf,minimum_label_pt_in_pdf
-C01-B,C01-equal-mean-different-tail.svg,C01,相同均值 不同耗时分布,本批原创 SVG,无第三方配图且对外许可证待确认,SVG title desc 及正文替代文本,169.69,10.58
-C01-A,C01-feasible-budget.svg,C01,时间和内存约束下的可行区域,本批原创 SVG,无第三方配图且对外许可证待确认,SVG title desc 及正文替代文本,169.69,10.58
-C04-C,C04-frame-parser-states.svg,C04,C04-C 长度前缀帧与增量解析,本批原创 SVG,无第三方配图且对外许可证待确认,SVG title desc 及正文替代文本,169.69,10.1
-C04-B,C04-text-lengths.svg,C04,C04-B 字节 码点与字素簇,本批原创 SVG,无第三方配图且对外许可证待确认,SVG title desc 及正文替代文本,169.69,10.1
-C04-A,C04-value-and-byte-order.svg,C04,C04-A 一个值与两种字节排列,本批原创 SVG,无第三方配图且对外许可证待确认,SVG title desc 及正文替代文本,169.69,10.1
-C09-B,C09-ownership-cycle.svg,C09,强所有权环与弱观察回指,本批原创 SVG,无第三方配图且对外许可证待确认,SVG title desc 及正文替代文本,169.69,8.29
-C09-C,C09-resource-exit.svg,C09,资源退出必须覆盖最后一次使用,本批原创 SVG,无第三方配图且对外许可证待确认,SVG title desc 及正文替代文本,169.69,7.88
-C09-A,C09-storage-lifetime.svg,C09,optional 中的存储与对象生命周期,本批原创 SVG,无第三方配图且对外许可证待确认,SVG title desc 及正文替代文本,169.69,7.88

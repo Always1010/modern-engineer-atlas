@@ -1,9 +1,0 @@
-asset_id,path,chapter_id,kind,origin,rights,alt_text_location,print_width_mm_in_pdf,minimum_label_pt_in_pdf
-C13-A1,C13-reading-route.svg,C13,行文路线图,项目v0.5原创SVG,无第三方配图且对外许可证待确认,SVG title desc及正文替代文本,169.69,10.1
-C13-A2,C13-structure-map.svg,C13,容器定位用法与后果骨架,项目v0.5重画v0.4结构图,无第三方配图且对外许可证待确认,SVG title desc及正文替代文本,169.69,9.62
-C13-B,C13-storage-and-borrow.svg,C13,容量与元素图,沿用项目原创SVG,无第三方配图且对外许可证待确认,SVG title desc及正文替代文本,169.69,10.58
-C13-C,C13-batch-phases.svg,C13,批次生命周期图,沿用项目原创SVG,无第三方配图且对外许可证待确认,SVG title desc及正文替代文本,169.69,10.58
-C55-A1,C55-reading-route.svg,C55,行文路线图,项目v0.5原创SVG,无第三方配图且对外许可证待确认,SVG title desc及正文替代文本,169.69,10.1
-C55-A2,C55-system-map.svg,C55,目标执行与结果系统骨架,项目v0.5重画v0.4职责图,无第三方配图且对外许可证待确认,SVG title desc及正文替代文本,155.22,8.36
-C55-B,C55-agent-loop.svg,C55,任务生命周期与反馈循环图,沿用项目原创图并修正返回走线,无第三方配图且对外许可证待确认,SVG title desc及正文替代文本,169.69,10.58
-C55-C,C55-lost-response.svg,C55,调用方与服务端时间线,沿用项目原创SVG,无第三方配图且对外许可证待确认,SVG title desc及正文替代文本,169.69,10.58

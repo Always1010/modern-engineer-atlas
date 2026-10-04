@@ -1,40 +1,83 @@
+"""Assemble reviewed 58-chapter source into the exact publication HTML structure."""
 import argparse
-import csv
 import json
 from pathlib import Path
+import re
+import shutil
+import hashlib
+from html import escape
+import subprocess
+from lxml import html as LH
+from book_pipeline.assembly import assemble_markdown, source_snapshot, cover_metadata
+from book_pipeline.manuscript import DEFAULT_SOURCE, BOOK_NAME, read_sections, validate_source, require
+
+
+def render_sections(source):
+    articles = []
+    for section in read_sections(source):
+        rendered = subprocess.check_output(['pandoc', '-f', 'markdown-implicit_figures', '-t', 'html5', '--no-highlight'], input=section['text'] + '\n', text=True)
+        doc = LH.fragment_fromstring(rendered, create_parent='article')
+        identity = section['identity']
+        doc.set('data-kind', section['kind'])
+        doc.set('data-identity', identity)
+        if section['part']:
+            doc.set('data-part', section['part'])
+        ids = {}
+        for element in doc.xpath('.//*[@id]'):
+            old = element.get('id')
+            new = identity + '-' + old
+            ids[old] = new
+            element.set('id', new)
+        first = doc.find('h1')
+        if first is not None:
+            old_prefixed = first.get('id')
+            for old, new in list(ids.items()):
+                if new == old_prefixed:
+                    ids[old] = identity
+            first.set('id', identity)
+        for element in doc.xpath('.//a[@href]'):
+            href = element.get('href')
+            if href.startswith('#') and href[1:] in ids:
+                element.set('href', '#' + ids[href[1:]])
+        for element in doc.xpath('.//p'):
+            if re.match(r'^图\s*\d+-', element.text_content()):
+                element.set('class', 'caption')
+        articles.append(LH.tostring(doc, encoding='unicode'))
+    full = '<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><title>' + escape(cover_metadata(source)['title']) + '</title></head><body>' + ''.join(articles) + '</body></html>'
+    doc = LH.fromstring(full)
+    ids = doc.xpath('//@id')
+    require(len(ids) == len(set(ids)), 'Duplicate generated anchors')
+    require(all(h[1:] in ids for h in doc.xpath('//a/@href') if h.startswith('#')), 'Broken manuscript fragment')
+    return full
+
+
+def build(source, output):
+    source, output = Path(source).resolve(), Path(output).resolve()
+    require(output != source and source not in output.parents and output not in source.parents, 'Build output must not modify the source bundle')
+    report = validate_source(source)
+    output.mkdir(parents=True, exist_ok=True)
+    shutil.copytree(source / 'resources', output / 'resources', dirs_exist_ok=True)
+    for name in ['FONT-LICENSES.txt', 'photo-license-manifest.json', 'asset-manifest.json']:
+        shutil.copy2(source / name, output / name)
+    (output / 'cover-metadata.json').write_text(json.dumps(cover_metadata(source), ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+    markdown = assemble_markdown(source)
+    (output / 'book.md').write_text(markdown, encoding='utf-8')
+    full = render_sections(source)
+    (output / 'chapters.html').write_text(full, encoding='utf-8')
+    report['input_snapshot'] = source_snapshot(source)
+    report['prepared_html_sha256'] = hashlib.sha256(full.encode('utf-8')).hexdigest()
+    (output / 'source-validation.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+    print(f'Validated and assembled {report["chapter_count"]} chapters, {report["topics"]} topics, {report["figures"]} figures, {report["code_fences"]} code fences')
+    return report
 
 
 def main():
- parser=argparse.ArgumentParser(description='Build the manuscript and catalog views from source files.')
- parser.add_argument('--output-dir', type=Path, default=Path('build'), help='directory for generated files')
- args=parser.parse_args()
- root=Path(__file__).resolve().parent
- out=args.output_dir if args.output_dir.is_absolute() else root/args.output_dir
- out.mkdir(parents=True,exist_ok=True)
- parts=json.loads((root/'planning/catalog-data.json').read_text(encoding='utf-8'))
- catalog=[];rows=[]
- for pid,title,chapters in parts:
-  catalog.append(f'### {pid} {title}\n')
-  for cid,name,audience,life,interview,engineering,difficulty,sections,figures in chapters:
-   catalog.append(f'#### {cid} {name}\n\n适读：{audience}。知识稳定度：{life}。面试重要度：{interview}。工程重要度：{engineering}。学习难度：{difficulty}。\n')
-   for j,s in enumerate(sections.split('；'),1):catalog.append(f'- {cid}.{j:02d} {s}')
-   catalog.append(f'\n配图重点：{figures}\n')
-   rows.append([pid,cid,name,audience,life,interview,engineering,difficulty,figures])
- (out/'catalog.md').write_text('\n'.join(catalog),encoding='utf-8')
- with (out/'chapter-metadata.csv').open('w',newline='',encoding='utf-8') as f:
-  w=csv.writer(f);w.writerow(['part_id','chapter_id','title','audience','lifecycle','interview_importance','engineering_importance','difficulty','illustration']);w.writerows(rows)
- body='\n\n'.join((root/f).read_text(encoding='utf-8').replace('](../assets/', '](assets/') for f in ['planning/01-position-and-map.md'])
- body+='\n\n'+(out/'catalog.md').read_text(encoding='utf-8')
- body+='\n\n'+(root/'planning/03-paths-and-workflow.md').read_text(encoding='utf-8')
- body+='\n\n# 附录一 标准版本基线\n\n'+(root/'planning/version-baseline.md').read_text(encoding='utf-8').replace('# 标准与技术版本基线\n','')
- body+='\n\n# 附录二 技术证据来源\n\n'+(root/'evidence/sources.md').read_text(encoding='utf-8').replace('# 技术来源台账\n','')
- body+='\n\n# 附录三 招聘样本与研究限制\n\n'+(root/'evidence/jobs.md').read_text(encoding='utf-8').replace('# 招聘样本与研究限制\n','')
- body+='\n\n# 附录四 2025年岗位证据补充\n\n'+(root/'evidence/jobs-2025-supplement.md').read_text(encoding='utf-8').replace('# 2025年官方招聘样本补充\n','')
- body+='\n\n# 附录五 规划阅读术语速查\n\n'+(root/'planning/glossary.md').read_text(encoding='utf-8').replace('# 规划阅读术语速查\n','')
- (out/'book.md').write_text(body,encoding='utf-8')
- section_count=sum(len(c[-2].split('；')) for _,_,cs in parts for c in cs)
- print(json.dumps({'output_dir':str(out),'parts':len(parts),'chapters':len(rows),'sections':section_count,'manuscript':str(out/'book.md')},ensure_ascii=False))
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--input', type=Path, default=DEFAULT_SOURCE, help='Complete edition source directory')
+    parser.add_argument('--output-dir', type=Path, default=Path('build'))
+    args = parser.parse_args()
+    build(args.input.resolve(), args.output_dir.resolve())
 
 
 if __name__ == '__main__':
- main()
+    main()

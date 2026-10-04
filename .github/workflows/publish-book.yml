@@ -14,15 +14,20 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: book-${{ github.ref }}
+  cancel-in-progress: false
+
 env:
   PYTHON_VERSION: '3.11.9'
-  PANDOC_VERSION: '3.8.3'
+  PANDOC_VERSION: '3.1.11.1'
   EPUBCHECK_VERSION: '5.4.0'
 
 jobs:
   build:
     name: Build and validate release files
     runs-on: ubuntu-24.04
+    timeout-minutes: 45
     permissions:
       contents: read
     outputs:
@@ -40,19 +45,21 @@ jobs:
       - name: Prepare build metadata
         id: meta
         shell: bash
+        env:
+          MANUAL_VERSION: ${{ inputs.version }}
         run: |
           set -euo pipefail
           if [[ "$GITHUB_EVENT_NAME" == "push" ]]; then
             tag="${GITHUB_REF_NAME}"
-            if [[ ! "$tag" =~ ^book-v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            if [[ ! "$tag" =~ ^book-v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]; then
               echo "Expected a semantic version tag such as book-v1.0.0; got $tag" >&2
               exit 1
             fi
             version="${tag#book-v}"
           else
-            version="${{ inputs.version }}"
+            version="$MANUAL_VERSION"
             if [[ -z "$version" ]]; then version="ci-${GITHUB_SHA:0:7}"; fi
-            if [[ ! "$version" =~ ^[A-Za-z0-9._-]+$ ]]; then
+            if [[ ! "$version" =~ ^[A-Za-z0-9][A-Za-z0-9._-]*$ ]]; then
               echo "Invalid manual build version: $version" >&2
               exit 1
             fi
@@ -73,6 +80,13 @@ jobs:
           cache: pip
           cache-dependency-path: requirements-export.txt
 
+      - name: Install diagram renderer and licensed font sources
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends inkscape fonts-noto-cjk fonts-dejavu-core
+          inkscape --version
+          fc-match 'Noto Sans CJK SC'
+
       - name: Install pinned export dependencies
         run: python -m pip install --requirement requirements-export.txt
 
@@ -81,28 +95,23 @@ jobs:
         with:
           version: ${{ env.PANDOC_VERSION }}
 
-      - name: Build generated manuscript
-        run: python build_source.py --output-dir build
+      - name: Test complete-manuscript failure gates
+        run: python -m unittest discover -s tests -v
 
-      - name: Render PDF and EPUB
-        shell: bash
+      - name: Build the complete 58-chapter first edition
         run: |
-          set -euo pipefail
-          mkdir -p dist
-          python render_pdf.py \
-            --input build/book.md \
-            --output "dist/${{ steps.meta.outputs.pdf }}" \
-            --metadata book-metadata.json \
+          python build_book.py \
+            --input manuscript/complete-edition/v1.0 \
+            --build-dir build --output-dir dist \
             --version "${{ steps.meta.outputs.version }}" \
             --date "${{ steps.meta.outputs.date }}"
-          python create_epub.py \
-            --input build/book.md \
-            --output "dist/${{ steps.meta.outputs.epub }}" \
-            --metadata book-metadata.json \
-            --css assets/epub.css \
-            --work-dir build/epub \
-            --version "${{ steps.meta.outputs.version }}" \
-            --date "${{ steps.meta.outputs.date }}"
+
+      - name: Test generated artifacts against deliberate corruption
+        env:
+          BOOK_TEST_EPUB: dist/${{ steps.meta.outputs.epub }}
+          BOOK_TEST_BUILD: build
+          BOOK_TEST_EXPORT_PROPAGATION: '1'
+        run: python -m unittest discover -s tests -v
 
       - name: Set up Java 17 for EPUBCheck
         uses: actions/setup-java@v4
@@ -128,12 +137,15 @@ jobs:
       - name: Run structural and coverage checks
         run: |
           python validate_artifacts.py \
-            --manuscript build/book.md \
+            --source manuscript/complete-edition/v1.0 --build-dir build \
             --epub "dist/${{ steps.meta.outputs.epub }}" \
             --pdf "dist/${{ steps.meta.outputs.pdf }}"
 
-      - name: Run EPUBCheck
-        run: java -jar "$EPUBCHECK_JAR" "dist/${{ steps.meta.outputs.epub }}"
+      - name: Run EPUBCheck (required publication gate)
+        shell: bash
+        run: |
+          set -euo pipefail
+          java -jar "$EPUBCHECK_JAR" "dist/${{ steps.meta.outputs.epub }}" 2>&1 | tee build/epubcheck.log
 
       - name: Write and verify SHA-256 checksums
         run: |
@@ -143,10 +155,33 @@ jobs:
             "dist/${{ steps.meta.outputs.epub }}"
           python checksums.py verify "dist/${{ steps.meta.outputs.checksums }}"
           python validate_artifacts.py \
-            --manuscript build/book.md \
+            --source manuscript/complete-edition/v1.0 --build-dir build \
             --epub "dist/${{ steps.meta.outputs.epub }}" \
             --pdf "dist/${{ steps.meta.outputs.pdf }}" \
             --checksums "dist/${{ steps.meta.outputs.checksums }}"
+
+      - name: Preserve build and validation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: book-build-evidence-${{ github.run_id }}
+          path: |
+            build/source-validation.json
+            build/validation.json
+            build/pdf-vectorization.json
+            build/heading-pages.json
+            build/epubcheck.log
+            build/chapter-edit-regression.json
+            build/book.md
+            build/chapters.html
+            build/cover-metadata.json
+            build/asset-manifest.json
+            build/photo-license-manifest.json
+            build/FONT-LICENSES.txt
+            build/diagram-svg/
+            build/figures/
+          if-no-files-found: warn
+          retention-days: 14
 
       - name: Upload validated files for the publish job
         uses: actions/upload-artifact@v4
@@ -176,6 +211,10 @@ jobs:
           name: book-release-files-${{ github.ref_name }}
           path: dist
 
+      - name: Verify downloaded release assets
+        working-directory: dist
+        run: sha256sum --check "$CHECKSUMS"
+
       - name: Refuse to modify an existing release
         shell: bash
         run: |
@@ -193,8 +232,10 @@ jobs:
             --repo "$GITHUB_REPOSITORY" \
             --verify-tag \
             --title "$TAG" \
-            --generate-notes
+            --generate-notes \
+            --draft
           # gh release upload fails when an asset with the same name exists; no --clobber is intentional.
           gh release upload "$TAG" \
             --repo "$GITHUB_REPOSITORY" \
             "dist/$PDF" "dist/$EPUB" "dist/$CHECKSUMS"
+          gh release edit "$TAG" --repo "$GITHUB_REPOSITORY" --draft=false

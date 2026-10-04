@@ -1,7 +1,0 @@
-asset_id,path,chapter_id,kind,origin,rights,alt_text_location,print_width_mm_in_pdf,minimum_label_pt_in_pdf
-C13-A,C13-structure-map.svg,C13,vector使用关系图,沿用项目原创结构图并统一编号图题,无第三方配图且对外许可证待确认,SVG title desc及正文替代文本,169.69,9.62
-C13-B,C13-storage-and-borrow.svg,C13,容量与元素图,沿用项目原创SVG,无第三方配图且对外许可证待确认,SVG title desc及正文替代文本,169.69,10.58
-C13-C,C13-batch-phases.svg,C13,批次生命周期图,沿用项目原创SVG并准确表述消费后复用释放,无第三方配图且对外许可证待确认,SVG title desc及正文替代文本,169.69,10.58
-C55-A,C55-system-map.svg,C55,模型程序工具与状态关系图,沿用项目原创结构图并统一编号图题,无第三方配图且对外许可证待确认,SVG title desc及正文替代文本,155.22,8.36
-C55-B,C55-agent-loop.svg,C55,任务生命周期与反馈循环图,沿用项目原创图并修正返回走线,无第三方配图且对外许可证待确认,SVG title desc及正文替代文本,169.69,10.58
-C55-C,C55-lost-response.svg,C55,调用方与服务端时间线,沿用项目原创SVG,无第三方配图且对外许可证待确认,SVG title desc及正文替代文本,169.69,10.58
