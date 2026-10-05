@@ -12,3 +12,6 @@ SHA256SUMS.txt
 # Generated combined manuscripts
 /book.md
 **/Modern-Engineer-Atlas-Complete-*.md
+
+# Local revision review outputs
+revision-work/

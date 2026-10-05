@@ -74,6 +74,8 @@ def validate_source(source):
     source = Path(source).resolve()
     require(source.is_dir(), f'Missing complete manuscript directory: {source}')
     from .assembly import assemble_markdown, source_snapshot, normalize_chapter, prose_lines
+    from .edition import edition_profile, checked_assets
+    profile = edition_profile(source)
     sections = read_sections(source)
     require(len(sections) == 76, 'Expected 76 complete-book sections')
     identities = [s['identity'] for s in sections]
@@ -83,7 +85,7 @@ def validate_source(source):
     require(set(identities) >= {'reading-guide', 'glossary', 'photo-credits', 'edition-notes', 'font-licenses'}, 'Missing front/back matter or licenses')
     files = sorted((source / 'chapters').glob('*.md'))
     require([f.name[:3] for f in files] == CHAPTER_IDS, 'Expected exactly 58 separate chapter files')
-    chapters, images, fences, topics = [], [], [], []
+    chapters, images, fences, topics, placements = [], [], [], [], []
     by_id = {s['identity']: s for s in sections}
     for number, file in enumerate(files, 1):
         raw = file.read_text(encoding='utf-8')
@@ -100,21 +102,15 @@ def validate_source(source):
         blocks = code_blocks(raw)
         require(blocks == code_blocks(combined), f'{file.name}: changed code fence')
         fences.extend(blocks)
-        chapter_images = re.findall(r'!\[([^\]]*)\]\((\.\./resources/[^)]+)\)', prose)
+        chapter_images = re.findall(r'!\[([^\]]*)\]\(([^)]+)\)', prose)
+        require(all(rel.startswith('../resources/') for _, rel in chapter_images), f'{file.name}: figure must use a declared local resource')
         require(chapter_images and all(alt.strip() for alt, _ in chapter_images), f'{file.name}: missing figure or alt text')
         images.extend(rel[3:] for _, rel in chapter_images)
+        placements.extend({'chapter': file.name[:3], 'file': rel[3:], 'alt': alt} for alt, rel in chapter_images)
         chapters.append({'chapter_id': file.name[:3], 'file': str(file.relative_to(source)), 'title': raw.splitlines()[0][2:], 'characters': len(raw), 'sha256': sha256(file), 'topics': [x[0] for x in section_topics], 'code_fences': len(blocks), 'images': len(chapter_images)})
     require(len(topics) == 232 and len(set(topics)) == 232, 'Expected 232 substantive topics')
-    assets = json.loads((source / 'asset-manifest.json').read_text())
-    require(len(assets) == 164 and len(images) == 164 and len(set(images)) == 164, 'Expected all 164 unique figures')
-    require(set(images) == {a['file'] for a in assets}, 'Figure references differ from asset manifest')
-    require(sum(a['kind'] == 'diagram' for a in assets) == 154, 'Expected 154 SVG diagrams')
-    require(sum(a['kind'] == 'photograph' for a in assets) == 10, 'Expected 10 photographs')
-    for asset in assets:
-        file = source / asset['file']
-        require(file.is_file() and sha256(file) == asset['sha256'], f'Asset missing or modified: {asset["file"]}')
-    photos = json.loads((source / 'photo-license-manifest.json').read_text())
-    require(len(photos) == 10, 'Missing photograph credits')
+    require((len(sections), sum(s['kind'] == 'part' for s in sections), len(chapters), len(topics)) == tuple(profile[k] for k in ['sections', 'parts', 'chapters', 'topics']), 'Source structure differs from edition profile')
+    checked_assets(source, placements, profile)
     require((source / 'FONT-LICENSES.txt').stat().st_size > 6000, 'Missing complete font licenses')
     generated = assemble_markdown(source)
-    return {'chapters': chapters, 'chapter_count': 58, 'parts': 13, 'topics': 232, 'figures': 164, 'diagrams': 154, 'photos': 10, 'code_fences': len(fences), 'manuscript_sha256': hashlib.sha256(generated.encode('utf-8')).hexdigest(), 'chapter_sources_authoritative': True, 'asset_hashes_valid': True, 'source_files': len(source_snapshot(source))}
+    return {'chapters': chapters, 'chapter_count': 58, 'parts': 13, 'topics': 232, 'figures': profile['figures'], 'diagrams': profile['diagrams'], 'photos': profile['photos'], 'edition_profile': profile, 'figure_placements': placements, 'code_fences': len(fences), 'manuscript_sha256': hashlib.sha256(generated.encode('utf-8')).hexdigest(), 'chapter_sources_authoritative': True, 'asset_hashes_valid': True, 'source_files': len(source_snapshot(source))}

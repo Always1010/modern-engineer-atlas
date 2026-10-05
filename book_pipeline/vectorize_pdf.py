@@ -4,9 +4,11 @@ import hashlib
 import json
 import fitz
 from PIL import Image
+from .edition import prepared_profile
 
 
 def vectorize(source, output, directory):
+    profile = prepared_profile(directory)
     sha = lambda data: hashlib.sha256(data).hexdigest()
     document = fitz.open(source)
     pngmap = {}
@@ -16,9 +18,9 @@ def vectorize(source, output, directory):
             key = (image.width, image.height, sha(image.tobytes()))
         assert key not in pngmap
         pngmap[key] = file.stem
-    assert len(pngmap) == 154
+    assert len(pngmap) == profile['diagrams']
     seen = {image[0]: image for page in document for image in page.get_images(full=True)}
-    assert len(seen) == 164
+    assert len(seen) == profile['figures']
     jobs, photos = [], []
     for xref, image in seen.items():
         if image[8] == 'DCTDecode':
@@ -33,7 +35,7 @@ def vectorize(source, output, directory):
             with Image.open(directory / 'figures' / (name + '.png')) as original:
                 assert sha(mask.samples) == sha(original.getchannel('A').tobytes()), name
         jobs.append((xref, name))
-    assert len(jobs) == 154 and len(photos) == 10
+    assert len(jobs) == profile['diagrams'] and len(photos) == profile['photos']
     original_pages = len(document)
     original_toc = document.get_toc()
     for xref, name in jobs:
@@ -50,6 +52,6 @@ def vectorize(source, output, directory):
     with fitz.open(output) as final:
         assert len(final) == original_pages and final.get_toc() == original_toc
         final_images = {image[0]: image for page in final for image in page.get_images(full=True)}
-        assert len(final_images) == 10
+        assert len(final_images) == profile['photos']
         assert sorted(sha(final.xref_stream_raw(xref)) for xref in final_images) == sorted(photos)
-    (directory / 'pdf-vectorization.json').write_text(json.dumps({'pages_preserved': original_pages, 'outlined_diagrams': 154, 'photos_byte_identical': 10, 'bookmarks_preserved': len(original_toc)}, indent=2) + '\n')
+    (directory / 'pdf-vectorization.json').write_text(json.dumps({'pages_preserved': original_pages, 'outlined_diagrams': profile['diagrams'], 'photos_byte_identical': profile['photos'], 'bookmarks_preserved': len(original_toc)}, indent=2) + '\n')

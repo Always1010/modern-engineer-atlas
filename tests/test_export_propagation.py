@@ -46,6 +46,7 @@ class ChapterExportPropagationTests(unittest.TestCase):
             # Reuse only unchanged diagram exports; no prebuilt book is copied.
             for name in ['figures', 'diagram-pdf', 'diagram-svg']:
                 shutil.copytree(BUILD / name, directory / name)
+            shutil.copy2(BUILD / 'diagram-export.json', directory / 'diagram-export.json')
             subprocess.run([sys.executable, str(ROOT / 'book_pipeline/make_fonts.py'), '--directory', str(directory)], check=True)
             pdf, epub = root / 'changed.pdf', root / 'changed.epub'
             for script, target in [('render_pdf.py', pdf), ('create_epub.py', epub)]:

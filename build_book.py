@@ -35,7 +35,7 @@ def build_book(source, directory, output, version, build_date, jobs=4):
     checksum = output / 'SHA256SUMS.txt'
     write_checksums(checksum, [pdf, epub])
     report = validate(source, directory, pdf, epub, checksum)
-    report['publication'] = {'version': version, 'build_date': build_date, 'source_verified_date': cover_metadata(source)['source_verified_date']}
+    report['publication'] = {'version': version, 'build_date': build_date, 'source_verified_date': cover_metadata(source)['source_verified_date'], 'source_version': cover_metadata(source)['source_version']}
     if os.environ.get('GITHUB_SHA'):
         require(bool(re.fullmatch(r'[0-9a-f]{40}', os.environ['GITHUB_SHA'])), 'Invalid workflow source commit')
         report['publication']['source_commit'] = os.environ['GITHUB_SHA']
@@ -45,7 +45,7 @@ def build_book(source, directory, output, version, build_date, jobs=4):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--input', type=Path, default=DEFAULT_SOURCE, help='Frozen complete source directory')
+    parser.add_argument('--input', type=Path, default=DEFAULT_SOURCE, help='Maintained complete source directory')
     parser.add_argument('--version', required=True)
     parser.add_argument('--date', required=True, help='ISO publication date, distinct from technical source verification date')
     parser.add_argument('--build-dir', type=Path, default=ROOT / 'build')

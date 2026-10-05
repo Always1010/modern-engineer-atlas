@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "editions": {
+    "1.0": {
+      "sections": 76,
+      "parts": 13,
+      "chapters": 58,
+      "topics": 232,
+      "figures": 164,
+      "diagrams": 154,
+      "photos": 10,
+      "epub_png_fallback_manifest": "epub-png-fallbacks.json"
+    },
+    "1.1.0": {
+      "sections": 76,
+      "parts": 13,
+      "chapters": 58,
+      "topics": 232,
+      "figures": 169,
+      "diagrams": 158,
+      "photos": 11,
+      "epub_png_fallback_manifest": "epub-png-fallbacks.json"
+    }
+  }
+}
