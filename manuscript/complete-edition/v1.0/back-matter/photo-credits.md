@@ -1,6 +1,6 @@
 # 图片来源与许可
 
-本书示意图为原创机制图。以下十张真实硬件照片按各自标示的来源与许可使用，许可范围针对对应照片，不代表整本书采用同一开放许可。照片帮助识别实物外观，不作为器件性能、兼容性或认证的证明。
+本书示意图为原创机制图。以下十一张真实硬件与仪器照片按各自标示的来源与许可使用，许可范围针对对应照片，不代表整本书采用同一开放许可。照片帮助识别实物外观，不作为器件性能、兼容性或认证的证明。
 
 ## 1. STM32F4 Discovery
 
@@ -61,3 +61,11 @@
 位置：第五十一章 规划控制与闭环行为。作者：Mike1024；当前源图增强版本由Dicklyon于2018-06-22上传。许可：[Public domain，原作者释放](https://commons.wikimedia.org/wiki/File:Gray_code_rotary_encoder_13-track_opened.jpg)。
 
 [原始文件与作者说明](https://commons.wikimedia.org/wiki/File:Gray_code_rotary_encoder_13-track_opened.jpg)。图像处理：采用文件页当前版本原图1135×2175；本稿仅排版等比例缩放，未新增裁切或增强。
+
+## 11. 实验台上的示波器 万用表与电源
+
+位置：第二十八章 MCU 与固件的硬件边界，图28-6。作者：Radarvector。拍摄日期：2021年4月5日。许可：[CC BY-SA 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/)。
+
+[所用文件与作者说明](https://commons.wikimedia.org/wiki/File:Keysight_InfiniiVision_DSOX_4024A_and_digital_multimeter_and_power_supply_in_laboratory_use.jpg)。所用版本由Pittigrilli于2022年12月21日从[原照](https://commons.wikimedia.org/wiki/File:Digital_oscilloscope_in_use.jpg)裁切，本书保留该JPEG文件字节，未新增裁切或改色，仅等比例显示。来源与许可核验日期为2026年10月4日。
+
+照片仅帮助辨认仪器外观。屏幕中的波形和数值不是本书测量数据，不应据此推断被测电路或照抄接线；设备品牌不表示厂商认可本书。

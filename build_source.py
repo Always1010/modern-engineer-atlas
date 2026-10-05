@@ -56,6 +56,7 @@ def build(source, output):
     require(output != source and source not in output.parents and output not in source.parents, 'Build output must not modify the source bundle')
     report = validate_source(source)
     output.mkdir(parents=True, exist_ok=True)
+    (output / 'edition-profile.json').write_text(json.dumps(report['edition_profile'], ensure_ascii=False, indent=2) + '\n')
     shutil.copytree(source / 'resources', output / 'resources', dirs_exist_ok=True)
     for name in ['FONT-LICENSES.txt', 'photo-license-manifest.json', 'asset-manifest.json']:
         shutil.copy2(source / name, output / name)

@@ -4,6 +4,7 @@ import shutil
 import tempfile
 import unittest
 
+from book_pipeline.edition import edition_profile
 from book_pipeline.assembly import assemble_markdown, read_sections, source_snapshot
 from book_pipeline.manuscript import DEFAULT_SOURCE, BOOK_NAME, code_blocks, validate_source
 
@@ -14,11 +15,12 @@ class CompleteSourceTests(unittest.TestCase):
         self.addCleanup(self.temp.cleanup)
         self.source = Path(self.temp.name) / 'source'
         shutil.copytree(DEFAULT_SOURCE, self.source)
+        self.profile = edition_profile(self.source)
         self.baseline_fences = sum(len(code_blocks(p.read_text(encoding='utf-8'))) for p in (self.source / 'chapters').glob('*.md'))
 
     def test_complete_source_has_real_coverage(self):
         report = validate_source(self.source)
-        self.assertEqual((report['chapter_count'], report['topics'], report['figures'], report['code_fences']), (58, 232, 164, self.baseline_fences))
+        self.assertEqual((report['chapter_count'], report['topics'], report['figures'], report['code_fences']), (58, 232, self.profile['figures'], self.baseline_fences))
         self.assertTrue(all(chapter['characters'] >= 12000 for chapter in report['chapters']))
         self.assertTrue(report['chapter_sources_authoritative'])
         self.assertFalse((self.source / BOOK_NAME).exists())
@@ -74,8 +76,14 @@ class CompleteSourceTests(unittest.TestCase):
         extra = '\n\n````markdown\n## 1.1 This is example code\n![example](../resources/not-a-real-image.svg)\n````\n'
         chapter.write_text(chapter.read_text(encoding='utf-8') + extra, encoding='utf-8')
         report = validate_source(self.source)
-        self.assertEqual((report['topics'], report['figures'], report['code_fences']), (232, 164, self.baseline_fences + 1))
+        self.assertEqual((report['topics'], report['figures'], report['code_fences']), (232, self.profile['figures'], self.baseline_fences + 1))
         self.assertIn(extra.strip(), assemble_markdown(self.source))
+
+    def test_external_figure_cannot_bypass_asset_manifest(self):
+        chapter = next((self.source / 'chapters').glob('C01*.md'))
+        chapter.write_text(chapter.read_text() + '\n\n![Undeclared figure](https://example.invalid/figure.jpg)\n')
+        with self.assertRaisesRegex(ValueError, 'declared local resource'):
+            validate_source(self.source)
 
     def test_validation_does_not_change_any_source_file(self):
         before = source_snapshot(self.source)

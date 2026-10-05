@@ -197,5 +197,28 @@
       2175
     ],
     "title": "十三轨格雷码旋转编码器内部"
+  },
+  {
+    "chapter": "C28",
+    "chapter_title": "第二十八章 MCU 与固件的硬件边界",
+    "file": "laboratory-instruments-radarvector.jpg",
+    "type": "genuine-hardware-photograph",
+    "title": "Keysight InfiniiVision DSOX 4024A and digital multimeter and power supply in laboratory use",
+    "author": "Radarvector",
+    "created": "2021-04-05",
+    "sourceURL": "https://commons.wikimedia.org/wiki/File:Keysight_InfiniiVision_DSOX_4024A_and_digital_multimeter_and_power_supply_in_laboratory_use.jpg",
+    "sourceRevisionURL": "https://commons.wikimedia.org/w/index.php?title=File:Keysight_InfiniiVision_DSOX_4024A_and_digital_multimeter_and_power_supply_in_laboratory_use.jpg&oldid=820159809",
+    "originalSourceURL": "https://commons.wikimedia.org/wiki/File:Digital_oscilloscope_in_use.jpg",
+    "downloadURL": "https://upload.wikimedia.org/wikipedia/commons/0/09/Keysight_InfiniiVision_DSOX_4024A_and_digital_multimeter_and_power_supply_in_laboratory_use.jpg",
+    "license": "CC BY-SA 4.0 International",
+    "licenseURL": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "modification": "沿用来源站点已裁切版本的原始JPEG字节；Pittigrilli于2022-12-21从原照裁切。本书未新增裁切、改色或图像生成，仅等比例排版",
+    "dimensions": [
+      2278,
+      1872
+    ],
+    "downloadDate": "2026-10-04",
+    "scope": "照片用于辨认仪器，不提供书中实验波形、接线安全或性能证据；图片独立按原许可证使用",
+    "sha256": "3843d9ee9da44e82fb4496c3e1e2eb875e6f0878384876c9b3c4e1de9b6d9711"
   }
 ]

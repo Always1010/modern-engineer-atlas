@@ -3,6 +3,7 @@ from pathlib import Path
 from lxml import html as LH
 import argparse,subprocess,shutil,re,json,zipfile,unicodedata
 from fontTools.ttLib import TTFont
+from book_pipeline.edition import prepared_profile
 from lxml import etree
 P=argparse.ArgumentParser(description=__doc__)
 P.add_argument('--input',type=Path,required=True,help='Prepared build directory')
@@ -12,8 +13,8 @@ P.add_argument('--date',required=True,help='Publication build date; source verif
 P.add_argument('--css',type=Path,default=Path(__file__).parent/'assets/epub.css')
 A=P.parse_args();W=A.input.resolve();A.output=A.output.resolve();A.output.parent.mkdir(parents=True,exist_ok=True)
 COVER=json.loads((W/'cover-metadata.json').read_text())
-# These sixteen diagrams retain the reviewed PNG fallback for mobile-reader fidelity.
-SAFE_PNG=set(json.loads((Path(__file__).parent/'book_pipeline/epub-png-fallbacks.json').read_text()))
+# Reviewed fallback names come from the validated source edition profile.
+SAFE_PNG=set(prepared_profile(W)['epub_png_fallbacks'])
 tree=LH.parse(str(W/'chapters.html'))
 for article in tree.findall('.//article'):
  chapter=article.get('data-kind')=='chapter'

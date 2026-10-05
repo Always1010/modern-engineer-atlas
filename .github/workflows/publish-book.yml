@@ -98,7 +98,7 @@ jobs:
       - name: Test complete-manuscript failure gates
         run: python -m unittest discover -s tests -v
 
-      - name: Build the complete 58-chapter first edition
+      - name: Build the maintained 58-chapter edition
         run: |
           python build_book.py \
             --input manuscript/complete-edition/v1.0 \
@@ -168,6 +168,8 @@ jobs:
           path: |
             build/source-validation.json
             build/validation.json
+            build/edition-profile.json
+            build/diagram-export.json
             build/pdf-vectorization.json
             build/heading-pages.json
             build/epubcheck.log
@@ -179,7 +181,17 @@ jobs:
             build/photo-license-manifest.json
             build/FONT-LICENSES.txt
             build/diagram-svg/
-            build/figures/
+            build/diagram-pdf/
+            build/resources/
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Preserve figure previews separately
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: book-figure-previews-${{ github.run_id }}
+          path: build/figures/
           if-no-files-found: warn
           retention-days: 14
 

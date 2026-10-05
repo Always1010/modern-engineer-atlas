@@ -41,6 +41,28 @@ class ArtifactMutationTests(unittest.TestCase):
     def test_replaced_photo_is_rejected(self):
         self.check_mutation(lambda name, data: data + b'changed' if name.endswith('.jpg') else data, 'photographs changed')
 
+    def test_swapped_image_placements_are_rejected(self):
+        def mutate(name, data):
+            if name.endswith('.xhtml') and b'id="chapter-c01"' in data:
+                doc = etree.fromstring(data)
+                images = doc.xpath('//*[@id="chapter-c01"]//*[local-name()="img"]')
+                self.assertGreaterEqual(len(images), 2)
+                first, second = images[0].get('src'), images[1].get('src')
+                images[0].set('src', second)
+                images[1].set('src', first)
+                return etree.tostring(doc, encoding='UTF-8', xml_declaration=True)
+            return data
+        self.check_mutation(mutate, 'changed figure placement, alt text or bytes')
+
+    def test_changed_image_alt_text_is_rejected(self):
+        def mutate(name, data):
+            if name.endswith('.xhtml') and b'id="chapter-c01"' in data:
+                doc = etree.fromstring(data)
+                doc.xpath('//*[@id="chapter-c01"]//*[local-name()="img"]')[0].set('alt', 'WRONG_FIGURE_DESCRIPTION')
+                return etree.tostring(doc, encoding='UTF-8', xml_declaration=True)
+            return data
+        self.check_mutation(mutate, 'changed figure placement, alt text or bytes')
+
     def test_incorrect_svg_property_is_rejected(self):
         self.check_mutation(lambda name, data: data.replace(b'properties="svg"', b'properties=""', 1) if name.endswith('.opf') else data, 'Incorrect SVG OPF property')
 

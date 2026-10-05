@@ -2,15 +2,22 @@
 import argparse
 from concurrent.futures import ThreadPoolExecutor
 import json
+import hashlib
+import sys
 import os
 from pathlib import Path
 import subprocess
 import fitz
 from PIL import Image
 from lxml import etree
+if __package__ in (None, ''):
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from book_pipeline.edition import prepared_profile
+from book_pipeline.manuscript import require
 
 
 def export(directory, jobs=4):
+    profile = prepared_profile(directory)
     for name in ['figures', 'diagram-pdf', 'diagram-svg', 'inkscape-config', 'inkscape-cache']:
         (directory / name).mkdir(parents=True, exist_ok=True)
     env = dict(os.environ, XDG_CONFIG_HOME=str(directory / 'inkscape-config'), XDG_CACHE_HOME=str(directory / 'inkscape-cache'))
@@ -30,12 +37,13 @@ def export(directory, jobs=4):
             doc.set('height', f'{height}px')
             doc.set('preserveAspectRatio', 'xMidYMid meet')
             svg.write_bytes(etree.tostring(doc, encoding='UTF-8', xml_declaration=True))
-        return source.name
+        sha = lambda file: hashlib.sha256(file.read_bytes()).hexdigest()
+        return {'file': source.name, 'source_sha256': sha(source), 'png_sha256': sha(png), 'pdf_sha256': sha(pdf), 'svg_sha256': sha(svg)}
     sources = sorted((directory / 'resources').glob('*.svg'))
     with ThreadPoolExecutor(max_workers=jobs) as executor:
         names = list(executor.map(one, sources))
-    assert len(names) == 154, len(names)
-    (directory / 'diagram-export.json').write_text(json.dumps(names, indent=2) + '\n')
+    require(len(names) == profile['diagrams'], 'Diagram exports differ from edition profile')
+    (directory / 'diagram-export.json').write_text(json.dumps({'schema_version': 1, 'diagrams': names}, indent=2) + '\n')
     print(f'Exported {len(names)} PNG + outlined vector diagrams', flush=True)
 
 

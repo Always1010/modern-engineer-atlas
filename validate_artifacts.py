@@ -14,6 +14,7 @@ from lxml import etree, html as LH
 from book_pipeline.assembly import assemble_markdown, source_snapshot, cover_metadata
 from book_pipeline.manuscript import DEFAULT_SOURCE, require, validate_source
 from checksums import verify_checksums
+from book_pipeline.edition import edition_profile, prepared_profile, checked_diagram_exports
 
 
 def compact(text):
@@ -25,6 +26,9 @@ def digest(data):
 
 
 def check_epub(path, tree, directory, source):
+    profile = edition_profile(source)
+    require(prepared_profile(directory) == profile, 'Prepared edition profile differs from source edition')
+    fallback_names = set(profile['epub_png_fallbacks'])
     with zipfile.ZipFile(path) as archive:
         require(archive.testzip() is None, 'Broken EPUB ZIP CRC')
         names = archive.namelist()
@@ -112,7 +116,8 @@ def check_epub(path, tree, directory, source):
             require(expected_code == actual_code, f'EPUB changed technical code: {identity}')
             code_count += len(actual_code)
         media = Counter(item.get('media-type') for item in manifest)
-        require(media['image/svg+xml'] == 138 and media['image/png'] == 16 and media['image/jpeg'] == 10, f'Incorrect EPUB figure formats: {media}')
+        expected_media = Counter({'image/svg+xml': profile['diagrams'] - len(fallback_names), 'image/png': len(fallback_names), 'image/jpeg': profile['photos']})
+        require(Counter({kind: count for kind, count in media.items() if kind.startswith('image/')}) == expected_media, f'Incorrect EPUB figure formats: {media}')
         expected_photos = Counter(digest(p.read_bytes()) for p in (source / 'resources').glob('*.jpg'))
         actual_photos = Counter(digest(archive.read(posixpath.normpath(opfdir + '/' + item.get('href')))) for item in manifest if item.get('media-type') == 'image/jpeg')
         require(actual_photos == expected_photos, 'EPUB photographs changed')
@@ -124,7 +129,21 @@ def check_epub(path, tree, directory, source):
                 imgs = doc.xpath('//*[local-name()="img"]')
                 require(all(img.get('alt', '').strip() for img in imgs), f'Missing EPUB image alt: {name}')
                 figure_count += len(imgs)
-        require(figure_count == 164, f'EPUB image placements missing: {figure_count}')
+        require(figure_count == profile['figures'], f'EPUB image placements missing: {figure_count}')
+        # Compare each placement in chapter order, including its alt text and exact exported bytes.
+        for chapter in tree.xpath('//article[@data-kind="chapter"]'):
+            identity = chapter.get('data-identity')
+            expected_placements = []
+            for img in chapter.xpath('.//img'):
+                relative = Path(img.get('src'))
+                if relative.suffix == '.svg':
+                    relative = Path('figures') / (relative.stem + '.png') if relative.name in fallback_names else Path('diagram-svg') / relative.name
+                expected_placements.append((img.get('alt'), digest((directory / relative).read_bytes())))
+            actual_placements = []
+            for img in chapter_docs[identity].xpath('.//*[local-name()="img"]'):
+                resource = posixpath.normpath(posixpath.join(posixpath.dirname(chapter_paths[identity]), unquote(img.get('src'))))
+                actual_placements.append((img.get('alt'), digest(archive.read(resource))))
+            require(actual_placements == expected_placements, f'EPUB changed figure placement, alt text or bytes: {identity}')
         for item in manifest:
             name = posixpath.normpath(opfdir + '/' + item.get('href'))
             media_type = item.get('media-type')
@@ -148,10 +167,11 @@ def check_epub(path, tree, directory, source):
         navlinks = nav.xpath('//@href')
         require(all(any(posixpath.normpath(posixpath.join(posixpath.dirname(navpath), urlsplit(h).path)) == chapter_paths[identity] and urlsplit(h).fragment in ('', identity) for h in navlinks) for identity in chapter_docs), 'Incomplete chapter navigation')
         require(code_count == len(tree.xpath('//article[@data-kind=\"chapter\"]//pre')), 'EPUB missing code fences')
-        return {'sections_with_exact_prose': len(canonical), 'chapters_with_exact_prose': 58, 'topics': 232, 'exact_code_fences': code_count, 'figure_placements': 164, 'svg': 138, 'png_fallbacks': 16, 'byte_identical_photos': 10, 'embedded_fonts': 4, 'spine_documents': len(spine), 'links_and_xml_valid': True, 'epubcheck': 'not run by this validator; separate CI gate required'}
+        return {'sections_with_exact_prose': len(canonical), 'chapters_with_exact_prose': 58, 'topics': 232, 'exact_code_fences': code_count, 'figure_placements': figure_count, 'ordered_figure_placements_valid': True, 'svg': expected_media['image/svg+xml'], 'png_fallbacks': len(fallback_names), 'byte_identical_photos': profile['photos'], 'embedded_fonts': 4, 'spine_documents': len(spine), 'links_and_xml_valid': True, 'epubcheck': 'not run by this validator; separate CI gate required'}
 
 
 def check_pdf(path, tree, source):
+    profile = edition_profile(source)
     with fitz.open(path) as document:
         require(not document.is_encrypted and len(document) >= 700, 'PDF truncated or outline-only')
         toc = document.get_toc()
@@ -190,19 +210,22 @@ def check_pdf(path, tree, source):
         require(not badlinks, f'Invalid PDF internal links: {badlinks[:3]}')
         require(all(len(page.get_text().strip()) >= 5 for page in document), 'Empty PDF page')
         photos = {image[0] for page in document for image in page.get_images(full=True)}
-        require(len(photos) == 10, 'PDF should contain 10 unmodified photos and outlined diagrams')
+        require(len(photos) == profile['photos'], 'PDF photograph count differs from edition profile')
         expected = Counter(digest(p.read_bytes()) for p in (source / 'resources').glob('*.jpg'))
         actual = Counter(digest(document.xref_stream_raw(xref)) for xref in photos)
         require(expected == actual, 'PDF photograph bytes changed')
         vectors = [xref for xref in range(1, document.xref_length()) if document.xref_get_key(xref, 'AtlasVectorSource')[0] == 'string']
-        require(len(vectors) == 154, 'PDF missing vector diagrams')
+        expected_vector_names = Counter(p.stem for p in (source / 'resources').glob('*.svg'))
+        actual_vector_names = Counter(document.xref_get_key(xref, 'AtlasVectorSource')[1] for xref in vectors)
+        require(len(vectors) == profile['diagrams'] and actual_vector_names == expected_vector_names, 'PDF missing or duplicated vector diagrams')
         for credit in ['SIL OPEN FONT LICENSE', 'DejaVu', '图片来源与许可', '字体版权与许可']:
             require(compact(credit) in alltext, f'Missing PDF license/credit: {credit}')
-        return {'pages': len(document), 'chapters': 58, 'topics': topics, 'substantive_extracted_characters': len(alltext), 'complete_source_paragraphs': len(paragraphs), 'exact_code_fences': len(code), 'text_bounds_valid': True, 'bookmarks': len(toc), 'outlined_diagrams': 154, 'byte_identical_photos': 10, 'internal_links_valid': True, 'empty_pages': 0}
+        return {'pages': len(document), 'chapters': 58, 'topics': topics, 'substantive_extracted_characters': len(alltext), 'complete_source_paragraphs': len(paragraphs), 'exact_code_fences': len(code), 'text_bounds_valid': True, 'bookmarks': len(toc), 'outlined_diagrams': len(vectors), 'byte_identical_photos': len(photos), 'internal_links_valid': True, 'empty_pages': 0}
 
 
 def validate(source, directory, pdf, epub, checksums=None):
     source_report = validate_source(source)
+    require(prepared_profile(directory) == source_report['edition_profile'], 'Prepared edition profile differs from source edition')
     require((directory / 'book.md').read_text(encoding='utf-8') == assemble_markdown(source), 'Prepared manuscript differs from current chapter sources')
     require(json.loads((directory / 'cover-metadata.json').read_text()) == cover_metadata(source), 'Prepared cover metadata is stale')
     prepared = json.loads((directory / 'source-validation.json').read_text())
@@ -210,6 +233,9 @@ def validate(source, directory, pdf, epub, checksums=None):
     require(prepared.get('prepared_html_sha256') == digest((directory / 'chapters.html').read_bytes()), 'Prepared HTML differs from validated assembly')
     from build_source import render_sections
     require((directory / 'chapters.html').read_text(encoding='utf-8') == render_sections(source), 'Prepared HTML differs from current chapter sources')
+    for asset in json.loads((source / 'asset-manifest.json').read_text()):
+        require(digest((directory / asset['file']).read_bytes()) == asset['sha256'], f'Prepared resource differs from source: {asset["file"]}')
+    checked_diagram_exports(source, directory)
     tree = LH.parse(str(directory / 'chapters.html'))
     require(len(tree.xpath('//article[@data-kind="chapter"]')) == 58, 'Prepared HTML missing chapters')
     report = {'source': {key: value for key, value in source_report.items() if key != 'chapters'}, 'pdf': check_pdf(pdf, tree, source), 'epub': check_epub(epub, tree, directory, source)}
