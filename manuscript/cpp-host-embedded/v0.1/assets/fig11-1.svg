@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960" height="515" viewBox="0 0 960 515"><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#166B70"/></marker></defs><rect width="100%" height="100%" fill="white"/>
+<rect x="20" y="20" width="435" height="430" rx="8" fill="#F5F8FA" stroke="#B6CCD4" stroke-width="1.5"/>
+<rect x="505" y="20" width="435" height="430" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="42" y="58" font-family="Noto Sans CJK SC, sans-serif" font-size="26" font-weight="bold" fill="#203B4A" text-anchor="start">GUI 主线程</text>
+<text x="527" y="58" font-family="Noto Sans CJK SC, sans-serif" font-size="26" font-weight="bold" fill="#203B4A" text-anchor="start">采集工作线程</text>
+<rect x="52" y="91" width="175" height="63" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="139.5" y="129.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">Window</text>
+<rect x="250" y="91" width="175" height="63" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="337.5" y="129.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">Controller</text>
+<rect x="154" y="212" width="190" height="67" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="249.0" y="252.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">QThread 对象</text>
+<rect x="615" y="91" width="210" height="65" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="720.0" y="130.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">Worker</text>
+<rect x="537" y="239" width="177" height="77" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="625.5" y="284.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">QSerialPort</text>
+<rect x="741" y="239" width="177" height="77" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="829.5" y="284.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">QTimer</text>
+<path d="M 720 156 L 720 204 L 625 204 L 625 239" stroke="#166B70" stroke-width="2" fill="none"/>
+<path d="M 720 204 L 829 204 L 829 239" stroke="#166B70" stroke-width="2" fill="none"/>
+<text x="722" y="195" font-family="Noto Sans CJK SC, sans-serif" font-size="17" font-weight="normal" fill="#166B70" text-anchor="start">parent</text>
+<line x1="344" y1="245" x2="512" y2="245" stroke="#166B70" stroke-width="2" marker-end="url(#arr)" stroke-dasharray="7 5"/>
+<text x="428" y="226" font-family="Noto Sans CJK SC, sans-serif" font-size="17" font-weight="normal" fill="#596770" text-anchor="middle">管理线程</text>
+<line x1="425" y1="112" x2="614" y2="112" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="520" y="96" font-family="Noto Sans CJK SC, sans-serif" font-size="17" font-weight="normal" fill="#166B70" text-anchor="middle">排队命令</text>
+<line x1="615" y1="153" x2="425" y2="153" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="520" y="178" font-family="Noto Sans CJK SC, sans-serif" font-size="17" font-weight="normal" fill="#166B70" text-anchor="middle">值快照</text>
+<text x="43" y="364" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="start">QThread 对象通常仍属于 GUI 线程</text>
+<text x="43" y="393" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="start">其普通成员调用不会自动切到工作线程</text>
+<text x="528" y="364" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="start">在线程内创建串口与定时器</text>
+<text x="528" y="393" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="start">父子对象必须具有相同线程归属</text>
+<text x="25" y="490" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="start">实线父子关系只在线程内部；线程间边界由排队消息跨越</text>
+</svg>
