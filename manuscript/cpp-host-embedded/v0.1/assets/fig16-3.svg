@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960" height="410" viewBox="0 0 960 410"><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#166B70"/></marker></defs><rect width="100%" height="100%" fill="white"/>
+<rect x="20" y="35" width="282" height="305" rx="8" fill="#F2F6F7" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="161" y="87" font-family="Noto Sans CJK SC, sans-serif" font-size="26" font-weight="bold" fill="#203B4A" text-anchor="middle">万用表</text>
+<text x="38" y="161" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="start">两点间电压或断电通断</text>
+<text x="38" y="214" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="start">适合先核对供电与连接</text>
+<text x="38" y="267" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="start">常会漏掉很短的瞬态</text>
+<rect x="338" y="35" width="282" height="305" rx="8" fill="#F2F6F7" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="479" y="87" font-family="Noto Sans CJK SC, sans-serif" font-size="26" font-weight="bold" fill="#203B4A" text-anchor="middle">示波器</text>
+<text x="356" y="161" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="start">电压随时间怎样变化</text>
+<text x="356" y="214" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="start">观察跌落、边沿和振铃</text>
+<text x="356" y="267" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="start">接地与探头本身会影响测量</text>
+<rect x="656" y="35" width="282" height="305" rx="8" fill="#F2F6F7" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="797" y="87" font-family="Noto Sans CJK SC, sans-serif" font-size="26" font-weight="bold" fill="#203B4A" text-anchor="middle">逻辑分析仪</text>
+<text x="674" y="161" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="start">跨阈值后的数字状态</text>
+<text x="674" y="214" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="start">适合多路时序和协议解码</text>
+<text x="674" y="267" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="start">不能证明电压幅值与裕量</text>
+<text x="20" y="390" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#B46627" text-anchor="start">同一故障可需要三类证据；仪器名称不能代替具体量程、额定值和参考关系</text>
+</svg>

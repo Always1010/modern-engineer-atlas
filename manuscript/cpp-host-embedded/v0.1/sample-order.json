@@ -1,0 +1,23 @@
+{
+  "edition": "cpp-host-embedded",
+  "version": "sample-0.1",
+  "baseline_tag": "book-v1.1.0",
+  "baseline_commit": "0842f624995d2fd99f46c68426c9a33a73610cbb",
+  "scope": "three-sample-chapters-only",
+  "planned_full_chapter_count": 24,
+  "chapters": [
+    {
+      "id": "N02",
+      "file": "chapters/N02-program-objects-lifetime.zh-CN.md"
+    },
+    {
+      "id": "N11",
+      "file": "chapters/N11-background-acquisition-shutdown.zh-CN.md"
+    },
+    {
+      "id": "N16",
+      "file": "chapters/N16-boards-circuits-measurement.zh-CN.md"
+    }
+  ],
+  "formal_pipeline_compatibility": "not-implemented-or-tested"
+}

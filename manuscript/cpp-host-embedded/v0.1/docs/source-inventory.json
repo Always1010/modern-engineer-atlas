@@ -1,0 +1,156 @@
+[
+  {
+    "chapter": "C07",
+    "path": "manuscript/complete-edition/v1.0/chapters/C07-operating-system-execution-and-resources.zh-CN.md",
+    "git_blob_sha": "87d2ebf7e6eec51cd124ddee9dcf2e5a4a685209",
+    "fixed_commit": "0842f624995d2fd99f46c68426c9a33a73610cbb",
+    "byte_count": 56801,
+    "sha256": "a5fa08143b87a8216d9bc9f8f4c6eb79a0843e0aebbf7626ccf02463fecee373",
+    "git_blob_match": true,
+    "normalized_one_added_final_newline": true,
+    "url": "https://github.com/Always1010/modern-engineer-atlas/blob/0842f624995d2fd99f46c68426c9a33a73610cbb/manuscript/complete-edition/v1.0/chapters/C07-operating-system-execution-and-resources.zh-CN.md"
+  },
+  {
+    "chapter": "C08",
+    "path": "manuscript/complete-edition/v1.0/chapters/C08-compilation-linking-loading-and-abi.zh-CN.md",
+    "git_blob_sha": "09f9b2e303c05dfac09cc0e982ed961269dd7ebc",
+    "fixed_commit": "0842f624995d2fd99f46c68426c9a33a73610cbb",
+    "byte_count": 67177,
+    "sha256": "a630ca98e08e9e8eb618302236f17a4f5bbc3cfeca29bfed033a8cfe08283112",
+    "git_blob_match": true,
+    "normalized_one_added_final_newline": true,
+    "url": "https://github.com/Always1010/modern-engineer-atlas/blob/0842f624995d2fd99f46c68426c9a33a73610cbb/manuscript/complete-edition/v1.0/chapters/C08-compilation-linking-loading-and-abi.zh-CN.md"
+  },
+  {
+    "chapter": "C09",
+    "path": "manuscript/complete-edition/v1.0/chapters/C09-object-lifetime-and-ownership.zh-CN.md",
+    "git_blob_sha": "eebe4e0498bf923384a7ae3683072e9233e4cba7",
+    "fixed_commit": "0842f624995d2fd99f46c68426c9a33a73610cbb",
+    "byte_count": 41803,
+    "sha256": "73ea74937989fbe7b3db969c8f011d83de4b9dba796d81ac5429f6556e468b3f",
+    "git_blob_match": true,
+    "normalized_one_added_final_newline": true,
+    "url": "https://github.com/Always1010/modern-engineer-atlas/blob/0842f624995d2fd99f46c68426c9a33a73610cbb/manuscript/complete-edition/v1.0/chapters/C09-object-lifetime-and-ownership.zh-CN.md"
+  },
+  {
+    "chapter": "C10",
+    "path": "manuscript/complete-edition/v1.0/chapters/C10-value-semantics-and-forwarding.zh-CN.md",
+    "git_blob_sha": "eae48cdd0e1682820ff281fc056ae13fdb40a91f",
+    "fixed_commit": "0842f624995d2fd99f46c68426c9a33a73610cbb",
+    "byte_count": 44999,
+    "sha256": "2e159a23719980d37f8f11ab4b971c6321c89507f2965f8194429ac0ac360747",
+    "git_blob_match": true,
+    "normalized_one_added_final_newline": true,
+    "url": "https://github.com/Always1010/modern-engineer-atlas/blob/0842f624995d2fd99f46c68426c9a33a73610cbb/manuscript/complete-edition/v1.0/chapters/C10-value-semantics-and-forwarding.zh-CN.md"
+  },
+  {
+    "chapter": "C11",
+    "path": "manuscript/complete-edition/v1.0/chapters/C11-object-model-and-observable-boundaries.zh-CN.md",
+    "git_blob_sha": "39dde88e0957263e3b7b327f199ce75ac325089b",
+    "fixed_commit": "0842f624995d2fd99f46c68426c9a33a73610cbb",
+    "byte_count": 40199,
+    "sha256": "feabc30acada862f5352ff422dac3297027a33bb59f80b1f2c5b657e233c32fb",
+    "git_blob_match": true,
+    "normalized_one_added_final_newline": true,
+    "url": "https://github.com/Always1010/modern-engineer-atlas/blob/0842f624995d2fd99f46c68426c9a33a73610cbb/manuscript/complete-edition/v1.0/chapters/C11-object-model-and-observable-boundaries.zh-CN.md"
+  },
+  {
+    "chapter": "C14",
+    "path": "manuscript/complete-edition/v1.0/chapters/C14-errors-and-robust-library-interfaces.zh-CN.md",
+    "git_blob_sha": "3e7700130ae2b2ea48f446bf32d19ebefd45e7a3",
+    "fixed_commit": "0842f624995d2fd99f46c68426c9a33a73610cbb",
+    "byte_count": 37464,
+    "sha256": "0175ed8be240ea9481e3ee3edb3a4be1383fd5ce68f5ab13c7e2d13f7d2cb896",
+    "git_blob_match": true,
+    "normalized_one_added_final_newline": true,
+    "url": "https://github.com/Always1010/modern-engineer-atlas/blob/0842f624995d2fd99f46c68426c9a33a73610cbb/manuscript/complete-edition/v1.0/chapters/C14-errors-and-robust-library-interfaces.zh-CN.md"
+  },
+  {
+    "chapter": "C16",
+    "path": "manuscript/complete-edition/v1.0/chapters/C16-synchronization-and-thread-organization.zh-CN.md",
+    "git_blob_sha": "9a1df0c855c206969903e5e9066906a95dc5eed4",
+    "fixed_commit": "0842f624995d2fd99f46c68426c9a33a73610cbb",
+    "byte_count": 51504,
+    "sha256": "cf2be9385b4c7ce74d6b687dadb4695e74a750b805242903fcc8ce9bf9acee56",
+    "git_blob_match": true,
+    "normalized_one_added_final_newline": true,
+    "url": "https://github.com/Always1010/modern-engineer-atlas/blob/0842f624995d2fd99f46c68426c9a33a73610cbb/manuscript/complete-edition/v1.0/chapters/C16-synchronization-and-thread-organization.zh-CN.md"
+  },
+  {
+    "chapter": "C17",
+    "path": "manuscript/complete-edition/v1.0/chapters/C17-language-memory-model-and-atomics.zh-CN.md",
+    "git_blob_sha": "073e8ddf01cda43e4907ba08569c6008a3cfe622",
+    "fixed_commit": "0842f624995d2fd99f46c68426c9a33a73610cbb",
+    "byte_count": 43585,
+    "sha256": "4b0dc658287f4587e1d04e961fcc5bbd2508a8dce8c2a4556c8154bb0bef736c",
+    "git_blob_match": true,
+    "normalized_one_added_final_newline": true,
+    "url": "https://github.com/Always1010/modern-engineer-atlas/blob/0842f624995d2fd99f46c68426c9a33a73610cbb/manuscript/complete-edition/v1.0/chapters/C17-language-memory-model-and-atomics.zh-CN.md"
+  },
+  {
+    "chapter": "C19",
+    "path": "manuscript/complete-edition/v1.0/chapters/C19-asynchronous-io-coroutines-and-scheduling.zh-CN.md",
+    "git_blob_sha": "32fab1b067399b10b9930a35fda8188a3105b9c3",
+    "fixed_commit": "0842f624995d2fd99f46c68426c9a33a73610cbb",
+    "byte_count": 43828,
+    "sha256": "42cd6e37dea012cbea096d3004ee4716d0d3fde44b562b5b0769b62be2b74aa8",
+    "git_blob_match": true,
+    "normalized_one_added_final_newline": true,
+    "url": "https://github.com/Always1010/modern-engineer-atlas/blob/0842f624995d2fd99f46c68426c9a33a73610cbb/manuscript/complete-edition/v1.0/chapters/C19-asynchronous-io-coroutines-and-scheduling.zh-CN.md"
+  },
+  {
+    "chapter": "C22",
+    "path": "manuscript/complete-edition/v1.0/chapters/C22-debugging-and-failure-evidence.zh-CN.md",
+    "git_blob_sha": "b2b8ebd7336e8ccb59ded42719012aeec5d64555",
+    "fixed_commit": "0842f624995d2fd99f46c68426c9a33a73610cbb",
+    "byte_count": 38428,
+    "sha256": "228863532d665880034ddbe44cf7df1ff71a0c23970fb3a04e53b8a84d80a491",
+    "git_blob_match": true,
+    "normalized_one_added_final_newline": true,
+    "url": "https://github.com/Always1010/modern-engineer-atlas/blob/0842f624995d2fd99f46c68426c9a33a73610cbb/manuscript/complete-edition/v1.0/chapters/C22-debugging-and-failure-evidence.zh-CN.md"
+  },
+  {
+    "chapter": "C28",
+    "path": "manuscript/complete-edition/v1.0/chapters/C28-mcu-and-firmware-hardware-boundaries.zh-CN.md",
+    "git_blob_sha": "e0f0f4f00997d072e482b131bd6ea47a8eba36d4",
+    "fixed_commit": "0842f624995d2fd99f46c68426c9a33a73610cbb",
+    "byte_count": 60496,
+    "sha256": "a5f26f1f84527b41fc22c9582e87912d4249f25f4c4b32c7402059d71b215132",
+    "git_blob_match": true,
+    "normalized_one_added_final_newline": true,
+    "url": "https://github.com/Always1010/modern-engineer-atlas/blob/0842f624995d2fd99f46c68426c9a33a73610cbb/manuscript/complete-edition/v1.0/chapters/C28-mcu-and-firmware-hardware-boundaries.zh-CN.md"
+  },
+  {
+    "chapter": "C29",
+    "path": "manuscript/complete-edition/v1.0/chapters/C29-real-time-and-connected-device-lifecycle.zh-CN.md",
+    "git_blob_sha": "81fbef3196d68d568defeba0d27ee068bdb00eb4",
+    "fixed_commit": "0842f624995d2fd99f46c68426c9a33a73610cbb",
+    "byte_count": 55107,
+    "sha256": "99bed84fe44b75cebb806d57cb6e3351aeea7722d9c8f74ca696e85c68935537",
+    "git_blob_match": true,
+    "normalized_one_added_final_newline": true,
+    "url": "https://github.com/Always1010/modern-engineer-atlas/blob/0842f624995d2fd99f46c68426c9a33a73610cbb/manuscript/complete-edition/v1.0/chapters/C29-real-time-and-connected-device-lifecycle.zh-CN.md"
+  },
+  {
+    "chapter": "C31",
+    "path": "manuscript/complete-edition/v1.0/chapters/C31-windows-qt-and-device-host-applications.zh-CN.md",
+    "git_blob_sha": "725417d8243f2c90a39e338399f4a55c7228feda",
+    "fixed_commit": "0842f624995d2fd99f46c68426c9a33a73610cbb",
+    "byte_count": 62878,
+    "sha256": "f007d17dba6b090f381406a33e788923ec408922015fcc50584d2a3773965c23",
+    "git_blob_match": true,
+    "normalized_one_added_final_newline": true,
+    "url": "https://github.com/Always1010/modern-engineer-atlas/blob/0842f624995d2fd99f46c68426c9a33a73610cbb/manuscript/complete-edition/v1.0/chapters/C31-windows-qt-and-device-host-applications.zh-CN.md"
+  },
+  {
+    "chapter": "C48",
+    "path": "manuscript/complete-edition/v1.0/chapters/C48-sensors-frames-time-and-integration.zh-CN.md",
+    "git_blob_sha": "6b9173d8ccdfea1ecafffd7d649856c53687e885",
+    "fixed_commit": "0842f624995d2fd99f46c68426c9a33a73610cbb",
+    "byte_count": 44497,
+    "sha256": "4dc78c14ce45b6a1eae283eb7324ae8a9f15bc6ff9ef7ecc2a96e1c0d75ccf61",
+    "git_blob_match": true,
+    "normalized_one_added_final_newline": true,
+    "url": "https://github.com/Always1010/modern-engineer-atlas/blob/0842f624995d2fd99f46c68426c9a33a73610cbb/manuscript/complete-edition/v1.0/chapters/C48-sensors-frames-time-and-integration.zh-CN.md"
+  }
+]
