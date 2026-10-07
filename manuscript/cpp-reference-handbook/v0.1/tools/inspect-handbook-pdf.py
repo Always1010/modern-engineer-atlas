@@ -60,5 +60,6 @@ if len(sys.argv)>1 and sys.argv[1] == "--sheets":
                 draw.text((x,y-17),f"Page {start+offset+1}",fill="#172b43")
         sheet.save(qa/f"contact-{start//batch+1:02}.png")
 print(json.dumps({k:v for k,v in report.items() if k not in ("page_text","chapter_pages","outside_page_bounds")},ensure_ascii=False,indent=2))
-if outside or replacement or sorted(chapters) != list(range(1,31)):
+expected_count = json.loads((edition / 'catalog.json').read_text(encoding='utf8'))['chapterCount']
+if outside or replacement or sorted(chapters) != list(range(1,expected_count+1)):
     sys.exit(1)

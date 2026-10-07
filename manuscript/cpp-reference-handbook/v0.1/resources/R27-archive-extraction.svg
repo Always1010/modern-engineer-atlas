@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="410" viewBox="0 0 920 410" role="img" aria-labelledby="title desc">
+<title id="title">静态归档成员如何进入程序</title><desc id="desc">main目标文件提出metric_open的未定义引用，扫描静态归档时选择metric成员；没有被引用的注册成员不一定抽取。GNU ld通常按命令行位置扫描归档。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#65768b"/></marker></defs>
+<style>text{font-family:"Microsoft YaHei","Noto Sans CJK SC",sans-serif;font-size:19px;fill:#172b43}.small{font-size:16px;fill:#53667a}.node{fill:#eaf2fc;stroke:#86a9d2;stroke-width:1.4}.muted{fill:#f4f6f9;stroke:#aebaca;stroke-width:1.4;stroke-dasharray:6 4}.arrow{fill:none;stroke:#65768b;stroke-width:2;marker-end:url(#arrow)}</style>
+<rect width="920" height="410" fill="#fff"/><text x="24" y="34">普通目标提出引用，归档按成员提供定义</text>
+<rect x="24" y="105" width="215" height="90" rx="3" class="node"/><text x="131" y="137" text-anchor="middle">main.o</text><text x="131" y="170" text-anchor="middle" class="small">未定义：metric_open</text>
+<rect x="320" y="65" width="285" height="245" rx="3" fill="#fff" stroke="#86a9d2" stroke-width="1.4"/><text x="462" y="96" text-anchor="middle">libmetric.a（静态归档）</text>
+<rect x="340" y="118" width="245" height="68" rx="3" class="node"/><text x="462" y="146" text-anchor="middle">metric.o：提供定义</text><text x="462" y="172" text-anchor="middle" class="small">因引用被抽取</text>
+<rect x="340" y="216" width="245" height="68" rx="3" class="muted"/><text x="462" y="244" text-anchor="middle">registration.o</text><text x="462" y="270" text-anchor="middle" class="small">仅有注册初始化：可能未选入</text>
+<path d="M241 150L335 150" class="arrow"/><path d="M589 150L682 150" class="arrow"/>
+<rect x="687" y="105" width="208" height="90" rx="3" class="node"/><text x="791" y="138" text-anchor="middle">最终程序</text><text x="791" y="170" text-anchor="middle" class="small">含 main 与 metric 实现</text>
+<text x="24" y="353" class="small">GNU ld：main.o → libA.a → libB.a；A 引用 B 时，通常先列 A 再列 B。</text>
+<text x="24" y="382" class="small">循环归档可组扫描；其他链接器的重访策略可能不同，先查实际工具。</text>
+</svg>

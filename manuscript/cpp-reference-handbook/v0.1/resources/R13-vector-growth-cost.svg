@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="520" viewBox="0 0 920 520" role="img" aria-labelledby="title desc">
+<title id="title">vector 单次扩容与一串追加的迁移成本</title>
+<desc id="desc">从容量四扩到八时迁移四个旧元素。容量翻倍的教学序列使历次迁移量一加二加四形成线性总量；标准并不规定增长倍率。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#65768b"/></marker></defs>
+<style>text{font-family:"Microsoft YaHei","Noto Sans CJK SC",sans-serif;fill:#172b43;font-size:19px}.small{font-size:16px;fill:#4b6077}.label{font-weight:600}.ok{fill:#eaf2fc;stroke:#6c98d2;stroke-width:1.4}.dim{fill:#f0f5fa;stroke:#aab7c6;stroke-width:1.4;stroke-dasharray:5 4}.new{fill:#fff1e9;stroke:#bf784e;stroke-width:1.4}.line{stroke:#65768b;stroke-width:2;fill:none;marker-end:url(#arrow)}.rule{stroke:#aab7c6;stroke-width:1.4;fill:none}</style>
+<rect width="920" height="520" fill="#fff"/>
+<text x="28" y="36" class="label">扩容这一次：迁移旧元素；整串追加：累加历次迁移</text>
+<text x="28" y="65" class="small">容量翻倍只作教学模型，实际容量与增长倍率由实现决定。</text>
+<text x="40" y="118">旧存储：size = 4</text>
+<g class="ok"><rect x="270" y="88" width="66" height="46"/><rect x="336" y="88" width="66" height="46"/><rect x="402" y="88" width="66" height="46"/><rect x="468" y="88" width="66" height="46"/></g>
+<text x="294" y="118">A</text><text x="360" y="118">B</text><text x="426" y="118">C</text><text x="492" y="118">D</text>
+<path d="M401 142L401 199" class="line"/>
+<text x="435" y="175" class="small">构造到新存储：4 个旧元素</text>
+<text x="40" y="238">新存储：size = 5</text>
+<g class="ok"><rect x="270" y="208" width="66" height="46"/><rect x="336" y="208" width="66" height="46"/><rect x="402" y="208" width="66" height="46"/><rect x="468" y="208" width="66" height="46"/></g>
+<rect x="534" y="208" width="66" height="46" class="new"/>
+<g class="dim"><rect x="600" y="208" width="66" height="46"/><rect x="666" y="208" width="66" height="46"/><rect x="732" y="208" width="66" height="46"/></g>
+<text x="294" y="238">A</text><text x="360" y="238">B</text><text x="426" y="238">C</text><text x="492" y="238">D</text><text x="558" y="238">E</text>
+<text x="40" y="289" class="small">成功后释放旧存储；旧借用失效。虚线槽位仍未构造元素。</text>
+<path d="M28 315H892" class="rule"/>
+<text x="40" y="353" class="label">一串追加的教学序列</text>
+<text x="40" y="398">容量：</text><text x="180" y="398">1</text><text x="320" y="398">2</text><text x="460" y="398">4</text><text x="600" y="398">8</text><text x="740" y="398">…</text>
+<path d="M220 389H286" class="line"/><path d="M360 389H426" class="line"/><path d="M500 389H566" class="line"/><path d="M640 389H706" class="line"/>
+<text x="40" y="441">迁移：</text><text x="235" y="441">1</text><text x="375" y="441">2</text><text x="515" y="441">4</text><text x="655" y="441">…</text>
+<text x="40" y="490" class="small">几何级数的累计迁移为 O(n)；单次扩容仍可能处理当前全部 n 个元素。</text>
+</svg>

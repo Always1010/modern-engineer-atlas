@@ -1,4 +1,4 @@
-# 第23章 CPU 与程序执行成本
+# 第24章 CPU 与程序执行成本
 
 源码中的一次访问可能对应寄存器操作、缓存命中、页表查询或主存访问；相同复杂度的程序因此可以有不同成本。先确认程序满足 C++ 规则，再用目标机器证据解释时间差。
 
@@ -16,9 +16,9 @@ volatile 的主要语言效果与访问的可观察性相关，不是强迫“�
 
 常见机器按缓存行取数据，多级缓存的容量、共享范围与行大小由实现决定。时间局部性指近期访问的数据被重复使用；空间局部性指随后访问附近地址。连续扫描 vector 往往方便预取；链表追踪下一指针存在数据依赖，且节点可散布。但是否更快必须包括元素大小、工作集、分配方式和访问次数。
 
-![缓存路径与两种写入布局](../resources/R23-cache-false-sharing.svg)
+![缓存路径与两种写入布局](../resources/R24-cache-false-sharing.svg)
 
-图23-1：上半为常见层次，不规定 L1/L2/L3 的共享与大小；下半假定一行64字节，仅说明两个独立计数落入同一行时的写入协调。不同硬件可有不同结构，不能据图推导 atomic 的 memory_order。
+图24-1：上半为常见层次，不规定 L1/L2/L3 的共享与大小；下半假定一行64字节，仅说明两个独立计数落入同一行时的写入协调。不同硬件可有不同结构，不能据图推导 atomic 的 memory_order。
 
 伪共享指逻辑独立、由不同核心频繁写入的对象落在同一缓存行，使一致性协议产生额外协调。它不同于两个线程修改同一变量，也不一定构成语言数据竞争。优先让各线程局部累积后合并；确有证据时再隔离热字段。隔离会增加内存占用和扫描成本，不能给每个对象盲目加64字节。[Linux 内核伪共享分析](https://www.kernel.org/doc/html/latest/kernel-hacking/false-sharing.html)。
 
@@ -59,7 +59,7 @@ int main() {
 }
 ```
 
-源文件：[r23-byte-order.cpp](../examples/r23-byte-order.cpp)。构建：`g++ -std=c++17 -Wall -Wextra -pedantic r23-byte-order.cpp -o r23-byte-order`。预期：`wire=1,2,3,4 roundtrip=checked`。uint32_t 仅在存在精确32位无符号整数类型的实现提供；CHAR_BIT 检查限定了该演示格式。
+源文件：[r24-byte-order.cpp](../examples/r24-byte-order.cpp)。构建：`g++ -std=c++17 -Wall -Wextra -pedantic r24-byte-order.cpp -o r24-byte-order`。预期：`wire=1,2,3,4 roundtrip=checked`。uint32_t 仅在存在精确32位无符号整数类型的实现提供；CHAR_BIT 检查限定了该演示格式。
 
 无符号整数运算按其范围模回绕；有符号溢出行为未定义，不能由 CPU 的回绕现象推出 C++ 保证。浮点不保证每个平台都是 IEEE 754；使用 numeric_limits 检查 is_iec559、digits、范围与舍入相关属性。即便二进制浮点遵循 IEEE，十进制0.1仍可能不能精确表示；比较、累计误差与 NaN 应按业务误差界设计。优化选项允许忽略 NaN 或改变结合律时，还要核查工具链契约。[基础类型](https://timsong-cpp.github.io/cppwp/n4659/basic.fundamental)、[numeric_limits](https://timsong-cpp.github.io/cppwp/n4659/numeric.limits)。
 
@@ -78,4 +78,4 @@ int main() {
 | 加 padding 后改善 | 重复基准与目标架构计数 | 单次波动不能证明伪共享 |
 | 数值“偶尔为负” | 溢出、窄化、并发读写 | 先核查语言错误，不能先归因硬件 |
 
-测量应防止结果未使用而被消除，记录构建方式、机器和负载；微基准不代表端到端收益。缓存与指令计数等工具数据是诊断线索，结合热路径解释，见 R30。虚拟地址、缺页与 RSS 见 R24，原子正确性见 R22。
+测量应防止结果未使用而被消除，记录构建方式、机器和负载；微基准不代表端到端收益。缓存与指令计数等工具数据是诊断线索，结合热路径解释，见 R32。虚拟地址、缺页与 RSS 见 R25，原子正确性见 R22。

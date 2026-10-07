@@ -14,11 +14,18 @@ const { chromium } = require('playwright');
 const catalog = JSON.parse(await fs.readFile(path.join(edition, 'catalog.json'), 'utf8'));
 const chapterFiles = await fs.readdir(path.join(edition, 'chapters'));
 const chapters = catalog.parts.flatMap((part, pi) => part.chapters.map(chapter => ({...chapter, part:part.title, partIndex:pi})));
-if (chapters.length !== 30 || new Set(chapters.map(c => c.id)).size !== 30) throw new Error('Expected 30 unique chapters.');
+const expectedChapters = catalog.chapterCount;
+if (!Number.isInteger(expectedChapters) || chapters.length !== expectedChapters ||
+    new Set(chapters.map(c => c.id)).size !== expectedChapters ||
+    chapters.some((c,index) => c.id !== 'R'+String(index+1).padStart(2,'0')))
+  throw new Error('Catalog must contain the declared number of unique, sequential chapters.');
 const manifest = [];
 const escape = value => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"','&quot;');
 // Manuscripts are Markdown, not trusted raw HTML; literal header/type names must stay visible.
-marked.use({renderer:{html({text}) {return escape(text);}}});
+marked.use({renderer:{html({text}) {
+  if (/^<!-- source: examples\/[\w./-]+ -->$/.test(text.trim())) return '';
+  return escape(text);
+}}});
 let diagrams = 0;
 async function renderFile(relative, id) {
   const file = path.join(edition, relative);
@@ -106,8 +113,8 @@ const css = sampleCSS + '\n'+[
 ' #reading-guide { font-size:9.4pt; line-height:1.5; }',
 ' #reading-guide table { font-size:8.4pt; } #reading-guide th,#reading-guide td { padding:4px 5px; }',
 // Dense lookup chapters had only a closing paragraph on an extra page; keep type size, trim spacing.
-' #R09 p,#R12 p,#R18 p { margin:6px 0; } #R09 h2,#R12 h2,#R18 h2 { margin:17px 0 9px; }',
-' #R09 figure,#R12 figure,#R18 figure { margin:11px 0; } #R09 .table-wrap,#R12 .table-wrap,#R18 .table-wrap { margin:9px 0; }',
+' #R07 p,#R09 p,#R12 p,#R18 p { margin:6px 0; } #R07 h2,#R09 h2,#R12 h2,#R18 h2 { margin:17px 0 9px; }',
+' #R07 figure,#R09 figure,#R12 figure,#R18 figure { margin:11px 0; } #R07 .table-wrap,#R09 .table-wrap,#R12 .table-wrap,#R18 .table-wrap { margin:9px 0; }',
 ' pre.long-code { break-inside:auto; }',
 ' h1 { break-after:avoid; } ul,ol { padding-left:20px; }',
 ' li { orphans:2; widows:2; }',
@@ -117,8 +124,8 @@ const html = '<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><met
   '<nav aria-label="全书目录"><p>C++ 图解参考手册</p>'+sidebar+'</nav><main>'+
   '<section class="cover"><p class="edition-label">REFERENCE HANDBOOK · v0.1 · 完整首稿</p>'+
   '<h1>C++ 与计算机基础<br>图解参考手册</h1><p class="subtitle">语言规则 · 标准库与数据结构 · 并发 · 系统 · 网络 · 排障</p>'+
-  '<p class="scope">7 篇 · 30 章 · 6 类速查索引<br>核心完整例子 C++17；C++20/23 扩展分层标注<br>规则、接口、机制图与实际工作中的错误边界</p>'+
-  '<p>技术资料核验：2026-10-07<br>示例验证与重建条件见版本目录中的 BUILD-NOTES.md</p></section>'+
+  '<p class="scope">'+catalog.parts.length+' 篇 · '+chapters.length+' 章 · 6 类速查索引<br>核心完整例子 C++17；C++20/23 扩展分层标注<br>规则、接口、机制图与实际工作中的错误边界</p>'+
+  '<p>修订资料核验：'+escape(catalog.revisionDate)+'<br>示例验证与重建条件见版本目录中的 BUILD-NOTES.md</p></section>'+
   '<section class="contents"><h1>目录</h1><p><a href="#reading-guide">使用这本手册与快速阅读路径</a></p>'+toc+
   '<p><a href="#appendices">附录 A–F：语法、符号、容器算法、故障、术语、命令</a></p></section>'+body+'</main></div></body></html>';
 const output = path.join(edition,'output/pdf');

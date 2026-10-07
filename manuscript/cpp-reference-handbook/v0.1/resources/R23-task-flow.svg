@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="340" viewBox="0 0 920 340" role="img" aria-labelledby="title desc">
+<title id="title">任务队列、工作线程与结果通道</title><desc id="desc">提交者向有界待办队列投递任务，工作线程取任务后在锁外执行，结果或异常进入future共享状态。任务中的借用另需保活。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#65768b"/></marker></defs>
+<style>text{font-family:"Microsoft YaHei","Noto Sans CJK SC",sans-serif;fill:#172b43;font-size:18px}.small{font-size:15px;fill:#4b6077}.label{font-weight:600}.box{fill:#eaf2fc;stroke:#6c98d2;stroke-width:1.4}.node{fill:#f0f5fa;stroke:#94a8bd;stroke-width:1.4}.line{stroke:#65768b;stroke-width:2;fill:none;marker-end:url(#arrow)}.bad{fill:#fff1e9;stroke:#bf784e;stroke-width:1.4}</style>
+<rect width="920" height="340" fill="white"/><text x="28" y="36" class="label">提交成功、开始执行、交付结果是三个事件</text>
+<rect x="28" y="90" width="155" height="87" rx="5" class="node"/><text x="47" y="125">提交者</text><text x="47" y="155" class="small">持有输入/结果</text>
+<path d="M183 132L224 132" class="line"/><rect x="230" y="90" width="194" height="87" rx="5" class="box"/><text x="247" y="125">有界待办队列</text><text x="247" y="155" class="small">锁内接受与取出</text>
+<path d="M424 132L466 132" class="line"/><rect x="472" y="90" width="194" height="87" rx="5" class="box"/><text x="489" y="125">工作线程</text><text x="489" y="155" class="small">锁外执行用户任务</text>
+<path d="M666 132L707 132" class="line"/><rect x="713" y="90" width="179" height="87" rx="5" class="node"/><text x="731" y="125">结果共享状态</text><text x="731" y="155" class="small">值或异常 → get()</text>
+<rect x="230" y="215" width="436" height="64" rx="5" class="bad"/><text x="248" y="241">队列满/已关闭：明确拒绝</text><text x="248" y="265" class="small">容量计待办；运行中任务还占用额外资源</text>
+<text x="28" y="315" class="small">future 保存结果；任务捕获的引用、指针和 I/O 缓冲仍需要独立的生命周期协议。</text>
+</svg>

@@ -1,4 +1,4 @@
-# 第25章 系统调用与文件 I/O
+# 第26章 系统调用与文件 I/O
 
 一次“写成功”可能只表示字节进入缓冲或内核缓存。接口返回、其他读取者可见和断电后仍存在，是三个需要分别确认的边界。
 
@@ -37,9 +37,9 @@ Windows ReadFile/WriteFile 的同步与 OVERLAPPED 形式另有返回方式，ER
 
 iostream 或 C stdio 可先保存在用户缓冲；flush 将其交给下层，不承诺持久化。Linux 常见 buffered write 写入页缓存的脏页，再由写回机制提交存储。mmap 让进程访问映射页，减少某些复制但带来缺页、生命周期与同步成本，不是“内存访问永不阻塞”。
 
-![写入的缓冲与持久化边界](../resources/R25-io-durability.svg)
+![写入的缓冲与持久化边界](../resources/R26-io-durability.svg)
 
-图25-1：箭头是常见 buffered I/O 路径，不覆盖 direct I/O 或所有文件系统。每一层成功只承诺其接口边界；底层设备、文件系统和远端存储仍影响持久性。
+图26-1：箭头是常见 buffered I/O 路径，不覆盖 direct I/O 或所有文件系统。每一层成功只承诺其接口边界；底层设备、文件系统和远端存储仍影响持久性。
 
 Linux fsync 等待文件数据及所需元数据刷新；fdatasync 可减少不影响后续读取的元数据工作。新建／重命名文件要使目录项持久，通常还需要对包含目录 fsync，并检查各返回值。具体文件系统及存储故障模型仍需验证；close 成功不是这个流程的替代。[Linux fsync/fdatasync](https://man7.org/linux/man-pages/man2/fsync.2.html)。
 
@@ -66,4 +66,4 @@ Windows IOCP 将关联句柄的异步 I/O 完成包交给工作线程。完成�
 | IOCP 下缓冲偶发损坏 | 是否在完成前复用／销毁 | 操作对象保活至完成 |
 | 写延迟突然上升 | 脏页、写回、设备／文件系统状态 | flush成本与缓存命中分开测量 |
 
-本章平台条目经官方文档核验，未在当前 Windows 环境实跑 Linux API 或 IOCP／持久性实验。标准文件流见 R19，映射与地址空间见 R24，网络收发见 R27。
+本章平台条目经官方文档核验，未在当前 Windows 环境实跑 Linux API 或 IOCP／持久性实验。标准文件流见 R19，映射与地址空间见 R25，网络收发见 R29。

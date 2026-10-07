@@ -34,6 +34,20 @@ n 为当前元素数；以下插删只修改一个元素。链表 O(1) 以已经
 
 “摊还”指一串操作的平均成本界限，不保证某一次追加耗时很短。标准复杂度按元素操作次数描述，不是微秒承诺；大对象的移动、分配器、缓存和负载还会影响实测时间。[容器复杂度定义](https://timsong-cpp.github.io/cppwp/n4659/container.requirements.general)、[vector 操作](https://timsong-cpp.github.io/cppwp/n4659/vector.modifiers)、[deque 操作](https://timsong-cpp.github.io/cppwp/n4659/deque.modifiers)、[list 插删](https://timsong-cpp.github.io/cppwp/n4659/list.modifiers)。
 
+### 怎样读复杂度与空间成本
+
+O(f(n)) 描述随规模增长的上界，必须同时说明计算哪一种操作。**最坏**考察允许输入中最贵的一次；**平均**需要输入或分布假设，例如哈希查找的平均常数界；**均摊（摊还）**把一串操作的总成本分摊，不要求随机输入。三者不能互换：vector 追加的均摊常数不提供单次延迟上界。
+
+比较次数、元素构造／移动／赋值次数、分配次数也不是同一单位。比较两个长字符串可能扫描多个字符；移动一个元素可能调用用户代码；中间 erase 的线性成本主要来自给后缀赋值。选型时还应单列**额外空间**：除结果元素外，为预留存储、索引、链接或算法工作区付出的空间。容量与节点开销须按目标实现测量，不由时间复杂度推导。[N4659 容器复杂度计量](https://timsong-cpp.github.io/cppwp/n4659/container.requirements.general)、[vector 删除的析构与赋值次数](https://timsong-cpp.github.io/cppwp/n4659/vector.modifiers)。
+
+| 布局 | 访问成本来自哪里 | 额外空间与局部性 |
+| --- | --- | --- |
+| array／一般 vector 的连续元素 | 第 k 个位置可由起点与偏移直接定位 | 扫描地址相邻；vector 另有未构造的 capacity−size 个槽位 |
+| 常见分段 deque | 先定位块，再定位块内偏移 | 块索引与两端空位有开销；块内连续不代表全序列连续 |
+| 常见节点链表 | 定位第 k 个位置需沿链接逐个走 | 每节点有链接与分配开销；地址分散可能增加缓存未命中 |
+
+后两行是常见实现的成本解释，不是节点字节数或缓存命中率的标准保证。连续布局利于扫描也不证明所有负载下 vector 都更快；先确定操作比例、元素大小与借用需求，再测量。
+
 ## 2 vector 的构造与核心接口
 
 `vector<T, Allocator = std::allocator<T>>` 管理一段元素存储。以下针对一般 vector，不含 vector<bool> 特化。下列为常用接口形式，省略 const 重载；`size_type` 是容器的无符号长度类型，`iterator` 是它的迭代器类型。
@@ -86,6 +100,16 @@ v.resize(2);               // {10, 20}；capacity 不变
 
 图13-2：示意容量取 6。本图在 reserve 后直接 resize，未执行上例的 push_back(40)。reserve(6) 不保证实际容量恰为 6；新增的 -1 是已构造元素，虚线空位不可通过下标访问。
 
+### 动态数组为什么需要扩容
+
+array 的 N 属于类型，不能在尾部增加第 N+1 个元素；vector 的 size 可变，却仍要维持一般元素连续。当尾部没有容量时，重分配通常需要取得更大的连续存储、在新存储构造旧序列与新元素、最后销毁旧元素并释放旧存储；不能假定只把原缓冲地址“向后延长”。旧元素的拷贝／移动选择和失败处理见第3条。[N4659 vector 连续与均摊保证](https://timsong-cpp.github.io/cppwp/n4659/vector.overview)、[容量与重分配](https://timsong-cpp.github.io/cppwp/n4659/vector.capacity)。
+
+用**每次容量翻倍的教学模型**理解均摊：从空开始追加到 n 个元素，历次迁移约为 1+2+4+…，其和为 O(n)，再加 n 次新元素构造，整串追加仍为 O(n)。这只是一个满足均摊要求的增长策略示意，标准不规定翻倍、倍率或每次实际容量。若每次强制只增加一个容量槽位，则可能搬迁 1+2+…+(n−1) 个旧元素，累计 O(n²)；因此一次合理 reserve 往往比逐次 reserve(size()+1) 更合适。
+
+![vector 的增长模型与单次迁移成本](../resources/R13-vector-growth-cost.svg)
+
+图13-3：容量 1、2、4、8 仅用于证明几何增长的累计迁移量；不是本机或标准规定的容量序列。扩容时新旧存储可能同时存在，峰值额外空间也应进入预算。
+
 ## 3 vector 的失效与异常边界
 
 借用包括指针、引用、迭代器和基于它们构造的视图。表中“保留”只针对容器自身这次修改，不延长所有者生命周期，也不提供跨线程同步。
@@ -106,7 +130,7 @@ v.resize(2);               // {10, 20}；capacity 不变
 
 ![vector 不扩容插入和扩容时的不同失效范围](../resources/R13-vector-invalidation.svg)
 
-图13-3：即使容量够用，在中间插入也会使插入点及后缀的旧借用失效。不能根据某个地址仍能读到整数，就把它视为原逻辑元素的稳定句柄。
+图13-4：即使容量够用，在中间插入也会使插入点及后缀的旧借用失效。不能根据某个地址仍能读到整数，就把它视为原逻辑元素的稳定句柄。
 
 ### 失败是否保留原序列
 
@@ -143,6 +167,8 @@ remove_if 把保留值压到前缀，返回“逻辑新尾部”，**并不缩�
 
 `deque<T>` 提供 `push_front/back`、`emplace_front/back`、`pop_front/back`、`operator[]` 与 `at`，但没有 vector 的 `reserve`、`capacity`、`data`。随机访问不等于连续存储。
 
+常见实现用“块指针索引＋固定大小的元素块”：下标通过块号与块内偏移定位，两端增长可增添元素块而不搬迁所有已有元素。索引自身可能调整，这有助于理解为什么元素引用可以保留，而迭代器失效；具体失效仍以表中的标准规则为准。块大小、空块保留和索引增长各实现不同，两端 O(1) 的元素操作界不等于无分配、无索引维护或固定纳秒延迟。[N4659 deque 能力](https://timsong-cpp.github.io/cppwp/n4659/deque.overview)、[libstdc++ GCC 10.1 的分段实现说明](https://gcc.gnu.org/onlinedocs/gcc-10.1.0/libstdc++/api/a00605_source.html)。
+
 | 成功执行的操作 | 元素引用与指针 | 迭代器与旧 end |
 | --- | --- | --- |
 | 两端插入 | 既有元素的借用保留 | 全部失效，包括旧 end |
@@ -166,6 +192,8 @@ first = 11;               // 有效：引用保留，q 为 {11, 20, 30}
 ### list 的稳定节点与 splice
 
 list 插入不使既有迭代器和引用失效；删除只使被删除元素的借用失效。已持有位置时，单元素插删是 O(1)；`std::next(begin, k)` 找位置仍为 O(k)。list 用成员 `sort()` 排序，不符合 `std::sort` 的随机访问要求。[list 插删](https://timsong-cpp.github.io/cppwp/n4659/list.modifiers)、[list 专用操作](https://timsong-cpp.github.io/cppwp/n4659/list.ops)、[sort 的要求](https://timsong-cpp.github.io/cppwp/n4659/alg.sort)。
+
+在常见双向链表中，已知位置插入修改的是附近链接，不需要搬移后缀的 T；但“按编号找位置，再插入”的总成本是 O(k)+O(1)，按值 find 后插入最坏为 O(n)。反复从 begin 定位每个编号会掩盖节点操作的优势。稳定地址、已保存迭代器和 splice 是选择 list 的依据；只因“插入 O(1)”改用 list，可能把原本的扫描和定位变得更贵。forward_list 同理，只是修改需要已知前驱。[N4659 list 修改](https://timsong-cpp.github.io/cppwp/n4659/list.modifiers)、[forward_list 修改](https://timsong-cpp.github.io/cppwp/n4659/forwardlist.modifiers)。
 
 ```cpp
 std::list<int> ready{10, 20};
@@ -221,7 +249,7 @@ owners.reserve(owners.capacity() + 1); // 此处强制重分配
 
 ![vector 中拥有者地址与所指对象地址的区别](../resources/R13-owner-address.svg)
 
-图13-4：稳定的是所指 T，不是 vector 的槽位、unique_ptr 的地址或迭代器。删除、reset、替换相应拥有者或销毁容器，仍会结束 T 的生命周期；多线程访问另需同步。[unique_ptr 移动](https://timsong-cpp.github.io/cppwp/n4659/unique.ptr.single.ctor)、[所有权替换](https://timsong-cpp.github.io/cppwp/n4659/unique.ptr.single.asgn)。
+图13-5：稳定的是所指 T，不是 vector 的槽位、unique_ptr 的地址或迭代器。删除、reset、替换相应拥有者或销毁容器，仍会结束 T 的生命周期；多线程访问另需同步。[unique_ptr 移动](https://timsong-cpp.github.io/cppwp/n4659/unique.ptr.single.ctor)、[所有权替换](https://timsong-cpp.github.io/cppwp/n4659/unique.ptr.single.asgn)。
 
 代价是额外分配和间接访问，T 也不再作为连续对象存储。它解决一个地址稳定性需求，不是 vector 的通用升级版。若需要长期业务句柄，还应区分“位置”“地址”“业务 ID”：下标可能因插删改变含义，裸指针不负责保活，ID 则需要自己的查找与有效性管理。
 

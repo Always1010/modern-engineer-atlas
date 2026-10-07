@@ -3,13 +3,15 @@ import path from 'node:path';
 import {createRequire} from 'node:module';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 const edition=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
-const [packageRoot,executablePath]=process.argv.slice(2);
+const [packageRoot,executablePath,filter]=process.argv.slice(2);
 if(!packageRoot||!executablePath)throw new Error('Pass existing package and browser paths. No installation.');
 const require=createRequire(path.join(packageRoot,'package.json'));
 const {chromium}=require('playwright'), sharp=require('sharp');
 const qa=path.join(edition,'qa/fullbook/diagrams');
 await fs.mkdir(qa,{recursive:true});
-const files=(await fs.readdir(path.join(edition,'resources'))).filter(f=>f.endsWith('.svg')).sort();
+const files=(await fs.readdir(path.join(edition,'resources')))
+ .filter(f=>f.endsWith('.svg') && (!filter || new RegExp(filter).test(f))).sort();
+if (!files.length) throw new Error('SVG filter selected no files.');
 const browser=await chromium.launch({executablePath,headless:true});
 const reports=[], thumbs=[];
 try {

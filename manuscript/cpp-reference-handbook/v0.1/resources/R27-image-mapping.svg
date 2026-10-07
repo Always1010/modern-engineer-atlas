@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="450" viewBox="0 0 920 450" role="img" aria-labelledby="title desc">
+<title id="title">ELF节与进程段的关系</title><desc id="desc">文件中的text和rodata节可以组成只读可执行的可装载段，data和bss组成可写段；bss在内存中占空间但无需等量文件字节。调试节可以不进入进程映射。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#65768b"/></marker></defs>
+<style>text{font-family:"Microsoft YaHei","Noto Sans CJK SC",sans-serif;font-size:19px;fill:#172b43}.small{font-size:16px;fill:#53667a}.node{fill:#eaf2fc;stroke:#86a9d2;stroke-width:1.4}.warm{fill:#f8f2e8;stroke:#c1a174;stroke-width:1.4}.arrow{fill:none;stroke:#65768b;stroke-width:2;marker-end:url(#arrow)}</style>
+<rect width="920" height="450" fill="#fff"/><text x="24" y="34">文件按节组织，运行时按程序头映射段（教学布局）</text>
+<text x="40" y="80">ELF 文件／节表</text><text x="594" y="80">进程映像／程序头</text>
+<rect x="40" y="101" width="290" height="46" class="node"/><text x="59" y="132">.text：指令</text>
+<rect x="40" y="147" width="290" height="46" class="node"/><text x="59" y="178">.rodata：只读数据</text>
+<rect x="40" y="216" width="290" height="46" class="warm"/><text x="59" y="247">.data：初始化数据</text>
+<rect x="40" y="262" width="290" height="46" class="warm"/><text x="59" y="293">.bss：记录零初始化大小</text>
+<rect x="40" y="331" width="290" height="46" fill="#f4f6f9" stroke="#aebaca"/><text x="59" y="362">.debug_*：分析所需信息</text>
+<rect x="585" y="108" width="310" height="86" rx="3" class="node"/><text x="740" y="140" text-anchor="middle">PT_LOAD：示意 R / X</text><text x="740" y="173" text-anchor="middle" class="small">一个段可以覆盖多个节</text>
+<rect x="585" y="225" width="310" height="86" rx="3" class="warm"/><text x="740" y="257" text-anchor="middle">PT_LOAD：示意 R / W</text><text x="740" y="290" text-anchor="middle" class="small">内存大小可以大于文件大小</text>
+<path d="M333 148L580 148" class="arrow"/><path d="M333 265L580 265" class="arrow"/>
+<text x="380" y="361" class="small">调试节可不装载；节名不直接决定页面权限。</text>
+<text x="24" y="423" class="small">文件偏移、虚拟地址、PE 的 RVA 是不同坐标；真实映射以格式头与进程证据为准。</text>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="330" viewBox="0 0 920 330" role="img" aria-labelledby="title desc">
+<title id="title">同一存储的两次对象构造</title><desc id="desc">对齐字节数组的存储持续存在。第一次placement构造得到first，析构后没有Cell，第二次构造得到second，再结束其生命周期。</desc>
+<style>text{font-family:"Microsoft YaHei","Noto Sans CJK SC",sans-serif;fill:#172b43;font-size:19px}.small{font-size:16px;fill:#4b6077}.label{font-weight:600}.box{fill:#eaf2fc;stroke:#6c98d2;stroke-width:1.4}.space{fill:#fafcfe;stroke:#94a8bd;stroke-width:1.4;stroke-dasharray:6 4}.gap{fill:#fff1e9;stroke:#bf784e;stroke-width:1.4}</style>
+<rect width="920" height="330" fill="white"/><text x="28" y="38" class="label">存储可以重用，对象的有效期必须重新建立</text>
+<rect x="32" y="65" width="856" height="50" rx="5" class="space"/><text x="50" y="97">alignas(Cell) std::byte storage[sizeof(Cell)]</text>
+<rect x="32" y="140" width="250" height="105" rx="5" class="box"/><text x="50" y="172">第一次构造：Cell(11)</text><text x="50" y="205" class="small">用 first 访问活对象</text><text x="50" y="230" class="small">结束：first-&gt;~Cell()</text>
+<rect x="312" y="140" width="240" height="105" rx="5" class="gap"/><text x="330" y="179">只有存储，没有活 Cell</text><text x="330" y="213" class="small">此时不调用 Cell 成员</text>
+<rect x="582" y="140" width="306" height="105" rx="5" class="box"/><text x="600" y="172">第二次构造：Cell(23)</text><text x="600" y="205" class="small">用 new 返回的 second 访问</text><text x="600" y="230" class="small">结束：second-&gt;~Cell()</text>
+<text x="32" y="291" class="small">本例按顺序执行；不把旧指针、构造失败、并发借用或子对象重用混入这条合法路径。</text>
+</svg>
