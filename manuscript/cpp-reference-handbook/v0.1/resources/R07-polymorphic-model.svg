@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="370" viewBox="0 0 920 370" role="img" aria-labelledby="title desc">
+<title id="title">语言多态与常见虚表实现</title><desc id="desc">左栏展示Base引用调用有效Derived对象的虚函数这一语言语义。右栏展示一个示意对象经虚指针找到虚表再找到函数，布局和调用指令不是标准保证。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#65768b"/></marker></defs>
+<style>text{font-family:"Microsoft YaHei","Noto Sans CJK SC",sans-serif;fill:#172b43;font-size:18px}.small{font-size:15px;fill:#4b6077}.label{font-weight:600}.box{fill:#eaf2fc;stroke:#6c98d2;stroke-width:1.4}.node{fill:#f0f5fa;stroke:#94a8bd;stroke-width:1.4}.line{stroke:#65768b;stroke-width:2;fill:none;marker-end:url(#arrow)}</style>
+<rect width="920" height="370" fill="white"/><text x="28" y="36" class="label">先理解语言规则，再用实现模型解释成本</text>
+<text x="30" y="80" class="label">语言语义</text><text x="460" y="80" class="label">一种常见实现（示意）</text>
+<rect x="30" y="103" width="340" height="62" rx="5" class="box"/><text x="49" y="140">Base&amp; ref = derived;</text>
+<path d="M200 165L200 195" class="line"/><rect x="30" y="198" width="340" height="63" rx="5" class="box"/><text x="49" y="236">ref.value() → Derived::value()</text>
+<rect x="460" y="103" width="165" height="158" rx="5" class="node"/><text x="480" y="138">Derived 对象</text><text x="480" y="177" class="small">分派状态 / vptr</text><text x="480" y="215" class="small">基类与成员状态</text>
+<path d="M625 174L665 174" class="line"/><rect x="670" y="133" width="210" height="72" rx="5" class="box"/><text x="688" y="163">虚表 / 分派入口</text><text x="688" y="189" class="small">对应实现的地址或调整</text>
+<path d="M775 205L775 234" class="line"/><text x="670" y="260">Derived::value()</text>
+<text x="30" y="310" class="small">布局、表数和指针调整由具体 ABI 决定；优化后也可能直接调用或内联。</text><text x="30" y="339" class="small">有效对象与正确借用是前提。切片生成 Base 值，不能靠字节复制恢复派生状态。</text>
+</svg>

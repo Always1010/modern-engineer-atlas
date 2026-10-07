@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="320" viewBox="0 0 920 320" role="img" aria-labelledby="title desc">
+<title id="title">执行资源关闭协议</title><desc id="desc">控制线程按停止接受、处理待办、等待在途操作终结、确认退出、释放资源五步关闭。取消请求不等于完成。</desc>
+<style>text{font-family:"Microsoft YaHei","Noto Sans CJK SC",sans-serif;fill:#172b43;font-size:18px}.small{font-size:15px;fill:#4b6077}.label{font-weight:600}.box{fill:#eaf2fc;stroke:#6c98d2;stroke-width:1.4}.node{fill:#fff1e9;stroke:#bf784e;stroke-width:1.4}</style>
+<rect width="920" height="320" fill="white"/><text x="28" y="36" class="label">先结束访问，再结束被访问资源的生命周期</text>
+<rect x="28" y="78" width="158" height="112" rx="5" class="box"/><text x="43" y="110">1 停止接受</text><text x="43" y="143" class="small">新任务明确拒绝</text><text x="43" y="169" class="small">唤醒等待提交者</text>
+<rect x="204" y="78" width="158" height="112" rx="5" class="box"/><text x="219" y="110">2 处理待办</text><text x="219" y="143" class="small">排空或取消</text><text x="219" y="169" class="small">交付对应结果</text>
+<rect x="380" y="78" width="158" height="112" rx="5" class="node"/><text x="395" y="110">3 处理在途</text><text x="395" y="143" class="small">请求协作停止</text><text x="395" y="169" class="small">等待操作终态</text>
+<rect x="556" y="78" width="158" height="112" rx="5" class="box"/><text x="571" y="110">4 确认退出</text><text x="571" y="143" class="small">join / 完成确认</text><text x="571" y="169" class="small">没有后续回调</text>
+<rect x="732" y="78" width="158" height="112" rx="5" class="box"/><text x="747" y="110">5 释放资源</text><text x="747" y="143" class="small">对象、缓冲、队列</text><text x="747" y="169" class="small">最后卸载插件</text>
+<text x="28" y="241">取消请求 ≠ 工作已经停止；超时 ≠ 没有发生副作用。</text><text x="28" y="278" class="small">关闭等待由控制线程承担；任意用户任务能否有限时间退出，取决于任务与等待路径的契约。</text>
+</svg>

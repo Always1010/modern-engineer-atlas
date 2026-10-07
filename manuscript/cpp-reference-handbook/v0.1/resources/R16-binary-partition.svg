@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="500" viewBox="0 0 920 500" role="img" aria-labelledby="title desc">
+<title id="title">lower_bound 的前提按查询值形成真前缀与假后缀</title>
+<desc id="desc">序列二一三四七六对查询值四的比较结果是真真真假假假，满足分区。对查询值二是假真假假假假，真出现在假之后，不能合法调用 lower_bound。</desc>
+<style>text{font-family:"Microsoft YaHei","Noto Sans CJK SC",sans-serif;fill:#172b43;font-size:19px}.small{font-size:16px;fill:#4b6077}.label{font-weight:600}.ok{fill:#eaf2fc;stroke:#6c98d2;stroke-width:1.4}.dim{fill:#f0f5fa;stroke:#aab7c6;stroke-width:1.4}.bad{fill:#fff1e9;stroke:#bf784e;stroke-width:1.4}.rule{stroke:#aab7c6;stroke-width:1.4;fill:none}.boundary{stroke:#bf784e;stroke-width:2;stroke-dasharray:6 4;fill:none}</style>
+<rect width="920" height="500" fill="#fff"/>
+<text x="28" y="36" class="label">不是只问“数组有序吗”，还要核对本次查询的分区</text>
+<text x="28" y="65" class="small">lower_bound 使用 comp(e, x)；图中 comp 为整数小于。</text>
+<text x="40" y="117">元素 e</text>
+<g class="dim"><rect x="222" y="87" width="78" height="46"/><rect x="300" y="87" width="78" height="46"/><rect x="378" y="87" width="78" height="46"/><rect x="456" y="87" width="78" height="46"/><rect x="534" y="87" width="78" height="46"/><rect x="612" y="87" width="78" height="46"/></g>
+<text x="252" y="117">2</text><text x="330" y="117">1</text><text x="408" y="117">3</text><text x="486" y="117">4</text><text x="564" y="117">7</text><text x="642" y="117">6</text>
+<text x="40" y="206" class="label">x = 4：满足</text>
+<g class="ok"><rect x="222" y="176" width="78" height="46"/><rect x="300" y="176" width="78" height="46"/><rect x="378" y="176" width="78" height="46"/></g>
+<g class="dim"><rect x="456" y="176" width="78" height="46"/><rect x="534" y="176" width="78" height="46"/><rect x="612" y="176" width="78" height="46"/></g>
+<text x="252" y="206">真</text><text x="330" y="206">真</text><text x="408" y="206">真</text><text x="486" y="206">假</text><text x="564" y="206">假</text><text x="642" y="206">假</text>
+<path d="M456 157V239" class="boundary"/>
+<text x="222" y="257" class="small">真前缀</text><text x="468" y="257" class="small">假后缀；结果指向 4</text>
+<path d="M28 283H892" class="rule"/>
+<text x="40" y="339" class="label">x = 2：不满足</text>
+<g class="dim"><rect x="222" y="309" width="78" height="46"/><rect x="378" y="309" width="78" height="46"/><rect x="456" y="309" width="78" height="46"/><rect x="534" y="309" width="78" height="46"/><rect x="612" y="309" width="78" height="46"/></g>
+<rect x="300" y="309" width="78" height="46" class="bad"/>
+<text x="252" y="339">假</text><text x="330" y="339">真</text><text x="408" y="339">假</text><text x="486" y="339">假</text><text x="564" y="339">假</text><text x="642" y="339">假</text>
+<text x="222" y="393" class="small">出现“假 → 真”：不能排除半边区间，禁止据此执行二分。</text>
+<path d="M28 416H892" class="rule"/>
+<text x="40" y="452" class="small">按同一比较器完整排序，可使各查询值都具备相应分区。</text>
+<text x="40" y="482" class="small">对单个值分区只保证相关前提，不保证两侧内部排序。</text>
+</svg>

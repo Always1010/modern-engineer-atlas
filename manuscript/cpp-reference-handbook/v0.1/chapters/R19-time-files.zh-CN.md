@@ -30,7 +30,7 @@ duration_cast 不能避免底层 Rep 的溢出。浮点 duration 转整数若输
 
 图19-1：假设总预算100ms，第一次失败发生在70ms，下一次最多只剩30ms。时间线是预算机制示意，不保证等待函数精确在截止点返回；调度、唤醒与取消仍有延迟。
 
-`sleep_for`、`sleep_until` 在 `<thread>`，不是精密定时器。条件变量的 wait_until 还须循环检查谓词并处理虚假唤醒；超时不证明任务已经停止，更不代表远端取消成功。把等待、取消请求与确认退出区分开，见 R20、R21、R27。
+`sleep_for`、`sleep_until` 在 `<thread>`，不是精密定时器。条件变量的 wait_until 还须循环检查谓词并处理虚假唤醒；超时不证明任务已经停止，更不代表远端取消成功。把等待、取消请求与确认退出区分开，见 R20、R21、R29。
 
 记录日志可同时保留现实时间戳和稳态测得的耗时。系统时间回拨会让两个 system_clock 时间戳相减失去耗时含义；steady_clock 的原始 count 也不适合持久存储为跨进程通用时间戳。跨机器截止通常需要协议约定、时钟误差预算或传相对预算，而不是直接传本机 steady_clock 的纪元数。
 
@@ -68,7 +68,7 @@ duration_cast 不能避免底层 Rep 的溢出。浮点 duration 转整数若输
 
 无 ec 重载通常通过 filesystem_error 报告文件系统错误；带 ec 重载把相关 OS 错误放入 error_code，并在成功时清除它，但不能泛称所有重载都 noexcept，内存分配等还可能抛异常。逐个检查实际签名。[N4659 filesystem 错误报告](https://timsong-cpp.github.io/cppwp/n4659/fs.err.report)。
 
-exists 后再 open 存在时间窗口，名称可被其他进程替换；canonical/lexically_normal 也不能把整个后续访问变成原子操作。需要防目录穿越、可靠权限检查或跟踪同一文件对象时，应使用平台句柄及相应打开选项，见 R25。
+exists 后再 open 存在时间窗口，名称可被其他进程替换；canonical/lexically_normal 也不能把整个后续访问变成原子操作。需要防目录穿越、可靠权限检查或跟踪同一文件对象时，应使用平台句柄及相应打开选项，见 R26。
 
 ## 5 文件更新、持久化与 C++20 扩展
 
@@ -117,4 +117,4 @@ int main() {
 
 配套文件：[`r19-time-files.cpp`](../examples/r19-time-files.cpp)，C++17。预期输出 `remaining=30ms sum=30 invalid=bad file=run.txt`；检查失败非零。Windows g++10.3，以 `-std=c++17 -Wall -Wextra -pedantic` 核验。时间计算使用固定 time_point 以避免调度抖动；文件例子只作路径和状态查询，不写用户文件，也不验证持久化。
 
-速查：耗时查 steady_clock；重试预算查 deadline；非法输入查 failbit 与消费策略；文件查询查 ec；落盘保证查平台接口 R25；时区查 C++20 版本支持。
+速查：耗时查 steady_clock；重试预算查 deadline；非法输入查 failbit 与消费策略；文件查询查 ec；落盘保证查平台接口 R26；时区查 C++20 版本支持。

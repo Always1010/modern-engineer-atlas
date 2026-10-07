@@ -12,7 +12,7 @@ for(const example of examples) {
  const chapter=chapters.find(f=>f.startsWith(id+'-'));
  if(!chapter)throw new Error('No chapter for '+example);
  const source=normalize(await fs.readFile(path.join(edition,'examples',example),'utf8'));
- const markdown=await fs.readFile(path.join(edition,'chapters',chapter),'utf8');
+ const markdown=normalize(await fs.readFile(path.join(edition,'chapters',chapter),'utf8'));
  const blocks=[...markdown.matchAll(/\x60\x60\x60cpp\n([\s\S]*?)\x60\x60\x60/g)].map(m=>normalize(m[1]));
  if(id==='R13') {
   const regions=[...source.matchAll(/\/\/ BEGIN (.*?)\n([\s\S]*?)\/\/ END \1/g)];
@@ -26,13 +26,39 @@ for(const example of examples) {
   results.push({chapter:id,source:example,sha256:createHash('sha256').update(source).digest('hex'),matchedCompletePrograms:1});
  }
 }
-const chapter28=await fs.readFile(path.join(edition,'chapters',chapters.find(f=>f.startsWith('R28-'))),'utf8');
-const blocks28=[...chapter28.matchAll(/\x60\x60\x60(?:cpp|cmake)\n([\s\S]*?)\x60\x60\x60/g)].map(m=>normalize(m[1]));
+const buildChapter=normalize(await fs.readFile(path.join(edition,'chapters',chapters.find(f=>f.startsWith('R30-'))),'utf8'));
+const buildBlocks=[...buildChapter.matchAll(/\x60\x60\x60(?:cpp|cmake)\n([\s\S]*?)\x60\x60\x60/g)].map(m=>normalize(m[1]));
 for(const file of ['metric.h','metric.cpp','main.cpp','CMakeLists.txt']) {
- const code=normalize(await fs.readFile(path.join(edition,'examples/r28-project',file),'utf8'));
- if(!blocks28.includes(code))throw new Error('R28 project differs: '+file);
+ const code=normalize(await fs.readFile(path.join(edition,'examples/r30-project',file),'utf8'));
+ if(!buildBlocks.includes(code))throw new Error('R30 project differs: '+file);
 }
-const report={standalonePrograms:results.length,multiFileProject:1,filesInProject:4,results};
+const excerpts=[];
+for (const chapter of chapters) {
+ const markdown=normalize(await fs.readFile(path.join(edition,'chapters',chapter),'utf8'));
+ for (const match of markdown.matchAll(/<!-- source: (examples\/[\w./-]+) -->\s*\x60\x60\x60(?:cpp|cmake)\n([\s\S]*?)\x60\x60\x60/g)) {
+  const target=path.resolve(edition,match[1]);
+  if (!target.startsWith(path.join(edition,'examples')+path.sep)) throw new Error('Source excerpt escapes examples.');
+  const source=normalize(await fs.readFile(target,'utf8'));
+  if (!source.includes(normalize(match[2]))) throw new Error('Source excerpt differs: '+match[1]);
+  excerpts.push({chapter:chapter.slice(0,3),source:match[1],sha256:createHash('sha256').update(source).digest('hex')});
+ }
+}
+const projects=[];
+for (const item of await fs.readdir(path.join(edition,'examples'),{withFileTypes:true})) {
+ if (!item.isDirectory()) continue;
+ const folder=path.join(edition,'examples',item.name);
+ const names=await fs.readdir(folder);
+ if (!names.includes('CMakeLists.txt')) continue;
+ const files=[];
+ for (const name of names.filter(name=>name==='CMakeLists.txt'||/\.(cpp|h|hpp)$/.test(name)).sort()) {
+  const source=normalize(await fs.readFile(path.join(folder,name),'utf8'));
+  files.push({name,sha256:createHash('sha256').update(source).digest('hex')});
+ }
+ projects.push({source:'examples/'+item.name,files,
+  correspondence:item.name==='r30-project'?'complete-markdown-blocks':'marked-interface-excerpt',
+  execution:'Recorded separately in BUILD-NOTES; this checker does not run programs.'});
+}
+const report={standalonePrograms:results.length,multiFileProjects:projects.length,projects,results,excerpts};
 const qa=path.join(edition,'qa/fullbook');
 await fs.mkdir(qa,{recursive:true});
 await fs.writeFile(path.join(qa,'source-example-report.json'),JSON.stringify(report,null,2));

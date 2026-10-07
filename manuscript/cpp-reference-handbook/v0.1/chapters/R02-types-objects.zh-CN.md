@@ -45,7 +45,88 @@
 
 数组元素类型可以是类，每个元素都有自己的构造与析构。数组整体无法像普通标量那样直接赋值；将数组传入调整为指针的形参也不复制全部元素。若函数需要知道固定长度，可采用数组引用模板参数；若长度运行时确定，明确传入长度或范围。不要让函数在没有长度信息时扫描任意内存来寻找终点，除非接口本身规定且调用者保证存在有效终止符。
 
-## 5 工作例子与拆解边界
+## 5 类型性质：字节复制和布局是不同问题
+
+`<type_traits>` 的类型性质回答特定语言问题，不给类型盖一个“底层安全”的总印章。优先让编译器通过 `static_assert` 核查实际类型，不能从“成员很简单”推断全部条件。
+
+| 性质或操作 | 可以据此判断什么 | 仍不能据此判断什么 |
+| --- | --- | --- |
+| `is_trivially_copyable_v<T>` | 对符合条件的现存对象可使用标准规定的字节复制保证 | 任意输入字节合法、指针能跨进程、磁盘格式稳定 |
+| `is_standard_layout_v<T>` | 满足规定的成员/基类布局条件；可按要求使用 `offsetof` | 无填充、大小固定、任意编译器 ABI 一致 |
+| `is_trivial_v<T>` | 满足平凡默认构造等更强的条件 | 初始化自动得到业务有效值 |
+| 普通拷贝构造或赋值 | 按类型自己的操作复制值或资源 | 机器字节必然相同、所有指针都指向独立目标 |
+
+平凡可复制与标准布局是不同性质，不能互换。带自定义析构的简单记录可能仍是标准布局，却不满足平凡可复制；保存一个裸指针的简单结构可能是平凡可复制，复制后两者仍借用同一个目标。类型性质不替代所有权协议。[C++17 类型性质](https://timsong-cpp.github.io/cppwp/n4659/class)、[类型特征](https://timsong-cpp.github.io/cppwp/n4659/meta.unary.prop)。
+
+对象表示是 `sizeof(T)` 个字节；值表示是其中参与表示值的位，填充可能不参与。C++17 对符合条件的平凡可复制对象规定了复制到底层字符/字节数组再恢复、以及在两个现存同类型对象间复制的保证，基类子对象等情况有排除条件。这里采用完整对象，且不涉及 volatile。不把该保证扩展到 `string`、`vector` 或多态对象；它们的普通复制应走类型提供的操作。[字节复制条件](https://timsong-cpp.github.io/cppwp/n4659/basic.types)。
+
+## 6 placement new：先有存储，再创建对象
+
+普通 `new T(...)` 同时安排分配与初始化；标准 placement new `::new (address) T(...)` 在调用者提供的地址创建对象，不自行取得这块存储。需要 `<new>`，地址必须有足够大小与正确对齐。仅把地址转换成 `T*` 不执行构造，也不能作为对象已经存在的证据。
+
+![同一存储中前后两个对象的生命周期](../resources/R02-storage-reuse.svg)
+
+图2-2：两次构造返回的新指针分别用于当次对象；中间阶段没有存活的 Cell。图中的存储由字节数组提供，并没有在析构时释放。
+
+| 步骤 | 应履行的责任 | 典型错误 |
+| --- | --- | --- |
+| 准备存储 | 大小至少 `sizeof(T)`，对齐至少 `alignof(T)`，存储期覆盖使用 | 用任意网络缓冲区冒充对象槽 |
+| placement 构造 | 保存 new 表达式返回的指针，处理可能的构造失败 | 认为地址可访问就表示构造成功 |
+| 使用对象 | 满足类型访问、生命周期与同步条件 | 在未构造/已析构阶段调用成员 |
+| 结束对象 | 对需清理的类型执行对应析构；禁止后续借用 | 让函数指针或引用继续访问旧对象 |
+| 重用或释放 | 按存储来源处理；重用时重新建立对象 | 对数组内 placement 对象直接 `delete` |
+
+一般代码优先使用容器和 RAII。手工管理槽位时，构造失败与异常退出也必须维护“该槽位是否有活对象”的状态；placement 构造不能消除这些责任。C++17 存储重用与旧指针可自动指向新对象的条件较细，涉及 const、完整对象与子对象等；本例每次直接使用新构造返回的指针。`std::launder` 只在满足规定前提时获得指向新对象的指针，不创建对象、不修正对齐，也不使悬垂借用重新有效。[生命周期与重用](https://timsong-cpp.github.io/cppwp/n4659/basic.life)、[字节数组提供存储](https://timsong-cpp.github.io/cppwp/n4659/intro.object)、[launder](https://timsong-cpp.github.io/cppwp/n4659/ptr.launder)。
+
+以下完整配套程序只展示确定的合法路径。`Record` 在复制前后都已构造；`Cell` 构造不抛异常，槽位在离开作用域前完成清理。
+
+```cpp
+#include <cstddef>
+#include <cstring>
+#include <iostream>
+#include <new>
+#include <type_traits>
+
+struct Record { int value; unsigned char tag; };
+struct Cell {
+    int value;
+    inline static int destroyed = 0;
+    explicit Cell(int v) noexcept : value(v) {}
+    ~Cell() noexcept { ++destroyed; }
+};
+
+int main() {
+    static_assert(std::is_trivially_copyable_v<Record>);
+    static_assert(std::is_standard_layout_v<Record>);
+    Record source{7, 2}, copy{};
+    std::memcpy(&copy, &source, sizeof source);
+    if (copy.value != 7 || copy.tag != 2) return 1;
+    alignas(Cell) std::byte storage[sizeof(Cell)];
+    Cell* first = ::new (static_cast<void*>(storage)) Cell(11);
+    const bool first_ok = first->value == 11;
+    first->~Cell();
+    Cell* second = ::new (static_cast<void*>(storage)) Cell(23);
+    const bool second_ok = second->value == 23;
+    second->~Cell();
+    if (!first_ok || !second_ok || Cell::destroyed != 2) return 2;
+    std::cout << "copy=7 reused=23 destroyed=2\n";
+    return std::cout ? 0 : 3;
+}
+```
+
+配套文件：[r02-object-storage.cpp](../examples/r02-object-storage.cpp)，C++17。预期 `copy=7 reused=23 destroyed=2`。不固定 Record 的大小、字段偏移或填充字节，也不读取生命周期结束后的指针。它是机制例子，不是具有异常安全的通用对象池。
+
+## 7 对象复制与序列化：先确定接收方需要什么
+
+| 需求 | 操作方式 | 必须核查 |
+| --- | --- | --- |
+| 当前程序中复制业务对象 | 拷贝构造/赋值或明确 clone | 值语义、所有权、异常安全 |
+| 同实现下复制符合条件的完整记录 | 按语言保证进行字节复制 | 类型性质、对象存在、大小和重叠条件 |
+| 文件、网络或进程间传递数据 | 逐字段编码与解码 | 字段宽度、字节序、长度、单位、版本、非法值 |
+
+原生结构的填充、指针、位域及 ABI 布局都不应未经约定进入外部格式。即使结构只有整数且平凡可复制，也不能由此得出“可直接跨平台保存”。序列化后的长度属于协议，不由 `sizeof` 决定；解码要先验证输入边界与字段，再建立业务对象。端序见 R18/R24，流式分帧见 R29，跨库布局与版本见 R27。
+
+## 8 工作例子与拆解边界
 
 本例同时保留整个数组引用、首元素指针，并拆解一个聚合对象。代码与 `examples/r02-types-objects.cpp` 一致。
 

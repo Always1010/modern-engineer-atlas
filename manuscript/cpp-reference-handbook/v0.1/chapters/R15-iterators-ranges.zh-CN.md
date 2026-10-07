@@ -33,6 +33,19 @@ end 是尾后哨兵，不能解引用；对非空双向区间可先 --end 再解
 
 线性 distance 往往是隐藏的性能来源。对 list 在循环中反复从 begin 计算距离，累计可能平方；要计数时随遍历维护计数。随机访问不等于可跨不同分配段做裸指针运算，deque 的迭代器能够相减不授予 data 指针形式的连续保证。
 
+### 算法的比较次数与走路次数分开算
+
+| 任务 | 随机访问序列 | 前向／双向序列 | 选择接口的含义 |
+| --- | --- | --- | --- |
+| 到第 k 个位置、advance(k) | O(1) 的跳转 | O(k) 次递增／递减 | 知道编号不等于已经持有位置 |
+| distance(first,last) | O(1) 的相减 | O(n) 次递增 | list.size() 为常数，不会让通用 distance 自动变常数 |
+| find 扫描 n 个值 | 最坏 n 次比较和线性导航 | 同左 | 随机访问不能免除线性搜索 |
+| lower_bound，在分区前提成立时 | O(log n) 比较与导航 | O(log n) 比较，O(n) 导航 | map 成员可走树索引；通用算法只看迭代器 |
+
+通用二分不断缩小待查区间，但到达各次中点仍需导航。链表不能像数组一样直接跳到中点，所以“二分比较很少”与“总访问仍线性”可同时成立。这也是有序 map 应优先调用成员 lower_bound 的原因：成员能使用容器内部索引，通用算法不能从双向迭代器恢复树根。[N4659 advance／distance 计量](https://timsong-cpp.github.io/cppwp/n4659/iterator.operations)、[二分的比较与导航界](https://timsong-cpp.github.io/cppwp/n4659/alg.binary.search)。
+
+能力还包括能否重排与能否反复读：std::sort 需要随机访问，并要求元素可交换、移动构造与移动赋值；const vector 迭代器虽能跳转却不能用于排序，list 应调用成员 sort。输入流迭代器只承诺单遍读取，先 distance 再从复制的起点处理可能已消费来源。访问能力、元素操作成本和生命周期三项必须一起核对。[N4659 sort 类型要求](https://timsong-cpp.github.io/cppwp/n4659/alg.sort)、[输入迭代器单遍语义](https://timsong-cpp.github.io/cppwp/n4659/input.iterators)。
+
 接口若只需读取一次，不必要求随机访问迭代器；过高的类别要求会排除流输入或链表。反过来，算法确实需要多遍扫描时，不能把输入迭代器复制一份当成前向迭代器。类别是语义能力，不是“这个类型编译时有哪个操作符”的简单清单。
 
 距离类型通常有符号，容器 size_type 通常无符号；混合比较或把负距离转成 size_t 都可能得到巨大的值。对同一随机访问序列内、顺序正确的 first/last，差值才适合转为长度。C++20 ranges::distance 还可利用 sized sentinel，复杂度取决于终止器能力，不能仅按迭代器类别一刀切。

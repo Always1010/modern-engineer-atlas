@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="510" viewBox="0 0 920 510" role="img" aria-labelledby="title desc">
+<title id="title">相同装载因子不代表相同的冲突分布</title>
+<desc id="desc">两个哈希容器都有六个元素和四个桶。左边各桶较均匀，右边六个元素集中在一个桶。装载因子只计算平均，不限制单桶长度。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#65768b"/></marker></defs>
+<style>text{font-family:"Microsoft YaHei","Noto Sans CJK SC",sans-serif;fill:#172b43;font-size:19px}.small{font-size:16px;fill:#4b6077}.label{font-weight:600}.ok{fill:#eaf2fc;stroke:#6c98d2;stroke-width:1.4}.dim{fill:#f0f5fa;stroke:#aab7c6;stroke-width:1.4}.bad{fill:#fff1e9;stroke:#bf784e;stroke-width:1.4}.line{stroke:#65768b;stroke-width:1.7;fill:none;marker-end:url(#arrow)}.rule{stroke:#aab7c6;stroke-width:1.4;fill:none}</style>
+<rect width="920" height="510" fill="#fff"/>
+<text x="28" y="36" class="label">α = n / B 只报告平均值，查找还要看候选分布</text>
+<text x="28" y="65" class="small">两边 n = 6，B = 4，α = 1.5；链式桶仅作机制示意。</text>
+<path d="M455 89V404" class="rule"/>
+<text x="40" y="112" class="label">较均匀的桶</text><text x="484" y="112" class="label">集中到一个桶</text>
+<g class="dim"><rect x="40" y="145" width="54" height="42"/><rect x="40" y="205" width="54" height="42"/><rect x="40" y="265" width="54" height="42"/><rect x="40" y="325" width="54" height="42"/>
+<rect x="484" y="145" width="46" height="42"/><rect x="484" y="205" width="46" height="42"/><rect x="484" y="265" width="46" height="42"/><rect x="484" y="325" width="46" height="42"/></g>
+<text x="59" y="173">0</text><text x="59" y="233">1</text><text x="59" y="293">2</text><text x="59" y="353">3</text>
+<text x="500" y="173">0</text><text x="500" y="233">1</text><text x="500" y="293">2</text><text x="500" y="353">3</text>
+<g class="ok"><rect x="132" y="145" width="54" height="42"/><rect x="224" y="145" width="54" height="42"/><rect x="132" y="205" width="54" height="42"/><rect x="224" y="205" width="54" height="42"/><rect x="132" y="265" width="54" height="42"/><rect x="132" y="325" width="54" height="42"/></g>
+<text x="150" y="173">A</text><text x="242" y="173">B</text><text x="150" y="233">C</text><text x="242" y="233">D</text><text x="150" y="293">E</text><text x="150" y="353">F</text>
+<path d="M97 166H125" class="line"/><path d="M189 166H217" class="line"/><path d="M97 226H125" class="line"/><path d="M189 226H217" class="line"/><path d="M97 286H125" class="line"/><path d="M97 346H125" class="line"/>
+<g class="bad"><rect x="556" y="205" width="40" height="42"/><rect x="612" y="205" width="40" height="42"/><rect x="668" y="205" width="40" height="42"/><rect x="724" y="205" width="40" height="42"/><rect x="780" y="205" width="40" height="42"/><rect x="836" y="205" width="40" height="42"/></g>
+<text x="568" y="233">A</text><text x="624" y="233">B</text><text x="680" y="233">C</text><text x="736" y="233">D</text><text x="792" y="233">E</text><text x="848" y="233">F</text>
+<path d="M533 226H550" class="line"/><path d="M599 226H606" class="line"/><path d="M655 226H662" class="line"/><path d="M711 226H718" class="line"/><path d="M767 226H774" class="line"/><path d="M823 226H830" class="line"/>
+<text x="556" y="289" class="small">查找可能检查更多候选</text><text x="556" y="319" class="small">同哈希值仍须在同一桶</text>
+<text x="40" y="403" class="small">增加桶数要增加索引空间；低 α 不承诺短冲突桶。</text>
+<path d="M28 424H892" class="rule"/>
+<text x="40" y="460" class="small">rehash 重建桶归属与遍历路径；不把键排序，也不能拆开同哈希值键。</text>
+<text x="40" y="490" class="small">标准：迭代器失效，已有元素指针与引用保留。</text>
+</svg>

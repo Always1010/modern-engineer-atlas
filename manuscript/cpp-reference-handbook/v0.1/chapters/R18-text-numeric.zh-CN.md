@@ -53,7 +53,7 @@ C++20 `<bit>` 的常用族包括 popcount、countl_zero、countr_zero、rotl/rot
 
 `std::byte` 在 `<cstddef>`（C++17）表示原始字节，不是一般算术整数；用 to_integer 显式取值。char 的一个元素占一个 C++ 字节，CHAR_BIT 不由语言保证是8。协议若定义八位字节，应先核验此平台条件，再使用无符号整数移位组合；位移量必须小于类型宽度，提升类型也应明确。
 
-endian::native 可等于 little、big，也有不属于二者的混合情况；端序枚举只描述平台表示，不执行转换。C++23 byteswap 交换整数的字节表示，同样不替你定义协议字段宽度。不能 `reinterpret_cast<unsigned*>` 直接读取不对齐网络缓冲，这同时涉及对齐、别名、对象生命周期与端序。逐字节组装或合法 memcpy 后再转换更易审核，协议字节序见 R26。[N4950 byteswap，C++23](https://timsong-cpp.github.io/cppwp/n4950/bit.byteswap)。
+endian::native 可等于 little、big，也有不属于二者的混合情况；端序枚举只描述平台表示，不执行转换。C++23 byteswap 交换整数的字节表示，同样不替你定义协议字段宽度。不能 `reinterpret_cast<unsigned*>` 直接读取不对齐网络缓冲，这同时涉及对齐、别名、对象生命周期与端序。逐字节组装或合法 memcpy 后再转换更易审核，协议字节序见 R28。[N4950 byteswap，C++23](https://timsong-cpp.github.io/cppwp/n4950/bit.byteswap)。
 
 固定宽度的协议数字需要单独核验格式：例如字段限定四个十进制字符，to_chars 不会自动补零，format 的宽度也不会截断五位数。先检查业务数值范围，再编码到足够空间，最后核对输出长度。解析时允许哪些符号、空白和进制同样应写成协议，而不是让两个端点各自按默认转换猜测。
 
