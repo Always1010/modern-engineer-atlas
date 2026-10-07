@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="480" viewBox="0 0 920 480" role="img" aria-labelledby="title desc">
+<title id="title">取消请求、工作退出与资源销毁</title><desc id="desc">管理线程先请求停止并唤醒工作线程；工作观察停止后退出，join返回后销毁资源。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#65768b"/></marker></defs>
+<style>text{font-family:"Microsoft YaHei","Noto Sans CJK SC",sans-serif;fill:#172b43;font-size:19px}.small{font-size:16px;fill:#4b6077}.label{font-weight:600}.box{fill:#eaf2fc;stroke:#6c98d2;stroke-width:1.4}.line{stroke:#65768b;stroke-width:2;fill:none;marker-end:url(#arrow)}.life{stroke:#b6c2cf;stroke-width:2;stroke-dasharray:5 5}.read{stroke:#6c98d2;stroke-width:2;fill:none;stroke-dasharray:6 4;marker-end:url(#arrow)}</style>
+<rect width="920" height="480" fill="#fff"/>
+<text x="28" y="36" class="label">退出协议：停止请求不是完成通知</text>
+<text x="130" y="85">管理者</text><text x="470" y="85">工作线程</text><text x="750" y="85">共享资源</text>
+<path d="M160 105V420M510 105V420M790 105V420" class="life"/>
+<rect x="726" y="115" width="128" height="238" rx="6" class="box"/><text x="790" y="190" text-anchor="middle">必须存活</text><text x="790" y="220" text-anchor="middle" class="small">队列／锁／数据</text>
+<text x="30" y="140" class="small">停止接收任务</text><path d="M160 160H510" class="line"/><text x="250" y="148">request_stop + 唤醒</text>
+<rect x="440" y="180" width="140" height="73" rx="5" class="box"/><text x="510" y="209" text-anchor="middle">检查停止条件</text><text x="510" y="237" text-anchor="middle" class="small">排空或结束任务</text>
+<text x="36" y="248">join 等待</text><path d="M510 286H160" class="line"/><text x="270" y="275">工作函数退出</text>
+<text x="30" y="326">join 返回</text><path d="M160 352H725" class="line"/><text x="380" y="341">此时允许销毁资源</text>
+<text x="28" y="455" class="small">前提：等待能被唤醒，工作最终观察取消；普通阻塞 I/O 不因 stop_token 自动返回。</text>
+</svg>

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="490" viewBox="0 0 920 490" role="img" aria-labelledby="title desc">
+<title id="title">字节流分段与应用分帧</title><desc id="desc">两字节大端长度加内容的两个消息被三次读取获取，解析器保存头和体的部分状态，恢复消息。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#65768b"/></marker></defs>
+<style>text{font-family:"Microsoft YaHei","Noto Sans CJK SC",sans-serif;fill:#172b43;font-size:19px}.small{font-size:16px;fill:#4b6077}.label{font-weight:600}.box{fill:#eaf2fc;stroke:#6c98d2;stroke-width:1.4}.line{stroke:#65768b;stroke-width:2;fill:none;marker-end:url(#arrow)}.life{stroke:#b6c2cf;stroke-width:2;stroke-dasharray:5 5}.read{stroke:#6c98d2;stroke-width:2;fill:none;stroke-dasharray:6 4;marker-end:url(#arrow)}</style>
+<rect width="920" height="490" fill="#fff"/>
+<text x="28" y="36" class="label">发送的消息边界不决定 recv 的返回边界</text>
+<text x="28" y="96">应用消息</text>
+<rect x="210" y="65" width="280" height="58" rx="4" class="box"/><text x="350" y="101" text-anchor="middle">00 02 | A B</text>
+<rect x="520" y="65" width="345" height="58" rx="4" class="box"/><text x="692" y="101" text-anchor="middle">00 03 | x y z</text>
+<text x="28" y="185">读取分段</text>
+<rect x="210" y="155" width="110" height="58" rx="4" class="box"/><text x="265" y="192" text-anchor="middle">00</text>
+<rect x="350" y="155" width="160" height="58" rx="4" class="box"/><text x="430" y="192" text-anchor="middle">02 A</text>
+<rect x="540" y="155" width="325" height="58" rx="4" class="box"/><text x="702" y="192" text-anchor="middle">B 00 03 x y z</text>
+<path d="M265 213V258" class="line"/><path d="M430 213V258" class="line"/><path d="M702 213V258" class="line"/>
+<rect x="210" y="262" width="140" height="92" rx="4" class="box"/><text x="280" y="297" text-anchor="middle">头未完成</text><text x="280" y="329" text-anchor="middle" class="small">保存第一字节</text>
+<rect x="380" y="262" width="160" height="92" rx="4" class="box"/><text x="460" y="297" text-anchor="middle">长度 = 2</text><text x="460" y="329" text-anchor="middle" class="small">体已有 A，等 B</text>
+<rect x="570" y="262" width="295" height="92" rx="4" class="box"/><text x="717" y="297" text-anchor="middle">交付 AB，再交付 xyz</text><text x="717" y="329" text-anchor="middle" class="small">循环解析剩余字节</text>
+<path d="M350 307H380" class="line"/><path d="M540 307H570" class="line"/>
+<text x="210" y="407">先验证长度上限，再积累消息体；完整帧才交付。</text>
+<text x="28" y="462" class="small">前提：本例自定义两字节大端长度格式；EOF 时头或体仍不完整，报告截断并丢弃连接。</text>
+</svg>

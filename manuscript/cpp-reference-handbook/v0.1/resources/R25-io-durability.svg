@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="480" viewBox="0 0 920 480" role="img" aria-labelledby="title desc">
+<title id="title">缓冲写入与持久化路径</title><desc id="desc">用户缓冲刷新到内核页缓存，写回到存储；write、flush和fsync的保证分别落在不同边界。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#65768b"/></marker></defs>
+<style>text{font-family:"Microsoft YaHei","Noto Sans CJK SC",sans-serif;fill:#172b43;font-size:19px}.small{font-size:16px;fill:#4b6077}.label{font-weight:600}.box{fill:#eaf2fc;stroke:#6c98d2;stroke-width:1.4}.line{stroke:#65768b;stroke-width:2;fill:none;marker-end:url(#arrow)}.life{stroke:#b6c2cf;stroke-width:2;stroke-dasharray:5 5}.read{stroke:#6c98d2;stroke-width:2;fill:none;stroke-dasharray:6 4;marker-end:url(#arrow)}</style>
+<rect width="920" height="480" fill="#fff"/>
+<text x="28" y="36" class="label">写完成在哪一层，需要用相应接口确认</text>
+<rect x="40" y="90" width="245" height="155" rx="6" class="box"/><text x="162" y="125" text-anchor="middle">用户空间</text><text x="162" y="164" text-anchor="middle">流缓冲／应用缓冲</text><text x="162" y="205" text-anchor="middle" class="small">flush：交给下层</text>
+<rect x="345" y="90" width="245" height="155" rx="6" class="box"/><text x="467" y="125" text-anchor="middle">内核页缓存</text><text x="467" y="164" text-anchor="middle">脏页等待写回</text><text x="467" y="205" text-anchor="middle" class="small">write：已接受的字节量</text>
+<rect x="650" y="90" width="230" height="155" rx="6" class="box"/><text x="765" y="125" text-anchor="middle">存储与设备</text><text x="765" y="164" text-anchor="middle">文件数据／元数据</text><text x="765" y="205" text-anchor="middle" class="small">持久性取决于契约</text>
+<path d="M285 158H345" class="line"/><path d="M590 158H650" class="line"/>
+<path d="M115 245V295H425V245" class="line"/><text x="180" y="285" class="small">mmap：映射页访问路径</text>
+<path d="M445 330H815V245" class="line"/><text x="40" y="336">fsync 等待文件刷新：</text><text x="40" y="369" class="small">检查错误；目录项需另核对目录刷新。</text>
+<line x1="28" y1="395" x2="890" y2="395" stroke="#d4dfe9"/>
+<text x="28" y="430">其他进程可见 ≠ 断电后保留</text>
+<text x="28" y="459" class="small">示意 Linux 常见 buffered I/O；不覆盖所有文件系统、direct I/O 或远端存储保证。</text>
+</svg>

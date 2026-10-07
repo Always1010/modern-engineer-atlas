@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="490" viewBox="0 0 920 490" role="img" aria-labelledby="title desc">
+<title id="title">虚拟地址与物理页映射</title><desc id="desc">两个进程可在不同虚拟地址映射同一共享物理页，各自的私有页和未映射空洞不同。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#65768b"/></marker></defs>
+<style>text{font-family:"Microsoft YaHei","Noto Sans CJK SC",sans-serif;fill:#172b43;font-size:19px}.small{font-size:16px;fill:#4b6077}.label{font-weight:600}.box{fill:#eaf2fc;stroke:#6c98d2;stroke-width:1.4}.line{stroke:#65768b;stroke-width:2;fill:none;marker-end:url(#arrow)}.life{stroke:#b6c2cf;stroke-width:2;stroke-dasharray:5 5}.read{stroke:#6c98d2;stroke-width:2;fill:none;stroke-dasharray:6 4;marker-end:url(#arrow)}</style>
+<rect width="920" height="490" fill="#fff"/>
+<text x="28" y="36" class="label">同一地址空间可混合私有、共享、文件映射与空洞</text>
+<text x="110" y="85">进程 A：虚拟页</text><text x="425" y="85">物理／后备页</text><text x="710" y="85">进程 B：虚拟页</text>
+<rect x="80" y="110" width="200" height="55" rx="4" class="box"/><text x="180" y="145" text-anchor="middle">私有匿名页 A</text>
+<rect x="80" y="190" width="200" height="55" rx="4" class="box"/><text x="180" y="225" text-anchor="middle">共享映射 A</text>
+<rect x="80" y="270" width="200" height="55" rx="4" class="box"/><text x="180" y="305" text-anchor="middle">文件映射</text>
+<rect x="80" y="350" width="200" height="55" rx="4" fill="#f6f8fa" stroke="#aab7c6" stroke-dasharray="5 4"/><text x="180" y="385" text-anchor="middle">未映射空洞</text>
+<rect x="390" y="110" width="180" height="55" rx="4" class="box"/><text x="480" y="145" text-anchor="middle">物理页 α</text>
+<rect x="390" y="200" width="180" height="55" rx="4" class="box"/><text x="480" y="235" text-anchor="middle">共享物理页 β</text>
+<rect x="390" y="290" width="180" height="55" rx="4" class="box"/><text x="480" y="325" text-anchor="middle">文件后备页 γ</text>
+<rect x="660" y="110" width="200" height="55" rx="4" class="box"/><text x="760" y="145" text-anchor="middle">私有匿名页 B</text>
+<rect x="660" y="220" width="200" height="55" rx="4" class="box"/><text x="760" y="255" text-anchor="middle">共享映射 B</text>
+<rect x="390" y="370" width="180" height="55" rx="4" class="box"/><text x="480" y="405" text-anchor="middle">物理页 δ</text>
+<path d="M280 137H390" class="line"/><path d="M280 217L390 227" class="line"/><path d="M280 297L390 317" class="line"/><path d="M660 248L570 227" class="line"/><path d="M860 137H885V397H570" class="line"/>
+<text x="620" y="340" class="small">共享对象用偏移定位；</text><text x="620" y="368" class="small">不能假定映射基址相同。</text>
+<text x="28" y="454" class="small">虚拟页号与物理页号不一一相同；映射有效、页面驻留和 C++ 对象存活是不同条件。</text>
+</svg>

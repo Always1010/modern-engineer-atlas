@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="530" viewBox="0 0 920 530" role="img" aria-labelledby="title desc">
+<title id="title">缓存层次与伪共享</title><desc id="desc">示意核心的缓存路径以及两个线程计数共享或隔离缓存行的布局。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#65768b"/></marker></defs>
+<style>text{font-family:"Microsoft YaHei","Noto Sans CJK SC",sans-serif;fill:#172b43;font-size:19px}.small{font-size:16px;fill:#4b6077}.label{font-weight:600}.box{fill:#eaf2fc;stroke:#6c98d2;stroke-width:1.4}.line{stroke:#65768b;stroke-width:2;fill:none;marker-end:url(#arrow)}.life{stroke:#b6c2cf;stroke-width:2;stroke-dasharray:5 5}.read{stroke:#6c98d2;stroke-width:2;fill:none;stroke-dasharray:6 4;marker-end:url(#arrow)}</style>
+<rect width="920" height="530" fill="#fff"/>
+<text x="28" y="36" class="label">访问层次与写热点的布局</text>
+<rect x="80" y="75" width="200" height="70" rx="5" class="box"/><text x="180" y="105" text-anchor="middle">核心 A／寄存器</text><text x="180" y="133" text-anchor="middle" class="small">L1 / L2 常见本地</text>
+<rect x="360" y="75" width="200" height="70" rx="5" class="box"/><text x="460" y="105" text-anchor="middle">核心 B／寄存器</text><text x="460" y="133" text-anchor="middle" class="small">L1 / L2 常见本地</text>
+<rect x="670" y="75" width="160" height="70" rx="5" class="box"/><text x="750" y="117" text-anchor="middle">主存</text>
+<rect x="240" y="185" width="300" height="48" rx="5" class="box"/><text x="390" y="216" text-anchor="middle">可能共享的末级缓存</text>
+<path d="M180 145L270 185" class="line"/><path d="M460 145L450 185" class="line"/><path d="M540 210L750 145" class="line"/>
+<text x="28" y="282">同一行：频繁独立写也需协调</text>
+<rect x="390" y="250" width="430" height="56" rx="4" class="box"/><path d="M520 250V306M650 250V306" stroke="#94a8bd"/><text x="455" y="286" text-anchor="middle">A 计数</text><text x="585" y="286" text-anchor="middle">B 计数</text><text x="735" y="286" text-anchor="middle" class="small">其余字节</text>
+<text x="390" y="334" class="small">仅作示意：这里假定缓存行 64 字节</text>
+<text x="28" y="389">隔离写热点：更少行间争用</text>
+<rect x="390" y="360" width="200" height="56" rx="4" class="box"/><text x="490" y="396" text-anchor="middle">A 计数 + 空间</text><rect x="620" y="360" width="200" height="56" rx="4" class="box"/><text x="720" y="396" text-anchor="middle">B 计数 + 空间</text>
+<text x="390" y="448" class="small">代价：额外空间；是否改善应由负载与硬件测量确定。</text>
+<text x="28" y="502" class="small">标准不规定以上缓存结构；伪共享是性能问题，语言数据竞争与内存序另按 R22 判断。</text>
+</svg>
