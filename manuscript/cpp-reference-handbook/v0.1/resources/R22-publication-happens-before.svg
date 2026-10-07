@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="440" viewBox="0 0 920 440" role="img" aria-labelledby="title desc">
+<title id="title">release acquire 的对象发布关系</title><desc id="desc">发布写入先于release store，acquire读取该store后读取对象；这些关系组成happens-before。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#65768b"/></marker></defs>
+<style>text{font-family:"Microsoft YaHei","Noto Sans CJK SC",sans-serif;fill:#172b43;font-size:19px}.small{font-size:16px;fill:#4b6077}.label{font-weight:600}.box{fill:#eaf2fc;stroke:#6c98d2;stroke-width:1.4}.line{stroke:#65768b;stroke-width:2;fill:none;marker-end:url(#arrow)}.life{stroke:#b6c2cf;stroke-width:2;stroke-dasharray:5 5}.read{stroke:#6c98d2;stroke-width:2;fill:none;stroke-dasharray:6 4;marker-end:url(#arrow)}</style>
+<rect width="920" height="440" fill="#fff"/>
+<text x="28" y="36" class="label">同步边的前提：acquire 读到这次 release 发布的值</text>
+<text x="170" y="83">发布线程</text><text x="640" y="83">读取线程</text>
+<rect x="100" y="110" width="280" height="70" rx="5" class="box"/><text x="240" y="153" text-anchor="middle">A：payload = 42</text>
+<rect x="100" y="260" width="280" height="70" rx="5" class="box"/><text x="240" y="290" text-anchor="middle">B：ready.store(true)</text><text x="240" y="316" text-anchor="middle" class="small">release</text>
+<rect x="540" y="110" width="280" height="70" rx="5" class="box"/><text x="680" y="140" text-anchor="middle">C：ready.load() == true</text><text x="680" y="166" text-anchor="middle" class="small">acquire</text>
+<rect x="540" y="260" width="280" height="70" rx="5" class="box"/><text x="680" y="303" text-anchor="middle">D：读取 payload</text>
+<path d="M240 180V260" class="line"/><path d="M680 180V260" class="line"/><text x="112" y="222" class="small">sequenced-before</text><text x="550" y="222" class="small">sequenced-before</text>
+<path d="M380 294L540 150" class="read"/><text x="391" y="318" class="small">读值来源 B → C</text><text x="382" y="345" class="small">synchronizes-with</text>
+<text x="28" y="394">合成：A happens-before D；发布后的对象不再被无同步修改。</text>
+<text x="28" y="422" class="small">本图解释语言保证，不承诺缓存刷新指令或执行耗时；回收需要另一个生命周期协议。</text>
+</svg>

@@ -1,6 +1,6 @@
 {
   "title": "C++ 与计算机基础图解参考手册",
-  "status": "awaiting-outline-and-sample-review",
+  "status": "complete-first-draft",
   "sampleChapter": "R13",
   "languageBaseline": [
     "C++17",
@@ -20,7 +20,15 @@
             "诊断与运行结果；标准版本开关、警告和最小项目"
           ],
           "visual": "编译链接流程图",
-          "reading": "FIRST"
+          "reading": "FIRST",
+          "source": "chapters/R01-program-build.zh-CN.md",
+          "entries": [
+            "1 从一个可检查的程序进入",
+            "2 构建究竟做了什么",
+            "3 声明、定义与链接属性",
+            "4 ODR 与最小多文件项目",
+            "5 诊断入口与排障次序"
+          ]
         },
         {
           "id": "R02",
@@ -31,7 +39,15 @@
             "数组与退化；类型别名、结构化绑定"
           ],
           "visual": "对象与存储关系图",
-          "reading": "FIRST"
+          "reading": "FIRST",
+          "source": "chapters/R02-types-objects.zh-CN.md",
+          "entries": [
+            "1 基础类型先看范围，再看名字",
+            "2 存储、对象、作用域是三条不同的轴",
+            "3 sizeof、alignof 与对象表示",
+            "4 数组、退化与类型别名",
+            "5 工作例子与拆解边界"
+          ]
         },
         {
           "id": "R03",
@@ -42,7 +58,15 @@
             "const、constexpr、consteval、constinit；初始化顺序"
           ],
           "visual": "初始化与推导规则表",
-          "reading": "FIRST"
+          "reading": "FIRST",
+          "source": "chapters/R03-initialization-deduction.zh-CN.md",
+          "entries": [
+            "1 初始化形式不能机械替换",
+            "2 聚合初始化与成员默认值",
+            "3 auto、decltype 与括号",
+            "4 const 与编译期设施",
+            "5 工作例子与初始化顺序"
+          ]
         },
         {
           "id": "R04",
@@ -53,7 +77,15 @@
             "隐式转换、整数提升、窄化；四种显式 cast 的适用边界"
           ],
           "visual": "值类别分类图",
-          "reading": "FIRST"
+          "reading": "FIRST",
+          "source": "chapters/R04-expressions-conversions.zh-CN.md",
+          "entries": [
+            "1 优先级不决定所有求值顺序",
+            "2 值类别描述表达式，不是变量的永久标签",
+            "3 整数提升、混合运算与窄化",
+            "4 四种 cast 的责任边界",
+            "5 工作例子：先检查，后执行运算"
+          ]
         },
         {
           "id": "R05",
@@ -64,7 +96,15 @@
             "悬垂、越界、别名；返回值、成员借用与接口契约"
           ],
           "visual": "借用与生命周期时间线",
-          "reading": "FIRST"
+          "reading": "FIRST",
+          "source": "chapters/R05-pointers-references.zh-CN.md",
+          "entries": [
+            "1 指针和引用各自表达什么",
+            "2 指针算术只在合法数组区间内",
+            "3 临时对象延长寿命：允许路径与例外",
+            "4 返回借用、成员借用与别名约束",
+            "5 工作例子与失败边界"
+          ]
         },
         {
           "id": "R06",
@@ -75,7 +115,15 @@
             "lambda 捕获与回调生命周期；函数对象、std::function 与 std::invoke"
           ],
           "visual": "参数传递与捕获对照表",
-          "reading": "FIRST"
+          "reading": "FIRST",
+          "source": "chapters/R06-statements-functions.zh-CN.md",
+          "entries": [
+            "1 控制流与局部作用域",
+            "2 参数、返回值与默认实参",
+            "3 lambda 捕获的是值还是借用",
+            "4 函数对象、invoke 与类型擦除",
+            "5 工作例子与异步边界"
+          ]
         }
       ]
     },
@@ -91,7 +139,15 @@
             "继承、组合、虚函数、override、对象切片与虚析构"
           ],
           "visual": "构造析构顺序图",
-          "reading": "FIRST"
+          "reading": "FIRST",
+          "source": "chapters/R07-classes-lifetime.zh-CN.md",
+          "entries": [
+            "1 class、struct 与不变量",
+            "2 构造与析构顺序",
+            "3 特殊成员与 Rule of Zero",
+            "4 组合、继承与多态边界",
+            "5 工作例子：同时检查分派与清理"
+          ]
         },
         {
           "id": "R08",
@@ -102,7 +158,15 @@
             "RVO、NRVO、拷贝消除；返回对象、noexcept 与容器迁移"
           ],
           "visual": "资源转移图",
-          "reading": "FIRST"
+          "reading": "FIRST",
+          "source": "chapters/R08-copy-move.zh-CN.md",
+          "entries": [
+            "1 构造与赋值是两类操作",
+            "2 move 是转换，移动后状态来自契约",
+            "3 转发引用与 std::forward",
+            "4 返回对象、消除复制与 noexcept",
+            "5 工作例子与错误边界"
+          ]
         },
         {
           "id": "R09",
@@ -113,7 +177,15 @@
             "allocator 与 pmr 的使用入口；内存池、跨模块释放的边界"
           ],
           "visual": "所有权与控制块图",
-          "reading": "FIRST"
+          "reading": "FIRST",
+          "source": "chapters/R09-raii-memory.zh-CN.md",
+          "entries": [
+            "1 分配、构造与释放分别负责什么",
+            "2 三种智能指针的职责",
+            "3 控制块、weak_ptr 与循环",
+            "4 allocator 与 pmr 的使用入口",
+            "5 工作例子与释放检查"
+          ]
         },
         {
           "id": "R10",
@@ -124,7 +196,15 @@
             "type_traits、if constexpr、concepts、requires；读懂约束和报错"
           ],
           "visual": "模板实例化流程图",
-          "reading": "LOOKUP"
+          "reading": "LOOKUP",
+          "source": "chapters/R10-templates-compile-time.zh-CN.md",
+          "entries": [
+            "1 推导、实例化与定义可见性",
+            "2 特化、依赖名与 ADL",
+            "3 参数包、折叠表达式与 if constexpr",
+            "4 C++20 concepts 与 requires",
+            "5 工作例子与读报错方法"
+          ]
         },
         {
           "id": "R11",
@@ -135,7 +215,15 @@
             "基本保证、强保证、不抛保证；失败回滚与部分成功"
           ],
           "visual": "异常栈展开与回滚时序图",
-          "reading": "FIRST"
+          "reading": "FIRST",
+          "source": "chapters/R11-errors-exception-safety.zh-CN.md",
+          "entries": [
+            "1 throw、catch 与栈展开",
+            "2 noexcept 与析构边界",
+            "3 错误码、异常和结果对象怎样选",
+            "4 基本、强与不抛保证",
+            "5 工作例子：检查失败后的状态"
+          ]
         }
       ]
     },
@@ -151,7 +239,16 @@
             "UTF-8、字节、码点与显示字符；C 字符串互操作"
           ],
           "visual": "字符串与视图内存图",
-          "reading": "FIRST"
+          "reading": "FIRST",
+          "source": "chapters/R12-strings-views.zh-CN.md",
+          "entries": [
+            "1 所有者、视图与传参选择",
+            "2 string 的构造、长度与修改",
+            "3 string_view 的截取与失效",
+            "4 span 的可写性与边界（C++20）",
+            "5 C 字符串与 UTF-8",
+            "6 完整例子与检索入口"
+          ]
         },
         {
           "id": "R13",
@@ -162,7 +259,18 @@
             "操作复杂度、迭代器和引用失效；连续存储与局部性"
           ],
           "visual": "容器结构图与失效规则表",
-          "reading": "FIRST"
+          "reading": "FIRST",
+          "source": "chapters/R13-sequence-containers.zh-CN.md",
+          "entries": [
+            "1 容器选型速查",
+            "2 vector 的构造与核心接口",
+            "3 vector 的失效与异常边界",
+            "4 删除元素时如何继续遍历",
+            "5 deque 的两端操作",
+            "6 list 与 forward_list 的位置契约",
+            "7 工作中的选型与排障",
+            "8 符号索引与进一步查阅"
+          ]
         },
         {
           "id": "R14",
@@ -173,7 +281,16 @@
             "stack、queue、priority_queue；树、哈希表、堆及复杂度和失效规则"
           ],
           "visual": "树哈希堆对照图",
-          "reading": "FIRST"
+          "reading": "FIRST",
+          "source": "chapters/R14-associative-adaptors.zh-CN.md",
+          "entries": [
+            "1 有序关系与哈希契约",
+            "2 查找、插入与更新的接口",
+            "3 失效、rehash 与预留",
+            "4 节点句柄与失败边界",
+            "5 stack、queue 与 priority_queue",
+            "6 完整例子与检索入口"
+          ]
         },
         {
           "id": "R15",
@@ -184,7 +301,16 @@
             "ranges、views、投影、惰性求值与借用；不是所有 view 都安全"
           ],
           "visual": "区间图与惰性管线图",
-          "reading": "FIRST"
+          "reading": "FIRST",
+          "source": "chapters/R15-iterators-ranges.zh-CN.md",
+          "entries": [
+            "1 半开区间与尾后位置",
+            "2 类别、成本与算法要求",
+            "3 反向与输出适配器",
+            "4 ranges 算法、sentinel 与投影（C++20）",
+            "5 view、惰性求值与借用边界（C++20）",
+            "6 完整例子与检索入口"
+          ]
         },
         {
           "id": "R16",
@@ -195,7 +321,16 @@
             "accumulate、reduce、扫描；复杂度、溢出和执行策略"
           ],
           "visual": "算法选型表与删除过程图",
-          "reading": "FIRST"
+          "reading": "FIRST",
+          "source": "chapters/R16-algorithms.zh-CN.md",
+          "entries": [
+            "1 扫描、变换与目标区间",
+            "2 remove、unique 与实际删除",
+            "3 排序、二分、集合与堆的前提",
+            "4 累计、归约与扫描",
+            "5 执行策略的可移植边界（C++17）",
+            "6 完整例子与检索入口"
+          ]
         },
         {
           "id": "R17",
@@ -206,7 +341,16 @@
             "expected 的结果建模入口；比较与哈希定制的契约"
           ],
           "visual": "结果类型选型图",
-          "reading": "LOOKUP"
+          "reading": "LOOKUP",
+          "source": "chapters/R17-utility-results.zh-CN.md",
+          "entries": [
+            "1 pair、tuple 与结构化绑定",
+            "2 optional：存在或缺失",
+            "3 variant：封闭的候选集合",
+            "4 any：开放类型与运行期检查",
+            "5 expected 与比较／哈希的版本边界",
+            "6 完整例子与检索入口"
+          ]
         },
         {
           "id": "R18",
@@ -217,7 +361,15 @@
             "bit、bitset、字节操作；端序与协议字段的安全转换"
           ],
           "visual": "解析校验流程图",
-          "reading": "LOOKUP"
+          "reading": "LOOKUP",
+          "source": "chapters/R18-text-numeric.zh-CN.md",
+          "entries": [
+            "1 from_chars 与 to_chars（C++17）",
+            "2 format 与数值边界",
+            "3 随机引擎、分布与复现",
+            "4 bit、bitset、字节与端序",
+            "5 完整例子与检索入口"
+          ]
         },
         {
           "id": "R19",
@@ -228,7 +380,16 @@
             "标准库、操作系统 API、第三方库的边界；日志与文件更新策略"
           ],
           "visual": "截止时间时间线",
-          "reading": "LOOKUP"
+          "reading": "LOOKUP",
+          "source": "chapters/R19-time-files.zh-CN.md",
+          "entries": [
+            "1 duration、time_point 与时钟",
+            "2 总预算与绝对截止",
+            "3 stream 的状态、文本与二进制",
+            "4 filesystem 路径与错误",
+            "5 文件更新、持久化与 C++20 扩展",
+            "6 完整例子与检索入口"
+          ]
         }
       ]
     },
@@ -244,7 +405,15 @@
             "stop_token 与协作取消；任务粒度、线程池和过载边界"
           ],
           "visual": "任务启动取消退出时序图",
-          "reading": "LOOKUP"
+          "reading": "LOOKUP",
+          "source": "chapters/R20-threads-async.zh-CN.md",
+          "entries": [
+            "1 thread：谁负责收回执行中的工作",
+            "2 future：一次结果与异常通道",
+            "3 async 的启动策略与隐式等待",
+            "4 jthread 与协作取消：请求、观察、退出",
+            "5 任务粒度与退出诊断"
+          ]
         },
         {
           "id": "R21",
@@ -255,7 +424,15 @@
             "shared_mutex、semaphore、latch、barrier；选择与使用边界"
           ],
           "visual": "生产者消费者时序图",
-          "reading": "LOOKUP"
+          "reading": "LOOKUP",
+          "source": "chapters/R21-mutex-coordination.zh-CN.md",
+          "entries": [
+            "1 锁的所有权与不变量",
+            "2 条件变量必须配谓词",
+            "3 有界队列：背压与关闭一起设计",
+            "4 共享锁与 C++20 同步器速查",
+            "5 从现象回到等待条件"
+          ]
         },
         {
           "id": "R22",
@@ -266,7 +443,15 @@
             "发布对象、生命周期与回收；ABA 和无锁的限制"
           ],
           "visual": "发布订阅与 happens-before 图",
-          "reading": "LOOKUP"
+          "reading": "LOOKUP",
+          "source": "chapters/R22-atomics-memory-order.zh-CN.md",
+          "entries": [
+            "1 数据竞争与 happens-before",
+            "2 atomic 的接口与最小内存序",
+            "3 CAS：成功写入，失败更新 expected",
+            "4 安全发布：读到哪个写入至关重要",
+            "5 发布不等于回收，无锁不等于有限等待"
+          ]
         }
       ]
     },
@@ -282,7 +467,15 @@
             "对齐、端序、整数与浮点表示；硬件现象和语言规则的边界"
           ],
           "visual": "缓存层次与伪共享图",
-          "reading": "LOOKUP"
+          "reading": "LOOKUP",
+          "source": "chapters/R23-cpu-memory-cost.zh-CN.md",
+          "entries": [
+            "1 从源码到指令：寄存器不是变量的固定住所",
+            "2 缓存与局部性：先确定访问模式",
+            "3 对齐、填充与访问是否合法",
+            "4 端序与数值：编码规则应写出来",
+            "5 性能现象与检查依据"
+          ]
         },
         {
           "id": "R24",
@@ -293,7 +486,15 @@
             "分配器、碎片、RSS 与泄漏；共享内存、IPC、动态库入口"
           ],
           "visual": "虚拟内存映射图",
-          "reading": "LOOKUP"
+          "reading": "LOOKUP",
+          "source": "chapters/R24-process-virtual-memory.zh-CN.md",
+          "entries": [
+            "1 进程、线程与调度：共享的范围是什么",
+            "2 虚拟页、映射与缺页",
+            "3 mmap 与地址的有效区间",
+            "4 RSS、working set、分配器与泄漏诊断",
+            "5 IPC 与动态库的边界"
+          ]
         },
         {
           "id": "R25",
@@ -304,7 +505,15 @@
             "阻塞、非阻塞、就绪与完成；Linux epoll 和 Windows IOCP 的分界"
           ],
           "visual": "用户态内核态 I/O 路径图",
-          "reading": "LOOKUP"
+          "reading": "LOOKUP",
+          "source": "chapters/R25-syscalls-file-io.zh-CN.md",
+          "entries": [
+            "1 系统调用、fd 与 HANDLE 的所有权",
+            "2 短读写：实际完成量才是进度",
+            "3 用户缓冲、页缓存、映射与持久性",
+            "4 阻塞、非阻塞、就绪与完成",
+            "5 从症状检查 I/O 边界"
+          ]
         }
       ]
     },
@@ -320,7 +529,15 @@
             "HTTP、TLS、连接复用；网络字节序、报文和应用层协议边界"
           ],
           "visual": "DNS TCP TLS HTTP 请求时序图",
-          "reading": "LOOKUP"
+          "reading": "LOOKUP",
+          "source": "chapters/R26-protocols-connections.zh-CN.md",
+          "entries": [
+            "1 DNS、IP、端口与路由",
+            "2 TCP 与 UDP：传输给应用什么",
+            "3 TLS：机密性、完整性与身份边界",
+            "4 HTTP 版本、报文完整性与连接复用",
+            "5 故障应分层取证"
+          ]
         },
         {
           "id": "R27",
@@ -331,7 +548,15 @@
             "超时、断连、重试、幂等与退避；连接池和故障定位"
           ],
           "visual": "拆包组包与超时重试时序图",
-          "reading": "LOOKUP"
+          "reading": "LOOKUP",
+          "source": "chapters/R27-sockets-production.zh-CN.md",
+          "entries": [
+            "1 客户端与服务端的资源流程",
+            "2 send/recv：把进度保存到连接状态",
+            "3 流式分帧与背压：长度必须先验证",
+            "4 超时与重试：失败可能是不知道结果",
+            "5 线上故障的最小证据"
+          ]
         }
       ]
     },
@@ -347,7 +572,15 @@
             "标准版本与特性检测；Linux/Windows 差异和依赖发布"
           ],
           "visual": "编译链接与 ABI 边界图",
-          "reading": "FIRST"
+          "reading": "FIRST",
+          "source": "chapters/R28-build.zh-CN.md",
+          "entries": [
+            "1 构建阶段与失败位置",
+            "2 用 target 表达依赖",
+            "3 可构建的最小库工程",
+            "4 ODR 与 ABI 是不同的边界",
+            "5 发布前检查"
+          ]
         },
         {
           "id": "R29",
@@ -358,7 +591,15 @@
             "ASan、UBSan、TSan 与平台限制；边界测试、错误注入和回归"
           ],
           "visual": "症状证据检查工具对照表",
-          "reading": "FIRST"
+          "reading": "FIRST",
+          "source": "chapters/R29-debug.zh-CN.md",
+          "entries": [
+            "1 从症状选择证据",
+            "2 调试器与故障现场",
+            "3 sanitizer 的用途与限制",
+            "4 检查正常路径与失败边界",
+            "5 故障修复的完成条件"
+          ]
         },
         {
           "id": "R30",
@@ -369,7 +610,15 @@
             "算法成本、拷贝分配、缓存、锁与 I/O；先定位再优化"
           ],
           "visual": "性能排障决策图",
-          "reading": "LOOKUP"
+          "reading": "LOOKUP",
+          "source": "chapters/R30-performance.zh-CN.md",
+          "entries": [
+            "1 指标与观察口径",
+            "2 profiler 与 benchmark 分别回答什么",
+            "3 测量区间与正确性结果",
+            "4 常见排障路径",
+            "5 优化交付检查"
+          ]
         }
       ]
     }
@@ -381,5 +630,12 @@
     "错误与故障索引",
     "术语与版本差异",
     "编译与检查命令"
-  ]
+  ],
+  "approvedSampleChapter": "R13",
+  "artifacts": {
+    "html": "output/pdf/Cpp-Reference-Handbook-v0.1.html",
+    "pdf": "output/pdf/Cpp-Reference-Handbook-v0.1.pdf"
+  },
+  "readingGuide": "reading-guide.zh-CN.md",
+  "appendixSource": "appendices.zh-CN.md"
 }
