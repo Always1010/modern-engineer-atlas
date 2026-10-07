@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="640" viewBox="0 0 960 640"><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#166B70"/></marker></defs><rect width="100%" height="100%" fill="white"/>
+<text x="25" y="37" font-family="Noto Sans CJK SC, sans-serif" font-size="25" font-weight="bold" fill="#203B4A" text-anchor="start">优先级继承缩短的是无关任务的干扰</text>
+<text x="25" y="82" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="bold" fill="#203B4A" text-anchor="start">没有继承的示意</text>
+<text x="26" y="139" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="start">H 高</text>
+<line x1="130" y1="149" x2="925" y2="149" stroke="#CFDADF" stroke-width="2"/>
+<text x="26" y="209" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="start">M 中</text>
+<line x1="130" y1="219" x2="925" y2="219" stroke="#CFDADF" stroke-width="2"/>
+<text x="26" y="279" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="start">L 低</text>
+<line x1="130" y1="289" x2="925" y2="289" stroke="#CFDADF" stroke-width="2"/>
+<rect x="144" y="243" width="143" height="51" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="215.5" y="275.5" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">持有锁</text>
+<rect x="290" y="175" width="340" height="51" rx="8" fill="#FFF4E9" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="460.0" y="207.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">中优先级任务运行</text>
+<rect x="635" y="243" width="137" height="51" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="703.5" y="275.5" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">释放锁</text>
+<rect x="777" y="105" width="148" height="51" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="851.0" y="137.5" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">继续运行</text>
+<path d="M 291 117 L 291 152 L 772 152" stroke="#166B70" stroke-width="2" fill="none" stroke-dasharray="7 5"/>
+<text x="531" y="130" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">H 等锁 因 M 干扰而延长</text>
+<text x="25" y="357" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="bold" fill="#203B4A" text-anchor="start">发生继承的示意</text>
+<text x="26" y="407" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="start">H 高</text>
+<line x1="130" y1="417" x2="925" y2="417" stroke="#CFDADF" stroke-width="2"/>
+<text x="26" y="467" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="start">M 中</text>
+<line x1="130" y1="477" x2="925" y2="477" stroke="#CFDADF" stroke-width="2"/>
+<text x="26" y="527" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="start">L 低</text>
+<line x1="130" y1="537" x2="925" y2="537" stroke="#CFDADF" stroke-width="2"/>
+<rect x="144" y="493" width="143" height="49" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="215.5" y="524.5" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">持有锁</text>
+<rect x="292" y="493" width="253" height="49" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="418.5" y="524.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">L 临时继承 H</text>
+<rect x="550" y="373" width="183" height="49" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="641.5" y="404.5" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">H 获锁运行</text>
+<rect x="737" y="433" width="187" height="49" rx="8" fill="#FFF4E9" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="830.5" y="464.5" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">M 后续运行</text>
+<text x="311" y="462" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#166B70" text-anchor="start">释放锁后按规则恢复</text>
+<text x="25" y="589" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#596770" text-anchor="start">H 等待锁时不在运行；继承不缩短外设的真实等待</text>
+<text x="25" y="618" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#596770" text-anchor="start">它不治愈死锁，也不是对所有依赖链都给出完备时限的协议</text>
+</svg>

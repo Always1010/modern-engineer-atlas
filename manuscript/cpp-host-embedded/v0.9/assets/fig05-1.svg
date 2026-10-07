@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="660" viewBox="0 0 960 660"><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#166B70"/></marker></defs><rect width="100%" height="100%" fill="white"/>
+<text x="25" y="37" font-family="Noto Sans CJK SC, sans-serif" font-size="25" font-weight="bold" fill="#203B4A" text-anchor="start">编译 链接 装载与业务就绪各有证据</text>
+<rect x="25" y="87" width="227" height="68" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="138.5" y="128.0" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">limits.hpp</text>
+<rect x="25" y="213" width="227" height="68" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="138.5" y="254.0" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">limits.cpp</text>
+<rect x="25" y="349" width="227" height="68" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="138.5" y="390.0" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">main.cpp</text>
+<path d="M 138 155 L 138 213" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)" stroke-dasharray="7 5"/>
+<path d="M 252 121 L 276 121 L 276 334 L 138 334 L 138 349" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)" stroke-dasharray="7 5"/>
+<rect x="346" y="213" width="223" height="68" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="457.5" y="254.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">limits.o / .obj</text>
+<rect x="346" y="349" width="223" height="68" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="457.5" y="390.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">main.o / .obj</text>
+<line x1="252" y1="247" x2="346" y2="247" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="300" y="232" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="middle">编译</text>
+<line x1="252" y1="383" x2="346" y2="383" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="300" y="369" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="middle">编译</text>
+<rect x="693" y="278" width="238" height="88" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="812.0" y="315.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">station_demo</text>
+<text x="812.0" y="344.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">可执行制品</text>
+<path d="M 569 247 L 619 247 L 619 322 L 693 322" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<path d="M 569 383 L 619 383 L 619 322" stroke="#166B70" stroke-width="2" fill="none"/>
+<text x="634" y="223" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="start">链接</text>
+<rect x="315" y="486" width="372" height="76" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="501.0" y="531.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">装载与运行库准备 → 应用启动</text>
+<path d="M 812 366 L 812 524 L 687 524" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<text x="25" y="601" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#596770" text-anchor="start">包含与编译命令 → 符号和目标架构 → 链接输入 → 加载路径 → 业务就绪</text>
+<text x="25" y="630" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#596770" text-anchor="start">编译成功不证明运行依赖完整，也不证明设备握手已经成功</text>
+</svg>

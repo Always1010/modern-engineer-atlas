@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="675" viewBox="0 0 960 675"><defs>
+<marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#166B70"/></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#B46627"/></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#596770"/></marker>
+<marker id="red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#AD4D43"/></marker>
+</defs><rect width="100%" height="100%" fill="white"/>
+<text x="26" y="35" font-family="Noto Sans CJK SC, sans-serif" font-size="24" font-weight="bold" fill="#203B4A" text-anchor="start">先把供电、复位、通信与工站记录对到同一时间轴</text>
+<rect x="28" y="85" width="678" height="113" rx="8" fill="#F5F8FA" stroke="none" stroke-width="1.5"/>
+<text x="46" y="148.5" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="bold" fill="#203B4A" text-anchor="start">供电</text>
+<rect x="28" y="216" width="678" height="80" rx="8" fill="#F5F8FA" stroke="none" stroke-width="1.5"/>
+<text x="46" y="263.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="bold" fill="#203B4A" text-anchor="start">MCU 运行</text>
+<rect x="28" y="314" width="678" height="80" rx="8" fill="#F5F8FA" stroke="none" stroke-width="1.5"/>
+<text x="46" y="361.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="bold" fill="#203B4A" text-anchor="start">通信</text>
+<rect x="28" y="412" width="678" height="80" rx="8" fill="#F5F8FA" stroke="none" stroke-width="1.5"/>
+<text x="46" y="459.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="bold" fill="#203B4A" text-anchor="start">工站记录</text>
+<line x1="421" y1="122" x2="421" y2="194" stroke="#B6CCD4" stroke-width="2" stroke-dasharray="7 5"/>
+<line x1="421" y1="217" x2="421" y2="342" stroke="#B6CCD4" stroke-width="2" stroke-dasharray="7 5"/>
+<line x1="421" y1="374" x2="421" y2="424" stroke="#B6CCD4" stroke-width="2" stroke-dasharray="7 5"/>
+<line x1="421" y1="480" x2="421" y2="492" stroke="#B6CCD4" stroke-width="2" stroke-dasharray="7 5"/>
+<path d="M 183 140 L 352 140 L 387 181 L 419 181 L 450 140 L 691 140" stroke="#B46627" stroke-width="3" fill="none"/>
+<text x="430" y="116" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#B46627" text-anchor="middle">供电跌落示意，未实测</text>
+<rect x="183" y="230" width="213" height="52" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="289.5" y="263.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">boot_id = 7</text>
+<rect x="447" y="230" width="244" height="52" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="569.0" y="263.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">boot_id = 8</text>
+<line x1="396" y1="256" x2="447" y2="256" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="421" y="213" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#166B70" text-anchor="middle">重启</text>
+<line x1="183" y1="355" x2="346" y2="355" stroke="#166B70" stroke-width="3"/>
+<text x="260" y="342" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#166B70" text-anchor="middle">通信正常</text>
+<text x="421" y="363" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#B46627" text-anchor="middle">停止</text>
+<rect x="501" y="329" width="190" height="52" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="596.0" y="362.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">重新握手</text>
+<line x1="183" y1="453" x2="344" y2="453" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="260" y="439" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#166B70" text-anchor="middle">等待回复</text>
+<rect x="344" y="426" width="347" height="52" rx="8" fill="#FFF4E9" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="517.5" y="459.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">旧 command → Unknown</text>
+<line x1="183" y1="516" x2="698" y2="516" stroke="#596770" stroke-width="2" marker-end="url(#gray)"/>
+<text x="698" y="542" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#596770" text-anchor="end">共同时间方向</text>
+<rect x="738" y="85" width="194" height="407" rx="8" fill="white" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="835" y="124" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="bold" fill="#203B4A" text-anchor="middle">待区分的原因</text>
+<rect x="754" y="156" width="162" height="57" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="835.0" y="191.5" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">看门狗</text>
+<rect x="754" y="234" width="162" height="57" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="835.0" y="269.5" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">欠压</text>
+<rect x="754" y="312" width="162" height="57" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="835.0" y="347.5" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">软件异常</text>
+<text x="835" y="426" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#596770" text-anchor="middle">boot_id 变化</text>
+<text x="835" y="456" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#596770" text-anchor="middle">只证明重启</text>
+<rect x="28" y="574" width="904" height="81" rx="8" fill="#FFF4E9" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="480.0" y="606.0" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">复位原因寄存器 + 同步供电波形，可进一步区分候选原因。</text>
+<text x="480.0" y="637.0" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">不能仅凭 boot_id 定位根因；本图波形只作机制示意。</text>
+</svg>

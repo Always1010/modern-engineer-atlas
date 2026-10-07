@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="660" viewBox="0 0 960 660"><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#166B70"/></marker></defs><rect width="100%" height="100%" fill="white"/>
+<text x="25" y="38" font-family="Noto Sans CJK SC, sans-serif" font-size="25" font-weight="bold" fill="#203B4A" text-anchor="start">有界解析器要能在坏输入后重新同步</text>
+<rect x="27" y="99" width="277" height="89" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="165.5" y="136.5" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">寻找</text>
+<text x="165.5" y="165.5" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">A5 5A</text>
+<rect x="341" y="99" width="277" height="89" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="479.5" y="136.5" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">收齐</text>
+<text x="479.5" y="165.5" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">10 字节头</text>
+<rect x="655" y="99" width="277" height="89" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="793.5" y="136.5" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">检查版本</text>
+<text x="793.5" y="165.5" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">与长度</text>
+<line x1="304" y1="144" x2="341" y2="144" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="618" y1="144" x2="655" y2="144" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="655" y="294" width="277" height="89" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="793.5" y="331.5" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">等待总长</text>
+<text x="793.5" y="360.5" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">12 + N</text>
+<line x1="794" y1="188" x2="794" y2="294" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="341" y="294" width="277" height="89" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="479.5" y="331.5" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">检查 CRC</text>
+<text x="479.5" y="360.5" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">与类型</text>
+<line x1="655" y1="339" x2="618" y2="339" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="27" y="294" width="277" height="89" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="165.5" y="331.5" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">交付或跳过</text>
+<text x="165.5" y="360.5" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">完整合法帧</text>
+<line x1="341" y1="339" x2="304" y2="339" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="166" y1="294" x2="166" y2="188" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="176" y="462" width="613" height="80" rx="8" fill="#FFF4E9" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="482.5" y="495.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">坏头 CRC 错 等待到期</text>
+<text x="482.5" y="524.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">从候选起点 + 1 继续寻找</text>
+<path d="M 794 188 L 942 188 L 942 502 L 789 502" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)" stroke-dasharray="7 5"/>
+<path d="M 479 383 L 479 462" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)" stroke-dasharray="7 5"/>
+<path d="M 176 502 L 9 502 L 9 144 L 27 144" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)" stroke-dasharray="7 5"/>
+<text x="26" y="592" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#596770" text-anchor="start">单候选最多 76 字节；输入块可含多帧，每轮工作量仍要限制</text>
+<text x="26" y="621" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#596770" text-anchor="start">断开时清除解析状态；不能把坏长度当成无限分配请求</text>
+</svg>

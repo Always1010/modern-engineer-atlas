@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="600" viewBox="0 0 960 600"><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#166B70"/></marker></defs><rect width="100%" height="100%" fill="white"/>
+<text x="25" y="37" font-family="Noto Sans CJK SC, sans-serif" font-size="25" font-weight="bold" fill="#203B4A" text-anchor="start">逻辑顺序可以跨过物理数组末尾</text>
+<rect x="31" y="144" width="103" height="74" rx="8" fill="#CCE8E3" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="82.5" y="188.0" font-family="Noto Sans CJK SC, sans-serif" font-size="26" font-weight="normal" fill="#203B4A" text-anchor="middle">0</text>
+<rect x="144" y="144" width="103" height="74" rx="8" fill="#CCE8E3" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="195.5" y="188.0" font-family="Noto Sans CJK SC, sans-serif" font-size="26" font-weight="normal" fill="#203B4A" text-anchor="middle">1</text>
+<rect x="257" y="144" width="103" height="74" rx="8" fill="#F5F8FA" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="308.5" y="188.0" font-family="Noto Sans CJK SC, sans-serif" font-size="26" font-weight="normal" fill="#203B4A" text-anchor="middle">2</text>
+<rect x="370" y="144" width="103" height="74" rx="8" fill="#F5F8FA" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="421.5" y="188.0" font-family="Noto Sans CJK SC, sans-serif" font-size="26" font-weight="normal" fill="#203B4A" text-anchor="middle">3</text>
+<rect x="483" y="144" width="103" height="74" rx="8" fill="#F5F8FA" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="534.5" y="188.0" font-family="Noto Sans CJK SC, sans-serif" font-size="26" font-weight="normal" fill="#203B4A" text-anchor="middle">4</text>
+<rect x="596" y="144" width="103" height="74" rx="8" fill="#F5F8FA" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="647.5" y="188.0" font-family="Noto Sans CJK SC, sans-serif" font-size="26" font-weight="normal" fill="#203B4A" text-anchor="middle">5</text>
+<rect x="709" y="144" width="103" height="74" rx="8" fill="#CCE8E3" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="760.5" y="188.0" font-family="Noto Sans CJK SC, sans-serif" font-size="26" font-weight="normal" fill="#203B4A" text-anchor="middle">6</text>
+<rect x="822" y="144" width="103" height="74" rx="8" fill="#CCE8E3" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="873.5" y="188.0" font-family="Noto Sans CJK SC, sans-serif" font-size="26" font-weight="normal" fill="#203B4A" text-anchor="middle">7</text>
+<text x="743" y="112" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">head = 6</text>
+<line x1="743" y1="117" x2="743" y2="143" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="303" y="83" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">下一次写入 2</text>
+<line x1="303" y1="90" x2="303" y2="143" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<path d="M 766 219 L 766 267 L 879 267 L 879 296 L 81 296 L 81 218" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<text x="479" y="342" font-family="Noto Sans CJK SC, sans-serif" font-size="23" font-weight="normal" fill="#203B4A" text-anchor="middle">读取顺序 6 → 7 → 0 → 1  count = 4</text>
+<rect x="30" y="390" width="421" height="92" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="240.5" y="429.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">空 count = 0</text>
+<text x="240.5" y="458.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">head 与下一写入位置相同</text>
+<rect x="497" y="390" width="433" height="92" rx="8" fill="#FFF4E9" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="713.5" y="429.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">满 count = 8</text>
+<text x="713.5" y="458.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">同样可能 head == tail</text>
+<text x="25" y="537" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#596770" text-anchor="start">本例用 count 区分空与满，因此全部 8 个槽都可用</text>
+<text x="25" y="566" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#596770" text-anchor="start">这是单线程容器算法；并发发布需要第18章另行约定</text>
+</svg>

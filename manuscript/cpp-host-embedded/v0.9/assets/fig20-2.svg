@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="640" viewBox="0 0 960 640"><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#166B70"/></marker></defs><rect width="100%" height="100%" fill="white"/>
+<text x="25" y="37" font-family="Noto Sans CJK SC, sans-serif" font-size="25" font-weight="bold" fill="#203B4A" text-anchor="start">升级要经过试运行与确认</text>
+<rect x="22" y="92" width="205" height="91" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="124.5" y="144.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">旧版已确认</text>
+<rect x="260" y="92" width="205" height="91" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="362.5" y="144.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">下载候选</text>
+<rect x="498" y="92" width="205" height="91" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="600.5" y="130.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">校验元数据</text>
+<text x="600.5" y="159.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">签名与长度</text>
+<rect x="736" y="92" width="205" height="91" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="838.5" y="130.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">持久标记</text>
+<text x="838.5" y="159.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">候选可试运行</text>
+<line x1="227" y1="137" x2="260" y2="137" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="465" y1="137" x2="498" y2="137" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="703" y1="137" x2="736" y2="137" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="737" y="287" width="205" height="89" rx="8" fill="#FFF4E9" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="839.5" y="338.5" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">试运行</text>
+<line x1="839" y1="183" x2="839" y2="287" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="405" y="287" width="225" height="89" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="517.5" y="338.5" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">健康确认</text>
+<line x1="737" y1="332" x2="630" y2="332" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="56" y="287" width="245" height="89" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="178.5" y="338.5" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">新版已确认</text>
+<line x1="405" y1="332" x2="301" y2="332" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<path d="M 500 183 L 500 235 L 120 235 L 120 183" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)" stroke-dasharray="7 5"/>
+<text x="277" y="222" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">校验失败</text>
+<path d="M 839 376 L 839 434 L 8 434 L 8 137 L 22 137" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)" stroke-dasharray="7 5"/>
+<text x="461" y="463" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">试运行未确认：回允许旧版或恢复入口</text>
+<rect x="26" y="507" width="429" height="64" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="240.5" y="546.0" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">同时保留旧程序可读的数据</text>
+<rect x="494" y="507" width="439" height="64" rx="8" fill="#FFF4E9" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="713.5" y="546.0" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">安全版本门阻止回到已撤销代</text>
+<text x="26" y="613" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#596770" text-anchor="start">产品设计状态机；不是 F446 已验证的双 bank 或 A/B Flash 布局</text>
+</svg>

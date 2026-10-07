@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="640" viewBox="0 0 960 640"><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#166B70"/></marker></defs><rect width="100%" height="100%" fill="white"/>
+<text x="25" y="37" font-family="Noto Sans CJK SC, sans-serif" font-size="25" font-weight="bold" fill="#203B4A" text-anchor="start">回退一个程序文件不等于恢复整个工站</text>
+<rect x="22" y="92" width="201" height="101" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="122.5" y="135.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">源码 依赖</text>
+<text x="122.5" y="164.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">工具链</text>
+<line x1="223" y1="143" x2="261" y2="143" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="261" y="92" width="201" height="101" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="361.5" y="135.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">唯一构建身份</text>
+<text x="361.5" y="164.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">配置版本</text>
+<line x1="462" y1="143" x2="500" y2="143" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="500" y="92" width="201" height="101" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="600.5" y="149.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">验证与兼容清单</text>
+<line x1="701" y1="143" x2="739" y2="143" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="739" y="92" width="201" height="101" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="839.5" y="149.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">分发同一制品</text>
+<text x="25" y="274" font-family="Noto Sans CJK SC, sans-serif" font-size="23" font-weight="bold" fill="#203B4A" text-anchor="start">恢复可用需要并列核对这些条件</text>
+<rect x="28" y="311" width="272" height="115" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="164.0" y="361.5" font-family="Noto Sans CJK SC, sans-serif" font-size="23" font-weight="normal" fill="#203B4A" text-anchor="middle">旧程序</text>
+<text x="164.0" y="390.5" font-family="Noto Sans CJK SC, sans-serif" font-size="23" font-weight="normal" fill="#203B4A" text-anchor="middle">仍能启动</text>
+<rect x="343" y="311" width="272" height="115" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="479.0" y="361.5" font-family="Noto Sans CJK SC, sans-serif" font-size="23" font-weight="normal" fill="#203B4A" text-anchor="middle">配置与数据</text>
+<text x="479.0" y="390.5" font-family="Noto Sans CJK SC, sans-serif" font-size="23" font-weight="normal" fill="#203B4A" text-anchor="middle">仍可理解</text>
+<rect x="658" y="311" width="272" height="115" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="794.0" y="361.5" font-family="Noto Sans CJK SC, sans-serif" font-size="23" font-weight="normal" fill="#203B4A" text-anchor="middle">设备与业务状态</text>
+<text x="794.0" y="390.5" font-family="Noto Sans CJK SC, sans-serif" font-size="23" font-weight="normal" fill="#203B4A" text-anchor="middle">满足恢复条件</text>
+<rect x="320" y="515" width="322" height="80" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="481.0" y="562.0" font-family="Noto Sans CJK SC, sans-serif" font-size="24" font-weight="normal" fill="#203B4A" text-anchor="middle">三项成立后恢复可用</text>
+<path d="M 164 426 L 164 472 L 481 472 L 481 515" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<path d="M 479 426 L 479 472 L 481 472 L 481 515" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<path d="M 794 426 L 794 472 L 481 472 L 481 515" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<text x="25" y="634" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#B46627" text-anchor="start">先保存证据并阻止新动作，再按批准的恢复条件执行</text>
+</svg>

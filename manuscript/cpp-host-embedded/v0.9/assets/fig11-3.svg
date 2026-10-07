@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960" height="390" viewBox="0 0 960 390"><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#166B70"/></marker></defs><rect width="100%" height="100%" fill="white"/>
+<rect x="15" y="137" width="182" height="76" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="106.0" y="168.0" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">采集与解析</text>
+<text x="106.0" y="197.0" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">产生有效样本</text>
+<rect x="309" y="45" width="285" height="84" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="451.5" y="80.0" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">原始记录有界队列</text>
+<text x="451.5" y="109.0" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">保留每条应保存的样本</text>
+<rect x="309" y="227" width="285" height="84" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="451.5" y="262.0" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">最新显示快照邮箱</text>
+<text x="451.5" y="291.0" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">覆盖尚未显示的旧值</text>
+<path d="M 197 175 L 250 175 L 250 87 L 309 87" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<path d="M 250 175 L 250 269 L 309 269" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<rect x="714" y="45" width="230" height="84" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="829.0" y="80.0" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">记录消费者</text>
+<text x="829.0" y="109.0" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">检查写入结果</text>
+<rect x="714" y="227" width="230" height="84" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="829.0" y="262.0" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">GUI 定时取快照</text>
+<text x="829.0" y="291.0" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">最多一项请求在途</text>
+<line x1="594" y1="88" x2="714" y2="88" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="594" y1="270" x2="714" y2="270" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="314" y="158" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#B46627" text-anchor="start">队列满：显式报告、降速或停止</text>
+<text x="314" y="187" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#B46627" text-anchor="start">不可静默丢掉追溯记录</text>
+<text x="314" y="343" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="start">快照到达时核对 generation；旧连接结果不更新新会话</text>
+</svg>

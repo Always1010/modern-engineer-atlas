@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="680" viewBox="0 0 960 680"><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#166B70"/></marker></defs><rect width="100%" height="100%" fill="white"/>
+<text x="25" y="36" font-family="Noto Sans CJK SC, sans-serif" font-size="25" font-weight="bold" fill="#203B4A" text-anchor="start">不同平台 带 D-cache 的 Cortex-M7</text>
+<rect x="27" y="64" width="906" height="58" rx="8" fill="#FFF4E9" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="480.0" y="100.0" font-family="Noto Sans CJK SC, sans-serif" font-size="23" font-weight="normal" fill="#203B4A" text-anchor="middle">F446 主线没有本图这类 D-cache 不能照搬缓存维护代码</text>
+<text x="25" y="161" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="bold" fill="#203B4A" text-anchor="start">发送方向</text>
+<text x="507" y="161" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="bold" fill="#203B4A" text-anchor="start">接收方向</text>
+<rect x="26" y="183" width="425" height="80" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="238.5" y="230.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">CPU 与缓存</text>
+<rect x="26" y="309" width="425" height="80" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="238.5" y="356.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">RAM 中的缓冲</text>
+<rect x="26" y="431" width="425" height="80" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="238.5" y="478.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">DMA 与外设</text>
+<rect x="506" y="183" width="425" height="80" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="718.5" y="230.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">CPU 与缓存</text>
+<rect x="506" y="309" width="425" height="80" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="718.5" y="356.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">RAM 中的缓冲</text>
+<rect x="506" y="431" width="425" height="80" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="718.5" y="478.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">DMA 与外设</text>
+<line x1="237" y1="263" x2="237" y2="309" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="260" y="291" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="start">clean</text>
+<line x1="237" y1="389" x2="237" y2="431" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="260" y="416" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="start">交付 DMA</text>
+<line x1="718" y1="431" x2="718" y2="389" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="741" y="416" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="start">DMA 写入</text>
+<line x1="718" y1="309" x2="718" y2="263" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="741" y="291" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="start">按协议 invalidate</text>
+<text x="25" y="552" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="start">维护与所需屏障属于所有权交接；接收交付前也须按平台协议准备</text>
+<text x="25" y="581" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="start">缓冲应独占相应缓存行，避免把 DMA 数据和 CPU 状态混在同一行</text>
+<rect x="24" y="617" width="343" height="42" rx="8" fill="#FFF4E9" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="195.5" y="645.0" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">DMA 数据 12 B</text>
+<rect x="367" y="617" width="573" height="42" rx="8" fill="#FFF4E9" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="653.5" y="645.0" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">CPU 状态 20 B</text>
+<text x="25" y="609" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#B46627" text-anchor="start">错误混放示例 32 B 仅对应此处 CMSIS M7 缓存行接口</text>
+</svg>

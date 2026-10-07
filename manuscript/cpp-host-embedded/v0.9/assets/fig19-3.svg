@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="610" viewBox="0 0 960 610"><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#166B70"/></marker></defs><rect width="100%" height="100%" fill="white"/>
+<text x="25" y="37" font-family="Noto Sans CJK SC, sans-serif" font-size="25" font-weight="bold" fill="#203B4A" text-anchor="start">温度节点的数据路径与独立内存预算</text>
+<rect x="14" y="84" width="172" height="99" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="100.0" y="140.5" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">硬件 / ISR</text>
+<line x1="186" y1="134" x2="204" y2="134" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="204" y="84" width="172" height="99" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="290.0" y="126.5" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">原始块队列</text>
+<text x="290.0" y="155.5" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">容量与满策略</text>
+<line x1="376" y1="134" x2="394" y2="134" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="394" y="84" width="172" height="99" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="480.0" y="140.5" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">采集解析任务</text>
+<line x1="566" y1="134" x2="584" y2="134" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="584" y="84" width="172" height="99" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="670.0" y="126.5" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">Sample 队列</text>
+<text x="670.0" y="155.5" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">按值交接</text>
+<line x1="756" y1="134" x2="774" y2="134" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="774" y="84" width="172" height="99" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="860.0" y="126.5" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">通信任务</text>
+<text x="860.0" y="155.5" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">UART</text>
+<rect x="287" y="260" width="390" height="86" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="482.0" y="296.0" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">监督任务 观察进展与超时</text>
+<text x="482.0" y="325.0" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">不负责每字节搬运</text>
+<path d="M 480 260 L 480 221 L 100 221 L 100 183" stroke="#166B70" stroke-width="2" fill="none" stroke-dasharray="7 5"/>
+<path d="M 480 221 L 860 221 L 860 183" stroke="#166B70" stroke-width="2" fill="none" stroke-dasharray="7 5"/>
+<text x="25" y="404" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="bold" fill="#203B4A" text-anchor="start">分别计算 不把所有 RAM 混成一个余量</text>
+<rect x="15" y="429" width="172" height="66" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="101.0" y="469.0" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">任务栈</text>
+<rect x="205" y="429" width="172" height="66" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="291.0" y="469.0" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">MSP 异常栈</text>
+<rect x="395" y="429" width="172" height="66" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="481.0" y="469.0" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">DMA 区</text>
+<rect x="585" y="429" width="172" height="66" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="671.0" y="469.0" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">队列存储</text>
+<rect x="775" y="429" width="172" height="66" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="861.0" y="469.0" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">内核对象</text>
+<text x="25" y="548" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#596770" text-anchor="start">样本字段 temperature_mC、sequence 按协议解释</text>
+<text x="25" y="577" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#596770" text-anchor="start">generation 是主机连接属性，不放进本书 MCU 温度帧</text>
+</svg>

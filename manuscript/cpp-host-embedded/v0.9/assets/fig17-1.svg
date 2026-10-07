@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="560" viewBox="0 0 960 560"><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#166B70"/></marker></defs><rect width="100%" height="100%" fill="white"/>
+<text x="24" y="36" font-family="Noto Sans CJK SC, sans-serif" font-size="25" font-weight="bold" fill="#203B4A" text-anchor="start">复位只开始交接 语言运行环境还需要建立</text>
+<rect x="15" y="76" width="173" height="92" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="101.5" y="115.0" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">启动映射</text>
+<text x="101.5" y="144.0" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">向量表</text>
+<line x1="188" y1="122" x2="205" y2="122" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="205" y="76" width="173" height="92" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="291.5" y="115.0" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">初始 MSP</text>
+<text x="291.5" y="144.0" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">Reset_Handler</text>
+<line x1="378" y1="122" x2="395" y2="122" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="395" y="76" width="173" height="92" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="481.5" y="115.0" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">早期芯片</text>
+<text x="481.5" y="144.0" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">配置</text>
+<line x1="568" y1="122" x2="585" y2="122" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="585" y="76" width="173" height="92" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="671.5" y="115.0" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">.data / .bss</text>
+<text x="671.5" y="144.0" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">必要构造</text>
+<line x1="758" y1="122" x2="775" y2="122" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="775" y="76" width="173" height="92" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="861.5" y="115.0" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">main</text>
+<text x="861.5" y="144.0" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">显式设备初始化</text>
+<rect x="25" y="226" width="910" height="92" rx="8" fill="#F5F8FA" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="44" y="257" font-family="Noto Sans CJK SC, sans-serif" font-size="23" font-weight="bold" fill="#203B4A" text-anchor="start">Flash</text>
+<rect x="170" y="242" width="190" height="57" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="265.0" y="277.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">向量表</text>
+<rect x="380" y="242" width="230" height="57" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="495.0" y="277.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">代码与只读数据</text>
+<rect x="630" y="242" width="280" height="57" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="770.0" y="277.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">.data 的初始内容</text>
+<rect x="25" y="378" width="910" height="92" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="44" y="410" font-family="Noto Sans CJK SC, sans-serif" font-size="23" font-weight="bold" fill="#203B4A" text-anchor="start">RAM</text>
+<rect x="170" y="394" width="300" height="57" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="320.0" y="429.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">.data 运行副本</text>
+<rect x="490" y="394" width="240" height="57" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="610.0" y="429.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">.bss 清零区</text>
+<rect x="750" y="394" width="160" height="57" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="830.0" y="429.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">运行栈</text>
+<path d="M 770 299 L 770 346 L 321 346 L 321 394" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)" stroke-dasharray="7 5"/>
+<text x="475" y="338" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#166B70" text-anchor="start">复制初值</text>
+<text x="25" y="516" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#596770" text-anchor="start">具体调用顺序依启动文件；链接布局必须匹配真实芯片</text>
+<text x="25" y="545" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#596770" text-anchor="start">Reset_Handler 入口不能假定完整 C++ 运行环境已经准备好</text>
+</svg>

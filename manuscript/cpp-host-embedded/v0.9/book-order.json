@@ -1,0 +1,163 @@
+{
+  "edition": "cpp-host-embedded",
+  "version": "0.9",
+  "title": "C++ 上位机与嵌入式工程入门",
+  "language": "zh-CN",
+  "baseline_commit": "0842f624995d2fd99f46c68426c9a33a73610cbb",
+  "front_matter": [
+    "docs/reading-guide.md",
+    "docs/first-reading-route.md"
+  ],
+  "chapters": [
+    {
+      "id": "N01",
+      "title": "第一章 工业软件与设备系统的基本分工",
+      "file": "chapters/N01-industrial-software-system.zh-CN.md",
+      "sha256": "87169484062deb69ca2a370a42e2b4cd7daeed29518aba7458fa60919853c6da"
+    },
+    {
+      "id": "N02",
+      "title": "第二章 C++程序 对象与资源生命期",
+      "file": "chapters/N02-program-objects-lifetime.zh-CN.md",
+      "sha256": "46fae3adaab0d5949b61631f0273121d58fbe9ee4c4c988ad5424c58e3167622"
+    },
+    {
+      "id": "N03",
+      "title": "第三章 容器 数据布局与有限内存",
+      "file": "chapters/N03-containers-layout-bounded-memory.zh-CN.md",
+      "sha256": "6dfed9559cd9f258563ec96195ac7c5860f994b65ce2e075495b523682195ddb"
+    },
+    {
+      "id": "N04",
+      "title": "第四章 数据表示与可靠协议解析",
+      "file": "chapters/N04-data-reliable-protocols.zh-CN.md",
+      "sha256": "2072d2e6a7610f5a345607cabcc0bea1d9ac83cc90e3500a79e5763bcd32d31b"
+    },
+    {
+      "id": "N05",
+      "title": "第五章 从源文件到可部署程序",
+      "file": "chapters/N05-source-build-deployment.zh-CN.md",
+      "sha256": "da034bb3453670e50dc68992e37b8a8040d5487978eb95149ba448313f4b538f"
+    },
+    {
+      "id": "N06",
+      "title": "第六章 线程 事件与异步操作",
+      "file": "chapters/N06-threads-events-async.zh-CN.md",
+      "sha256": "d167ceac25b05687e623fdfcb7c3faf6308d05d39d82789058ceb7f835ad5703"
+    },
+    {
+      "id": "N07",
+      "title": "第七章 接口设计 错误处理与适度抽象",
+      "file": "chapters/N07-interfaces-errors-abstraction.zh-CN.md",
+      "sha256": "76fe5fc5bf31cf3162784ad153a7ac79ba39e06a15db8f605b0a1fa6f330a691"
+    },
+    {
+      "id": "N08",
+      "title": "第八章 调试 测试与故障证据",
+      "file": "chapters/N08-debug-testing-evidence.zh-CN.md",
+      "sha256": "1f5b1699f83cb5cc96b8a18a4d05dfb7a30cfd74fecf514bd40f5b28c53c4119"
+    },
+    {
+      "id": "N09",
+      "title": "第九章 工程协作与可恢复交付",
+      "file": "chapters/N09-collaboration-recoverable-delivery.zh-CN.md",
+      "sha256": "0307b22761b8d712cc9b775eaf196f602fdd39c44d5055a7489b663779848792"
+    },
+    {
+      "id": "N10",
+      "title": "第十章 Qt应用结构与界面模型",
+      "file": "chapters/N10-qt-application-models.zh-CN.md",
+      "sha256": "6670dbd1ada3f671705c222f896fbd9bca8deb48e85fd29b68416aff9c40b721"
+    },
+    {
+      "id": "N11",
+      "title": "第十一章 后台采集与安全关闭",
+      "file": "chapters/N11-background-acquisition-shutdown.zh-CN.md",
+      "sha256": "147cbe7f34a351381a2447f60253e83bb97e2ee1260116a78a32eee60a55254c"
+    },
+    {
+      "id": "N12",
+      "title": "第十二章 串口 网络与设备会话",
+      "file": "chapters/N12-serial-network-sessions.zh-CN.md",
+      "sha256": "476456624ee4cb300ab7628fb4b28401cff86c3587bce4b0f610ccd82b27b27e"
+    },
+    {
+      "id": "N13",
+      "title": "第十三章 PLC与工业数据交互",
+      "file": "chapters/N13-plc-industrial-data.zh-CN.md",
+      "sha256": "d0c30c9524955c3cfa2576bcde5a4789016e69549e08da4231f8bee6cb10114a"
+    },
+    {
+      "id": "N14",
+      "title": "第十四章 测试流程 质量记录与追溯",
+      "file": "chapters/N14-test-records-traceability.zh-CN.md",
+      "sha256": "bd8004070d21e76450b3bd4b19d6e9fb97fafe1b12f4b5dfb0bbf166173d0bc1"
+    },
+    {
+      "id": "N15",
+      "title": "第十五章 Windows与Linux部署维护",
+      "file": "chapters/N15-windows-linux-deployment.zh-CN.md",
+      "sha256": "8a1955e8d9e9ab1ab9d74f2be8c8f8a11ac86a01b82c52fd1e39979a27cc3b84"
+    },
+    {
+      "id": "N16",
+      "title": "第十六章 看懂板卡 电路与测量工具",
+      "file": "chapters/N16-boards-circuits-measurement.zh-CN.md",
+      "sha256": "92472da3085f4d7aa305fe70b0df96dabcc3fe510257b86d68c3aa2827113b1b"
+    },
+    {
+      "id": "N17",
+      "title": "第十七章 MCU启动 GPIO与外设通信",
+      "file": "chapters/N17-mcu-startup-gpio-peripherals.zh-CN.md",
+      "sha256": "1316b51628bfb55cba5ea4bdb18ec218e87ac45cf4b45529106a6e2985d87f82"
+    },
+    {
+      "id": "N18",
+      "title": "第十八章 中断 DMA与缓冲区所有权",
+      "file": "chapters/N18-interrupts-dma-buffer-ownership.zh-CN.md",
+      "sha256": "7560e120b05bf3104549efb4c1a3ad05d83b5b9a668f94c55f668f7fa6a000b7"
+    },
+    {
+      "id": "N19",
+      "title": "第十九章 RTOS任务 调度与资源预算",
+      "file": "chapters/N19-rtos-tasks-scheduling-budgets.zh-CN.md",
+      "sha256": "8f2a06212b35050d13a5ad1612f9965418086158efecca5f1204ead0686e7019"
+    },
+    {
+      "id": "N20",
+      "title": "第二十章 低功耗 更新与现场恢复",
+      "file": "chapters/N20-power-updates-field-recovery.zh-CN.md",
+      "sha256": "8b76ab2c23425903bbe9eaad92b6aacaf4527659e015aa57a06bf36ab26184f6"
+    },
+    {
+      "id": "N21",
+      "title": "第二十一章 嵌入式Linux启动与用户态应用",
+      "file": "chapters/N21-embedded-linux-startup-applications.zh-CN.md",
+      "sha256": "9a2f2846afe2aa7b5e7f1a21d23f0914ab6b46a9bed5945715503edd9dd1af86"
+    },
+    {
+      "id": "N22",
+      "title": "第二十二章 Linux设备访问与驱动边界",
+      "file": "chapters/N22-linux-device-access-driver-boundaries.zh-CN.md",
+      "sha256": "5271af1e6ce8bbee10ff6cb3153c2fe4df5a161785ae5bd96c1e5cbf94d1d7f6"
+    },
+    {
+      "id": "N23",
+      "title": "第二十三章 一个设备产品的测试校准工站",
+      "file": "chapters/N23-temperature-calibration-station.zh-CN.md",
+      "sha256": "04d70df00e7eb44117de8126bff8d212dc8d72f37a7961fef71a71d949b56f8a"
+    },
+    {
+      "id": "N24",
+      "title": "第二十四章 常见故障的推理与面试追问",
+      "file": "chapters/N24-failure-reasoning-interviews.zh-CN.md",
+      "sha256": "19f2536d095bf2fa394f9dbc24c3c6c701c6a35d61f63937d118b87c1dfb93ff"
+    }
+  ],
+  "back_matter": [
+    "docs/glossary.md",
+    "docs/environment-reader.md",
+    "docs/credits-reader.md",
+    "docs/edition-note.md"
+  ]
+}

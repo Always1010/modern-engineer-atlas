@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="575" viewBox="0 0 960 575"><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#166B70"/></marker></defs><rect width="100%" height="100%" fill="white"/>
+<text x="25" y="38" font-family="Noto Sans CJK SC, sans-serif" font-size="25" font-weight="bold" fill="#203B4A" text-anchor="start">单核 FreeRTOS 任务状态与调度</text>
+<rect x="42" y="110" width="280" height="85" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="182.0" y="159.5" font-family="Noto Sans CJK SC, sans-serif" font-size="24" font-weight="normal" fill="#203B4A" text-anchor="middle">Ready 就绪</text>
+<rect x="630" y="110" width="280" height="85" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="770.0" y="159.5" font-family="Noto Sans CJK SC, sans-serif" font-size="24" font-weight="normal" fill="#203B4A" text-anchor="middle">Running 运行</text>
+<rect x="630" y="368" width="280" height="85" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="770.0" y="417.5" font-family="Noto Sans CJK SC, sans-serif" font-size="24" font-weight="normal" fill="#203B4A" text-anchor="middle">Blocked 阻塞</text>
+<rect x="42" y="368" width="280" height="85" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="182.0" y="417.5" font-family="Noto Sans CJK SC, sans-serif" font-size="24" font-weight="normal" fill="#203B4A" text-anchor="middle">Suspended 挂起</text>
+<line x1="322" y1="132" x2="630" y2="132" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="475" y="115" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">调度器选中</text>
+<line x1="630" y1="178" x2="322" y2="178" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="475" y="214" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">被抢占或主动让出</text>
+<line x1="770" y1="195" x2="770" y2="368" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="790" y="263" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="start">等队列</text>
+<text x="790" y="292" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="start">或期限</text>
+<path d="M 630 410 L 475 410 L 475 260 L 183 260 L 183 195" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<text x="496" y="300" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="start">事件到来</text>
+<text x="496" y="329" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="start">或超时</text>
+<line x1="110" y1="195" x2="110" y2="368" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="26" y="293" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="start">挂起</text>
+<line x1="251" y1="368" x2="251" y2="195" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="271" y="293" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="start">恢复</text>
+<text x="26" y="514" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#596770" text-anchor="start">Blocked → Ready 后仍要竞争 CPU，不保证立即 Running</text>
+<text x="26" y="543" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#596770" text-anchor="start">Idle 是最低优先级就绪候选；中断不是普通任务</text>
+</svg>

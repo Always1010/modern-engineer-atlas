@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="680" viewBox="0 0 960 680"><defs>
+<marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#166B70"/></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#B46627"/></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#596770"/></marker>
+<marker id="red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#AD4D43"/></marker>
+</defs><rect width="100%" height="100%" fill="white"/>
+<text x="26" y="35" font-family="Noto Sans CJK SC, sans-serif" font-size="24" font-weight="bold" fill="#203B4A" text-anchor="start">PC 提交寄存器邮箱，PLC 按平台调度处理</text>
+<text x="203" y="83" font-family="Noto Sans CJK SC, sans-serif" font-size="23" font-weight="bold" fill="#203B4A" text-anchor="middle">PC：构造一次完整提交</text>
+<rect x="28" y="107" width="350" height="85" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="203.0" y="142.5" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">影子参数</text>
+<text x="203.0" y="170.5" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">参数集合 + 版本 / 校验信息</text>
+<rect x="28" y="231" width="350" height="57" rx="8" fill="white" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="203.0" y="266.5" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">① 先写完整参数</text>
+<line x1="203" y1="192" x2="203" y2="231" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="217" y="219" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#166B70" text-anchor="start">准备写入</text>
+<rect x="28" y="328" width="350" height="57" rx="8" fill="#FFF4E9" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="203.0" y="363.5" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">② 最后写 commit_id</text>
+<line x1="203" y1="288" x2="203" y2="328" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="217" y="315" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#166B70" text-anchor="start">写入顺序</text>
+<rect x="477" y="65" width="455" height="364" rx="8" fill="#F5F8FA" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="703" y="92" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="bold" fill="#203B4A" text-anchor="middle">PLC 扫描与通信机会</text>
+<rect x="593" y="109" width="220" height="55" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="703.0" y="143.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">读输入</text>
+<rect x="714" y="208" width="192" height="67" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="810.0" y="248.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">逻辑与状态</text>
+<rect x="593" y="327" width="220" height="55" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="703.0" y="361.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">更新输出</text>
+<rect x="494" y="208" width="191" height="67" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="589.5" y="248.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">通信处理机会</text>
+<path d="M 813 137 L 861 137 L 861 208" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<path d="M 810 275 L 810 306 L 703 306 L 703 327" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<path d="M 593 354 L 589 354 L 589 275" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<path d="M 589 208 L 589 137 L 593 137" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<text x="705" y="411" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#B46627" text-anchor="middle">具体调度依 PLC 平台</text>
+<path d="M 378 356 L 435 356 L 435 242 L 494 242" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<text x="397" y="222" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#166B70" text-anchor="start">寄存器写入</text>
+<path d="M 528 275 L 528 452 L 184 452 L 184 487" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<text x="342" y="441" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#166B70" text-anchor="middle">检测新 commit_id</text>
+<rect x="28" y="487" width="246" height="64" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="151.0" y="526.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">复制一致参数</text>
+<rect x="357" y="487" width="246" height="64" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="480.0" y="526.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">accepted_id</text>
+<rect x="686" y="487" width="246" height="64" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="809.0" y="526.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">completed_id</text>
+<line x1="274" y1="519" x2="357" y2="519" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="315.5" y="505" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#166B70" text-anchor="middle">接纳</text>
+<line x1="603" y1="519" x2="686" y2="519" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="644.5" y="505" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#166B70" text-anchor="middle">完成</text>
+<rect x="28" y="588" width="904" height="66" rx="8" fill="#FFF4E9" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="480.0" y="628.0" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">安全许可和保护链 · 独立校验，不被通信确认替代</text>
+</svg>

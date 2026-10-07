@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="570" viewBox="0 0 960 570"><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#166B70"/></marker></defs><rect width="100%" height="100%" fill="white"/>
+<text x="24" y="36" font-family="Noto Sans CJK SC, sans-serif" font-size="25" font-weight="bold" fill="#203B4A" text-anchor="start">中断响应不是完整任务响应</text>
+<rect x="8" y="165" width="108" height="92" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="62.0" y="204.0" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="middle">外设事件</text>
+<text x="62.0" y="233.0" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="middle">t0</text>
+<rect x="127" y="165" width="108" height="92" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="181.0" y="204.0" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="middle">屏蔽或</text>
+<text x="181.0" y="233.0" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="middle">更急 IRQ</text>
+<rect x="246" y="165" width="108" height="92" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="300.0" y="218.0" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="middle">异常入栈</text>
+<rect x="365" y="165" width="108" height="92" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="419.0" y="204.0" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="middle">ISR 应答</text>
+<text x="419.0" y="233.0" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="middle">取走状态</text>
+<rect x="484" y="165" width="108" height="92" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="538.0" y="218.0" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="middle">发布消息</text>
+<rect x="603" y="165" width="108" height="92" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="657.0" y="218.0" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="middle">任务就绪</text>
+<rect x="722" y="165" width="108" height="92" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="776.0" y="218.0" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="middle">等待调度</text>
+<rect x="841" y="165" width="108" height="92" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="895.0" y="204.0" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="middle">任务处理</text>
+<text x="895.0" y="233.0" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="middle">输出结果</text>
+<line x1="116" y1="211" x2="127" y2="211" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="235" y1="211" x2="246" y2="211" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="354" y1="211" x2="365" y2="211" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="473" y1="211" x2="484" y2="211" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="592" y1="211" x2="603" y2="211" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="711" y1="211" x2="722" y2="211" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="830" y1="211" x2="841" y2="211" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="44" y1="112" x2="401" y2="112" stroke="#166B70" stroke-width="2"/>
+<line x1="44" y1="104" x2="44" y2="120" stroke="#166B70" stroke-width="2"/>
+<line x1="401" y1="104" x2="401" y2="120" stroke="#166B70" stroke-width="2"/>
+<text x="222" y="91" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">中断响应区间</text>
+<line x1="44" y1="312" x2="913" y2="312" stroke="#166B70" stroke-width="2"/>
+<line x1="44" y1="304" x2="44" y2="320" stroke="#166B70" stroke-width="2"/>
+<line x1="913" y1="304" x2="913" y2="320" stroke="#166B70" stroke-width="2"/>
+<text x="478" y="350" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">端到端响应还包括调度与任务工作</text>
+<rect x="174" y="391" width="617" height="70" rx="8" fill="#FFF4E9" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="482.5" y="433.0" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">更高紧急度 IRQ 仍可能在允许处抢占</text>
+<text x="25" y="509" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#596770" text-anchor="start">NVIC：数值小表示更高紧急度；FreeRTOS 任务：数值大表示更高优先级</text>
+<text x="25" y="538" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#596770" text-anchor="start">时间线没有实测比例；某个中断很快不代表整个结果按时完成</text>
+</svg>

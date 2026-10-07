@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="655" viewBox="0 0 960 655"><defs>
+<marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#166B70"/></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#B46627"/></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#596770"/></marker>
+<marker id="red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#AD4D43"/></marker>
+</defs><rect width="100%" height="100%" fill="white"/>
+<text x="26" y="35" font-family="Noto Sans CJK SC, sans-serif" font-size="24" font-weight="bold" fill="#203B4A" text-anchor="start">调整前、校准拟合与独立复核使用不同点集</text>
+<rect x="28" y="79" width="274" height="310" rx="8" fill="#F5F8FA" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="165" y="113" font-family="Noto Sans CJK SC, sans-serif" font-size="23" font-weight="bold" fill="#203B4A" text-anchor="middle">① 调整前</text>
+<rect x="343" y="79" width="274" height="310" rx="8" fill="#F5F8FA" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="480" y="113" font-family="Noto Sans CJK SC, sans-serif" font-size="23" font-weight="bold" fill="#203B4A" text-anchor="middle">② 两点拟合</text>
+<rect x="658" y="79" width="274" height="310" rx="8" fill="#F5F8FA" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="795" y="113" font-family="Noto Sans CJK SC, sans-serif" font-size="23" font-weight="bold" fill="#203B4A" text-anchor="middle">③ 独立复核</text>
+<line x1="62" y1="308" x2="269" y2="308" stroke="#596770" stroke-width="2" marker-end="url(#gray)"/>
+<line x1="62" y1="308" x2="62" y2="149" stroke="#596770" stroke-width="2" marker-end="url(#gray)"/>
+<text x="69" y="152" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#596770" text-anchor="start">原始误差</text>
+<text x="269" y="336" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#596770" text-anchor="end">示意温度</text>
+<circle cx="99" cy="264" r="6" fill="#B46627" stroke="none" stroke-width="2"/>
+<text x="99" y="289" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#B46627" text-anchor="middle">A01</text>
+<circle cx="161" cy="223" r="6" fill="#B46627" stroke="none" stroke-width="2"/>
+<text x="153" y="209" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#B46627" text-anchor="end">A02</text>
+<circle cx="226" cy="186" r="6" fill="#B46627" stroke="none" stroke-width="2"/>
+<text x="218" y="172" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#B46627" text-anchor="end">A03</text>
+<text x="165" y="367" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#596770" text-anchor="middle">保留调整前原始证据</text>
+<line x1="376" y1="308" x2="583" y2="308" stroke="#596770" stroke-width="2" marker-end="url(#gray)"/>
+<line x1="376" y1="308" x2="376" y2="149" stroke="#596770" stroke-width="2" marker-end="url(#gray)"/>
+<text x="383" y="152" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#596770" text-anchor="start">参考值</text>
+<text x="583" y="336" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#596770" text-anchor="end">原始值</text>
+<path d="M 401 281 L 559 183" stroke="#166B70" stroke-width="2.5" fill="none"/>
+<circle cx="401" cy="281" r="7" fill="#166B70" stroke="none" stroke-width="2"/>
+<text x="419" y="302" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#166B70" text-anchor="start">C01</text>
+<circle cx="559" cy="183" r="7" fill="#166B70" stroke="none" stroke-width="2"/>
+<text x="547" y="168" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#166B70" text-anchor="end">C02</text>
+<text x="480" y="367" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#596770" text-anchor="middle">C01、C02 拟合 a、b</text>
+<line x1="692" y1="308" x2="899" y2="308" stroke="#596770" stroke-width="2" marker-end="url(#gray)"/>
+<line x1="692" y1="308" x2="692" y2="149" stroke="#596770" stroke-width="2" marker-end="url(#gray)"/>
+<text x="699" y="152" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#596770" text-anchor="start">校准后误差</text>
+<text x="899" y="336" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#596770" text-anchor="end">示意温度</text>
+<line x1="692" y1="238" x2="896" y2="238" stroke="#B6CCD4" stroke-width="2" stroke-dasharray="7 5"/>
+<circle cx="721" cy="250" r="6" fill="#166B70" stroke="none" stroke-width="2"/>
+<text x="721" y="232" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#166B70" text-anchor="middle">V01</text>
+<circle cx="786" cy="219" r="6" fill="#166B70" stroke="none" stroke-width="2"/>
+<text x="786" y="201" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#166B70" text-anchor="middle">V02</text>
+<circle cx="867" cy="245" r="6" fill="#166B70" stroke="none" stroke-width="2"/>
+<text x="867" y="227" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#166B70" text-anchor="middle">V03</text>
+<text x="795" y="367" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#596770" text-anchor="middle">不复用 C01、C02</text>
+<text x="28" y="451" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="start">误差轴上的</text>
+<text x="28" y="482" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="start">守门边界示意</text>
+<text x="28" y="530" font-family="Noto Sans CJK SC, sans-serif" font-size="24" font-weight="bold" fill="#166B70" text-anchor="start">±350 m°C</text>
+<text x="618" y="431" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#B46627" text-anchor="middle">±500 m°C 限值</text>
+<rect x="443" y="449" width="350" height="66" rx="0" fill="#EFF7F5" stroke="none" stroke-width="1.5"/>
+<line x1="312" y1="481" x2="925" y2="481" stroke="#596770" stroke-width="2" marker-end="url(#gray)"/>
+<line x1="368" y1="450" x2="368" y2="517" stroke="#B46627" stroke-width="2" stroke-dasharray="7 5"/>
+<text x="368" y="545" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#B46627" text-anchor="middle">−500</text>
+<line x1="443" y1="465" x2="443" y2="498" stroke="#166B70" stroke-width="2"/>
+<text x="443" y="545" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#166B70" text-anchor="middle">−350</text>
+<line x1="618" y1="465" x2="618" y2="498" stroke="#596770" stroke-width="2"/>
+<text x="618" y="545" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#596770" text-anchor="middle">0</text>
+<line x1="793" y1="465" x2="793" y2="498" stroke="#166B70" stroke-width="2"/>
+<text x="793" y="545" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#166B70" text-anchor="middle">+350</text>
+<line x1="868" y1="450" x2="868" y2="517" stroke="#B46627" stroke-width="2" stroke-dasharray="7 5"/>
+<text x="868" y="545" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#B46627" text-anchor="middle">+500</text>
+<text x="926" y="574" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#596770" text-anchor="end">误差 / m°C</text>
+<text x="28" y="607" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#B46627" text-anchor="start">U = 150 m°C 为示意；守门规则须事先批准</text>
+<text x="28" y="642" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#596770" text-anchor="start">全部点位与边界用于解释方法，不代表真实测量结果或设备精度。</text>
+</svg>

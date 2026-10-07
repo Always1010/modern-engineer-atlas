@@ -1,0 +1,119 @@
+[
+  {
+    "file": "assets/stm32f4-discovery-original.jpg",
+    "type": "genuine-hardware-photograph",
+    "author": "Teardown Central",
+    "title": "STM32F4 Discovery",
+    "sourceURL": "https://commons.wikimedia.org/wiki/File:STM32F4_Discovery_(9067300323).jpg",
+    "originalSourceURL": "https://www.flickr.com/photos/84713982@N02/9067300323/",
+    "downloadURL": "https://upload.wikimedia.org/wikipedia/commons/7/7a/STM32F4_Discovery_%289067300323%29.jpg",
+    "license": "CC BY-SA 2.0 Generic",
+    "licenseURL": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "modification": "原图未裁切未改色，排版可等比例缩放",
+    "downloadDate": "2026-10-03",
+    "scope": "本照片独立按原许可证使用，不声明整本书开放许可",
+    "sha256": "ddd892fd716d0354d7777fc7bb33b33970133c08a16fb04857310c262fdafe52",
+    "verified_on": "2026-10-06",
+    "original_chapter": "C28",
+    "original_chapter_title": "第二十八章 MCU 与固件的硬件边界",
+    "edition_version": "0.9",
+    "used_in_chapters": [
+      "N16"
+    ]
+  },
+  {
+    "file": "assets/can-bus-shield-v2.jpg",
+    "type": "genuine-hardware-photograph",
+    "title": "CAN BUS Shield V2",
+    "author": "Seeed Wiki",
+    "created": "2017-07-28",
+    "sourceURL": "https://commons.wikimedia.org/wiki/File:CAN_BUS_Shield_V2.jpg",
+    "downloadURL": "https://upload.wikimedia.org/wikipedia/commons/b/ba/CAN_BUS_Shield_V2.jpg",
+    "license": "CC BY-SA 4.0 International",
+    "licenseURL": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "modification": "原始照片字节未改；未裁切、未改色，排版仅等比例显示",
+    "dimensions": [
+      1895,
+      1263
+    ],
+    "downloadDate": "2026-10-03",
+    "sha256": "f6bbac6cad5cefc9b9af5b45a0f182ee48211cf088c1277915bab49ee8a7cbf6",
+    "verified_on": "2026-10-06",
+    "original_chapter": "C28",
+    "original_chapter_title": "第二十八章 MCU 与固件的硬件边界",
+    "edition_version": "0.9",
+    "used_in_chapters": [
+      "N17"
+    ]
+  },
+  {
+    "file": "assets/uart-to-usb-adapter-sunmist.jpg",
+    "type": "genuine-hardware-photograph",
+    "author": "Sunmist",
+    "title": "UART to USB adapter",
+    "sourceURL": "https://commons.wikimedia.org/wiki/File:UART_to_USB_adapter.jpg",
+    "downloadURL": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/UART_to_USB_adapter.jpg/1280px-UART_to_USB_adapter.jpg",
+    "license": "CC0 1.0 Universal Public Domain Dedication",
+    "licenseURL": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "modification": "照片内容未改，使用来源站点提供的1280×960等比例版本；本地未裁切或改色",
+    "downloadDate": "2026-10-03",
+    "sha256": "2a3ba401cc220f74f683551c97ff39786f55e1b897105e98003e283369b3ad40",
+    "originalDownloadURL": "https://upload.wikimedia.org/wikipedia/commons/2/24/UART_to_USB_adapter.jpg",
+    "dimensions": [
+      1280,
+      960
+    ],
+    "verified_on": "2026-10-06",
+    "original_chapter": "C31",
+    "original_chapter_title": "第三十一章 Windows Qt 与设备上位机",
+    "edition_version": "0.9",
+    "used_in_chapters": [
+      "N12"
+    ]
+  },
+  {
+    "file": "assets/laboratory-instruments-radarvector.jpg",
+    "type": "genuine-hardware-photograph",
+    "title": "Keysight InfiniiVision DSOX 4024A and digital multimeter and power supply in laboratory use",
+    "author": "Radarvector",
+    "created": "2021-04-05",
+    "sourceURL": "https://commons.wikimedia.org/wiki/File:Keysight_InfiniiVision_DSOX_4024A_and_digital_multimeter_and_power_supply_in_laboratory_use.jpg",
+    "sourceRevisionURL": "https://commons.wikimedia.org/w/index.php?title=File:Keysight_InfiniiVision_DSOX_4024A_and_digital_multimeter_and_power_supply_in_laboratory_use.jpg&oldid=820159809",
+    "originalSourceURL": "https://commons.wikimedia.org/wiki/File:Digital_oscilloscope_in_use.jpg",
+    "downloadURL": "https://upload.wikimedia.org/wikipedia/commons/0/09/Keysight_InfiniiVision_DSOX_4024A_and_digital_multimeter_and_power_supply_in_laboratory_use.jpg",
+    "license": "CC BY-SA 4.0 International",
+    "licenseURL": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "modification": "沿用来源站点已裁切版本的原始JPEG字节；Pittigrilli于2022-12-21从原照裁切。本书未新增裁切、改色或图像生成，仅等比例排版",
+    "dimensions": [
+      2278,
+      1872
+    ],
+    "downloadDate": "2026-10-04",
+    "scope": "照片用于辨认仪器，不提供书中实验波形、接线安全或性能证据；图片独立按原许可证使用",
+    "sha256": "3843d9ee9da44e82fb4496c3e1e2eb875e6f0878384876c9b3c4e1de9b6d9711",
+    "verified_on": "2026-10-06",
+    "original_chapter": "C28",
+    "original_chapter_title": "第二十八章 MCU 与固件的硬件边界",
+    "edition_version": "0.9",
+    "used_in_chapters": [
+      "N16"
+    ]
+  },
+  {
+    "file": "assets/usb-logic-analyzer-jayakody.jpg",
+    "author": "Dilshan Jayakody",
+    "title": "8 Channel USB logic analyzer",
+    "sourceURL": "https://commons.wikimedia.org/wiki/File:8_Channel_USB_logic_analyzer_(5172098012).jpg",
+    "sourceRevisionURL": "https://commons.wikimedia.org/w/index.php?title=File:8_Channel_USB_logic_analyzer_(5172098012).jpg&oldid=894466947",
+    "downloadURL": "https://upload.wikimedia.org/wikipedia/commons/b/ba/8_Channel_USB_logic_analyzer_%285172098012%29.jpg",
+    "license": "CC BY-SA 2.0 Generic",
+    "licenseURL": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "modification": "本版未裁切、未改色，等比例排版",
+    "verified_on": "2026-10-06",
+    "sha256": "709910040e2eb22271e545934a8c47edc20a2577e7a9d8b340159a877de25e37",
+    "edition_version": "0.9",
+    "used_in_chapters": [
+      "N16"
+    ]
+  }
+]
