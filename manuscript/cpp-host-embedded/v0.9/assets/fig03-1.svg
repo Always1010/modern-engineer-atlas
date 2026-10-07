@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="650" viewBox="0 0 960 650"><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#166B70"/></marker></defs><rect width="100%" height="100%" fill="white"/>
+<text x="24" y="36" font-family="Noto Sans CJK SC, sans-serif" font-size="25" font-weight="bold" fill="#203B4A" text-anchor="start">容量中的空间不等于已有元素</text>
+<text x="25" y="93" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="start">size = 3  capacity = 6</text>
+<rect x="30" y="124" width="137" height="75" rx="8" fill="#CCE8E3" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="98.5" y="168.5" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">sample 1</text>
+<rect x="179" y="124" width="137" height="75" rx="8" fill="#CCE8E3" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="247.5" y="168.5" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">sample 2</text>
+<rect x="328" y="124" width="137" height="75" rx="8" fill="#CCE8E3" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="396.5" y="168.5" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">sample 3</text>
+<rect x="477" y="124" width="137" height="75" rx="8" fill="#F5F8FA" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="545.5" y="168.5" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">未有元素</text>
+<rect x="626" y="124" width="137" height="75" rx="8" fill="#F5F8FA" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="694.5" y="168.5" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">未有元素</text>
+<rect x="775" y="124" width="137" height="75" rx="8" fill="#F5F8FA" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="843.5" y="168.5" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">未有元素</text>
+<text x="471" y="237" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">reserve 请求更多容量 成功重分配后的示意</text>
+<rect x="31" y="283" width="550" height="71" rx="8" fill="#F5F8FA" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="306.0" y="325.5" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">旧存储 旧元素生命期已结束</text>
+<line x1="43" y1="296" x2="566" y2="341" stroke="#B46627" stroke-width="3"/>
+<line x1="43" y1="341" x2="566" y2="296" stroke="#B46627" stroke-width="3"/>
+<rect x="682" y="279" width="250" height="81" rx="8" fill="#FFF4E9" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="807.0" y="312.5" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">旧借用指针</text>
+<text x="807.0" y="341.5" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">不再可用</text>
+<line x1="682" y1="320" x2="584" y2="320" stroke="#B46627" stroke-width="2" marker-end="url(#arr)" stroke-dasharray="7 5"/>
+<rect x="31" y="427" width="104" height="75" rx="8" fill="#CCE8E3" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="83.0" y="471.5" font-family="Noto Sans CJK SC, sans-serif" font-size="17" font-weight="normal" fill="#203B4A" text-anchor="middle">sample 1</text>
+<rect x="144" y="427" width="104" height="75" rx="8" fill="#CCE8E3" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="196.0" y="471.5" font-family="Noto Sans CJK SC, sans-serif" font-size="17" font-weight="normal" fill="#203B4A" text-anchor="middle">sample 2</text>
+<rect x="257" y="427" width="104" height="75" rx="8" fill="#CCE8E3" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="309.0" y="471.5" font-family="Noto Sans CJK SC, sans-serif" font-size="17" font-weight="normal" fill="#203B4A" text-anchor="middle">sample 3</text>
+<rect x="370" y="427" width="104" height="75" rx="8" fill="#F5F8FA" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="422.0" y="471.5" font-family="Noto Sans CJK SC, sans-serif" font-size="17" font-weight="normal" fill="#203B4A" text-anchor="middle">空间</text>
+<rect x="483" y="427" width="104" height="75" rx="8" fill="#F5F8FA" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="535.0" y="471.5" font-family="Noto Sans CJK SC, sans-serif" font-size="17" font-weight="normal" fill="#203B4A" text-anchor="middle">空间</text>
+<rect x="596" y="427" width="104" height="75" rx="8" fill="#F5F8FA" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="648.0" y="471.5" font-family="Noto Sans CJK SC, sans-serif" font-size="17" font-weight="normal" fill="#203B4A" text-anchor="middle">空间</text>
+<rect x="709" y="427" width="104" height="75" rx="8" fill="#F5F8FA" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="761.0" y="471.5" font-family="Noto Sans CJK SC, sans-serif" font-size="17" font-weight="normal" fill="#203B4A" text-anchor="middle">空间</text>
+<rect x="822" y="427" width="104" height="75" rx="8" fill="#F5F8FA" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="874.0" y="471.5" font-family="Noto Sans CJK SC, sans-serif" font-size="17" font-weight="normal" fill="#203B4A" text-anchor="middle">空间</text>
+<text x="34" y="409" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="bold" fill="#203B4A" text-anchor="start">新存储</text>
+<text x="685" y="557" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">当前 data() 指向新区域</text>
+<path d="M 511 544 L 83 544 L 83 502" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<text x="25" y="616" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#596770" text-anchor="start">新容量的具体值依实现与请求；本图不规定 vector 对象的内部字段布局</text>
+</svg>

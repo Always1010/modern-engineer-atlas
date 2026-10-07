@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="590" viewBox="0 0 960 590"><defs>
+<marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#166B70"/></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#B46627"/></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#596770"/></marker>
+<marker id="red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#AD4D43"/></marker>
+</defs><rect width="100%" height="100%" fill="white"/>
+<text x="26" y="35" font-family="Noto Sans CJK SC, sans-serif" font-size="24" font-weight="bold" fill="#203B4A" text-anchor="start">同一消息跨越应用、缓冲与电气职责</text>
+<rect x="30" y="75" width="234" height="95" rx="8" fill="white" stroke="#B6CCD4" stroke-width="1.5"/>
+<rect x="30" y="75" width="234" height="33" rx="0" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="147.0" y="99" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#166B70" text-anchor="middle">应用消息</text>
+<text x="147.0" y="139" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">上位机应用帧</text>
+<rect x="358" y="75" width="234" height="95" rx="8" fill="white" stroke="#B6CCD4" stroke-width="1.5"/>
+<rect x="358" y="75" width="234" height="33" rx="0" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="475.0" y="99" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#166B70" text-anchor="middle">字节与缓冲</text>
+<text x="475.0" y="139" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">Qt 串口</text>
+<rect x="686" y="75" width="234" height="95" rx="8" fill="white" stroke="#B6CCD4" stroke-width="1.5"/>
+<rect x="686" y="75" width="234" height="33" rx="0" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="803.0" y="99" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#166B70" text-anchor="middle">字节与缓冲</text>
+<text x="803.0" y="139" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">USB 桥</text>
+<line x1="264" y1="128" x2="358" y2="128" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="311.0" y="112" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#166B70" text-anchor="middle">交付字节</text>
+<line x1="592" y1="128" x2="686" y2="128" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="639.0" y="112" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#166B70" text-anchor="middle">USB 承载</text>
+<path d="M 803 170 L 803 225 L 128 225 L 128 294" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<text x="478" y="211" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#166B70" text-anchor="middle">桥接输出：物理接口与电平依硬件选型</text>
+<rect x="30" y="294" width="195" height="120" rx="8" fill="white" stroke="#B6CCD4" stroke-width="1.5"/>
+<rect x="30" y="294" width="195" height="33" rx="0" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="127.5" y="318" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#166B70" text-anchor="middle">电气连接</text>
+<text x="127.5" y="358" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">收发器</text>
+<rect x="278" y="294" width="184" height="120" rx="8" fill="white" stroke="#B6CCD4" stroke-width="1.5"/>
+<rect x="278" y="294" width="184" height="33" rx="0" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="370.0" y="318" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#166B70" text-anchor="middle">电气连接</text>
+<text x="370.0" y="358" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">线缆与</text>
+<text x="370.0" y="386" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">对端收发器</text>
+<rect x="515" y="294" width="183" height="120" rx="8" fill="white" stroke="#B6CCD4" stroke-width="1.5"/>
+<rect x="515" y="294" width="183" height="33" rx="0" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="606.5" y="318" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#166B70" text-anchor="middle">字节与缓冲</text>
+<text x="606.5" y="358" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">节点 UART</text>
+<rect x="751" y="294" width="179" height="120" rx="8" fill="white" stroke="#B6CCD4" stroke-width="1.5"/>
+<rect x="751" y="294" width="179" height="33" rx="0" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="840.5" y="318" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#166B70" text-anchor="middle">应用消息</text>
+<text x="840.5" y="358" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">设备协议</text>
+<line x1="225" y1="370" x2="278" y2="370" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="251.5" y="350" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#166B70" text-anchor="middle">信号</text>
+<line x1="462" y1="370" x2="515" y2="370" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="488.5" y="350" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#166B70" text-anchor="middle">字节</text>
+<line x1="698" y1="370" x2="751" y2="370" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="724.5" y="350" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#166B70" text-anchor="middle">解析</text>
+<text x="28" y="456" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="bold" fill="#203B4A" text-anchor="start">分别确认三个完成点</text>
+<rect x="28" y="475" width="274" height="60" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="165.0" y="512.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">本地写入接纳</text>
+<rect x="343" y="475" width="274" height="60" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="480.0" y="512.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">字节传输进度</text>
+<rect x="658" y="475" width="274" height="60" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="795.0" y="512.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">设备业务确认</text>
+<text x="28" y="574" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#B46627" text-anchor="start">UART 是字节接口；不能把它等同于 RS-485 电气规范</text>
+</svg>

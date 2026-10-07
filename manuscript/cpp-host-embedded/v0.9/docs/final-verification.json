@@ -1,0 +1,340 @@
+{
+  "edition": "cpp-host-embedded",
+  "version": "0.9",
+  "verified_on": "2026-10-06",
+  "baseline_commit": "0842f624995d2fd99f46c68426c9a33a73610cbb",
+  "chapter_count": 24,
+  "original_full_files_identity_verified": 58,
+  "source_status": "All original chapter files retrieved in full; semantic reading limited to actual migration scope. Source paths refer to the original repository.",
+  "chapters": [
+    {
+      "id": "N01",
+      "title": "第一章 工业软件与设备系统的基本分工",
+      "start_page": 8,
+      "end_page": 15,
+      "pages": 8,
+      "characters": 9361,
+      "code_blocks": 0,
+      "sha256": "87169484062deb69ca2a370a42e2b4cd7daeed29518aba7458fa60919853c6da"
+    },
+    {
+      "id": "N02",
+      "title": "第二章 C++程序 对象与资源生命期",
+      "start_page": 16,
+      "end_page": 30,
+      "pages": 15,
+      "characters": 19185,
+      "code_blocks": 10,
+      "sha256": "46fae3adaab0d5949b61631f0273121d58fbe9ee4c4c988ad5424c58e3167622"
+    },
+    {
+      "id": "N03",
+      "title": "第三章 容器 数据布局与有限内存",
+      "start_page": 31,
+      "end_page": 49,
+      "pages": 19,
+      "characters": 21613,
+      "code_blocks": 11,
+      "sha256": "6dfed9559cd9f258563ec96195ac7c5860f994b65ce2e075495b523682195ddb"
+    },
+    {
+      "id": "N04",
+      "title": "第四章 数据表示与可靠协议解析",
+      "start_page": 50,
+      "end_page": 62,
+      "pages": 13,
+      "characters": 15895,
+      "code_blocks": 7,
+      "sha256": "2072d2e6a7610f5a345607cabcc0bea1d9ac83cc90e3500a79e5763bcd32d31b"
+    },
+    {
+      "id": "N05",
+      "title": "第五章 从源文件到可部署程序",
+      "start_page": 63,
+      "end_page": 79,
+      "pages": 17,
+      "characters": 20549,
+      "code_blocks": 8,
+      "sha256": "da034bb3453670e50dc68992e37b8a8040d5487978eb95149ba448313f4b538f"
+    },
+    {
+      "id": "N06",
+      "title": "第六章 线程 事件与异步操作",
+      "start_page": 80,
+      "end_page": 93,
+      "pages": 14,
+      "characters": 17026,
+      "code_blocks": 4,
+      "sha256": "d167ceac25b05687e623fdfcb7c3faf6308d05d39d82789058ceb7f835ad5703"
+    },
+    {
+      "id": "N07",
+      "title": "第七章 接口设计 错误处理与适度抽象",
+      "start_page": 94,
+      "end_page": 108,
+      "pages": 15,
+      "characters": 18932,
+      "code_blocks": 8,
+      "sha256": "76fe5fc5bf31cf3162784ad153a7ac79ba39e06a15db8f605b0a1fa6f330a691"
+    },
+    {
+      "id": "N08",
+      "title": "第八章 调试 测试与故障证据",
+      "start_page": 109,
+      "end_page": 124,
+      "pages": 16,
+      "characters": 18285,
+      "code_blocks": 3,
+      "sha256": "1f5b1699f83cb5cc96b8a18a4d05dfb7a30cfd74fecf514bd40f5b28c53c4119"
+    },
+    {
+      "id": "N09",
+      "title": "第九章 工程协作与可恢复交付",
+      "start_page": 125,
+      "end_page": 135,
+      "pages": 11,
+      "characters": 12045,
+      "code_blocks": 1,
+      "sha256": "0307b22761b8d712cc9b775eaf196f602fdd39c44d5055a7489b663779848792"
+    },
+    {
+      "id": "N10",
+      "title": "第十章 Qt应用结构与界面模型",
+      "start_page": 136,
+      "end_page": 149,
+      "pages": 14,
+      "characters": 17911,
+      "code_blocks": 10,
+      "sha256": "6670dbd1ada3f671705c222f896fbd9bca8deb48e85fd29b68416aff9c40b721"
+    },
+    {
+      "id": "N11",
+      "title": "第十一章 后台采集与安全关闭",
+      "start_page": 150,
+      "end_page": 162,
+      "pages": 13,
+      "characters": 16660,
+      "code_blocks": 6,
+      "sha256": "147cbe7f34a351381a2447f60253e83bb97e2ee1260116a78a32eee60a55254c"
+    },
+    {
+      "id": "N12",
+      "title": "第十二章 串口 网络与设备会话",
+      "start_page": 163,
+      "end_page": 175,
+      "pages": 13,
+      "characters": 15460,
+      "code_blocks": 6,
+      "sha256": "476456624ee4cb300ab7628fb4b28401cff86c3587bce4b0f610ccd82b27b27e"
+    },
+    {
+      "id": "N13",
+      "title": "第十三章 PLC与工业数据交互",
+      "start_page": 176,
+      "end_page": 187,
+      "pages": 12,
+      "characters": 13764,
+      "code_blocks": 3,
+      "sha256": "d0c30c9524955c3cfa2576bcde5a4789016e69549e08da4231f8bee6cb10114a"
+    },
+    {
+      "id": "N14",
+      "title": "第十四章 测试流程 质量记录与追溯",
+      "start_page": 188,
+      "end_page": 199,
+      "pages": 12,
+      "characters": 14418,
+      "code_blocks": 5,
+      "sha256": "bd8004070d21e76450b3bd4b19d6e9fb97fafe1b12f4b5dfb0bbf166173d0bc1"
+    },
+    {
+      "id": "N15",
+      "title": "第十五章 Windows与Linux部署维护",
+      "start_page": 200,
+      "end_page": 210,
+      "pages": 11,
+      "characters": 11934,
+      "code_blocks": 5,
+      "sha256": "8a1955e8d9e9ab1ab9d74f2be8c8f8a11ac86a01b82c52fd1e39979a27cc3b84"
+    },
+    {
+      "id": "N16",
+      "title": "第十六章 看懂板卡 电路与测量工具",
+      "start_page": 211,
+      "end_page": 222,
+      "pages": 12,
+      "characters": 13271,
+      "code_blocks": 0,
+      "sha256": "92472da3085f4d7aa305fe70b0df96dabcc3fe510257b86d68c3aa2827113b1b"
+    },
+    {
+      "id": "N17",
+      "title": "第十七章 MCU启动 GPIO与外设通信",
+      "start_page": 223,
+      "end_page": 234,
+      "pages": 12,
+      "characters": 14565,
+      "code_blocks": 2,
+      "sha256": "1316b51628bfb55cba5ea4bdb18ec218e87ac45cf4b45529106a6e2985d87f82"
+    },
+    {
+      "id": "N18",
+      "title": "第十八章 中断 DMA与缓冲区所有权",
+      "start_page": 235,
+      "end_page": 248,
+      "pages": 14,
+      "characters": 16446,
+      "code_blocks": 2,
+      "sha256": "7560e120b05bf3104549efb4c1a3ad05d83b5b9a668f94c55f668f7fa6a000b7"
+    },
+    {
+      "id": "N19",
+      "title": "第十九章 RTOS任务 调度与资源预算",
+      "start_page": 249,
+      "end_page": 261,
+      "pages": 13,
+      "characters": 15254,
+      "code_blocks": 3,
+      "sha256": "8f2a06212b35050d13a5ad1612f9965418086158efecca5f1204ead0686e7019"
+    },
+    {
+      "id": "N20",
+      "title": "第二十章 低功耗 更新与现场恢复",
+      "start_page": 262,
+      "end_page": 270,
+      "pages": 9,
+      "characters": 10751,
+      "code_blocks": 0,
+      "sha256": "8b76ab2c23425903bbe9eaad92b6aacaf4527659e015aa57a06bf36ab26184f6"
+    },
+    {
+      "id": "N21",
+      "title": "第二十一章 嵌入式Linux启动与用户态应用",
+      "start_page": 271,
+      "end_page": 280,
+      "pages": 10,
+      "characters": 11866,
+      "code_blocks": 4,
+      "sha256": "9a2f2846afe2aa7b5e7f1a21d23f0914ab6b46a9bed5945715503edd9dd1af86"
+    },
+    {
+      "id": "N22",
+      "title": "第二十二章 Linux设备访问与驱动边界",
+      "start_page": 281,
+      "end_page": 292,
+      "pages": 12,
+      "characters": 13903,
+      "code_blocks": 3,
+      "sha256": "5271af1e6ce8bbee10ff6cb3153c2fe4df5a161785ae5bd96c1e5cbf94d1d7f6"
+    },
+    {
+      "id": "N23",
+      "title": "第二十三章 一个设备产品的测试校准工站",
+      "start_page": 293,
+      "end_page": 311,
+      "pages": 19,
+      "characters": 22350,
+      "code_blocks": 5,
+      "sha256": "04d70df00e7eb44117de8126bff8d212dc8d72f37a7961fef71a71d949b56f8a"
+    },
+    {
+      "id": "N24",
+      "title": "第二十四章 常见故障的推理与面试追问",
+      "start_page": 312,
+      "end_page": 323,
+      "pages": 12,
+      "characters": 13268,
+      "code_blocks": 2,
+      "sha256": "19f2536d095bf2fa394f9dbc24c3c6c701c6a35d61f63937d118b87c1dfb93ff"
+    }
+  ],
+  "page_budget": {
+    "approved_range": [
+      290,
+      340
+    ],
+    "planned": 318,
+    "actual": 332,
+    "common": 128,
+    "host": 75,
+    "embedded": 82,
+    "embedded_linux_included": 22,
+    "integrated": 31,
+    "front_back": 16,
+    "first_read_distinct_pages": 75
+  },
+  "assets": {
+    "used_files": 117,
+    "original_mechanism_figures": 55,
+    "photo_composite_figures": 1,
+    "svg": 56,
+    "png": 56,
+    "original_photos": 5,
+    "hashes_verified": true
+  },
+  "static_technical_review": {
+    "all_24_chapters": true,
+    "reported_corrections_closed": 26,
+    "unresolved_reported_major_or_medium_technical_blockers": 0
+  },
+  "pdf_checks": [
+    {
+      "file": "C++上位机与嵌入式工程入门_完整候选版_v0.9.pdf",
+      "pages": 332,
+      "bookmarks": 756,
+      "links": 460,
+      "issues": [],
+      "blank_pages": [],
+      "punctuation_review": [],
+      "sha256": "761611c0b6a377e53ee715b65d351713ad4b66e60a11bd21ddb8e7fa0f5f25cc",
+      "sequential_page_footers_verified": true,
+      "edition_headers_verified": true
+    },
+    {
+      "file": "C++上位机与嵌入式精编版_完整候选版修订与来源_v0.9.pdf",
+      "pages": 114,
+      "bookmarks": 219,
+      "links": 194,
+      "issues": [],
+      "blank_pages": [],
+      "punctuation_review": [],
+      "sha256": "93ccc1b89dc3010bfecb6a6a95ef7ac0c5c770027432728a6536b73dbec9ad7b",
+      "sequential_page_footers_verified": true,
+      "edition_headers_verified": true
+    }
+  ],
+  "visual_review": {
+    "main_pages_covered": 332,
+    "main_method": "Every initial page opened at full resolution; unchanged final body pixels carried forward by exact comparison; changed pages re-opened; final headers and page-number footers checked.",
+    "revision_pages_covered": 114,
+    "revision_method": "Every page in the initial 126-page report opened at full resolution. In the 118-page revision, 61 body pages matched and 57 changed pages were re-opened. In the 116-page revision, 108 body pages matched the reviewed version and all 8 changed pages were re-opened. In the final 114-page revision, 112 body pages matched and the remaining 2 reflowed table pages were re-opened. Final headers and page-number footers checked.",
+    "whole_public_text_font_coverage_verified": true
+  },
+  "epub": {
+    "file": "C++上位机与嵌入式工程入门_完整候选版_v0.9.epub",
+    "sha256": "aa2d4a6ba54e80dab494a633f6eca431a5fae07882722c267e14fce2b2ea90ba",
+    "zip_crc_ok": true,
+    "xhtml_documents": 32,
+    "spine_items": 32,
+    "chapter_count": 24,
+    "chapter_order_matches": true,
+    "embedded_images": 60,
+    "code_blocks": 108,
+    "navigation_links": 742,
+    "issues": [],
+    "actual_reader_ui_verified": false,
+    "epubcheck_version": "5.4.0",
+    "fatal": 0,
+    "errors": 0,
+    "warnings": 0,
+    "reflowable": true
+  },
+  "unexecuted": [
+    "Compilation and execution of all 108 teaching blocks",
+    "Windows/Linux deployment, SDK, PLC and MES integration",
+    "MCU programming, electrical connection, waveforms, timing, power and calibration measurements",
+    "Original repository publishing pipeline and release regression",
+    "Actual EPUB reader compatibility validation"
+  ],
+  "source_package": "Chapter Markdown is authoritative. Merged Markdown is a convenience derivative. The manuscript package includes chapters, assets, and public revision/verification material; original full-book chapters and generated PDF/EPUB are provided separately or by source links."
+}

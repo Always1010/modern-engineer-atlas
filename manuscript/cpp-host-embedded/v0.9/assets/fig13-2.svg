@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="630" viewBox="0 0 960 630"><defs>
+<marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#166B70"/></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#B46627"/></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#596770"/></marker>
+<marker id="red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#AD4D43"/></marker>
+</defs><rect width="100%" height="100%" fill="white"/>
+<text x="26" y="35" font-family="Noto Sans CJK SC, sans-serif" font-size="24" font-weight="bold" fill="#203B4A" text-anchor="start">时间、发布节奏与数据质量分别记录</text>
+<rect x="24" y="101" width="174" height="77" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="111.0" y="146.5" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">传感源</text>
+<rect x="270" y="101" width="174" height="77" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="357.0" y="146.5" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">UA 服务器</text>
+<rect x="516" y="101" width="174" height="77" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="603.0" y="146.5" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">订阅发布</text>
+<rect x="762" y="101" width="174" height="77" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="849.0" y="146.5" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">工站</text>
+<line x1="198" y1="141" x2="270" y2="141" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="234.0" y="126" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#166B70" text-anchor="middle">值</text>
+<line x1="444" y1="141" x2="516" y2="141" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="480.0" y="126" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#166B70" text-anchor="middle">排队</text>
+<line x1="690" y1="141" x2="762" y2="141" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="726.0" y="126" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#166B70" text-anchor="middle">通知</text>
+<text x="234" y="82" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#166B70" text-anchor="middle">按设备采样间隔产生</text>
+<text x="726" y="82" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#166B70" text-anchor="middle">按发布间隔发送</text>
+<text x="111" y="217" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#596770" text-anchor="middle">source_time</text>
+<text x="111" y="245" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#596770" text-anchor="middle">来源时间戳</text>
+<text x="357" y="217" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#596770" text-anchor="middle">server_time</text>
+<text x="357" y="245" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#596770" text-anchor="middle">服务器时间戳</text>
+<text x="849" y="217" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#596770" text-anchor="middle">received_at</text>
+<text x="849" y="245" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#596770" text-anchor="middle">工站接收UTC</text>
+<text x="480" y="277" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#596770" text-anchor="middle">间隔与超时：使用本地单调时钟</text>
+<rect x="28" y="292" width="433" height="274" rx="8" fill="#F5F8FA" stroke="#B6CCD4" stroke-width="1.5"/>
+<rect x="499" y="292" width="433" height="274" rx="8" fill="#F5F8FA" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="51" y="325" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="bold" fill="#203B4A" text-anchor="start">质量不是曲线的装饰</text>
+<line x1="72" y1="507" x2="430" y2="507" stroke="#596770" stroke-width="2" marker-end="url(#gray)"/>
+<line x1="72" y1="507" x2="72" y2="353" stroke="#596770" stroke-width="2" marker-end="url(#gray)"/>
+<text x="47" y="365" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#596770" text-anchor="start">值</text>
+<text x="422" y="538" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#596770" text-anchor="end">时间</text>
+<path d="M 96 457 L 161 415 L 224 425" stroke="#166B70" stroke-width="3" fill="none"/>
+<circle cx="96" cy="457" r="6" fill="#166B70" stroke="none" stroke-width="2"/>
+<circle cx="161" cy="415" r="6" fill="#166B70" stroke="none" stroke-width="2"/>
+<circle cx="224" cy="425" r="6" fill="#166B70" stroke="none" stroke-width="2"/>
+<text x="120" y="390" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#166B70" text-anchor="start">Good</text>
+<circle cx="298" cy="425" r="7" fill="white" stroke="#AD4D43" stroke-width="2"/>
+<line x1="293" y1="420" x2="303" y2="430" stroke="#AD4D43" stroke-width="3"/>
+<line x1="293" y1="430" x2="303" y2="420" stroke="#AD4D43" stroke-width="3"/>
+<text x="298" y="364" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#AD4D43" text-anchor="middle">Bad</text>
+<text x="298" y="390" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#AD4D43" text-anchor="middle">仅缓存值</text>
+<text x="374" y="462" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#B46627" text-anchor="middle">断开</text>
+<text x="715" y="325" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="bold" fill="#203B4A" text-anchor="middle">通知队列：size = 1</text>
+<rect x="521" y="385" width="109" height="63" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="575.5" y="423.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">样本 1</text>
+<rect x="661" y="385" width="109" height="63" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="715.5" y="423.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">样本 2</text>
+<rect x="801" y="385" width="109" height="63" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="855.5" y="423.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">样本 3</text>
+<line x1="630" y1="416" x2="661" y2="416" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="770" y1="416" x2="801" y2="416" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="539" y1="439" x2="613" y2="395" stroke="#596770" stroke-width="2"/>
+<line x1="679" y1="439" x2="753" y2="395" stroke="#596770" stroke-width="2"/>
+<text x="855" y="474" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#166B70" text-anchor="middle">保留最新</text>
+<text x="715" y="526" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#596770" text-anchor="middle">连续到达会覆盖中间值</text>
+<rect x="28" y="584" width="904" height="35" rx="8" fill="white" stroke="white" stroke-width="1.5"/>
+<text x="480.0" y="608.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#B46627" text-anchor="middle">质量变坏后不能沿用“有效测量”的画法；队列 size = 1 不保证完整采样</text>
+</svg>

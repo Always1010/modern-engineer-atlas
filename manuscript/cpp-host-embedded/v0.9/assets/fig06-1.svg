@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="655" viewBox="0 0 960 655"><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#166B70"/></marker></defs><rect width="100%" height="100%" fill="white"/>
+<text x="25" y="37" font-family="Noto Sans CJK SC, sans-serif" font-size="25" font-weight="bold" fill="#203B4A" text-anchor="start">条件变量的通知促使重新检查共享状态</text>
+<text x="25" y="94" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="bold" fill="#203B4A" text-anchor="start">消费者</text>
+<text x="25" y="371" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="bold" fill="#203B4A" text-anchor="start">生产者</text>
+<rect x="20" y="117" width="171" height="91" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="105.5" y="155.5" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">持锁检查</text>
+<text x="105.5" y="184.5" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">队列为空</text>
+<line x1="191" y1="162" x2="209" y2="162" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="209" y="117" width="171" height="91" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="294.5" y="155.5" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">wait 原子地</text>
+<text x="294.5" y="184.5" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">释放锁并登记</text>
+<line x1="380" y1="162" x2="398" y2="162" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="398" y="117" width="171" height="91" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="483.5" y="155.5" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">等待</text>
+<text x="483.5" y="184.5" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">可能被唤醒</text>
+<line x1="569" y1="162" x2="587" y2="162" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="587" y="117" width="171" height="91" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="672.5" y="155.5" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">重新取得锁</text>
+<text x="672.5" y="184.5" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">再检查条件</text>
+<line x1="758" y1="162" x2="776" y2="162" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="776" y="117" width="171" height="91" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="861.5" y="155.5" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">条件满足</text>
+<text x="861.5" y="184.5" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">取出样本</text>
+<rect x="207" y="400" width="170" height="85" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="292.0" y="449.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">取得同一锁</text>
+<rect x="396" y="400" width="170" height="85" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="481.0" y="449.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">修改队列</text>
+<rect x="585" y="400" width="170" height="85" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="670.0" y="449.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">解锁</text>
+<rect x="774" y="400" width="166" height="85" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="857.0" y="449.5" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">notify</text>
+<line x1="377" y1="442" x2="396" y2="442" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="566" y1="442" x2="585" y2="442" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="755" y1="442" x2="774" y2="442" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<path d="M 292 208 L 292 400" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)" stroke-dasharray="7 5"/>
+<text x="307" y="364" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="start">生产者有机会取得同一锁</text>
+<path d="M 857 400 L 857 306 L 750 306 L 750 208" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)" stroke-dasharray="7 5"/>
+<text x="741" y="348" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">通知只促使重查条件</text>
+<path d="M 671 208 L 671 270 L 292 270 L 292 208" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)" stroke-dasharray="7 5"/>
+<text x="358" y="251" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="start">条件不满足时重新 wait</text>
+<text x="25" y="551" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#596770" text-anchor="start">检查与修改共享状态使用同一互斥量；等待必须放在条件循环中</text>
+<text x="25" y="585" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#596770" text-anchor="start">重获锁以后还可能发现条件已变化；虚假唤醒也必须能正确处理</text>
+<text x="25" y="619" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#596770" text-anchor="start">通知不是任务容器，也不是累计的样本数量</text>
+</svg>

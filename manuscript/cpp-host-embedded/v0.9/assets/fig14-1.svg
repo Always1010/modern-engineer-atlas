@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="740" viewBox="0 0 960 740"><defs>
+<marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#166B70"/></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#B46627"/></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#596770"/></marker>
+<marker id="red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#AD4D43"/></marker>
+</defs><rect width="100%" height="100%" fill="white"/>
+<text x="26" y="35" font-family="Noto Sans CJK SC, sans-serif" font-size="24" font-weight="bold" fill="#203B4A" text-anchor="start">每次尝试保留独立的上下文与证据</text>
+<rect x="337" y="66" width="286" height="57" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="480.0" y="101.5" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">work_order_id  W-01</text>
+<path d="M 480 123 L 480 157 L 153 157 L 153 189" stroke="#166B70" stroke-width="2" fill="none"/>
+<path d="M 480 157 L 807 157 L 807 189" stroke="#166B70" stroke-width="2" fill="none"/>
+<line x1="480" y1="157" x2="480" y2="189" stroke="#166B70" stroke-width="2"/>
+<text x="582" y="150" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#166B70" text-anchor="middle">包含工件</text>
+<rect x="28" y="189" width="250" height="61" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="153.0" y="226.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">serial_number  S-01</text>
+<rect x="355" y="189" width="250" height="61" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="480.0" y="226.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">serial_number  S-02</text>
+<rect x="682" y="189" width="250" height="61" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="807.0" y="226.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">serial_number  S-03</text>
+<path d="M 480 250 L 480 282 L 245 282 L 245 319" stroke="#166B70" stroke-width="2" fill="none"/>
+<path d="M 480 282 L 715 282 L 715 319" stroke="#166B70" stroke-width="2" fill="none"/>
+<text x="480" y="307" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#166B70" text-anchor="middle">所属尝试</text>
+<rect x="28" y="319" width="434" height="241" rx="8" fill="#F5F8FA" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="245" y="354" font-family="Noto Sans CJK SC, sans-serif" font-size="23" font-weight="bold" fill="#203B4A" text-anchor="middle">attempt A1 · 各自保留</text>
+<rect x="48" y="378" width="394" height="154" rx="8" fill="white" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="245.0" y="417.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">plan_version · limit_version</text>
+<text x="245.0" y="447.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">station_id · fixture_id</text>
+<text x="245.0" y="477.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">step 结果 · command_id</text>
+<text x="245.0" y="507.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">原始数据引用</text>
+<rect x="498" y="319" width="434" height="241" rx="8" fill="#F5F8FA" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="715" y="354" font-family="Noto Sans CJK SC, sans-serif" font-size="23" font-weight="bold" fill="#203B4A" text-anchor="middle">attempt A2 · 各自保留</text>
+<rect x="518" y="378" width="394" height="154" rx="8" fill="white" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="715.0" y="417.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">plan_version · limit_version</text>
+<text x="715.0" y="447.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">station_id · fixture_id</text>
+<text x="715.0" y="477.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">step 结果 · command_id</text>
+<text x="715.0" y="507.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">原始数据引用</text>
+<text x="32" y="613" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#596770" text-anchor="start">再次测试会新增 attempt，</text>
+<text x="32" y="644" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#596770" text-anchor="start">不会覆盖上一次的证据。</text>
+<line x1="715" y1="560" x2="715" y2="605" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="733" y="588" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#166B70" text-anchor="start">定稿结果</text>
+<rect x="510" y="605" width="283" height="58" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="651.5" y="641.0" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">submission_id</text>
+<rect x="837" y="605" width="95" height="58" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="884.5" y="641.0" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">MES</text>
+<line x1="793" y1="634" x2="837" y2="634" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="815" y="685" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#166B70" text-anchor="middle">提交</text>
+<text x="29" y="718" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#596770" text-anchor="start">树线表示所属关系；箭头表示结果提交。编号为教学示意。</text>
+</svg>

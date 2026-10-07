@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="695" viewBox="0 0 960 695"><defs>
+<marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#166B70"/></marker>
+<marker id="orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#B46627"/></marker>
+<marker id="gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#596770"/></marker>
+<marker id="red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#AD4D43"/></marker>
+</defs><rect width="100%" height="100%" fill="white"/>
+<text x="26" y="35" font-family="Noto Sans CJK SC, sans-serif" font-size="24" font-weight="bold" fill="#203B4A" text-anchor="start">温度校准工站：身份、测量与业务系统协同</text>
+<rect x="28" y="86" width="250" height="73" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="153.0" y="129.5" font-family="Noto Sans CJK SC, sans-serif" font-size="23" font-weight="normal" fill="#203B4A" text-anchor="middle">扫码器</text>
+<rect x="360" y="86" width="270" height="73" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="495.0" y="129.5" font-family="Noto Sans CJK SC, sans-serif" font-size="23" font-weight="normal" fill="#203B4A" text-anchor="middle">参考温度计</text>
+<rect x="742" y="86" width="190" height="73" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="837.0" y="129.5" font-family="Noto Sans CJK SC, sans-serif" font-size="23" font-weight="normal" fill="#203B4A" text-anchor="middle">ERP</text>
+<rect x="28" y="262" width="250" height="318" rx="8" fill="#F5F8FA" stroke="#B6CCD4" stroke-width="1.5"/>
+<rect x="46" y="280" width="214" height="97" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="153.0" y="321.5" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">工件</text>
+<text x="153.0" y="349.5" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">低压温度节点</text>
+<rect x="46" y="477" width="214" height="73" rx="8" fill="white" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="153.0" y="506.5" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">无危险运动</text>
+<text x="153.0" y="534.5" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">治具</text>
+<rect x="360" y="262" width="270" height="116" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="495.0" y="313.0" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">工控机</text>
+<text x="495.0" y="341.0" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">会话 · 流程 · 证据</text>
+<rect x="742" y="262" width="190" height="116" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="837.0" y="327.0" font-family="Noto Sans CJK SC, sans-serif" font-size="23" font-weight="normal" fill="#203B4A" text-anchor="middle">MES</text>
+<rect x="360" y="477" width="270" height="73" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="495.0" y="520.5" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">受控温度环境</text>
+<rect x="742" y="477" width="190" height="73" rx="8" fill="#F5F8FA" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="837.0" y="506.5" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">PLC 监督</text>
+<text x="837.0" y="534.5" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">（可选）</text>
+<path d="M 153 159 L 153 212 L 415 212 L 415 262" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<text x="278" y="198" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#166B70" text-anchor="middle">身份输入</text>
+<line x1="510" y1="159" x2="510" y2="262" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="529" y="216" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#166B70" text-anchor="start">参考值</text>
+<line x1="837" y1="159" x2="837" y2="262" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="853" y="204" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#166B70" text-anchor="start">工单</text>
+<text x="853" y="231" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#166B70" text-anchor="start">路线</text>
+<line x1="278" y1="328" x2="360" y2="328" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="319" y="294" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#166B70" text-anchor="middle">温度测量</text>
+<text x="319" y="319" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#166B70" text-anchor="middle">协议</text>
+<line x1="630" y1="295" x2="742" y2="295" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="686" y="278" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#166B70" text-anchor="middle">结果接纳</text>
+<line x1="742" y1="348" x2="630" y2="348" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="686" y="374" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#166B70" text-anchor="middle">冻结上下文</text>
+<line x1="153" y1="477" x2="153" y2="377" stroke="#166B70" stroke-width="2" marker-end="url(#arr)" stroke-dasharray="7 5"/>
+<text x="177" y="436" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#166B70" text-anchor="start">装夹</text>
+<path d="M 360 514 L 311 514 L 311 418 L 278 418" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)" stroke-dasharray="7 5"/>
+<text x="324" y="453" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#166B70" text-anchor="start">控温</text>
+<path d="M 742 514 L 689 514 L 689 415 L 582 415 L 582 378" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)" stroke-dasharray="7 5"/>
+<text x="635" y="443" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#166B70" text-anchor="middle">监督协议</text>
+<text x="29" y="620" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#596770" text-anchor="start">工件与参考探头处于同一受控温度环境；PLC 监督不能替代独立安全保护。</text>
+<text x="29" y="651" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#596770" text-anchor="start">本图为教学结构，真实设备选型与具体接口尚未冻结。</text>
+</svg>

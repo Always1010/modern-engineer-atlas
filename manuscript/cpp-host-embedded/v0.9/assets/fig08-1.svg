@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="595" viewBox="0 0 960 595"><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#166B70"/></marker></defs><rect width="100%" height="100%" fill="white"/>
+<text x="25" y="37" font-family="Noto Sans CJK SC, sans-serif" font-size="25" font-weight="bold" fill="#203B4A" text-anchor="start">把同一事件的证据沿处理链对齐</text>
+<rect x="25" y="73" width="909" height="73" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="479.5" y="116.5" font-family="Noto Sans CJK SC, sans-serif" font-size="24" font-weight="normal" fill="#203B4A" text-anchor="middle">build_id · device_id · generation · sequence</text>
+<rect x="18" y="211" width="142" height="113" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="89.0" y="260.5" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="middle">字节输入</text>
+<text x="89.0" y="289.5" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="middle">接收字节数</text>
+<line x1="160" y1="267" x2="175" y2="267" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="175" y="211" width="142" height="113" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="246.0" y="260.5" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="middle">解析</text>
+<text x="246.0" y="289.5" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="middle">帧与拒绝原因</text>
+<line x1="317" y1="267" x2="332" y2="267" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="332" y="211" width="142" height="113" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="403.0" y="260.5" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="middle">接纳</text>
+<text x="403.0" y="289.5" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="middle">当前身份核对</text>
+<line x1="474" y1="267" x2="489" y2="267" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="489" y="211" width="142" height="113" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="560.0" y="260.5" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="middle">队列消费</text>
+<text x="560.0" y="289.5" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="middle">深度与等待</text>
+<line x1="631" y1="267" x2="646" y2="267" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="646" y="211" width="142" height="113" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="717.0" y="260.5" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="middle">判定</text>
+<text x="717.0" y="289.5" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="middle">规则版本</text>
+<line x1="788" y1="267" x2="803" y2="267" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="803" y="211" width="142" height="113" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="874.0" y="260.5" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="middle">记录</text>
+<text x="874.0" y="289.5" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="middle">提交与回执</text>
+<rect x="62" y="389" width="832" height="91" rx="8" fill="#FFF4E9" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="478.0" y="427.5" font-family="Noto Sans CJK SC, sans-serif" font-size="23" font-weight="normal" fill="#203B4A" text-anchor="middle">可区分的假设：格式错误 生命期错误 积压 旧会话</text>
+<text x="478.0" y="456.5" font-family="Noto Sans CJK SC, sans-serif" font-size="23" font-weight="normal" fill="#203B4A" text-anchor="middle">每种假设都要找到能够支持或反驳它的观察</text>
+<path d="M 480 389 L 480 356 L 245 356 L 245 324" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)" stroke-dasharray="7 5"/>
+<path d="M 480 356 L 557 356 L 557 324" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)" stroke-dasharray="7 5"/>
+<text x="25" y="538" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#596770" text-anchor="start">观察必须对应同一身份与时间窗；一个错误码无法代替整条因果链</text>
+<text x="25" y="567" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#596770" text-anchor="start">箭头表示处理交接与核查位置，不把假设直接画成已经证明的根因</text>
+</svg>

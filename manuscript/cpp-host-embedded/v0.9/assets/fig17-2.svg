@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="560" viewBox="0 0 960 560"><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#166B70"/></marker></defs><rect width="100%" height="100%" fill="white"/>
+<text x="24" y="34" font-family="Noto Sans CJK SC, sans-serif" font-size="25" font-weight="bold" fill="#203B4A" text-anchor="start">发送进度分布在不同位置</text>
+<rect x="17" y="67" width="170" height="73" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="102.0" y="110.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">应用缓冲</text>
+<line x1="187" y1="103" x2="206" y2="103" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="206" y="67" width="170" height="73" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="291.0" y="110.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">数据寄存器</text>
+<line x1="376" y1="103" x2="395" y2="103" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="395" y="67" width="170" height="73" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="480.0" y="110.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">移位器</text>
+<line x1="565" y1="103" x2="584" y2="103" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="584" y="67" width="170" height="73" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="669.0" y="110.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">TX 线路</text>
+<line x1="754" y1="103" x2="773" y2="103" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="773" y="67" width="170" height="73" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="858.0" y="110.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">对端接收</text>
+<text x="213" y="179" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="start">① 寄存器可再写</text>
+<text x="213" y="208" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="start">② DMA 最后项搬入</text>
+<text x="597" y="179" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="start">③ 最后停止位发完</text>
+<text x="597" y="208" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="start">业务确认仍在更后面</text>
+<text x="26" y="274" font-family="Noto Sans CJK SC, sans-serif" font-size="23" font-weight="bold" fill="#203B4A" text-anchor="start">8N1 一个字符占 10 个位时间</text>
+<rect x="29" y="304" width="86" height="70" rx="8" fill="#FFF4E9" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="72.0" y="346.0" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">起始</text>
+<rect x="119" y="304" width="86" height="70" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="162.0" y="346.0" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">D0</text>
+<rect x="209" y="304" width="86" height="70" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="252.0" y="346.0" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">D1</text>
+<rect x="299" y="304" width="86" height="70" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="342.0" y="346.0" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">D2</text>
+<rect x="389" y="304" width="86" height="70" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="432.0" y="346.0" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">D3</text>
+<rect x="479" y="304" width="86" height="70" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="522.0" y="346.0" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">D4</text>
+<rect x="569" y="304" width="86" height="70" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="612.0" y="346.0" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">D5</text>
+<rect x="659" y="304" width="86" height="70" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="702.0" y="346.0" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">D6</text>
+<rect x="749" y="304" width="86" height="70" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="792.0" y="346.0" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">D7</text>
+<rect x="839" y="304" width="86" height="70" rx="8" fill="#FFF4E9" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="882.0" y="346.0" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">停止</text>
+<line x1="29" y1="406" x2="925" y2="406" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="476" y="438" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">时间向右推进 无实测电压或刻度</text>
+<text x="26" y="493" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#B46627" text-anchor="start">DMA 完成不等于停止位已经离开 TX</text>
+<text x="26" y="522" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#B46627" text-anchor="start">RS-485 方向控制还需相应外设发送完成证据</text>
+</svg>

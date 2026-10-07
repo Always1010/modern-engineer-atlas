@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="630" viewBox="0 0 960 630"><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#166B70"/></marker></defs><rect width="100%" height="100%" fill="white"/>
+<text x="25" y="38" font-family="Noto Sans CJK SC, sans-serif" font-size="25" font-weight="bold" fill="#203B4A" text-anchor="start">一周期能量与唤醒责任</text>
+<text x="25" y="82" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="start">示意功率</text>
+<line x1="84" y1="291" x2="927" y2="291" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="84" y1="291" x2="84" y2="91" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="101" y="174" width="105" height="117" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="153.5" y="239.5" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="middle">唤醒恢复</text>
+<rect x="280" y="146" width="132" height="145" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="346.0" y="225.5" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="middle">采样</text>
+<rect x="428" y="95" width="200" height="196" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="528.0" y="200.0" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="middle">发送</text>
+<rect x="633" y="251" width="276" height="40" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="771.0" y="278.0" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="middle">睡眠</text>
+<text x="497" y="329" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">时间向右 面积对应能量 不是实测波形</text>
+<rect x="27" y="367" width="437" height="120" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="245.5" y="406.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">周期能量 E = Σ(P × t)</text>
+<text x="245.5" y="435.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">整板包含调试器 LED 稳压器</text>
+<text x="245.5" y="464.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">不能只算 MCU 手册电流</text>
+<rect x="495" y="367" width="437" height="120" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="713.5" y="406.0" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">深睡有额外进出成本</text>
+<text x="713.5" y="435.0" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">Tbe = Eextra / (Pshallow - Pdeep)</text>
+<text x="713.5" y="464.0" font-family="Noto Sans CJK SC, sans-serif" font-size="19" font-weight="normal" fill="#203B4A" text-anchor="middle">只在功率差为正且模型成立时使用</text>
+<text x="26" y="549" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#B46627" text-anchor="start">能量更少仍要满足唤醒响应期限与数据完整性</text>
+<text x="26" y="578" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#B46627" text-anchor="start">进入睡眠以前交接外设、缓冲和恢复责任；唤醒后重新确认状态</text>
+</svg>

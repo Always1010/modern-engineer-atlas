@@ -1,0 +1,758 @@
+[
+  {
+    "chapter": "N02",
+    "context": "源文件不是正在运行的工站",
+    "language": "cpp",
+    "lines": 16,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N02",
+    "context": "作用域回答在哪里能使用这个名字",
+    "language": "cpp",
+    "lines": 6,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N02",
+    "context": "空间留下来 内部对象也可能已经结束",
+    "language": "cpp",
+    "lines": 8,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N02",
+    "context": "引用和指针都能形成借用",
+    "language": "cpp",
+    "lines": 9,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N02",
+    "context": "故障推理 温度文字偶尔变成上一台设备的内容",
+    "language": "cpp",
+    "lines": 10,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N02",
+    "context": "资源不仅是动态内存",
+    "language": "cpp",
+    "lines": 17,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N02",
+    "context": "构造先建立可用状态 析构按依赖退出",
+    "language": "cpp",
+    "lines": 11,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N02",
+    "context": "先问是否真的需要一个动态对象",
+    "language": "cpp",
+    "lines": 11,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N02",
+    "context": "先读契约 再写包装",
+    "language": "cpp",
+    "lines": 28,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N02",
+    "context": "故障推理 配置失败后设备一直被占用",
+    "language": "cpp",
+    "lines": 14,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N03",
+    "context": "先把对象数量限定下来",
+    "language": "cpp",
+    "lines": 13,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N03",
+    "context": "章首",
+    "language": "cpp",
+    "lines": 14,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N03",
+    "context": "从追加读数到容量变化",
+    "language": "cpp",
+    "lines": 14,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N03",
+    "context": "修改会影响已有借用",
+    "language": "cpp",
+    "lines": 14,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N03",
+    "context": "章首",
+    "language": "cpp",
+    "lines": 8,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N03",
+    "context": "章首",
+    "language": "cpp",
+    "lines": 5,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N03",
+    "context": "短文本也有保留责任",
+    "language": "cpp",
+    "lines": 7,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N03",
+    "context": "顺序查找未必需要先优化",
+    "language": "cpp",
+    "lines": 10,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N03",
+    "context": "固定数组可以循环复用",
+    "language": "cpp",
+    "lines": 24,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N03",
+    "context": "章首",
+    "language": "cpp",
+    "lines": 14,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N03",
+    "context": "分配失败不只发生在new这一行",
+    "language": "cpp",
+    "lines": 17,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N04",
+    "context": "表达式先计算 再赋给目标",
+    "language": "cpp",
+    "lines": 11,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N04",
+    "context": "在运算前建立可表示条件",
+    "language": "cpp",
+    "lines": 8,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N04",
+    "context": "小端不是把数字倒过来",
+    "language": "cpp",
+    "lines": 15,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N04",
+    "context": "接收日期和等待期限使用不同时间",
+    "language": "cpp",
+    "lines": 8,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N04",
+    "context": "CRC必须规定所有参数",
+    "language": "cpp",
+    "lines": 14,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N04",
+    "context": "六 把完整候选解码为内部值",
+    "language": "cpp",
+    "lines": 19,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N04",
+    "context": "章首",
+    "language": "cpp",
+    "lines": 12,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N05",
+    "context": "让声明和定义来自同一份契约",
+    "language": "cpp",
+    "lines": 6,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N05",
+    "context": "章首",
+    "language": "cpp",
+    "lines": 5,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N05",
+    "context": "章首",
+    "language": "cpp",
+    "lines": 5,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N05",
+    "context": "Target把需求附着在真正拥有它的模块上",
+    "language": "cmake",
+    "lines": 16,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N05",
+    "context": "配置 构建与安装是三种动作",
+    "language": "sh",
+    "lines": 4,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N05",
+    "context": "章首",
+    "language": "sh",
+    "lines": 4,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N05",
+    "context": "语言模式 诊断与优化各自解决不同问题",
+    "language": "cmake",
+    "lines": 7,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N05",
+    "context": "工具链文件必须明确查找边界",
+    "language": "cmake",
+    "lines": 11,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N06",
+    "context": "RAII 让锁的释放路径与作用域一致",
+    "language": "cpp",
+    "lines": 18,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N06",
+    "context": "条件变量等待状态改变的机会",
+    "language": "cpp",
+    "lines": 9,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N06",
+    "context": "先写清接纳与排空契约",
+    "language": "cpp",
+    "lines": 42,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N06",
+    "context": "章首",
+    "language": "cpp",
+    "lines": 19,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N07",
+    "context": "一次读取的契约要覆盖正常与失败",
+    "language": "cpp",
+    "lines": 18,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N07",
+    "context": "章首",
+    "language": "cpp",
+    "lines": 11,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N07",
+    "context": "先准备新限值 再替换当前版本",
+    "language": "cpp",
+    "lines": 17,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N07",
+    "context": "章首",
+    "language": "cpp",
+    "lines": 9,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N07",
+    "context": "assert 不能承担输入验证",
+    "language": "cpp",
+    "lines": 14,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N07",
+    "context": "先写纯判定 再决定是否需要策略",
+    "language": "cpp",
+    "lines": 20,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N07",
+    "context": "一个同步读取接口的最小形状",
+    "language": "cpp",
+    "lines": 6,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N07",
+    "context": "依赖注入让构造与使用分开",
+    "language": "cpp",
+    "lines": 22,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N08",
+    "context": "Windows先看匹配模块 再看当前线程",
+    "language": "text",
+    "lines": 9,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N08",
+    "context": "ASan关注地址有效性的一部分",
+    "language": "bash",
+    "lines": 5,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N08",
+    "context": "检查失败也检查失败后的状态",
+    "language": "cpp",
+    "lines": 14,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N09",
+    "context": "恢复操作先区分要恢复哪一层",
+    "language": "bash",
+    "lines": 7,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N10",
+    "context": "Qt对象不是普通可复制的数据包",
+    "language": "cpp",
+    "lines": 24,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N10",
+    "context": "parent确定谁负责销毁",
+    "language": "cpp",
+    "lines": 4,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N10",
+    "context": "一个点击怎样变成业务请求",
+    "language": "cpp",
+    "lines": 8,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N10",
+    "context": "事件循环需要处理函数及时返回",
+    "language": "cpp",
+    "lines": 8,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N10",
+    "context": "一个只读表格模型的最小责任",
+    "language": "cpp",
+    "lines": 28,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N10",
+    "context": "章首",
+    "language": "cpp",
+    "lines": 34,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N10",
+    "context": "变化通知有严格的先后关系",
+    "language": "cpp",
+    "lines": 15,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N10",
+    "context": "10.5 排序 筛选和编辑需要第二层身份检查",
+    "language": "cpp",
+    "lines": 10,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N10",
+    "context": "绘制只读一份一致的显示状态",
+    "language": "cpp",
+    "lines": 15,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N10",
+    "context": "10.7 用可解释的快照更新整个画面",
+    "language": "cpp",
+    "lines": 26,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N11",
+    "context": "连接类型决定在哪里执行",
+    "language": "cpp",
+    "lines": 14,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N11",
+    "context": "停止请求与停止完成之间还有工作",
+    "language": "cpp",
+    "lines": 18,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N11",
+    "context": "把关键连接在启动前安排好",
+    "language": "cpp",
+    "lines": 28,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N11",
+    "context": "GUI 不阻塞等待 但仍然确认线程结束",
+    "language": "cpp",
+    "lines": 13,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N11",
+    "context": "窗口第一次收到关闭请求时先留下来",
+    "language": "cpp",
+    "lines": 14,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N11",
+    "context": "刷新限速之外 还要限制在途数量",
+    "language": "cpp",
+    "lines": 9,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N12",
+    "context": "12.2 枚举端口以后 仍要识别设备",
+    "language": "cpp",
+    "lines": 16,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N12",
+    "context": "先配置 再打开 再进入识别",
+    "language": "cpp",
+    "lines": 21,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N12",
+    "context": "写入进度不能冒充设置已生效",
+    "language": "cpp",
+    "lines": 17,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N12",
+    "context": "统一帧格式与输入边界",
+    "language": "cpp",
+    "lines": 15,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N12",
+    "context": "状态机决定哪些消息现在有意义",
+    "language": "cpp",
+    "lines": 18,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N12",
+    "context": "12.7 超时 重试和取消必须保持原来的问题",
+    "language": "text",
+    "lines": 5,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N13",
+    "context": "Start和Done两位为什么不够",
+    "language": "text",
+    "lines": 5,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N13",
+    "context": "字序错误为什么会伪装成测量异常",
+    "language": "cpp",
+    "lines": 7,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N13",
+    "context": "13.5 用Qt读取一次完整的PLC状态",
+    "language": "cpp",
+    "lines": 32,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N14",
+    "context": "计划是可执行规则 不是文件路径",
+    "language": "cpp",
+    "lines": 14,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N14",
+    "context": "纯判定函数也要携带规则版本",
+    "language": "cpp",
+    "lines": 25,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N14",
+    "context": "原始证据 转换和判据同时保存",
+    "language": "json",
+    "lines": 26,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N14",
+    "context": "结果和待发送意图在同一事务里",
+    "language": "sql",
+    "lines": 17,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N14",
+    "context": "章首",
+    "language": "text",
+    "lines": 7,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N15",
+    "context": "15.1 发布身份必须比文件名更具体",
+    "language": "text",
+    "lines": 11,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N15",
+    "context": "DLL 运行库和插件各有位置",
+    "language": "text",
+    "lines": 2,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N15",
+    "context": "安装目录不应同时充当数据目录",
+    "language": "cpp",
+    "lines": 8,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N15",
+    "context": "15.4 配置迁移首先保护可解释性",
+    "language": "json",
+    "lines": 8,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N15",
+    "context": "章首",
+    "language": "cpp",
+    "lines": 9,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N17",
+    "context": "17.2.2 GPIO端口内部包含配置和读写通路",
+    "language": "cpp",
+    "lines": 9,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N17",
+    "context": "17.3.3 轮询是一种有边界的等待方式",
+    "language": "cpp",
+    "lines": 29,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N18",
+    "context": "18.3.2 单生产者单消费者的发布顺序",
+    "language": "cpp",
+    "lines": 40,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N18",
+    "context": "18.6 把ISR事件交给普通任务",
+    "language": "cpp",
+    "lines": 23,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N19",
+    "context": "19.2.2 相对延时会把工作时间积进周期",
+    "language": "cpp",
+    "lines": 21,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N19",
+    "context": "19.3.1 先决定保存每份数据还是只保存最新值",
+    "language": "cpp",
+    "lines": 24,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N19",
+    "context": "19.5.1 一个任务不仅占入口函数那么多空间",
+    "language": "cpp",
+    "lines": 16,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N21",
+    "context": "21.2.2 用一个温度节点读懂属性关系",
+    "language": "text",
+    "lines": 11,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N21",
+    "context": "21.3.2 可执行文件依赖目标运行环境",
+    "language": "sh",
+    "lines": 5,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N21",
+    "context": "21.5.1 前台进程适合由服务管理器监督",
+    "language": "ini",
+    "lines": 22,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N21",
+    "context": "21.6 先观察失败发生在哪一层",
+    "language": "sh",
+    "lines": 6,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N22",
+    "context": "22.1.3 权限失败不应该用永久root掩盖",
+    "language": "text",
+    "lines": 4,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N22",
+    "context": "22.2.3 termios决定字节流有没有被终端规则改变",
+    "language": "cpp",
+    "lines": 21,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N22",
+    "context": "22.3.2 一次可取消读取怎样表达结果",
+    "language": "text",
+    "lines": 15,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N23",
+    "context": "扫描只是识别的开始",
+    "language": "text",
+    "lines": 11,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N23",
+    "context": "两点线性关系的教学推导",
+    "language": "cpp",
+    "lines": 24,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N23",
+    "context": "判定保留原值和方法身份",
+    "language": "json",
+    "lines": 21,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N23",
+    "context": "流程对象持有尝试 窗口只显示进展",
+    "language": "cpp",
+    "lines": 22,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N23",
+    "context": "MES已接纳 回执却在网络里丢失",
+    "language": "text",
+    "lines": 8,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N24",
+    "context": "非拥有视图没有延长存储生命",
+    "language": "cpp",
+    "lines": 7,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  },
+  {
+    "chapter": "N24",
+    "context": "沿取得 保留和最后使用画时间线",
+    "language": "cpp",
+    "lines": 8,
+    "status": "教学片段 未编译 未运行 未连接硬件"
+  }
+]

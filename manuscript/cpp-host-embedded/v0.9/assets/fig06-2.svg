@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="640" viewBox="0 0 960 640"><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#166B70"/></marker></defs><rect width="100%" height="100%" fill="white"/>
+<text x="25" y="37" font-family="Noto Sans CJK SC, sans-serif" font-size="25" font-weight="bold" fill="#203B4A" text-anchor="start">关闭先停止接纳 再等待最后使用结束</text>
+<text x="25" y="97" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="bold" fill="#203B4A" text-anchor="start">管理者</text>
+<rect x="17" y="119" width="169" height="91" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="101.5" y="171.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">禁新入口</text>
+<line x1="186" y1="164" x2="206" y2="164" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="206" y="119" width="169" height="91" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="290.5" y="157.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">锁内设置</text>
+<text x="290.5" y="186.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">closed = true</text>
+<line x1="375" y1="164" x2="395" y2="164" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="395" y="119" width="169" height="91" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="479.5" y="171.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">解锁并通知</text>
+<line x1="564" y1="164" x2="584" y2="164" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="584" y="119" width="169" height="91" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="668.5" y="157.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">join / 等待</text>
+<text x="668.5" y="186.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">结束确认</text>
+<line x1="753" y1="164" x2="773" y2="164" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="773" y="119" width="169" height="91" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="857.5" y="171.5" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">回收</text>
+<text x="25" y="282" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="bold" fill="#203B4A" text-anchor="start">消费者</text>
+<rect x="241" y="303" width="246" height="78" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="364.0" y="349.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">醒来并排空剩余</text>
+<rect x="567" y="303" width="167" height="78" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="650.5" y="349.0" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">退出</text>
+<line x1="487" y1="342" x2="567" y2="342" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<path d="M 652 303 L 652 210" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)" stroke-dasharray="7 5"/>
+<text x="25" y="433" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="bold" fill="#203B4A" text-anchor="start">设备操作</text>
+<rect x="240" y="453" width="247" height="78" rx="8" fill="#FFF4E9" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="363.5" y="499.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">取消请求</text>
+<rect x="567" y="453" width="167" height="78" rx="8" fill="#FFF4E9" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="650.5" y="499.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">最后完成</text>
+<line x1="487" y1="492" x2="567" y2="492" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<path d="M 734 492 L 794 492 L 794 210" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)" stroke-dasharray="7 5"/>
+<text x="26" y="582" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#B46627" text-anchor="start">全部相关使用结束以后才能回收；join 不替代未受其管理的 SDK 完成契约</text>
+<text x="26" y="611" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#B46627" text-anchor="start">不能持有消费者退出所需的锁再 join；排空与取消是不同关闭策略</text>
+</svg>

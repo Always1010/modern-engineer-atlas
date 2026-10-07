@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="480" viewBox="0 0 960 480"><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#166B70"/></marker></defs><rect width="100%" height="100%" fill="white"/>
+<rect x="20" y="90" width="211" height="76" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="125.5" y="135.0" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">未连接</text>
+<rect x="249" y="90" width="211" height="76" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="354.5" y="135.0" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">本地通道打开</text>
+<rect x="478" y="90" width="211" height="76" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="583.5" y="135.0" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">身份已核验</text>
+<rect x="707" y="90" width="211" height="76" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="812.5" y="135.0" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">采集中</text>
+<line x1="231" y1="128" x2="249" y2="128" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="460" y1="128" x2="478" y2="128" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="689" y1="128" x2="707" y2="128" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="365" y="70" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="middle">核对 device_id</text>
+<text x="593" y="70" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="middle">允许接纳数据</text>
+<rect x="707" y="261" width="211" height="76" rx="8" fill="#FFF4E9" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="812.5" y="306.0" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">停止中</text>
+<line x1="812" y1="166" x2="812" y2="261" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<text x="829" y="219" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="start">停止请求</text>
+<path d="M 707 299 L 583 299 L 583 166" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<text x="465" y="339" font-family="Noto Sans CJK SC, sans-serif" font-size="18" font-weight="normal" fill="#203B4A" text-anchor="start">确认不再访问后回到空闲会话</text>
+<rect x="28" y="279" width="273" height="76" rx="8" fill="#FFF4E9" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="164.5" y="324.0" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#203B4A" text-anchor="middle">故障或身份不匹配</text>
+<path d="M 354 166 L 354 221 L 165 221 L 165 279" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)" stroke-dasharray="7 5"/>
+<path d="M 812 166 L 812 200 L 354 200 L 354 221" stroke="#166B70" stroke-width="2" fill="none" stroke-dasharray="7 5"/>
+<path d="M 28 317 L 9 317 L 9 128 L 20 128" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)" stroke-dasharray="7 5"/>
+<text x="25" y="404" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#596770" text-anchor="start">打开句柄只建立本地通道，不证明对端身份正确</text>
+<text x="25" y="433" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#596770" text-anchor="start">故障恢复先终止旧会话，再重新建立；本图省略各状态的重复故障箭头</text>
+</svg>

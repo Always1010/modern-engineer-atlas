@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="620" viewBox="0 0 960 620"><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#166B70"/></marker></defs><rect width="100%" height="100%" fill="white"/>
+<text x="25" y="37" font-family="Noto Sans CJK SC, sans-serif" font-size="25" font-weight="bold" fill="#203B4A" text-anchor="start">先形成候选 再以明确提交点替换当前状态</text>
+<rect x="29" y="112" width="255" height="123" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="156.5" y="152.5" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">current</text>
+<text x="156.5" y="181.5" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">旧版本 旧限值</text>
+<text x="156.5" y="210.5" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">保持可观察不变量</text>
+<rect x="352" y="112" width="255" height="123" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="479.5" y="152.5" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">candidate</text>
+<text x="479.5" y="181.5" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">新版本 新限值</text>
+<text x="479.5" y="210.5" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">尚未对外生效</text>
+<rect x="676" y="112" width="254" height="123" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="803.0" y="180.5" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">验证所有条件</text>
+<line x1="607" y1="173" x2="676" y2="173" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="676" y="327" width="254" height="84" rx="8" fill="#FFF4E9" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="803.0" y="362.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">验证失败</text>
+<text x="803.0" y="391.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">清理候选</text>
+<line x1="803" y1="235" x2="803" y2="327" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="354" y="327" width="254" height="84" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="481.0" y="362.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">验证成功</text>
+<text x="481.0" y="391.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">以不抛 swap 提交</text>
+<path d="M 676 204 L 640 204 L 640 368 L 608 368" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<rect x="28" y="327" width="256" height="84" rx="8" fill="#EFF7F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="156.0" y="376.0" font-family="Noto Sans CJK SC, sans-serif" font-size="21" font-weight="normal" fill="#203B4A" text-anchor="middle">current 为新状态</text>
+<line x1="354" y1="369" x2="284" y2="369" stroke="#166B70" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="266" y="480" width="430" height="72" rx="8" fill="#E9F1F5" stroke="#B6CCD4" stroke-width="1.5"/>
+<text x="481.0" y="523.0" font-family="Noto Sans CJK SC, sans-serif" font-size="22" font-weight="normal" fill="#203B4A" text-anchor="middle">旧值转给 candidate 按规则清理</text>
+<path d="M 480 411 L 480 480" stroke="#166B70" stroke-width="2" fill="none" marker-end="url(#arr)"/>
+<text x="25" y="597" font-family="Noto Sans CJK SC, sans-serif" font-size="20" font-weight="normal" fill="#B46627" text-anchor="start">此图仅为内存配置的强保证设计；不包含设备写入或远端业务提交</text>
+</svg>

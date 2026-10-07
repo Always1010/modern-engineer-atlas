@@ -1,0 +1,478 @@
+{
+  "version": "0.9",
+  "selection": {
+    "N01": [
+      "一 从物理温度到屏幕上的数字",
+      "二 上位机 控制器和操作系统各做什么",
+      "三种身份各回答不同问题"
+    ],
+    "N02": [
+      "二 名字 存储与对象生命期是三件事",
+      "引用和指针都能形成借用",
+      "借用要写明结束点",
+      "资源不仅是动态内存",
+      "构造先建立可用状态 析构按依赖退出",
+      "七 正确关闭要覆盖最后一次使用"
+    ],
+    "N03": [
+      "连续批次的常见选择",
+      "容量怎样进入时间和内存预算"
+    ],
+    "N04": [
+      "线路格式独立于进程结构体",
+      "这份帧刻意没有承诺什么",
+      "一次读取没有业务边界"
+    ],
+    "N05": [
+      "构建链路是信息逐步确定的过程",
+      "交叉编译把构建机器与运行机器分开"
+    ],
+    "N06": [
+      "数据竞争与逻辑竞争",
+      "互斥量保护的是不变量",
+      "条件变量等待状态改变的机会"
+    ],
+    "N08": [
+      "八 主机通过与板上通过各证明什么"
+    ],
+    "N10": [
+      "控件显示信息 业务对象解释信息",
+      "事件循环需要处理函数及时返回"
+    ],
+    "N11": [
+      "QThread 管理线程 但它自己也有归属",
+      "对象树与线程归属必须一起检查",
+      "停止请求与停止完成之间还有工作"
+    ],
+    "N12": [
+      "三种序号属于三种不同事实",
+      "重连先恢复认识 再恢复工作"
+    ],
+    "N13": [
+      "Start和Done两位为什么不够"
+    ],
+    "N14": [
+      "工单安排工作 工艺路线规定经过哪里",
+      "结果和待发送意图在同一事务里",
+      "网络成功和业务成功不同"
+    ],
+    "N16": [
+      "16.1.1 照片建立位置感 料号确定能力",
+      "16.2.1 电源有路径 地是参考",
+      "16.3.1 首次供电先约定停止条件"
+    ],
+    "N17": [
+      "17.1.3 向量表先交付栈和入口",
+      "17.3.1 异步串行如何约定采样"
+    ],
+    "N18": [
+      "18.2.1 单核也有并发参与者",
+      "18.4.1 DMA配置是一份给另一个参与者的合同",
+      "18.4.5 取消请求以后仍要等静止证据"
+    ],
+    "N19": [
+      "19.2.1 周期 截止期与执行时间各回答一个问题"
+    ],
+    "N20": [
+      "20.3.1 喂狗证明的只是刷新动作发生过"
+    ],
+    "N21": [
+      "21.1.1 一个产品镜像包含哪些不同工件"
+    ],
+    "N22": [
+      "22.1.1 从路径到文件描述符再到设备"
+    ],
+    "N23": [
+      "23.1 工站的物理对象和信息对象",
+      "两点线性关系的教学推导",
+      "独立复核不能重复使用拟合证据",
+      "23.9 三个中断点怎样恢复同一件工件"
+    ]
+  },
+  "entries": [
+    {
+      "chapter": "N01",
+      "title": "一 从物理温度到屏幕上的数字",
+      "start_page": 8,
+      "end_page": 9,
+      "level": 1,
+      "part": "公共基础"
+    },
+    {
+      "chapter": "N01",
+      "title": "二 上位机 控制器和操作系统各做什么",
+      "start_page": 9,
+      "end_page": 11,
+      "level": 1,
+      "part": "公共基础"
+    },
+    {
+      "chapter": "N01",
+      "title": "三种身份各回答不同问题",
+      "start_page": 12,
+      "end_page": 13,
+      "level": 2,
+      "part": "公共基础"
+    },
+    {
+      "chapter": "N02",
+      "title": "二 名字 存储与对象生命期是三件事",
+      "start_page": 18,
+      "end_page": 20,
+      "level": 1,
+      "part": "公共基础"
+    },
+    {
+      "chapter": "N02",
+      "title": "引用和指针都能形成借用",
+      "start_page": 20,
+      "end_page": 20,
+      "level": 2,
+      "part": "公共基础"
+    },
+    {
+      "chapter": "N02",
+      "title": "借用要写明结束点",
+      "start_page": 20,
+      "end_page": 21,
+      "level": 2,
+      "part": "公共基础"
+    },
+    {
+      "chapter": "N02",
+      "title": "资源不仅是动态内存",
+      "start_page": 22,
+      "end_page": 22,
+      "level": 2,
+      "part": "公共基础"
+    },
+    {
+      "chapter": "N02",
+      "title": "构造先建立可用状态 析构按依赖退出",
+      "start_page": 22,
+      "end_page": 23,
+      "level": 2,
+      "part": "公共基础"
+    },
+    {
+      "chapter": "N02",
+      "title": "七 正确关闭要覆盖最后一次使用",
+      "start_page": 28,
+      "end_page": 28,
+      "level": 1,
+      "part": "公共基础"
+    },
+    {
+      "chapter": "N03",
+      "title": "连续批次的常见选择",
+      "start_page": 32,
+      "end_page": 33,
+      "level": 2,
+      "part": "公共基础"
+    },
+    {
+      "chapter": "N03",
+      "title": "容量怎样进入时间和内存预算",
+      "start_page": 39,
+      "end_page": 39,
+      "level": 2,
+      "part": "公共基础"
+    },
+    {
+      "chapter": "N04",
+      "title": "线路格式独立于进程结构体",
+      "start_page": 55,
+      "end_page": 57,
+      "level": 2,
+      "part": "公共基础"
+    },
+    {
+      "chapter": "N04",
+      "title": "这份帧刻意没有承诺什么",
+      "start_page": 57,
+      "end_page": 57,
+      "level": 2,
+      "part": "公共基础"
+    },
+    {
+      "chapter": "N04",
+      "title": "一次读取没有业务边界",
+      "start_page": 58,
+      "end_page": 58,
+      "level": 2,
+      "part": "公共基础"
+    },
+    {
+      "chapter": "N05",
+      "title": "构建链路是信息逐步确定的过程",
+      "start_page": 63,
+      "end_page": 63,
+      "level": 2,
+      "part": "公共基础"
+    },
+    {
+      "chapter": "N05",
+      "title": "交叉编译把构建机器与运行机器分开",
+      "start_page": 75,
+      "end_page": 76,
+      "level": 2,
+      "part": "公共基础"
+    },
+    {
+      "chapter": "N06",
+      "title": "数据竞争与逻辑竞争",
+      "start_page": 81,
+      "end_page": 81,
+      "level": 2,
+      "part": "公共基础"
+    },
+    {
+      "chapter": "N06",
+      "title": "互斥量保护的是不变量",
+      "start_page": 81,
+      "end_page": 82,
+      "level": 2,
+      "part": "公共基础"
+    },
+    {
+      "chapter": "N06",
+      "title": "条件变量等待状态改变的机会",
+      "start_page": 83,
+      "end_page": 84,
+      "level": 2,
+      "part": "公共基础"
+    },
+    {
+      "chapter": "N08",
+      "title": "八 主机通过与板上通过各证明什么",
+      "start_page": 121,
+      "end_page": 122,
+      "level": 1,
+      "part": "公共基础"
+    },
+    {
+      "chapter": "N10",
+      "title": "控件显示信息 业务对象解释信息",
+      "start_page": 136,
+      "end_page": 137,
+      "level": 2,
+      "part": "工业上位机"
+    },
+    {
+      "chapter": "N10",
+      "title": "事件循环需要处理函数及时返回",
+      "start_page": 140,
+      "end_page": 141,
+      "level": 2,
+      "part": "工业上位机"
+    },
+    {
+      "chapter": "N11",
+      "title": "QThread 管理线程 但它自己也有归属",
+      "start_page": 151,
+      "end_page": 151,
+      "level": 2,
+      "part": "工业上位机"
+    },
+    {
+      "chapter": "N11",
+      "title": "对象树与线程归属必须一起检查",
+      "start_page": 151,
+      "end_page": 152,
+      "level": 2,
+      "part": "工业上位机"
+    },
+    {
+      "chapter": "N11",
+      "title": "停止请求与停止完成之间还有工作",
+      "start_page": 155,
+      "end_page": 156,
+      "level": 2,
+      "part": "工业上位机"
+    },
+    {
+      "chapter": "N12",
+      "title": "三种序号属于三种不同事实",
+      "start_page": 171,
+      "end_page": 171,
+      "level": 2,
+      "part": "工业上位机"
+    },
+    {
+      "chapter": "N12",
+      "title": "重连先恢复认识 再恢复工作",
+      "start_page": 172,
+      "end_page": 172,
+      "level": 2,
+      "part": "工业上位机"
+    },
+    {
+      "chapter": "N13",
+      "title": "Start和Done两位为什么不够",
+      "start_page": 177,
+      "end_page": 178,
+      "level": 2,
+      "part": "工业上位机"
+    },
+    {
+      "chapter": "N14",
+      "title": "工单安排工作 工艺路线规定经过哪里",
+      "start_page": 188,
+      "end_page": 188,
+      "level": 2,
+      "part": "工业上位机"
+    },
+    {
+      "chapter": "N14",
+      "title": "结果和待发送意图在同一事务里",
+      "start_page": 194,
+      "end_page": 196,
+      "level": 2,
+      "part": "工业上位机"
+    },
+    {
+      "chapter": "N14",
+      "title": "网络成功和业务成功不同",
+      "start_page": 196,
+      "end_page": 197,
+      "level": 2,
+      "part": "工业上位机"
+    },
+    {
+      "chapter": "N16",
+      "title": "16.1.1 照片建立位置感 料号确定能力",
+      "start_page": 211,
+      "end_page": 212,
+      "level": 2,
+      "part": "嵌入式"
+    },
+    {
+      "chapter": "N16",
+      "title": "16.2.1 电源有路径 地是参考",
+      "start_page": 213,
+      "end_page": 214,
+      "level": 2,
+      "part": "嵌入式"
+    },
+    {
+      "chapter": "N16",
+      "title": "16.3.1 首次供电先约定停止条件",
+      "start_page": 215,
+      "end_page": 217,
+      "level": 2,
+      "part": "嵌入式"
+    },
+    {
+      "chapter": "N17",
+      "title": "17.1.3 向量表先交付栈和入口",
+      "start_page": 224,
+      "end_page": 225,
+      "level": 2,
+      "part": "嵌入式"
+    },
+    {
+      "chapter": "N17",
+      "title": "17.3.1 异步串行如何约定采样",
+      "start_page": 227,
+      "end_page": 228,
+      "level": 2,
+      "part": "嵌入式"
+    },
+    {
+      "chapter": "N18",
+      "title": "18.2.1 单核也有并发参与者",
+      "start_page": 237,
+      "end_page": 238,
+      "level": 2,
+      "part": "嵌入式"
+    },
+    {
+      "chapter": "N18",
+      "title": "18.4.1 DMA配置是一份给另一个参与者的合同",
+      "start_page": 242,
+      "end_page": 242,
+      "level": 2,
+      "part": "嵌入式"
+    },
+    {
+      "chapter": "N18",
+      "title": "18.4.5 取消请求以后仍要等静止证据",
+      "start_page": 244,
+      "end_page": 244,
+      "level": 2,
+      "part": "嵌入式"
+    },
+    {
+      "chapter": "N19",
+      "title": "19.2.1 周期 截止期与执行时间各回答一个问题",
+      "start_page": 251,
+      "end_page": 251,
+      "level": 2,
+      "part": "嵌入式"
+    },
+    {
+      "chapter": "N20",
+      "title": "20.3.1 喂狗证明的只是刷新动作发生过",
+      "start_page": 265,
+      "end_page": 265,
+      "level": 2,
+      "part": "嵌入式"
+    },
+    {
+      "chapter": "N21",
+      "title": "21.1.1 一个产品镜像包含哪些不同工件",
+      "start_page": 271,
+      "end_page": 272,
+      "level": 2,
+      "part": "嵌入式"
+    },
+    {
+      "chapter": "N22",
+      "title": "22.1.1 从路径到文件描述符再到设备",
+      "start_page": 281,
+      "end_page": 281,
+      "level": 2,
+      "part": "嵌入式"
+    },
+    {
+      "chapter": "N23",
+      "title": "23.1 工站的物理对象和信息对象",
+      "start_page": 293,
+      "end_page": 295,
+      "level": 1,
+      "part": "综合判断"
+    },
+    {
+      "chapter": "N23",
+      "title": "两点线性关系的教学推导",
+      "start_page": 298,
+      "end_page": 299,
+      "level": 2,
+      "part": "综合判断"
+    },
+    {
+      "chapter": "N23",
+      "title": "独立复核不能重复使用拟合证据",
+      "start_page": 300,
+      "end_page": 300,
+      "level": 2,
+      "part": "综合判断"
+    },
+    {
+      "chapter": "N23",
+      "title": "23.9 三个中断点怎样恢复同一件工件",
+      "start_page": 305,
+      "end_page": 307,
+      "level": 1,
+      "part": "综合判断"
+    }
+  ],
+  "distinct_pdf_pages": 75,
+  "part_page_counts": {
+    "公共基础": 29,
+    "工业上位机": 17,
+    "嵌入式": 20,
+    "综合判断": 9
+  },
+  "page_count_method": "按所涉及的不同PDF页面计；含与下一小节同页的末尾，整页阅读不会缺少本节后半部分"
+}
