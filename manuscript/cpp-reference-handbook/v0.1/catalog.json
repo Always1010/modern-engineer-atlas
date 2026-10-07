@@ -1,6 +1,7 @@
 {
   "title": "C++ 与计算机基础图解参考手册",
-  "status": "awaiting-outline-review",
+  "status": "awaiting-outline-and-sample-review",
+  "sampleChapter": "R13",
   "languageBaseline": [
     "C++17",
     "C++20"
