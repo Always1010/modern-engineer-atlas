@@ -25,6 +25,8 @@
 
 **基础操作**。以下为函数体内片段，刻意保留未初始化声明以说明语义，不读取它：
 
+**独立片段**。
+
 ```cpp
 int uninitialized;            // 自动局部标量没有确定初值，不读取
 int zero{};                   // 0
@@ -34,6 +36,8 @@ Point point{};                // 聚合的两个成员均为 0
 ```
 
 默认初始化类通常调用可用默认构造函数，默认初始化数组则逐元素执行。值初始化标量得到零；类值初始化若选中的默认构造不是用户提供，会按规则先零初始化再默认初始化。用户提供默认构造不保证所有标量成员归零：
+
+**独立片段**。
 
 ```cpp
 struct Record {
@@ -48,6 +52,8 @@ Record record{};              // 不读取 record.value
 ## 直接初始化与拷贝初始化
 
 **基础操作**。下面用 `explicit` 构造函数显示差异；类定义放在命名空间作用域，变量声明放在函数体内：
+
+**独立片段**。
 
 ```cpp
 struct Count {
@@ -66,6 +72,8 @@ Count listed{3};              // 合法，直接列表初始化
 
 **基础操作**。花括号限制可能丢失信息的转换，称为窄化（narrowing）。局部片段：
 
+**独立片段**。
+
 ```cpp
 int exact{12};                // 12
 unsigned char small{42};      // 常量可表示，合法
@@ -82,6 +90,8 @@ C++17 的主要窄化情况为浮点到整数；较高精度浮点到较低精�
 
 **基础操作**。`std::initializer_list<T>`（`<initializer_list>`）提供对一个底层 `const T` 数组的轻量访问。容器中圆括号与花括号可以选择完全不同的构造；以下需 `<vector>`，放在函数体内：
 
+**独立片段**。
+
 ```cpp
 std::vector<int> repeated(3, 7); // 数量和值：三个 7
 std::vector<int> listed{3, 7};   // 初始列表：两个元素 3、7
@@ -93,6 +103,8 @@ std::vector<int> listed{3, 7};   // 初始列表：两个元素 3、7
 
 **基础操作**。聚合（aggregate）包括数组和满足规定条件的类。下面的 `Point` 是 C++17 聚合；成员初值按声明顺序对应：
 
+**独立片段**。
+
 ```cpp
 struct Point { int x; int y = 5; int z; };
 Point point{2};               // x 为 2，y 使用默认值 5，z 为 0
@@ -102,6 +114,8 @@ Point other{1, 3, 7};         // 分别为 1、3、7
 省略成员先采用默认成员初始化器；没有默认成员初始化器则按规定从空列表初始化，引用成员等仍可能导致非法程序。C++17 聚合不能具有用户提供、继承或 `explicit` 构造函数，不能有私有/受保护非静态数据成员、虚函数、虚基类或私有/受保护基类；它可以具有适用的基类。C++20 将构造相关条件改为不具有用户声明或继承构造，版本升级可能改变同一类是否为聚合。
 
 **C++20 基础操作**。指定成员初始化适用于聚合，指定顺序须按声明顺序，不能直接照搬 C 的任意顺序或混合写法：
+
+**独立片段**。
 
 ```cpp
 struct Point { int x; int y; };
@@ -113,6 +127,8 @@ Point point{.x = 2, .y = 5};  // C++20
 ## auto
 
 **基础操作**。`auto` 根据初值推导类型，常见形状是 `auto name = expression`、`auto& name = expression`、`auto&& name = expression`。需要初值，不能仅声明 `auto object;`。
+
+**独立片段**。
 
 ```cpp
 const int source = 4;
@@ -136,6 +152,8 @@ C++17 `auto a{1};` 推导为 `int`；`auto b = {1};` 推导为 `std::initializer
 
 **基础操作**。`decltype(expression)` 查询类型，不求值表达式。对未加括号的名字或成员访问，取得实体的声明类型；其他表达式按[值类别](R04-expressions-conversions.zh-CN.md#值类别)得到 `T`、`T&` 或 `T&&`。
 
+**独立片段**。
+
 ```cpp
 const int source = 4;
 decltype(source) copy = 7;     // const int
@@ -150,6 +168,8 @@ decltype(auto) borrowed = (source); // const int&
 
 **基础操作**。函数可以从返回表达式推导返回类型：
 
+**独立片段**。
+
 ```cpp
 auto twice(int value) { return value * 2; } // 返回 int
 ```
@@ -159,6 +179,8 @@ auto twice(int value) { return value * 2; } // 返回 int
 ## const 与 constexpr
 
 **基础操作**。`const` 限制通过该对象修改值，初始化可以在运行期；对指针需区分指针自身与所指对象的 const。`constexpr` 变量要求常量初始化并具有 const 属性，`constexpr` 函数允许适用调用参与常量表达式。
+
+**独立片段**。
 
 ```cpp
 constexpr int square(int n) { return n * n; }
@@ -173,6 +195,8 @@ constexpr int known = square(3); // 9，常量表达式
 
 **基础操作 · C++20**。`consteval` 声明立即函数（immediate function），适用的立即调用须形成常量表达式；`constinit` 要求静态或线程存储期变量满足静态初始化，不把变量变为 const。
 
+**独立片段**。
+
 ```cpp
 consteval int twice(int value) { return value * 2; }
 constexpr int known = twice(21);       // 42
@@ -184,6 +208,8 @@ constinit int global_count = 0;        // 命名空间作用域，可在运行�
 ## 静态初始化与局部 static
 
 **机制解释**。静态存储期对象先进行静态初始化（常量初始化或零初始化），必要时再动态初始化。跨翻译单元动态初始化的排序具有复杂条件，不能把源文件排列当作依赖机制。
+
+**独立片段**。
 
 ```cpp
 int& counter() {

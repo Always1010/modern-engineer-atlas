@@ -8,6 +8,8 @@ RAII（Resource Acquisition Is Initialization，资源获取即初始化）让�
 
 **基础操作**。把资源交给成员拥有者后，作用域正常退出和异常展开共用析构清理路径；需 `<memory>` 的类定义及使用片段：
 
+**独立片段**。
+
 ```cpp
 struct Buffer {
     std::unique_ptr<int[]> data;
@@ -25,6 +27,8 @@ struct Buffer {
 ## new 与 delete
 
 **基础操作**。new 表达式通常取得存储并初始化对象；delete 表达式销毁对象并释放适用存储。以下在函数体内展示配对，不包含异常插入路径：
+
+**独立片段**。
 
 ```cpp
 int* value = new int(7);
@@ -55,6 +59,8 @@ delete[] values;
 
 **基础操作 · C++11 · `<memory>`**。声明摘要：`template<class T, class D = std::default_delete<T>> class unique_ptr;`，T 是目标类型，D 是删除器类型。空构造/`nullptr` 构造建立空拥有者；指针构造接收所有权；移动构造转交；拷贝构造被删除。
 
+**独立片段**。
+
 ```cpp
 std::unique_ptr<int> empty;
 auto owner = std::make_unique<int>(7); // C++14
@@ -68,6 +74,8 @@ bool present = static_cast<bool>(owner); // true
 ## unique_ptr 转移、reset 与 release
 
 **基础操作**。下面的片段需要 `<memory>`、`<utility>`：
+
+**独立片段**。
 
 ```cpp
 auto source = std::make_unique<int>(7);
@@ -84,6 +92,8 @@ received.reset();              // 释放 int，received 为空
 
 **基础操作**。`unique_ptr<T[]>` 使用数组删除并提供 `operator[]`，不携带长度，仍须由接口保存和检查边界：
 
+**独立片段**。
+
 ```cpp
 auto values = std::make_unique<int[]>(3); // 需 <memory>，元素初值为 0
 values[1] = 7;
@@ -91,6 +101,8 @@ int value = values[1];         // 7
 ```
 
 **机制解释**。删除器 D 是类型的一部分，可以把正确的标准或平台释放函数绑定到拥有者。需要 `<cstdio>`、`<memory>` 的定义和局部使用：
+
+**独立片段**。
 
 ```cpp
 struct FileCloser {
@@ -107,6 +119,8 @@ std::unique_ptr<std::FILE, FileCloser> file(std::fopen("data.txt", "r"));
 ## shared_ptr 构造、共享与访问
 
 **基础操作 · C++11 · `<memory>`**。声明形状是 `template<class T> class shared_ptr;`。默认构造为空；可从适用裸指针（及可选删除器）、unique_ptr、shared_ptr 或有效 weak_ptr 构造；常用 make_shared 建立对象与共享关系。
+
+**独立片段**。
 
 ```cpp
 auto owner = std::make_shared<int>(42);
@@ -125,6 +139,8 @@ copy.reset();                 // 最后强所有者离开，销毁对象
 
 **基础操作 · C++11 · `<memory>`**。声明形状是 `template<class T> class weak_ptr;`，它从共享关系建立观察，不计为强所有者。
 
+**独立片段**。
+
 ```cpp
 auto owner = std::make_shared<int>(42);
 std::weak_ptr<int> observer = owner;
@@ -141,6 +157,8 @@ auto missing = observer.lock(); // 空 shared_ptr
 
 **基础操作 · `<memory>`**。工厂将构造实参转交给对象构造，返回已管理的拥有者；下面是声明摘要，省略约束：
 
+**声明摘要**。
+
 ```cpp
 // template<class T, class... Args> unique_ptr<T> make_unique(Args&&...); // C++14
 // template<class T, class... Args> shared_ptr<T> make_shared(Args&&...); // C++11
@@ -149,6 +167,8 @@ auto missing = observer.lock(); // 空 shared_ptr
 ```
 
 单对象 make_unique 转交构造实参，未知界数组 `make_unique<T[]>(n)` 值初始化 n 个元素，已知界数组形式被删除。C++17 make_shared/allocate_shared 的这里展开范围是非数组对象；数组扩展须按后续版本查阅。allocate_shared 使用提供的分配器管理相关分配。
+
+**独立片段**。
 
 ```cpp
 struct Item { int value; explicit Item(int n) : value(n) {} };
@@ -177,6 +197,8 @@ make_shared 常见实现把对象与控制状态共同分配，减少分配次�
 
 **进阶后查 · `<memory>`**。`enable_shared_from_this<T>` 为适当纳入共享所有权的对象提供 `shared_from_this()`；C++17 还提供 `weak_from_this()`。使用公开、适用的唯一基类关系：
 
+**独立片段**。
+
 ```cpp
 struct Node : std::enable_shared_from_this<Node> {
     std::shared_ptr<Node> self() { return shared_from_this(); }
@@ -190,6 +212,8 @@ auto same_owner = node->self(); // 共享 node 的已有控制关系
 ## allocator 与 allocator_traits
 
 **进阶后查 · `<memory>`**。allocator 管理原始存储，allocator_traits 统一调用分配、构造、销毁与释放。示例的 int 构造不抛，先取得存储再建立对象：
+
+**独立片段**。
 
 ```cpp
 std::allocator<int> allocator;
@@ -212,6 +236,8 @@ Traits::deallocate(allocator, slot, 1);
 ## monotonic_buffer_resource 与池资源
 
 **进阶后查 · C++17**。monotonic_buffer_resource 以递增批次取得空间，单次 deallocate 不回收单块，整体 release 或销毁统一释放。需要 `<cstddef>`、`<memory_resource>`、`<vector>` 的局部片段：
+
+**独立片段**。
 
 ```cpp
 std::byte buffer[1024];

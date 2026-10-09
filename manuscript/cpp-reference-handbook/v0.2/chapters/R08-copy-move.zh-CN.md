@@ -21,6 +21,8 @@
 
 **基础操作**。用既有左值建立独立目标；需 `<string>`：
 
+**独立片段**。
+
 ```cpp
 std::string source = "hello";
 std::string copy(source);      // 拷贝构造
@@ -32,6 +34,8 @@ copy[0] = 'H';                 // copy 为 Hello，source 仍为 hello
 ## 拷贝赋值
 
 **基础操作**。给已经存在的目标赋予源状态；需 `<string>`：
+
+**独立片段**。
 
 ```cpp
 std::string source = "hello";
@@ -45,6 +49,8 @@ source[0] = 'H';              // target 仍为 hello
 ## 移动构造与移动赋值
 
 **基础操作**。以下使用 `<memory>`、`<utility>`，展示明确规定的独占所有权转交：
+
+**独立片段**。
 
 ```cpp
 auto source = std::make_unique<int>(42);
@@ -91,6 +97,8 @@ Outer copy(std::move(source)); // 选择 Outer(const Outer&)
 
 **基础操作 · `<utility>`**。声明摘要：`template<class T> std::remove_reference_t<T>&& move(T&& value) noexcept`（返回类型相关特征来自 `<type_traits>`）。它把适用对象表达式转换为右值引用，产生将亡值。
 
+**独立片段**。
+
 ```cpp
 std::string source = "hello";  // 需 <string>、<utility>
 std::string target(std::move(source));
@@ -127,6 +135,8 @@ move 调用本身不转移资源、不搬内存、不结束源寿命；后续重
 
 **基础操作 · `<utility>`**。`std::forward<T>(value)` 根据已经推导的 T 恢复调用者的值类别。接口摘要有接受 `remove_reference_t<T>&` 和 `remove_reference_t<T>&&` 两种形式，结果为 `T&&`，均为 noexcept；右值形式不能用于把右值错误地转成左值。
 
+**独立片段**。
+
 ```cpp
 int category(int&) { return 1; }
 int category(int&&) { return 2; }
@@ -146,6 +156,8 @@ int second = relay(7);         // 2，转发右值
 
 **机制解释**。C++17 同类型类 prvalue 可以直接初始化结果对象，不要求先建立独立临时再移动；下面的不可复制不可移动类型仍可这样返回：
 
+**独立片段**。
+
 ```cpp
 struct Immovable {
     Immovable() = default;
@@ -161,6 +173,8 @@ Immovable result = make_value();
 ## noexcept 与 move_if_noexcept
 
 **进阶后查 · `<utility>`**。`std::move_if_noexcept(x)` 在移动可能抛且类型可拷贝时给 const 左值引用路径，否则给右值引用路径；它本身不执行复制或移动。需要 `<type_traits>` 的机制片段：
+
+**独立片段**。
 
 ```cpp
 struct Item {

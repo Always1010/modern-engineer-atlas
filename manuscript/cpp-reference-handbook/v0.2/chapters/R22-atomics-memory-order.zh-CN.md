@@ -21,6 +21,8 @@
 
 **基础操作**。`<atomic>` 中 `template<class T> class atomic;`；一般模板要求 T 满足平凡可复制等类型约束，整数、指针等另有特化。atomic 不可复制/移动。C++17 应显式提供初值，避免依赖默认构造的未初始化状态。
 
+**独立片段**。
+
 ```cpp
 std::atomic<int> count{0};
 std::atomic<bool> ready{false};
@@ -33,11 +35,15 @@ std::atomic<int*> pointer{nullptr};
 
 重点接口形状如下，省略 volatile 等重载：
 
+**声明摘要**。
+
 ```cpp
 T load(std::memory_order order = std::memory_order_seq_cst) const noexcept;
 void store(T desired, std::memory_order order = std::memory_order_seq_cst) noexcept;
 T exchange(T desired, std::memory_order order = std::memory_order_seq_cst) noexcept;
 ```
+
+**独立片段**。
 
 ```cpp
 std::atomic<int> state{0};
@@ -52,6 +58,8 @@ int old = state.exchange(2);
 
 **基础操作**。整数 atomic 提供 `fetch_add/sub/and/or/xor(operand, order = seq_cst)`，返回修改前的值。指针 atomic 提供 fetch_add/sub，参数是元素数，不是字节数；结果是否可解引用仍受目标数组与寿命约束。
 
+**独立片段**。
+
 ```cpp
 std::atomic<unsigned> count{0};
 unsigned ticket = count.fetch_add(1);
@@ -64,6 +72,8 @@ unsigned previous = count.fetch_or(0x10u);
 
 **基础操作**。比较交换（compare-and-exchange，CAS）将原子当前表示与 expected 比较：匹配时写 desired 并返回 true；不匹配时返回 false，并把观测值写回 expected。常用形状：
 
+**声明摘要**。
+
 ```cpp
 bool compare_exchange_weak(T& expected, T desired,
     std::memory_order success, std::memory_order failure) noexcept;
@@ -72,6 +82,8 @@ bool compare_exchange_strong(T& expected, T desired,
 ```
 
 weak/strong 均有单序和双序重载。weak 可虚假失败，常用于循环；strong 不出现这种虚假失败，但竞争仍可使它失败。
+
+**独立片段**。
 
 ```cpp
 std::atomic<int> state{0};
@@ -87,6 +99,8 @@ bool again = state.compare_exchange_strong(expected, 9);
 
 desired 依赖 expected 时，每次失败都要重新计算。例如以循环加一，需 `<atomic>`，count 为已初始化 atomic<int>，且加法不会超出 int 范围：
 
+**承接上文**。
+
 ```cpp
 int expected = count.load();
 while (!count.compare_exchange_weak(expected, expected + 1)) {
@@ -99,6 +113,8 @@ while (!count.compare_exchange_weak(expected, expected + 1)) {
 ## std::atomic_flag
 
 **基础操作**。`<atomic>` 的 atomic_flag 是标准保证无锁的原子标志，不可复制/移动。C++17 使用 `ATOMIC_FLAG_INIT` 初始化为清除状态；`test_and_set(order = seq_cst)` 设为 true 并返回原状态，`clear(order = seq_cst)` 清除。
+
+**独立片段**。
 
 ```cpp
 std::atomic_flag flag = ATOMIC_FLAG_INIT;
@@ -116,6 +132,8 @@ C++20 默认构造也初始化为清除，并增加 `test(order)` 无修改读�
 
 wait 的 order 用于读取比较值，不允许 release/acq_rel；发布其他普通数据时，采用匹配的 release 写入与 acquire 等待/读取关系。
 
+**执行路径示意**。
+
 ```cpp
 std::atomic<int> phase{0};
 // 提供者路径：
@@ -131,6 +149,8 @@ int current = phase.load();
 ## std::atomic_ref（C++20）
 
 **基础操作**。`<atomic>` 中 `template<class T> class atomic_ref;` 为已有对象提供原子操作视图；以 `T&` 构造，可复制，操作形状与 atomic 对应。它不拥有目标，目标满足类型要求和 `required_alignment` 对齐并活过所有视图。
+
+**独立片段**。
 
 ```cpp
 alignas(std::atomic_ref<int>::required_alignment) int value = 0;
@@ -176,6 +196,8 @@ load 不接受 release/acq_rel；store 不接受 acquire/consume/acq_rel。C++17
 图22-1：只画语言顺序与读取来源，不画缓存刷新；读到初始 false 时没有发布边。例子为一次发布且之后不再写 payload。
 
 下面是两条执行路径的机制摘录，需 `<atomic>`；共享对象定义在两条路径之外，读者只在等待后读 payload。
+
+**执行路径示意**。
 
 ```cpp
 int payload = 0;

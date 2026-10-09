@@ -21,6 +21,8 @@
 
 **基础操作**。语法形状是 `if (条件) 语句 else 语句`，`else` 可以省略。局部例子：
 
+**独立片段**。
+
 ```cpp
 int score = 75;
 int level = 0;
@@ -37,6 +39,8 @@ if (score >= 90) {
 
 **C++17 基础操作**。初始化器的变量在条件及两分支中可见，if 结束后离开作用域：
 
+**独立片段**。
+
 ```cpp
 if (int value = 7; value > 0) {
     int doubled = value * 2; // 14，只在本块中可见
@@ -46,6 +50,8 @@ if (int value = 7; value > 0) {
 ## switch
 
 **基础操作**。`switch (整数或枚举条件)` 在匹配 `case` 处开始执行，没有匹配时进入可选的 `default`。
+
+**独立片段**。
 
 ```cpp
 int command = 2, result = 0;
@@ -62,6 +68,8 @@ default: result = -1; break;
 
 **基础操作**。形状是 `for (初始化; 条件; 迭代表达式) 循环体`：先初始化，再逐轮判断条件、执行循环体、执行迭代表达式。
 
+**独立片段**。
+
 ```cpp
 int total = 0;
 for (int i = 1; i <= 3; ++i) {
@@ -74,6 +82,8 @@ for (int i = 1; i <= 3; ++i) {
 ## while 与 do-while
 
 **基础操作**。`while (条件)` 先判断再执行；`do { ... } while (条件);` 先执行一次再判断。
+
+**独立片段**。
 
 ```cpp
 int remaining = 3;
@@ -90,6 +100,8 @@ do {
 
 **基础操作**。形状是 `for (元素声明 : 范围) 循环体`。按值声明复制元素，引用声明访问既有元素；下面使用数组，无需头文件：
 
+**独立片段**。
+
 ```cpp
 int values[] = {1, 2, 3};
 for (int& value : values) value *= 2; // 元素变为 2、4、6
@@ -104,6 +116,8 @@ for (int value : values) total += value; // 12
 ## break、continue 与 return
 
 **基础操作**。break 退出最近的循环或 switch；continue 进入最近循环的下一轮（for 会继续执行迭代表达式）；return 结束整个当前函数。
+
+**独立片段**。
 
 ```cpp
 int total = 0;
@@ -120,6 +134,8 @@ for (int i = 1; i <= 5; ++i) {
 
 **基础操作**。形状为 `返回类型 函数名(参数列表)`；声明以分号结束，定义提供函数体。函数可有零个或多个参数：
 
+**独立片段**。
+
 ```cpp
 int add(int left, int right);       // 声明
 int add(int left, int right) {      // 定义
@@ -134,6 +150,8 @@ int answer = add(20, 22);           // 42
 ## 参数与返回值
 
 **基础操作**。参数是调用时初始化的实体；按值提供独立对象，引用和指针通常提供借用。需要 `<string>` 的定义片段：
+
+**独立片段**。
 
 ```cpp
 int twice(int value) { return value * 2; } // 适合便宜值
@@ -154,6 +172,8 @@ std::size_t length(const std::string& text) { return text.size(); }
 
 **基础操作**。默认实参在调用点补足省略的尾部参数，声明必须对调用者可见：
 
+**独立片段**。
+
 ```cpp
 int scale(int value, int factor = 2) { return value * factor; }
 // 使用片段
@@ -164,6 +184,8 @@ int b = scale(3, 4);           // 12
 默认实参不是函数类型的一部分，也不参与决定最佳重载。虚函数的实现可动态分派，但默认实参根据调用处静态类型选择；它不会随 override 自动切换。
 
 函数重载使用相同名字及不同适用参数列表，不能仅以返回类型区分：
+
+**独立片段**。
 
 ```cpp
 int magnitude(int value) { return value < 0 ? -value : value; }
@@ -179,6 +201,8 @@ double b = magnitude(-2.5);    // double 重载，2.5
 
 **基础操作**。lambda 创建闭包（closure）对象，即保存捕获状态并具有调用运算符的匿名类对象。常用形状是 `[捕获](参数) mutable -> 返回类型 { 函数体 }`，mutable 和返回类型可按需要省略。
 
+**独立片段**。
+
 ```cpp
 int base = 6;
 auto add = [base](int value) { return base + value; };
@@ -192,6 +216,8 @@ int still = add(4);            // 仍为 10，捕获的是原值副本
 ## lambda 捕获
 
 **基础操作**。按值保存副本，按引用借用原对象，初始化捕获可直接建立闭包中的资源：
+
+**独立片段**。
 
 ```cpp
 int count = 0;
@@ -219,6 +245,8 @@ int own = local();            // 2，外部 count 仍为 1
 
 **基础操作**。定义 `operator()` 的类对象称为函数对象；它可以保存状态。以下定义和使用片段：
 
+**独立片段**。
+
 ```cpp
 struct Add {
     int base;
@@ -236,6 +264,8 @@ int doubled = twice(3);        // 6
 
 **基础操作 · C++17 · `<functional>`**。声明摘要省略约束和异常说明：`template<class F, class... Args> decltype(auto) invoke(F&& f, Args&&... args)`。它统一调用普通可调用对象和成员指针，返回目标操作的结果。
 
+**独立片段**。
+
 ```cpp
 struct Counter { int value = 7; int add(int n) const { return value + n; } };
 Counter counter;
@@ -249,6 +279,8 @@ member = 9;                   // counter.value 为 9
 ## std::function
 
 **基础操作 · `<functional>`**。声明形状是 `template<class R, class... Args> class function<R(Args...)>`；模板实参是调用签名。它通过类型擦除（type erasure）把不同类型的可调用目标保存在同一种包装类型中。
+
+**独立片段**。
 
 ```cpp
 std::function<int(int)> callback = [base = 6](int n) { return base + n; };

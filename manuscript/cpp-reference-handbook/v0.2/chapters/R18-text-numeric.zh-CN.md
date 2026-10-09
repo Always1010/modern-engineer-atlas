@@ -8,6 +8,8 @@
 
 **基础操作，C++17**。`<charconv>` 的函数从 `[first,last)` 解析数值，不依赖零结尾，不分配字符串，不使用全局 locale。常用签名摘要选取 int、double 重载，省略其他数值类型：
 
+**声明摘要**。
+
 ```cpp
 namespace std {
     from_chars_result from_chars(const char* first, const char* last,
@@ -22,6 +24,8 @@ namespace std {
 ### from_chars 的整数解析
 
 `base` 在 2 至 36，输入范围须有效；返回 `ptr` 是首个未解析字符，`ec` 为错误状态。空输入可按上层策略提前处理，避免从空视图的空指针构造范围。
+
+**独立片段**。
 
 ```cpp
 // 需要 <charconv>、<string_view>、<system_error>；局部摘录
@@ -50,6 +54,8 @@ bool complete = result.ec == std::errc{} && result.ptr == text.data() + text.siz
 
 `chars_format` 为 `scientific/fixed/hex/general`；scientific 要求指数，fixed 不接受指数，general 使用通常的十进制浮点模式。hex 的输入不带 `0x` 前缀，且同样不跳过空白或接受前导加号。
 
+**独立片段**。
+
 ```cpp
 // 需要 <charconv>、<string_view>、<system_error>；局部摘录
 std::string_view text("1.25e2");
@@ -65,6 +71,8 @@ auto result = std::from_chars(text.data(), text.data() + text.size(), value,
 
 **基础操作，C++17**。`<charconv>` 在可写区间 `[first,last)` 输出数字，不补零结尾。签名摘要选取 int、double，省略其他数值类型：
 
+**声明摘要**。
+
 ```cpp
 namespace std {
     to_chars_result to_chars(char* first, char* last, int value, int base = 10);
@@ -77,6 +85,8 @@ namespace std {
 ```
 
 ### to_chars 的整数输出与缓冲
+
+**独立片段**。
 
 ```cpp
 // 需要 <charconv>、<string_view>、<system_error>；局部摘录
@@ -95,6 +105,8 @@ if (result.ec == std::errc{}) {
 
 无格式参数的形式产生可往返还原的最短表示；带 fmt 的最短形式按对应记法，带 precision 的形式按指定精度产生表示，精度不是缓冲长度。
 
+**独立片段**。
+
 ```cpp
 // 需要 <charconv>、<string_view>、<system_error>；局部摘录
 char buffer[64];
@@ -111,6 +123,8 @@ if (result.ec == std::errc{}) {
 
 **基础操作，C++20**。`<format>` 用格式串将实参转换为新字符串。下面是常用调用形式，省略签名中的参数包和格式串检查类型；普通窄字符 `format` 返回 `std::string`。
 
+**独立片段**。
+
 ```cpp
 // C++20；需要 <format>、<string>；局部摘录
 std::string label = std::format("id={:04d}", 7); // "id=0007"
@@ -120,6 +134,8 @@ std::string text = std::format("{}: {:.2f}", "price", 3.5); // "price: 3.50"
 `{}` 使用下一个参数，`{0}` 显式索引，两种索引模式不能混合。冒号后是格式说明；`{{` 和 `}}` 输出字面花括号。宽度通常为最小宽度而非长度上限，五位整数不会因 `04d` 变成四位。
 
 N4861 原文用运行期格式解析与 `format_error` 描述失败；应用后续缺陷修正的实现可对字面格式串做编译期检查。动态串在 C++20/23 通常经 `vformat` 与 `make_format_args`；这里用命名对象避免引入临时参数生命周期差异：
+
+**独立片段**。
 
 ```cpp
 // C++20；需要 <format>、<string>；局部摘录
@@ -133,6 +149,8 @@ std::string text = std::vformat(pattern, std::make_format_args(value));
 ## std::format_to、std::format_to_n 与 std::formatted_size
 
 **C++20**。`format_to(out,fmt,args...)` 返回输出终点，`formatted_size(fmt,args...)` 返回完整结果大小。`format_to_n(out,n,fmt,args...)` 最多输出 n 个字符，返回 `{out,size}`，size 是未截断结果大小。
+
+**独立片段**。
 
 ```cpp
 // C++20；需要 <format>、<iterator>、<string>；局部摘录

@@ -16,6 +16,8 @@
 
 **基础操作**。`fork()` 创建子进程，返回值在父进程为子 PID，在子进程为 0，失败为 -1；父子最初内存内容相同而地址空间独立，常见实现以写时复制减少立即复制成本。`exec` 家族以新程序替换当前进程映像，成功不返回。`waitpid` 等待并回收指定子进程的退出状态。
 
+**声明摘要**。
+
 ```cpp
 pid_t fork();
 int execvp(const char* file, char* const argv[]);
@@ -31,6 +33,8 @@ pid_t waitpid(pid_t pid, int* status, int options);
 **基础操作**。`CreateProcessW` 创建新进程与初始线程，接收程序路径、可修改命令行、继承/环境/目录选项、STARTUPINFO 和 PROCESS_INFORMATION。成功返回非零；失败为零并提供 GetLastError。它不是 fork 的地址空间复制模型。
 
 API 的主要输出 `PROCESS_INFORMATION` 含进程/线程句柄及 ID；两个句柄由调用者分别 CloseHandle。创建成功不表示初始化或工作完成；可用 WaitForSingleObject 等待进程句柄信号，再 GetExitCodeProcess 取得退出值。
+
+**承接上文**。
 
 ```cpp
 STARTUPINFOW startup{};
@@ -72,6 +76,8 @@ OS 地址布局不是 C++ 对每个变量住所的保证。线程栈通常有容
 
 **基础操作**。`<sys/mman.h>` 提供映射接口，常用形状：
 
+**声明摘要**。
+
 ```cpp
 void* mmap(void* address, size_t length, int protection,
            int flags, int fd, off_t offset);
@@ -79,6 +85,8 @@ int munmap(void* address, size_t length);
 ```
 
 address 为 nullptr 时由 OS 选址；length 为非零字节长度，protection 用 PROT_READ/WRITE/EXEC 或 PROT_NONE；flags 指定 MAP_PRIVATE 或 MAP_SHARED。文件映射提供打开的 fd 与按页对齐的 offset；匿名映射使用 MAP_ANONYMOUS，fd 取 -1、offset 为 0。
+
+**承接上文**。
 
 ```cpp
 void* address = mmap(nullptr, length, PROT_READ | PROT_WRITE,
@@ -95,12 +103,16 @@ MAP_SHARED 修改可以对共享该后备对象的映射可见；MAP_PRIVATE 修
 
 **基础操作**。`<windows.h>` 的匿名虚拟内存接口：
 
+**声明摘要**。
+
 ```cpp
 void* VirtualAlloc(void* address, SIZE_T size, DWORD allocation, DWORD protection);
 BOOL VirtualFree(void* address, SIZE_T size, DWORD freeType);
 ```
 
 `MEM_RESERVE` 预留、`MEM_COMMIT` 提交，可组合；`PAGE_READWRITE` 允许读写。成功返回地址，失败为 nullptr 并提供 GetLastError。正常的一次取得/释放摘录：
+
+**承接上文**。
 
 ```cpp
 void* address = VirtualAlloc(nullptr, length,
@@ -115,6 +127,8 @@ length 为非零字节长度，report 为调用方处理。`MEM_RELEASE` 要求�
 
 **基础操作**。文件句柄、文件映射对象（file mapping object）与映射视图（mapped view）是三个资源。CreateFileMappingW 建立映射对象，MapViewOfFile 取得可访问视图，UnmapViewOfFile 解除视图，CloseHandle 关闭映射句柄。
 
+**声明摘要**。
+
 ```cpp
 HANDLE CreateFileMappingW(HANDLE file, LPSECURITY_ATTRIBUTES security,
     DWORD protection, DWORD sizeHigh, DWORD sizeLow, LPCWSTR name);
@@ -124,6 +138,8 @@ BOOL UnmapViewOfFile(const void* baseAddress);
 ```
 
 普通只读映射使用已可读的文件句柄，PAGE_READONLY 与 FILE_MAP_READ；最大尺寸 high/low 都为 0 使用当前文件大小，零长度文件不能建立该映射；name 为 nullptr 创建未命名对象。下面假设 file 为已打开的非空只读文件，report 接收错误码：
+
+**承接上文**。
 
 ```cpp
 HANDLE mapping = CreateFileMappingW(file, nullptr, PAGE_READONLY, 0, 0, nullptr);

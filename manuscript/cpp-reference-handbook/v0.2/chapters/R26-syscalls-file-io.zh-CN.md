@@ -27,6 +27,8 @@ Linux 的 `dup` 与继承的描述符可引用同一打开文件描述，共享�
 
 **基础操作**。头文件为 `<fcntl.h>`、`<unistd.h>`；错误码使用 `<cerrno>`。常用声明摘要如下，`mode` 只在创建文件等相应形式中提供：
 
+**声明摘要**。
+
 ```cpp
 int open(const char* path, int flags, ... /* mode_t mode */);
 int close(int fd);
@@ -45,6 +47,8 @@ int close(int fd);
 
 使用已有路径打开只读文件，再关闭本次打开。局部摘录需 `<fcntl.h>`、`<unistd.h>`、`<cerrno>`；`path` 是以空字符结尾的路径，`report` 为调用方错误处理函数。
 
+**承接上文**。
+
 ```cpp
 int fd = open(path, O_RDONLY | O_CLOEXEC);
 if (fd == -1) report(errno);
@@ -57,6 +61,8 @@ else if (close(fd) == -1) report(errno);
 
 **基础操作**。`read` 取得原始字节，`write` 交付原始字节，不做文本编码或格式化。头文件 `<unistd.h>`，声明摘要：
 
+**声明摘要**。
+
 ```cpp
 ssize_t read(int fd, void* buffer, size_t count);
 ssize_t write(int fd, const void* buffer, size_t count);
@@ -68,6 +74,8 @@ ssize_t pwrite(int fd, const void* buffer, size_t count, off_t offset);
 `buffer` 至少提供 `count` 字节；读缓冲可写，写缓冲可读。`read/write` 从当前位置操作，按实际完成量推进位置。正返回值是本次字节数；`read` 对正长度请求返回 0 表示普通文件末尾；`-1` 后读取 `errno`。请求长度应限制在 `ssize_t` 可表达范围内。[read](https://man7.org/linux/man-pages/man2/read.2.html)、[write](https://man7.org/linux/man-pages/man2/write.2.html)
 
 下面读取至多 64 字节。`fd` 是已打开的只读普通文件，`consume` 是调用方提供的处理函数，接收指针与长度；片段需要 `<unistd.h>`。
+
+**承接上文**。
 
 ```cpp
 char buffer[64];
@@ -84,6 +92,8 @@ else { /* 保存 errno 并报告失败或按规则重试 */ }
 ## Windows：CreateFileW 与 CloseHandle
 
 **基础操作**。头文件 `<windows.h>`；`W` 接口接收 UTF-16 宽字符路径。完整参数形状如下，修饰与注解从略：
+
+**声明摘要**。
 
 ```cpp
 HANDLE CreateFileW(LPCWSTR path, DWORD access, DWORD share,
@@ -103,6 +113,8 @@ BOOL CloseHandle(HANDLE handle);
 
 使用已有 UTF-16 路径打开只读文件再关闭。局部摘录需 `<windows.h>`，`path` 是宽字符路径，`report` 为调用方错误处理函数。
 
+**承接上文**。
+
 ```cpp
 HANDLE h = CreateFileW(path, GENERIC_READ, FILE_SHARE_READ,
     nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
@@ -116,6 +128,8 @@ else if (!CloseHandle(h)) report(GetLastError());
 
 **基础操作**。先用没有 `FILE_FLAG_OVERLAPPED` 的同步文件句柄。声明摘要：
 
+**声明摘要**。
+
 ```cpp
 BOOL ReadFile(HANDLE h, void* buffer, DWORD requested,
               DWORD* transferred, OVERLAPPED* operation);
@@ -128,6 +142,8 @@ BOOL SetFilePointerEx(HANDLE h, LARGE_INTEGER distance,
 `requested` 为请求字节数，不能超过缓冲及 `DWORD` 范围；`transferred` 接收实际数量。同步形式使用 `operation == nullptr`，提供有效的 `transferred` 指针。成功为非零；失败为零，立即保存 `GetLastError()`。普通同步文件读到末尾成功且数量为 0；短读是正常结果。[ReadFile](https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-readfile)、[WriteFile](https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-writefile)
 
 从已打开的同步只读句柄 `h` 取得至多 64 字节。`consume` 接收指针与长度，`report` 接收错误码，均由调用方提供；片段需要 `<windows.h>`。
+
+**承接上文**。
 
 ```cpp
 char buffer[64];
@@ -143,6 +159,8 @@ if (!ReadFile(h, buffer, sizeof buffer, &n, nullptr)) {
 `WriteFile(h, data, length, &n, nullptr)` 写入当前位置，成功后根据 `n` 推进应用偏移。`SetFilePointerEx` 的 `method` 为 `FILE_BEGIN`、`FILE_CURRENT`、`FILE_END`，`distance.QuadPart` 是有符号位移。`LARGE_INTEGER zero{};` 配合 `SetFilePointerEx(h, zero, nullptr, FILE_BEGIN)` 回到文件头；`newPosition` 可空。共享句柄上“定位后再读”是两个操作，并行调用需协调。[SetFilePointerEx](https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-setfilepointerex)
 
 下面向已打开、支持定位的普通文件同步可写句柄 `h` 写入三字节，完整写入成功后再回到文件头；片段需要 `<windows.h>`，`report` 由调用方提供。`n` 小于请求量时先按下一节继续写入剩余部分，期间不改变文件位置。
+
+**承接上文**。
 
 ```cpp
 const char text[] = "abc";
@@ -167,6 +185,8 @@ else if (n == 3) {
 | `-1` 且 `ENOSPC/EIO` 等 | 本次失败 | 保存错误和累计量，停止或执行恢复策略 |
 
 下面是 Linux 写完全部字节的局部例。假定 `fd` 为已打开的阻塞普通文件，`data` 有 `size` 字节；`done` 输出累计量，`error` 输出错误码。片段需要 `<unistd.h>`、`<cerrno>`，置于返回 `bool` 的函数内，请求量受 `ssize_t` 范围限制。
+
+**承接上文**。
 
 ```cpp
 done = 0;
@@ -229,6 +249,8 @@ Linux `O_NONBLOCK` 主要用于 socket、管道等；普通磁盘文件不会因
 
 **进阶后查**。epoll 是内核维护的关注集合与就绪事件队列，头文件 `<sys/epoll.h>`。它监测对象能否进展，不替应用提交读写。
 
+**声明摘要**。
+
 ```cpp
 int epoll_create1(int flags);
 int epoll_ctl(int epfd, int operation, int fd, epoll_event* event);
@@ -245,6 +267,8 @@ int epoll_wait(int epfd, epoll_event* events, int capacity, int timeout);
 ## Windows：I/O 完成端口
 
 **进阶后查**。I/O 完成端口（I/O completion port，IOCP）是异步操作完成包的队列及工作线程调度机制。应用关联支持重叠 I/O 的文件或 socket，再取得完成结果。声明摘要：
+
+**声明摘要**。
 
 ```cpp
 HANDLE CreateIoCompletionPort(HANDLE file, HANDLE existingPort,

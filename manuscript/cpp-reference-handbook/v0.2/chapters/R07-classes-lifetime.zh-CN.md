@@ -8,6 +8,8 @@
 
 **基础操作**。类定义的形状是 `class Name { 成员声明 };`。class 默认成员和继承访问为 private，struct 默认为 public，其余能力相同。
 
+**独立片段**。
+
 ```cpp
 class Counter {
     int value_ = 0;           // 默认 private
@@ -26,6 +28,8 @@ public 成员提供调用接口；private 成员由类成员及授权 friend 访
 ## 数据成员、成员函数与 const
 
 **基础操作**。非静态数据成员各对象各有一份；成员函数通过隐含 this 访问当前对象。静态成员属于类，调用不依赖某个对象。
+
+**独立片段**。
 
 ```cpp
 struct Meter {
@@ -83,6 +87,8 @@ C++17 中 `=`、`[]`、`()`、`->` 的重载必须是非静态成员。重载不
 
 **基础操作**。构造函数与类同名、无返回类型，成员初始化列表写在冒号后；初始化阶段先于函数体。
 
+**独立片段**。
+
 ```cpp
 class Count {
     int value_;
@@ -98,6 +104,8 @@ Count count{7};               // value 为 7
 
 委托构造把同类另一构造函数作为唯一初始化器：
 
+**独立片段**。
+
 ```cpp
 struct Point {
     int x, y;
@@ -111,6 +119,8 @@ struct Point {
 ## 析构函数
 
 **基础操作**。`~T()` 声明析构函数，无参数、无返回类型；它在对象销毁时执行清理，然后成员与基类继续按规则销毁。普通自动对象离开作用域时自动析构，拥有资源成员的析构实现资源释放。
+
+**独立片段**。
 
 ```cpp
 struct Record {
@@ -137,6 +147,8 @@ struct Record {
 `= default` 请求按成员与基类生成实现，仍可能被定义为删除；`= delete` 禁止操作，显式删除的函数仍参与重载。编译器只按条件生成，不承诺六项都可用：unique_ptr 成员使拷贝不可用，引用成员使默认赋值受限，用户声明析构会抑制隐式移动，即使写 `~T() = default`。
 
 **基础操作**。Rule of Zero 指让标准资源成员负责资源，业务类不自行实现资源型特殊成员；需要 `<string>`：
+
+**独立片段**。
 
 ```cpp
 struct Message {
@@ -169,6 +181,8 @@ Message copy = original;      // string 提供独立字符串值
 
 **基础操作**。组合是把另一个对象作为成员，常表达拥有或组成；继承将基类子对象纳入派生对象，公开继承常表达可替代接口。
 
+**独立片段**。
+
 ```cpp
 struct Point { int x; int y; };
 struct Segment { Point begin; Point end; }; // 组合
@@ -183,6 +197,8 @@ Base& view = object;          // 借用其中的 Base 子对象
 ## 虚函数、override 与 final
 
 **基础操作**。虚函数通过适用指针或引用按对象动态类型选择最终覆盖函数。override 要求确实覆盖基类虚函数，可发现签名或 const 写错；final 禁止继续覆盖某虚函数或继承某类。
+
+**独立片段**。
 
 ```cpp
 struct Base {
@@ -202,6 +218,8 @@ int answer = view.value();    // 42，动态分派
 ## 抽象类与虚析构
 
 **基础操作**。纯虚函数用 `= 0` 声明；含有未获得适用最终实现的纯虚函数的类是抽象类，不能直接创建它的对象，但可用指针/引用表示接口。
+
+**独立片段**。
 
 ```cpp
 struct Shape {
@@ -239,6 +257,8 @@ RTTI（Run-Time Type Information，运行时类型信息）支持 `typeid` 和�
 **进阶后查**。按值复制派生对象到 Base 只复制基类状态；例如 `vector<Base>` 不能保存每个元素的派生动态类型。混合动态类型可使用具有适当虚析构的 `vector<unique_ptr<Base>>`；独立多态复制可定义 `clone` 返回拥有者，由各派生实现自己的完整复制。
 
 需要 `<memory>` 的完整接口及一个实现：
+
+**独立片段**。
 
 ```cpp
 struct Cloneable {

@@ -8,6 +8,8 @@
 
 **基础操作**。时间量是次数与刻度单位的组合。公开声明摘要省略成员与约束：
 
+**声明摘要**。
+
 ```cpp
 namespace std::chrono {
     template<class Rep, class Period = ratio<1>> class duration;
@@ -17,6 +19,8 @@ namespace std::chrono {
 `Rep` 是计数表示类型，`Period` 是以秒为基准的 ratio；别名 `hours/minutes/seconds/milliseconds/microseconds/nanoseconds` 提供常用单位。类型的刻度不保证实际取时精度。
 
 ### duration 的构造与算术
+
+**独立片段**。
 
 ```cpp
 // 需要 <chrono>；局部摘录
@@ -33,6 +37,8 @@ bool positive = total > decltype(total)::zero();
 
 **基础操作**。公开声明摘要为 `template<class Clock,class Duration = typename Clock::duration> class time_point;`，位于 `std::chrono`，省略成员。`Clock` 标识时钟，`Duration` 表示自该时钟纪元起的时间量。
 
+**独立片段**。
+
 ```cpp
 // 需要 <chrono>；局部摘录
 using Clock = std::chrono::steady_clock;
@@ -48,6 +54,8 @@ bool before = start < later;               // true
 
 **基础操作**。稳态时钟保证单调，适合耗时和截止点，不定义可移植日历纪元。公开形状省略具体成员类型：类提供 `rep/period/duration/time_point`，`static constexpr bool is_steady = true;`，以及 `static time_point now() noexcept;`。
 
+**独立片段**。
+
 ```cpp
 // 需要 <chrono>；局部摘录
 const auto start = std::chrono::steady_clock::now();
@@ -62,6 +70,8 @@ auto microseconds = std::chrono::duration_cast<std::chrono::microseconds>(elapse
 
 **基础操作**。系统时钟表示现实世界时间，可能被校时而不单调。类提供计时成员类型、`now()`、`to_time_t(const time_point&) noexcept` 和 `from_time_t(time_t) noexcept`；声明摘要省略具体类型。
 
+**独立片段**。
+
 ```cpp
 // 需要 <chrono>、<ctime>；局部摘录
 auto now = std::chrono::system_clock::now();
@@ -75,6 +85,8 @@ auto restored = std::chrono::system_clock::from_time_t(external);
 
 **基础操作**。高分辨率时钟提供较短 tick 周期，可以是 system_clock、steady_clock 的别名或独立时钟。它提供相同 Clock 接口；不单凭名称保证单调或适合测量。
 
+**独立片段**。
+
 ```cpp
 // 需要 <chrono>；局部摘录
 constexpr bool monotonic = std::chrono::high_resolution_clock::is_steady;
@@ -87,6 +99,8 @@ auto point = std::chrono::high_resolution_clock::now();
 
 **基础操作**。`<chrono>` 的常用签名摘要省略约束：
 
+**声明摘要**。
+
 ```cpp
 namespace std::chrono {
     template<class To, class Rep, class Period>
@@ -96,6 +110,8 @@ namespace std::chrono {
         time_point_cast(const time_point<Clock, Duration>& t);
 }
 ```
+
+**独立片段**。
 
 ```cpp
 // 需要 <chrono>；局部摘录
@@ -112,6 +128,8 @@ duration_cast 向整数单位转换向零截断；C++17 floor/ceil 向下/上舍
 
 **基础操作，C++14**。`std::chrono_literals` 的 h/min/s/ms/us/ns 后缀生成 duration，整数与浮点字面量可具有不同 Rep。
 
+**独立片段**。
+
 ```cpp
 // 需要 <chrono>；局部摘录
 using namespace std::chrono_literals;
@@ -125,6 +143,8 @@ auto deadline = std::chrono::steady_clock::now() + budget;
 ## 绝对截止点
 
 **机制解释**。总预算可以通过一次计算的稳态 deadline 表示，重试复用同一点。每轮重新从 now 加完整预算会延长总等待。
+
+**独立片段**。
 
 ```cpp
 // 需要 <chrono>；局部摘录
@@ -146,6 +166,8 @@ if (now < deadline) {
 
 **基础操作，C++20**。`year/month/day` 表示日历组件，`year_month_day` 表示年月日组合，可由组件或 `sys_days` 构造。公开声明摘要为 `class year_month_day;`，位于 `std::chrono`。
 
+**独立片段**。
+
 ```cpp
 // C++20；需要 <chrono>；局部摘录
 using namespace std::chrono;
@@ -160,6 +182,8 @@ weekday day_of_week{point};
 ## std::chrono::zoned_time 与时间区
 
 **进阶后查，C++20**。时间区把绝对时间点映射为当地时间。公开声明摘要为 `template<class Duration,class TimeZonePtr = const time_zone*> class zoned_time;`，位于 `std::chrono`，省略成员与约束；Duration 为存储精度，TimeZonePtr 指定时间区句柄。
+
+**独立片段**。
 
 ```cpp
 // C++20；需要 <chrono>；局部摘录；需要实现提供时区数据库

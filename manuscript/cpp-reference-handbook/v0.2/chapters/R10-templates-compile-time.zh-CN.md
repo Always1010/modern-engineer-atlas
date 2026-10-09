@@ -8,6 +8,8 @@
 
 **基础操作**。形状是 `template<class T> 返回类型 函数名(参数)`；模板参数 T 在定义中代表待确定的类型。
 
+**独立片段**。
+
 ```cpp
 template<class T>
 T twice(T value) { return value + value; }
@@ -22,6 +24,8 @@ long explicit_type = twice<long>(3); // 显式给 T
 ## 类模板
 
 **基础操作**。形状为 `template<class T> class Name { ... };`，类名后通常写实参。
+
+**独立片段**。
 
 ```cpp
 template<class T>
@@ -50,6 +54,8 @@ Box<int> 与 Box<double> 是不同类型；成员操作依赖 T。隐式实例�
 
 需要 `<cstddef>` 的类模板例子：
 
+**独立片段**。
+
 ```cpp
 template<class T, std::size_t N>
 struct Buffer {
@@ -65,6 +71,8 @@ Buffer<int, 3> values{{1, 2, 3}};
 
 **机制解释**。函数调用通常从实参推导模板参数，返回类型通常不能单独帮助一次函数调用推导。形参是值还是引用影响顶层 const、引用与数组转换，见[auto](R03-initialization-deduction.zh-CN.md#auto)及[转发引用](R08-copy-move.zh-CN.md#转发引用与引用折叠)。
 
+**独立片段**。
+
 ```cpp
 template<class T> T choose(T first, T second) { return first; }
 int chosen = choose(3, 7);     // T 为 int
@@ -77,6 +85,8 @@ double real = choose<double>(3, 2.5); // 显式 T，普通转换适用
 ## 类模板实参推导
 
 **基础操作 · C++17**。类模板实参推导（Class Template Argument Deduction，CTAD）根据适用构造和推导指引省略模板实参。使用前述带构造的 Box：
+
+**承接上文**。
 
 ```cpp
 Box inferred{7};              // 推导为 Box<int>
@@ -94,6 +104,8 @@ Box inferred{7};              // 推导为 Box<int>
 
 **进阶后查**。有限的已知类型集合可用显式实例化集中生成；以下示意应放在已经能看见前述 twice 定义的实现位置：
 
+**承接上文**。
+
 ```cpp
 template int twice<int>(int); // 显式实例化定义
 // 接口中的对应声明可写 extern template int twice<int>(int);
@@ -104,6 +116,8 @@ extern template 抑制相应隐式实例化，但需要程序中提供所需实�
 ## 全特化与偏特化
 
 **进阶后查**。全特化为确定实参提供专用定义，类模板偏特化为一族实参形状提供定义。
+
+**独立片段**。
 
 ```cpp
 template<class T> struct Tag { static constexpr int kind = 0; };
@@ -120,6 +134,8 @@ int pointer = Tag<int*>::kind;    // 2
 
 **进阶后查**。依赖名（dependent name）依赖模板参数，例如 `T::value_type`。typename 告知解析器相应限定名是类型，template 告知相应依赖成员是模板；它们不创建缺失接口。
 
+**独立片段**。
+
 ```cpp
 template<class B>
 typename B::value_type read(const B& box) { return box.value; }
@@ -133,6 +149,8 @@ read 要求 B 有适用 value_type 和可返回 value；request 要求 T 提供�
 ## 实参相关查找
 
 **机制解释**。实参相关查找（Argument-Dependent Lookup，ADL）为适用的未限定函数调用加入实参关联类及命名空间中的候选。通用 swap 常把标准后备与定制共同纳入：
+
+**独立片段**。
 
 ```cpp
 // 需 <utility>；模板要求 a、b 满足适用交换条件
@@ -149,6 +167,8 @@ void exchange(T& a, T& b) {
 
 **基础操作 · C++17 折叠**。参数包表示零个或多个参数，包展开把一个模式应用到各元素。二元左折叠用显式起点支持空包：
 
+**独立片段**。
+
 ```cpp
 template<class... T>
 auto sum(T... values) { return (0 + ... + values); }
@@ -161,6 +181,8 @@ int total = sum(1, 2, 3);      // 6
 ## if constexpr 与 static_assert
 
 **基础操作 · C++17**。if constexpr 在适用实例化中按常量条件丢弃分支。需要 `<cstddef>`、`<type_traits>`：
+
+**独立片段**。
 
 ```cpp
 template<class T>
@@ -178,6 +200,8 @@ std::size_t extent(const T& value) {
 
 **进阶后查 · C++17 · `<type_traits>`**。SFINAE（Substitution Failure Is Not An Error，替换失败并非错误）在规定直接上下文替换失败时移除候选，不立即把该候选变为整个程序硬错误。
 
+**独立片段**。
+
 ```cpp
 template<class T, std::enable_if_t<std::is_integral_v<T>, int> = 0>
 T double_integer(T value) { return value + value; }
@@ -191,6 +215,8 @@ int answer = double_integer(3); // 6
 
 **基础操作 · C++20 · `<concepts>`**。concept 为一组约束命名，约束参与模板候选可行性和偏序。
 
+**独立片段**。
+
 ```cpp
 template<std::integral T>
 T increment(T value) { return value + T{1}; }
@@ -199,6 +225,8 @@ T increment(T value) { return value + T{1}; }
 std::integral 依据类型特征，bool 也满足；有符号最大值加一的边界仍需要数据检查。
 
 **C++20 机制解释**。requires 表达式检查类型、表达式及结果约束，不执行运行时操作；以下另需 `<cstddef>`：
+
+**独立片段**。
 
 ```cpp
 template<class T>

@@ -23,6 +23,8 @@ socket 是 OS 提供的通信端点。本章先按平台建立地址、创建、
 
 **基础操作**。头文件 `<sys/socket.h>`、`<netdb.h>`；`getaddrinfo` 返回符合筛选条件的链表，不保证地址可达：
 
+**声明摘要**。
+
 ```cpp
 int getaddrinfo(const char* node, const char* service,
                 const addrinfo* hints, addrinfo** result);
@@ -30,6 +32,8 @@ void freeaddrinfo(addrinfo* result);
 ```
 
 node 为名称或数值地址，service 为服务名或十进制端口字符串。hints 先零初始化，ai_family 指 AF_INET/AF_INET6/AF_UNSPEC，ai_socktype 指 SOCK_STREAM/SOCK_DGRAM。成功为 0，失败返回 EAI_* 错误，通常不能直接按 errno 解释；gai_strerror 用于说明。
+
+**承接上文**。
 
 ```cpp
 addrinfo hints{};
@@ -52,12 +56,16 @@ else {
 
 **基础操作**。头文件 `<sys/socket.h>`；资源释放另需 `<unistd.h>`。
 
+**声明摘要**。
+
 ```cpp
 int socket(int domain, int type, int protocol);
 int connect(int fd, const sockaddr* address, socklen_t length);
 ```
 
 domain 选地址族，type 选流/数据报，protocol 为 0 时用该组合默认协议；socket 成功返回非负 fd、失败 -1。阻塞 TCP connect 成功为 0、失败 -1 并设置 errno。下面 candidate 是本条输入的有效 addrinfo 指针，类型来自 `<netdb.h>`，对应已存活的 TCP 地址结果：
+
+**承接上文**。
 
 ```cpp
 int fd = socket(candidate->ai_family, candidate->ai_socktype,
@@ -77,6 +85,8 @@ else {
 
 **基础操作**。bind 将端点关联本地地址；listen 把流端点置为监听；accept 取出连接并返回新 fd。
 
+**声明摘要**。
+
 ```cpp
 int bind(int fd, const sockaddr* address, socklen_t length);
 int listen(int fd, int backlog);
@@ -86,6 +96,8 @@ int accept(int listener, sockaddr* peer, socklen_t* peerLength);
 bind/listen 成功为 0、失败 -1；backlog 是待接受队列请求上限，实际受 OS 条件影响。accept 成功返回新 fd、失败 -1；peer/peerLength 为可选的对端输出，提供时先将长度初始化为可用容量。
 
 下面 listener 是本条输入的有效 TCP socket，localAddress 是已填好的 sockaddr 指针、localLength 为其长度；片段需 `<sys/socket.h>`、`<unistd.h>`、`<cerrno>`：
+
+**承接上文**。
 
 ```cpp
 if (bind(listener, localAddress, localLength) == -1) report(errno);
@@ -106,6 +118,8 @@ else {
 
 **基础操作**。头文件 `<sys/socket.h>`，TCP 常用形状：
 
+**声明摘要**。
+
 ```cpp
 ssize_t send(int fd, const void* data, size_t length, int flags);
 ssize_t recv(int fd, void* buffer, size_t capacity, int flags);
@@ -114,6 +128,8 @@ ssize_t recv(int fd, void* buffer, size_t capacity, int flags);
 fd 为已连接 socket；data 至少提供 length 可读字节，buffer 至少有 capacity 可写字节。flags 为 0 采用常规行为；Linux MSG_NOSIGNAL 可用于 send 避免失效连接的 SIGPIPE。成功返回实际数量，失败 -1 并设置 errno，正长度 TCP recv 为 0 表示对端有序结束发送。
 
 下面 fd 为有效 TCP 连接，片段还需 `<cerrno>`；先处理本次取得字节，缓冲不自动补空字符：
+
+**承接上文**。
 
 ```cpp
 char buffer[256];
@@ -129,6 +145,8 @@ else report(errno);
 
 **基础操作**。`int shutdown(int fd, int how);` 用 SHUT_RD/SHUT_WR/SHUT_RDWR 结束本地接收/发送/两方向；成功 0，失败 -1。`close(fd)` 释放本地描述符，是另一操作。
 
+**承接上文**。
+
 ```cpp
 if (shutdown(fd, SHUT_WR) == -1) report(errno);
 // 应用协议允许时继续 recv 剩余响应
@@ -140,6 +158,8 @@ fd 是本条输入的有效 TCP socket，需 `<sys/socket.h>`、`<unistd.h>`、`
 ## Windows：Winsock 初始化与地址
 
 **基础操作**。头文件按 `<winsock2.h>`、`<ws2tcpip.h>` 使用，调用者链接系统 Winsock 库 ws2_32。先 `WSAStartup(MAKEWORD(2, 2), &data)` 请求版本，成功返回 0，失败直接返回错误值；成功后核对 data.wVersion 是否符合应用要求，每次成功初始化最终由 WSACleanup 配对。
+
+**承接上文**。
 
 ```cpp
 WSADATA data{};
@@ -159,12 +179,16 @@ Windows 同样用 getaddrinfo/freeaddrinfo 得到 addrinfo 候选；成功为 0�
 
 **基础操作**。初始化后使用以下形状：
 
+**声明摘要**。
+
 ```cpp
 SOCKET socket(int family, int type, int protocol);
 int connect(SOCKET s, const sockaddr* address, int length);
 ```
 
 SOCKET 是平台端点值，不能假定为可用 POSIX close 处理的 int。socket 失败为 INVALID_SOCKET；connect 成功为 0、失败 SOCKET_ERROR，随后读取 WSAGetLastError。下面 candidate 为有效 TCP addrinfo 指针，所属地址列表仍存活：
+
+**承接上文**。
 
 ```cpp
 SOCKET s = socket(candidate->ai_family, candidate->ai_socktype,
@@ -184,6 +208,8 @@ else {
 
 **基础操作**。正常角色与 TCP 服务流程相同，类型与错误契约为 Winsock：
 
+**声明摘要**。
+
 ```cpp
 int bind(SOCKET s, const sockaddr* address, int length);
 int listen(SOCKET s, int backlog);
@@ -191,6 +217,8 @@ SOCKET accept(SOCKET listener, sockaddr* peer, int* peerLength);
 ```
 
 bind/listen 成功 0、失败 SOCKET_ERROR；accept 成功为新 SOCKET、失败 INVALID_SOCKET，错误用 WSAGetLastError。peerLength 为入/出容量。初始化成功后先 socket，按本地地址 bind，再 listen，循环 accept；每个新连接由 closesocket 独立释放，最后关闭监听 socket。
+
+**承接上文**。
 
 ```cpp
 SOCKET client = accept(listener, nullptr, nullptr);
@@ -207,12 +235,16 @@ else {
 
 **基础操作**。Winsock 接口长度与结果使用 int：
 
+**声明摘要**。
+
 ```cpp
 int send(SOCKET s, const char* data, int length, int flags);
 int recv(SOCKET s, char* buffer, int capacity, int flags);
 ```
 
 请求非负且不能超过 int 与缓冲范围；flags 为 0 采用普通方式。成功返回本次数量，失败 SOCKET_ERROR；正长度 TCP recv 返回 0 表示该接收方向有序结束。下面 s 是本条输入的已连接 socket，初始化仍有效，需 `<winsock2.h>`：
+
+**承接上文**。
 
 ```cpp
 char buffer[256];
@@ -228,6 +260,8 @@ else report(WSAGetLastError());
 
 **基础操作**。`shutdown(s, SD_RECEIVE/SD_SEND/SD_BOTH)` 结束相应方向，成功 0、失败 SOCKET_ERROR。`closesocket(s)` 释放端点，成功 0、失败 SOCKET_ERROR；都用 WSAGetLastError。
 
+**承接上文**。
+
 ```cpp
 if (shutdown(s, SD_SEND) == SOCKET_ERROR) report(WSAGetLastError());
 // 应用协议允许时继续接收
@@ -242,6 +276,8 @@ if (closesocket(s) == SOCKET_ERROR) report(WSAGetLastError());
 
 Linux/POSIX 形状，头文件 `<sys/socket.h>`：
 
+**声明摘要**。
+
 ```cpp
 ssize_t sendto(int fd, const void* data, size_t length, int flags,
                const sockaddr* target, socklen_t targetLength);
@@ -250,6 +286,8 @@ ssize_t recvfrom(int fd, void* data, size_t capacity, int flags,
 ```
 
 Windows 形状，头文件 `<winsock2.h>`：
+
+**声明摘要**。
 
 ```cpp
 int sendto(SOCKET s, const char* data, int length, int flags,

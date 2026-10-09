@@ -55,6 +55,8 @@
 
 **基础操作**。字符字面量初始化一个编码单元；一个 `char` 不一定表示一个完整的 Unicode 字符。
 
+**独立片段**。
+
 ```cpp
 char letter = 'A';
 unsigned char byte = 0x7Fu;
@@ -94,6 +96,8 @@ C++20 增加独立的 `char8_t`，用于 UTF-8 编码单元；C++17 的 `u8` 字
 
 **基础操作**。需要 `<climits>`、`<limits>`、`<cstddef>`。下面片段可在函数体内查询类型，不预设输出数字：
 
+**独立片段**。
+
 ```cpp
 std::size_t bytes = sizeof(long);
 std::size_t storage_bits = sizeof(long) * CHAR_BIT;
@@ -109,6 +113,8 @@ int precision = std::numeric_limits<double>::digits;
 
 **基础操作**。枚举为一组命名值建立类型；作用域枚举 `enum class` 不隐式转换为整数，枚举名需以类型限定。
 
+**独立片段**。
+
 ```cpp
 enum class State : unsigned char { idle = 0, ready = 1 };
 State current = State::ready;
@@ -120,6 +126,8 @@ unsigned code = static_cast<unsigned>(current); // 1
 ## 数组与类型别名
 
 **基础操作**。`T a[N]` 建立 N 个连续的 T 对象。`using Name = T` 给已有类型一个别名，不产生防混用的新类型。
+
+**独立片段**。
 
 ```cpp
 using Count = unsigned long;
@@ -145,6 +153,8 @@ std::size_t length = sizeof(values) / sizeof(values[0]); // 3，需 <cstddef>
 | 静态 | 命名空间变量、局部 static | 程序执行期间 |
 | 线程 | `thread_local` 变量 | 相应线程执行期间 |
 | 动态 | new 创建的对象 | 按动态分配与释放规则控制 |
+
+**独立片段**。
 
 ```cpp
 int global = 1;               // 静态存储期
@@ -175,6 +185,8 @@ void work() {
 
 **机制解释**。`sizeof(T)` 返回对象表示占用的 C++ 字节数，包括填充；`alignof(T)` 返回对齐要求。结构成员之间及末尾可以有填充，不保证成员大小之和等于结构大小。
 
+**独立片段**。
+
 ```cpp
 struct Record { char tag; int value; };
 std::size_t size = sizeof(Record);       // 需 <cstddef>
@@ -195,6 +207,8 @@ std::size_t alignment = alignof(Record);
 
 下面在两个已经构造的同类型完整对象间复制表示，得到相同值；需要 `<cstring>`、`<type_traits>`，放在函数体内：
 
+**独立片段**。
+
 ```cpp
 struct Record { int value; unsigned char tag; };
 static_assert(std::is_trivially_copyable_v<Record>);
@@ -207,6 +221,8 @@ C++17 保证符合条件的平凡可复制对象可复制到字符/字节数组�
 ## placement new 与存储重用
 
 **进阶后查**。普通 `new T(...)` 安排分配和初始化；标准 placement new `::new (address) T(...)` 在调用者提供的存储中建立对象，不取得这块存储。以下展示先后两次构造，需要 `<cstddef>`、`<new>`，放在函数体内：
+
+**独立片段**。
 
 ```cpp
 struct Cell { int value; explicit Cell(int v) noexcept : value(v) {} };
@@ -267,6 +283,8 @@ auto& [left, right] = pair;    // 借用 tuple 元素
 ```
 
 下面直接拆解简单记录；类型可放在命名空间作用域，其余语句放在函数体内：
+
+**独立片段**。
 
 ```cpp
 struct Point { int x; int y; };

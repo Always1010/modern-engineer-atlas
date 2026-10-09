@@ -19,6 +19,8 @@
 
 任务最短操作可以是保存函数后调用，片段需 `<functional>`：
 
+**独立片段**。
+
 ```cpp
 std::function<int()> work = [] { return 6 * 7; };
 int value = work();
@@ -36,6 +38,8 @@ int value = work();
 
 配套 Executor 的项目接口摘要如下；它不是 std 类型，源码见后面的组合应用：
 
+**声明摘要**。
+
 ```cpp
 template<class F>
 std::optional<std::future<int>> try_submit(F&& work);
@@ -43,6 +47,8 @@ void close_and_wait();
 ```
 
 `try_submit` 接收返回 int 的工作，成功返回关联结果的 future，满队列或关闭返回 nullopt；分配/构造仍可抛异常。下面假设 `executor` 是配套 Executor，需 `<future>`、`<optional>`，`consume` 由调用方提供：
+
+**承接上文**。
 
 ```cpp
 auto result = executor.try_submit([] { return 6 * 7; });
@@ -62,6 +68,8 @@ get 可以等待或重抛任务异常。不能让所有池内工作者同步等�
 4. 执行任务，交付值或异常，再处理下一项。
 
 以下摘录需 `<queue>`、`<future>`、`<mutex>`、`<condition_variable>`、`<utility>`；沿用配套 Executor 中的 `mutex_`、`changed_`、`accepting_` 和 `queue_`。queue_ 保存 `packaged_task<int()>`，片段位于 worker 的循环体：
+
+**承接上文**。
 
 ```cpp
 std::packaged_task<int()> task;
@@ -154,6 +162,8 @@ Linux epoll 使用前者；Windows IOCP 使用后者。连接、缓冲、取消�
 
 下面仅展示一次手动挂起与恢复所需支撑，需 `<coroutine>`、`<exception>`；Pause 独占帧，禁止复制，最终挂起由析构销毁。
 
+**独立片段**。
+
 ```cpp
 struct Pause {
     struct promise_type;
@@ -178,6 +188,8 @@ Pause pause_once() {
 ```
 
 普通函数中的使用摘录：
+
+**承接上文**。
 
 ```cpp
 auto task = pause_once();

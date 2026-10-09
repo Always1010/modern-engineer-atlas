@@ -8,6 +8,8 @@
 
 **基础操作**。`<iterator>` 的自由函数统一取得容器/数组起点与尾后位置。常用形式省略 const 重载：
 
+**声明摘要**。
+
 ```cpp
 namespace std {
     template<class C> auto begin(C& c) -> decltype(c.begin());
@@ -16,6 +18,8 @@ namespace std {
     template<class T, size_t N> T* end(T (&array)[N]) noexcept;
 }
 ```
+
+**独立片段**。
 
 ```cpp
 // 需要 <iterator>；局部摘录
@@ -76,6 +80,8 @@ end 是尾后哨兵，不能解引用；对非空双向区间可先 --end 再解
 
 **机制解释**。`<iterator>` 的 `template<class I> struct iterator_traits;` 提供 `value_type/difference_type/reference/pointer/iterator_category`。`value_type` 是元素值类型，`difference_type` 是表示距离的类型；不以容器 `size_type` 代替它。
 
+**独立片段**。
+
 ```cpp
 // 需要 <iterator>、<vector>；局部摘录
 using I = std::vector<int>::iterator;
@@ -89,6 +95,8 @@ C++20 用迭代器概念表达更细语义，单个传统类别标签不证明�
 
 **基础操作**。这些函数在 `<iterator>` 中导航或查询距离；常用签名省略完整约束：
 
+**声明摘要**。
+
 ```cpp
 namespace std {
     template<class InputIt, class Distance> void advance(InputIt& it, Distance n);
@@ -100,6 +108,8 @@ namespace std {
         distance(InputIt first, InputIt last);
 }
 ```
+
+**独立片段**。
 
 ```cpp
 // 需要 <list>、<iterator>；局部摘录
@@ -115,6 +125,8 @@ auto n = std::distance(values.begin(), values.end()); // 3，线性
 ## std::reverse_iterator
 
 **基础操作**。`<iterator>` 的 `template<class Iterator> class reverse_iterator;` 将双向或更强迭代器反向访问。默认构造、从正向基底构造、兼容反向迭代器转换构造可用，公开形状省略成员与约束。
+
+**独立片段**。
 
 ```cpp
 // 需要 <vector>、<iterator>；局部摘录
@@ -132,6 +144,8 @@ int middle = *it;                          // 2
 
 **基础操作**。`back_insert_iterator<Container>`、`front_insert_iterator<Container>`、`insert_iterator<Container>` 在 `<iterator>` 中把赋值转换为容器插入。工厂 `back_inserter/front_inserter/inserter` 构造对应适配器，元素仍由容器拥有。
 
+**独立片段**。
+
 ```cpp
 // 需要 <algorithm>、<iterator>、<vector>、<deque>；局部摘录
 std::vector<int> source{1, 2, 3};
@@ -146,6 +160,8 @@ std::copy(source.begin(), source.end(), std::front_inserter(reversed)); // {3,2,
 ## ranges 算法与投影
 
 **基础操作，C++20**。算法在 `<algorithm>` 中，提供迭代器/终止器和范围两组重载；声明为受约束的算法对象，下面列调用形式而非普通自由函数声明：
+
+**独立片段**。
 
 ```cpp
 // C++20；需要 <algorithm>、<vector>、<functional>；局部摘录
@@ -173,6 +189,8 @@ if (it != items.end()) { /* it->key 为 2 */ }
 | `views::take(n)` / `drop(n)` | 前至多 n 项/跳过前 n 项 | 数量合法，范围持续有效 |
 | `views::reverse` | 逆序遍历 | 基底支持必要的双向访问 |
 | `views::iota(first,last)` | 生成值序列 | 终止与递增条件有效 |
+
+**独立片段**。
 
 ```cpp
 // C++20；需要 <ranges>、<vector>；局部摘录

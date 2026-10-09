@@ -8,6 +8,8 @@
 
 **基础操作**。`<thread>` 的 `std::thread` 表示一条执行线程，可移动、不可复制。常用声明摘要：
 
+**声明摘要**。
+
 ```cpp
 thread() noexcept;
 template<class F, class... Args> explicit thread(F&& f, Args&&... args);
@@ -22,6 +24,8 @@ static unsigned hardware_concurrency() noexcept;
 默认构造不关联线程；以可调用对象 `f` 和参数构造时启动线程。在 C++17，函数与参数按衰变后的类型保存；`std::ref`（`<functional>`）使参数以引用方式传递，调用者必须保活目标。普通返回值被忽略，返回结果需使用受同步保护的状态或 future。构造失败可抛 `system_error`；入口函数的未捕获异常导致 `terminate`。[thread 构造](https://timsong-cpp.github.io/cppwp/n4659/thread.thread.constr)
 
 下面启动一条线程计算结果，再等待它结束。代码置于普通函数中，需 `<thread>`；工作期间主线程不访问 `value`，成功 `join` 后可读到 42。
+
+**独立片段**。
 
 ```cpp
 int value = 0;
@@ -45,6 +49,8 @@ int answer = value;
 ## std::this_thread
 
 **基础操作**。`<thread>` 的 `std::this_thread` 命名空间操作当前线程：`get_id()` 返回当前 id，`yield()` 提供让出执行机会的提示；`sleep_for(duration)` 按相对时长等待，`sleep_until(time_point)` 按绝对时点等待。时长/时点来自 `<chrono>`，计时类型见 [时间库](R19-time-files.zh-CN.md)。
+
+**独立片段**。
 
 ```cpp
 std::this_thread::sleep_for(std::chrono::milliseconds(10));
@@ -70,6 +76,8 @@ std::this_thread::yield();
 
 **基础操作**。`<future>` 中 `template<class T> class promise;`，`T` 是结果类型；另有 `T&`、`void` 特化。默认构造建立共享状态，可移动、不可复制。常用接口：
 
+**声明摘要**。
+
 ```cpp
 std::future<T> get_future();
 void set_value(const T& value); // 非引用、非void形式
@@ -81,6 +89,8 @@ void set_exception(std::exception_ptr error);
 
 下面在提供者一侧先设值，再由结果持有者读取；片段需 `<future>`。创建 promise 本身不启动线程。
 
+**独立片段**。
+
 ```cpp
 std::promise<int> provider;
 auto result = provider.get_future();
@@ -89,6 +99,8 @@ int value = result.get();
 ```
 
 捕获计算异常时用 `<exception>` 的 `std::current_exception()` 交付：
+
+**承接上文**。
 
 ```cpp
 try { provider.set_value(compute()); }
@@ -112,6 +124,8 @@ catch (...) { provider.set_exception(std::current_exception()); }
 
 等待与 get 要求关联有效状态；本章 C++17 基线不依赖无状态时实现会抛异常。下面检查相对等待状态；需 `<future>`、`<chrono>`，`result` 是已有效的 `future<int>`，`consume` 接收结果：
 
+**承接上文**。
+
 ```cpp
 auto status = result.wait_for(std::chrono::milliseconds(20));
 if (status == std::future_status::ready) consume(result.get());
@@ -126,6 +140,8 @@ ready 后 get 仍可抛异常。提供者完成到成功检测就绪之间有相
 **基础操作**。`<future>` 中 `template<class T> class shared_future;` 允许多个结果持有者共享状态，可复制、可移动。可默认构造，或从 `future<T>&&` 构造/通过 `future::share()` 获得；等待接口与 future 同类，但 `get()` 不消耗状态，可重复调用。
 
 普通 `T` 的 `get()` 返回 `const T&`；`T&` 特化返回 `T&`，void 特化只确认完成。引用随共享状态或被引用对象的寿命约束；多个线程宜分别持有自己的 shared_future 副本，结果对象后续访问仍要遵守同步规则。
+
+**独立片段**。
 
 ```cpp
 std::promise<int> p;
@@ -142,6 +158,8 @@ int b = second.get();
 
 **基础操作**。`<future>` 中 `template<class Signature> class packaged_task;`，重点形式为 `packaged_task<R(Args...)>`；模板参数是一种函数签名。默认构造无任务，以可调用对象构造保存任务和共享状态，可移动、不可复制。
 
+**独立片段**。
+
 ```cpp
 std::packaged_task<int(int)> task([](int x) { return x * 2; });
 auto result = task.get_future();
@@ -154,6 +172,8 @@ int value = result.get();
 ## std::async 与启动策略
 
 **基础操作**。`<future>` 的 `std::async(policy, f, args...)` 返回对应结果类型的 future；省略 policy 的重载允许 async 或 deferred。此处描述调用形状，完整返回类型推导见草案。
+
+**独立片段**。
 
 ```cpp
 auto parallel = std::async(std::launch::async, [] { return 6 * 7; });
@@ -172,6 +192,8 @@ int b = delayed.get();
 
 **基础操作**。`<thread>` 的 jthread 可移动、不可复制；默认构造无线程，以函数构造时启动线程。若函数能接收 `std::stop_token`，构造会将令牌作为首参传入。普通 join、detach、joinable、get_id 与 thread 同类；另外提供 `get_stop_source()`、`get_stop_token()`、`request_stop()`。
 
+**独立片段**。
+
 ```cpp
 std::jthread worker([](std::stop_token token) {
     while (!token.stop_requested()) {
@@ -187,6 +209,8 @@ worker.join();
 ## 停止状态与令牌（C++20）
 
 **基础操作**。`<stop_token>` 的 stop_source 是请求端，stop_token 是观察端，`stop_callback<Callback>` 为关联状态注册停止响应。source 默认建立停止状态，token 默认无状态；复制 source/token 共享状态，不表示额外线程。
+
+**独立片段**。
 
 ```cpp
 std::stop_source source;

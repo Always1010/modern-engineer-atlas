@@ -13,9 +13,15 @@
 | `unordered_set/unordered_map` | 唯一键 | 无序，查找平均 O(1)、最坏 O(n) |
 | `unordered_multiset/unordered_multimap` | 允许等价键 | 无序，全部匹配成本另计匹配数 |
 
+### 组合应用与参考资料
+
+[配套 C++17 程序](../examples/r14-associative-adaptors.cpp) 组合唯一键更新、rehash 后的引用与最小优先队列，完整源码供组合应用参考。分类索引见 [cppreference containers](https://en.cppreference.com/w/cpp/container.html)。
+
 ## std::set
 
 **基础操作**。`<set>` 中的唯一键有序集合，元素就是键。声明摘要为 `template<class Key, class Compare = less<Key>, class Allocator = allocator<Key>> class set;`。`Compare` 定义严格弱序，`Allocator` 管理节点；迭代器不能直接改键。
+
+**独立片段**。
 
 ```cpp
 // 需要 <set>；局部摘录
@@ -32,6 +38,8 @@ for (int key : keys) { (void)key; }          // 按比较关系遍历 1、2
 
 **基础操作**。`<set>` 中允许等价键的有序集合。声明摘要为 `template<class Key, class Compare = less<Key>, class Allocator = allocator<Key>> class multiset;`；模板参数与 set 对应。
 
+**独立片段**。
+
 ```cpp
 // 需要 <set>；局部摘录
 std::multiset<int> keys{1, 2, 2};
@@ -46,6 +54,8 @@ auto removed = keys.erase(2);               // 删除全部三个等价键，返
 ## std::map
 
 **基础操作**。`<map>` 中的唯一键映射，元素是 `pair<const Key,T>`。声明摘要为 `template<class Key, class T, class Compare = less<Key>, class Allocator = allocator<pair<const Key,T>>> class map;`。`T` 是映射值，可经迭代器修改。
+
+**独立片段**。
 
 ```cpp
 // 需要 <map>、<string>；局部摘录
@@ -63,6 +73,8 @@ int red = counts.at("red");                 // 4；缺失时抛 out_of_range
 
 **基础操作**。`<map>` 中允许等价键的映射，元素仍是 `pair<const Key,T>`。声明摘要为 `template<class Key, class T, class Compare = less<Key>, class Allocator = allocator<pair<const Key,T>>> class multimap;`。
 
+**独立片段**。
+
 ```cpp
 // 需要 <map>、<string>；局部摘录
 std::multimap<std::string, int> scores{{"Ada", 80}, {"Ada", 90}};
@@ -76,6 +88,8 @@ for (auto it = range.first; it != range.second; ++it) it->second += 1;
 ## std::unordered_set
 
 **基础操作**。`<unordered_set>` 中的唯一键哈希集合。声明摘要为 `template<class Key, class Hash = hash<Key>, class Pred = equal_to<Key>, class Allocator = allocator<Key>> class unordered_set;`。`Hash` 计算哈希，`Pred` 判断键等价，等价键必须同哈希。
+
+**独立片段**。
 
 ```cpp
 // 需要 <unordered_set>；局部摘录
@@ -92,6 +106,8 @@ if (found != keys.end()) keys.erase(found);
 
 **基础操作**。`<unordered_set>` 中允许等价键的哈希集合。声明摘要为 `template<class Key, class Hash = hash<Key>, class Pred = equal_to<Key>, class Allocator = allocator<Key>> class unordered_multiset;`。
 
+**独立片段**。
+
 ```cpp
 // 需要 <unordered_set>；局部摘录
 std::unordered_multiset<int> keys{2, 2, 3};
@@ -106,6 +122,8 @@ auto n = keys.erase(2);                     // 3
 ## std::unordered_map
 
 **基础操作**。`<unordered_map>` 中的唯一键哈希映射，元素是 `pair<const Key,T>`。声明摘要为 `template<class Key, class T, class Hash = hash<Key>, class Pred = equal_to<Key>, class Allocator = allocator<pair<const Key,T>>> class unordered_map;`。
+
+**独立片段**。
 
 ```cpp
 // 需要 <unordered_map>、<string>；局部摘录
@@ -122,6 +140,8 @@ auto name = names.at(7);                    // "Ava!"
 ## std::unordered_multimap
 
 **基础操作**。`<unordered_map>` 中允许等价键的哈希映射。声明摘要为 `template<class Key, class T, class Hash = hash<Key>, class Pred = equal_to<Key>, class Allocator = allocator<pair<const Key,T>>> class unordered_multimap;`。
+
+**独立片段**。
 
 ```cpp
 // 需要 <unordered_map>、<string>；局部摘录
@@ -219,6 +239,8 @@ C++17 的 `extract(it)` 从容器摘出节点，返回拥有节点的句柄；`i
 
 **基础操作**。`<stack>` 的后进先出适配器。声明摘要为 `template<class T, class Container = deque<T>> class stack;`；底层容器元素类型须与 `T` 一致，并支持 `back/push_back/pop_back`。可默认构造或从底层容器复制/移动构造；不能把数量构造从底层自动套到适配器。
 
+**独立片段**。
+
 ```cpp
 // 需要 <stack>；局部摘录
 std::stack<int> work;
@@ -235,6 +257,8 @@ if (!work.empty()) {
 ## std::queue
 
 **基础操作**。`<queue>` 的先进先出适配器。声明摘要为 `template<class T, class Container = deque<T>> class queue;`；底层需支持 `front/back/push_back/pop_front`，vector 不满足。
+
+**独立片段**。
 
 ```cpp
 // 需要 <queue>；局部摘录
@@ -253,6 +277,8 @@ if (!pending.empty()) {
 ## std::priority_queue
 
 **基础操作**。`<queue>` 的优先值适配器。声明摘要为 `template<class T, class Container = vector<T>, class Compare = less<typename Container::value_type>> class priority_queue;`。底层须支持随机访问和尾部增删；比较器建立严格弱序。
+
+**独立片段**。
 
 ```cpp
 // 需要 <queue>、<vector>、<functional>；局部摘录
@@ -273,8 +299,3 @@ smallest.pop();                             // 剩下 9
 堆把随机访问序列视为一棵完全二叉树：下标 i>0 的父节点在 (i−1)/2 的整数商位置，孩子在 2i+1、2i+2（存在时）。它要求 `comp(parent, child)` 为假；默认 less 因而使最大值在根。兄弟与不同分支没有完整排序关系，不能对其底层序列直接二分查找。树高为 O(log n)，新末尾值沿祖先上移、取出根后沿孩子向下调整，各只涉及一条高度量级的路径；具体交换和移动步骤可因实现而变。[N4659 堆的下标关系](https://timsong-cpp.github.io/cppwp/n4659/alg.heap.operations)。
 
 priority_queue 的 push 对应底层 push_back 后 push_heap；pop 对应 pop_heap 后 pop_back。这里只能取得最优先值，不能按任意键查找、稳定定位或就地更新。若保存 top 的引用，后续堆调整可能使那个槽位的值换成另一个业务对象；即使 vector 未扩容也不能把它当稳定身份。需要前 k 个优先值可重复弹出，是否允许破坏原队列须由业务决定；独立堆算法与建堆成本见 R16 的堆算法条目。
-
-
-## 组合应用与参考资料
-
-[配套 C++17 程序](../examples/r14-associative-adaptors.cpp) 组合唯一键更新、rehash 后的引用与最小优先队列，完整源码供组合应用参考。分类索引见 [cppreference containers](https://en.cppreference.com/w/cpp/container.html)。

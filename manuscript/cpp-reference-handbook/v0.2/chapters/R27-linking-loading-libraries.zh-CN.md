@@ -139,6 +139,8 @@ ELF 常见 GOT 保存间接地址，PLT 支持部分外部函数绑定；延迟�
 
 **基础操作**。`<dlfcn.h>` 的加载接口摘要：
 
+**声明摘要**。
+
 ```cpp
 void* dlopen(const char* path, int flags);
 void* dlsym(void* library, const char* name);
@@ -149,6 +151,8 @@ int dlclose(void* library);
 dlopen 成功返回句柄、失败为空；RTLD_NOW 尽早解析、RTLD_LAZY 允许相关延迟，RTLD_LOCAL 限制符号传播。dlsym 查精确名称；先清旧 dlerror，再读取新错误，不能仅把地址为空解释为查找错误。dlclose 成功为 0，失败非零并可由 dlerror 说明。
 
 下面约定库导出可调用的 `int version()`，report 与 consume 为调用方不抛的处理函数；这是平台操作摘录：
+
+**承接上文**。
 
 ```cpp
 void* library = dlopen(path, RTLD_NOW | RTLD_LOCAL);
@@ -169,6 +173,8 @@ path 是库路径；函数地址转换依 POSIX 契约，不是 ISO C++ 任意�
 
 **基础操作**。`<windows.h>` 的接口摘要：
 
+**声明摘要**。
+
 ```cpp
 HMODULE LoadLibraryExW(LPCWSTR path, HANDLE reserved, DWORD flags);
 FARPROC GetProcAddress(HMODULE library, LPCSTR name);
@@ -178,6 +184,8 @@ BOOL FreeLibrary(HMODULE library);
 LoadLibraryExW 成功返回模块句柄、失败为空；reserved 为 nullptr。GetProcAddress 返回导出入口地址，失败为空，名称大小写和调用类型须一致；FreeLibrary 释放装载引用，成功非零。失败立即取得 GetLastError。
 
 下面约定绝对 UTF-16 path，库精确导出 C 风格名称 version 且约定 `int (__cdecl*)()`；report/consume 不抛：
+
+**承接上文**。
 
 ```cpp
 HMODULE library = LoadLibraryExW(path, nullptr,
@@ -196,6 +204,8 @@ else {
 ## 插件协议与卸载
 
 **组合应用**。配套库用 C 风格接口、不透明业务句柄和版本表缩小兼容面；业务句柄由库自身 close 销毁。版本不支持时入口返回空；失败不修改输出。四个声明是源码逐字摘录，宏用途已在导出条目定义：
+
+**声明摘要**。
 
 <!-- source: examples/r27-libraries/metric_api.h -->
 ```cpp
