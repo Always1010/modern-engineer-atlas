@@ -1,0 +1,51 @@
+:root { color-scheme:light; --ink:#172b43; --muted:#53667a; --accent:#285a91; --line:#d8e2ec; }
+* { box-sizing:border-box; }
+body { margin:0; background:#eef2f6; color:var(--ink); font-family:"Microsoft YaHei","Noto Sans CJK SC",sans-serif; font-size:16px; line-height:1.75; }
+.layout { display:grid; grid-template-columns:240px minmax(0,960px); gap:24px; max-width:1280px; margin:28px auto; padding:0 20px; align-items:start; }
+nav { position:sticky; top:20px; max-height:calc(100vh - 40px); overflow:auto; font-size:13px; }
+nav a { display:block; padding:3px 0; color:var(--muted); text-decoration:none; }
+nav details { margin:6px 0; } nav summary { cursor:pointer; } nav details div { padding:4px 0 6px 12px; }
+a { color:var(--accent); text-underline-offset:3px; } a:hover { text-decoration:underline; }
+main { min-width:0; background:white; padding:36px 44px; }
+.edition-label { color:var(--muted); font-size:12px; margin:0 0 7px; }
+h1 { font-size:30px; line-height:1.35; margin:0 0 20px; }
+h2 { font-size:22px; line-height:1.4; margin:32px 0 13px; padding-bottom:6px; border-bottom:1px solid var(--line); }
+h3 { font-size:18px; line-height:1.4; margin:22px 0 10px; }
+h1,h2,h3 { scroll-margin-top:24px; }
+p { margin:10px 0; } ul,ol { padding-left:24px; } li { margin:4px 0; }
+code { font-family:Consolas,"Microsoft YaHei",monospace; font-size:.92em; overflow-wrap:anywhere; }
+pre { background:#f3f6f9; border-left:3px solid #93b2d4; padding:12px 14px; margin:14px 0; overflow:auto; line-height:1.5; }
+pre code { white-space:pre; overflow-wrap:normal; }
+.table-wrap { overflow-x:auto; margin:15px 0; }
+table { border-collapse:collapse; width:100%; font-size:14px; line-height:1.55; }
+th,td { border:1px solid var(--line); padding:7px 9px; text-align:left; vertical-align:top; overflow-wrap:anywhere; }
+th { background:#edf3f9; font-weight:600; }
+figure { margin:20px 0; } figure img { max-width:100%; height:auto; display:block; }
+figcaption { color:var(--muted); font-size:13px; margin:7px 0; }
+.cover { padding:50px 0 65px; } .cover h1 { font-size:36px; } .subtitle { color:var(--muted); font-size:20px; }
+.contents { margin-bottom:40px; } .contents ol { list-style:none; padding:0; } .contents h2 { font-size:18px; }
+.chapter-toc { font-size:14px; border-left:2px solid var(--line); padding-left:16px; margin:16px 0 24px; }
+.chapter-toc a { display:inline-block; margin:2px 12px 2px 0; }
+@media(max-width:1050px) { .layout { display:block; } nav { position:static; max-height:none; margin-bottom:18px; } main { padding:28px; } }
+@media(max-width:560px) { .layout { padding:0 8px; margin:12px auto; } main { padding:20px 14px; } body { font-size:15px; } h1 { font-size:26px; } table { min-width:480px; } }
+@page { size:A4; margin:18mm 15mm; }
+@media print {
+ body { background:white; font-size:10.7pt; line-height:1.6; }
+ .layout { display:block; margin:0; padding:0; max-width:none; } nav { display:none; } main { margin:0; padding:0; }
+ h1 { font-size:22pt; } h2 { font-size:14pt; margin:18pt 0 9pt; } h3 { font-size:11.5pt; margin:14pt 0 7pt; }
+ h1,h2,h3 { break-after:avoid; } p,li { orphans:3; widows:3; } p { margin:7pt 0; }
+ p:has(+pre),p:has(+.table-wrap),p:has(+figure) { break-after:avoid; }
+ .edition-label { font-size:8.5pt; } .cover { height:240mm; padding-top:40mm; break-after:page; } .cover h1 { font-size:28pt; }
+ .subtitle { font-size:13pt; } .contents { break-after:page; margin:0; } .contents section { break-inside:avoid; }
+ .contents h2 { font-size:12pt; margin:12pt 0 6pt; } .contents li { font-size:10pt; }
+ article.chapter { break-before:page; }
+ .chapter-toc { font-size:9.2pt; margin:10pt 0 15pt; }
+ .table-wrap { overflow:visible; margin:10pt 0; }
+ table { font-size:9.3pt; line-height:1.5; min-width:0; } th,td { padding:5pt 6pt; }
+ thead { display:table-header-group; } tr { break-inside:avoid; }
+ pre { font-size:9.1pt; padding:9pt 10pt; margin:10pt 0; overflow:visible; break-inside:avoid; }
+ pre.long-code { break-inside:auto; } pre code { white-space:pre-wrap; overflow-wrap:break-word; }
+ figure { break-inside:avoid; margin:14pt 0; } figure img { max-height:170mm; margin:auto; }
+ figcaption { font-size:9pt; line-height:1.5; }
+ a { color:inherit; }
+}

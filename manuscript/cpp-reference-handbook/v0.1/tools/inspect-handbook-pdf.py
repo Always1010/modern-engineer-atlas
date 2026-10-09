@@ -4,14 +4,20 @@ Uses only existing bundled dependencies; never installs software.
 import json
 import re
 import sys
+import argparse
 from pathlib import Path
 import pdfplumber
 from pypdf import PdfReader
 from PIL import Image, ImageDraw
 
 edition = Path(__file__).resolve().parents[1]
-pdf_path = edition / "output/pdf/Cpp-Reference-Handbook-v0.1.pdf"
-qa = edition / "qa/fullbook"
+parser = argparse.ArgumentParser()
+parser.add_argument('--pdf', type=Path)
+parser.add_argument('--sheets', action='store_true')
+parser.add_argument('--expected-chapters', help='Comma separated reader chapter numbers for a sample')
+args = parser.parse_args()
+pdf_path = args.pdf or edition / "output/pdf/Cpp-Reference-Handbook-v0.1.pdf"
+qa = edition / ('qa/templates' if args.pdf else 'qa/fullbook')
 qa.mkdir(parents=True, exist_ok=True)
 reader = PdfReader(pdf_path)
 pages = []
@@ -41,7 +47,7 @@ report = {"pdf":pdf_path.name,"pages":len(reader.pages),"chapter_numbers":sorted
 report["needs_sparse_page_review"] = [p["page"] for p in pages
                                      if p["body_characters"] < 170 and p["page"] > 3]
 (qa/"pdf-inspection.json").write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding="utf8")
-if len(sys.argv)>1 and sys.argv[1] == "--sheets":
+if args.sheets:
     images = sorted((p for p in qa.glob("page-*.png")
                      if int(p.stem.split("-")[-1]) <= len(reader.pages)),
                     key=lambda p:int(p.stem.split("-")[-1]))
@@ -61,5 +67,6 @@ if len(sys.argv)>1 and sys.argv[1] == "--sheets":
         sheet.save(qa/f"contact-{start//batch+1:02}.png")
 print(json.dumps({k:v for k,v in report.items() if k not in ("page_text","chapter_pages","outside_page_bounds")},ensure_ascii=False,indent=2))
 expected_count = json.loads((edition / 'catalog.json').read_text(encoding='utf8'))['chapterCount']
-if outside or replacement or sorted(chapters) != list(range(1,expected_count+1)):
+expected_numbers = sorted(map(int, args.expected_chapters.split(','))) if args.expected_chapters else list(range(1,expected_count+1))
+if outside or replacement or sorted(chapters) != expected_numbers:
     sys.exit(1)
