@@ -100,6 +100,7 @@
 
 - [class、struct 与访问控制](chapters/R07-classes-lifetime.zh-CN.md#classstruct-与访问控制)
 - [数据成员、成员函数与 const](chapters/R07-classes-lifetime.zh-CN.md#数据成员成员函数与-const)
+- [运算符重载与 friend](chapters/R07-classes-lifetime.zh-CN.md#运算符重载与-friend)
 - [构造函数与成员初始化](chapters/R07-classes-lifetime.zh-CN.md#构造函数与成员初始化)
 - [析构函数](chapters/R07-classes-lifetime.zh-CN.md#析构函数)
 - [特殊成员函数](chapters/R07-classes-lifetime.zh-CN.md#特殊成员函数)

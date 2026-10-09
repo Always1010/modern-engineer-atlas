@@ -21,3 +21,13 @@
 - 解决方案：按数组、tuple 协议、成员三条路径说明，并给非聚合类例子；回链指向具体条目。
 - 验证：对照 C++17 草案 dcl.struct.bind；R02、R17 静态检查通过，未编译运行 C++ 示例。
 - 相关文件：[类型与对象](../manuscript/cpp-reference-handbook/v0.2/chapters/R02-types-objects.zh-CN.md)、[结果类型](../manuscript/cpp-reference-handbook/v0.2/chapters/R17-utility-results.zh-CN.md)。
+
+## HB-003：运算符重载引用缺少落点
+
+- 日期：2026-10-09
+- 状态：已解决
+- 现象：表达式章让读者在类章查运算符重载，但类章没有相应说明。
+- 原因：入口承诺与章节覆盖范围不一致。
+- 解决方案：补齐成员、非成员、friend 的最小条目，给出 +、+=、== 例子及 C++17 限制，入口指向条目锚点。
+- 验证：对照 C++17 草案 over.oper、class.friend；相关章节静态检查通过，目录重新生成。
+- 相关文件：[类与对象](../manuscript/cpp-reference-handbook/v0.2/chapters/R07-classes-lifetime.zh-CN.md)、[表达式](../manuscript/cpp-reference-handbook/v0.2/chapters/R04-expressions-conversions.zh-CN.md)。

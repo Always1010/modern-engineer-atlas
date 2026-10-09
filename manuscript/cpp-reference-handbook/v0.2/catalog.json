@@ -478,6 +478,11 @@
             },
             {
               "level": 2,
+              "title": "运算符重载与 friend",
+              "anchor": "R07-运算符重载与-friend"
+            },
+            {
+              "level": 2,
               "title": "构造函数与成员初始化",
               "anchor": "R07-构造函数与成员初始化"
             },
