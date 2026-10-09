@@ -63,7 +63,7 @@ async function render(model){
   .replace(/<p>(<img[^>]+>)<\/p>/g,'<figure>$1</figure>')
   .replace(/<table>([\s\S]*?)<\/table>/g,(_,contents)=>{
    const rows=(contents.match(/<tr>/g)||[]).length-1;
-   return '<div class="table-wrap'+(rows<=6?' compact-table':'')+'"><table>'+contents+'</table></div>';
+   return '<div class="table-wrap'+(/<th>标准基线<\/th>/.test(contents)?' version-table':'')+(rows<=6?' compact-table':'')+'"><table>'+contents+'</table></div>';
   })
   .replace(/<pre>(<code[\s\S]*?<\/code>)<\/pre>/g,(_,code)=>'<pre'+(code.split('\n').length>28?' class="long-code"':'')+'>'+code+'</pre>');
  const entries=model.headings.filter(h=>h.level===2);
