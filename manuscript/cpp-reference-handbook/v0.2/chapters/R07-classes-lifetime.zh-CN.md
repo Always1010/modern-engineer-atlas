@@ -39,6 +39,46 @@ struct Meter {
 
 const 成员函数可通过 const 对象调用，不能通过 this 修改普通非 mutable 成员；mutable 成员有相应例外。指针成员指向的外部对象不会因为成员函数 const 就成为 const，const 也不自动保证线程安全。类内定义的函数通常隐式 inline，跨文件定义规则见[ODR](R01-program-build.zh-CN.md#单一定义规则与多文件程序)。
 
+## 运算符重载与 friend
+
+**基础操作 · C++17**。运算符重载用名为 `operator符号` 的函数为类或枚举定义操作。二元运算的成员形式是 `left.operator+(right)`，非成员形式是 `operator+(left, right)`；非成员可把左右操作数作为同等参数处理。`friend` 授予指定函数或类访问私有成员的权限；在类内定义的 friend 函数仍是非成员函数。
+
+**独立片段 · 无额外头文件 · 类定义放在命名空间作用域**：
+
+```cpp
+class Distance {
+    int metres_;
+public:
+    explicit Distance(int n) : metres_(n) {}
+    int metres() const { return metres_; }
+    Distance& operator+=(const Distance& other) {
+        metres_ += other.metres_;
+        return *this;
+    }
+    friend Distance operator+(Distance left, const Distance& right) {
+        left += right;
+        return left;
+    }
+    friend bool operator==(const Distance& a, const Distance& b) {
+        return a.metres_ == b.metres_;
+    }
+};
+// 函数体内；本例数值相加在 int 可表示范围内：
+Distance a{3}, b{5};
+Distance sum = a + b;       // sum.metres() 为 8，a 仍为 3
+bool equal = (sum == Distance{8}); // true
+```
+
+| 接口选择 | 常见用途 | 注意条件 |
+| --- | --- | --- |
+| 成员函数 | 修改左侧对象，如 `+=` | 隐含对象是左侧操作数 |
+| 非成员函数 | 对称的 `+`、`==` | 至少一个参数是类或枚举类型（或相应引用） |
+| 非成员 friend | 需要访问私有表示 | 权限不使它成为成员，不随继承自动传播 |
+
+C++17 中 `=`、`[]`、`()`、`->` 的重载必须是非静态成员。重载不能改变优先级、结合方式或操作数数量，也不能重载 `.`、`.*`、`::`、`?:`。C++17 的 `==` 不自动提供 `!=`；需要时另行定义。重载 `&&`、`||` 不提供内建逻辑运算的短路行为，详见[求值顺序](R04-expressions-conversions.zh-CN.md#求值顺序与副作用)。优先让符号保持读者熟悉的值语义；friend 访问授予应限制在所需接口。
+
+依据：[C++17 重载运算符](https://timsong-cpp.github.io/cppwp/n4659/over.oper)、[friend](https://timsong-cpp.github.io/cppwp/n4659/class.friend)。
+
 ## 构造函数与成员初始化
 
 **基础操作**。构造函数与类同名、无返回类型，成员初始化列表写在冒号后；初始化阶段先于函数体。

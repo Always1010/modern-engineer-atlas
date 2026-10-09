@@ -2,7 +2,7 @@
 
 表达式（expression）由操作数和运算符组成，用来计算值、标识对象或产生副作用。本章先按运算符介绍常用写法，再解释求值顺序、值类别和类型转换。
 
-**版本**：C++17；后续标准可能改变部分转换和移位规则。**先修**：[类型与对象](R02-types-objects.zh-CN.md)、[初始化与类型推导](R03-initialization-deduction.zh-CN.md)。基础入口是算术、比较与逻辑运算；指针操作见[指针与引用](R05-pointers-references.zh-CN.md)，重载运算符见[类与对象生命周期](R07-classes-lifetime.zh-CN.md)。
+**版本**：C++17；后续标准可能改变部分转换和移位规则。**先修**：[类型与对象](R02-types-objects.zh-CN.md)、[初始化与类型推导](R03-initialization-deduction.zh-CN.md)。基础入口是算术、比较与逻辑运算；指针操作见[指针与引用](R05-pointers-references.zh-CN.md)，重载运算符见[运算符重载与 friend](R07-classes-lifetime.zh-CN.md#运算符重载与-friend)。
 
 ## 运算符分类
 
