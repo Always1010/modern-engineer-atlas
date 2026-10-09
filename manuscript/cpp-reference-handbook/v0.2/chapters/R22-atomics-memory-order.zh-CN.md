@@ -192,6 +192,37 @@ int observed = payload;
 
 release sequence 是一次 release 开始的原子修改序列；C++17 与 C++20 对后续普通写入的成员规则不同。依赖多线程读改写链时需按目标版本证明，不能把一次发布图套到反复复用的标志。[C++17 顺序](https://timsong-cpp.github.io/cppwp/n4659/intro.multithread)、[C++20 顺序](https://timsong-cpp.github.io/cppwp/n4861/intro.races)
 
+## 原子共享指针
+
+**进阶后查 · `<memory>`；C++20 特化另需 `<atomic>`**。共享所有权保护目标寿命，原子共享指针保护同一个句柄槽位的并发访问。这两个责任需要分别判断。
+
+| 标准基线 | 同一共享句柄槽位的接口 | 使用条件 |
+| --- | --- | --- |
+| C++17 | `atomic_load(&slot)`、`atomic_store(&slot, value)` 等 shared_ptr 自由函数 | 槽位为普通 shared_ptr；并发访问全部采用适用原子接口或同一外部同步 |
+| C++20 | `std::atomic<std::shared_ptr<T>>` 的 load/store/exchange/CAS 等 | 通过原子对象成员接口访问槽位；此特化不要求 shared_ptr 平凡可复制 |
+
+**独立片段 · C++17 · `<memory>` · 函数体内**：
+
+```cpp
+std::shared_ptr<const int> slot = std::make_shared<const int>(7);
+std::shared_ptr<const int> next = std::make_shared<const int>(9);
+std::atomic_store(&slot, next);
+auto held = std::atomic_load(&slot); // 持有一份强所有权，*held 为 9
+```
+
+**独立片段 · C++20 · `<atomic>`、`<memory>` · 函数体内**：
+
+```cpp
+std::atomic<std::shared_ptr<const int>> slot{
+    std::make_shared<const int>(7)};
+slot.store(std::make_shared<const int>(9));
+auto held = slot.load(); // 后续槽位改变不撤销 held 已取得的所有权
+```
+
+两个例子分别展示接口，不是并发程序；默认操作使用 seq_cst。将其用于共享状态时，槽位须先完成初始化并活过所有访问。发布新对象时先构造完整状态，再 store；读取取得的强所有权应覆盖整个访问期间。原子句柄不使可变目标的成员读写成为原子操作；仍需互斥或其他同步。`const` 句柄也不能消除其他可变别名，应维持真正的不可变快照契约。两条路径均不保证无锁，且分配、销毁和自定义删除器的成本不能由 load/store 名称推断。
+
+C++20 将旧的 shared_ptr 原子自由函数标记为弃用；目标为 C++20 时优先使用特化，但不能在 C++17 模式中照搬。依据：[C++17 shared_ptr 原子自由函数](https://timsong-cpp.github.io/cppwp/n4659/util.smartptr.shared.atomic)、[C++20 atomic shared_ptr](https://timsong-cpp.github.io/cppwp/n4861/util.smartptr.atomic.shared)、[C++20 弃用接口](https://timsong-cpp.github.io/cppwp/n4861/depr.util.smartptr.shared.atomic)。控制状态与弱所有权见[shared_ptr](R09-raii-memory.zh-CN.md#shared_ptr-构造共享与访问)。
+
 ## 回收、ABA 与进展保证
 
 **进阶后查**。原子指针读取只取得地址，不保活对象；解引用期间另一线程 delete 仍可能非法。安全回收另需锁、共享所有权或专用协议；hazard pointer/epoch 不是 C++17/20 通用标准库设施。
