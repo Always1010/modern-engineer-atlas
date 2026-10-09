@@ -3,11 +3,15 @@ import path from 'node:path';
 import {createRequire} from 'node:module';
 import {pathToFileURL,fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
+import {spawnSync} from 'node:child_process';
 import {loadModel,headings,resolveFragment} from './document-model.mjs';
 
 const edition=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
-const [packageRoot,executablePath,selection]=process.argv.slice(2);
-if(!packageRoot||!executablePath)throw new Error('Usage: node tools/build-handbook.mjs EXISTING_NODE_MODULES EXISTING_BROWSER_EXE [--chapters=R04,R17,...]. No software is installed.');
+const [packageRoot,executablePath,...options]=process.argv.slice(2);
+const selection=options.find(a=>a.startsWith('--chapters='));
+const python=options.find(a=>a.startsWith('--python='))?.slice(9)||'python';
+if(options.some(a=>!a.startsWith('--chapters=')&&!a.startsWith('--python=')))throw new Error('Unknown build option');
+if(!packageRoot||!executablePath)throw new Error('Usage: node tools/build-handbook.mjs EXISTING_NODE_MODULES EXISTING_BROWSER_EXE [--chapters=R04,R17,...] [--python=EXISTING_PYTHON_WITH_PYPDF]. Full builds resolve PDF index pages. No software is installed.');
 const require=createRequire(path.join(packageRoot,'package.json'));
 const {marked}=await import(pathToFileURL(require.resolve('marked')).href);
 const {chromium}=require('playwright');
@@ -94,9 +98,38 @@ try{
   brokenAnchors:[...document.querySelectorAll('a[href^="#"]')].filter(a=>!document.getElementById(a.getAttribute('href').slice(1))).map(a=>a.getAttribute('href')),
   duplicateIds:ids.filter((id,index)=>ids.indexOf(id)!==index)};});
  if(errors.length||layout.clipping.length||layout.brokenAnchors.length||layout.duplicateIds.length||layout.images.some(i=>!i.loaded))throw new Error(JSON.stringify({errors,layout}));
- await page.pdf({path:pdfPath,format:'A4',preferCSSPageSize:true,printBackground:true,displayHeaderFooter:true,outline:true,tagged:true,
+ const printPdf=()=>page.pdf({path:pdfPath,format:'A4',preferCSSPageSize:true,printBackground:true,displayHeaderFooter:true,outline:true,tagged:true,
   headerTemplate:'<div style="font-family:Arial,sans-serif;font-size:8px;color:#60738a;margin:0 15mm;">C++ REFERENCE HANDBOOK · v0.2</div>',
   footerTemplate:'<div style="font-family:Arial,sans-serif;font-size:9px;color:#60738a;width:100%;text-align:right;margin:0 15mm;"><span class="pageNumber"></span> / <span class="totalPages"></span></div>'});
- await fs.writeFile(path.join(qa,basename+'-build.json'),JSON.stringify({chapters:chapters.map(c=>({id:c.id,number:c.number,source:c.source})),diagrams:usedResources.size,layout,files:manifest},null,2));
+ await printPdf();
+ let indexPages={},pdfPasses=1;
+ if(!requested){
+  const anchors=await page.evaluate(()=>[...new Set([...document.querySelectorAll('#appendices a[href^="#"],.contents a[href^="#"]')].map(a=>a.getAttribute('href').slice(1)))]);
+  const readPages=()=>{
+   const child=spawnSync(python,[path.join(edition,'tools/pdf-index-pages.py'),pdfPath],{encoding:'utf8',windowsHide:true,maxBuffer:4*1024*1024});
+   if(child.error||child.status!==0)throw new Error('PDF page resolver failed: '+(child.error?.message||child.stderr));
+   const destinations=JSON.parse(child.stdout),result={};
+   for(const anchor of anchors){if(!Number.isInteger(destinations[anchor]))throw new Error('Missing PDF index destination: '+anchor);result[anchor]=destinations[anchor];}
+   return result;
+  };
+  indexPages=readPages();
+  let stable=false;
+  for(let attempt=0;attempt<3;attempt++){
+   await page.evaluate(pages=>{
+    for(const a of document.querySelectorAll('#appendices a[href^="#"],.contents a[href^="#"]')){
+     let number=a.querySelector('.pdf-page');
+     if(!number){number=document.createElement('span');number.className='pdf-page';a.append(number);}
+     const value=pages[a.getAttribute('href').slice(1)];number.textContent='〔'+value+'〕';number.setAttribute('aria-label','PDF 第'+value+'页');
+    }
+   },indexPages);
+   await printPdf();pdfPasses++;
+   const actual=readPages();
+   if(JSON.stringify(actual)===JSON.stringify(indexPages)){stable=true;break;}
+   indexPages=actual;
+  }
+  if(!stable)throw new Error('PDF index pagination did not converge');
+  await fs.writeFile(htmlPath,await page.content(),'utf8');
+ }
+ await fs.writeFile(path.join(qa,basename+'-build.json'),JSON.stringify({chapters:chapters.map(c=>({id:c.id,number:c.number,source:c.source})),diagrams:usedResources.size,layout,indexPages,pdfPasses,files:manifest},null,2));
  console.log(JSON.stringify({htmlPath,pdfPath,chapters:chapters.length,diagrams:usedResources.size}));
 }finally{await browser.close();}

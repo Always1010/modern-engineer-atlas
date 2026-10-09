@@ -167,6 +167,8 @@ lock.unlock();
 lock.lock();
 ```
 
+### unique_lock 的所有权查询与 release
+
 关联 mutex 与拥有锁是两件事。`lock/try_lock/unlock` 操作对应底层 mutex；定时接口仅用于定时能力类型。`owns_lock()` 或显式 bool 查询所有权，`mutex()` 返回关联指针，`swap` 交换关联与所有权；`release()` 返回指针并解除管理，**不解锁**，调用者接手释放责任。
 
 已拥有时再次 lock 或未拥有时 unlock 报 `system_error`；默认/已移动对象无关联，不能锁定。移动目标接手释放责任，但底层锁的线程所有权要求仍成立。析构仅在 owns_lock 为 true 时解锁。[unique_lock](https://timsong-cpp.github.io/cppwp/n4659/thread.lock.unique)

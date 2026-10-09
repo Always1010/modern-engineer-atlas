@@ -51,3 +51,13 @@
 - 解决方案：在互斥章前给共享可变状态的最小规则，将完整竞争定义改为后续阅读；阅读指南按线程、锁、谓词等待、原子组织。
 - 验证：检查先修文字与阅读路径，相关文档链接和表格静态检查通过。
 - 相关文件：[互斥](../manuscript/cpp-reference-handbook/v0.2/chapters/R21-mutex-coordination.zh-CN.md)、[阅读指南](../manuscript/cpp-reference-handbook/v0.2/reading-guide.zh-CN.md)。
+
+## HB-006：任务和头文件索引入口过粗
+
+- 日期：2026-10-09
+- 状态：已解决
+- 现象：排序/二分查找共同指向 sort，文件读写共同指向 ifstream；多个头文件只指向组中第一个对象，且纸版没有入口页码。
+- 原因：索引生成器按部分标题取第一个结果，目录分组代替了符号检索。
+- 解决方案：任务与头文件分别拆项、严格匹配标题；按名称生成符号及成员索引，登记中英别名和同名接口所属类型；从 PDF 命名目标提取页码并重排至稳定。
+- 验证：目录和索引静态核对；页码解析器检查真实 PDF 目标；最终生成器校验全部索引目标存在且页码收敛，版面检查见手册 BUILD-NOTES。
+- 相关文件：[索引](../manuscript/cpp-reference-handbook/v0.2/appendices.zh-CN.md)、[索引生成器](../manuscript/cpp-reference-handbook/v0.2/tools/sync-handbook-index.mjs)、[制品生成器](../manuscript/cpp-reference-handbook/v0.2/tools/build-handbook.mjs)、[目录元数据](../manuscript/cpp-reference-handbook/v0.2/catalog.json)。

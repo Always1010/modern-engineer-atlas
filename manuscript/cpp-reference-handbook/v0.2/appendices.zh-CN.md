@@ -1,6 +1,6 @@
 # 附录：对象与任务索引
 
-索引指向正文具体条目，知识只在正文维护。章序随目录生成，链接使用稳定对象锚点。
+已知名称时查 B 的字母序符号，已知问题时查 C 的任务。A 提供中英概念别名，E 按头文件拆开入口。HTML 可点击；完整 PDF 自动标出直接入口的页码。release 等同名接口按所属类型区分，知识只在正文维护。
 
 ## A 语言规则与概念
 
@@ -30,7 +30,7 @@
 
 ### 类与对象生命周期
 
-[class、struct 与访问控制](chapters/R07-classes-lifetime.zh-CN.md#classstruct-与访问控制) · [数据成员、成员函数与 const](chapters/R07-classes-lifetime.zh-CN.md#数据成员成员函数与-const) · [构造函数与成员初始化](chapters/R07-classes-lifetime.zh-CN.md#构造函数与成员初始化) · [析构函数](chapters/R07-classes-lifetime.zh-CN.md#析构函数) · [特殊成员函数](chapters/R07-classes-lifetime.zh-CN.md#特殊成员函数) · [构造与销毁顺序](chapters/R07-classes-lifetime.zh-CN.md#构造与销毁顺序) · [组合与继承](chapters/R07-classes-lifetime.zh-CN.md#组合与继承) · [虚函数、override 与 final](chapters/R07-classes-lifetime.zh-CN.md#虚函数override-与-final) · [抽象类与虚析构](chapters/R07-classes-lifetime.zh-CN.md#抽象类与虚析构) · [完整对象、子对象与多态实现](chapters/R07-classes-lifetime.zh-CN.md#完整对象子对象与多态实现) · [切片、克隆与外部表示](chapters/R07-classes-lifetime.zh-CN.md#切片克隆与外部表示) · [配套对象模型例子](chapters/R07-classes-lifetime.zh-CN.md#配套对象模型例子)
+[class、struct 与访问控制](chapters/R07-classes-lifetime.zh-CN.md#classstruct-与访问控制) · [数据成员、成员函数与 const](chapters/R07-classes-lifetime.zh-CN.md#数据成员成员函数与-const) · [运算符重载与 friend](chapters/R07-classes-lifetime.zh-CN.md#运算符重载与-friend) · [构造函数与成员初始化](chapters/R07-classes-lifetime.zh-CN.md#构造函数与成员初始化) · [析构函数](chapters/R07-classes-lifetime.zh-CN.md#析构函数) · [特殊成员函数](chapters/R07-classes-lifetime.zh-CN.md#特殊成员函数) · [构造与销毁顺序](chapters/R07-classes-lifetime.zh-CN.md#构造与销毁顺序) · [组合与继承](chapters/R07-classes-lifetime.zh-CN.md#组合与继承) · [虚函数、override 与 final](chapters/R07-classes-lifetime.zh-CN.md#虚函数override-与-final) · [抽象类与虚析构](chapters/R07-classes-lifetime.zh-CN.md#抽象类与虚析构) · [完整对象、子对象与多态实现](chapters/R07-classes-lifetime.zh-CN.md#完整对象子对象与多态实现) · [切片、克隆与外部表示](chapters/R07-classes-lifetime.zh-CN.md#切片克隆与外部表示) · [配套对象模型例子](chapters/R07-classes-lifetime.zh-CN.md#配套对象模型例子)
 
 ### 拷贝与移动
 
@@ -48,75 +48,220 @@
 
 [throw 与异常对象](chapters/R11-errors-exception-safety.zh-CN.md#throw-与异常对象) · [try、catch 与重新抛出](chapters/R11-errors-exception-safety.zh-CN.md#trycatch-与重新抛出) · [栈展开与构造失败](chapters/R11-errors-exception-safety.zh-CN.md#栈展开与构造失败) · [标准异常类型](chapters/R11-errors-exception-safety.zh-CN.md#标准异常类型) · [noexcept 说明符](chapters/R11-errors-exception-safety.zh-CN.md#noexcept-说明符) · [noexcept 运算符](chapters/R11-errors-exception-safety.zh-CN.md#noexcept-运算符) · [析构与终止边界](chapters/R11-errors-exception-safety.zh-CN.md#析构与终止边界) · [error_code 与状态返回](chapters/R11-errors-exception-safety.zh-CN.md#error_code-与状态返回) · [错误表示比较](chapters/R11-errors-exception-safety.zh-CN.md#错误表示比较) · [异常安全保证](chapters/R11-errors-exception-safety.zh-CN.md#异常安全保证) · [暂存与强保证提交](chapters/R11-errors-exception-safety.zh-CN.md#暂存与强保证提交)
 
-## B 标准库对象与接口
+### 中英概念别名
 
-### 字符串与非拥有视图
+| 名称 / 别名 | 直接入口 |
+| --- | --- |
+| `aggregate / 聚合` | [聚合初始化与成员默认值](chapters/R03-initialization-deduction.zh-CN.md#聚合初始化与成员默认值) |
+| `copy construction / 拷贝构造` | [拷贝构造](chapters/R08-copy-move.zh-CN.md#拷贝构造) |
+| `data race / 数据竞争` | [数据竞争与 happens-before](chapters/R22-atomics-memory-order.zh-CN.md#数据竞争与-happens-before) |
+| `exception safety / 异常安全` | [异常安全保证](chapters/R11-errors-exception-safety.zh-CN.md#异常安全保证) |
+| `forwarding reference / 转发引用` | [转发引用与引用折叠](chapters/R08-copy-move.zh-CN.md#转发引用与引用折叠) |
+| `happens-before / 先行关系` | [数据竞争与 happens-before](chapters/R22-atomics-memory-order.zh-CN.md#数据竞争与-happens-before) |
+| `initialization / 初始化` | [初始化类别](chapters/R03-initialization-deduction.zh-CN.md#初始化类别) |
+| `iterator invalidation / 迭代器失效` | [vector 的失效与异常保证](chapters/R13-sequence-containers.zh-CN.md#vector-的失效与异常保证) |
+| `lifetime / 生命周期` | [存储期、对象生命周期与作用域](chapters/R02-types-objects.zh-CN.md#存储期对象生命周期与作用域) |
+| `lvalue / 左值` | [值类别](chapters/R04-expressions-conversions.zh-CN.md#值类别) |
+| `move construction / 移动构造` | [移动构造与移动赋值](chapters/R08-copy-move.zh-CN.md#移动构造与移动赋值) |
+| `mutex / 互斥量` | [互斥量与临界区](chapters/R21-mutex-coordination.zh-CN.md#互斥量与临界区) |
+| `ODR / 单一定义规则` | [单一定义规则与多文件程序](chapters/R01-program-build.zh-CN.md#单一定义规则与多文件程序) |
+| `operator overloading / 运算符重载` | [运算符重载与 friend](chapters/R07-classes-lifetime.zh-CN.md#运算符重载与-friend) |
+| `ownership / 所有权` | [RAII 资源对象](chapters/R09-raii-memory.zh-CN.md#raii-资源对象) |
+| `prvalue / 纯右值` | [值类别](chapters/R04-expressions-conversions.zh-CN.md#值类别) |
+| `RAII / 资源取得即初始化` | [RAII 资源对象](chapters/R09-raii-memory.zh-CN.md#raii-资源对象) |
+| `reference / 引用` | [左值引用与右值引用](chapters/R05-pointers-references.zh-CN.md#左值引用与右值引用) |
+| `storage duration / 存储期` | [存储期、对象生命周期与作用域](chapters/R02-types-objects.zh-CN.md#存储期对象生命周期与作用域) |
+| `structured binding / 结构化绑定` | [结构化绑定](chapters/R02-types-objects.zh-CN.md#结构化绑定) |
+| `value category / 值类别` | [值类别](chapters/R04-expressions-conversions.zh-CN.md#值类别) |
+| `xvalue / 将亡值` | [值类别](chapters/R04-expressions-conversions.zh-CN.md#值类别) |
 
-[字符串与视图分类](chapters/R12-strings-views.zh-CN.md#字符串与视图分类) · [std::string](chapters/R12-strings-views.zh-CN.md#stdstring) · [std::string_view](chapters/R12-strings-views.zh-CN.md#stdstring_view) · [std::span](chapters/R12-strings-views.zh-CN.md#stdspan) · [C 字符串与 UTF-8](chapters/R12-strings-views.zh-CN.md#c-字符串与-utf-8) · [组合应用与参考资料](chapters/R12-strings-views.zh-CN.md#组合应用与参考资料)
+## B 符号与成员接口（按名称排序）
 
-### 顺序容器
-
-[顺序容器分类](chapters/R13-sequence-containers.zh-CN.md#顺序容器分类) · [std::array](chapters/R13-sequence-containers.zh-CN.md#stdarray) · [std::vector](chapters/R13-sequence-containers.zh-CN.md#stdvector) · [vector 的失效与异常保证](chapters/R13-sequence-containers.zh-CN.md#vector-的失效与异常保证) · [顺序容器的遍历删除](chapters/R13-sequence-containers.zh-CN.md#顺序容器的遍历删除) · [std::deque](chapters/R13-sequence-containers.zh-CN.md#stddeque) · [std::list](chapters/R13-sequence-containers.zh-CN.md#stdlist) · [std::forward_list](chapters/R13-sequence-containers.zh-CN.md#stdforward_list) · [元素地址与业务句柄](chapters/R13-sequence-containers.zh-CN.md#元素地址与业务句柄) · [参考资料](chapters/R13-sequence-containers.zh-CN.md#参考资料)
-
-### 关联容器与容器适配器
-
-[关联容器分类](chapters/R14-associative-adaptors.zh-CN.md#关联容器分类) · [std::set](chapters/R14-associative-adaptors.zh-CN.md#stdset) · [std::multiset](chapters/R14-associative-adaptors.zh-CN.md#stdmultiset) · [std::map](chapters/R14-associative-adaptors.zh-CN.md#stdmap) · [std::multimap](chapters/R14-associative-adaptors.zh-CN.md#stdmultimap) · [std::unordered_set](chapters/R14-associative-adaptors.zh-CN.md#stdunordered_set) · [std::unordered_multiset](chapters/R14-associative-adaptors.zh-CN.md#stdunordered_multiset) · [std::unordered_map](chapters/R14-associative-adaptors.zh-CN.md#stdunordered_map) · [std::unordered_multimap](chapters/R14-associative-adaptors.zh-CN.md#stdunordered_multimap) · [键等价、比较与哈希](chapters/R14-associative-adaptors.zh-CN.md#键等价比较与哈希) · [关联容器的共享操作](chapters/R14-associative-adaptors.zh-CN.md#关联容器的共享操作) · [关联容器失效与哈希桶](chapters/R14-associative-adaptors.zh-CN.md#关联容器失效与哈希桶) · [节点句柄](chapters/R14-associative-adaptors.zh-CN.md#节点句柄) · [std::stack](chapters/R14-associative-adaptors.zh-CN.md#stdstack) · [std::queue](chapters/R14-associative-adaptors.zh-CN.md#stdqueue) · [std::priority_queue](chapters/R14-associative-adaptors.zh-CN.md#stdpriority_queue) · [组合应用与参考资料](chapters/R14-associative-adaptors.zh-CN.md#组合应用与参考资料)
-
-### 迭代器与 ranges
-
-[std::begin 与 std::end](chapters/R15-iterators-ranges.zh-CN.md#stdbegin-与-stdend) · [半开区间与尾后位置](chapters/R15-iterators-ranges.zh-CN.md#半开区间与尾后位置) · [迭代器类别与访问成本](chapters/R15-iterators-ranges.zh-CN.md#迭代器类别与访问成本) · [std::iterator_traits](chapters/R15-iterators-ranges.zh-CN.md#stditerator_traits) · [std::advance、std::next、std::prev 与 std::distance](chapters/R15-iterators-ranges.zh-CN.md#stdadvancestdnextstdprev-与-stddistance) · [std::reverse_iterator](chapters/R15-iterators-ranges.zh-CN.md#stdreverse_iterator) · [插入迭代器](chapters/R15-iterators-ranges.zh-CN.md#插入迭代器) · [ranges 算法与投影](chapters/R15-iterators-ranges.zh-CN.md#ranges-算法与投影) · [range、sentinel 与 borrowed_range](chapters/R15-iterators-ranges.zh-CN.md#rangesentinel-与-borrowed_range) · [views 与惰性管线](chapters/R15-iterators-ranges.zh-CN.md#views-与惰性管线) · [组合应用与参考资料](chapters/R15-iterators-ranges.zh-CN.md#组合应用与参考资料)
-
-### 算法库
-
-[比较器与谓词](chapters/R16-algorithms.zh-CN.md#比较器与谓词) · [std::find、std::find_if 与计数](chapters/R16-algorithms.zh-CN.md#stdfindstdfind_if-与计数) · [std::all_of、std::any_of 与 std::none_of](chapters/R16-algorithms.zh-CN.md#stdall_ofstdany_of-与-stdnone_of) · [std::for_each](chapters/R16-algorithms.zh-CN.md#stdfor_each) · [std::copy、std::copy_if 与填充](chapters/R16-algorithms.zh-CN.md#stdcopystdcopy_if-与填充) · [std::transform](chapters/R16-algorithms.zh-CN.md#stdtransform) · [std::remove、std::remove_if 与 std::unique](chapters/R16-algorithms.zh-CN.md#stdremovestdremove_if-与-stdunique) · [std::sort 与 std::stable_sort](chapters/R16-algorithms.zh-CN.md#stdsort-与-stdstable_sort) · [std::min_element 与 std::max_element](chapters/R16-algorithms.zh-CN.md#stdmin_element-与-stdmax_element) · [std::nth_element 与 std::partial_sort](chapters/R16-algorithms.zh-CN.md#stdnth_element-与-stdpartial_sort) · [std::partition 与 std::stable_partition](chapters/R16-algorithms.zh-CN.md#stdpartition-与-stdstable_partition) · [std::lower_bound、std::upper_bound 与等价范围](chapters/R16-algorithms.zh-CN.md#stdlower_boundstdupper_bound-与等价范围) · [有序集合算法](chapters/R16-algorithms.zh-CN.md#有序集合算法) · [堆算法](chapters/R16-algorithms.zh-CN.md#堆算法) · [二分查找的分区条件](chapters/R16-algorithms.zh-CN.md#二分查找的分区条件) · [堆的结构与操作条件](chapters/R16-algorithms.zh-CN.md#堆的结构与操作条件) · [排序、选择与分区的结果差异](chapters/R16-algorithms.zh-CN.md#排序选择与分区的结果差异) · [std::accumulate、std::inner_product 与 std::iota](chapters/R16-algorithms.zh-CN.md#stdaccumulatestdinner_product-与-stdiota) · [std::reduce 与 std::transform_reduce](chapters/R16-algorithms.zh-CN.md#stdreduce-与-stdtransform_reduce) · [std::inclusive_scan 与 std::exclusive_scan](chapters/R16-algorithms.zh-CN.md#stdinclusive_scan-与-stdexclusive_scan) · [执行策略](chapters/R16-algorithms.zh-CN.md#执行策略) · [组合应用与参考资料](chapters/R16-algorithms.zh-CN.md#组合应用与参考资料)
-
-### 通用工具与结果类型
-
-[std::pair](chapters/R17-utility-results.zh-CN.md#stdpair) · [std::tuple](chapters/R17-utility-results.zh-CN.md#stdtuple) · [std::optional](chapters/R17-utility-results.zh-CN.md#stdoptional) · [std::variant](chapters/R17-utility-results.zh-CN.md#stdvariant) · [std::any](chapters/R17-utility-results.zh-CN.md#stdany) · [std::expected](chapters/R17-utility-results.zh-CN.md#stdexpected) · [结果状态与借用](chapters/R17-utility-results.zh-CN.md#结果状态与借用) · [比较与哈希](chapters/R17-utility-results.zh-CN.md#比较与哈希)
-
-### 文本转换与格式化
-
-[std::from_chars](chapters/R18-text-numeric.zh-CN.md#stdfrom_chars) · [std::to_chars](chapters/R18-text-numeric.zh-CN.md#stdto_chars) · [std::format](chapters/R18-text-numeric.zh-CN.md#stdformat) · [std::format_to、std::format_to_n 与 std::formatted_size](chapters/R18-text-numeric.zh-CN.md#stdformat_tostdformat_to_n-与-stdformatted_size) · [组合应用与参考资料](chapters/R18-text-numeric.zh-CN.md#组合应用与参考资料)
-
-### 数值、随机与位工具
-
-[std::numeric_limits](chapters/R33-numeric-random-bits.zh-CN.md#stdnumeric_limits) · [数学函数与舍入](chapters/R33-numeric-random-bits.zh-CN.md#数学函数与舍入) · [std::mt19937](chapters/R33-numeric-random-bits.zh-CN.md#stdmt19937) · [std::random_device 与 std::seed_seq](chapters/R33-numeric-random-bits.zh-CN.md#stdrandom_device-与-stdseed_seq) · [std::uniform_int_distribution](chapters/R33-numeric-random-bits.zh-CN.md#stduniform_int_distribution) · [std::uniform_real_distribution](chapters/R33-numeric-random-bits.zh-CN.md#stduniform_real_distribution) · [std::normal_distribution](chapters/R33-numeric-random-bits.zh-CN.md#stdnormal_distribution) · [std::bitset](chapters/R33-numeric-random-bits.zh-CN.md#stdbitset) · [std::byte](chapters/R33-numeric-random-bits.zh-CN.md#stdbyte) · [位计数、旋转与二的幂](chapters/R33-numeric-random-bits.zh-CN.md#位计数旋转与二的幂) · [std::bit_cast](chapters/R33-numeric-random-bits.zh-CN.md#stdbit_cast) · [std::endian 与 std::byteswap](chapters/R33-numeric-random-bits.zh-CN.md#stdendian-与-stdbyteswap) · [组合应用与参考资料](chapters/R33-numeric-random-bits.zh-CN.md#组合应用与参考资料)
-
-### 时间库
-
-[std::chrono::duration](chapters/R19-time-files.zh-CN.md#stdchronoduration) · [std::chrono::time_point](chapters/R19-time-files.zh-CN.md#stdchronotime_point) · [std::chrono::steady_clock](chapters/R19-time-files.zh-CN.md#stdchronosteady_clock) · [std::chrono::system_clock](chapters/R19-time-files.zh-CN.md#stdchronosystem_clock) · [std::chrono::high_resolution_clock](chapters/R19-time-files.zh-CN.md#stdchronohigh_resolution_clock) · [duration_cast、time_point_cast 与舍入](chapters/R19-time-files.zh-CN.md#duration_casttime_point_cast-与舍入) · [时间字面量](chapters/R19-time-files.zh-CN.md#时间字面量) · [绝对截止点](chapters/R19-time-files.zh-CN.md#绝对截止点) · [日历类型与 std::chrono::year_month_day](chapters/R19-time-files.zh-CN.md#日历类型与-stdchronoyear_month_day) · [std::chrono::zoned_time 与时间区](chapters/R19-time-files.zh-CN.md#stdchronozoned_time-与时间区) · [组合应用与参考资料](chapters/R19-time-files.zh-CN.md#组合应用与参考资料)
-
-### 流与文件读写
-
-[流的类型与状态](chapters/R34-streams-files.zh-CN.md#流的类型与状态) · [std::ifstream](chapters/R34-streams-files.zh-CN.md#stdifstream) · [std::ofstream](chapters/R34-streams-files.zh-CN.md#stdofstream) · [std::fstream](chapters/R34-streams-files.zh-CN.md#stdfstream) · [std::istringstream](chapters/R34-streams-files.zh-CN.md#stdistringstream) · [std::ostringstream](chapters/R34-streams-files.zh-CN.md#stdostringstream) · [std::stringstream](chapters/R34-streams-files.zh-CN.md#stdstringstream) · [二进制格式与文件提交](chapters/R34-streams-files.zh-CN.md#二进制格式与文件提交) · [组合应用与参考资料](chapters/R34-streams-files.zh-CN.md#组合应用与参考资料)
-
-### 文件系统
-
-[std::filesystem::path](chapters/R35-filesystem.zh-CN.md#stdfilesystempath) · [文件状态与错误报告](chapters/R35-filesystem.zh-CN.md#文件状态与错误报告) · [std::filesystem::directory_entry](chapters/R35-filesystem.zh-CN.md#stdfilesystemdirectory_entry) · [std::filesystem::directory_iterator](chapters/R35-filesystem.zh-CN.md#stdfilesystemdirectory_iterator) · [std::filesystem::recursive_directory_iterator](chapters/R35-filesystem.zh-CN.md#stdfilesystemrecursive_directory_iterator) · [目录创建、复制、删除与更名](chapters/R35-filesystem.zh-CN.md#目录创建复制删除与更名) · [文件更新与组合应用](chapters/R35-filesystem.zh-CN.md#文件更新与组合应用)
-
-### 线程与异步结果
-
-[std::thread](chapters/R20-threads-async.zh-CN.md#stdthread) · [std::this_thread](chapters/R20-threads-async.zh-CN.md#stdthis_thread) · [异步共享状态](chapters/R20-threads-async.zh-CN.md#异步共享状态) · [std::promise](chapters/R20-threads-async.zh-CN.md#stdpromise) · [std::future](chapters/R20-threads-async.zh-CN.md#stdfuture) · [std::shared_future](chapters/R20-threads-async.zh-CN.md#stdshared_future) · [std::packaged_task](chapters/R20-threads-async.zh-CN.md#stdpackaged_task) · [std::async 与启动策略](chapters/R20-threads-async.zh-CN.md#stdasync-与启动策略) · [std::jthread（C++20）](chapters/R20-threads-async.zh-CN.md#stdjthreadc20) · [停止状态与令牌（C++20）](chapters/R20-threads-async.zh-CN.md#停止状态与令牌c20) · [线程与结果调查入口](chapters/R20-threads-async.zh-CN.md#线程与结果调查入口)
-
-### 互斥与线程协作
-
-[互斥量与临界区](chapters/R21-mutex-coordination.zh-CN.md#互斥量与临界区) · [std::mutex](chapters/R21-mutex-coordination.zh-CN.md#stdmutex) · [std::recursive_mutex](chapters/R21-mutex-coordination.zh-CN.md#stdrecursive_mutex) · [std::timed_mutex](chapters/R21-mutex-coordination.zh-CN.md#stdtimed_mutex) · [std::recursive_timed_mutex](chapters/R21-mutex-coordination.zh-CN.md#stdrecursive_timed_mutex) · [std::shared_mutex](chapters/R21-mutex-coordination.zh-CN.md#stdshared_mutex) · [std::shared_timed_mutex](chapters/R21-mutex-coordination.zh-CN.md#stdshared_timed_mutex) · [锁标签](chapters/R21-mutex-coordination.zh-CN.md#锁标签) · [std::lock_guard](chapters/R21-mutex-coordination.zh-CN.md#stdlock_guard) · [std::unique_lock](chapters/R21-mutex-coordination.zh-CN.md#stdunique_lock) · [std::scoped_lock](chapters/R21-mutex-coordination.zh-CN.md#stdscoped_lock) · [std::shared_lock](chapters/R21-mutex-coordination.zh-CN.md#stdshared_lock) · [std::lock 与 std::try_lock](chapters/R21-mutex-coordination.zh-CN.md#stdlock-与-stdtry_lock) · [std::condition_variable](chapters/R21-mutex-coordination.zh-CN.md#stdcondition_variable) · [std::condition_variable_any](chapters/R21-mutex-coordination.zh-CN.md#stdcondition_variable_any) · [std::counting_semaphore（C++20）](chapters/R21-mutex-coordination.zh-CN.md#stdcounting_semaphorec20) · [std::binary_semaphore（C++20）](chapters/R21-mutex-coordination.zh-CN.md#stdbinary_semaphorec20) · [std::latch（C++20）](chapters/R21-mutex-coordination.zh-CN.md#stdlatchc20) · [std::barrier（C++20）](chapters/R21-mutex-coordination.zh-CN.md#stdbarrierc20) · [std::once_flag 与 std::call_once](chapters/R21-mutex-coordination.zh-CN.md#stdonce_flag-与-stdcall_once) · [有界队列与关闭](chapters/R21-mutex-coordination.zh-CN.md#有界队列与关闭) · [协作调查入口](chapters/R21-mutex-coordination.zh-CN.md#协作调查入口)
-
-### 原子对象与内存序
-
-[原子对象与操作类别](chapters/R22-atomics-memory-order.zh-CN.md#原子对象与操作类别) · [std::atomic](chapters/R22-atomics-memory-order.zh-CN.md#stdatomic) · [整数与指针的 fetch 操作](chapters/R22-atomics-memory-order.zh-CN.md#整数与指针的-fetch-操作) · [比较交换：compare_exchange](chapters/R22-atomics-memory-order.zh-CN.md#比较交换compare_exchange) · [std::atomic_flag](chapters/R22-atomics-memory-order.zh-CN.md#stdatomic_flag) · [原子等待与通知（C++20）](chapters/R22-atomics-memory-order.zh-CN.md#原子等待与通知c20) · [std::atomic_ref（C++20）](chapters/R22-atomics-memory-order.zh-CN.md#stdatomic_refc20) · [数据竞争与 happens-before](chapters/R22-atomics-memory-order.zh-CN.md#数据竞争与-happens-before) · [内存序](chapters/R22-atomics-memory-order.zh-CN.md#内存序) · [release/acquire 发布](chapters/R22-atomics-memory-order.zh-CN.md#releaseacquire-发布) · [回收、ABA 与进展保证](chapters/R22-atomics-memory-order.zh-CN.md#回收aba-与进展保证)
-
-### 语句与函数
-
-[std::invoke](chapters/R06-statements-functions.zh-CN.md#stdinvoke) · [std::function](chapters/R06-statements-functions.zh-CN.md#stdfunction)
-
-### 拷贝与移动
-
-[std::move](chapters/R08-copy-move.zh-CN.md#stdmove) · [std::forward](chapters/R08-copy-move.zh-CN.md#stdforward)
-
-### RAII 与内存管理库
-
-[unique_ptr 构造与访问](chapters/R09-raii-memory.zh-CN.md#unique_ptr-构造与访问) · [unique_ptr 转移、reset 与 release](chapters/R09-raii-memory.zh-CN.md#unique_ptr-转移reset-与-release) · [unique_ptr 数组与删除器](chapters/R09-raii-memory.zh-CN.md#unique_ptr-数组与删除器) · [shared_ptr 构造、共享与访问](chapters/R09-raii-memory.zh-CN.md#shared_ptr-构造共享与访问) · [weak_ptr 构造、lock 与 expired](chapters/R09-raii-memory.zh-CN.md#weak_ptr-构造lock-与-expired) · [allocator 与 allocator_traits](chapters/R09-raii-memory.zh-CN.md#allocator-与-allocator_traits) · [memory_resource 与 polymorphic_allocator](chapters/R09-raii-memory.zh-CN.md#memory_resource-与-polymorphic_allocator) · [monotonic_buffer_resource 与池资源](chapters/R09-raii-memory.zh-CN.md#monotonic_buffer_resource-与池资源)
+| 名称 / 别名 | 直接入口 |
+| --- | --- |
+| `owns_lock` | [unique_lock 的所有权查询与 release](chapters/R21-mutex-coordination.zh-CN.md#unique_lock-的所有权查询与-release) |
+| `release（独占指针，不删除目标）` | [unique_ptr 转移、reset 与 release](chapters/R09-raii-memory.zh-CN.md#unique_ptr-转移reset-与-release) |
+| `release（锁管理器，不解锁）` | [unique_lock 的所有权查询与 release](chapters/R21-mutex-coordination.zh-CN.md#unique_lock-的所有权查询与-release) |
+| `reserve` | [reserve 与 resize](chapters/R13-sequence-containers.zh-CN.md#reserve-与-resize) |
+| `resize` | [reserve 与 resize](chapters/R13-sequence-containers.zh-CN.md#reserve-与-resize) |
+| `std::accumulate` | [std::accumulate、std::inner_product 与 std::iota](chapters/R16-algorithms.zh-CN.md#stdaccumulatestdinner_product-与-stdiota) |
+| `std::adopt_lock` | [锁标签](chapters/R21-mutex-coordination.zh-CN.md#锁标签) |
+| `std::advance` | [std::advance、std::next、std::prev 与 std::distance](chapters/R15-iterators-ranges.zh-CN.md#stdadvancestdnextstdprev-与-stddistance) |
+| `std::all_of` | [std::all_of、std::any_of 与 std::none_of](chapters/R16-algorithms.zh-CN.md#stdall_ofstdany_of-与-stdnone_of) |
+| `std::allocate_shared` | [make_unique、make_shared 与 allocate_shared](chapters/R09-raii-memory.zh-CN.md#make_uniquemake_shared-与-allocate_shared) |
+| `std::allocator` | [allocator 与 allocator_traits](chapters/R09-raii-memory.zh-CN.md#allocator-与-allocator_traits) |
+| `std::allocator_traits` | [allocator 与 allocator_traits](chapters/R09-raii-memory.zh-CN.md#allocator-与-allocator_traits) |
+| `std::any` | [std::any](chapters/R17-utility-results.zh-CN.md#stdany) |
+| `std::any_of` | [std::all_of、std::any_of 与 std::none_of](chapters/R16-algorithms.zh-CN.md#stdall_ofstdany_of-与-stdnone_of) |
+| `std::array` | [std::array](chapters/R13-sequence-containers.zh-CN.md#stdarray) |
+| `std::async` | [std::async 与启动策略](chapters/R20-threads-async.zh-CN.md#stdasync-与启动策略) |
+| `std::atomic` | [std::atomic](chapters/R22-atomics-memory-order.zh-CN.md#stdatomic) |
+| `std::atomic_flag` | [std::atomic_flag](chapters/R22-atomics-memory-order.zh-CN.md#stdatomic_flag) |
+| `std::atomic_ref` | [std::atomic_ref（C++20）](chapters/R22-atomics-memory-order.zh-CN.md#stdatomic_refc20) |
+| `std::atomic::compare_exchange_strong` | [比较交换：compare_exchange](chapters/R22-atomics-memory-order.zh-CN.md#比较交换compare_exchange) |
+| `std::atomic::compare_exchange_weak` | [比较交换：compare_exchange](chapters/R22-atomics-memory-order.zh-CN.md#比较交换compare_exchange) |
+| `std::atomic::exchange` | [load、store 与 exchange](chapters/R22-atomics-memory-order.zh-CN.md#loadstore-与-exchange) |
+| `std::atomic::load` | [load、store 与 exchange](chapters/R22-atomics-memory-order.zh-CN.md#loadstore-与-exchange) |
+| `std::atomic::store` | [load、store 与 exchange](chapters/R22-atomics-memory-order.zh-CN.md#loadstore-与-exchange) |
+| `std::atomic<std::shared_ptr<T>>` | [原子共享指针](chapters/R22-atomics-memory-order.zh-CN.md#原子共享指针) |
+| `std::barrier` | [std::barrier（C++20）](chapters/R21-mutex-coordination.zh-CN.md#stdbarrierc20) |
+| `std::begin` | [std::begin 与 std::end](chapters/R15-iterators-ranges.zh-CN.md#stdbegin-与-stdend) |
+| `std::binary_semaphore` | [std::binary_semaphore（C++20）](chapters/R21-mutex-coordination.zh-CN.md#stdbinary_semaphorec20) |
+| `std::bit_cast` | [std::bit_cast](chapters/R33-numeric-random-bits.zh-CN.md#stdbit_cast) |
+| `std::bitset` | [std::bitset](chapters/R33-numeric-random-bits.zh-CN.md#stdbitset) |
+| `std::byte` | [std::byte](chapters/R33-numeric-random-bits.zh-CN.md#stdbyte) |
+| `std::byteswap` | [std::endian 与 std::byteswap](chapters/R33-numeric-random-bits.zh-CN.md#stdendian-与-stdbyteswap) |
+| `std::call_once` | [std::once_flag 与 std::call_once](chapters/R21-mutex-coordination.zh-CN.md#stdonce_flag-与-stdcall_once) |
+| `std::chrono::duration` | [std::chrono::duration](chapters/R19-time-files.zh-CN.md#stdchronoduration) |
+| `std::chrono::high_resolution_clock` | [std::chrono::high_resolution_clock](chapters/R19-time-files.zh-CN.md#stdchronohigh_resolution_clock) |
+| `std::chrono::steady_clock` | [std::chrono::steady_clock](chapters/R19-time-files.zh-CN.md#stdchronosteady_clock) |
+| `std::chrono::system_clock` | [std::chrono::system_clock](chapters/R19-time-files.zh-CN.md#stdchronosystem_clock) |
+| `std::chrono::time_point` | [std::chrono::time_point](chapters/R19-time-files.zh-CN.md#stdchronotime_point) |
+| `std::chrono::year_month_day` | [日历类型与 std::chrono::year_month_day](chapters/R19-time-files.zh-CN.md#日历类型与-stdchronoyear_month_day) |
+| `std::chrono::zoned_time` | [std::chrono::zoned_time 与时间区](chapters/R19-time-files.zh-CN.md#stdchronozoned_time-与时间区) |
+| `std::condition_variable` | [std::condition_variable](chapters/R21-mutex-coordination.zh-CN.md#stdcondition_variable) |
+| `std::condition_variable_any` | [std::condition_variable_any](chapters/R21-mutex-coordination.zh-CN.md#stdcondition_variable_any) |
+| `std::condition_variable::notify_all` | [std::condition_variable](chapters/R21-mutex-coordination.zh-CN.md#stdcondition_variable) |
+| `std::condition_variable::notify_one` | [std::condition_variable](chapters/R21-mutex-coordination.zh-CN.md#stdcondition_variable) |
+| `std::condition_variable::wait` | [std::condition_variable](chapters/R21-mutex-coordination.zh-CN.md#stdcondition_variable) |
+| `std::copy` | [std::copy、std::copy_if 与填充](chapters/R16-algorithms.zh-CN.md#stdcopystdcopy_if-与填充) |
+| `std::copy_if` | [std::copy、std::copy_if 与填充](chapters/R16-algorithms.zh-CN.md#stdcopystdcopy_if-与填充) |
+| `std::coroutine_handle` | [std::coroutine_handle 与挂起策略（C++20）](chapters/R23-async-execution.zh-CN.md#stdcoroutine_handle-与挂起策略c20) |
+| `std::counting_semaphore` | [std::counting_semaphore（C++20）](chapters/R21-mutex-coordination.zh-CN.md#stdcounting_semaphorec20) |
+| `std::defer_lock` | [锁标签](chapters/R21-mutex-coordination.zh-CN.md#锁标签) |
+| `std::deque` | [std::deque](chapters/R13-sequence-containers.zh-CN.md#stddeque) |
+| `std::distance` | [std::advance、std::next、std::prev 与 std::distance](chapters/R15-iterators-ranges.zh-CN.md#stdadvancestdnextstdprev-与-stddistance) |
+| `std::enable_shared_from_this` | [enable_shared_from_this](chapters/R09-raii-memory.zh-CN.md#enable_shared_from_this) |
+| `std::end` | [std::begin 与 std::end](chapters/R15-iterators-ranges.zh-CN.md#stdbegin-与-stdend) |
+| `std::endian` | [std::endian 与 std::byteswap](chapters/R33-numeric-random-bits.zh-CN.md#stdendian-与-stdbyteswap) |
+| `std::exclusive_scan` | [std::inclusive_scan 与 std::exclusive_scan](chapters/R16-algorithms.zh-CN.md#stdinclusive_scan-与-stdexclusive_scan) |
+| `std::expected` | [std::expected](chapters/R17-utility-results.zh-CN.md#stdexpected) |
+| `std::filesystem::directory_entry` | [std::filesystem::directory_entry](chapters/R35-filesystem.zh-CN.md#stdfilesystemdirectory_entry) |
+| `std::filesystem::directory_iterator` | [std::filesystem::directory_iterator](chapters/R35-filesystem.zh-CN.md#stdfilesystemdirectory_iterator) |
+| `std::filesystem::path` | [std::filesystem::path](chapters/R35-filesystem.zh-CN.md#stdfilesystempath) |
+| `std::filesystem::recursive_directory_iterator` | [std::filesystem::recursive_directory_iterator](chapters/R35-filesystem.zh-CN.md#stdfilesystemrecursive_directory_iterator) |
+| `std::find` | [std::find、std::find_if 与计数](chapters/R16-algorithms.zh-CN.md#stdfindstdfind_if-与计数) |
+| `std::find_if` | [std::find、std::find_if 与计数](chapters/R16-algorithms.zh-CN.md#stdfindstdfind_if-与计数) |
+| `std::for_each` | [std::for_each](chapters/R16-algorithms.zh-CN.md#stdfor_each) |
+| `std::format` | [std::format](chapters/R18-text-numeric.zh-CN.md#stdformat) |
+| `std::format_to` | [std::format_to、std::format_to_n 与 std::formatted_size](chapters/R18-text-numeric.zh-CN.md#stdformat_tostdformat_to_n-与-stdformatted_size) |
+| `std::format_to_n` | [std::format_to、std::format_to_n 与 std::formatted_size](chapters/R18-text-numeric.zh-CN.md#stdformat_tostdformat_to_n-与-stdformatted_size) |
+| `std::formatted_size` | [std::format_to、std::format_to_n 与 std::formatted_size](chapters/R18-text-numeric.zh-CN.md#stdformat_tostdformat_to_n-与-stdformatted_size) |
+| `std::forward` | [std::forward](chapters/R08-copy-move.zh-CN.md#stdforward) |
+| `std::forward_list` | [std::forward_list](chapters/R13-sequence-containers.zh-CN.md#stdforward_list) |
+| `std::from_chars` | [std::from_chars](chapters/R18-text-numeric.zh-CN.md#stdfrom_chars) |
+| `std::fstream` | [std::fstream](chapters/R34-streams-files.zh-CN.md#stdfstream) |
+| `std::function` | [std::function](chapters/R06-statements-functions.zh-CN.md#stdfunction) |
+| `std::future` | [std::future](chapters/R20-threads-async.zh-CN.md#stdfuture) |
+| `std::ifstream` | [std::ifstream](chapters/R34-streams-files.zh-CN.md#stdifstream) |
+| `std::inclusive_scan` | [std::inclusive_scan 与 std::exclusive_scan](chapters/R16-algorithms.zh-CN.md#stdinclusive_scan-与-stdexclusive_scan) |
+| `std::inner_product` | [std::accumulate、std::inner_product 与 std::iota](chapters/R16-algorithms.zh-CN.md#stdaccumulatestdinner_product-与-stdiota) |
+| `std::invoke` | [std::invoke](chapters/R06-statements-functions.zh-CN.md#stdinvoke) |
+| `std::iota` | [std::accumulate、std::inner_product 与 std::iota](chapters/R16-algorithms.zh-CN.md#stdaccumulatestdinner_product-与-stdiota) |
+| `std::istringstream` | [std::istringstream](chapters/R34-streams-files.zh-CN.md#stdistringstream) |
+| `std::iterator_traits` | [std::iterator_traits](chapters/R15-iterators-ranges.zh-CN.md#stditerator_traits) |
+| `std::jthread` | [std::jthread（C++20）](chapters/R20-threads-async.zh-CN.md#stdjthreadc20) |
+| `std::latch` | [std::latch（C++20）](chapters/R21-mutex-coordination.zh-CN.md#stdlatchc20) |
+| `std::list` | [std::list](chapters/R13-sequence-containers.zh-CN.md#stdlist) |
+| `std::lock` | [std::lock 与 std::try_lock](chapters/R21-mutex-coordination.zh-CN.md#stdlock-与-stdtry_lock) |
+| `std::lock_guard` | [std::lock_guard](chapters/R21-mutex-coordination.zh-CN.md#stdlock_guard) |
+| `std::lower_bound` | [std::lower_bound、std::upper_bound 与等价范围](chapters/R16-algorithms.zh-CN.md#stdlower_boundstdupper_bound-与等价范围) |
+| `std::make_shared` | [make_unique、make_shared 与 allocate_shared](chapters/R09-raii-memory.zh-CN.md#make_uniquemake_shared-与-allocate_shared) |
+| `std::make_unique` | [make_unique、make_shared 与 allocate_shared](chapters/R09-raii-memory.zh-CN.md#make_uniquemake_shared-与-allocate_shared) |
+| `std::map` | [std::map](chapters/R14-associative-adaptors.zh-CN.md#stdmap) |
+| `std::max_element` | [std::min_element 与 std::max_element](chapters/R16-algorithms.zh-CN.md#stdmin_element-与-stdmax_element) |
+| `std::min_element` | [std::min_element 与 std::max_element](chapters/R16-algorithms.zh-CN.md#stdmin_element-与-stdmax_element) |
+| `std::move` | [std::move](chapters/R08-copy-move.zh-CN.md#stdmove) |
+| `std::mt19937` | [std::mt19937](chapters/R33-numeric-random-bits.zh-CN.md#stdmt19937) |
+| `std::multimap` | [std::multimap](chapters/R14-associative-adaptors.zh-CN.md#stdmultimap) |
+| `std::multiset` | [std::multiset](chapters/R14-associative-adaptors.zh-CN.md#stdmultiset) |
+| `std::mutex` | [std::mutex](chapters/R21-mutex-coordination.zh-CN.md#stdmutex) |
+| `std::next` | [std::advance、std::next、std::prev 与 std::distance](chapters/R15-iterators-ranges.zh-CN.md#stdadvancestdnextstdprev-与-stddistance) |
+| `std::none_of` | [std::all_of、std::any_of 与 std::none_of](chapters/R16-algorithms.zh-CN.md#stdall_ofstdany_of-与-stdnone_of) |
+| `std::normal_distribution` | [std::normal_distribution](chapters/R33-numeric-random-bits.zh-CN.md#stdnormal_distribution) |
+| `std::nth_element` | [std::nth_element 与 std::partial_sort](chapters/R16-algorithms.zh-CN.md#stdnth_element-与-stdpartial_sort) |
+| `std::numeric_limits` | [std::numeric_limits](chapters/R33-numeric-random-bits.zh-CN.md#stdnumeric_limits) |
+| `std::ofstream` | [std::ofstream](chapters/R34-streams-files.zh-CN.md#stdofstream) |
+| `std::once_flag` | [std::once_flag 与 std::call_once](chapters/R21-mutex-coordination.zh-CN.md#stdonce_flag-与-stdcall_once) |
+| `std::optional` | [std::optional](chapters/R17-utility-results.zh-CN.md#stdoptional) |
+| `std::ostringstream` | [std::ostringstream](chapters/R34-streams-files.zh-CN.md#stdostringstream) |
+| `std::packaged_task` | [std::packaged_task](chapters/R20-threads-async.zh-CN.md#stdpackaged_task) |
+| `std::pair` | [std::pair](chapters/R17-utility-results.zh-CN.md#stdpair) |
+| `std::partial_sort` | [std::nth_element 与 std::partial_sort](chapters/R16-algorithms.zh-CN.md#stdnth_element-与-stdpartial_sort) |
+| `std::partition` | [std::partition 与 std::stable_partition](chapters/R16-algorithms.zh-CN.md#stdpartition-与-stdstable_partition) |
+| `std::pmr::memory_resource` | [memory_resource 与 polymorphic_allocator](chapters/R09-raii-memory.zh-CN.md#memory_resource-与-polymorphic_allocator) |
+| `std::pmr::monotonic_buffer_resource` | [monotonic_buffer_resource 与池资源](chapters/R09-raii-memory.zh-CN.md#monotonic_buffer_resource-与池资源) |
+| `std::pmr::polymorphic_allocator` | [memory_resource 与 polymorphic_allocator](chapters/R09-raii-memory.zh-CN.md#memory_resource-与-polymorphic_allocator) |
+| `std::prev` | [std::advance、std::next、std::prev 与 std::distance](chapters/R15-iterators-ranges.zh-CN.md#stdadvancestdnextstdprev-与-stddistance) |
+| `std::priority_queue` | [std::priority_queue](chapters/R14-associative-adaptors.zh-CN.md#stdpriority_queue) |
+| `std::promise` | [std::promise](chapters/R20-threads-async.zh-CN.md#stdpromise) |
+| `std::queue` | [std::queue](chapters/R14-associative-adaptors.zh-CN.md#stdqueue) |
+| `std::random_device` | [std::random_device 与 std::seed_seq](chapters/R33-numeric-random-bits.zh-CN.md#stdrandom_device-与-stdseed_seq) |
+| `std::recursive_mutex` | [std::recursive_mutex](chapters/R21-mutex-coordination.zh-CN.md#stdrecursive_mutex) |
+| `std::recursive_timed_mutex` | [std::recursive_timed_mutex](chapters/R21-mutex-coordination.zh-CN.md#stdrecursive_timed_mutex) |
+| `std::reduce` | [std::reduce 与 std::transform_reduce](chapters/R16-algorithms.zh-CN.md#stdreduce-与-stdtransform_reduce) |
+| `std::remove` | [std::remove、std::remove_if 与 std::unique](chapters/R16-algorithms.zh-CN.md#stdremovestdremove_if-与-stdunique) |
+| `std::remove_if` | [std::remove、std::remove_if 与 std::unique](chapters/R16-algorithms.zh-CN.md#stdremovestdremove_if-与-stdunique) |
+| `std::reverse_iterator` | [std::reverse_iterator](chapters/R15-iterators-ranges.zh-CN.md#stdreverse_iterator) |
+| `std::scoped_lock` | [std::scoped_lock](chapters/R21-mutex-coordination.zh-CN.md#stdscoped_lock) |
+| `std::seed_seq` | [std::random_device 与 std::seed_seq](chapters/R33-numeric-random-bits.zh-CN.md#stdrandom_device-与-stdseed_seq) |
+| `std::set` | [std::set](chapters/R14-associative-adaptors.zh-CN.md#stdset) |
+| `std::shared_future` | [std::shared_future](chapters/R20-threads-async.zh-CN.md#stdshared_future) |
+| `std::shared_lock` | [std::shared_lock](chapters/R21-mutex-coordination.zh-CN.md#stdshared_lock) |
+| `std::shared_mutex` | [std::shared_mutex](chapters/R21-mutex-coordination.zh-CN.md#stdshared_mutex) |
+| `std::shared_ptr` | [shared_ptr 构造、共享与访问](chapters/R09-raii-memory.zh-CN.md#shared_ptr-构造共享与访问) |
+| `std::shared_ptr::use_count` | [shared_ptr 构造、共享与访问](chapters/R09-raii-memory.zh-CN.md#shared_ptr-构造共享与访问) |
+| `std::shared_timed_mutex` | [std::shared_timed_mutex](chapters/R21-mutex-coordination.zh-CN.md#stdshared_timed_mutex) |
+| `std::sort` | [std::sort 与 std::stable_sort](chapters/R16-algorithms.zh-CN.md#stdsort-与-stdstable_sort) |
+| `std::span` | [std::span](chapters/R12-strings-views.zh-CN.md#stdspan) |
+| `std::stable_partition` | [std::partition 与 std::stable_partition](chapters/R16-algorithms.zh-CN.md#stdpartition-与-stdstable_partition) |
+| `std::stable_sort` | [std::sort 与 std::stable_sort](chapters/R16-algorithms.zh-CN.md#stdsort-与-stdstable_sort) |
+| `std::stack` | [std::stack](chapters/R14-associative-adaptors.zh-CN.md#stdstack) |
+| `std::stop_source` | [停止状态与令牌（C++20）](chapters/R20-threads-async.zh-CN.md#停止状态与令牌c20) |
+| `std::stop_token` | [停止状态与令牌（C++20）](chapters/R20-threads-async.zh-CN.md#停止状态与令牌c20) |
+| `std::string` | [std::string](chapters/R12-strings-views.zh-CN.md#stdstring) |
+| `std::string_view` | [std::string_view](chapters/R12-strings-views.zh-CN.md#stdstring_view) |
+| `std::stringstream` | [std::stringstream](chapters/R34-streams-files.zh-CN.md#stdstringstream) |
+| `std::this_thread` | [std::this_thread](chapters/R20-threads-async.zh-CN.md#stdthis_thread) |
+| `std::thread` | [std::thread](chapters/R20-threads-async.zh-CN.md#stdthread) |
+| `std::timed_mutex` | [std::timed_mutex](chapters/R21-mutex-coordination.zh-CN.md#stdtimed_mutex) |
+| `std::to_chars` | [std::to_chars](chapters/R18-text-numeric.zh-CN.md#stdto_chars) |
+| `std::transform` | [std::transform](chapters/R16-algorithms.zh-CN.md#stdtransform) |
+| `std::transform_reduce` | [std::reduce 与 std::transform_reduce](chapters/R16-algorithms.zh-CN.md#stdreduce-与-stdtransform_reduce) |
+| `std::try_lock` | [std::lock 与 std::try_lock](chapters/R21-mutex-coordination.zh-CN.md#stdlock-与-stdtry_lock) |
+| `std::try_to_lock` | [锁标签](chapters/R21-mutex-coordination.zh-CN.md#锁标签) |
+| `std::tuple` | [std::tuple](chapters/R17-utility-results.zh-CN.md#stdtuple) |
+| `std::uniform_int_distribution` | [std::uniform_int_distribution](chapters/R33-numeric-random-bits.zh-CN.md#stduniform_int_distribution) |
+| `std::uniform_real_distribution` | [std::uniform_real_distribution](chapters/R33-numeric-random-bits.zh-CN.md#stduniform_real_distribution) |
+| `std::unique` | [std::remove、std::remove_if 与 std::unique](chapters/R16-algorithms.zh-CN.md#stdremovestdremove_if-与-stdunique) |
+| `std::unique_lock` | [std::unique_lock](chapters/R21-mutex-coordination.zh-CN.md#stdunique_lock) |
+| `std::unique_lock::owns_lock` | [unique_lock 的所有权查询与 release](chapters/R21-mutex-coordination.zh-CN.md#unique_lock-的所有权查询与-release) |
+| `std::unique_lock::release` | [unique_lock 的所有权查询与 release](chapters/R21-mutex-coordination.zh-CN.md#unique_lock-的所有权查询与-release) |
+| `std::unique_ptr` | [unique_ptr 构造与访问](chapters/R09-raii-memory.zh-CN.md#unique_ptr-构造与访问) |
+| `std::unique_ptr::get` | [unique_ptr 构造与访问](chapters/R09-raii-memory.zh-CN.md#unique_ptr-构造与访问) |
+| `std::unique_ptr::release` | [unique_ptr 转移、reset 与 release](chapters/R09-raii-memory.zh-CN.md#unique_ptr-转移reset-与-release) |
+| `std::unique_ptr::reset` | [unique_ptr 转移、reset 与 release](chapters/R09-raii-memory.zh-CN.md#unique_ptr-转移reset-与-release) |
+| `std::unordered_map` | [std::unordered_map](chapters/R14-associative-adaptors.zh-CN.md#stdunordered_map) |
+| `std::unordered_multimap` | [std::unordered_multimap](chapters/R14-associative-adaptors.zh-CN.md#stdunordered_multimap) |
+| `std::unordered_multiset` | [std::unordered_multiset](chapters/R14-associative-adaptors.zh-CN.md#stdunordered_multiset) |
+| `std::unordered_set` | [std::unordered_set](chapters/R14-associative-adaptors.zh-CN.md#stdunordered_set) |
+| `std::upper_bound` | [std::lower_bound、std::upper_bound 与等价范围](chapters/R16-algorithms.zh-CN.md#stdlower_boundstdupper_bound-与等价范围) |
+| `std::variant` | [std::variant](chapters/R17-utility-results.zh-CN.md#stdvariant) |
+| `std::vector` | [std::vector](chapters/R13-sequence-containers.zh-CN.md#stdvector) |
+| `std::vector::at` | [vector 的访问与遍历](chapters/R13-sequence-containers.zh-CN.md#vector-的访问与遍历) |
+| `std::vector::capacity` | [vector 的核心接口](chapters/R13-sequence-containers.zh-CN.md#vector-的核心接口) |
+| `std::vector::clear` | [vector 的插入、删除与替换](chapters/R13-sequence-containers.zh-CN.md#vector-的插入删除与替换) |
+| `std::vector::data` | [vector 的核心接口](chapters/R13-sequence-containers.zh-CN.md#vector-的核心接口) |
+| `std::vector::emplace_back` | [vector 的核心接口](chapters/R13-sequence-containers.zh-CN.md#vector-的核心接口) |
+| `std::vector::erase` | [vector 的插入、删除与替换](chapters/R13-sequence-containers.zh-CN.md#vector-的插入删除与替换) |
+| `std::vector::insert` | [vector 的插入、删除与替换](chapters/R13-sequence-containers.zh-CN.md#vector-的插入删除与替换) |
+| `std::vector::push_back` | [vector 的核心接口](chapters/R13-sequence-containers.zh-CN.md#vector-的核心接口) |
+| `std::vector::reserve` | [reserve 与 resize](chapters/R13-sequence-containers.zh-CN.md#reserve-与-resize) |
+| `std::vector::resize` | [reserve 与 resize](chapters/R13-sequence-containers.zh-CN.md#reserve-与-resize) |
+| `std::vector::size` | [vector 的核心接口](chapters/R13-sequence-containers.zh-CN.md#vector-的核心接口) |
+| `std::weak_ptr` | [weak_ptr 构造、lock 与 expired](chapters/R09-raii-memory.zh-CN.md#weak_ptr-构造lock-与-expired) |
+| `std::weak_ptr::expired` | [weak_ptr 构造、lock 与 expired](chapters/R09-raii-memory.zh-CN.md#weak_ptr-构造lock-与-expired) |
+| `std::weak_ptr::lock` | [weak_ptr 构造、lock 与 expired](chapters/R09-raii-memory.zh-CN.md#weak_ptr-构造lock-与-expired) |
 
 ## C 常用任务
 
@@ -133,12 +278,14 @@
 | 构造与修改动态数组 | [std::vector](chapters/R13-sequence-containers.zh-CN.md#stdvector) |
 | 按键查询与插入 | [std::map](chapters/R14-associative-adaptors.zh-CN.md#stdmap) |
 | 遍历区间 | [半开区间与尾后位置](chapters/R15-iterators-ranges.zh-CN.md#半开区间与尾后位置) |
-| 排序或二分查找 | [std::sort 与 std::stable_sort](chapters/R16-algorithms.zh-CN.md#stdsort-与-stdstable_sort) |
+| 排序 | [std::sort 与 std::stable_sort](chapters/R16-algorithms.zh-CN.md#stdsort-与-stdstable_sort) |
+| 二分查找与边界 | [std::lower_bound、std::upper_bound 与等价范围](chapters/R16-algorithms.zh-CN.md#stdlower_boundstdupper_bound-与等价范围) |
 | 表示缺失结果 | [std::optional](chapters/R17-utility-results.zh-CN.md#stdoptional) |
 | 解析数值文本 | [std::from_chars](chapters/R18-text-numeric.zh-CN.md#stdfrom_chars) |
 | 生成随机数 | [std::mt19937](chapters/R33-numeric-random-bits.zh-CN.md#stdmt19937) |
 | 测量时间间隔 | [std::chrono::steady_clock](chapters/R19-time-files.zh-CN.md#stdchronosteady_clock) |
-| 读取或写入文件 | [std::ifstream](chapters/R34-streams-files.zh-CN.md#stdifstream) |
+| 读取文件 | [std::ifstream](chapters/R34-streams-files.zh-CN.md#stdifstream) |
+| 写入文件 | [std::ofstream](chapters/R34-streams-files.zh-CN.md#stdofstream) |
 | 组合路径与遍历目录 | [std::filesystem::path](chapters/R35-filesystem.zh-CN.md#stdfilesystempath) |
 | 等待异步结果 | [std::future](chapters/R20-threads-async.zh-CN.md#stdfuture) |
 | 管理可延迟锁定 | [std::unique_lock](chapters/R21-mutex-coordination.zh-CN.md#stdunique_lock) |
@@ -191,21 +338,51 @@ C++17 是本书核心编写基线，不表示所有接口都在 C++17 首次引�
 
 | 头文件/范围 | 对象入口 |
 | --- | --- |
-| `<memory>` | [unique_ptr 构造与访问](chapters/R09-raii-memory.zh-CN.md#unique_ptr-构造与访问) |
-| `<string>` / `<string_view>` / `<span>` | [std::string](chapters/R12-strings-views.zh-CN.md#stdstring) |
-| `<vector>` / `<array>` / `<deque>` / `<list>` / `<forward_list>` | [顺序容器分类](chapters/R13-sequence-containers.zh-CN.md#顺序容器分类) |
-| `<map>` / `<set>` / `<unordered_map>` / `<unordered_set>` | [关联容器分类](chapters/R14-associative-adaptors.zh-CN.md#关联容器分类) |
-| `<iterator>` / `<ranges>` | [迭代器类别与访问成本](chapters/R15-iterators-ranges.zh-CN.md#迭代器类别与访问成本) |
-| `<algorithm>` / `<numeric>` | [比较器与谓词](chapters/R16-algorithms.zh-CN.md#比较器与谓词) |
-| `<utility>` / `<tuple>` | [std::tuple](chapters/R17-utility-results.zh-CN.md#stdtuple) |
-| `<optional>` / `<variant>` / `<any>` / `<expected>` | [std::optional](chapters/R17-utility-results.zh-CN.md#stdoptional) |
-| `<charconv>` / `<format>` | [std::from_chars](chapters/R18-text-numeric.zh-CN.md#stdfrom_chars) |
-| `<limits>` / `<random>` / `<bitset>` / `<bit>` | [std::numeric_limits](chapters/R33-numeric-random-bits.zh-CN.md#stdnumeric_limits) |
+| `<memory>`：独占/共享所有权 | [unique_ptr 构造与访问](chapters/R09-raii-memory.zh-CN.md#unique_ptr-构造与访问) |
+| `<memory>`：分配器 | [allocator 与 allocator_traits](chapters/R09-raii-memory.zh-CN.md#allocator-与-allocator_traits) |
+| `<string>` | [std::string](chapters/R12-strings-views.zh-CN.md#stdstring) |
+| `<string_view>` | [std::string_view](chapters/R12-strings-views.zh-CN.md#stdstring_view) |
+| `<span>`（C++20） | [std::span](chapters/R12-strings-views.zh-CN.md#stdspan) |
+| `<array>` | [std::array](chapters/R13-sequence-containers.zh-CN.md#stdarray) |
+| `<vector>` | [std::vector](chapters/R13-sequence-containers.zh-CN.md#stdvector) |
+| `<deque>` | [std::deque](chapters/R13-sequence-containers.zh-CN.md#stddeque) |
+| `<list>` | [std::list](chapters/R13-sequence-containers.zh-CN.md#stdlist) |
+| `<forward_list>` | [std::forward_list](chapters/R13-sequence-containers.zh-CN.md#stdforward_list) |
+| `<map>` | [std::map](chapters/R14-associative-adaptors.zh-CN.md#stdmap) |
+| `<set>` | [std::set](chapters/R14-associative-adaptors.zh-CN.md#stdset) |
+| `<unordered_map>` | [std::unordered_map](chapters/R14-associative-adaptors.zh-CN.md#stdunordered_map) |
+| `<unordered_set>` | [std::unordered_set](chapters/R14-associative-adaptors.zh-CN.md#stdunordered_set) |
+| `<stack>` | [std::stack](chapters/R14-associative-adaptors.zh-CN.md#stdstack) |
+| `<queue>` | [std::queue](chapters/R14-associative-adaptors.zh-CN.md#stdqueue) |
+| `<iterator>` | [迭代器类别与访问成本](chapters/R15-iterators-ranges.zh-CN.md#迭代器类别与访问成本) |
+| `<ranges>`（C++20） | [ranges 算法与投影](chapters/R15-iterators-ranges.zh-CN.md#ranges-算法与投影) |
+| `<algorithm>` | [std::sort 与 std::stable_sort](chapters/R16-algorithms.zh-CN.md#stdsort-与-stdstable_sort) |
+| `<numeric>` | [std::accumulate、std::inner_product 与 std::iota](chapters/R16-algorithms.zh-CN.md#stdaccumulatestdinner_product-与-stdiota) |
+| `<utility>` | [std::pair](chapters/R17-utility-results.zh-CN.md#stdpair) |
+| `<tuple>` | [std::tuple](chapters/R17-utility-results.zh-CN.md#stdtuple) |
+| `<optional>` | [std::optional](chapters/R17-utility-results.zh-CN.md#stdoptional) |
+| `<variant>` | [std::variant](chapters/R17-utility-results.zh-CN.md#stdvariant) |
+| `<any>` | [std::any](chapters/R17-utility-results.zh-CN.md#stdany) |
+| `<expected>`（C++23） | [std::expected](chapters/R17-utility-results.zh-CN.md#stdexpected) |
+| `<charconv>` | [std::from_chars](chapters/R18-text-numeric.zh-CN.md#stdfrom_chars) |
+| `<format>`（C++20） | [std::format](chapters/R18-text-numeric.zh-CN.md#stdformat) |
+| `<limits>` | [std::numeric_limits](chapters/R33-numeric-random-bits.zh-CN.md#stdnumeric_limits) |
+| `<random>` | [std::mt19937](chapters/R33-numeric-random-bits.zh-CN.md#stdmt19937) |
+| `<bitset>` | [std::bitset](chapters/R33-numeric-random-bits.zh-CN.md#stdbitset) |
+| `<bit>`（C++20） | [std::bit_cast](chapters/R33-numeric-random-bits.zh-CN.md#stdbit_cast) |
 | `<chrono>` | [std::chrono::duration](chapters/R19-time-files.zh-CN.md#stdchronoduration) |
-| `<istream>` / `<ostream>` / `<fstream>` / `<sstream>` | [流的类型与状态](chapters/R34-streams-files.zh-CN.md#流的类型与状态) |
+| `<istream>` | [流的类型与状态](chapters/R34-streams-files.zh-CN.md#流的类型与状态) |
+| `<ostream>` | [流的类型与状态](chapters/R34-streams-files.zh-CN.md#流的类型与状态) |
+| `<fstream>`：输入 | [std::ifstream](chapters/R34-streams-files.zh-CN.md#stdifstream) |
+| `<fstream>`：输出 | [std::ofstream](chapters/R34-streams-files.zh-CN.md#stdofstream) |
+| `<sstream>` | [std::istringstream](chapters/R34-streams-files.zh-CN.md#stdistringstream) |
 | `<filesystem>` | [std::filesystem::path](chapters/R35-filesystem.zh-CN.md#stdfilesystempath) |
-| `<thread>` / `<future>` / `<stop_token>` | [std::thread](chapters/R20-threads-async.zh-CN.md#stdthread) |
-| `<mutex>` / `<shared_mutex>` / `<condition_variable>` | [互斥量与临界区](chapters/R21-mutex-coordination.zh-CN.md#互斥量与临界区) |
+| `<thread>` | [std::thread](chapters/R20-threads-async.zh-CN.md#stdthread) |
+| `<future>` | [std::future](chapters/R20-threads-async.zh-CN.md#stdfuture) |
+| `<stop_token>`（C++20） | [停止状态与令牌（C++20）](chapters/R20-threads-async.zh-CN.md#停止状态与令牌c20) |
+| `<mutex>` | [std::mutex](chapters/R21-mutex-coordination.zh-CN.md#stdmutex) |
+| `<shared_mutex>` | [std::shared_mutex](chapters/R21-mutex-coordination.zh-CN.md#stdshared_mutex) |
+| `<condition_variable>` | [std::condition_variable](chapters/R21-mutex-coordination.zh-CN.md#stdcondition_variable) |
 | `<atomic>` | [std::atomic](chapters/R22-atomics-memory-order.zh-CN.md#stdatomic) |
 | Linux/POSIX 与 Win32 | [系统调用与打开文件实体](chapters/R26-syscalls-file-io.zh-CN.md#系统调用与打开文件实体) |
 | 网络协议与平台 socket | [socket、地址与两种基本流程](chapters/R29-sockets-production.zh-CN.md#socket地址与两种基本流程) |
