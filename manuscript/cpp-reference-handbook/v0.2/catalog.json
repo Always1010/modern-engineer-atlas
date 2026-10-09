@@ -1959,6 +1959,11 @@
               "anchor": "R21-stdunique_lock"
             },
             {
+              "level": 3,
+              "title": "unique_lock 的所有权查询与 release",
+              "anchor": "R21-unique_lock-的所有权查询与-release"
+            },
+            {
               "level": 2,
               "title": "std::scoped_lock",
               "anchor": "R21-stdscoped_lock"
@@ -7502,5 +7507,367 @@
       }
     ]
   },
-  "version": "v0.2"
+  "version": "v0.2",
+  "indexAliases": [
+    {
+      "kind": "concept",
+      "term": "aggregate / 聚合",
+      "chapter": "R03",
+      "heading": "聚合初始化与成员默认值"
+    },
+    {
+      "kind": "concept",
+      "term": "copy construction / 拷贝构造",
+      "chapter": "R08",
+      "heading": "拷贝构造"
+    },
+    {
+      "kind": "concept",
+      "term": "data race / 数据竞争",
+      "chapter": "R22",
+      "heading": "数据竞争与 happens-before"
+    },
+    {
+      "kind": "concept",
+      "term": "exception safety / 异常安全",
+      "chapter": "R11",
+      "heading": "异常安全保证"
+    },
+    {
+      "kind": "concept",
+      "term": "forwarding reference / 转发引用",
+      "chapter": "R08",
+      "heading": "转发引用与引用折叠"
+    },
+    {
+      "kind": "concept",
+      "term": "happens-before / 先行关系",
+      "chapter": "R22",
+      "heading": "数据竞争与 happens-before"
+    },
+    {
+      "kind": "concept",
+      "term": "initialization / 初始化",
+      "chapter": "R03",
+      "heading": "初始化类别"
+    },
+    {
+      "kind": "concept",
+      "term": "iterator invalidation / 迭代器失效",
+      "chapter": "R13",
+      "heading": "vector 的失效与异常保证"
+    },
+    {
+      "kind": "concept",
+      "term": "lifetime / 生命周期",
+      "chapter": "R02",
+      "heading": "存储期、对象生命周期与作用域"
+    },
+    {
+      "kind": "concept",
+      "term": "lvalue / 左值",
+      "chapter": "R04",
+      "heading": "值类别"
+    },
+    {
+      "kind": "concept",
+      "term": "move construction / 移动构造",
+      "chapter": "R08",
+      "heading": "移动构造与移动赋值"
+    },
+    {
+      "kind": "concept",
+      "term": "mutex / 互斥量",
+      "chapter": "R21",
+      "heading": "互斥量与临界区"
+    },
+    {
+      "kind": "concept",
+      "term": "ODR / 单一定义规则",
+      "chapter": "R01",
+      "heading": "单一定义规则与多文件程序"
+    },
+    {
+      "kind": "concept",
+      "term": "operator overloading / 运算符重载",
+      "chapter": "R07",
+      "heading": "运算符重载与 friend"
+    },
+    {
+      "kind": "concept",
+      "term": "ownership / 所有权",
+      "chapter": "R09",
+      "heading": "RAII 资源对象"
+    },
+    {
+      "kind": "concept",
+      "term": "prvalue / 纯右值",
+      "chapter": "R04",
+      "heading": "值类别"
+    },
+    {
+      "kind": "concept",
+      "term": "RAII / 资源取得即初始化",
+      "chapter": "R09",
+      "heading": "RAII 资源对象"
+    },
+    {
+      "kind": "concept",
+      "term": "reference / 引用",
+      "chapter": "R05",
+      "heading": "左值引用与右值引用"
+    },
+    {
+      "kind": "concept",
+      "term": "storage duration / 存储期",
+      "chapter": "R02",
+      "heading": "存储期、对象生命周期与作用域"
+    },
+    {
+      "kind": "concept",
+      "term": "structured binding / 结构化绑定",
+      "chapter": "R02",
+      "heading": "结构化绑定"
+    },
+    {
+      "kind": "concept",
+      "term": "value category / 值类别",
+      "chapter": "R04",
+      "heading": "值类别"
+    },
+    {
+      "kind": "concept",
+      "term": "xvalue / 将亡值",
+      "chapter": "R04",
+      "heading": "值类别"
+    },
+    {
+      "kind": "symbol",
+      "term": "reserve",
+      "chapter": "R13",
+      "heading": "reserve 与 resize"
+    },
+    {
+      "kind": "symbol",
+      "term": "resize",
+      "chapter": "R13",
+      "heading": "reserve 与 resize"
+    },
+    {
+      "kind": "symbol",
+      "term": "owns_lock",
+      "chapter": "R21",
+      "heading": "unique_lock 的所有权查询与 release"
+    },
+    {
+      "kind": "symbol",
+      "term": "std::vector::reserve",
+      "chapter": "R13",
+      "heading": "reserve 与 resize"
+    },
+    {
+      "kind": "symbol",
+      "term": "std::vector::resize",
+      "chapter": "R13",
+      "heading": "reserve 与 resize"
+    },
+    {
+      "kind": "symbol",
+      "term": "std::vector::capacity",
+      "chapter": "R13",
+      "heading": "vector 的核心接口"
+    },
+    {
+      "kind": "symbol",
+      "term": "std::vector::size",
+      "chapter": "R13",
+      "heading": "vector 的核心接口"
+    },
+    {
+      "kind": "symbol",
+      "term": "std::vector::at",
+      "chapter": "R13",
+      "heading": "vector 的访问与遍历"
+    },
+    {
+      "kind": "symbol",
+      "term": "std::vector::data",
+      "chapter": "R13",
+      "heading": "vector 的核心接口"
+    },
+    {
+      "kind": "symbol",
+      "term": "std::vector::push_back",
+      "chapter": "R13",
+      "heading": "vector 的核心接口"
+    },
+    {
+      "kind": "symbol",
+      "term": "std::vector::emplace_back",
+      "chapter": "R13",
+      "heading": "vector 的核心接口"
+    },
+    {
+      "kind": "symbol",
+      "term": "std::vector::insert",
+      "chapter": "R13",
+      "heading": "vector 的插入、删除与替换"
+    },
+    {
+      "kind": "symbol",
+      "term": "std::vector::erase",
+      "chapter": "R13",
+      "heading": "vector 的插入、删除与替换"
+    },
+    {
+      "kind": "symbol",
+      "term": "std::vector::clear",
+      "chapter": "R13",
+      "heading": "vector 的插入、删除与替换"
+    },
+    {
+      "kind": "symbol",
+      "term": "std::unique_lock::owns_lock",
+      "chapter": "R21",
+      "heading": "unique_lock 的所有权查询与 release"
+    },
+    {
+      "kind": "symbol",
+      "term": "std::unique_lock::release",
+      "chapter": "R21",
+      "heading": "unique_lock 的所有权查询与 release"
+    },
+    {
+      "kind": "symbol",
+      "term": "release（锁管理器，不解锁）",
+      "chapter": "R21",
+      "heading": "unique_lock 的所有权查询与 release"
+    },
+    {
+      "kind": "symbol",
+      "term": "std::unique_ptr::release",
+      "chapter": "R09",
+      "heading": "unique_ptr 转移、reset 与 release"
+    },
+    {
+      "kind": "symbol",
+      "term": "release（独占指针，不删除目标）",
+      "chapter": "R09",
+      "heading": "unique_ptr 转移、reset 与 release"
+    },
+    {
+      "kind": "symbol",
+      "term": "std::unique_ptr::reset",
+      "chapter": "R09",
+      "heading": "unique_ptr 转移、reset 与 release"
+    },
+    {
+      "kind": "symbol",
+      "term": "std::unique_ptr::get",
+      "chapter": "R09",
+      "heading": "unique_ptr 构造与访问"
+    },
+    {
+      "kind": "symbol",
+      "term": "std::shared_ptr::use_count",
+      "chapter": "R09",
+      "heading": "shared_ptr 构造、共享与访问"
+    },
+    {
+      "kind": "symbol",
+      "term": "std::weak_ptr::lock",
+      "chapter": "R09",
+      "heading": "weak_ptr 构造、lock 与 expired"
+    },
+    {
+      "kind": "symbol",
+      "term": "std::weak_ptr::expired",
+      "chapter": "R09",
+      "heading": "weak_ptr 构造、lock 与 expired"
+    },
+    {
+      "kind": "symbol",
+      "term": "std::atomic<std::shared_ptr<T>>",
+      "chapter": "R22",
+      "heading": "原子共享指针"
+    },
+    {
+      "kind": "symbol",
+      "term": "std::stop_token",
+      "chapter": "R20",
+      "heading": "停止状态与令牌（C++20）"
+    },
+    {
+      "kind": "symbol",
+      "term": "std::stop_source",
+      "chapter": "R20",
+      "heading": "停止状态与令牌（C++20）"
+    },
+    {
+      "kind": "symbol",
+      "term": "std::atomic::load",
+      "chapter": "R22",
+      "heading": "load、store 与 exchange"
+    },
+    {
+      "kind": "symbol",
+      "term": "std::atomic::store",
+      "chapter": "R22",
+      "heading": "load、store 与 exchange"
+    },
+    {
+      "kind": "symbol",
+      "term": "std::atomic::exchange",
+      "chapter": "R22",
+      "heading": "load、store 与 exchange"
+    },
+    {
+      "kind": "symbol",
+      "term": "std::atomic::compare_exchange_weak",
+      "chapter": "R22",
+      "heading": "比较交换：compare_exchange"
+    },
+    {
+      "kind": "symbol",
+      "term": "std::atomic::compare_exchange_strong",
+      "chapter": "R22",
+      "heading": "比较交换：compare_exchange"
+    },
+    {
+      "kind": "symbol",
+      "term": "std::defer_lock",
+      "chapter": "R21",
+      "heading": "锁标签"
+    },
+    {
+      "kind": "symbol",
+      "term": "std::adopt_lock",
+      "chapter": "R21",
+      "heading": "锁标签"
+    },
+    {
+      "kind": "symbol",
+      "term": "std::try_to_lock",
+      "chapter": "R21",
+      "heading": "锁标签"
+    },
+    {
+      "kind": "symbol",
+      "term": "std::condition_variable::wait",
+      "chapter": "R21",
+      "heading": "std::condition_variable"
+    },
+    {
+      "kind": "symbol",
+      "term": "std::condition_variable::notify_one",
+      "chapter": "R21",
+      "heading": "std::condition_variable"
+    },
+    {
+      "kind": "symbol",
+      "term": "std::condition_variable::notify_all",
+      "chapter": "R21",
+      "heading": "std::condition_variable"
+    }
+  ]
 }

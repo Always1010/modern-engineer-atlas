@@ -26,6 +26,8 @@ figcaption { color:var(--muted); font-size:13px; margin:7px 0; }
 .contents { margin-bottom:40px; } .contents ol { list-style:none; padding:0; } .contents h2 { font-size:18px; }
 .chapter-toc { font-size:14px; border-left:2px solid var(--line); padding-left:16px; margin:16px 0 24px; }
 .chapter-toc a { display:inline-block; margin:2px 12px 2px 0; }
+.pdf-page { white-space:nowrap; font-variant-numeric:tabular-nums; font-size:.85em; margin-left:.5em; color:var(--muted); }
+#appendices td:first-child { width:42%; }
 @media(max-width:1050px) { .layout { display:block; } nav { position:static; max-height:none; margin-bottom:18px; } main { padding:28px; } }
 @media(max-width:560px) { .layout { padding:0 8px; margin:12px auto; } main { padding:20px 14px; } body { font-size:15px; } h1 { font-size:26px; } table { min-width:480px; } }
 @page { size:A4; margin:18mm 15mm; }
