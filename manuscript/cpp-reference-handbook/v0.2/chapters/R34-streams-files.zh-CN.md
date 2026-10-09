@@ -14,6 +14,8 @@
 
 `basic_istream<CharT,Traits>` 等模板定义字符型流，上表名称是 `char` 别名。公开声明摘要省略成员：
 
+**声明摘要**。
+
 ```cpp
 namespace std {
     template<class CharT, class Traits = char_traits<CharT>> class basic_istream;
@@ -32,6 +34,8 @@ namespace std {
 | `failbit` / `fail()` | 格式/提取失败；`fail` 也检查 `badbit` | 不能使用失败提取的值 |
 | `badbit` / `bad()` | 底层 I/O 等严重错误 | 根据接口决定终止或恢复 |
 | `operator bool()` | 等于 `!fail()` | 仅 `eofbit` 不一定为假 |
+
+**独立片段**。
 
 ```cpp
 // 需要 <sstream>；局部摘录
@@ -54,6 +58,8 @@ bool normal_end = input.eof() && !input.bad();
 
 默认构造未打开文件；路径构造尝试打开，输入模式默认为 `ios::in`。`open(path,mode=in)` 对已有流打开文件，`is_open()` 查询是否关联文件，`close()` 关闭文件，失败可设置状态位。
 
+**独立片段**。
+
 ```cpp
 // 需要 <fstream>、<string>；局部摘录
 std::ifstream input("settings.txt");
@@ -69,6 +75,8 @@ if (input) {
 `getline` 返回流引用，按分隔符或文件尾停止；最后一行没有换行仍可成功得到内容。文件路径由环境提供，打开成功不保证后续读取成功。文本编码和长度限制由应用规定，流不自动验证 UTF-8。
 
 ### ifstream 的提取与无格式读取
+
+**独立片段**。
 
 ```cpp
 // 需要 <fstream>；局部摘录
@@ -99,6 +107,8 @@ if (input) {
 | `ate` | 打开后初始定位到末尾 | 随后仍可另行定位 |
 | `binary` | 按二进制模式打开 | 避免平台文本转换 |
 
+**独立片段**。
+
 ```cpp
 // 需要 <fstream>；局部摘录
 std::ofstream output("result.txt", std::ios::out | std::ios::trunc);
@@ -114,6 +124,8 @@ if (output) {
 
 ### ofstream 的格式控制
 
+**独立片段**。
+
 ```cpp
 // 需要 <sstream>、<iomanip>；局部摘录
 std::ostringstream output;
@@ -126,6 +138,8 @@ auto text = output.str();                   // "3.50"（示例使用初始标准
 ## std::fstream
 
 **基础操作**。双向文件流在 `<fstream>` 中提供读写接口。声明摘要为 `template<class CharT, class Traits = char_traits<CharT>> class basic_fstream; using fstream = basic_fstream<char>;`。默认路径构造模式为 `in|out`，与单向输出创建/截断行为不同。
+
+**独立片段**。
 
 ```cpp
 // 需要 <fstream>；局部摘录；假设 record.bin 是可读写的既有文件
@@ -147,6 +161,8 @@ if (file) {
 
 **基础操作**。字符串输入流在 `<sstream>` 中把已有文本交给流提取。声明摘要是 `template<class CharT, class Traits = char_traits<CharT>, class Allocator = allocator<CharT>> class basic_istringstream;`，`istringstream` 是 `char` 别名。
 
+**独立片段**。
+
 ```cpp
 // 需要 <sstream>、<string>；局部摘录
 std::istringstream input("7 Ada");
@@ -163,6 +179,8 @@ input.str("8 Lin");                         // 替换文本，状态由 clear �
 
 **基础操作**。字符串输出流在 `<sstream>` 中累积格式化文本。声明摘要为 `template<class CharT, class Traits = char_traits<CharT>, class Allocator = allocator<CharT>> class basic_ostringstream;`，`ostringstream` 是 `char` 别名。
 
+**独立片段**。
+
 ```cpp
 // 需要 <sstream>、<string>；局部摘录
 std::ostringstream output;
@@ -177,6 +195,8 @@ output.clear();                             // 清理错误状态，另一步操
 ## std::stringstream
 
 **基础操作**。双向字符串流默认模式为 `in|out`。声明摘要为 `template<class CharT, class Traits = char_traits<CharT>, class Allocator = allocator<CharT>> class basic_stringstream;`，`stringstream` 是 `char` 别名。
+
+**独立片段**。
 
 ```cpp
 // 需要 <sstream>；局部摘录

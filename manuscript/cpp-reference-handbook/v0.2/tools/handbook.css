@@ -26,6 +26,8 @@ figcaption { color:var(--muted); font-size:13px; margin:7px 0; }
 .contents { margin-bottom:40px; } .contents ol { list-style:none; padding:0; } .contents h2 { font-size:18px; }
 .chapter-toc { font-size:14px; border-left:2px solid var(--line); padding-left:16px; margin:16px 0 24px; }
 .chapter-toc a { display:inline-block; margin:2px 12px 2px 0; }
+.excerpt-label { color:var(--muted); font-size:.9em; margin:8px 0 4px; }
+.excerpt-label + pre { margin-top:4px; }
 .pdf-page { white-space:nowrap; font-variant-numeric:tabular-nums; font-size:.85em; margin-left:.5em; color:var(--muted); }
 #appendices td:first-child { width:42%; }
 @media(max-width:1050px) { .layout { display:block; } nav { position:static; max-height:none; margin-bottom:18px; } main { padding:28px; } }
@@ -46,7 +48,10 @@ figcaption { color:var(--muted); font-size:13px; margin:7px 0; }
  .compact-table { break-inside:avoid; }
  table { font-size:9.3pt; line-height:1.5; min-width:0; } th,td { padding:5pt 6pt; }
  thead { display:table-header-group; } tr { break-inside:avoid; }
+ tbody tr:first-child { break-after:avoid; }
  tbody tr:nth-last-child(2) { break-after:avoid; }
+ .excerpt-label { font-size:9pt; line-height:1.4; margin:5pt 0 3pt; }
+ .excerpt-label + pre { margin-top:3pt; }
  pre { font-size:9.1pt; padding:9pt 10pt; margin:10pt 0; overflow:visible; break-inside:avoid; }
  pre.long-code { break-inside:auto; } pre code { white-space:pre-wrap; overflow-wrap:break-word; }
  figure { break-inside:avoid; margin:14pt 0; } figure img { max-height:170mm; margin:auto; }

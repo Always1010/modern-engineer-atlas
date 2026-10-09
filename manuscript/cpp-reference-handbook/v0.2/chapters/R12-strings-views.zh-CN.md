@@ -21,6 +21,8 @@
 
 **基础操作**。字符串拥有可变长的字符序列。`string` 是 `basic_string<char>` 的别名；其他字符类型有 `wstring`、`u16string`、`u32string`，C++20 增加 `u8string`。公开声明摘要省略成员与约束：
 
+**声明摘要**。
+
 ```cpp
 namespace std {
     template<class CharT, class Traits = char_traits<CharT>,
@@ -32,6 +34,8 @@ namespace std {
 `CharT` 是字符类型，`Traits` 定义字符比较等操作，`Allocator` 管理字符存储。本节展开 `string` 的常用形式，不覆盖自定义 traits/分配器的全部重载。
 
 ### string 的构造与初始化
+
+**独立片段**。
 
 ```cpp
 // 需要 <string>；局部摘录
@@ -47,6 +51,8 @@ std::string copy(name);                     // 独立字符序列
 ### string 的访问与遍历
 
 常用成员形式为 `size_type size() const`、`bool empty() const`、`char& operator[](size_type)`、`char& at(size_type)`、`char& front()`、`char& back()`，此处省略 const 重载与异常规格。
+
+**独立片段**。
 
 ```cpp
 // 需要 <string>；局部摘录
@@ -71,6 +77,8 @@ for (char& c : text) {
 | `replace(pos,count,s)` | 以字符串替换指定子段 | `string&` |
 | `push_back(c)`、`pop_back()`、`clear()` | 加一个字符/删末字符/清空 | `void` |
 
+**独立片段**。
+
 ```cpp
 // 需要 <string>；局部摘录
 std::string text("red");
@@ -86,6 +94,8 @@ text.resize(5);                             // "green"
 ### string 的查找、比较与截取
 
 常用形式为 `size_type find(s,pos=0) const`、`rfind(s,pos=npos)`、`int compare(s) const`、`string substr(pos=0,count=npos) const`；字符及指针长度重载也可用。
+
+**独立片段**。
 
 ```cpp
 // 需要 <string>；局部摘录
@@ -109,6 +119,8 @@ bool before = text.compare("yellow") < 0;  // 字典序，不是长度比较
 
 **基础操作，C++17**。视图只描述一段外部字符。公开声明摘要省略成员：
 
+**声明摘要**。
+
 ```cpp
 namespace std {
     template<class CharT, class Traits = char_traits<CharT>>
@@ -120,6 +132,8 @@ namespace std {
 `CharT`、`Traits` 与字符串含义对应；没有分配器，也没有字符所有权。
 
 ### string_view 的构造、访问与遍历
+
+**独立片段**。
 
 ```cpp
 // 需要 <string>、<string_view>；局部摘录
@@ -135,6 +149,8 @@ for (char c : all) { (void)c; }             // 按值读取字符
 ### string_view 的截取、查找与比较
 
 常用形式为 `string_view substr(pos=0,count=npos) const`、`void remove_prefix(n)`、`void remove_suffix(n)`；`find/rfind/compare` 按字符内容工作。
+
+**独立片段**。
 
 ```cpp
 // 需要 <string>、<string_view>；局部摘录
@@ -158,6 +174,8 @@ std::string saved(tail);                    // 独立保存内容
 
 **基础操作，C++20**。连续元素视图在 `<span>` 中表示连续缓冲。声明摘要：
 
+**声明摘要**。
+
 ```cpp
 namespace std {
     template<class T, size_t Extent = dynamic_extent> class span;
@@ -167,6 +185,8 @@ namespace std {
 `T` 是元素类型；`Extent` 为编译期固定元素数或 `dynamic_extent`，默认是动态长度。它没有字符零结尾规则。
 
 ### span 的构造与访问
+
+**独立片段**。
 
 ```cpp
 // C++20；需要 <span>；局部摘录
@@ -181,6 +201,8 @@ std::span<const int> read_only(all);         // 经此视图只读
 指针/数量构造要求有效范围；固定 extent 要求长度匹配。数组、`array` 和满足条件的连续范围可用作输入，`list` 与一般 `deque` 不可。`size()` 返回元素数，`size_bytes()` 返回字节数；C++20 下标没有边界检查成员 `at`，要求下标合法。
 
 ### span 的子范围与失效
+
+**独立片段**。
 
 ```cpp
 // C++20；需要 <span>；局部摘录

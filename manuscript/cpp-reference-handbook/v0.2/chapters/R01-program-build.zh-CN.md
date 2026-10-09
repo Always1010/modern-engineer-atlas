@@ -8,6 +8,8 @@ C++ 程序由源文件、声明和定义组成；构建工具把源码翻译并�
 
 **基础操作**。下面的程序调用 `twice` 计算 21 的两倍，并输出 `result=42`。保存为 `main.cpp`：
 
+**独立片段**。
+
 ```cpp
 #include <iostream>
 int twice(int value);             // 函数声明
@@ -87,6 +89,8 @@ g++ main.o -o app
 
 **基础操作**。作用域规定名字在哪里可见；命名空间组织名字；链接属性（linkage）规定不同作用域或翻译单元中的声明是否能表示同一实体。
 
+**独立片段**。
+
 ```cpp
 namespace math {
     int twice(int value) { return value * 2; }
@@ -107,6 +111,8 @@ int answer = math::twice(21);    // 用限定名调用
 
 **基础操作**。标准头使用尖括号，项目头通常使用双引号；具体搜索路径由实现和工具选项控制。包含保护防止同一个头在同一翻译单元被重复展开：
 
+**独立片段**。
+
 ```cpp
 #ifndef HANDBOOK_TWICE_HPP
 #define HANDBOOK_TWICE_HPP
@@ -121,6 +127,8 @@ int twice(int value);
 **基础操作**。单一定义规则（One Definition Rule，ODR）约束哪些实体可以有多少份定义。普通外部函数可有多份匹配声明，但其程序级定义应按规则只提供一处；把普通函数定义放进同时被两个源文件包含的头，会产生重复定义问题。包含保护只能避免单个翻译单元内重复包含，不能解决这个跨单元问题。
 
 将首例拆成三个文件：`twice.hpp` 保存上面的声明，`twice.cpp` 定义函数，`main.cpp` 包含头并调用。
+
+**承接上文**。
 
 ```cpp
 // twice.cpp

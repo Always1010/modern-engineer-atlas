@@ -44,10 +44,14 @@ metric 编译实现，app 使用它；链接 target 名称后，依赖关系和 
 
 源码角色分别为公共声明、唯一实现、使用者：
 
+**声明摘要**。
+
 ```cpp
 // metric.h 中的声明
 int clamp_percent(int value) noexcept;
 ```
+
+**承接上文**。
 
 ```cpp
 // metric.cpp 中的定义，先包含 metric.h

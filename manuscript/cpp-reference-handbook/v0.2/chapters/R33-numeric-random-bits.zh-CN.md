@@ -8,6 +8,8 @@
 
 **基础操作**。`<limits>` 的 `template<class T> class numeric_limits;` 为数值类型提供静态属性；声明摘要省略成员。`T` 是待查询类型，先看 `is_specialized` 是否有适用特化。
 
+**独立片段**。
+
 ```cpp
 // 需要 <limits>；局部摘录
 int highest = std::numeric_limits<int>::max();
@@ -23,6 +25,8 @@ double near_one_step = std::numeric_limits<double>::epsilon();
 
 **基础操作**。`<cmath>` 的常用 double 重载如下，省略 float/long double 与整数重载：
 
+**声明摘要**。
+
 ```cpp
 namespace std {
     double abs(double x);
@@ -36,6 +40,8 @@ namespace std {
     bool isnan(double x);
 }
 ```
+
+**独立片段**。
 
 ```cpp
 // 需要 <cmath>；局部摘录
@@ -53,6 +59,8 @@ sqrt 的实数域要求非负，pow 的域依底数/指数而定；域错误、�
 
 **基础操作**。`<random>` 的梅森旋转伪随机引擎保存状态，每次 `operator()()` 推进序列。`mt19937` 是具有标准参数的 `mersenne_twister_engine` 别名；公开形状可理解为 `class` 型引擎，有 `result_type`、`seed`、`discard` 和取样操作，具体别名参数后查标准。
 
+**独立片段**。
+
 ```cpp
 // 需要 <random>；局部摘录
 std::mt19937 engine(123u);                   // 固定种子
@@ -68,6 +76,8 @@ engine.discard(10);                         // 推进十次结果，不返回样
 
 **基础操作**。`random_device` 在 `<random>` 中向实现提供的随机来源请求结果，不能复制；默认或 token 字符串构造，`operator()()` 返回 result_type，调用/构造可失败，`entropy()` 报告估计值。实现没有非确定来源时可使用伪随机来源，不能把它无条件当密码学接口。
 
+**独立片段**。
+
 ```cpp
 // 需要 <random>；局部摘录
 std::random_device source;
@@ -80,6 +90,8 @@ std::mt19937 engine(seeds);
 ## std::uniform_int_distribution
 
 **基础操作**。`<random>`，公开声明摘要为 `template<class IntType = int> class uniform_int_distribution;`，省略成员。`IntType` 须是标准允许的整数类型（不能随意用 bool/char）；参数 a、b 定义闭区间 `[a,b]`，要求 a≤b。
+
+**独立片段**。
 
 ```cpp
 // 需要 <random>；局部摘录
@@ -95,6 +107,8 @@ int low = die.min(), high = die.max();      // 1、6
 
 **基础操作**。`<random>`，声明摘要为 `template<class RealType = double> class uniform_real_distribution;`，省略成员。类型为 float/double/long double，参数 a、b 描述 `[a,b)` 上的均匀实数分布，要求 a≤b 且范围差在规定表示条件内。
 
+**独立片段**。
+
 ```cpp
 // 需要 <random>；局部摘录
 std::mt19937 engine(123u);
@@ -107,6 +121,8 @@ double sample = unit(engine);               // 分布定义为 [0,1)
 ## std::normal_distribution
 
 **基础操作**。`<random>`，声明摘要为 `template<class RealType = double> class normal_distribution;`。参数 mean、stddev 分别为均值和标准差，要求 stddev>0。
+
+**独立片段**。
 
 ```cpp
 // 需要 <random>；局部摘录
@@ -121,6 +137,8 @@ measurement.reset();                       // 清除可能缓存的采样状态
 ## std::bitset
 
 **基础操作**。`<bitset>` 中的固定长度位集合。声明摘要为 `template<size_t N> class bitset;`，省略成员；N 是位数，不由对象字节大小定义。
+
+**独立片段**。
 
 ```cpp
 // 需要 <bitset>、<string>；局部摘录
@@ -139,6 +157,8 @@ std::string text = value.to_string();       // "00000101"
 
 **基础操作，C++17**。`<cstddef>` 的 `enum class byte : unsigned char {};` 表示原始字节；只提供按位/移位操作和显式转换，不是普通算术整数。
 
+**独立片段**。
+
 ```cpp
 // 需要 <cstddef>；局部摘录
 std::byte value{0x0f};
@@ -151,6 +171,8 @@ unsigned number = std::to_integer<unsigned>(value); // 143
 ## 位计数、旋转与二的幂
 
 **C++20**。`<bit>` 的 popcount、countl_zero、countr_zero、rotl/rotr、has_single_bit、bit_floor/bit_ceil 主要接收无符号整数，按各函数允许类型及表示条件使用。
+
+**独立片段**。
 
 ```cpp
 // C++20；需要 <bit>；局部摘录
@@ -168,6 +190,8 @@ unsigned rotated = std::rotl(x, 1);
 
 **C++20**。`<bit>` 的 `template<class To,class From> constexpr To bit_cast(const From& from) noexcept;`，摘要省略约束；两类型大小相等且都 trivially copyable。它按对象表示复制，不作数值转换。
 
+**独立片段**。
+
 ```cpp
 // C++20；需要 <bit>、<array>；局部摘录
 unsigned value = 42;
@@ -182,6 +206,8 @@ auto bytes = std::bit_cast<std::array<unsigned char, sizeof(unsigned)>>(value);
 **C++20**。`<bit>` 的 endian 枚举给出 little/big/native；native 可不等于前两者，不自动执行转换。
 
 **C++23**。`template<class T> constexpr T byteswap(T value) noexcept;` 要求 T 为整数且无填充位，交换对象表示的字节顺序。
+
+**独立片段**。
 
 ```cpp
 // C++23；需要 <bit>、<cstdint>；局部摘录；假设 uint32_t 可用

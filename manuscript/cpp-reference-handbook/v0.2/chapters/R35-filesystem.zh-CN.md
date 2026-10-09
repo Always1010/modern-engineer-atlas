@@ -8,11 +8,15 @@
 
 **基础操作**。路径在 `<filesystem>` 中保存平台路径规则下的名称。它不要求内部使用 UTF-8；Windows 与 POSIX 的根名称、分隔符和原生字符类型可以不同。公开声明摘要省略成员：
 
+**声明摘要**。
+
 ```cpp
 namespace std::filesystem { class path; }
 ```
 
 ### path 的构造与组件
+
+**独立片段**。
 
 ```cpp
 // 需要 <filesystem>；局部摘录
@@ -29,6 +33,8 @@ file.replace_extension(".log");            // logs/run.log，原生分隔符依�
 
 ### path 的规范化与输出
 
+**独立片段**。
+
 ```cpp
 // 需要 <filesystem>；局部摘录
 namespace fs = std::filesystem;
@@ -44,6 +50,8 @@ std::string portable = clean.generic_string(); // 使用通用分隔形式
 ## 文件状态与错误报告
 
 **基础操作**。`file_status` 表示文件类型和权限；`status(p[,ec])` 通常跟随符号链接，`symlink_status(p[,ec])` 查询链接本身。`exists/is_regular_file/is_directory/is_symlink` 按状态或路径查询。
+
+**独立片段**。
 
 ```cpp
 // 需要 <filesystem>、<system_error>；局部摘录
@@ -66,6 +74,8 @@ if (ec) {
 
 **基础操作**。目录项在 `<filesystem>` 中关联一个路径，可缓存部分属性。声明摘要为 `class directory_entry;`，位于 `std::filesystem`，省略成员。
 
+**独立片段**。
+
 ```cpp
 // 需要 <filesystem>、<system_error>；局部摘录
 namespace fs = std::filesystem;
@@ -82,6 +92,8 @@ if (!ec) {
 ## std::filesystem::directory_iterator
 
 **基础操作**。目录迭代器在 `<filesystem>` 中提供单次输入遍历，顺序未规定；默认构造为结束位置。声明摘要为 `class directory_iterator;`，位于 `std::filesystem`。
+
+**独立片段**。
 
 ```cpp
 // 需要 <filesystem>、<system_error>；局部摘录
@@ -100,6 +112,8 @@ if (ec) { /* 报告遍历失败 */ }
 ## std::filesystem::recursive_directory_iterator
 
 **基础操作**。递归迭代器遍历子目录，声明摘要为 `class recursive_directory_iterator;`，位于 `std::filesystem`。默认构造为结束位置；路径构造开始遍历，默认不跟随目录符号链接。
+
+**独立片段**。
 
 ```cpp
 // 需要 <filesystem>、<system_error>；局部摘录
@@ -127,6 +141,8 @@ while (!ec && it != end) {
 | `bool remove(path)` | 是否删除一个目录项 | 目录需为空；链接删除链接本身 |
 | `uintmax_t remove_all(path)` | 删除项数量 | 递归破坏性操作，确认目标范围 |
 | `void rename(from,to)` | 更名/符合条件的替换 | 权限、类别、占用与文件系统边界可失败 |
+
+**独立片段**。
 
 ```cpp
 // 需要 <filesystem>、<system_error>；局部摘录；路径由应用提供

@@ -8,6 +8,8 @@
 
 **基础操作**。throw 表达式初始化异常对象，并寻找匹配处理器；异常对象保存传播的失败信息。下面的函数要求输入为偶数，失败抛出 invalid_argument；需 `<stdexcept>`：
 
+**独立片段**。
+
 ```cpp
 int half_even(int value) {
     if (value % 2 != 0) throw std::invalid_argument("even value required");
@@ -20,6 +22,8 @@ int half_even(int value) {
 ## try、catch 与重新抛出
 
 **基础操作**。try 包围需要处理的操作，catch 根据异常类型匹配；推荐按 const 引用观察异常，避免拷贝与切片。以下为函数体内片段，已有前述 half_even，另需 `<string>`：
+
+**承接上文**。
 
 ```cpp
 std::string message;
@@ -34,6 +38,8 @@ try {
 
 **机制解释**。处理器内 `throw;` 重新抛出当前异常；`throw error;` 按表达式静态类型初始化另一个异常，可能切片。重新抛出形状：
 
+**承接上文**。
+
 ```cpp
 try {
     half_even(7);
@@ -47,6 +53,8 @@ try {
 ## 栈展开与构造失败
 
 **机制解释**。栈展开（stack unwinding）在寻找处理器、退出作用域时销毁已经完成构造的自动对象。下面用状态恢复展示这一关系；需 `<stdexcept>`。Active 是类定义；整个片段可放在函数体内，count 与 try/catch 是该函数的局部声明和语句：
+
+**独立片段**。
 
 ```cpp
 struct Active {
@@ -85,6 +93,8 @@ logic_error/runtime_error 的派生类型按接口意义选用，不以“可捕
 
 **基础操作**。`noexcept` 或 `noexcept(true)` 声明异常不能逃出函数；`noexcept(false)` 允许异常传播。它是失败传播契约，不是保证总成功。
 
+**独立片段**。
+
 ```cpp
 struct Point { int x; int y; };
 void clear(Point& point) noexcept {
@@ -98,6 +108,8 @@ C++17 起异常说明参与函数类型；声明定义必须一致，适用的�
 ## noexcept 运算符
 
 **基础操作**。`noexcept(expression)` 是不求值查询，返回 bool 常量，反映表达式是否具有潜在抛出属性。
+
+**独立片段**。
 
 ```cpp
 int guaranteed() noexcept { return 7; }
@@ -117,6 +129,8 @@ static_assert(!noexcept(may_throw()));
 ## error_code 与状态返回
 
 **基础操作 · `<system_error>`**。`std::error_code` 由整数值与错误类别共同解释，bool 转换表示是否非零错误，不把相同整数跨类别混为同一个错误。
+
+**独立片段**。
 
 ```cpp
 std::error_code error = std::make_error_code(std::errc::invalid_argument);
@@ -158,6 +172,8 @@ optional/variant/expected 的构造和访问由[结果类型](R17-utility-result
 ## 暂存与强保证提交
 
 **进阶后查**。下面用默认分配器的 vector<int> 先修改副本，再不抛交换提交；需要 `<vector>`。完整[失败注入源码](../examples/r11-errors-exception-safety.cpp)另展示作用域清理。
+
+**独立片段**。
 
 ```cpp
 void append_strong(std::vector<int>& target, int value) {

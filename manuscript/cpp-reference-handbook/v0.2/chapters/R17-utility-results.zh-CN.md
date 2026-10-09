@@ -8,6 +8,8 @@
 
 **基础操作**。二元组在 `<utility>` 中保存两个值，元素类型分别由 `T1`、`T2` 决定。关联容器的元素和“迭代器、是否插入”返回值常用它。公开声明摘要如下，省略构造约束、赋值和比较重载：
 
+**声明摘要**。
+
 ```cpp
 namespace std {
     template<class T1, class T2> struct pair {
@@ -21,6 +23,8 @@ namespace std {
 ### pair 的构造与访问
 
 默认构造对两个元素进行值初始化；整数元素成为零。双参数构造分别初始化 `first` 与 `second`；复制、移动的可用性取决于两种元素类型。以下摘录需要 `<utility>`、`<string>`：
+
+**独立片段**。
 
 ```cpp
 std::pair<int, std::string> empty;          // {0, ""}
@@ -36,6 +40,8 @@ const int id = std::get<0>(item);           // 得到 8
 
 赋值逐元素赋值，`swap` 逐元素交换；二者都需要对应元素操作有效。下面摘录继续使用 `item`，需要 `<utility>`、`<string>`：
 
+**承接上文**。
+
 ```cpp
 std::pair<int, std::string> other{9, "Lin"};
 item.swap(other);                           // item 成为 {9, "Lin"}
@@ -50,6 +56,8 @@ live_id = 10;                              // item.first 成为 10
 
 **基础操作**。元组在 `<tuple>` 中保存编译期确定的若干元素，各元素可以具有不同类型；`Ts...` 是元素类型包，允许为空。公开声明摘要省略成员约束和重载：
 
+**声明摘要**。
+
 ```cpp
 namespace std {
     template<class... Ts> class tuple;
@@ -63,6 +71,8 @@ namespace std {
 
 默认构造值初始化各元素；元素参数构造逐项初始化，参数个数必须与元素数相符。以下摘录需要 `<tuple>`、`<string>`：
 
+**独立片段**。
+
 ```cpp
 std::tuple<int, std::string, double> row{7, "Ada", 92.5};
 std::get<0>(row) = 8;
@@ -75,6 +85,8 @@ const auto count = std::tuple_size<decltype(row)>::value; // 3
 ### make_tuple、tie 与 apply
 
 `make_tuple(args...)` 建立值元组，通常衰减参数并对 `reference_wrapper` 解包。`tie(vars...)` 建立引用元组，向它赋值会写回原变量；`ignore` 可忽略相应位置。`apply(f,t)` 从 C++17 起把元组元素展开成 `f` 的参数，并返回调用结果。以下摘录需要 `<tuple>`、`<string>`：
+
+**承接上文**。
 
 ```cpp
 int id = 0;
@@ -93,6 +105,8 @@ int area = std::apply([](int w, int h) { return w * h; }, dimensions);
 **基础操作**。可选值（optional）在 `<optional>` 中保存零个或一个 `T`。空状态表示缺失；有值状态拥有并管理内部 `T` 的生命周期，`optional` 本身不会为这个 `T` 单独动态分配存储。`T` 必须是可析构的对象类型，不能是引用，也不能是 `nullopt_t` 或 `in_place_t`。
 
 公开声明摘要仅列本节使用的接口，省略 const/右值、初始化列表、转换与比较重载；注释中的省略部分不是可编译的完整类定义：
+
+**声明摘要**。
 
 ```cpp
 namespace std {
@@ -126,6 +140,8 @@ namespace std {
 
 以下摘录需要 `<optional>`、`<string>`，逐项演示不同构造用途：
 
+**独立片段**。
+
 ```cpp
 std::optional<int> missing;
 std::optional<int> count{0};
@@ -147,6 +163,8 @@ std::optional<bool> enabled{false};         // 有值，值为 false
 
 查询时先检查状态，再借用内部值。以下摘录需要 `<optional>`：
 
+**独立片段**。
+
 ```cpp
 std::optional<int> count{0};
 if (count.has_value()) *count += 2;
@@ -162,6 +180,8 @@ int result = missing.value_or(10);         // 10
 给包装赋值可以改变值与存在状态；给已有值的包装赋普通 `T` 时，通常使用 `T` 的赋值操作。`emplace(args...)` 先销毁旧值，再用参数原位构造新值，返回新值的 `T&`；`reset()` 或赋 `nullopt` 销毁旧值并置空，已空时不产生值。
 
 以下摘录需要 `<optional>`、`<string>`：
+
+**独立片段**。
 
 ```cpp
 std::optional<std::string> label;
@@ -184,6 +204,8 @@ label.reset();                             // 有值 -> 空
 
 **基础操作**。变体在 `<variant>` 中拥有编译期确定的候选类型之一。`Ts...` 至少含一个满足相应析构条件的对象类型；不能以引用、数组或 `void` 为候选。公开声明摘要省略成员与约束：
 
+**声明摘要**。
+
 ```cpp
 namespace std {
     template<class... Ts> class variant;
@@ -201,6 +223,8 @@ namespace std {
 
 默认构造第零个候选，因此它必须可默认构造；用值构造须能唯一选择有效候选。`in_place_type<T>` 按唯一类型构造，`in_place_index<I>` 按索引构造，适合类型重复的情况。以下摘录需要 `<variant>`、`<string>`：
 
+**独立片段**。
+
 ```cpp
 std::variant<int, std::string> value;       // 第 0 支，整数 0
 std::variant<int, std::string> text{std::in_place_type<std::string>, "Ada"};
@@ -214,6 +238,8 @@ const bool is_text = std::holds_alternative<std::string>(text); // true
 ### variant 的修改与 visit
 
 值赋值可更新或切换候选；`emplace<I/T>(args...)` 销毁旧候选，再构造指定候选，返回候选引用。`visit(visitor,v...)` 把各变体的活动值交给访问器，并返回调用结果。以下摘录需要 `<variant>`、`<string>`、`<type_traits>`：
+
+**独立片段**。
 
 ```cpp
 std::variant<int, std::string> value{7};
@@ -233,6 +259,8 @@ auto text = std::visit([](const auto& x) -> std::string {
 
 **基础操作**。`any` 在 `<any>` 中保存空状态或一个满足可复制构造要求的类型。类型擦除（type erasure）隐藏具体类型，读取时再按类型检查。它没有模板参数；纯移动类型不能作为内部值。公开声明摘要省略模板构造、赋值、const 和初始化列表重载：
 
+**声明摘要**。
+
 ```cpp
 namespace std {
     class any {
@@ -251,6 +279,8 @@ namespace std {
 
 默认构造为空；值构造保存衰减后的实参类型；`in_place_type<T>` 原位构造内部 `T`。`type()` 有值时返回内部类型的 `type_info`，空时返回 `typeid(void)`。以下摘录需要 `<any>`、`<string>`：
 
+**独立片段**。
+
 ```cpp
 std::any empty;
 std::any number = 7;
@@ -265,6 +295,8 @@ const int value = std::any_cast<int>(number); // 8
 
 值赋值可以替换类型；`emplace<T>(args...)` 销毁旧值并构造新值，返回新值引用；构造抛异常时变空。`reset()` 清空，`swap` 交换两个包装。以下摘录需要 `<any>`、`<string>`：
 
+**独立片段**。
+
 ```cpp
 std::any box = 7;
 auto& label = box.emplace<std::string>("Ada");
@@ -278,6 +310,8 @@ box.reset();                               // label 的借用失效
 
 **C++23，基础操作**。`expected<T,E>` 在 `<expected>` 中保存成功值 `T` 或错误值 `E`，以有名称的状态表达成功/失败；`T` 可以是 `void`，`E` 是符合要求的非数组对象类型。`T` 不能是引用；`E` 不能是 cv 限定类型、`unexpected` 或标记类型。这里展开值分支版本，全部类型约束后查标准。公开声明摘要省略约束与重载：
 
+**声明摘要**。
+
 ```cpp
 namespace std {
     template<class T, class E> class expected;
@@ -289,6 +323,8 @@ namespace std {
 ### expected 的构造与分支访问
 
 默认构造值初始化成功值，要求 `T` 可默认构造；值构造为成功，`unexpected<E>` 或 `unexpect` 原位构造为失败。`expected<void,E>{}` 表示不带数据的成功。以下摘录需要 `<expected>`、`<string>`，要求支持 C++23 的标准库：
+
+**独立片段**。
 
 ```cpp
 std::expected<int, std::string> ok{42};
@@ -306,6 +342,8 @@ if (!failed) {
 赋值可以保持或改变成功/失败分支，受 `T`、`E` 的构造、赋值和异常约束限制；它没有 `reset()` 或“第三个空状态”。`emplace(args...)` 构造成功值并返回 `T&`，值分支版本要求相应 `T` 构造不抛异常，因此不能把任意 `optional::emplace` 写法照搬过来。
 
 单子操作（monadic operations）按状态调用下一步：`and_then` 要求函数返回错误类型与原结果相同的 `expected`；`transform` 映射成功值；`or_else` 处理失败并返回成功类型与原结果相同的 `expected`；`transform_error` 映射错误值。以下摘录需要 `<expected>`、`<string>`，沿用 `ok`：
+
+**承接上文**。
 
 ```cpp
 auto doubled = ok.transform([](int x) { return x * 2; });

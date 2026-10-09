@@ -8,6 +8,8 @@
 
 **基础操作**。`T* p` 声明指向 T 的指针，`&object` 取地址，`*p` 访问所指对象；对类指针 `p->member` 等价于适用的 `(*p).member`。
 
+**独立片段**。
+
 ```cpp
 int value = 7;
 int* p = &value;
@@ -22,6 +24,8 @@ p = &other;                   // 改变指向，value 仍为 9
 ## nullptr 与可选借用
 
 **基础操作**。`nullptr` 是专门的空指针常量，可以初始化适用指针，也可以与指针比较。用空指针表达没有可选对象：
+
+**独立片段**。
 
 ```cpp
 void increment_if_present(int* value) {
@@ -38,6 +42,8 @@ increment_if_present(nullptr); // 不修改任何对象
 ## 左值引用与右值引用
 
 **基础操作**。`T&` 声明左值引用，通常绑定既有左值；`T&&` 声明右值引用，通常绑定右值。`const T&` 可只读绑定既有对象或适用临时。
+
+**独立片段**。
 
 ```cpp
 int value = 7;
@@ -65,6 +71,8 @@ int snapshot = temporary;     // temporary 名称表达式是左值，读取为 
 
 **基础操作**。const 在 `*` 左侧限制目标，在右侧限制该指针；可同时限制两者。
 
+**独立片段**。
+
 ```cpp
 int value = 7, other = 9;
 const int* view = &value;
@@ -80,6 +88,8 @@ const int* const fixed_view = &value; // 指针和目标访问均受限
 
 **基础操作**。数组的元素地址与尾后地址组成有效区间；尾后指针可形成和作终点，但不可解引用。
 
+**独立片段**。
+
 ```cpp
 int values[3] = {2, 4, 6};
 int* first = values;
@@ -92,6 +102,8 @@ std::ptrdiff_t length = last - first;             // 3，需 <cstddef>
 指针加减必须保持在同一数组及其尾后范围；相减要求来自同一数组，差值可由 `std::ptrdiff_t` 表示。单个非数组对象在这些规则中视作长度一的数组；碰巧相邻的变量不成为一个数组。指针仅携带地址，接口无法从任意两个地址自动证明它们组成有效区间。
 
 C++20 `span` 可保存范围长度但仍借用底层对象；访问仍须满足寿命和边界。查找一个整数可用下面的半开区间接口，它要求输入来自同一有效数组、元素已经初始化，空区间不解引用：
+
+**独立片段**。
 
 ```cpp
 int* find_value(int* first, int* last, int wanted) {
@@ -106,6 +118,8 @@ int* find_value(int* first, int* last, int wanted) {
 ## 临时对象与寿命延长
 
 **机制解释**。普通临时对象通常在所在完整表达式末尾销毁；适用的直接引用绑定可延长它的寿命。需 `<string>`，局部例子：
+
+**独立片段**。
 
 ```cpp
 const std::string& kept = std::string("alive");
@@ -127,6 +141,8 @@ std::size_t length = kept.size(); // 5；临时活到 kept 所在作用域结束
 ## 返回借用与非拥有成员
 
 **机制解释**。借用（borrowing）是通过指针、引用或视图访问由别处负责保活的对象，不转移所有权。以下返回调用者对象的成员；需 `<string>`，类与函数在命名空间作用域：
+
+**独立片段**。
 
 ```cpp
 struct Owner { std::string text; };

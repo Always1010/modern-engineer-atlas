@@ -1092,6 +1092,11 @@
               "anchor": "R14-关联容器分类"
             },
             {
+              "level": 3,
+              "title": "组合应用与参考资料",
+              "anchor": "R14-组合应用与参考资料"
+            },
+            {
               "level": 2,
               "title": "std::set",
               "anchor": "R14-stdset"
@@ -1180,11 +1185,6 @@
               "level": 3,
               "title": "堆的父子关系",
               "anchor": "R14-堆的父子关系"
-            },
-            {
-              "level": 2,
-              "title": "组合应用与参考资料",
-              "anchor": "R14-组合应用与参考资料"
             }
           ]
         },

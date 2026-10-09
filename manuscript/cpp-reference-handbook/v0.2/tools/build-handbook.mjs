@@ -58,6 +58,7 @@ async function render(model){
   else replacement=pathToFileURL(target).href+(fragment?'#'+fragment:'');
   html=html.replace(match[0],'href="'+escape(replacement)+'"');
  }
+ html=html.replace(/<p><strong>(声明摘要|独立片段|承接上文|执行路径示意)<\/strong>。<\/p>/g,'<p class="excerpt-label"><strong>$1</strong></p>');
  html=html.replace(/<p>(<img[\s\S]*?)<\/p>\s*<p>(图(?:\s*\d+[-－]\d+|：|:)[\s\S]*?)<\/p>/g,'<figure>$1<figcaption>$2</figcaption></figure>')
   .replace(/<p>(<img[^>]+>)<\/p>/g,'<figure>$1</figure>')
   .replace(/<table>([\s\S]*?)<\/table>/g,(_,contents)=>{

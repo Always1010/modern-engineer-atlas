@@ -210,7 +210,6 @@
 - [std::stack](chapters/R14-associative-adaptors.zh-CN.md#stdstack)
 - [std::queue](chapters/R14-associative-adaptors.zh-CN.md#stdqueue)
 - [std::priority_queue](chapters/R14-associative-adaptors.zh-CN.md#stdpriority_queue)
-- [组合应用与参考资料](chapters/R14-associative-adaptors.zh-CN.md#组合应用与参考资料)
 ### 第15章 迭代器与 ranges
 
 - [std::begin 与 std::end](chapters/R15-iterators-ranges.zh-CN.md#stdbegin-与-stdend)

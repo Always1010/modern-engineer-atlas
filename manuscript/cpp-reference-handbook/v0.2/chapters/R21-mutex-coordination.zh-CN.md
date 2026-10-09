@@ -24,6 +24,8 @@
 
 **基础操作**。`<mutex>` 的 mutex 默认构造为未锁定；常用接口 `void lock(); bool try_lock(); void unlock();`。同一线程不能再次锁定已拥有的非递归 mutex。
 
+**独立片段**。
+
 ```cpp
 std::mutex mutex;
 int count = 0;
@@ -38,6 +40,8 @@ int count = 0;
 ## std::recursive_mutex
 
 **基础操作**。`<mutex>` 的 recursive_mutex 支持同一线程重复 `lock/try_lock`；其他线程仍被排除。每次取得对应一次 unlock，最后一次释放才允许其他线程取得。
+
+**独立片段**。
 
 ```cpp
 std::recursive_mutex mutex;
@@ -54,6 +58,8 @@ std::lock_guard<std::recursive_mutex> outer(mutex);
 
 **基础操作**。`<mutex>` 的 timed_mutex 在 mutex 同类接口外增加相对/绝对定时尝试：
 
+**声明摘要**。
+
 ```cpp
 template<class Rep, class Period> bool try_lock_for(
     const std::chrono::duration<Rep, Period>& duration);
@@ -62,6 +68,8 @@ template<class Clock, class Duration> bool try_lock_until(
 ```
 
 true 表示已取得锁，false 表示未取得。等待时间受调度等影响，不是实时上界；失败也可能为虚假失败。下面用定时管理器避免手工释放，需 `<mutex>`、`<chrono>`：
+
+**独立片段**。
 
 ```cpp
 std::timed_mutex mutex;
@@ -77,6 +85,8 @@ if (lock.try_lock_for(std::chrono::milliseconds(10))) {
 
 **基础操作**。`<mutex>` 的 recursive_timed_mutex 同时提供递归独占和 `try_lock_for/try_lock_until`。构造后未锁定，重复取得与释放次数配对，定时结果同 timed_mutex。
 
+**独立片段**。
+
 ```cpp
 std::recursive_timed_mutex mutex;
 std::unique_lock<std::recursive_timed_mutex> outer(mutex);
@@ -90,6 +100,8 @@ bool acquired = inner.owns_lock();
 ## std::shared_mutex
 
 **基础操作，C++17**。`<shared_mutex>` 的 shared_mutex 提供独占 `lock/try_lock/unlock`，以及共享 `lock_shared/try_lock_shared/unlock_shared`；可有多个共享拥有者，独占与共享不能同时成立。
+
+**独立片段**。
 
 ```cpp
 std::shared_mutex mutex;
@@ -108,6 +120,8 @@ std::shared_mutex mutex;
 ## std::shared_timed_mutex
 
 **基础操作，C++14**。`<shared_mutex>` 的 shared_timed_mutex 在独占/共享能力外提供 `try_lock_for/until` 与 `try_lock_shared_for/until`，参数为时长/时点，返回是否取得对应所有权。
+
+**独立片段**。
 
 ```cpp
 std::shared_timed_mutex mutex;
@@ -135,6 +149,8 @@ if (read.try_lock_for(std::chrono::milliseconds(10))) {
 
 **基础操作**。`<mutex>` 中 `template<class Mutex> class lock_guard;`，Mutex 提供 lock/unlock。构造为 `explicit lock_guard(Mutex& m);` 或 `lock_guard(Mutex& m, adopt_lock_t);`；不可复制、不可移动，没有手工 unlock 成员。
 
+**独立片段**。
+
 ```cpp
 std::mutex mutex;
 {
@@ -158,6 +174,8 @@ std::mutex mutex;
 | `unique_lock<Mutex> lock(m, adopt_lock);` | 接管已取得锁 | 调用线程须已拥有 m |
 | `unique_lock<Mutex> lock(m, duration/deadline);` | 定时尝试 | 底层须支持定时，按 owns_lock 判断 |
 
+**独立片段**。
+
 ```cpp
 std::mutex mutex;
 std::unique_lock<std::mutex> lock(mutex, std::defer_lock);
@@ -175,6 +193,8 @@ lock.lock();
 
 定时操作用具备能力的 timed_mutex；以下独立局部例需 `<mutex>`、`<chrono>`，取得失败时不能操作受保护状态：
 
+**独立片段**。
+
 ```cpp
 std::timed_mutex mutex;
 std::unique_lock<std::timed_mutex> lock(mutex, std::defer_lock);
@@ -185,6 +205,8 @@ if (acquired) { /* 访问受保护状态，析构自动释放 */ }
 ## std::scoped_lock
 
 **基础操作，C++17**。`<mutex>` 中 `template<class... MutexTypes> class scoped_lock;` 管理零到多把 mutex；不可复制、不可移动。普通构造取得所有锁，多锁形式使用避免此次获取死锁的算法；adopt 形式接管当前线程已取得的全部锁。
+
+**独立片段**。
 
 ```cpp
 std::mutex left, right;
@@ -200,6 +222,8 @@ std::mutex left, right;
 
 **基础操作，C++14**。`<shared_mutex>` 中 `template<class Mutex> class shared_lock;` 管理共享所有权；可移动、不可复制。构造、标签、定时形式以及 owns_lock/mutex/release/swap 与 unique_lock 对应，但底层调用共享接口。
 
+**独立片段**。
+
 ```cpp
 std::shared_mutex mutex;
 std::shared_lock<std::shared_mutex> read(mutex, std::try_to_lock);
@@ -214,12 +238,16 @@ if (read.owns_lock()) {
 
 **基础操作**。`<mutex>` 的自由函数用于多锁协作，声明摘要：
 
+**声明摘要**。
+
 ```cpp
 template<class L1, class L2, class... L> void lock(L1&, L2&, L&...);
 template<class L1, class L2, class... L> int try_lock(L1&, L2&, L&...);
 ```
 
 `lock` 使用避免获取阶段死锁的算法取得全部锁；抛异常时释放本次已取得的锁。`try_lock` 逐个尝试，全部成功返回 -1，否则返回失败对象的零起始索引并释放此前取得的锁。Lockable 也可为以 defer_lock 构造的 unique_lock。
+
+**独立片段**。
 
 ```cpp
 std::mutex a, b;
@@ -234,6 +262,8 @@ std::lock(first, second);
 
 **基础操作**。`<condition_variable>` 的 condition_variable 是等待通知的协作对象，默认构造，不可复制/移动；它不保存业务谓词。常用形状：
 
+**声明摘要**。
+
 ```cpp
 void wait(std::unique_lock<std::mutex>& lock);
 template<class Predicate> void wait(std::unique_lock<std::mutex>& lock, Predicate pred);
@@ -242,6 +272,8 @@ void notify_all() noexcept;
 ```
 
 wait 要求 lock 已拥有对应 mutex；等待原子地释放锁并阻塞，唤醒后重新取得锁。谓词形式循环检查 pred，只在 true 时返回。以下两个函数共享一组对象，需 `<mutex>`、`<condition_variable>`；提供者先存值再通知，消费者在锁内读值。
+
+**执行路径示意**。
 
 ```cpp
 std::mutex mutex;
@@ -265,6 +297,8 @@ int receive() {
 
 `wait_for(lock, duration)` / `wait_until(lock, deadline)` 无谓词形式返回 `cv_status::timeout/no_timeout`，仍须检查业务状态；谓词形式增加 pred，返回最终谓词是否成立。需要总预算时使用 steady_clock 的绝对期限，避免每次醒来重置完整相对时长。
 
+**承接上文**。
+
 ```cpp
 auto deadline = std::chrono::steady_clock::now() + std::chrono::seconds(1);
 bool available = changed.wait_until(lock, deadline, [] { return ready; });
@@ -275,6 +309,8 @@ bool available = changed.wait_until(lock, deadline, [] { return ready; });
 ## std::condition_variable_any
 
 **基础操作**。`<condition_variable>` 的 condition_variable_any 支持具备 lock/unlock 的其他锁类型；等待时仍释放并重新取得传入锁，使用谓词、wait_for/until、notify_one/all。对象不可复制/移动。
+
+**执行路径示意**。
 
 ```cpp
 std::recursive_mutex mutex;
@@ -292,6 +328,8 @@ changed.wait(lock, [&] { return ready; });
 
 `acquire()` 等到计数可减一；`try_acquire()` 尝试，可能虚假失败；`try_acquire_for/until` 带时间预算；`release(update = 1)` 增加许可并可能唤醒等待者。初始量和增加后量不能超出允许范围。
 
+**独立片段**。
+
 ```cpp
 std::counting_semaphore<4> permits(2);
 permits.acquire();
@@ -305,6 +343,8 @@ permits.release();
 
 **基础操作**。`<semaphore>` 的 `binary_semaphore` 是 `counting_semaphore<1>` 的别名，构造指定初始 0 或 1，按二元授权使用。acquire 消耗许可，release 增加许可；try_acquire 和定时尝试形状同 counting_semaphore。最低最大值 1 不表示所有实现 max() 必定等于 1，二元协议仍按 0/1 维护。
 
+**独立片段**。
+
 ```cpp
 std::binary_semaphore signal(0);
 signal.release();
@@ -316,6 +356,8 @@ signal.acquire();
 ## std::latch（C++20）
 
 **基础操作**。`<latch>` 的 latch 是一次性倒计数协作对象，`explicit latch(ptrdiff_t expected)` 指定初始计数，不可复制/移动。`count_down(update = 1)` 减计数；`wait()` 阻塞至零；`try_wait()` 查询是否为零；`arrive_and_wait(update = 1)` 先减再等。
+
+**独立片段**。
 
 ```cpp
 std::latch finished(2);
@@ -330,6 +372,8 @@ finished.wait();
 
 **基础操作**。`<barrier>` 中 `template<class CompletionFunction = /* 实现提供 */> class barrier;` 是可重复的阶段屏障。构造指定参与计数和可选完成函数；不可复制/移动。每阶段达到零时执行完成步骤，随后进入新阶段。
 
+**执行路径示意**。
+
 ```cpp
 std::barrier<> phase(2);
 // 两个参与线程分别在各自路径执行：
@@ -341,6 +385,8 @@ phase.arrive_and_wait();
 ## std::once_flag 与 std::call_once
 
 **基础操作**。`<mutex>` 的 once_flag 默认构造为未完成，不可复制/移动；`call_once(flag, function, args...)` 对关联 flag 完成一次成功调用。成功后其他调用不再执行 function；若调用抛异常，该次不算完成，后续可重试。
+
+**独立片段**。
 
 ```cpp
 std::once_flag initialized;

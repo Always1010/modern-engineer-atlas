@@ -52,6 +52,8 @@ O(f(n)) 描述随规模增长的上界，必须同时说明计算哪一种操作
 
 **基础操作**。固定长度数组在 `<array>` 中拥有 `N` 个连续元素。公开声明摘要省略成员：
 
+**声明摘要**。
+
 ```cpp
 namespace std {
     template<class T, size_t N> struct array;
@@ -61,6 +63,8 @@ namespace std {
 `T` 是元素类型，`N` 是编译期长度，允许为零。它是聚合，不接受动态数量构造；默认局部 `array<int,3> a;` 不清零元素，`{}` 值初始化为零。
 
 ### array 的初始化、访问与遍历
+
+**独立片段**。
 
 ```cpp
 // 需要 <array>；局部摘录
@@ -75,6 +79,8 @@ int* first = values.data();                 // 连续元素入口
 `operator[](i)` 要求 `i < N`，`at(i)` 越界抛 `out_of_range`；`front/back` 要求非空。`begin/end` 提供随机访问迭代器。`N==0` 时不能取首尾或解引用 `data()`，不能依赖 `data()` 是空指针。
 
 ### array 的修改与失效
+
+**独立片段**。
 
 ```cpp
 // 需要 <array>；局部摘录
@@ -93,6 +99,8 @@ slot = 7;                                  // 修改 a[0]，没有转而引用 b
 
 **基础操作**。公开声明摘要省略成员和约束：
 
+**声明摘要**。
+
 ```cpp
 namespace std {
     template<class T, class Allocator = allocator<T>> class vector;
@@ -102,6 +110,8 @@ namespace std {
 `T` 是元素类型，`Allocator` 管理存储。类型能力按具体操作判断。
 
 ### vector 的构造与初始化
+
+**独立片段**。
 
 ```cpp
 // 需要 <vector>；局部摘录
@@ -114,6 +124,8 @@ std::vector<int> copy(values);              // 独立元素序列
 本例集中展示空构造、区间构造和拷贝构造；数量与初始化列表的区别见下方[数量构造与初始化列表](#数量构造与初始化列表)。移动构造通常转移存储，自定义分配器参与的形式另有约束。
 
 ### vector 的访问与遍历
+
+**独立片段**。
 
 ```cpp
 // 需要 <vector>；局部摘录
@@ -129,6 +141,8 @@ auto it = values.begin();                   // 指向 2
 ### vector 的插入、删除与替换
 
 常用形式为 `insert(pos,value)`、`insert(pos,count,value)`、`insert(pos,first,last)`、`insert(pos,{...})`，返回第一个新元素的迭代器。`emplace(pos,args...)` 原位构造一个元素并返回位置。位置可为 `end()`；区间输入应是有效的外部范围。
+
+**独立片段**。
 
 ```cpp
 // 需要 <vector>；局部摘录
@@ -161,6 +175,8 @@ values.clear();                             // 空，容量保留
 
 ### 数量构造与初始化列表
 
+**独立片段**。
+
 ```cpp
 // 需要 <vector>；局部摘录
 std::vector<int> zeros(3);  // 三个值初始化的 0
@@ -178,6 +194,8 @@ std::vector<int> b{3, 7};   // 两个元素：{3, 7}
 | `void resize(size_type n)` | 是 | 增大时补元素；缩小时销毁尾部元素，不缩 capacity | 让序列具有 n 个元素 |
 | `void resize(size_type n, const T& value)` | 是 | 增大时补 value 的副本 | 同上，指定新增值 |
 | `void shrink_to_fit()` | 否 | 请求缩容量，但实现可以不执行；可能重分配 | 确有需求时尝试释放多余存储 |
+
+**独立片段**。
 
 ```cpp
 // 需要 <vector>；局部摘录
@@ -236,6 +254,8 @@ array 的 N 属于类型，不能在尾部增加第 N+1 个元素；vector 的 s
 
 删除后使用返回的新位置，不对失效迭代器做递增。
 
+**独立片段**。
+
 ```cpp
 // 需要 <vector>；局部摘录
 std::vector<int> v{1, 2, 3, 4, 5};
@@ -249,6 +269,8 @@ for (auto it = v.begin(); it != v.end(); ) {
 ```
 
 这是迭代器使用正确的写法，但逐次删除可能反复搬移后缀，大量删除时最坏累计 O(n²)。批量过滤通常使用下面的 erase-remove 写法：
+
+**独立片段**。
 
 ```cpp
 v.erase(std::remove_if(v.begin(), v.end(),
@@ -264,6 +286,8 @@ remove_if 把保留值压到前缀，返回“逻辑新尾部”，**并不缩�
 **基础操作**。双端队列在 `<deque>` 中拥有动态序列。公开声明摘要为 `template<class T, class Allocator = allocator<T>> class deque;`，省略成员和约束。`T` 是元素类型，`Allocator` 管理存储。
 
 ### deque 的构造与操作
+
+**独立片段**。
 
 ```cpp
 // 需要 <deque>；局部摘录
@@ -292,6 +316,8 @@ for (int x : values) { (void)x; }
 | 删除尾部，含删除最后元素 | 只失效被删元素 | 被删元素的迭代器和旧 end 失效 |
 | 删除内部区间，不涉及首尾 | 全部失效 | 全部失效，包括旧 end |
 
+**独立片段**。
+
 ```cpp
 // 需要 <deque>；局部摘录
 std::deque<int> q{10, 20};
@@ -309,6 +335,8 @@ first = 11;               // 有效：引用保留，q 为 {11, 20, 30}
 **基础操作**。双向链表在 `<list>` 中提供节点序列。公开声明摘要为 `template<class T, class Allocator = allocator<T>> class list;`，省略成员与约束；没有下标或连续缓冲入口。
 
 ### list 的构造与常用成员
+
+**独立片段**。
 
 ```cpp
 // 需要 <list>、<iterator>；局部摘录
@@ -332,6 +360,8 @@ for (int& x : values) x += 1;               // {1,2,4,5}
 list 插入不使既有迭代器和引用失效；删除只使被删除元素的借用失效。已持有位置时，单元素插删是 O(1)；`std::next(begin, k)` 找位置仍为 O(k)。list 用成员 `sort()` 排序，不符合 `std::sort` 的随机访问要求。[list 插删](https://timsong-cpp.github.io/cppwp/n4659/list.modifiers)、[list 专用操作](https://timsong-cpp.github.io/cppwp/n4659/list.ops)、[sort 的要求](https://timsong-cpp.github.io/cppwp/n4659/alg.sort)。
 
 在常见双向链表中，已知位置插入修改的是附近链接，不需要搬移后缀的 T；但“按编号找位置，再插入”的总成本是 O(k)+O(1)，按值 find 后插入最坏为 O(n)。反复从 begin 定位每个编号会掩盖节点操作的优势。稳定地址、已保存迭代器和 splice 是选择 list 的依据；只因“插入 O(1)”改用 list，可能把原本的扫描和定位变得更贵。forward_list 同理，只是修改需要已知前驱。[N4659 list 修改](https://timsong-cpp.github.io/cppwp/n4659/list.modifiers)、[forward_list 修改](https://timsong-cpp.github.io/cppwp/n4659/forwardlist.modifiers)。
+
+**独立片段**。
 
 ```cpp
 // 需要 <list>；局部摘录
@@ -357,6 +387,8 @@ active.splice(active.end(), ready, item);
 
 ### forward_list 的构造与成员
 
+**独立片段**。
+
 ```cpp
 // 需要 <forward_list>；局部摘录
 std::forward_list<int> empty;
@@ -372,6 +404,8 @@ for (int& x : values) x += 1;               // {1,3,4}
 
 ### forward_list 的前驱与 splice_after
 `before_begin()` 是首元素前的不可解引用位置，用它可以统一处理头部。单点 `erase_after(prev)` 要求 prev 的后继是元素；返回被删元素之后的位置。范围形式 `erase_after(first, last)` 删除 **(first, last)**，两个端点都不删除，不是普通算法的 [first, last)。
+
+**独立片段**。
 
 ```cpp
 // 需要 <forward_list>；局部摘录
@@ -397,6 +431,8 @@ splice_after 的单节点形式转移源迭代器的后继，该后继必须可�
 ### 拥有者与所指对象
 
 如果外部要保存 T 的地址，但容器需要动态追加，可以考虑 `vector<unique_ptr<T>>`。vector 存的是拥有者；扩容会使这些拥有者自身的借用失效，却不会因移动拥有者而搬迁其所指 T。
+
+**独立片段**。
 
 ```cpp
 // 需要 <vector>、<memory>；局部摘录

@@ -8,6 +8,8 @@
 
 **基础操作**。谓词（predicate）把元素映射为可作布尔判断的结果；比较器（comparator）在两个值间定义先后关系。排序与有序操作要求严格弱序（strict weak ordering）：`comp(x,x)` 为假，严格关系传递，互不先于所形成的等价关系也传递。
 
+**独立片段**。
+
 ```cpp
 // 需要 <algorithm>、<vector>；局部摘录
 struct Item { int key; };
@@ -22,6 +24,8 @@ std::sort(values.begin(), values.end(),
 
 **基础操作**。`<algorithm>`，签名摘要：
 
+**声明摘要**。
+
 ```cpp
 namespace std {
     template<class I, class T> I find(I first, I last, const T& value);
@@ -32,6 +36,8 @@ namespace std {
 ```
 
 `find/find_if` 返回首个命中或 `last`，最多 n 次比较/谓词调用；`count/count_if` 返回匹配数，恰 n 次。输入迭代器足够，不要求排序。
+
+**独立片段**。
 
 ```cpp
 // 需要 <algorithm>、<vector>；局部摘录
@@ -44,6 +50,8 @@ if (it != values.end()) { /* 可读取 *it，值为 2 */ }
 ## std::all_of、std::any_of 与 std::none_of
 
 `<algorithm>`，常用签名形状为 `template<class I,class Pred> bool all_of(I first,I last,Pred pred);`，另两者参数相同。最多 n 次谓词调用，可提前停止；空区间的结果依次是 true、false、true。
+
+**独立片段**。
 
 ```cpp
 // 需要 <algorithm>、<vector>；局部摘录
@@ -58,6 +66,8 @@ bool has_large = std::any_of(values.begin(), values.end(),
 
 `<algorithm>`，`template<class I,class F> F for_each(I first,I last,F f);`。传统无策略形式按序调用函数，返回函数对象，恰 n 次调用；可修改元素，但不以结构修改破坏输入区间。
 
+**独立片段**。
+
 ```cpp
 // 需要 <algorithm>、<vector>；局部摘录
 std::vector<int> values{1, 2, 3};
@@ -68,6 +78,8 @@ std::for_each(values.begin(), values.end(), [](int& x) { x *= 2; });
 ## std::copy、std::copy_if 与填充
 
 `<algorithm>`，常用形式为 `template<class I,class O> O copy(I first,I last,O out);`、`template<class I,class O,class Pred> O copy_if(I first,I last,O out,Pred pred);`。返回输出终点；copy 复制 n 项，copy_if 保持匹配项的相对顺序。目标须足够且满足算法的重叠限制。
+
+**独立片段**。
 
 ```cpp
 // 需要 <algorithm>、<iterator>、<vector>；局部摘录
@@ -85,6 +97,8 @@ std::copy(source.begin(), source.end(), target.begin());
 
 `<algorithm>`，签名摘要：
 
+**声明摘要**。
+
 ```cpp
 namespace std {
     template<class I, class O, class F> O transform(I first, I last, O out, F op);
@@ -94,6 +108,8 @@ namespace std {
 ```
 
 一元形式 n 次调用，二元形式第二输入至少有 n 项；返回输出终点。可作相应就地映射，不改变容器长度，不能破坏输入区间或依赖未保证的调用次序。
+
+**独立片段**。
 
 ```cpp
 // 需要 <algorithm>、<vector>；局部摘录
@@ -105,6 +121,8 @@ std::transform(values.begin(), values.end(), values.begin(),
 ## std::remove、std::remove_if 与 std::unique
 
 签名摘要为 `template<class I,class Pred> I remove_if(I first,I last,Pred pred);`、`template<class I> I unique(I first,I last);`，头文件 `<algorithm>`。remove 用值比较，unique 也有二元等价谓词重载。
+
+**独立片段**。
 
 ```cpp
 // 需要 <algorithm>、<vector>；局部摘录
@@ -129,6 +147,8 @@ remove 未失效的迭代器可能已指向被改写的值；地址有效不代�
 
 `<algorithm>`，常用形式为 `template<class RandomIt,class Compare> void sort(RandomIt first,RandomIt last,Compare comp);`，stable_sort 形状对应。需随机访问迭代器和有效移动/赋值/交换操作；默认重载使用 `<`。
 
+**独立片段**。
+
 ```cpp
 // 需要 <algorithm>、<vector>；局部摘录
 std::vector<int> values{3, 1, 2};
@@ -142,6 +162,8 @@ sort 的比较次数 O(n log n)，不保留等价元素次序；stable_sort 保�
 
 `<algorithm>`，`template<class I> I min_element(I first,I last);`，max_element 与比较器重载对应；前向迭代器足够。空范围返回 last；非空 n−1 次比较，返回首次最小/最大位置，不重排。
 
+**独立片段**。
+
 ```cpp
 // 需要 <algorithm>、<vector>；局部摘录
 std::vector<int> values{4, 1, 7};
@@ -152,6 +174,8 @@ if (smallest != values.end()) { /* *smallest 为 1 */ }
 ## std::nth_element 与 std::partial_sort
 
 `<algorithm>`，签名摘要为 `template<class RandomIt> void nth_element(RandomIt first,RandomIt nth,RandomIt last);`、`template<class RandomIt> void partial_sort(RandomIt first,RandomIt middle,RandomIt last);`，均有比较器重载。
+
+**独立片段**。
 
 ```cpp
 // 需要 <algorithm>、<vector>；局部摘录
@@ -168,6 +192,8 @@ nth 可为 last，不能解引用该位置；无策略 nth_element 平均线性�
 
 `<algorithm>`，`template<class I,class Pred> I partition(I first,I last,Pred pred);`；partition 要求前向可写迭代器，stable_partition 要求双向。返回真假两组分界，恰 n 次谓词调用；后者保留组内次序，交换量受可用额外空间影响。
 
+**独立片段**。
+
 ```cpp
 // 需要 <algorithm>、<vector>；局部摘录
 std::vector<int> values{1, 2, 3, 4};
@@ -179,6 +205,8 @@ auto boundary = std::stable_partition(values.begin(), values.end(),
 ## std::lower_bound、std::upper_bound 与等价范围
 
 `<algorithm>`，`template<class I,class T> I lower_bound(I first,I last,const T& value);`、upper_bound 同形；equal_range 返回 `pair<I,I>`，binary_search 返回 bool，均有比较器重载。
+
+**独立片段**。
 
 ```cpp
 // 需要 <algorithm>、<vector>；局部摘录
@@ -194,6 +222,8 @@ bool found = std::binary_search(values.begin(), values.end(), 2); // true
 
 `<algorithm>`，两输入须按同一关系排序，输出空间足够且不与输入重叠。常用签名形状：
 
+**声明摘要**。
+
 ```cpp
 namespace std {
     template<class I1, class I2, class O>
@@ -202,6 +232,8 @@ namespace std {
 ```
 
 intersection、difference、symmetric_difference 同形，返回输出终点；`includes` 无输出参数，返回第一序列是否包含第二序列所需的重复计数。比较总量线性于两输入长度，允许重复值。
+
+**独立片段**。
 
 ```cpp
 // 需要 <algorithm>、<iterator>、<vector>；局部摘录
@@ -219,6 +251,8 @@ union 对重复值保留较大计数，intersection 保留较小计数，differe
 ## 堆算法
 
 `<algorithm>`，`template<class RandomIt> void make_heap(RandomIt first,RandomIt last);`，push_heap、pop_heap、sort_heap 参数同形并可带比较器；is_heap 返回 bool。常用操作短例：
+
+**独立片段**。
 
 ```cpp
 // 需要 <algorithm>、<vector>；局部摘录
@@ -245,6 +279,8 @@ find／find_if 不要求有序，因为它逐个检查候选，最坏要看完�
 ![同一数组的二分前提取决于查询值](../resources/R16-binary-partition.svg)
 
 图16-2：`{2,1,3,4,7,6}` 对 x=4 满足 lower_bound 的真前缀／假后缀，结果在 4；对 x=2 出现“假后再真”，不满足前提。图中无效一行只用来判断条件，不执行非法调用。
+
+**独立片段**。
 
 ```cpp
 // 需要 <vector>、<algorithm>；局部摘录
@@ -289,6 +325,8 @@ nth_element 的两侧满足跨分界次序，却不保证各自排序，等价�
 
 **基础操作**。`<numeric>`，常用签名摘要：
 
+**声明摘要**。
+
 ```cpp
 namespace std {
     template<class I, class T> T accumulate(I first, I last, T init);
@@ -299,6 +337,8 @@ namespace std {
 ```
 
 accumulate 按序累计到 init 的类型，可自定义二元 op；inner_product 将两序列配对相乘再累计，第二输入至少足够长，也可自定义两个操作；iota 给已有范围赋连续递增值。调用/赋值量均线性。
+
+**独立片段**。
 
 ```cpp
 // 需要 <numeric>、<vector>；局部摘录
@@ -315,6 +355,8 @@ long long squares = std::inner_product(values.begin(), values.end(),
 
 **C++17**。`<numeric>` 的 reduce 返回归约值，常用形状为 `template<class I,class T,class Op> T reduce(I first,I last,T init,Op op);`。transform_reduce 先映射或配对运算再归约；类型与操作须支持标准要求的各组合。
 
+**独立片段**。
+
 ```cpp
 // 需要 <numeric>、<vector>、<functional>；局部摘录
 std::vector<int> values{1, 2, 3};
@@ -328,6 +370,8 @@ long long total = std::transform_reduce(values.begin(), values.end(), 0LL,
 
 **C++17**。`<numeric>` 的 inclusive_scan 返回包含当前项的前缀结果；exclusive_scan 先输出 init，再累计当前项。常用形式省略重载：
 
+**声明摘要**。
+
 ```cpp
 namespace std {
     template<class I, class O> O inclusive_scan(I first, I last, O out);
@@ -335,6 +379,8 @@ namespace std {
         O exclusive_scan(I first, I last, O out, T init);
 }
 ```
+
+**独立片段**。
 
 ```cpp
 // 需要 <numeric>、<vector>；局部摘录

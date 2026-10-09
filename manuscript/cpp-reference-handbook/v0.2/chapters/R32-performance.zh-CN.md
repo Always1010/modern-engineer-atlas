@@ -32,6 +32,8 @@
 
 `std::chrono::steady_clock` 在 `<chrono>`，用于单调时间间隔。准备输入放在测量之外，结果在测量之后保留或消费。
 
+**承接上文**。
+
 ```cpp
 // 需要 <chrono>；work() 是被测工作，result 在计时后消费。
 const auto begin = std::chrono::steady_clock::now();

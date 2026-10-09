@@ -25,6 +25,8 @@
 
 **基础操作**。`+ - * /` 可用于算术类型；整数除法丢弃小数部分，向零截断。`%` 的两侧要求整数或适用的非作用域枚举类型。局部例子放在函数体内，无需头文件：
 
+**独立片段**。
+
 ```cpp
 int a = 7, b = 3;
 int sum = a + b;               // 10
@@ -41,6 +43,8 @@ double ratio = 7.0 / 3;        // 约 2.33333
 ## 比较与逻辑运算符
 
 **基础操作**。比较产生真假值；逻辑运算将操作数转换为布尔条件。数值零和空指针为假，其他适用数值和非空指针为真。以下是函数体内的局部例子：
+
+**独立片段**。
 
 ```cpp
 int age = 20;
@@ -60,6 +64,8 @@ bool absent = !p;             // false
 
 **基础操作**。按位与 `&` 保留两侧都为 1 的位，按位或 `|` 保留至少一侧为 1 的位，异或 `^` 保留两侧不同的位，按位取反 `~` 翻转各位。逻辑运算回答真假，位运算处理整数位。以下在函数体内演示设置、查询和清除一个标志：
 
+**独立片段**。
+
 ```cpp
 unsigned flags = 0b0010u;
 unsigned mask = 1u << 2;       // 0b0100
@@ -77,6 +83,8 @@ unsigned shifted = flags >> 1; // 0b0001
 
 **基础操作**。赋值 `lhs = rhs` 把右侧转换为左侧类型后写入可修改对象。复合赋值把运算和写回合在一起，例如 `n += 3`；相对于 `n = n + 3`，其左操作数只求值一次。前置 `++n/--n` 修改后返回对象本身，后置 `n++/n--` 返回修改前的值。
 
+**独立片段**。
+
 ```cpp
 int n = 4;
 n += 3;                       // n 为 7
@@ -91,6 +99,8 @@ a = b = 5;                    // a、b 均为 5
 ## 条件运算符与逗号运算符
 
 **基础操作**。条件运算符的形状是 `条件 ? 真分支 : 假分支`；先判断条件，只求值选中的一个分支。以下片段放在函数体内：
+
+**独立片段**。
 
 ```cpp
 int a = 3, b = 8;
@@ -125,6 +135,8 @@ int result = (++changes, changes * 10); // changes 为 2，result 为 20
 
 完整表达式之间通常按语句顺序执行：
 
+**独立片段**。
+
 ```cpp
 int i = 0;
 int first = i++;               // first 为 0，i 为 1
@@ -158,6 +170,8 @@ int total = first + second;    // 1
 
 下面用 `decltype` 展示类别怎样影响引用类型；需要 `<type_traits>`、`<utility>`，放在函数体内。额外括号让 `decltype((n))` 按表达式类别判断，区别于变量名的特殊规则 `decltype(n)`：
 
+**独立片段**。
+
 ```cpp
 int n = 7;
 int&& rr = 8;
@@ -179,6 +193,8 @@ static_assert(std::is_same_v<decltype((rr)), int&>); // 命名 rr 是 lvalue
 
 **基础操作**。隐式转换是上下文要求类型发生变化时自动执行的转换，例如初始化、赋值、传参、返回或运算。下面是函数体内的局部例子：
 
+**独立片段**。
+
 ```cpp
 int n = 7;
 double real = n;               // 整数转换为浮点数，值为 7.0
@@ -193,6 +209,8 @@ bool present = first;          // 非空指针转换为 true
 ## 整数提升与通常算术转换
 
 **机制解释**。整数提升（integral promotion）先将适用的小整数类型提升到 `int`，若 `int` 不能表示原类型全部值则提升到 `unsigned int`；字符类型有相应规则，`bool` 提升到 `int`。通常算术转换（usual arithmetic conversions）随后为许多二元运算选择共同类型。
+
+**独立片段**。
 
 ```cpp
 short small = 7;
@@ -209,6 +227,8 @@ long long wide = static_cast<long long>(small) * small; // 49
 ## 数值转换与窄化
 
 **基础操作**。浮点到整数会截断小数部分；转换后整数不可表示时行为未定义。转换到无符号整数按模数得到结果；C++17 转换到有符号整数，若值不可表示，结果由实现定义。普通赋值、初始化和 `static_cast` 不自动执行范围检查。[整数转换](https://timsong-cpp.github.io/cppwp/n4659/conv.integral)、[浮点与整数转换](https://timsong-cpp.github.io/cppwp/n4659/conv.fpint)。
+
+**独立片段**。
 
 ```cpp
 double price = 12.75;
@@ -237,6 +257,8 @@ C 风格 `(T)expression` 和函数式 `T(expression)` 也能进行显式转换�
 
 **基础操作**。常见用途是明确要求一次数值转换，例如在除法前把整数转换为浮点数；或把作用域枚举转换为整数。以下在函数体内使用：
 
+**独立片段**。
+
 ```cpp
 int completed = 3, total = 4;
 double fraction = static_cast<double>(completed) / total; // 0.75
@@ -252,6 +274,8 @@ static_cast<void>(code);        // 明确丢弃结果
 ## dynamic_cast
 
 **基础操作**。需要在多态类层次中检查对象实际类型时，使用 `dynamic_cast<Derived*>(base)`。多态类型是声明或继承了至少一个虚函数的类；本例用虚析构函数建立它。以下局部例子放在函数体内：
+
+**独立片段**。
 
 ```cpp
 struct Base { virtual ~Base() = default; };
@@ -270,6 +294,8 @@ Derived* missing = dynamic_cast<Derived*>(&other); // nullptr
 
 **进阶后查**。`const_cast<T*>(p)` 或相应引用形式用于调整 cv 限定，常见于历史接口适配。下面从指向只读接口的指针恢复一个原本可修改对象的访问，放在函数体内：
 
+**独立片段**。
+
 ```cpp
 int value = 7;                 // 原始对象可修改
 const int* view = &value;
@@ -286,6 +312,8 @@ const int* fixed_view = &fixed;
 
 **进阶后查**。`reinterpret_cast<T>(expression)` 用于标准允许的低层转换，例如把对象地址转换为字节访问指针。下面只查看已有对象的表示；需 `<cstddef>`，放在函数体内：
 
+**独立片段**。
+
 ```cpp
 unsigned value = 0x1234u;
 const unsigned char* bytes = reinterpret_cast<const unsigned char*>(&value);
@@ -300,6 +328,8 @@ for (std::size_t i = 0; i < sizeof value; ++i) {
 ## 组合应用：有符号加法检查
 
 **进阶后查**。以下摘录在加法之前判断 `int` 结果是否可表示；失败时保持输出参数原值。需要 `<limits>`。
+
+**独立片段**。
 
 <!-- source: examples/r04-expressions-conversions.cpp -->
 ```cpp

@@ -21,6 +21,8 @@ Windows 下产物通常为 `debug-demo.exe`，启动可用 `gdb debug-demo.exe`�
 
 以下是源码中的待检查函数，头文件和 main 在配套文件中：
 
+**承接上文**。
+
 <!-- source: examples/r31-debug-session.cpp -->
 ```cpp
 int sum_values(const std::array<int, 3>& values) {
