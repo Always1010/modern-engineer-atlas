@@ -72,9 +72,9 @@ let body='';
 if(!requested)body+='<article id="reading-guide">'+await render(fileModels.get(path.resolve(edition,'reading-guide.zh-CN.md')))+'</article>';
 for(const c of chapters)body+='<article id="'+c.id+'" class="chapter"><p class="edition-label">'+escape(c.part)+' · 第'+c.number+'章</p>'+await render(c)+'</article>';
 if(!requested)body+='<article id="appendices" class="chapter">'+await render(fileModels.get(path.resolve(edition,'appendices.zh-CN.md')))+'</article>';
-const html='<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+escape(catalog.title)+'</title><style>'+css+'</style></head><body><div class="layout"><nav aria-label="全书目录"><p>C++ 参考手册</p>'+sidebar+'</nav><main><section class="cover"><p class="edition-label">REFERENCE HANDBOOK · v0.1 · 对象条目版</p><h1>'+escape(catalog.title)+'</h1><p class="subtitle">语言 · 标准库 · 并发 · 系统 · 网络 · 工程</p><p>'+catalog.parts.length+' 篇 · '+chapters.length+' 章 · 基础操作 / 机制解释 / 进阶后查</p><p>C++17 核心，C++20/23 扩展分别标注<br>静态核对与制品检查范围见 BUILD-NOTES.md</p></section><section class="contents"><h1>目录</h1>'+toc+'</section>'+body+'</main></div></body></html>';
+const html='<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+escape(catalog.title)+'</title><style>'+css+'</style></head><body><div class="layout"><nav aria-label="全书目录"><p>C++ 参考手册</p>'+sidebar+'</nav><main><section class="cover"><p class="edition-label">REFERENCE HANDBOOK · v0.2 · 对象条目版</p><h1>'+escape(catalog.title)+'</h1><p class="subtitle">语言 · 标准库 · 并发 · 系统 · 网络 · 工程</p><p>'+catalog.parts.length+' 篇 · '+chapters.length+' 章 · 基础操作 / 机制解释 / 进阶后查</p><p>C++17 核心，C++20/23 扩展分别标注<br>静态核对与制品检查范围见 BUILD-NOTES.md</p></section><section class="contents"><h1>目录</h1>'+toc+'</section>'+body+'</main></div></body></html>';
 const output=path.join(edition,'output/pdf'),qa=path.join(edition,'qa/fullbook');await fs.mkdir(output,{recursive:true});await fs.mkdir(qa,{recursive:true});
-const basename=requested?(chapters.length===1&&chapters[0].id==='R13'?'R13-sequence-containers-review':'Handbook-template-samples'):'Cpp-Reference-Handbook-v0.1';
+const basename=requested?(chapters.length===1&&chapters[0].id==='R13'?'R13-sequence-containers-review':'Handbook-template-samples'):'Cpp-Reference-Handbook-v0.2';
 const htmlPath=path.join(output,basename+'.html'),pdfPath=path.join(output,basename+'.pdf');await fs.writeFile(htmlPath,html,'utf8');
 const browser=await chromium.launch({executablePath,headless:true});
 try{
@@ -95,7 +95,7 @@ try{
   duplicateIds:ids.filter((id,index)=>ids.indexOf(id)!==index)};});
  if(errors.length||layout.clipping.length||layout.brokenAnchors.length||layout.duplicateIds.length||layout.images.some(i=>!i.loaded))throw new Error(JSON.stringify({errors,layout}));
  await page.pdf({path:pdfPath,format:'A4',preferCSSPageSize:true,printBackground:true,displayHeaderFooter:true,outline:true,tagged:true,
-  headerTemplate:'<div style="font-family:Arial,sans-serif;font-size:8px;color:#60738a;margin:0 15mm;">C++ REFERENCE HANDBOOK · v0.1</div>',
+  headerTemplate:'<div style="font-family:Arial,sans-serif;font-size:8px;color:#60738a;margin:0 15mm;">C++ REFERENCE HANDBOOK · v0.2</div>',
   footerTemplate:'<div style="font-family:Arial,sans-serif;font-size:9px;color:#60738a;width:100%;text-align:right;margin:0 15mm;"><span class="pageNumber"></span> / <span class="totalPages"></span></div>'});
  await fs.writeFile(path.join(qa,basename+'-build.json'),JSON.stringify({chapters:chapters.map(c=>({id:c.id,number:c.number,source:c.source})),diagrams:usedResources.size,layout,files:manifest},null,2));
  console.log(JSON.stringify({htmlPath,pdfPath,chapters:chapters.length,diagrams:usedResources.size}));

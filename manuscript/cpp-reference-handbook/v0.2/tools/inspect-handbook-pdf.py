@@ -16,7 +16,7 @@ parser.add_argument('--pdf', type=Path)
 parser.add_argument('--sheets', action='store_true')
 parser.add_argument('--expected-chapters', help='Comma separated reader chapter numbers for a sample')
 args = parser.parse_args()
-pdf_path = args.pdf or edition / "output/pdf/Cpp-Reference-Handbook-v0.1.pdf"
+pdf_path = args.pdf or edition / "output/pdf/Cpp-Reference-Handbook-v0.2.pdf"
 qa = edition / ('qa/templates' if args.pdf else 'qa/fullbook')
 qa.mkdir(parents=True, exist_ok=True)
 reader = PdfReader(pdf_path)

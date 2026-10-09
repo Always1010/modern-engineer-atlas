@@ -1,11 +1,11 @@
 # C++ 与计算机基础图解参考手册
 
-v0.1对象条目版覆盖七个知识领域、35章。正文从分类、具体对象和正常写法进入，再展开机制与进阶规则；核心以C++17组织，C++20/23与平台接口分别标记。
+v0.2对象条目版覆盖七个知识领域、35章。正文从分类、具体对象和正常写法进入，再展开机制与进阶规则；核心以C++17组织，C++20/23与平台接口分别标记。
 
 ## 阅读入口
 
-- [完整阅读版PDF](output/pdf/Cpp-Reference-Handbook-v0.1.pdf)：A4、可检索文字、页码、书签与链接。
-- [完整阅读版HTML](output/pdf/Cpp-Reference-Handbook-v0.1.html)：篇章、章内对象导航与索引，SVG内嵌。
+- [完整阅读版PDF](output/pdf/Cpp-Reference-Handbook-v0.2.pdf)：A4、可检索文字、页码、书签与链接。
+- [完整阅读版HTML](output/pdf/Cpp-Reference-Handbook-v0.2.html)：篇章、章内对象导航与索引，SVG内嵌。
 - [正文目录](TOC.md)：按当前具体对象和规则查阅。
 - [使用指南](reading-guide.zh-CN.md)：首次学习路径、层级、版本与代码摘录说明。
 - [附录索引](appendices.zh-CN.md)：语言、标准库符号、任务、系统实体、头文件与工具。

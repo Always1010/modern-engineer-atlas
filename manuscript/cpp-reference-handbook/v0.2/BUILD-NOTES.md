@@ -35,7 +35,7 @@ node tools/sync-handbook-index.mjs
 node tools/check-handbook.mjs
 node tools/check-example-sources.mjs
 node tools/build-handbook.mjs $nodeModules $browserExe
-pdftoppm -r 90 -png output/pdf/Cpp-Reference-Handbook-v0.1.pdf qa/fullbook/page
+pdftoppm -r 90 -png output/pdf/Cpp-Reference-Handbook-v0.2.pdf qa/fullbook/page
 & $pythonExe tools/inspect-handbook-pdf.py --sheets
 ```
 
