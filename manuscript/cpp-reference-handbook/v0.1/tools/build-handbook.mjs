@@ -56,7 +56,10 @@ async function render(model){
  }
  html=html.replace(/<p>(<img[\s\S]*?)<\/p>\s*<p>(图(?:\s*\d+[-－]\d+|：|:)[\s\S]*?)<\/p>/g,'<figure>$1<figcaption>$2</figcaption></figure>')
   .replace(/<p>(<img[^>]+>)<\/p>/g,'<figure>$1</figure>')
-  .replace(/<table>/g,'<div class="table-wrap"><table>').replace(/<\/table>/g,'</table></div>')
+  .replace(/<table>([\s\S]*?)<\/table>/g,(_,contents)=>{
+   const rows=(contents.match(/<tr>/g)||[]).length-1;
+   return '<div class="table-wrap'+(rows<=6?' compact-table':'')+'"><table>'+contents+'</table></div>';
+  })
   .replace(/<pre>(<code[\s\S]*?<\/code>)<\/pre>/g,(_,code)=>'<pre'+(code.split('\n').length>28?' class="long-code"':'')+'>'+code+'</pre>');
  const entries=model.headings.filter(h=>h.level===2);
  if(model.number)html=html.replace(/<\/h1>/,'</h1><div class="chapter-toc" aria-label="本章条目">'+entries.map(h=>'<a href="#'+h.anchor+'">'+escape(h.title)+'</a>').join('')+'</div>');
@@ -69,7 +72,7 @@ let body='';
 if(!requested)body+='<article id="reading-guide">'+await render(fileModels.get(path.resolve(edition,'reading-guide.zh-CN.md')))+'</article>';
 for(const c of chapters)body+='<article id="'+c.id+'" class="chapter"><p class="edition-label">'+escape(c.part)+' · 第'+c.number+'章</p>'+await render(c)+'</article>';
 if(!requested)body+='<article id="appendices" class="chapter">'+await render(fileModels.get(path.resolve(edition,'appendices.zh-CN.md')))+'</article>';
-const html='<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+escape(catalog.title)+'</title><style>'+css+'</style></head><body><div class="layout"><nav aria-label="全书目录"><p>C++ 参考手册</p>'+sidebar+'</nav><main><section class="cover"><p class="edition-label">REFERENCE HANDBOOK · v0.1 · 对象条目版</p><h1>'+escape(catalog.title)+'</h1><p class="subtitle">语言 · 标准库 · 并发 · 系统 · 网络 · 工程</p><p>'+catalog.parts.length+' 篇 · '+chapters.length+' 章 · 基础操作 / 机制解释 / 进阶后查</p><p>C++17 核心，C++20/23 扩展分别标注<br>资料与运行核验范围见 BUILD-NOTES.md</p></section><section class="contents"><h1>目录</h1>'+toc+'</section>'+body+'</main></div></body></html>';
+const html='<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+escape(catalog.title)+'</title><style>'+css+'</style></head><body><div class="layout"><nav aria-label="全书目录"><p>C++ 参考手册</p>'+sidebar+'</nav><main><section class="cover"><p class="edition-label">REFERENCE HANDBOOK · v0.1 · 对象条目版</p><h1>'+escape(catalog.title)+'</h1><p class="subtitle">语言 · 标准库 · 并发 · 系统 · 网络 · 工程</p><p>'+catalog.parts.length+' 篇 · '+chapters.length+' 章 · 基础操作 / 机制解释 / 进阶后查</p><p>C++17 核心，C++20/23 扩展分别标注<br>静态核对与制品检查范围见 BUILD-NOTES.md</p></section><section class="contents"><h1>目录</h1>'+toc+'</section>'+body+'</main></div></body></html>';
 const output=path.join(edition,'output/pdf'),qa=path.join(edition,'qa/fullbook');await fs.mkdir(output,{recursive:true});await fs.mkdir(qa,{recursive:true});
 const basename=requested?(chapters.length===1&&chapters[0].id==='R13'?'R13-sequence-containers-review':'Handbook-template-samples'):'Cpp-Reference-Handbook-v0.1';
 const htmlPath=path.join(output,basename+'.html'),pdfPath=path.join(output,basename+'.pdf');await fs.writeFile(htmlPath,html,'utf8');
@@ -79,7 +82,7 @@ try{
  await page.goto(pathToFileURL(htmlPath).href,{waitUntil:'load'});await page.evaluate(()=>document.fonts.ready);
  // Bare stable source IDs remain useful in diagrams and concise cross-references.
  await page.evaluate((chapterNumbers)=>{const walker=document.createTreeWalker(document.querySelector('main'),NodeFilter.SHOW_TEXT),nodes=[];
-  while(walker.nextNode()){const n=walker.currentNode;if(!n.parentElement.closest('a,code,pre,h1,h2,h3,script,style')&&/\bR\d\d\b/.test(n.textContent))nodes.push(n);}
+  while(walker.nextNode()){const n=walker.currentNode;if(!n.parentElement.closest('a,code,pre,h1,h2,h3,script,style')&&/\bR\d\d\b|图\s*\d{1,2}[-－]\d+/.test(n.textContent))nodes.push(n);}
   for(const n of nodes){const f=document.createDocumentFragment();for(const t of n.textContent.split(/\b(R\d\d)\b/)){if(/^R\d\d$/.test(t)&&document.getElementById(t)){const a=document.createElement('a');a.href='#'+t;a.textContent='第'+chapterNumbers[t]+'章';f.append(a);}else f.append(document.createTextNode(t.replace(/图\s*(\d{1,2})([-－]\d+)/g,(match,num,suffix)=>{const reader=chapterNumbers['R'+num.padStart(2,'0')];return reader?'图'+reader+suffix:match;})));}n.replaceWith(f);}
   for(const a of document.querySelectorAll('main a')){const id=a.textContent.trim();if(/^R\d\d$/.test(id)&&chapterNumbers[id])a.textContent='第'+chapterNumbers[id]+'章';}
  },Object.fromEntries(allChapters.map(c=>[c.id,c.number])));

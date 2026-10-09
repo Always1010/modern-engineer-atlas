@@ -5,9 +5,13 @@ import {loadModel,headings,resolveFragment} from './document-model.mjs';
 const edition=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const {catalog,chapters}=await loadModel(edition);
 const selection=process.argv.find(a=>a.startsWith('--chapters='))?.slice(11).split(',');
+if(selection?.some(id=>!chapters.some(c=>c.id===id)))throw new Error('Unknown selected chapter');
 const files=new Map(chapters.map(c=>[path.resolve(edition,c.source),c]));
 for(const [name,id] of [['reading-guide.zh-CN.md','reading-guide'],['appendices.zh-CN.md','appendices'],['TOC.md','toc']]){
  const text=await fs.readFile(path.join(edition,name),'utf8');files.set(path.resolve(edition,name),{id,source:name,text,headings:headings(text,id)});
+}
+for(const name of ['README.md','BUILD-NOTES.md','SAMPLE-NOTES.md','REVIEW-REPORT.zh-CN.md','EDITORIAL-SPEC.md']){
+ const text=await fs.readFile(path.join(edition,name),'utf8');files.set(path.resolve(edition,name),{id:name,source:name,text,headings:headings(text,name)});
 }
 let localLinks=0,tables=0;
 for(const [file,model] of files){
@@ -15,9 +19,12 @@ for(const [file,model] of files){
  const hs=model.headings;
  if(hs.filter(h=>h.level===1).length!==1)throw new Error('Expected one H1: '+model.source);
  if(!selection&&model.number&&JSON.stringify(model.anchors)!==JSON.stringify(hs.filter(h=>h.level>1).map(({level,title,anchor})=>({level,title,anchor}))))throw new Error('Catalog headings differ: '+model.source);
- for(const match of model.text.matchAll(/!?\[[^\]]*\]\((<[^>]+>|[^)\s]+)\)/g)){
+ const prose=model.text.replace(/```[\s\S]*?```/g,'').replace(/`[^`\n]*`/g,'');
+ for(const match of prose.matchAll(/!?\[[^\]]*\]\((<[^>]+>|[^)\s]+)\)/g)){
   const link=match[1].replace(/^<|>$/g,'');if(/^(https?:|mailto:)/.test(link))continue;
   const [relative,fragment]=link.split('#'),target=relative?path.resolve(path.dirname(file),decodeURIComponent(relative)):file;
+  // Generated reading artifacts are optional in a fresh source checkout.
+  if(target.startsWith(path.join(edition,'output')+path.sep)&&!process.argv.includes('--artifacts'))continue;
   await fs.access(target);if(files.has(target))resolveFragment(files.get(target),fragment);localLinks++;
  }
  let fenced=false,columns=0;
