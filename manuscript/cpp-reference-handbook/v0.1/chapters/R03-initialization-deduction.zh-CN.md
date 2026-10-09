@@ -1,81 +1,197 @@
-# 第3章 初始化与类型推导
+# 初始化与类型推导
 
-**版本**：核心为 C++17；consteval、constinit 为 C++20，只作为版本化条目。**先修**：R02。首次阅读初始化与 auto；返回引用、静态对象和常量接口的设计再查第3至5节。初始化建立一个新对象的初始状态，赋值修改一个已经存在的对象；名称相似的语法未必选择相同构造函数。
+初始化（initialization）建立新对象的初始状态；赋值修改已有对象。初始化类别描述所采用的语法或语义过程，类别会相互关联，例如直接列表初始化可执行聚合初始化。
 
-## 1 初始化形式不能机械替换
+**版本**：核心为 C++17，指定成员初始化、`consteval` 和 `constinit` 单独标 C++20。**先修**：[类型与对象](R02-types-objects.zh-CN.md)。先查初始化类别和常用写法，再查类型推导、常量求值与静态初始化。
 
-| 写法 | 类别与常见效果 | 必须核对 |
+## 初始化类别
+
+**基础操作**。下表以类别为入口，不把“结果相同”当作“类别相同”。`T` 表示目标类型，`arg/args` 表示适用初值。
+
+| 初始化类别 | 常见语法 | 主要含义 |
 | --- | --- | --- |
-| `int n;` | 自动局部标量默认初始化，不进行初始化 | 读取未确定值在本基线通常是未定义行为 |
-| `int n{};` / `int n = 0;` | 列表初始化／拷贝初始化，值为零 | 类型不同会改变构造与转换选择 |
-| `T x(arg);` | 直接初始化 | 允许考虑 explicit 构造；可能遭遇函数声明歧义 |
-| `T x = arg;` | 拷贝初始化 | 不等于必然产生一次额外复制 |
-| `T x{args};` | 直接列表初始化 | 优先涉及 initializer_list 重载，并拒绝规定的窄化 |
-| `T x = {args};` | 拷贝列表初始化 | 最终选中 explicit 构造时不合法 |
-| `T x{};` | 空列表，按类型走聚合或值初始化等规则 | 用户提供默认构造不保证标量成员都归零 |
+| 默认初始化 | `T object;` | 类通常调用默认构造；自动局部标量不被初始化 |
+| 值初始化 | `T()`；适用的 `T{}` | 标量得到零值；类按构造及预先零初始化规则处理 |
+| 直接初始化 | `T object(arg);` | 直接以实参构造，可考虑 explicit 构造 |
+| 拷贝初始化 | `T object = arg;` | 按拷贝初始化规则选择转换，不代表必有额外拷贝 |
+| 直接列表初始化 | `T object{args};` | 使用花括号，拒绝规定窄化 |
+| 拷贝列表初始化 | `T object = {args};` | 花括号选择后若选中 explicit 构造则非法 |
+| 聚合初始化 | 适用聚合类型的 `{args}` | 按顺序初始化元素及成员 |
+| 零初始化 | 静态初始化等语义过程的一部分 | 标量得到相应零值，子对象按规则递归处理 |
 
-静态存储期标量即使没有显式初值，也先经历零初始化，不能把这条规则移用于自动局部变量。`T x();` 声明函数而不是默认构造变量，可改为 `T x{};`。[初始化](https://timsong-cpp.github.io/cppwp/n4659/dcl.init)、[列表初始化](https://timsong-cpp.github.io/cppwp/n4659/dcl.init.list)。
+列表、聚合、值初始化不是互斥的三种标点符号：空列表初始化标量常执行值初始化，列表初始化聚合按聚合规则处理。`int n{};` 是直接列表初始化，`int n = 0;` 是拷贝初始化，二者此处都得到零。[C++17 初始化](https://timsong-cpp.github.io/cppwp/n4659/dcl.init)、[列表初始化](https://timsong-cpp.github.io/cppwp/n4659/dcl.init.list)。
 
-列表初始化的窄化检查很实用，例如 `int n{2.5};` 必须被诊断；整数到较窄整数在常量表达式且实际值可表示等条件下可获例外。但花括号也会改变重载选择，vector 的 `(3,7)` 是三个 7，`{3,7}` 是两个元素，不是统一“更安全”的替换。
+## 默认初始化与值初始化
 
-initializer_list 的底层元素是 const，接收它的容器通常从这些元素拷贝；所以用花括号直接列出多个 unique_ptr 并不能靠 move 绕过不可拷贝限制。需要移动专有资源时，逐个 emplace 或使用合适的可移动区间。初始化列表本身只是对一个临时数组的轻量描述，复制这个描述不复制元素，也不会无条件保活原数组，不能把局部初始化列表视图长期保存。
-
-## 2 聚合初始化与成员默认值
-
-C++17 的聚合条件涉及构造函数、访问控制、基类和虚函数；C++20 又调整构造函数相关条件，升级语言版本可能使原本的聚合代码不再成立。对简单 `struct Point { int x; int y=5; };`，`Point p{2};` 将 x 设为 2、y 使用成员默认初始化器。省略成员若无默认初始化器，按相应规则从空列表初始化，不能概括成任意类都自动清零。[C++17 聚合](https://timsong-cpp.github.io/cppwp/n4659/dcl.init.aggr)、[C++20 聚合](https://timsong-cpp.github.io/cppwp/n4861/dcl.init.aggr)。
-
-成员初始化器适合提供一致缺省值；类构造函数仍应建立不变量，不能让调用者记住“先调用 init 才能用”。C++20 指定成员初始化使用 `.x=...`，顺序必须符合声明顺序，不能直接照搬 C 的任意顺序和混合写法。
-
-## 3 auto、decltype 与括号
-
-auto 使用类似模板参数推导的规则。按值推导通常移除顶层 const 和引用；`auto&` 保留绑定对象的 const，`auto&&` 可根据初值推导为左值或右值引用。指向 const 的指针中的底层 const 不会因此消失。需要借用时明确写引用，否则 auto 可能复制一个代价很大的容器。[auto 推导](https://timsong-cpp.github.io/cppwp/n4659/dcl.spec.auto)。
-
-C++17 中 auto 的花括号也有自己的规则：`auto a{1};` 得到 int，`auto b={1};` 得到 `initializer_list<int>`；直接列表形式不能用多个元素任意推导一个容器。若几个元素类型不一致，复制列表推导可能失败。写出容器类型可以让意图明确，尤其是公开接口和持久存储。
-
-![从初值到推导类型](../resources/R03-deduction-rules.svg)
-
-图3-1：图中 source 是 const int 左值。类型推导是语言保证，不意味着编译器一定保留某个物理副本；优化不能改变可观察行为。
-
-`decltype(name)` 对未加括号的名字取其声明类型；其他表达式依据值类别得到 T、T& 或 T&&。因此 `decltype(source)` 是 const int，`decltype((source))` 是 const int&。decltype(auto) 使用这套规则，不使用按值 auto 的规则。[decltype](https://timsong-cpp.github.io/cppwp/n4659/dcl.type.simple)。
-
-危险边界出现在返回语句：decltype(auto) 返回 `(local)` 会推导成引用，函数退出后悬垂；返回 `local` 可能推导为值。不要靠删括号掩盖接口不清晰，应先确定所有权和返回类型，参考 R05。
-
-函数返回 auto 需要从返回表达式推导，多个可达返回语句必须按规则得到相同类型，不能假定编译器再找一个共同转换类型。调用者也需要在使用推导返回类型前看到相应定义。对跨模块 API，显式返回类型常更便于保持兼容和理解所有权；对小型局部泛型辅助函数，推导可减少重复声明。
-
-## 4 const 与编译期设施
-
-const 禁止通过该对象修改其值，但初始化可以发生在运行期，且对指针的 const 需区分所指对象与指针本身。constexpr 变量要求常量初始化并成为 const；constexpr 函数表示满足条件的调用可参与常量表达式，不意味着每次调用都在编译期执行。[constexpr](https://timsong-cpp.github.io/cppwp/n4659/dcl.constexpr)。
-
-C++20 consteval 声明立即函数，规定场合的调用必须产生常量表达式；C++20 constinit 要求具有静态或线程存储期的变量满足静态初始化，既不把变量变成 const，也不保证它可用作常量表达式。constinit 与 constexpr 不能在同一声明中组合使用。[C++20 声明说明符](https://timsong-cpp.github.io/cppwp/n4861/dcl.spec)、[C++20 constexpr 与立即函数](https://timsong-cpp.github.io/cppwp/n4861/dcl.constexpr)。
-
-## 5 工作例子与初始化顺序
-
-代码与 `examples/r03-initialization-deduction.cpp` 一致，预期输出 `zero=0 repeated=3 listed=2`，失败非零。使用 R01 的 C++17 命令定向编译。
+**基础操作**。以下为函数体内片段，刻意保留未初始化声明以说明语义，不读取它：
 
 ```cpp
-#include <iostream>
-#include <type_traits>
-#include <vector>
+int uninitialized;            // 自动局部标量没有确定初值，不读取
+int zero{};                   // 0
+int another = int();          // 0
+struct Point { int x; int y; };
+Point point{};                // 聚合的两个成员均为 0
+```
 
-int main() {
-    int zero{};
-    const int source = 4;
-    auto copy = source;
-    auto& alias = source;
-    decltype(auto) borrowed = (source);
-    std::vector<int> repeated(3, 7);
-    std::vector<int> listed{3, 7};
-    static_assert(std::is_same_v<decltype(copy), int>);
-    static_assert(std::is_same_v<decltype(alias), const int&>);
-    static_assert(std::is_same_v<decltype(borrowed), const int&>);
-    if (zero != 0 || repeated.size() != 3 ||
-        repeated[2] != 7 || listed.size() != 2 || listed[0] != 3) {
-        return 1;
-    }
-    std::cout << "zero=0 repeated=3 listed=2\n";
+默认初始化类通常调用可用默认构造函数，默认初始化数组则逐元素执行。值初始化标量得到零；类值初始化若选中的默认构造不是用户提供，会按规则先零初始化再默认初始化。用户提供默认构造不保证所有标量成员归零：
+
+```cpp
+struct Record {
+    int value;
+    Record() {}               // 用户提供构造，不初始化 value
+};
+Record record{};              // 不读取 record.value
+```
+
+静态存储期标量没有显式初值也先经历零初始化，不能把这项保证移用于普通自动局部变量。`T object();` 被解析成函数声明，不是一个值初始化变量；可按意图使用 `T object{};`。
+
+## 直接初始化与拷贝初始化
+
+**基础操作**。下面用 `explicit` 构造函数显示差异；类定义放在命名空间作用域，变量声明放在函数体内：
+
+```cpp
+struct Count {
+    int value;
+    explicit Count(int n) : value(n) {}
+};
+// 以下是使用片段
+Count direct(3);              // 合法，value 为 3
+Count listed{3};              // 合法，直接列表初始化
+// Count implicit = 3;        // 非法，不采用该 explicit 构造
+```
+
+普通 `int copied = 3;` 是拷贝初始化，但此处没有“另一个 int 对象再复制一次”的要求。C++17 的同类型类 prvalue 可直接构造结果对象，详见[拷贝消除](R08-copy-move.zh-CN.md)。初始化阶段与构造体中的赋值不同，成员初始化见[类](R07-classes-lifetime.zh-CN.md)。
+
+## 列表初始化与窄化
+
+**基础操作**。花括号限制可能丢失信息的转换，称为窄化（narrowing）。局部片段：
+
+```cpp
+int exact{12};                // 12
+unsigned char small{42};      // 常量可表示，合法
+// int fractional{2.5};       // 浮点到整数，必须诊断
+int source = 42;
+// unsigned char narrowed{source}; // 非常量，不适用常量可表示豁免
+```
+
+C++17 的主要窄化情况为浮点到整数；较高精度浮点到较低精度浮点（可表示的适用常量表达式有例外）；整数/非作用域枚举到浮点（精确可表示常量有例外）；不能表示源全部值的整数类型转换（实际可表示常量有例外）。具体结果范围仍由类型决定。
+
+类的列表初始化通常优先考虑 `std::initializer_list` 构造重载，再考虑其他构造；空列表且有适用默认构造等存在专门路径。拷贝列表初始化也会参与选择 `explicit`，但若最终选中它则非法，不能靠换成 `=` 只改变代码外观。
+
+## initializer_list 与构造选择
+
+**基础操作**。`std::initializer_list<T>`（`<initializer_list>`）提供对一个底层 `const T` 数组的轻量访问。容器中圆括号与花括号可以选择完全不同的构造；以下需 `<vector>`，放在函数体内：
+
+```cpp
+std::vector<int> repeated(3, 7); // 数量和值：三个 7
+std::vector<int> listed{3, 7};   // 初始列表：两个元素 3、7
+```
+
+列表元素是 `const`，用列表构造容器通常需要从这些元素复制；列出多个 `unique_ptr` 不能通过 `std::move` 绕过不可拷贝限制。逐个 `emplace_back` 等移动方式见[顺序容器](R13-sequence-containers.zh-CN.md)。复制 `initializer_list` 描述不复制底层元素，也不会无条件延长原数组寿命；不能长期保存一个由局部临时列表产生的视图。[初始化列表规则](https://timsong-cpp.github.io/cppwp/n4659/dcl.init.list)。
+
+## 聚合初始化与成员默认值
+
+**基础操作**。聚合（aggregate）包括数组和满足规定条件的类。下面的 `Point` 是 C++17 聚合；成员初值按声明顺序对应：
+
+```cpp
+struct Point { int x; int y = 5; int z; };
+Point point{2};               // x 为 2，y 使用默认值 5，z 为 0
+Point other{1, 3, 7};         // 分别为 1、3、7
+```
+
+省略成员先采用默认成员初始化器；没有默认成员初始化器则按规定从空列表初始化，引用成员等仍可能导致非法程序。C++17 聚合不能具有用户提供、继承或 `explicit` 构造函数，不能有私有/受保护非静态数据成员、虚函数、虚基类或私有/受保护基类；它可以具有适用的基类。C++20 将构造相关条件改为不具有用户声明或继承构造，版本升级可能改变同一类是否为聚合。
+
+**C++20 基础操作**。指定成员初始化适用于聚合，指定顺序须按声明顺序，不能直接照搬 C 的任意顺序或混合写法：
+
+```cpp
+struct Point { int x; int y; };
+Point point{.x = 2, .y = 5};  // C++20
+```
+
+成员默认值提供统一缺省状态；具有跨字段不变量的类应由构造函数建立可用状态，而非依赖调用者事后调用 `init`。[C++17 聚合](https://timsong-cpp.github.io/cppwp/n4659/dcl.init.aggr)、[C++20 聚合](https://timsong-cpp.github.io/cppwp/n4861/dcl.init.aggr)。
+
+## auto
+
+**基础操作**。`auto` 根据初值推导类型，常见形状是 `auto name = expression`、`auto& name = expression`、`auto&& name = expression`。需要初值，不能仅声明 `auto object;`。
+
+```cpp
+const int source = 4;
+auto copy = source;           // int，按值副本
+const auto constant = source; // const int
+auto& alias = source;         // const int&
+auto&& reference = source;    // const int&，初值是左值
+const int* pointer = &source;
+auto pointer_copy = pointer; // const int*，底层 const 保留
+```
+
+按值推导通常移除引用和顶层 `const`，数组/函数也可能转换为指针；引用推导保留相关 const 和数组身份。`auto&&` 在这里按转发引用规则推导，详见[移动与转发](R08-copy-move.zh-CN.md)。需要借用时写出引用，避免不必要地复制容器。
+
+![不同声明形状的推导结果](../resources/R03-deduction-rules.svg)
+
+图：以 `const int` 左值为初值，推导的复制/借用关系不同；图不规定优化后是否实际保存副本。
+
+C++17 `auto a{1};` 推导为 `int`；`auto b = {1};` 推导为 `std::initializer_list<int>`，需要相应头文件。直接列表推导要求单个元素；拷贝列表各元素需能推导同一种元素类型，不能凭列表自动创造某种容器。[auto 推导](https://timsong-cpp.github.io/cppwp/n4659/dcl.spec.auto)。
+
+## decltype 与 decltype(auto)
+
+**基础操作**。`decltype(expression)` 查询类型，不求值表达式。对未加括号的名字或成员访问，取得实体的声明类型；其他表达式按[值类别](R04-expressions-conversions.zh-CN.md#值类别)得到 `T`、`T&` 或 `T&&`。
+
+```cpp
+const int source = 4;
+decltype(source) copy = 7;     // const int
+decltype((source)) alias = source; // const int&
+decltype(source + 1) value = 5; // int，prvalue
+decltype(auto) borrowed = (source); // const int&
+```
+
+括号改变是否适用名字的特殊规则；`decltype(auto)` 使用这套规则保留类型属性，不使用普通按值 `auto` 的规则。函数返回 `decltype(auto)` 时，`return (local);` 可推导为引用，函数退出后悬垂；`return local;` 可推导为值。先确定返回所有权，避免用括号偶然决定接口。[decltype](https://timsong-cpp.github.io/cppwp/n4659/dcl.type.simple)。
+
+## 推导返回类型
+
+**基础操作**。函数可以从返回表达式推导返回类型：
+
+```cpp
+auto twice(int value) { return value * 2; } // 返回 int
+```
+
+多个未被丢弃的返回语句必须按规则得到相同类型，编译器不会额外寻找一个共同转换类型；使用这种返回类型前通常要看到相应定义。跨模块接口的显式返回类型更便于说明所有权和兼容性，泛型辅助函数可按需要推导。返回引用与借用条件见[指针与引用](R05-pointers-references.zh-CN.md)。
+
+## const 与 constexpr
+
+**基础操作**。`const` 限制通过该对象修改值，初始化可以在运行期；对指针需区分指针自身与所指对象的 const。`constexpr` 变量要求常量初始化并具有 const 属性，`constexpr` 函数允许适用调用参与常量表达式。
+
+```cpp
+constexpr int square(int n) { return n * n; }
+constexpr int known = square(3); // 9，常量表达式
+// 假设 input 是已经初始化的 int 变量
+// int runtime = square(input); // 同一函数也能接受运行期输入
+```
+
+`constexpr` 函数不保证每次调用都在编译期执行；结果仍须满足常量表达式规则，包括不进行禁止的操作。`const` 也不自动使任意对象可用于常量表达式。[C++17 constexpr](https://timsong-cpp.github.io/cppwp/n4659/dcl.constexpr)。
+
+## consteval 与 constinit
+
+**基础操作 · C++20**。`consteval` 声明立即函数（immediate function），适用的立即调用须形成常量表达式；`constinit` 要求静态或线程存储期变量满足静态初始化，不把变量变为 const。
+
+```cpp
+consteval int twice(int value) { return value * 2; }
+constexpr int known = twice(21);       // 42
+constinit int global_count = 0;        // 命名空间作用域，可在运行期修改
+```
+
+`constinit` 不保证变量可用作常量表达式，且不能与 `constexpr` 在同一声明中组合。上例的立即函数输入有界；概念或常量求值不能替代任意运行时数据的验证。[C++20 常量声明](https://timsong-cpp.github.io/cppwp/n4861/dcl.constexpr)、[constinit](https://timsong-cpp.github.io/cppwp/n4861/dcl.constinit)。
+
+## 静态初始化与局部 static
+
+**机制解释**。静态存储期对象先进行静态初始化（常量初始化或零初始化），必要时再动态初始化。跨翻译单元动态初始化的排序具有复杂条件，不能把源文件排列当作依赖机制。
+
+```cpp
+int& counter() {
+    static int value = 0;
+    return value;
 }
 ```
 
-静态对象先经历静态初始化，必要时再动态初始化；跨翻译单元的动态初始化顺序存在复杂条件，不能把源文件排序当依赖机制。局部 static 在首次控制经过声明时初始化，C++11 起并发初始化有同步保证；初始化抛异常后下次经过会重试，递归重入正在初始化的声明仍是危险边界。[静态初始化](https://timsong-cpp.github.io/cppwp/n4659/basic.start.static)、[动态初始化](https://timsong-cpp.github.io/cppwp/n4659/basic.start.dynamic)、[局部 static](https://timsong-cpp.github.io/cppwp/n4659/stmt.dcl)。
+函数内静态对象在首次控制经过声明时按规则初始化；C++11 起并发首次初始化有同步保证，之后对对象的业务访问仍需相应同步。初始化抛异常时下次经过会重试；递归重入正在初始化的声明具有未定义行为。依赖应由构造参数或明确入口表达，并考虑退出时的销毁顺序；类成员顺序由[构造与析构](R07-classes-lifetime.zh-CN.md)维护。
 
-优先用明确依赖的构造参数或函数内静态入口管理顺序，并同时考虑程序退出时的销毁顺序。成员初始化的先后由声明顺序决定，见 R07；常量求值与模板条件见 R10。
+参考资料：[静态初始化](https://timsong-cpp.github.io/cppwp/n4659/basic.start.static)、[动态初始化](https://timsong-cpp.github.io/cppwp/n4659/basic.start.dynamic)、[局部静态声明](https://timsong-cpp.github.io/cppwp/n4659/stmt.dcl)。完整[初始化与推导组合程序](../examples/r03-initialization-deduction.cpp)保留 vector 构造差异与类型断言。
