@@ -196,7 +196,7 @@ bool first = source.request_stop();
 bool requested = token.stop_requested();
 ```
 
-`request_stop()` 第一次使关联状态停止返回 true，后续返回 false；`stop_possible()` 查询是否有可请求停止的关联状态。callback 构造时若已经停止，可立即执行回调；否则在发请求的线程同步执行。回调不能假定运行于工作线程，也不能抛异常；它的析构与正在执行的回调存在同步责任。[停止状态](https://timsong-cpp.github.io/cppwp/n4861/thread.stoptoken)
+`request_stop()` 第一次使关联状态停止返回 true，后续返回 false；source 的 `stop_possible()` 判断是否拥有停止状态；token 的同名查询在状态已停止或仍存在可发请求的 source 时为 true。callback 构造时若已经停止，可立即执行回调；否则在发请求的线程同步执行。回调不能假定运行于工作线程，也不能抛异常；它的析构与正在执行的回调存在同步责任。[停止状态](https://timsong-cpp.github.io/cppwp/n4861/thread.stoptoken)
 
 ![协作停止与资源销毁的时间关系](../resources/R20-task-lifetime.svg)
 
