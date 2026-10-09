@@ -365,6 +365,7 @@
 - [数据竞争与 happens-before](chapters/R22-atomics-memory-order.zh-CN.md#数据竞争与-happens-before)
 - [内存序](chapters/R22-atomics-memory-order.zh-CN.md#内存序)
 - [release/acquire 发布](chapters/R22-atomics-memory-order.zh-CN.md#releaseacquire-发布)
+- [原子共享指针](chapters/R22-atomics-memory-order.zh-CN.md#原子共享指针)
 - [回收、ABA 与进展保证](chapters/R22-atomics-memory-order.zh-CN.md#回收aba-与进展保证)
 ### 第26章 异步执行、事件循环与任务调度
 
