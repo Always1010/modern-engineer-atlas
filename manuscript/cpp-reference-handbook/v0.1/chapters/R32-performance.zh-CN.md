@@ -1,90 +1,93 @@
-# 第32章 性能与资源排障
+# 性能与资源调查
 
-先确定损失发生在计算、等待还是资源积压，再挑工具。一次微基准只能回答它设定的负载问题，不能自动代表线上吞吐、尾延迟或内存峰值。
+性能调查先确定要测量的工作和指标，再收集计算、等待及资源积压的证据。基准比较实现，剖析定位消耗；两者回答不同问题。
 
-**基线**：测量示例 C++17，平台工具分别标明。**先修**：容器与算法、CPU缓存、并发、I/O和网络。优化结论需要数据，不给容器或语言设施做无条件性能排名。
+**范围**：标准 C++17 的计时写法，平台工具单独标范围。**先修**：算法、时间库、CPU/缓存、线程和 I/O。基础阅读：指标、计时和对照；平台剖析与资源故障属于后查。
 
-## 1 指标与观察口径
+## 吞吐量、延迟与分位数
 
-| 指标 | 说明 | 必须附带的条件 |
-| --- | --- | --- |
-| 吞吐量 | 单位时间完成多少工作 | 请求类型、并发度、成功标准 |
-| 延迟及 p95/p99 | 单次工作耗时及分布尾部 | 采样范围、时间窗口、失败与超时是否计入 |
-| CPU 使用 | 已消耗的处理器时间 | 单核／整机口径、进程／线程、采样间隔 |
-| RSS／工作集 | 当前驻留的部分内存状态 | 平台定义、共享页口径，不等于活对象总量 |
-| 队列长度与等待时间 | 工作积压与服务速度 | 队列上限、取消与拒绝策略 |
+吞吐量是单位时间完成的工作数，例如成功请求/秒；延迟是一次工作的耗时。计入口径要说明请求类型、并发、成功、超时和失败。
 
-p99 不是最大值，小样本也不适合强行给出稳定尾部分位数。CPU不高但延迟高，可能在等待锁、I/O或调度；CPU高也可能是无效轮询，不代表有效工作多。
+分位数描述排序后的样本位置。采用最近秩法时，n 个样本的 p99 取升序第 `ceil(0.99*n)` 个，编号从 1 开始；其他统计软件可能采用插值法，报告要注明方法。p99 不是通用的最大值，小样本尾部估计通常不稳定。
 
-![性能问题的计算等待与积压分流](../resources/R32-performance-triage.svg)
-
-图32-1：分流决定下一步收集什么证据。图是调查路径，不承诺某个症状只有一个原因，也不是靠一张火焰图就能证明因果。
-
-## 2 profiler 与 benchmark 分别回答什么
-
-| 方法 | 擅长回答 | 不能独立证明 |
-| --- | --- | --- |
-| CPU 栈采样 | CPU 时间常落在哪些调用路径 | 等待时间的全部原因、每次操作精确成本 |
-| 硬件计数器 | 指令、分支、缓存等事件的统计 | 单个指标升高就是根因 |
-| 事件／等待分析 | I/O、调度、锁等待的时间关系 | 没有事件就是没有等待 |
-| 微基准 | 控制条件下两个实现的成本差异 | 线上全负载、可靠性与资源上限 |
-
-Linux 的 perf stat 可统计命令期间的性能事件，perf record/report 采集与查看样本；硬件、权限和内核配置决定可用事件。不要为用 perf 擅自放宽整机安全配置。[perf stat](https://man7.org/linux/man-pages/man1/perf-stat.1.html)、[perf 权限](https://docs.kernel.org/admin-guide/perf-security.html)。
-
-Windows 可用 WPR 收集 ETW 事件，WPA 分析对应跟踪；记录规模、权限和隐私也需控制。工具名称类似不代表指标定义完全相同。[WPR](https://learn.microsoft.com/en-us/windows-hardware/test/wpt/windows-performance-recorder)。
-
-## 3 测量区间与正确性结果
-
-例子将准备输入放在测量区间外，并保留可核对的结果；它演示计时范围，不是防优化完备的 benchmark，也不给特定机器规定耗时。
-
-```cpp
-#include <chrono>
-#include <cstddef>
-#include <cstdint>
-#include <iostream>
-#include <numeric>
-#include <vector>
-int main() {
-    constexpr std::uint64_t n = 4096, rounds = 64;
-    std::vector<std::uint64_t> values(n);
-    std::iota(values.begin(), values.end(), std::uint64_t{0});
-    std::uint64_t checksum = 0;
-    const auto start = std::chrono::steady_clock::now();
-    for (std::uint64_t r = 0; r < rounds; ++r) {
-        ++values[static_cast<std::size_t>(r % n)];
-        checksum += std::accumulate(values.begin(), values.end(),
-                                    std::uint64_t{0});
-    }
-    const auto elapsed = std::chrono::steady_clock::now() - start;
-    const auto expected = rounds * n * (n - 1) / 2 +
-                          rounds * (rounds + 1) / 2;
-    if (checksum != expected || elapsed < decltype(elapsed)::zero())
-        return 1;
-    std::cout << "checksum=" << checksum << " elapsed_ns="
-              << std::chrono::duration_cast<std::chrono::nanoseconds>(elapsed).count()
-              << '\n';
-    return std::cout ? 0 : 2;
-}
+```text
+样本（已排序，单位 ms）：2, 3, 4, 5, 6
+最近秩 p50：第 ceil(0.5*5)=3 个，即 4 ms
 ```
 
-配套文件：[r32-performance.cpp](../examples/r32-performance.cpp)，按 R01 的 C++17 编译入口运行。固定校验和为 536741920；elapsed_ns 依机器和执行条件变化，不应写进精确结果断言。steady_clock 适合相对时间测量，不受系统墙钟校时影响；测量包括区间内的全部工作，既包含遍历也包含每轮对元素的修改。[steady_clock](https://timsong-cpp.github.io/cppwp/n4659/time.clock.steady)。
+这是统计定义示例，不是本书测得的服务延迟。增加吞吐可能通过扩大队列实现，却同时增加等待和内存，所以报告应包含延迟分布及资源条件。
 
-结果可观察仍不保证每一条源代码都实际执行。比较实现时使用真实输入、合适的防优化措施，必要时看汇编；即使 DoNotOptimize 也不阻止表达式自身被优化。重复测量、热身、负载交错和报告波动比只取最快一次更有意义。[Google Benchmark 防优化与统计](https://github.com/google/benchmark/blob/main/docs/user_guide.md)。
+## CPU、内存与队列指标
 
-## 4 常见排障路径
+| 指标 | 表达什么 | 记录口径 |
+| --- | --- | --- |
+| CPU 时间/使用率 | 处理器执行消耗 | 单核或整机、进程或线程、时间窗 |
+| RSS/工作集 | 驻留内存的某种平台统计 | 平台定义、共享页及采样范围 |
+| 活对象/分配量 | 程序管理的数据与分配 | 对象数、字节量、生命周期 |
+| 队列长度/等待时间 | 工作积压 | 上限、拒绝、取消及服务速率 |
 
-| 问题 | 优先收集 | 可能的改进 | 必须继续验证 |
-| --- | --- | --- | --- |
-| CPU 高 | 热点栈、有效工作量、指令与分支 | 算法、重复解析、减少忙等 | 正确性、不同数据规模 |
-| 延迟高 | 分阶段时间、线程栈、I/O与队列 | 锁粒度、批处理、截止时间 | 尾延迟与过载行为 |
-| RSS 增长 | 活对象、分配速率、容量与缓存 | 缩短保活、限制缓存、复用缓冲 | 不把驻留变化直接判为泄漏 |
-| 线程卡死 | 全线程栈、锁顺序、等待谓词 | 退出通知、锁顺序、取消协议 | 不是增加随机超时掩盖死锁 |
-| 连接耗尽 | 连接状态、池上限、请求寿命 | 复用、超时、背压、及时关闭 | 重试放大与资源回收 |
+驻留内存不等于活对象大小，增长也不自动证明泄漏。CPU 低、延迟高可能在等锁、I/O 或调度；CPU 高也可能是忙等。进程内存口径见虚拟内存章。
 
-数据布局可以减少不必要的指针追踪，批量处理可能减少调用成本，但都依负载取舍。缓存、锁和 I/O 改进不能跳过性能对照：相同硬件、编译选项、输入规模与线程数，一次只改变可解释的因素。
+## steady_clock：测量时间区间
 
-## 5 优化交付检查
+`std::chrono::steady_clock` 在 `<chrono>`，用于单调时间间隔。准备输入放在测量之外，结果在测量之后保留或消费。
 
-记录基线、实验条件、结果分布、正确性检查和回退策略。若吞吐更高却扩大无界队列，尾延迟与内存可能更糟；若去掉锁，则先证明数据访问与对象回收仍满足内存模型。
+```cpp
+// 需要 <chrono>；work() 是被测工作，result 在计时后消费。
+const auto begin = std::chrono::steady_clock::now();
+auto result = work();
+const auto elapsed = std::chrono::steady_clock::now() - begin;
+const auto ns = std::chrono::duration_cast<std::chrono::nanoseconds>(elapsed).count();
+```
 
-构建身份见R30，正确性检查见R31，容器成本见R13/R14，内存与I/O见R24至R26，网络过载见R29。没有可靠证据时，结论应是继续收集什么，而不是给出虚假的速度提升百分比。
+代码展示计时语法，省略 work 与结果消费的领域实现。ns 是这次区间的计数，不给不同机器承诺相同数值。计时包括区间内全部工作，时钟读取本身也有成本；极短操作通常批量测量再分析。[steady_clock](https://timsong-cpp.github.io/cppwp/n4659/time.clock.steady)。
+
+配套 [r32-performance.cpp](../examples/r32-performance.cpp) 展示输入准备、累加工作和结果校验的完整形式。其耗时随环境变化，程序中的结果校验用于说明语义，不将耗时作为通用性能结论。
+
+## Benchmark：比较两个实现
+
+基准需要相同任务、相同结果和可解释的实验条件。比较流程：
+
+1. 固定输入分布及规模，先定义正确结果。
+2. 选择相同语言模式、优化选项、硬件和线程条件。
+3. 准备输入，按相同规则热身；交错或随机安排两种实现的测量。
+4. 保留结果，使计算有可观察用途；检查优化器是否消除了预期工作。
+5. 重复采样，报告分布与波动，再分析差异。
+
+```text
+任务：同一输入的查找
+输入规模/分布：<记录实际条件>
+实现 A：<算法、编译配置、结果、样本统计>
+实现 B：<相同字段>
+结论范围：<只对这些输入和条件成立>
+```
+
+这是结果记录格式，不填造运行数据。返回结果可观察也不保证每条源码逐次执行；防优化工具同样有边界，需要时结合生成的指令判断。专业基准框架可管理采样等工作，本书不要求安装。[Google Benchmark 指南](https://github.com/google/benchmark/blob/main/docs/user_guide.md)。
+
+## Profiler：定位时间与事件
+
+| 方法 | 适合观察 | 需要进一步解释 |
+| --- | --- | --- |
+| CPU 栈采样 | 时间常落在哪些调用路径 | 等待不一定表现为 CPU 热点 |
+| 硬件计数器 | 指令、分支、缓存事件 | 计数变化是否与慢路径有关 |
+| 调度/I/O/等待事件 | 线程等待的先后及持续时间 | 日志覆盖和关联是否完整 |
+
+**Linux 工具入口**：在已有 perf 环境中，`perf stat -- ./app` 查看命令期间的统计，`perf record -g -- ./app` 采样，`perf report` 阅读结果。先看事件单位、总量和热点调用；硬件及权限决定可用事件。本书不实际运行这些工具或修改系统配置。[perf stat](https://man7.org/linux/man-pages/man1/perf-stat.1.html)、[权限与事件](https://docs.kernel.org/admin-guide/perf-security.html)。
+
+**Windows 工具入口**：WPR 收集 ETW，WPA 读取跟踪；已有环境的命令形状为 `wpr -start GeneralProfile -filemode`、结束时 `wpr -stop trace.etl`。按具体配置查看 CPU、调度和 I/O 关系；这里是工具语法入口，不是跨平台接口。[WPR 命令](https://learn.microsoft.com/en-us/windows-hardware/test/wpt/wpr-command-line-options)。
+
+## 计算、等待与积压
+
+![计算等待与积压的调查分流](../resources/R32-performance-triage.svg)
+
+图32-1：现象决定下一步证据，不代表一个症状只有一个原因。
+
+| 现象 | 下一步证据 | 相关知识 |
+| --- | --- | --- |
+| CPU 高 | 热点栈、有效工作量、指令事件 | 算法、布局、忙等 |
+| 延迟高 | 分阶段时间、线程等待、队列 | 锁、I/O、截止时间 |
+| 内存持续增长 | 活对象、容量、缓存及保活 | 所有权、容器、驻留口径 |
+| 线程卡死 | 全线程栈、锁顺序、等待谓词 | 调试、同步与退出 |
+| 连接耗尽 | 连接状态、池上限、请求寿命 | socket、背压与重试 |
+
+一次只改变能解释的因素，检查正确性、不同数据规模、尾延迟和资源上限。优化交付保留基线、实验条件、结果范围和回退方式；没有数据时说明下一步测什么，不给虚假的速度提升比例。
