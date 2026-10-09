@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="290" viewBox="0 0 920 290" role="img" aria-labelledby="title desc">
+<title id="title">常见 C++ 工具链的构建阶段</title><desc id="desc">main.cpp 依次经过预处理、编译、汇编和链接，形成展开源码、汇编、目标文件和程序；各阶段可以被驱动合并。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#44566a"/></marker></defs>
+<style>text{font-family:"Microsoft YaHei","Noto Sans CJK SC",sans-serif;fill:#172b43;font-size:18px}.small{font-size:15px}.node{fill:#f0f5fa;stroke:#627991;stroke-width:1.5}.line{fill:none;stroke:#44566a;stroke-width:2;marker-end:url(#arrow)}</style>
+<rect width="920" height="290" fill="white"/><text x="25" y="35">常见构建阶段与产物</text>
+<g class="node"><rect x="25" y="90" width="135" height="65" rx="5"/><rect x="210" y="90" width="135" height="65" rx="5"/><rect x="395" y="90" width="135" height="65" rx="5"/><rect x="580" y="90" width="135" height="65" rx="5"/><rect x="765" y="90" width="135" height="65" rx="5"/></g>
+<text x="39" y="128">main.cpp</text><text x="224" y="118">展开源码</text><text x="224" y="142" class="small">main.ii</text><text x="409" y="118">汇编</text><text x="409" y="142" class="small">main.s</text><text x="594" y="118">目标文件</text><text x="594" y="142" class="small">main.o</text><text x="779" y="128">程序 app</text>
+<path class="line" d="M160 123H203M345 123H388M530 123H573M715 123H758"/>
+<text x="162" y="78" class="small">预处理</text><text x="351" y="78" class="small">编译</text><text x="536" y="78" class="small">汇编</text><text x="721" y="78" class="small">链接</text>
+<text x="25" y="205" class="small">#include、宏、条件编译在预处理阶段处理；库及其他目标文件参与链接。</text><text x="25" y="240" class="small">工具可合并阶段且不保存全部中间文件；此图不规定编译器内部实现。</text>
+</svg>

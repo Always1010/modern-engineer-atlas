@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="410" viewBox="0 0 920 410" role="img" aria-labelledby="title desc">
+<title id="title">语言对象与常见进程存储区域</title><desc id="desc">代码在代码区域，命名空间变量及局部静态变量常在静态数据区域，自动局部变量和指针常在调用栈，指针指向动态分配区域中的对象。区域顺序和实际存储由实现决定。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#44566a"/></marker></defs>
+<style>text{font-family:"Microsoft YaHei","Noto Sans CJK SC",sans-serif;fill:#172b43;font-size:18px}.small{font-size:15px}.region{fill:#f1f5fa;stroke:#657b92;stroke-width:1.6}.object{fill:white;stroke:#657b92}.line{fill:none;stroke:#44566a;stroke-width:2;marker-end:url(#arrow)}</style>
+<rect width="920" height="410" fill="white"/><text x="25" y="35">常见实现区域；布局与比例仅作示意</text>
+<g class="region"><rect x="25" y="70" width="420" height="100" rx="5"/><rect x="475" y="70" width="420" height="100" rx="5"/><rect x="25" y="200" width="420" height="135" rx="5"/><rect x="475" y="200" width="420" height="135" rx="5"/></g>
+<text x="40" y="98">代码区域</text><text x="40" y="136" class="small">函数机器指令；不是函数对象的存储期</text>
+<text x="490" y="98">静态数据区域</text><text x="490" y="136" class="small">global、函数内 static calls</text>
+<text x="40" y="228">线程栈中的调用帧（常见）</text><rect class="object" x="45" y="250" width="180" height="50" rx="3"/><text x="55" y="280">int local</text><rect class="object" x="245" y="250" width="170" height="50" rx="3"/><text x="255" y="280">int* p</text>
+<text x="490" y="228">动态分配区域（常见堆）</text><rect class="object" x="550" y="250" width="250" height="50" rx="3"/><text x="565" y="280">new int(7) 创建的对象</text><path class="line" d="M415 275H543"/>
+<text x="25" y="375" class="small">p 与所指对象是不同对象；优化可用寄存器或消除存储，语言不规定区域地址顺序。</text>
+</svg>
