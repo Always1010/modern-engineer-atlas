@@ -19,6 +19,7 @@ pre code { white-space:pre; overflow-wrap:normal; }
 .table-wrap { overflow-x:auto; margin:15px 0; }
 table { border-collapse:collapse; width:100%; font-size:14px; line-height:1.55; }
 th,td { border:1px solid var(--line); padding:7px 9px; text-align:left; vertical-align:top; overflow-wrap:anywhere; }
+.version-table th:first-child,.version-table td:first-child { white-space:nowrap; }
 th { background:#edf3f9; font-weight:600; }
 figure { margin:20px 0; } figure img { max-width:100%; height:auto; display:block; }
 figcaption { color:var(--muted); font-size:13px; margin:7px 0; }
