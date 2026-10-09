@@ -1,151 +1,327 @@
-# 第29章 socket 编程与线上故障
+# socket 编程与网络操作
 
-socket 把传输端点暴露为平台资源；TCP 流只有字节顺序，应用还要负责消息定界、收发进度、资源上限和操作最终状态。稳定服务依赖完整状态机，而不只是一对 send/recv。
+socket 是 OS 提供的通信端点。本章先按平台建立地址、创建、连接或监听、收发、关闭的正常路径，再介绍非阻塞进度、消息定界、背压与业务重试。
 
-**平台与版本**：Linux socket API 与 Windows Winsock 分开说明；分帧例子是 C++17 可移植解析演示，**不是完整 socket 或 TLS 程序**。**先修**：RAII、字节序、非阻塞 I/O、TCP、截止时间。首次读第1至3节；故障与重试查第4、5节。
+**范围与先修**：C++17 标准库没有这些 socket API；Linux/POSIX 与 Windows Winsock 分别标明。先修为 [协议与连接](R28-protocols-connections.zh-CN.md)、字节序、错误与所有权；TLS 库在 socket 上另有握手/记录状态。
 
-## 1 客户端与服务端的资源流程
+## socket、地址与两种基本流程
 
-Linux 客户端经地址解析、socket、connect、收发、shutdown／close；服务端经 socket、bind、listen，在循环 accept 中取得每条连接的新 fd。监听 fd 继续用于接受连接，不能拿它当已连接的数据 fd。Linux accept 返回的新 fd 不自动继承监听 fd 的 O_NONBLOCK；可用 accept4 的标志或显式设置。[connect](https://man7.org/linux/man-pages/man2/connect.2.html)、[accept](https://man7.org/linux/man-pages/man2/accept.2.html)。
+**基础概念**。socket 是有协议、地址与状态的端点资源。流 socket 常用于 TCP，数据报 socket 常用于 UDP；监听端点与已接受连接是不同资源。
 
-非阻塞 TCP connect 返回 EINPROGRESS 后，等待可写等完成迹象，再读取 SO_ERROR 确认结果；可写不等于成功。连接失败后的 socket 状态不宜作为可移植重试基础，关闭后重新建立。连接、解析、TLS握手与业务响应各要有期限，不能把 OS 可能很长的连接等待当业务期限。
+客户端正常路径为地址解析 → socket → connect → send/recv → shutdown（需要时）→ 释放。TCP 服务端为 socket → bind → listen → 循环 accept → 对每个新连接收发与释放；监听 socket 继续接受，不能用于已连接数据收发。
 
-Windows 先 WSAStartup，结束使用后 WSACleanup；socket 返回 SOCKET，失败为 INVALID_SOCKET，收发错误返回 SOCKET_ERROR 后用 WSAGetLastError。资源由 closesocket 释放，不能用 close/CloseHandle；非阻塞、事件或 IOCP 的流程按 Winsock 文档实现。[Winsock 初始化](https://learn.microsoft.com/en-us/windows/win32/winsock/initialization-2)、[Windows send](https://learn.microsoft.com/en-us/windows/win32/api/winsock2/nf-winsock2-send)。
+| 实体 | 保存的信息 | 资源寿命 |
+| --- | --- | --- |
+| 地址候选 | 地址族、协议、地址字节与长度 | 使用完列表后释放 |
+| 监听 socket | 本地地址与待接受连接状态 | 停止接入时释放 |
+| 已连接 socket | 本地/对端、发送/接收状态 | 操作全部结束后释放 |
+| 应用连接状态 | 缓冲、偏移、消息状态与期限 | 无回调/I/O 借用后释放 |
 
-shutdown 可以关闭一个方向，close 释放本地资源；不能把它们当业务确认。停止服务时要停止接入、处理已在途请求、取消或等待 I/O 完成，再销毁连接状态和缓冲。
+平台错误处理不同，本文局部摘录的 report/consume 为调用方提供的不抛错误/数据处理函数；正常错误分支仍释放已取得资源。
 
-## 2 send/recv：把进度保存到连接状态
+## Linux/POSIX：地址解析与地址结构
 
-TCP send 成功只表示本地接受了相应字节，不证明远端应用执行。返回正数后只推进该前缀；非阻塞待发余量留到下次可写继续。对同一连接并行写多个业务消息，还要协调字节次序，否则各部分可能交织。
-
-正长度 recv 返回正数表示字节数，0表示 TCP 对端有序结束发送；负值按平台错误处理。EAGAIN/EWOULDBLOCK 是暂不能进展，EINTR 需结合取消和截止时间处理。Linux send 到失效的流可能产生 EPIPE 和 SIGPIPE，可按 API 使用 MSG_NOSIGNAL 等机制；不是捕获 C++ 异常就能处理。[Linux send](https://man7.org/linux/man-pages/man2/send.2.html)、[Linux recv](https://man7.org/linux/man-pages/man2/recv.2.html)。
-
-TLS 库在 socket 之上另有握手、记录、内部缓冲和错误状态，可能需要继续读或写；不能把明文 recv 状态机直接套上。Windows recv 同样有 TCP EOF 与 UDP零长度报文的区别，SOCKET_ERROR 不是“读取了负数字节”。[Windows recv](https://learn.microsoft.com/en-us/windows/win32/api/winsock/nf-winsock-recv)。
-
-## 3 流式分帧与背压：长度必须先验证
-
-常用分帧是固定长度、分隔符加转义或长度前缀。长度前缀需规定字节序、字段宽度、最大消息、零长度含义；收到头后先校验长度，再申请或积累内容。TCP“拆包／粘包”是应用对读取分段的描述，不是协议异常。
-
-![读取片段如何恢复两个消息](../resources/R29-stream-framing.svg)
-
-图29-1：一次读取既可只含半个头，也可含前一消息尾和下一消息；解析状态跨调用保存。完整性按业务格式判断，EOF 时未完成帧不能当成功。
-
-下面以两字节大端长度、最大8字节、允许空帧演示。它检查头拆分、两帧同批输入、空帧、超长与截断，错误对象应丢弃。完成消息按本次 feed 返回，演示调用者把结果汇总；真实服务还要限制汇总队列与每次处理预算。
+**基础操作**。头文件 `<sys/socket.h>`、`<netdb.h>`；`getaddrinfo` 返回符合筛选条件的链表，不保证地址可达：
 
 ```cpp
-#include <exception>
-#include <climits>
-#include <iostream>
-#include <stdexcept>
-#include <string>
-#include <vector>
+int getaddrinfo(const char* node, const char* service,
+                const addrinfo* hints, addrinfo** result);
+void freeaddrinfo(addrinfo* result);
+```
 
-class Decoder {
-    unsigned header_bytes_ = 0;
-    unsigned length_ = 0;
-    std::string payload_;
-    static constexpr unsigned max_length_ = 8;
-public:
-    std::vector<std::string> feed(const std::vector<unsigned char>& bytes) {
-        std::vector<std::string> completed;
-        for (unsigned char byte : bytes) {
-            if (header_bytes_ < 2) {
-                length_ = (length_ << 8) | byte;
-                ++header_bytes_;
-                if (header_bytes_ == 2) {
-                    if (length_ > max_length_)
-                        throw std::runtime_error("frame too large");
-                    if (length_ == 0) {
-                        completed.emplace_back();
-                        header_bytes_ = 0;
-                        length_ = 0;
-                    }
-                }
-            } else {
-                payload_.push_back(static_cast<char>(byte));
-                if (payload_.size() == length_) {
-                    completed.push_back(payload_);
-                    payload_.clear();
-                    header_bytes_ = 0;
-                    length_ = 0;
-                }
-            }
-        }
-        return completed;
-    }
-    void finish() const {
-        if (header_bytes_ != 0 || !payload_.empty())
-            throw std::runtime_error("truncated frame");
-    }
-};
+node 为名称或数值地址，service 为服务名或十进制端口字符串。hints 先零初始化，ai_family 指 AF_INET/AF_INET6/AF_UNSPEC，ai_socktype 指 SOCK_STREAM/SOCK_DGRAM。成功为 0，失败返回 EAI_* 错误，通常不能直接按 errno 解释；gai_strerror 用于说明。
 
-int main() {
-    static_assert(CHAR_BIT == 8, "this wire format needs 8-bit bytes");
-    try {
-        Decoder decoder;
-        std::vector<std::string> messages;
-        const std::vector<std::vector<unsigned char>> chunks{
-            {0}, {2, 'A'}, {'B', 0, 3, 'x', 'y', 'z'}, {0, 0}
-        };
-        for (const auto& chunk : chunks) {
-            for (const auto& message : decoder.feed(chunk))
-                messages.push_back(message);
-        }
-        decoder.finish();
-        if (messages != std::vector<std::string>{"AB", "xyz", ""}) return 1;
-        bool oversized = false, truncated = false;
-        try {
-            Decoder bad;
-            (void)bad.feed({0, 9});
-        } catch (const std::runtime_error&) { oversized = true; }
-        try {
-            Decoder bad;
-            (void)bad.feed({0, 3, 'z'});
-            bad.finish();
-        } catch (const std::runtime_error&) { truncated = true; }
-        if (!oversized || !truncated) return 2;
-        std::cout << "frames=3 oversize=checked EOF=checked\n";
-    } catch (const std::exception& e) {
-        std::cerr << e.what() << '\n';
-        return 3;
+```cpp
+addrinfo hints{};
+hints.ai_family = AF_UNSPEC;
+hints.ai_socktype = SOCK_STREAM;
+addrinfo* addresses = nullptr;
+int error = getaddrinfo("service.example", "8080", &hints, &addresses);
+if (error != 0) report(gai_strerror(error));
+else {
+    // 遍历 addresses，使用每项 ai_family/ai_addr/ai_addrlen
+    freeaddrinfo(addresses);
+}
+```
+
+服务端设置 AI_PASSIVE 且 node 为空时取得相应通配绑定地址。候选按 ai_next 遍历；每个尝试使用该项的协议/地址族，失败关闭后试下一项，同时遵守总期限。[getaddrinfo](https://man7.org/linux/man-pages/man3/getaddrinfo.3.html)
+
+数值 IPv4 地址使用 `<netinet/in.h>` 的 sockaddr_in，IPv6 使用 sockaddr_in6；通用传参以 sockaddr 指针及长度表达。端口存为网络字节序，htons/ntohs 转 16 位值；`<arpa/inet.h>` 的 inet_pton 将文本转换地址，返回 1 成功、0 文本不合法、-1 地址族等错误。这些转换与 DNS 查询不同。
+
+## Linux/POSIX：socket 与 connect
+
+**基础操作**。头文件 `<sys/socket.h>`；资源释放另需 `<unistd.h>`。
+
+```cpp
+int socket(int domain, int type, int protocol);
+int connect(int fd, const sockaddr* address, socklen_t length);
+```
+
+domain 选地址族，type 选流/数据报，protocol 为 0 时用该组合默认协议；socket 成功返回非负 fd、失败 -1。阻塞 TCP connect 成功为 0、失败 -1 并设置 errno。下面 candidate 是本条输入的有效 addrinfo 指针，类型来自 `<netdb.h>`，对应已存活的 TCP 地址结果：
+
+```cpp
+int fd = socket(candidate->ai_family, candidate->ai_socktype,
+                candidate->ai_protocol);
+if (fd == -1) report(errno);
+else {
+    if (connect(fd, candidate->ai_addr, candidate->ai_addrlen) == -1)
+        report(errno);
+    else { /* 已连接，在此进行同步收发 */ }
+    if (close(fd) == -1) report(errno);
+}
+```
+
+需 `<cerrno>`；错误值在清理之前处理。成功 connect 只说明 TCP 当前对端建立，不证明服务端完成业务。连接失败后关闭该 socket 再创建下一次尝试，不依赖失败 socket 的状态可复用。[socket](https://man7.org/linux/man-pages/man2/socket.2.html)、[connect](https://man7.org/linux/man-pages/man2/connect.2.html)
+
+## Linux/POSIX：bind、listen 与 accept
+
+**基础操作**。bind 将端点关联本地地址；listen 把流端点置为监听；accept 取出连接并返回新 fd。
+
+```cpp
+int bind(int fd, const sockaddr* address, socklen_t length);
+int listen(int fd, int backlog);
+int accept(int listener, sockaddr* peer, socklen_t* peerLength);
+```
+
+bind/listen 成功为 0、失败 -1；backlog 是待接受队列请求上限，实际受 OS 条件影响。accept 成功返回新 fd、失败 -1；peer/peerLength 为可选的对端输出，提供时先将长度初始化为可用容量。
+
+下面 listener 是本条输入的有效 TCP socket，localAddress 是已填好的 sockaddr 指针、localLength 为其长度；片段需 `<sys/socket.h>`、`<unistd.h>`、`<cerrno>`：
+
+```cpp
+if (bind(listener, localAddress, localLength) == -1) report(errno);
+else if (listen(listener, 16) == -1) report(errno);
+else {
+    int client = accept(listener, nullptr, nullptr);
+    if (client == -1) report(errno);
+    else {
+        // client 用于这条连接的收发，listener 仍用于后续 accept
+        if (close(client) == -1) report(errno);
     }
 }
 ```
 
-源文件：[r29-length-framing.cpp](../examples/r29-length-framing.cpp)。构建：`g++ -std=c++17 -Wall -Wextra -pedantic r29-length-framing.cpp -o r29-length-framing`。预期：`frames=3 oversize=checked EOF=checked`。此格式是本例自定义，不是 HTTP/TLS，未发起网络连接。
+这是接受一项的摘录；服务循环按关闭协议反复执行，最后释放 listener。Linux accept 的新 fd 不自动继承 O_NONBLOCK，可用 accept4 选标志或显式设置。[bind](https://man7.org/linux/man-pages/man2/bind.2.html)、[listen](https://man7.org/linux/man-pages/man2/listen.2.html)、[accept](https://man7.org/linux/man-pages/man2/accept.2.html)
 
-收发缓冲、待办队列、连接数和单消息大小都要有上限。输出积压时暂停进一步生产或读取，在低水位恢复；同时设置滞留期限，避免慢连接长期占用资源。TCP窗口能提供传输背压，却不会约束应用已经复制进无界队列的消息。见 R21、R26。
+## Linux/POSIX：send 与 recv
 
-生产解析器还要区分语法错误、消息过大、内存不足与业务拒绝。过大消息在分配前拒绝，半帧到达可合法等待到截止时间；解析失败后若无法确定下一帧起点，通常需要断开，不能猜测跳过字节。事件循环可给每连接单次处理字节或帧数预算，避免一个持续有数据的连接占满执行时间。
+**基础操作**。头文件 `<sys/socket.h>`，TCP 常用形状：
 
-发送队列保留消息所有权与当前偏移。大消息只发送前缀时，下次继续同一消息后缀，完成后才处理下一消息。重建连接是另一条字节流，不能沿用旧偏移重发残片；需按完整请求与最终状态重作业务判断。
+```cpp
+ssize_t send(int fd, const void* data, size_t length, int flags);
+ssize_t recv(int fd, void* buffer, size_t capacity, int flags);
+```
 
-## 4 超时与重试：失败可能是不知道结果
+fd 为已连接 socket；data 至少提供 length 可读字节，buffer 至少有 capacity 可写字节。flags 为 0 采用常规行为；Linux MSG_NOSIGNAL 可用于 send 避免失效连接的 SIGPIPE。成功返回实际数量，失败 -1 并设置 errno，正长度 TCP recv 为 0 表示对端有序结束发送。
 
-使用 steady_clock 的总截止时间，把 DNS、池等待、连接、握手、发送和响应纳入预算；每次重试重新给完整期限会放大延迟。空闲超时、总超时和单阶段超时含义不同。超时后应使连接状态和待办操作收敛，不能只放弃 future 而让后台任务继续堆积。
+下面 fd 为有效 TCP 连接，片段还需 `<cerrno>`；先处理本次取得字节，缓冲不自动补空字符：
 
-请求已发、响应丢失时，服务端可能已经成功。重试同一“创建订单”可能重复执行；幂等表示重复执行的预期效果与一次相同，不表示每次响应相同。HTTP 定义 PUT、DELETE 等幂等语义；POST 需接口明确去重或其他保证，不能仅凭方法名称判任意服务实现安全。[HTTP 幂等与自动重试 RFC 9110 §9.2.2](https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.2)。
+```cpp
+char buffer[256];
+ssize_t n = recv(fd, buffer, sizeof buffer, 0);
+if (n > 0) consume(buffer, static_cast<size_t>(n));
+else if (n == 0) { /* TCP 接收方向 EOF，检查应用消息是否完整 */ }
+else report(errno);
+```
 
-| 失败所处位置 | 可能已执行吗 | 重试前检查 |
+发送三字节的调用形状为 `send(fd, "abc", 3, MSG_NOSIGNAL)`；返回不足 3 时只推进该前缀。成功仅表示本地接受字节，不证明远端应用执行。SIGPIPE 是 OS 信号，不由 C++ catch 自动处理。[send](https://man7.org/linux/man-pages/man2/send.2.html)、[recv](https://man7.org/linux/man-pages/man2/recv.2.html)
+
+## Linux/POSIX：shutdown 与 close
+
+**基础操作**。`int shutdown(int fd, int how);` 用 SHUT_RD/SHUT_WR/SHUT_RDWR 结束本地接收/发送/两方向；成功 0，失败 -1。`close(fd)` 释放本地描述符，是另一操作。
+
+```cpp
+if (shutdown(fd, SHUT_WR) == -1) report(errno);
+// 应用协议允许时继续 recv 剩余响应
+if (close(fd) == -1) report(errno);
+```
+
+fd 是本条输入的有效 TCP socket，需 `<sys/socket.h>`、`<unistd.h>`、`<cerrno>`。半关闭不等于业务确认，也不保证对端马上回包；关闭时须结束活动访问，Linux close 不盲目重试。[shutdown](https://man7.org/linux/man-pages/man2/shutdown.2.html)
+
+## Windows：Winsock 初始化与地址
+
+**基础操作**。头文件按 `<winsock2.h>`、`<ws2tcpip.h>` 使用，调用者链接系统 Winsock 库 ws2_32。先 `WSAStartup(MAKEWORD(2, 2), &data)` 请求版本，成功返回 0，失败直接返回错误值；每次成功初始化最终由 WSACleanup 配对。
+
+```cpp
+WSADATA data{};
+int error = WSAStartup(MAKEWORD(2, 2), &data);
+if (error != 0) report(error);
+else {
+    // 本初始化寿命内创建、收发并关闭 socket
+    if (WSACleanup() == SOCKET_ERROR) report(WSAGetLastError());
+}
+```
+
+Windows 同样用 getaddrinfo/freeaddrinfo 得到 addrinfo 候选；成功为 0，失败用返回的地址解析错误，不能当成本次收发结果。sockaddr_in/in6 和端口网络字节序形状相应，但长度参数常为 int，资源为 SOCKET。成功初始化不自动延长每个连接缓冲寿命。[Winsock 初始化](https://learn.microsoft.com/en-us/windows/win32/winsock/initialization-2)、[getaddrinfo](https://learn.microsoft.com/en-us/windows/win32/api/ws2tcpip/nf-ws2tcpip-getaddrinfo)
+
+## Windows：socket 与 connect
+
+**基础操作**。初始化后使用以下形状：
+
+```cpp
+SOCKET socket(int family, int type, int protocol);
+int connect(SOCKET s, const sockaddr* address, int length);
+```
+
+SOCKET 是平台端点值，不能假定为可用 POSIX close 处理的 int。socket 失败为 INVALID_SOCKET；connect 成功为 0、失败 SOCKET_ERROR，随后读取 WSAGetLastError。下面 candidate 为有效 TCP addrinfo 指针，所属地址列表仍存活：
+
+```cpp
+SOCKET s = socket(candidate->ai_family, candidate->ai_socktype,
+                  candidate->ai_protocol);
+if (s == INVALID_SOCKET) report(WSAGetLastError());
+else {
+    if (connect(s, candidate->ai_addr, static_cast<int>(candidate->ai_addrlen))
+        == SOCKET_ERROR) report(WSAGetLastError());
+    else { /* 已连接，在此收发 */ }
+    if (closesocket(s) == SOCKET_ERROR) report(WSAGetLastError());
+}
+```
+
+片段需 `<winsock2.h>`、`<ws2tcpip.h>`，初始化已成功；Winsock 错误用 WSAGetLastError，不照搬 errno/GetLastError。[Windows socket](https://learn.microsoft.com/en-us/windows/win32/api/winsock2/nf-winsock2-socket)、[connect](https://learn.microsoft.com/en-us/windows/win32/api/winsock2/nf-winsock2-connect)
+
+## Windows：bind、listen 与 accept
+
+**基础操作**。正常角色与 TCP 服务流程相同，类型与错误契约为 Winsock：
+
+```cpp
+int bind(SOCKET s, const sockaddr* address, int length);
+int listen(SOCKET s, int backlog);
+SOCKET accept(SOCKET listener, sockaddr* peer, int* peerLength);
+```
+
+bind/listen 成功 0、失败 SOCKET_ERROR；accept 成功为新 SOCKET、失败 INVALID_SOCKET，错误用 WSAGetLastError。peerLength 为入/出容量。初始化成功后先 socket，按本地地址 bind，再 listen，循环 accept；每个新连接由 closesocket 独立释放，最后关闭监听 socket。
+
+```cpp
+SOCKET client = accept(listener, nullptr, nullptr);
+if (client == INVALID_SOCKET) report(WSAGetLastError());
+else {
+    // client 是新连接，listener 继续接受其他连接
+    if (closesocket(client) == SOCKET_ERROR) report(WSAGetLastError());
+}
+```
+
+摘录需 `<winsock2.h>`，listener 是本条输入的成功监听 socket；不同 API 的失败哨兵不能混为零。[Winsock 服务流程](https://learn.microsoft.com/en-us/windows/win32/winsock/complete-server-code)
+
+## Windows：send 与 recv
+
+**基础操作**。Winsock 接口长度与结果使用 int：
+
+```cpp
+int send(SOCKET s, const char* data, int length, int flags);
+int recv(SOCKET s, char* buffer, int capacity, int flags);
+```
+
+请求非负且不能超过 int 与缓冲范围；flags 为 0 采用普通方式。成功返回本次数量，失败 SOCKET_ERROR；正长度 TCP recv 返回 0 表示该接收方向有序结束。下面 s 是本条输入的已连接 socket，初始化仍有效，需 `<winsock2.h>`：
+
+```cpp
+char buffer[256];
+int n = recv(s, buffer, sizeof buffer, 0);
+if (n > 0) consume(buffer, static_cast<size_t>(n));
+else if (n == 0) { /* TCP EOF，检查完整消息 */ }
+else report(WSAGetLastError());
+```
+
+`send(s, "abc", 3, 0)` 成功不足 3 时继续未发后缀。非阻塞 WSAEWOULDBLOCK 为暂不可进展。TLS 库可能要求继续读或写并持有内部缓冲，不能直接把明文 recv 分支当其完整状态机。[Windows send](https://learn.microsoft.com/en-us/windows/win32/api/winsock2/nf-winsock2-send)、[recv](https://learn.microsoft.com/en-us/windows/win32/api/winsock2/nf-winsock2-recv)
+
+## Windows：shutdown 与 closesocket
+
+**基础操作**。`shutdown(s, SD_RECEIVE/SD_SEND/SD_BOTH)` 结束相应方向，成功 0、失败 SOCKET_ERROR。`closesocket(s)` 释放端点，成功 0、失败 SOCKET_ERROR；都用 WSAGetLastError。
+
+```cpp
+if (shutdown(s, SD_SEND) == SOCKET_ERROR) report(WSAGetLastError());
+// 应用协议允许时继续接收
+if (closesocket(s) == SOCKET_ERROR) report(WSAGetLastError());
+```
+
+需 `<winsock2.h>`，s 为有效 TCP 连接；不能用 close/CloseHandle/delete。完成全部 socket 使用后配对 WSACleanup；异步操作的取消完成与缓冲释放按对应模型处理。[shutdown](https://learn.microsoft.com/en-us/windows/win32/api/winsock2/nf-winsock2-shutdown)、[closesocket](https://learn.microsoft.com/en-us/windows/win32/api/winsock2/nf-winsock2-closesocket)
+
+## UDP 的 sendto 与 recvfrom
+
+**基础操作**。数据报 socket 通常用 sendto 指定目标，用 recvfrom 得到来源；UDP connect 可设置默认对端，仍不建立 TCP 握手。
+
+Linux/POSIX 形状，头文件 `<sys/socket.h>`：
+
+```cpp
+ssize_t sendto(int fd, const void* data, size_t length, int flags,
+               const sockaddr* target, socklen_t targetLength);
+ssize_t recvfrom(int fd, void* data, size_t capacity, int flags,
+                 sockaddr* source, socklen_t* sourceLength);
+```
+
+Windows 形状，头文件 `<winsock2.h>`：
+
+```cpp
+int sendto(SOCKET s, const char* data, int length, int flags,
+           const sockaddr* target, int targetLength);
+int recvfrom(SOCKET s, char* data, int capacity, int flags,
+             sockaddr* source, int* sourceLength);
+```
+
+参数是完整一份数据报与目标/来源地址；提供来源缓冲时先设长度容量。正常返回为数据字节数，零长度 UDP 报文返回 0 也不是断连。发送数据报过大可失败，不能按 TCP 短写思路把剩余后缀另发而当同一报文。截断结果按平台及 flags 处理：Linux MSG_TRUNC 可报告原报文长度，Winsock 可报 WSAEMSGSIZE；不把长度大于缓冲容量的结果交给业务读取。[Linux recvfrom](https://man7.org/linux/man-pages/man2/recv.2.html)、[Windows recvfrom](https://learn.microsoft.com/en-us/windows/win32/api/winsock2/nf-winsock2-recvfrom)
+
+## 非阻塞连接与部分收发
+
+**机制解释**。Linux 以 fcntl 先 F_GETFL 取得状态再 F_SETFL 加 O_NONBLOCK；Windows 以 ioctlsocket(s, FIONBIO, &mode) 设 mode 为非零。两者都要检查调用结果，不覆盖其他有效标志。
+
+Linux TCP 非阻塞 connect 可给 EINPROGRESS；Winsock 常给 WSAEWOULDBLOCK。等到相应完成迹象后用 getsockopt(SOL_SOCKET, SO_ERROR, ...) 确认，通知可写不等于连接成功。平台等待 API 在 [系统 I/O](R26-syscalls-file-io.zh-CN.md) 维护。
+
+| 操作结果 | 应用进度 | 下一步 |
 | --- | --- | --- |
-| 解析／连接尚未发送请求 | 通常未发该请求 | 候选地址与期限；防止重复建连洪峰 |
-| 发送部分请求后断开 | 取决于协议与服务端 | 是否识别完整请求；不能只重发尾部到新连接 |
-| 请求完整发出，等响应超时 | 可能已成功 | 幂等键、查询最终状态、去重保存期限 |
-| 收到明确业务拒绝 | 依据接口状态 | 是否可重试，避免无效放大 |
-| 返回损坏／截断响应 | 可能已执行 | 丢弃连接，分别处理结果未知与解析失败 |
+| 正数量 | 本次完成前缀 | 推进偏移，继续未完成后缀 |
+| 正长度 TCP recv 为 0 | 接收方向 EOF | 检查半帧并结束相应状态 |
+| 暂不可进展 | 偏移不变 | 等待就绪，避免忙等 |
+| 其他错误 | 保存错误与累计量 | 结束或执行协议恢复 |
 
-限制尝试次数和总预算；指数退避加抖动用于减少集中重试，具体参数由业务负载决定。取消重试不是撤销已提交事务。去重键的范围、并发一致性和记录保存时间也是服务端契约。
+Linux EINTR 按接口及取消条件处理；EAGAIN/EWOULDBLOCK 与 Winsock WSAEWOULDBLOCK 分别解释。每条连接的发送队列保留消息所有权和偏移；同一流的并发消息写入需统一调度，避免交织。新连接是一条新流，不能沿用旧偏移重发残片。
 
-## 5 线上故障的最小证据
+## 消息定界与解析状态
 
-记录阶段时间、目标地址、连接／请求 ID、已发送／收到字节、错误码与剩余预算，避免日志只剩“socket failed”。连接池取出失效连接、服务过载和DNS候选失败会表现相似，需要分段证据。
+**基础概念**。分帧（framing）从字节流恢复应用消息，常见形式为固定长度、分隔符加转义或长度前缀。长度格式明确字段宽度、字节序、最大值与空消息含义；收到头后先校验，再分配/积累内容。
 
-| 现象 | 优先检查 |
-| --- | --- |
-| 消息偶尔解析失败 | 头／体状态是否跨 recv 保存；长度与 EOF |
-| 发送 CPU 很高 | 是否反复 EAGAIN；空队列仍关注可写 |
-| 超时后资源持续增加 | 在途操作、缓冲所有权、取消与完成清理 |
-| 服务恢复后立刻又崩 | 重试数量、退避、总并发与排队上限 |
-| 重复业务结果 | 幂等键、请求最终状态、去重事务 |
+![读取片段如何恢复两个消息](../resources/R29-stream-framing.svg)
 
-本轮只实测可移植解析器，不宣称 Linux／Winsock／TLS 端点已运行验证。协议保证见 R28，I/O与平台完成模型见 R26，执行资源退出见 R20。
+图29-1：半头、消息尾加下一头都可出现在单次读取；状态跨调用保存，EOF 时未完成消息不能当成功。
+
+以两字节大端长度、最大 8、允许空帧为例：
+
+```text
+00 02 41 42 | 00 03 78 79 7A | 00 00
+长度2，AB    | 长度3，xyz     | 长度0，空消息
+```
+
+读取片段可为 `00`、`02 41`、`42 00 03 78 79 7A`、`00 00`，消息仍按格式恢复。状态机为读两字节头 → 验证长度 → 累计载荷 → 交付 → 回到读头。
+
+[r29-length-framing.cpp](../examples/r29-length-framing.cpp) 保留原 Decoder 与完整示例。feed 接收本批字节并返回本批完成消息，finish 在 EOF 检查是否剩半帧；解析错误对象应丢弃。格式为自定义，不是 HTTP/TLS，也不承担 socket 的创建/连接覆盖。
+
+## 背压、容量与处理预算
+
+**机制解释**。收发缓冲、待办、连接数与单消息尺寸都要有上限；输出达到高水位时限制生产/读取，低水位恢复，并限制滞留时间。TCP 接收窗口不限制应用已复制到无界队列的数据。
+
+区分消息过大、语法错误、内存不足与业务拒绝；过大在分配前拒绝，合法半帧可等待到期限。无法确认下一消息边界的解析失败通常结束连接；事件循环限制单连接每次处理字节/帧数，避免持续就绪者占用全部执行时间。队列协作见 R21，调度见 R23。
+
+## 期限、重试与幂等
+
+**机制解释**。总期限覆盖地址解析、池等待、建连、TLS、发送和响应；重试不应重新给予完整总预算。空闲超时、单阶段超时与总超时含义不同，超时后仍要收敛在途操作与所有权。
+
+请求已发送而响应丢失时，服务端可能成功。幂等（idempotent）是重复操作的预期效果与一次相同，不是每次响应相同；HTTP PUT/DELETE 有相应语义，POST 自动重试需要接口额外保证，不能从方法名断言任意实现安全。[HTTP 幂等 RFC 9110 §9.2.2](https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.2)
+
+| 失败位置 | 可能已执行 | 重试前判断 |
+| --- | --- | --- |
+| 未发送请求的解析/连接 | 通常未发该请求 | 候选与期限，防止建连洪峰 |
+| 发送部分后断开 | 取决于协议/服务 | 是否识别完整请求，不能重发尾部到新流 |
+| 请求完整发出，响应超时 | 可能成功 | 幂等键、最终状态查询、去重期限 |
+| 明确业务拒绝 | 按接口状态 | 是否值得重试 |
+| 响应截断/损坏 | 可能执行 | 分开处理未知结果与解析错误 |
+
+尝试次数、总预算和并发设限；指数退避加抖动减轻集中重试，参数由业务负载决定。取消重试不撤销已提交事务；去重范围、并发一致性和保存期限是服务端契约。
+
+## 网络操作调查入口
+
+记录阶段时间、逻辑目标与实际地址、连接/请求身份、累计字节、错误码和剩余预算。
+
+| 现象 | 优先检查 | 调查方向 |
+| --- | --- | --- |
+| 消息偶尔解析失败 | 跨 recv 的头/体状态、长度、EOF | 完整消息与读取片段分开 |
+| 发送 CPU 高 | 暂不可进展仍重试、空队列关注可写 | 恢复等待及事件关注 |
+| 超时后资源增加 | 在途操作与缓冲所有权 | 取消完成与终态清理 |
+| 恢复后再度过载 | 重试量、退避、并发/队列上限 | 防止重试放大 |
+| 业务重复 | 幂等键、最终状态、去重事务 | 区分结果未知与未执行 |
