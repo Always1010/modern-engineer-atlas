@@ -1,6 +1,6 @@
 # 通用工具与结果类型
 
-固定多值由 `pair`、`tuple` 表示；缺失、候选类型、开放类型与成功/失败分别由 `optional`、`variant`、`any`、`expected` 表示。本章展开这些类型的构造、访问和状态修改；结构化绑定的语言规则参见 [R06](R06-statements-functions.zh-CN.md)。
+固定多值由 `pair`、`tuple` 表示；缺失、候选类型、开放类型与成功/失败分别由 `optional`、`variant`、`any`、`expected` 表示。本章展开这些类型的构造、访问和状态修改；结构化绑定的语言规则参见 [结构化绑定](R02-types-objects.zh-CN.md#结构化绑定)。
 
 **基线**：操作短例使用 C++17；`pair` 从 C++98、`tuple` 从 C++11 引入；`optional`、`variant`、`any` 从 C++17 引入，`expected` 与这里列出的单子操作从 C++23 引入。**先修**：[初始化](R03-initialization-deduction.zh-CN.md)、[移动与转发](R08-copy-move.zh-CN.md)、[异常](R11-errors-exception-safety.zh-CN.md)。先读各类型的基础操作，再查异常状态与借用机制。
 
