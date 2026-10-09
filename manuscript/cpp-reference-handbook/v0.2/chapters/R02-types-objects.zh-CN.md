@@ -249,7 +249,24 @@ C++17 旧指针自动指向替换对象的条件涉及完整对象、const 和�
 
 ## 结构化绑定
 
-**基础操作 · C++17**。结构化绑定为聚合、数组或支持 tuple 协议的对象建立一组名字。下面直接拆解简单记录：
+**基础操作 · C++17**。结构化绑定按三条路径建立一组名字：数组元素、tuple 协议、符合条件的类数据成员。**成员拆解不要求类是聚合类型**。C++17 中成员必须是可访问的非静态数据成员，全部直接属于该类或同一个无歧义的公开基类，且类不能有匿名联合成员；名字数量必须匹配。
+
+| 拆解路径 | 选择条件 | 名字关联的对象 |
+| --- | --- | --- |
+| 数组 | 隐含对象是数组 | 各数组元素 |
+| tuple 协议 | 适用的 `std::tuple_size<E>` 是具有 `value` 成员的完整类型 | 由 `tuple_element` 和规定的 `get` 查找取得各元素 |
+| 类数据成员 | 不走前两条路径，且满足成员拆解条件 | 按声明顺序关联各成员 |
+
+**独立片段 · 函数体内 · tuple 例需 `<tuple>`**：
+
+```cpp
+int values[2]{1, 2};
+auto [first, second] = values; // 隐含数组持有副本
+std::tuple<int, int> pair{3, 4};
+auto& [left, right] = pair;    // 借用 tuple 元素
+```
+
+下面直接拆解简单记录；类型可放在命名空间作用域，其余语句放在函数体内：
 
 ```cpp
 struct Point { int x; int y; };
@@ -260,3 +277,17 @@ rx = 9;                        // point.x 为 9，x 仍为 3
 ```
 
 `auto` 形式并非把每个名字都各自当普通独立变量声明；它先建立隐含对象，再将名字与所拆解部分关联。引用形式仍要求原对象存活。完整[数组身份与结构化绑定程序](../examples/r02-types-objects.cpp)保留数组引用和聚合拆解组合示例。[结构化绑定规则](https://timsong-cpp.github.io/cppwp/n4659/dcl.struct.bind)。
+
+**独立片段 · 同上作用域**。这个类有用户提供的构造函数，C++17 下不是聚合，但仍能走成员拆解：
+
+```cpp
+struct Coordinate {
+    int x, y;
+    Coordinate(int a, int b) : x(a), y(b) {}
+};
+// 函数体内：
+Coordinate position(4, 6);
+auto [cx, cy] = position; // cx 为 4，cy 为 6
+```
+
+tuple 协议路径一旦被选中，就不会因 `get` 等不适用而退回成员拆解。自定义 tuple 协议需遵守标准允许的特化与查找规则，常用 pair/tuple 操作见[通用工具](R17-utility-results.zh-CN.md)。

@@ -11,3 +11,13 @@
 - 解决方案：补充移动构造及赋值的忽略规则、对照表与独立例子，并收紧特殊成员章措辞。
 - 验证：对照 C++17 草案 class.copy.ctor/10、class.copy.assign/7；相关章节链接、围栏与表格静态检查通过；未编译运行 C++ 示例。
 - 相关文件：[拷贝与移动](../manuscript/cpp-reference-handbook/v0.2/chapters/R08-copy-move.zh-CN.md)、[特殊成员](../manuscript/cpp-reference-handbook/v0.2/chapters/R07-classes-lifetime.zh-CN.md)。
+
+## HB-002：结构化绑定的类型范围和回链不准确
+
+- 日期：2026-10-09
+- 状态：已解决
+- 现象：正文把类成员拆解限制为聚合，结果类型章则引向没有该条目的语句函数章。
+- 原因：混淆聚合初始化和结构化绑定，迁移条目时未同步语义回链。
+- 解决方案：按数组、tuple 协议、成员三条路径说明，并给非聚合类例子；回链指向具体条目。
+- 验证：对照 C++17 草案 dcl.struct.bind；R02、R17 静态检查通过，未编译运行 C++ 示例。
+- 相关文件：[类型与对象](../manuscript/cpp-reference-handbook/v0.2/chapters/R02-types-objects.zh-CN.md)、[结果类型](../manuscript/cpp-reference-handbook/v0.2/chapters/R17-utility-results.zh-CN.md)。
