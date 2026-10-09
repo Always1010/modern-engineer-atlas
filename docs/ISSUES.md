@@ -41,3 +41,13 @@
 - 解决方案：新增原子共享指针条目、两种版本短例，说明句柄同步、目标寿命、可变内容同步和非无锁保证。
 - 验证：对照 C++17/20 草案 smartptr 原子接口；R09、R22 静态检查通过，目录重新生成。
 - 相关文件：[共享所有权](../manuscript/cpp-reference-handbook/v0.2/chapters/R09-raii-memory.zh-CN.md)、[原子对象](../manuscript/cpp-reference-handbook/v0.2/chapters/R22-atomics-memory-order.zh-CN.md)。
+
+## HB-005：互斥与原子章节形成必需先修循环
+
+- 日期：2026-10-09
+- 状态：已解决
+- 现象：互斥章要求先读原子章的数据竞争，而原子章要求先掌握互斥；初学者没有明确入口。
+- 原因：完整并发语言模型被误写为基础锁操作的先修条件。
+- 解决方案：在互斥章前给共享可变状态的最小规则，将完整竞争定义改为后续阅读；阅读指南按线程、锁、谓词等待、原子组织。
+- 验证：检查先修文字与阅读路径，相关文档链接和表格静态检查通过。
+- 相关文件：[互斥](../manuscript/cpp-reference-handbook/v0.2/chapters/R21-mutex-coordination.zh-CN.md)、[阅读指南](../manuscript/cpp-reference-handbook/v0.2/reading-guide.zh-CN.md)。

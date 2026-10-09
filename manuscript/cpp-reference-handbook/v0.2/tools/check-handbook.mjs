@@ -4,8 +4,8 @@ import {fileURLToPath} from 'node:url';
 import {loadModel,headings,resolveFragment} from './document-model.mjs';
 const edition=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const {catalog,chapters}=await loadModel(edition);
-const selection=process.argv.find(a=>a.startsWith('--chapters='))?.slice(11).split(',');
-if(selection?.some(id=>!chapters.some(c=>c.id===id)))throw new Error('Unknown selected chapter');
+const selectedArgs=process.argv.filter(a=>a.startsWith('--chapters=')||a.startsWith('--documents='));
+const selection=selectedArgs.length?selectedArgs.flatMap(a=>a.slice(a.indexOf('=')+1).split(',')):null;
 const files=new Map(chapters.map(c=>[path.resolve(edition,c.source),c]));
 for(const [name,id] of [['reading-guide.zh-CN.md','reading-guide'],['appendices.zh-CN.md','appendices'],['TOC.md','toc']]){
  const text=await fs.readFile(path.join(edition,name),'utf8');files.set(path.resolve(edition,name),{id,source:name,text,headings:headings(text,id)});
@@ -13,6 +13,7 @@ for(const [name,id] of [['reading-guide.zh-CN.md','reading-guide'],['appendices.
 for(const name of ['README.md','BUILD-NOTES.md','SAMPLE-NOTES.md','REVIEW-REPORT.zh-CN.md','EDITORIAL-SPEC.md']){
  const text=await fs.readFile(path.join(edition,name),'utf8');files.set(path.resolve(edition,name),{id:name,source:name,text,headings:headings(text,name)});
 }
+if(selection?.some(id=>![...files.values()].some(model=>model.id===id)))throw new Error('Unknown selected document');
 let localLinks=0,tables=0;
 for(const [file,model] of files){
  if(selection&&!selection.includes(model.id))continue;
