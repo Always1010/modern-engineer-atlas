@@ -157,7 +157,7 @@ optional/variant/expected 的构造和访问由[结果类型](R17-utility-result
 
 ## 暂存与强保证提交
 
-**进阶后查**。下面用默认分配器的 vector<int> 先修改副本，再不抛交换提交；需要 `<vector>`：
+**进阶后查**。下面用默认分配器的 vector<int> 先修改副本，再不抛交换提交；需要 `<vector>`。完整[失败注入源码](../examples/r11-errors-exception-safety.cpp)另展示作用域清理。
 
 ```cpp
 void append_strong(std::vector<int>& target, int value) {
@@ -172,5 +172,3 @@ void append_strong(std::vector<int>& target, int value) {
 ![暂存、失败清理与提交](../resources/R11-rollback-sequence.svg)
 
 图：副本失败被销毁，成功才交换提交；不保证任意类型或分配器都具有同样条件。
-
-完整[事务追加与失败注入程序](../examples/r11-errors-exception-safety.cpp)保留提交前注入以及 Active 作用域计数，同时展示失败状态与正常提交。它不宣称覆盖所有分配失败点。文件/网络外部效果不能靠复制一个 vector 回滚；部分完成、幂等和重试分别见[系统 I/O](R26-syscalls-file-io.zh-CN.md)及[socket](R29-sockets-production.zh-CN.md)。

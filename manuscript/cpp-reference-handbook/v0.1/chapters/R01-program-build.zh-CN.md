@@ -142,10 +142,10 @@ g++ -std=c++17 main.cpp twice.cpp -o app
 
 ## GDB 最小调试会话
 
-**基础操作 · GDB 工具**。准备已安装的 GCC/GDB，以调试信息构建首例，然后启动调试器；这些是工具操作示例，不要求读者使用特定本机路径：
+**基础操作 · GDB 工具**。在已有 GCC/GDB 环境中，以调试信息构建上节的双源文件程序，然后启动调试器：
 
 ```sh
-g++ -std=c++17 -g -O0 main.cpp -o app
+g++ -std=c++17 -g -O0 main.cpp twice.cpp -o app
 gdb ./app
 ```
 
@@ -161,7 +161,7 @@ continue
 quit
 ```
 
-`break twice` 设置函数断点；`run` 启动程序并在 `twice` 停下；`print value` 此时查看参数，应为 21。`next` 在源代码层单步，`bt` 查看当前调用栈，`continue` 继续运行，程序完成后可退出。调试信息和优化会影响变量是否可见及单步表现。`step` 用于尝试进入被调用函数，更多命令与调查方法见[调试与正确性检查](R31-debug.zh-CN.md)及 [GDB 单步命令](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Continuing-and-Stepping.html)。
+`break twice` 设置函数断点；`run` 启动并停下，`print value` 查看参数21。`next` 单步，`bt` 查看栈，`continue` 继续，完成后 `quit` 退出；`step` 尝试进入调用。优化会影响变量与单步表现，更多操作见[调试](R31-debug.zh-CN.md)和 [GDB 手册](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Continuing-and-Stepping.html)。
 
 ## 构建诊断
 
