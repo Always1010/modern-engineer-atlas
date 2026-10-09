@@ -106,14 +106,12 @@ namespace std {
 ```cpp
 // 需要 <vector>；局部摘录
 std::vector<int> empty;
-std::vector<int> zeros(3);                  // 三个值初始化的 0
-std::vector<int> copies(3, 7);              // 三个 7
-std::vector<int> values{3, 7};              // 两个元素
-std::vector<int> part(values.begin(), values.end());
+std::vector<int> values{1, 2, 3};
+std::vector<int> part(values.begin() + 1, values.end()); // {2,3}
 std::vector<int> copy(values);              // 独立元素序列
 ```
 
-数量、数量加值、区间和初始化列表不是互换重载；移动构造通常转移存储，自定义分配器参与的形式另有约束。
+本例集中展示空构造、区间构造和拷贝构造；数量与初始化列表的区别见下方[数量构造与初始化列表](#数量构造与初始化列表)。移动构造通常转移存储，自定义分配器参与的形式另有约束。
 
 ### vector 的访问与遍历
 
@@ -164,13 +162,13 @@ values.clear();                             // 空，容量保留
 ### 数量构造与初始化列表
 
 ```cpp
-// 需要 <vector>、<array>；局部摘录
+// 需要 <vector>；局部摘录
+std::vector<int> zeros(3);  // 三个值初始化的 0
 std::vector<int> a(3, 7);   // 三个 7：{7, 7, 7}
 std::vector<int> b{3, 7};   // 两个元素：{3, 7}
-std::array<int, 3> c{};     // 三个 0
 ```
 
-花括号优先涉及 initializer_list 重载；不能把 `()` 机械改为 `{}`。未初始化的局部 `std::array<int, 3> c;` 不会自动把整数清零。[vector 构造](https://timsong-cpp.github.io/cppwp/n4659/vector.cons)、[聚合与 array](https://timsong-cpp.github.io/cppwp/n4659/array)。
+花括号优先涉及 initializer_list 重载；不能把 `()` 机械改为 `{}`。固定数组的零初始化另见[std::array](#stdarray)。[vector 构造](https://timsong-cpp.github.io/cppwp/n4659/vector.cons)、[聚合与 array](https://timsong-cpp.github.io/cppwp/n4659/array)。
 
 ### reserve 与 resize
 
@@ -194,7 +192,7 @@ v.resize(2);               // {10, 20}；capacity 不变
 
 ![vector 中已存在元素和预留存储的区别](../resources/R13-vector-capacity.svg)
 
-图13-2：示意容量取 6。本图在 reserve 后直接 resize，未执行上例的 push_back(40)。reserve(6) 不保证实际容量恰为 6；新增的 -1 是已构造元素，虚线空位不可通过下标访问。
+图13-2：与上例使用同一初始值及四次操作；教学图假设实际 capacity 为 6，reserve(6) 只保证容量至少为 6。push_back 创建 40，resize(6,-1) 再创建两个 -1，resize(2) 销毁尾部四个元素但保留容量。虚线表示没有元素的预留存储，不可通过下标访问。
 
 ### 动态数组扩容
 
