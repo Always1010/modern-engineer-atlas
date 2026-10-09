@@ -1,103 +1,215 @@
-# 第20章 线程与异步任务
+# 线程与异步结果
 
-线程决定工作在哪里执行；future 决定结果如何交付。二者的生命周期必须分别设计：拿到结果不总是意味着底层线程已退出，发出停止请求也不意味着工作已经停止。
+线程对象管理一条执行线程；异步结果对象管理一次计算的值或异常。本章先分别介绍启动与回收、结果提供与消费，再介绍启动策略和 C++20 协作停止。
 
-**版本**：thread、future、promise、packaged_task、async 本章按 C++17；jthread 与 stop_token 为 C++20。**先修**：RAII、lambda 捕获、异常、对象生命周期。首次读第1、2、4节；排查退出卡住时查第3、5节。
+**版本与先修**：核心接口自 C++11 提供，按 C++17 展开；`jthread` 与停止令牌标 C++20。先修为函数、lambda 捕获、移动、RAII 和异常。线程间共享数据的保护见 [互斥与线程协作](R21-mutex-coordination.zh-CN.md)。
 
-## 1 thread：谁负责收回执行中的工作
+## std::thread
 
-`<thread>` 中 `std::thread(f, args...)` 启动执行，参数按衰变后的类型保存；引用参数需要 `std::ref`（`<functional>`），且调用者保证所引对象存活。捕获 this 或引用不会自动保活对象。构造可能因资源不足抛 system_error；工作函数的未捕获异常调用 terminate，不会由主线程的 catch 接住。
-
-`joinable()` 表示 thread 仍关联一个线程，已经执行完的线程也可能 joinable。成功 `join()` 等待执行结束，并建立线程完成到 join 返回的同步；它不能从当前线程加入自身。不能让多个线程同时操作同一个 thread 对象。析构时仍 joinable 会 terminate，异常路径也必须处理。[构造规则](https://timsong-cpp.github.io/cppwp/n4659/thread.thread.constr)、[成员与 join](https://timsong-cpp.github.io/cppwp/n4659/thread.thread.member)、[析构规则](https://timsong-cpp.github.io/cppwp/n4659/thread.thread.destr)。
-
-| 操作 | 对象状态 | 生命周期责任 |
-| --- | --- | --- |
-| 默认构造／已移动源 | 不关联线程 | 不需要 join |
-| join 成功 | 不再关联线程 | 可以销毁工作所借用的对象 |
-| detach 成功 | thread 对象不再关联 | 工作仍可能运行；另需保活、停止和完成协议 |
-| 移动到另一个 thread | 所有权转移 | 目标接手 join；不能覆盖仍 joinable 的目标 |
-| 工作函数返回 | 关联状态未自动清除 | 仍需 join 或 detach |
-
-detach 不提供“后台任务已经安全退出”的确认。服务关闭、插件卸载或测试结束时，游离任务可能访问已销毁对象；通常应由上层持有执行对象并明确等待。线程函数中使用栈对象的引用，至少要使其生命期覆盖执行与 join。
-
-传参时区分调用者的对象与执行端保存的副本。把 vector 以值传入 thread 会复制或移动到线程参数存储；把引用传进去则仍由外部拥有。线程构造成功前参数准备的异常发生在启动端；工作端的结果不能靠普通 return 交回 thread，使用结果通道或受同步保护的状态。接口同时给出谁负责 join、谁持有数据，才能判断捕获是否安全。
-
-std::thread 的移动赋值若目标仍 joinable，会终止程序；管理线程集合时，应先收回旧工作再替换槽位。不要在工作线程内销毁一个会 join 当前工作线程的拥有者：这属于自身等待问题，即使采用 RAII 也无法使依赖关系正确。
-
-## 2 future：一次结果与异常通道
-
-`<future>` 的 `std::future<T>` 可移动、不可复制。`wait()` 等待就绪而不取值；`get()` 等待并取走结果或重新抛出已保存异常，之后 valid 为 false。无有效共享状态时调用 get/wait 在本章基线下不满足要求，不要依赖实现抛 no_state。多个读者使用 shared_future 并各自持有副本；取到 T& 仍需管理对象寿命和并发访问。[future](https://timsong-cpp.github.io/cppwp/n4659/futures.unique_future)。
-
-| 提供者 | 怎样完成共享状态 | 与执行资源的关系 |
-| --- | --- | --- |
-| `promise<T>` | set_value 或 set_exception，只满足一次 | 自己启动线程／回调；get_future 只取一次 |
-| `packaged_task<R(Args...)>` | 调用包装函数，保存值或异常 | 创建包装器不会启动线程，适合交给执行器 |
-| async | 按策略调用函数，保存返回或异常 | 可能异步，也可能延迟执行 |
-
-提供者放弃尚未就绪的共享状态，会使读者得到 broken_promise；set_value 两次会报 promise_already_satisfied。用它区分“计算失败”与“计算者消失”，不要让读者无限等待一个从未安排执行的 packaged_task。[promise](https://timsong-cpp.github.io/cppwp/n4659/futures.promise)、[共享状态](https://timsong-cpp.github.io/cppwp/n4659/futures.state)、[packaged_task](https://timsong-cpp.github.io/cppwp/n4659/futures.task)。
-
-## 3 async 的启动策略与隐式等待
-
-默认策略允许 async 或 deferred，实现可以选择。需要并发时明确 `std::launch::async`；它也可能因无法创建执行资源而抛异常。deferred 由第一次非定时等待者执行函数，`wait_for` 可返回 future_status::deferred，不能把它当普通超时反复轮询。
-
-异步共享状态的最后一次释放可能等待任务完成，因此丢弃 async 返回的临时 future，可能立即等待而使一连串调用实际串行。普通 promise 产生的 future 析构没有这个 async 线程等待规则。不要在持有任务所需 mutex 时销毁可能等待的 future，否则可能形成互等。[C++17 async 的策略、同步与析构边界](https://timsong-cpp.github.io/cppwp/n4659/futures.async)。
-
-下面完整例子检查结果、get 后状态和异常传递；失败任务使用 deferred，刻意展示“异步结果类型”不保证另起线程。
+**基础操作**。`<thread>` 的 `std::thread` 表示一条执行线程，可移动、不可复制。常用声明摘要：
 
 ```cpp
-#include <exception>
-#include <future>
-#include <iostream>
-#include <stdexcept>
-
-int main() {
-    try {
-        auto value = std::async(std::launch::async, [] { return 6 * 7; });
-        auto failure = std::async(std::launch::deferred, []() -> int {
-            throw std::runtime_error("task failed");
-        });
-        if (value.get() != 42 || value.valid()) return 1;
-        bool caught = false;
-        try {
-            (void)failure.get();
-        } catch (const std::runtime_error&) {
-            caught = true;
-        }
-        if (!caught || failure.valid()) return 2;
-        std::cout << "result=42 exception=checked\n";
-    } catch (const std::exception& e) {
-        std::cerr << e.what() << '\n';
-        return 3;
-    }
-}
+thread() noexcept;
+template<class F, class... Args> explicit thread(F&& f, Args&&... args);
+thread(thread&& other) noexcept;
+bool joinable() const noexcept;
+void join();
+void detach();
+thread::id get_id() const noexcept;
+static unsigned hardware_concurrency() noexcept;
 ```
 
-源文件：[r20-async-result.cpp](../examples/r20-async-result.cpp)。构建：`g++ -std=c++17 -Wall -Wextra -pedantic -pthread r20-async-result.cpp -o r20-async-result`。预期：`result=42 exception=checked`；检查失败返回非零。
+默认构造不关联线程；以可调用对象 `f` 和参数构造时启动线程。在 C++17，函数与参数按衰变后的类型保存；`std::ref`（`<functional>`）使参数以引用方式传递，调用者必须保活目标。普通返回值被忽略，返回结果需使用受同步保护的状态或 future。构造失败可抛 `system_error`；入口函数的未捕获异常导致 `terminate`。[thread 构造](https://timsong-cpp.github.io/cppwp/n4659/thread.thread.constr)
 
-定时等待的返回值是 ready、timeout 或 deferred；ready 后 get 仍可抛工作异常。`future<void>` 传递操作已完成或失败，不是没有返回值就可以忽略失败。共享状态的就绪同步覆盖产生结果之前的操作；提供者 set_value 后继续修改外部普通对象，读者不能依赖 get 保护这些后续修改。
+下面启动一条线程计算结果，再等待它结束。代码置于普通函数中，需 `<thread>`；工作期间主线程不访问 `value`，成功 `join` 后可读到 42。
 
-取消与结果语义需配套：未开始、已取消、已成功和失败通常是不同业务状态。取消与成功同时到达时，应规定哪个状态最终交付，且只交付一次。future 没有通用 cancel 成员，wait_for 超时也不会向任务发送停止信号。
+```cpp
+int value = 0;
+std::thread worker([&] { value = 6 * 7; });
+worker.join();
+int answer = value;
+```
 
-## 4 jthread 与协作取消：请求、观察、退出
+`join()` 阻塞至线程结束，线程完成与成功 join 返回同步；不能加入自身，也不能对不可加入的对象调用。`detach()` 使 thread 对象不再关联线程，工作仍可继续；其数据寿命和完成确认由另一协议负责。`get_id()` 返回关联线程标识；空对象返回默认 id。`hardware_concurrency()` 是并发线程数提示，可为 0，不能据此直接推出最佳线程池大小。[thread 成员](https://timsong-cpp.github.io/cppwp/n4659/thread.thread.member)
 
-C++20 的 `std::jthread`（`<thread>`）析构时若 joinable，先 request_stop 再 join；若可调用对象接受 stop_token，构造会传入令牌。`<stop_token>` 的 stop_source 发请求、stop_token 观察、stop_callback 注册响应。请求是单向状态变化，既不强制终止线程，也不自动打断阻塞 OS I/O。[jthread](https://timsong-cpp.github.io/cppwp/n4861/thread.jthread.class)、[停止状态](https://timsong-cpp.github.io/cppwp/n4861/thread.stoptoken)。
-
-取消的工作用法是：停止接受新任务；使等待者醒来；在安全检查点观察取消；结束或交付已有任务；等待退出；最后销毁共享资源。需要分清“排空队列”和“丢弃未开始任务”两种策略，并给调用者最终结果。stop_callback 可在请求线程上同步执行，回调不能假定运行在工作线程，不应持有可能互相等待的锁。
-
-![协作取消与资源销毁的时间关系](../resources/R20-task-lifetime.svg)
-
-图20-1：停止观察只是工作循环的条件；图假定阻塞等待有唤醒路径。先 join 再销毁被借用资源，才完成退出协议。本章 C++20 接口是经草案核验的条目，当前 GCC 10.3 环境未实测 jthread。
-
-## 5 任务粒度与退出诊断
-
-C++17/20 没有通用标准线程池。大量短任务不宜逐个启动 OS 线程；使用有限工作者和有界待办队列，记录排队时间、执行时间与拒绝数量。hardware_concurrency 只是提示，可能为 0，也不能据它推出最佳并发数；阻塞 I/O 与 CPU 任务需要分别估算资源。
-
-| 现象 | 先检查 | 工作处理 |
+| 操作后状态 | `joinable()` | 后续资源责任 |
 | --- | --- | --- |
-| 主线程 catch 无效，直接终止 | 线程入口是否抛出异常；thread 是否仍 joinable | 入口交付异常；用 RAII 覆盖退出 |
-| 析构卡住 | worker 等待的锁、条件变量、I/O | 在 join 前建立可达的退出路径 |
-| async 看起来串行 | 默认策略；临时 future 的析构 | 保存 future，明确策略，再测量 |
-| future 一直不就绪 | packaged_task 是否执行；promise 是否仍被持有 | 追踪提供者，给队列取消和失效语义 |
-| 过载时内存上升 | 待办数量与每任务持有资源 | 有界队列、拒绝或降级，见 R21 |
+| 默认构造或移动源 | false | 无关联线程需回收 |
+| 已启动，工作仍运行或已返回 | true | 仍需 join 或 detach |
+| join 成功 | false | 已确认结束，可释放仅被该线程借用的数据 |
+| detach 成功 | false | 另行保证游离线程的数据寿命与退出 |
+| 移动到目标 | 目标接手关联 | 目标接手结束处理 |
 
-相邻：共享状态的锁见 R21；发布与数据竞争见 R22；截止时间见 R19；阻塞 I/O 的取消需要平台接口，见 R26、R29。
+析构或移动赋值覆盖一个仍 joinable 的对象会终止程序；异常路径同样要回收线程。RAII 能维护释放路径，但不能修复“工作者等待自己”的依赖关系。[thread 析构与赋值](https://timsong-cpp.github.io/cppwp/n4659/thread.thread.destr)
+
+## std::this_thread
+
+**基础操作**。`<thread>` 的 `std::this_thread` 命名空间操作当前线程：`get_id()` 返回当前 id，`yield()` 提供让出执行机会的提示；`sleep_for(duration)` 按相对时长等待，`sleep_until(time_point)` 按绝对时点等待。时长/时点来自 `<chrono>`，计时类型见 [时间库](R19-time-files.zh-CN.md)。
+
+```cpp
+std::this_thread::sleep_for(std::chrono::milliseconds(10));
+auto id = std::this_thread::get_id();
+std::this_thread::yield();
+```
+
+局部例需 `<thread>`、`<chrono>`。睡眠可能因调度延长，yield 不保证其他指定线程运行；两者都不建立共享数据的同步关系，不能用 sleep 证明另一个线程“已经完成”。[this_thread](https://timsong-cpp.github.io/cppwp/n4659/thread.thread.this)
+
+## 异步共享状态
+
+**基础概念**。共享状态保存一次结果或异常，以及是否就绪。提供者写入结果；结果持有者等待和读取。它不等于执行线程，也不负责保活计算所借用的外部对象。
+
+| 提供者 | 建立与完成状态 | 执行方式 |
+| --- | --- | --- |
+| `promise<T>` | 构造状态，显式 set_value/set_exception | 调用方安排工作 |
+| `packaged_task<R(Args...)>` | 构造状态，调用时保存值或异常 | 调用方、线程或执行器调用 |
+| `async` | 返回关联状态的 future | 由启动策略决定 |
+
+就绪可以表示值，也可以表示异常。`valid()` 只说明是否关联状态，未就绪仍可为 true。提供者放弃未就绪状态，会保存 `broken_promise` 并使状态就绪；它与工作计算抛出的异常含义不同。[共享状态](https://timsong-cpp.github.io/cppwp/n4659/futures.state)
+
+## std::promise
+
+**基础操作**。`<future>` 中 `template<class T> class promise;`，`T` 是结果类型；另有 `T&`、`void` 特化。默认构造建立共享状态，可移动、不可复制。常用接口：
+
+```cpp
+std::future<T> get_future();
+void set_value(const T& value); // 非引用、非void形式
+void set_value(T&& value);
+void set_exception(std::exception_ptr error);
+```
+
+`get_future()` 每个共享状态只能成功取一次；`set_value` 保存结果并就绪，`set_exception` 保存非空异常指针并就绪。重复满足状态抛 `future_error`。引用特化用 `set_value(T&)`，不延长所指对象寿命；void 特化用无参数 `set_value()` 表示完成。
+
+下面在提供者一侧先设值，再由结果持有者读取；片段需 `<future>`。创建 promise 本身不启动线程。
+
+```cpp
+std::promise<int> provider;
+auto result = provider.get_future();
+provider.set_value(42);
+int value = result.get();
+```
+
+捕获计算异常时用 `<exception>` 的 `std::current_exception()` 交付：
+
+```cpp
+try { provider.set_value(compute()); }
+catch (...) { provider.set_exception(std::current_exception()); }
+```
+
+这是替代上例设值语句的局部形式，`compute` 由调用方提供，且异常处理仅用于尚未被满足的状态。`set_value_at_thread_exit` / `set_exception_at_thread_exit` 保存结果，到当前线程退出时才使状态就绪；普通完成通常用立即就绪形式。[promise](https://timsong-cpp.github.io/cppwp/n4659/futures.promise)
+
+## std::future
+
+**基础操作**。`<future>` 中 `template<class T> class future;` 是唯一结果持有者，可移动、不可复制；默认构造无状态，通过 promise、packaged_task、async 或移动取得状态。
+
+| 接口 | 参数与结果 | 状态变化 |
+| --- | --- | --- |
+| `valid()` | bool，是否关联状态 | 不表示就绪 |
+| `wait()` | 无参数，等待就绪 | 不取走结果 |
+| `wait_for(duration)` | 返回 `future_status` | ready / timeout / deferred，不取结果 |
+| `wait_until(time_point)` | 同上，绝对时点 | 超时不取消工作 |
+| `get()` | 等待并返回 T / T& / void；可重抛异常 | 释放状态，之后 valid 为 false |
+| `share()` | 返回 `shared_future<T>` | 转移状态，原 future 无状态 |
+
+等待与 get 要求关联有效状态；本章 C++17 基线不依赖无状态时实现会抛异常。下面检查相对等待状态；需 `<future>`、`<chrono>`，`result` 是已有效的 `future<int>`，`consume` 接收结果：
+
+```cpp
+auto status = result.wait_for(std::chrono::milliseconds(20));
+if (status == std::future_status::ready) consume(result.get());
+else if (status == std::future_status::deferred) { /* 选择触发执行或改用其他策略 */ }
+else { /* 本次等待超时，任务可能仍在执行 */ }
+```
+
+ready 后 get 仍可抛异常。提供者完成到成功检测就绪之间有相应同步，但不覆盖提供者设值后继续修改的普通对象。[future](https://timsong-cpp.github.io/cppwp/n4659/futures.unique_future)
+
+## std::shared_future
+
+**基础操作**。`<future>` 中 `template<class T> class shared_future;` 允许多个结果持有者共享状态，可复制、可移动。可默认构造，或从 `future<T>&&` 构造/通过 `future::share()` 获得；等待接口与 future 同类，但 `get()` 不消耗状态，可重复调用。
+
+普通 `T` 的 `get()` 返回 `const T&`；`T&` 特化返回 `T&`，void 特化只确认完成。引用随共享状态或被引用对象的寿命约束；多个线程宜分别持有自己的 shared_future 副本，结果对象后续访问仍要遵守同步规则。
+
+```cpp
+std::promise<int> p;
+auto first = p.get_future().share();
+auto second = first;
+p.set_value(42);
+int a = first.get();
+int b = second.get();
+```
+
+局部例需 `<future>`，a、b 都为 42。`first` 与 `second` 并不代表两次计算。[shared_future](https://timsong-cpp.github.io/cppwp/n4659/futures.shared_future)
+
+## std::packaged_task
+
+**基础操作**。`<future>` 中 `template<class Signature> class packaged_task;`，重点形式为 `packaged_task<R(Args...)>`；模板参数是一种函数签名。默认构造无任务，以可调用对象构造保存任务和共享状态，可移动、不可复制。
+
+```cpp
+std::packaged_task<int(int)> task([](int x) { return x * 2; });
+auto result = task.get_future();
+task(21);
+int value = result.get();
+```
+
+局部例需 `<future>`，值为 42。构造不执行任务；`operator()(Args...)` 调用包装函数并把返回值或异常保存到状态。`get_future()` 每个状态取一次；`valid()` 判断有无任务状态；重复调用已满足状态报错。`reset()` 保留任务并建立新的共享状态，随后重新取 future；原未完成状态被放弃。`make_ready_at_thread_exit(args...)` 调用任务而延迟到线程退出才使结果就绪。[packaged_task](https://timsong-cpp.github.io/cppwp/n4659/futures.task)
+
+## std::async 与启动策略
+
+**基础操作**。`<future>` 的 `std::async(policy, f, args...)` 返回对应结果类型的 future；省略 policy 的重载允许 async 或 deferred。此处描述调用形状，完整返回类型推导见草案。
+
+```cpp
+auto parallel = std::async(std::launch::async, [] { return 6 * 7; });
+auto delayed = std::async(std::launch::deferred, [] { return 20 + 22; });
+int a = parallel.get();
+int b = delayed.get();
+```
+
+局部例需 `<future>`。async 策略安排独立线程执行，资源不足可抛异常；deferred 在第一次非定时等待时由等待线程执行。定时等待可返回 deferred，不能把它当作普通超时反复轮询。
+
+异步策略共享状态的最后释放可能等待工作完成；丢弃临时 future 可能使连续调用看起来串行。持有工作需要的 mutex 时释放这种状态可能形成互等。普通 promise 的 future 没有 async 的线程等待规则。异常在 get 时重抛；future 无通用 cancel 成员。[async](https://timsong-cpp.github.io/cppwp/n4659/futures.async)
+
+组合应用 [r20-async-result.cpp](../examples/r20-async-result.cpp) 保留值、异常及 get 后状态的完整演示；基本调用分别维护于以上条目。
+
+## std::jthread（C++20）
+
+**基础操作**。`<thread>` 的 jthread 可移动、不可复制；默认构造无线程，以函数构造时启动线程。若函数能接收 `std::stop_token`，构造会将令牌作为首参传入。普通 join、detach、joinable、get_id 与 thread 同类；另外提供 `get_stop_source()`、`get_stop_token()`、`request_stop()`。
+
+```cpp
+std::jthread worker([](std::stop_token token) {
+    while (!token.stop_requested()) {
+        // 执行一个有限、可返回的工作单元
+    }
+});
+worker.request_stop();
+worker.join();
+```
+
+局部例需 `<thread>`、`<stop_token>`。析构时若 joinable，先请求停止再 join；请求不强制终止线程，不自动中断 OS I/O，也不保证退出时间上界。工作必须有可达的观察点和阻塞唤醒路径。[C++20 jthread](https://timsong-cpp.github.io/cppwp/n4861/thread.jthread.class)
+
+## 停止状态与令牌（C++20）
+
+**基础操作**。`<stop_token>` 的 stop_source 是请求端，stop_token 是观察端，`stop_callback<Callback>` 为关联状态注册停止响应。source 默认建立停止状态，token 默认无状态；复制 source/token 共享状态，不表示额外线程。
+
+```cpp
+std::stop_source source;
+auto token = source.get_token();
+std::stop_callback callback(token, [] { /* 唤醒协作等待者 */ });
+bool first = source.request_stop();
+bool requested = token.stop_requested();
+```
+
+`request_stop()` 第一次使关联状态停止返回 true，后续返回 false；`stop_possible()` 查询是否有可请求停止的关联状态。callback 构造时若已经停止，可立即执行回调；否则在发请求的线程同步执行。回调不能假定运行于工作线程，也不能抛异常；它的析构与正在执行的回调存在同步责任。[停止状态](https://timsong-cpp.github.io/cppwp/n4861/thread.stoptoken)
+
+![协作停止与资源销毁的时间关系](../resources/R20-task-lifetime.svg)
+
+图20-1：停止请求 → 工作观察或等待被唤醒 → 工作退出 → join → 释放被借用资源。请求和确认结束是两个事件。
+
+## 线程与结果调查入口
+
+| 现象 | 先检查 | 处理方向 |
+| --- | --- | --- |
+| 主线程 catch 无效而终止 | 线程入口异常、未回收 thread | 入口交付异常，退出路径回收 |
+| 析构等待不结束 | 工作依赖的锁、条件变量、I/O | 建立可达停止与唤醒路径 |
+| async 看起来串行 | 策略、临时 future 的释放 | 保存 future 并明确策略 |
+| future 不就绪 | 是否执行 task、谁持有 provider | 每个接受的任务要有结果终态 |
+| 过载时内存增长 | 待办数与每项资源 | 执行器和背压见 R23 |
+
+任务调度见 [异步执行](R23-async-execution.zh-CN.md)，平台 I/O 取消见 [系统 I/O](R26-syscalls-file-io.zh-CN.md)。

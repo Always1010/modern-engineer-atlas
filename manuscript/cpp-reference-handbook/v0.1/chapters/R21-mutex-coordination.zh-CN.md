@@ -1,150 +1,350 @@
-# 第21章 互斥与线程协作
+# 互斥与线程协作
 
-锁保护共享不变量；条件变量让线程等待不变量变成允许继续的状态。通知不是一份被保存的任务，条件变量本身也不保存“队列已经有数据”的事实。
+互斥量保护共享对象；锁管理器把锁所有权绑定到作用域；条件变量等待由共享状态表达的事实。C++20 的许可、一次性计数和阶段屏障解决不同协作任务，各自有独立入口。
 
-**版本**：核心示例 C++17；semaphore、latch、barrier 为 C++20。**先修**：RAII、thread/future、数据竞争的基本概念。首次读第1至3节；同步器和故障查第4、5节。
+**版本与先修**：核心按 C++17，`scoped_lock/shared_mutex` 是 C++17，C++20 设施就地标注。先修为对象寿命、RAII、线程及 [数据竞争](R22-atomics-memory-order.zh-CN.md)。基础路径是 mutex → lock_guard/unique_lock → 谓词等待。
 
-## 1 锁的所有权与不变量
+## 互斥量与临界区
 
-`<mutex>` 的 std::mutex 不允许同一线程递归锁定；lock 可以阻塞或抛 system_error，unlock 必须由拥有锁的线程调用。保护对象应说明“这些字段在这个锁下共同满足什么关系”，不能只锁写端而让读端无锁读取普通字段。[mutex](https://timsong-cpp.github.io/cppwp/n4659/thread.mutex.class)。
+**基础概念**。互斥量（mutex）控制某一时刻由哪个线程独占受保护操作；临界区是持锁执行的代码区间。锁保护的是数据及其一致性关系，例如“队列长度与内容一致”，应由同一把锁覆盖相关读写。
 
-| 工具 | 常用形式 | 适用条件 |
+| 互斥量类型 | 取得方式 | 头文件 |
 | --- | --- | --- |
-| `lock_guard<mutex>` | guard(m) | 构造锁定、析构释放；整个小作用域持锁 |
-| `unique_lock<mutex>` | lock(m)，unlock/lock | 可移动，支持延后／尝试锁定；条件变量等待需要它 |
-| `scoped_lock<M1,M2>` | guard(a,b) | C++17，多把锁按避免死锁的算法取得 |
-| `shared_lock<shared_mutex>` | read(m) | C++17，读者共享；写者用独占锁 |
-| adopt_lock / defer_lock | 声明已经持有／暂不锁定 | 必须遵守标签前提，不能把它们当优化开关 |
+| `mutex` | 独占 | `<mutex>` |
+| `recursive_mutex` | 同线程可重复独占 | `<mutex>` |
+| `timed_mutex` / `recursive_timed_mutex` | 独占及定时尝试 | `<mutex>` |
+| `shared_mutex` | 独占或共享 | `<shared_mutex>` |
+| `shared_timed_mutex` | 独占或共享及定时尝试 | `<shared_mutex>` |
 
-`std::scoped_lock guard(a, b);` 的变量名不可漏掉：匿名临时量会在语句末尾销毁。多锁获取应统一顺序，或使用多锁工具；scoped_lock 避免的是该次取得锁的死锁，不消除持锁回调、等待 future、递归进入等循环依赖。[scoped_lock](https://timsong-cpp.github.io/cppwp/n4659/thread.lock.scoped)、[unique_lock](https://timsong-cpp.github.io/cppwp/n4659/thread.lock.unique)。
+互斥量不可复制、不可移动；应比所有借用它的锁管理器和等待操作活得久。`lock()` 可阻塞或抛 `system_error`，`try_lock()` 返回是否取得所有权，可虚假失败；`unlock()` 由当前拥有者调用。成功释放/取得之间建立相应同步，不保证公平。[互斥量要求](https://timsong-cpp.github.io/cppwp/n4659/thread.mutex.requirements)
 
-锁内避免外部回调和长 I/O；把需要的数据取到局部后再执行。若返回指向受保护容器的引用，锁释放后仍可能发生失效或竞争，应返回副本、保活对象或明确的锁持有句柄。
+## std::mutex
 
-unique_lock 的 owns_lock 与关联 mutex 是两件事：延后锁定的对象可以关联 mutex 却尚未拥有锁；向 wait 传它之前必须真正取得锁。try_lock 失败是未取得所有权，不可读取由这把锁保护的字段。RAII 保证合法作用域退出时释放已经取得的锁，但无法消除其他线程遗留的借用。
-
-锁粒度应与一致性要求对齐。队列长度与内容由同一把锁修改，才不会让计数有项但容器为空被其他线程观察到。拆成两把锁可能增加并发，也增加跨锁不变量的证明负担；先按完整操作建立正确性，再测量临界区是否成为瓶颈。
-
-## 2 条件变量必须配谓词
-
-`<condition_variable>` 的 `cv.wait(lock, pred)` 等价于在持锁时反复检查 pred，不满足则等待。等待原子地释放锁并阻塞，被通知或虚假唤醒后重新取得锁；函数返回时持锁。对同一 condition_variable 同时等待的线程必须使用同一 mutex。
-
-谓词所读状态要在这把锁下修改。先修改状态再 notify；通知可在释放锁后进行，减少被唤醒者立即争锁。notify_one 只唤醒某个等待者，不保证公平，不保证这个线程重获锁后谓词仍成立。无谓词的 wait 即使“运行一直正确”也可能因虚假唤醒或另一消费者抢先取走数据而出错。[wait、谓词和通知](https://timsong-cpp.github.io/cppwp/n4659/thread.condition.condvar)。
-
-需要超时时使用 steady_clock 的绝对截止时间和 wait_until 的谓词形式。每次唤醒重新 wait_for 完整时长，可能把总等待延长；超时与状态更新可能并发，最终判断仍要在锁下看谓词。超时不负责取消产生结果的任务。
-
-![有界队列中等待与通知的位置](../resources/R21-queue-coordination.svg)
-
-图21-1：同一 mutex 保护容量、内容与 closed。生产者等“未满或关闭”，消费者等“非空或关闭”。通知只促使再次检查，队列里的数据才是事实。
-
-## 3 有界队列：背压与关闭一起设计
-
-下面 capacity 为 2；push 在满时阻塞，关闭后拒绝；pop 在空时等待，关闭后仍排空已有项，最后返回 false。close 唤醒两类等待者且可以重复调用。销毁前必须使调用者全部退出，不能让析构与 wait 并发。
+**基础操作**。`<mutex>` 的 mutex 默认构造为未锁定；常用接口 `void lock(); bool try_lock(); void unlock();`。同一线程不能再次锁定已拥有的非递归 mutex。
 
 ```cpp
-#include <exception>
-#include <condition_variable>
-#include <cstddef>
-#include <deque>
-#include <future>
-#include <iostream>
-#include <mutex>
-#include <utility>
-
-class Queue {
-    std::mutex mutex_;
-    std::condition_variable readable_, writable_;
-    std::deque<int> items_;
-    bool closed_ = false;
-    static constexpr std::size_t capacity_ = 2;
-public:
-    bool push(int value) {
-        std::unique_lock<std::mutex> lock(mutex_);
-        writable_.wait(lock, [&] {
-            return closed_ || items_.size() < capacity_;
-        });
-        if (closed_) return false;
-        items_.push_back(value);
-        lock.unlock();
-        readable_.notify_one();
-        return true;
-    }
-    bool pop(int& value) {
-        std::unique_lock<std::mutex> lock(mutex_);
-        readable_.wait(lock, [&] { return closed_ || !items_.empty(); });
-        if (items_.empty()) return false;
-        value = items_.front();
-        items_.pop_front();
-        lock.unlock();
-        writable_.notify_one();
-        return true;
-    }
-    void close() {
-        {
-            std::lock_guard<std::mutex> lock(mutex_);
-            closed_ = true;
-        }
-        readable_.notify_all();
-        writable_.notify_all();
-    }
-};
-
-int main() {
-    try {
-        Queue queue;
-        auto consumer = std::async(std::launch::async, [&] {
-            int value = 0, sum = 0, count = 0;
-            while (queue.pop(value)) { sum += value; ++count; }
-            return std::pair<int, int>{sum, count};
-        });
-        try {
-            for (int i = 1; i <= 5; ++i) {
-                if (!queue.push(i)) { queue.close(); return 1; }
-            }
-        } catch (...) {
-            queue.close();
-            throw;
-        }
-        queue.close();
-        const auto result = consumer.get();
-        if (result.first != 15 || result.second != 5) return 2;
-        std::cout << "count=5 sum=15 closed=drained\n";
-    } catch (const std::exception& e) {
-        std::cerr << e.what() << '\n';
-        return 3;
-    }
+std::mutex mutex;
+int count = 0;
+{
+    std::lock_guard<std::mutex> guard(mutex);
+    ++count;
 }
 ```
 
-源文件：[r21-bounded-queue.cpp](../examples/r21-bounded-queue.cpp)。构建：`g++ -std=c++17 -Wall -Wextra -pedantic -pthread r21-bounded-queue.cpp -o r21-bounded-queue`。预期：`count=5 sum=15 closed=drained`。它核对数量与总和，生产失败时先关闭以使消费者退出；这个 int 队列不承诺泛型元素移动异常的强保证。
+局部例需 `<mutex>`，作用域结束释放锁；所有并发访问 count 的代码均使用同一个 mutex。正常使用交由 RAII 管理器释放，避免分支遗漏 unlock。[mutex](https://timsong-cpp.github.io/cppwp/n4659/thread.mutex.class)
 
-有界队列把过载传播给提交者，但工作者向同一满队列递归提交，也可能把所有消费者堵在 push。生产接口需要明确选择：阻塞、截止时间、立即拒绝或丢弃策略。按条目数设限还不足以限制内存；大消息应另限累计字节数、单项尺寸与连接数量。否则“容量100”也能持有巨量资源。
+## std::recursive_mutex
 
-示例只启动一个消费者，任务完成由 future::get 确认；关闭与排空使有限输入有确定终点。队列不保证每个生产者公平取得位置。改成多个消费者时，只要每次成功入队通知一名消费者、关闭通知全部，数据仍按各次持锁修改推进；输出处理顺序却未必与取出顺序相同。
+**基础操作**。`<mutex>` 的 recursive_mutex 支持同一线程重复 `lock/try_lock`；其他线程仍被排除。每次取得对应一次 unlock，最后一次释放才允许其他线程取得。
 
-若业务选择取消时丢弃剩余项，应在锁下转移或清除未开始项，并将其失败状态交付给提交者。关闭后立即销毁 mutex 或条件变量，仍会破坏尚未退出的等待者；先等待调用者完成，再释放队列。条件变量析构要求没有线程仍阻塞于它，还需防止新等待进入。
+```cpp
+std::recursive_mutex mutex;
+std::lock_guard<std::recursive_mutex> outer(mutex);
+{
+    std::lock_guard<std::recursive_mutex> inner(mutex);
+    // 同线程再次取得，inner 结束只释放其中一次
+}
+```
 
-## 4 共享锁与 C++20 同步器速查
+局部例需 `<mutex>`。最大递归层数未指定；达到上限时 lock 报错、try_lock 失败。递归锁不消除跨线程的循环等待，也不自动保证重入时中间状态合法。[recursive_mutex](https://timsong-cpp.github.io/cppwp/n4659/thread.mutex.recursive)
 
-读锁只适用于真只读的共享状态；读者更新缓存、延迟初始化或调用会修改对象的 const 接口，仍需同步。shared_mutex 不保证公平或无饥饿，不能无条件认为“读多就快”；短临界区的协调成本可能更高。标准共享锁没有通用原子升级接口，释放读锁再取得写锁后必须重新核验条件。[shared_mutex](https://timsong-cpp.github.io/cppwp/n4659/thread.sharedmutex.requirements)。
+## std::timed_mutex
 
-| 同步器与头文件 | 等待的事实 | 工作边界 |
+**基础操作**。`<mutex>` 的 timed_mutex 在 mutex 同类接口外增加相对/绝对定时尝试：
+
+```cpp
+template<class Rep, class Period> bool try_lock_for(
+    const std::chrono::duration<Rep, Period>& duration);
+template<class Clock, class Duration> bool try_lock_until(
+    const std::chrono::time_point<Clock, Duration>& deadline);
+```
+
+true 表示已取得锁，false 表示未取得。等待时间受调度等影响，不是实时上界；失败也可能为虚假失败。下面用定时管理器避免手工释放，需 `<mutex>`、`<chrono>`：
+
+```cpp
+std::timed_mutex mutex;
+std::unique_lock<std::timed_mutex> lock(mutex, std::defer_lock);
+if (lock.try_lock_for(std::chrono::milliseconds(10))) {
+    // 在独占所有权下操作共享状态
+}
+```
+
+`unique_lock<mutex>` 没有可调用的定时锁能力；模板提供该名字不使底层 mutex 支持它。[timed_mutex](https://timsong-cpp.github.io/cppwp/n4659/thread.timedmutex.class)
+
+## std::recursive_timed_mutex
+
+**基础操作**。`<mutex>` 的 recursive_timed_mutex 同时提供递归独占和 `try_lock_for/try_lock_until`。构造后未锁定，重复取得与释放次数配对，定时结果同 timed_mutex。
+
+```cpp
+std::recursive_timed_mutex mutex;
+std::unique_lock<std::recursive_timed_mutex> outer(mutex);
+std::unique_lock<std::recursive_timed_mutex> inner(
+    mutex, std::chrono::milliseconds(10));
+bool acquired = inner.owns_lock();
+```
+
+局部例需 `<mutex>`、`<chrono>`。内层定时构造取得失败时关联 mutex 但不拥有锁；只有 acquired 为 true 才可使用该所有权。[recursive_timed_mutex](https://timsong-cpp.github.io/cppwp/n4659/thread.timedmutex.recursive)
+
+## std::shared_mutex
+
+**基础操作，C++17**。`<shared_mutex>` 的 shared_mutex 提供独占 `lock/try_lock/unlock`，以及共享 `lock_shared/try_lock_shared/unlock_shared`；可有多个共享拥有者，独占与共享不能同时成立。
+
+```cpp
+std::shared_mutex mutex;
+{
+    std::shared_lock<std::shared_mutex> read(mutex);
+    // 只读受保护状态
+}
+{
+    std::unique_lock<std::shared_mutex> write(mutex);
+    // 修改受保护状态
+}
+```
+
+局部例还需 `<mutex>`。读者更新缓存或延迟初始化仍是写入。标准无通用原子锁升级接口：释放读锁再取写锁后需重新核对状态，不保证公平或无饥饿。[shared_mutex](https://timsong-cpp.github.io/cppwp/n4659/thread.sharedmutex.class)
+
+## std::shared_timed_mutex
+
+**基础操作，C++14**。`<shared_mutex>` 的 shared_timed_mutex 在独占/共享能力外提供 `try_lock_for/until` 与 `try_lock_shared_for/until`，参数为时长/时点，返回是否取得对应所有权。
+
+```cpp
+std::shared_timed_mutex mutex;
+std::shared_lock<std::shared_timed_mutex> read(mutex, std::defer_lock);
+if (read.try_lock_for(std::chrono::milliseconds(10))) {
+    // 只读；不能据此写共享对象
+}
+```
+
+局部例需 `<shared_mutex>`、`<chrono>`。定时等待和虚假失败条件同定时互斥量；共享所有权只能由对应的共享释放路径结束。[shared_timed_mutex](https://timsong-cpp.github.io/cppwp/n4659/thread.sharedtimedmutex.class)
+
+## 锁标签
+
+**基础操作**。`<mutex>` 定义三种标签，用于管理器构造；不是可以任意组合的优化开关。
+
+| 标签 | 构造语义 | 前提/结果 |
 | --- | --- | --- |
-| counting_semaphore · `<semaphore>` | 许可计数大于零 | acquire 消耗许可，release 增加；不绑定线程所有权，不能超过 max |
-| binary_semaphore · `<semaphore>` | 至多一个许可 | 适合一次授权；try_acquire 可虚假失败 |
-| latch · `<latch>` | 一次性计数降到零 | count_down 不可超过剩余计数；不能复位 |
-| barrier · `<barrier>` | 本阶段参与者到齐 | 可重复阶段；arrive_and_drop 调整后续人数 |
-| condition_variable | 自定义谓词成立 | 能表达队列内容、关闭、超时的组合条件 |
+| `defer_lock` | 关联 mutex，暂不取得 | 管理器 initially 不拥有锁 |
+| `try_to_lock` | 立即尝试取得 | 检查 owns_lock 后才使用受保护数据 |
+| `adopt_lock` | 接管已取得的锁 | 当前线程已拥有对应锁，管理器负责释放 |
 
-semaphore 不保护队列容器本身；许可数量和真实队列状态需保持一致。barrier 的完成步骤有线程和异常约束，完成函数要满足不抛要求；少一个参与者到达会让全阶段无法结束。不可把工作者异常退出留给 barrier 永久等待。[semaphore](https://timsong-cpp.github.io/cppwp/n4861/thread.sema)、[latch](https://timsong-cpp.github.io/cppwp/n4861/thread.latch)、[barrier](https://timsong-cpp.github.io/cppwp/n4861/thread.barrier)。当前例子仅实测 C++17 队列，未实测这三个 C++20 同步器。
+`lock_guard` 支持普通锁定和 adopt；`unique_lock/shared_lock` 支持上述各标签；`scoped_lock` 支持普通锁定和 adopt。[锁标签](https://timsong-cpp.github.io/cppwp/n4659/thread.lock)
 
-## 5 从现象回到等待条件
+## std::lock_guard
 
-| 现象 | 检查依据 | 常见误判 |
+**基础操作**。`<mutex>` 中 `template<class Mutex> class lock_guard;`，Mutex 提供 lock/unlock。构造为 `explicit lock_guard(Mutex& m);` 或 `lock_guard(Mutex& m, adopt_lock_t);`；不可复制、不可移动，没有手工 unlock 成员。
+
+```cpp
+std::mutex mutex;
+{
+    std::lock_guard<std::mutex> guard(mutex);
+    // 构造锁定，整个小作用域持锁
+}
+```
+
+析构释放所持的锁；mutex 必须存活，管理器不能被跨线程转移。临时匿名管理器在语句末尾销毁，应给它变量名。[lock_guard](https://timsong-cpp.github.io/cppwp/n4659/thread.lock.guard)
+
+## std::unique_lock
+
+**基础操作**。`<mutex>` 中 `template<class Mutex> class unique_lock;` 是可移动、不可复制的独占锁管理器。默认构造无 mutex；普通构造立即锁定；标签构造和定时构造分别改变取得方式。
+
+```cpp
+std::mutex mutex;
+std::unique_lock<std::mutex> lock(mutex, std::defer_lock);
+lock.lock();
+bool held = lock.owns_lock();
+lock.unlock();
+lock.lock();
+```
+
+关联 mutex 与拥有锁是两件事。`lock/try_lock/unlock` 操作对应底层 mutex；定时接口仅用于定时能力类型。`owns_lock()` 或显式 bool 查询所有权，`mutex()` 返回关联指针，`swap` 交换关联与所有权；`release()` 返回指针并解除管理，**不解锁**，调用者接手释放责任。
+
+已拥有时再次 lock 或未拥有时 unlock 报 `system_error`；默认/已移动对象无关联，不能锁定。移动目标接手释放责任，但底层锁的线程所有权要求仍成立。析构仅在 owns_lock 为 true 时解锁。[unique_lock](https://timsong-cpp.github.io/cppwp/n4659/thread.lock.unique)
+
+## std::scoped_lock
+
+**基础操作，C++17**。`<mutex>` 中 `template<class... MutexTypes> class scoped_lock;` 管理零到多把 mutex；不可复制、不可移动。普通构造取得所有锁，多锁形式使用避免此次获取死锁的算法；adopt 形式接管当前线程已取得的全部锁。
+
+```cpp
+std::mutex left, right;
+{
+    std::scoped_lock guard(left, right);
+    // 同时维护两个对象之间的不变量
+}
+```
+
+析构释放所有锁，无手工 unlock 成员。零锁形式为空操作。不能把同一非递归 mutex 重复传入；算法避免获取阶段死锁，不消除锁内等待任务或外部回调形成的循环依赖。[scoped_lock](https://timsong-cpp.github.io/cppwp/n4659/thread.lock.scoped)
+
+## std::shared_lock
+
+**基础操作，C++14**。`<shared_mutex>` 中 `template<class Mutex> class shared_lock;` 管理共享所有权；可移动、不可复制。构造、标签、定时形式以及 owns_lock/mutex/release/swap 与 unique_lock 对应，但底层调用共享接口。
+
+```cpp
+std::shared_mutex mutex;
+std::shared_lock<std::shared_mutex> read(mutex, std::try_to_lock);
+if (read.owns_lock()) {
+    // 仅在共享所有权下读取
+}
+```
+
+`lock()` 调用 `lock_shared()`，`unlock()` 调用 `unlock_shared()`；`release()` 不释放共享锁。定时接口要求 shared_timed_mutex 等类型。[shared_lock](https://timsong-cpp.github.io/cppwp/n4659/thread.lock.shared)
+
+## std::lock 与 std::try_lock
+
+**基础操作**。`<mutex>` 的自由函数用于多锁协作，声明摘要：
+
+```cpp
+template<class L1, class L2, class... L> void lock(L1&, L2&, L&...);
+template<class L1, class L2, class... L> int try_lock(L1&, L2&, L&...);
+```
+
+`lock` 使用避免获取阶段死锁的算法取得全部锁；抛异常时释放本次已取得的锁。`try_lock` 逐个尝试，全部成功返回 -1，否则返回失败对象的零起始索引并释放此前取得的锁。Lockable 也可为以 defer_lock 构造的 unique_lock。
+
+```cpp
+std::mutex a, b;
+std::unique_lock<std::mutex> first(a, std::defer_lock);
+std::unique_lock<std::mutex> second(b, std::defer_lock);
+std::lock(first, second);
+```
+
+局部例需 `<mutex>`，两个管理器析构负责解锁。只需作用域持有时优先 scoped_lock，避免手工接管遗漏。[多锁函数](https://timsong-cpp.github.io/cppwp/n4659/thread.lock.algorithm)
+
+## std::condition_variable
+
+**基础操作**。`<condition_variable>` 的 condition_variable 是等待通知的协作对象，默认构造，不可复制/移动；它不保存业务谓词。常用形状：
+
+```cpp
+void wait(std::unique_lock<std::mutex>& lock);
+template<class Predicate> void wait(std::unique_lock<std::mutex>& lock, Predicate pred);
+void notify_one() noexcept;
+void notify_all() noexcept;
+```
+
+wait 要求 lock 已拥有对应 mutex；等待原子地释放锁并阻塞，唤醒后重新取得锁。谓词形式循环检查 pred，只在 true 时返回。以下两个函数共享一组对象，需 `<mutex>`、`<condition_variable>`；提供者先存值再通知，消费者在锁内读值。
+
+```cpp
+std::mutex mutex;
+std::condition_variable changed;
+bool ready = false;
+int value = 0;
+void publish() {
+    { std::lock_guard<std::mutex> lock(mutex); value = 42; ready = true; }
+    changed.notify_one();
+}
+int receive() {
+    std::unique_lock<std::mutex> lock(mutex);
+    changed.wait(lock, [] { return ready; });
+    return value;
+}
+```
+
+这段展示一次结果交付；可由不同线程调用两个函数。notify_one 唤醒一个等待者，notify_all 唤醒全部；通知不保存数据，也不保证某个消费者取得数据。虚假唤醒（spurious wakeup）是没有对应通知仍醒来，谓词循环也应处理别的消费者抢先取走数据。同一 cv 上并发等待者使用同一 mutex；析构前所有等待者须退出且不能再进入。[condition_variable](https://timsong-cpp.github.io/cppwp/n4659/thread.condition.condvar)
+
+### 定时等待
+
+`wait_for(lock, duration)` / `wait_until(lock, deadline)` 无谓词形式返回 `cv_status::timeout/no_timeout`，仍须检查业务状态；谓词形式增加 pred，返回最终谓词是否成立。需要总预算时使用 steady_clock 的绝对期限，避免每次醒来重置完整相对时长。
+
+```cpp
+auto deadline = std::chrono::steady_clock::now() + std::chrono::seconds(1);
+bool available = changed.wait_until(lock, deadline, [] { return ready; });
+```
+
+片段需 `<chrono>`，沿用已持锁的 lock。超时不取消生产任务；返回时仍持有锁，最终状态必须在锁下解释。
+
+## std::condition_variable_any
+
+**基础操作**。`<condition_variable>` 的 condition_variable_any 支持具备 lock/unlock 的其他锁类型；等待时仍释放并重新取得传入锁，使用谓词、wait_for/until、notify_one/all。对象不可复制/移动。
+
+```cpp
+std::recursive_mutex mutex;
+std::condition_variable_any changed;
+std::unique_lock<std::recursive_mutex> lock(mutex);
+changed.wait(lock, [&] { return ready; });
+```
+
+这是另一独立上下文：ready 由同一 mutex 保护，需 `<mutex>`、`<condition_variable>`。递归锁在此只持有一层，否则等待释放一次后仍持有锁，生产者可能永远无法取得。C++20 另有 `wait(lock, stop_token, pred)` 等停止令牌重载，返回业务谓词是否成立，停止唤醒不等于谓词满足。[condition_variable_any](https://timsong-cpp.github.io/cppwp/n4659/thread.condition.condvarany)、[C++20 停止等待](https://timsong-cpp.github.io/cppwp/n4861/thread.condition.condvarany)
+
+## std::counting_semaphore（C++20）
+
+**基础操作**。`<semaphore>` 中 `template<ptrdiff_t LeastMaxValue = implementation_defined> class counting_semaphore;`，公开摘要省略完整声明。模板参数是要求支持的最低最大计数，不是初始计数；`max()` 是实现实际支持的最大值。构造 `counting_semaphore<N> permits(initial)`，无默认构造、不可复制/移动。
+
+`acquire()` 等到计数可减一；`try_acquire()` 尝试，可能虚假失败；`try_acquire_for/until` 带时间预算；`release(update = 1)` 增加许可并可能唤醒等待者。初始量和增加后量不能超出允许范围。
+
+```cpp
+std::counting_semaphore<4> permits(2);
+permits.acquire();
+// 使用一个许可代表的资源
+permits.release();
+```
+
+许可不绑定获得它的线程，不自动保护队列容器。局部例需 `<semaphore>`。
+
+## std::binary_semaphore（C++20）
+
+**基础操作**。`<semaphore>` 的 `binary_semaphore` 是 `counting_semaphore<1>` 的别名，构造指定初始 0 或 1，按二元授权使用。acquire 消耗许可，release 增加许可；try_acquire 和定时尝试形状同 counting_semaphore。最低最大值 1 不表示所有实现 max() 必定等于 1，二元协议仍按 0/1 维护。
+
+```cpp
+std::binary_semaphore signal(0);
+signal.release();
+signal.acquire();
+```
+
+局部例需 `<semaphore>`，先发出许可，再消耗；许可可跨线程交付。[semaphore](https://timsong-cpp.github.io/cppwp/n4861/thread.sema)
+
+## std::latch（C++20）
+
+**基础操作**。`<latch>` 的 latch 是一次性倒计数协作对象，`explicit latch(ptrdiff_t expected)` 指定初始计数，不可复制/移动。`count_down(update = 1)` 减计数；`wait()` 阻塞至零；`try_wait()` 查询是否为零；`arrive_and_wait(update = 1)` 先减再等。
+
+```cpp
+std::latch finished(2);
+finished.count_down(); // 第一个工作者结束
+finished.count_down(); // 第二个工作者结束
+finished.wait();
+```
+
+局部例需 `<latch>`，展示一次完成条件。update 不能超过剩余计数；零后不能复位。工作异常退出时也必须履行约定的到达责任。[latch](https://timsong-cpp.github.io/cppwp/n4861/thread.latch)
+
+## std::barrier（C++20）
+
+**基础操作**。`<barrier>` 中 `template<class CompletionFunction = /* 实现提供 */> class barrier;` 是可重复的阶段屏障。构造指定参与计数和可选完成函数；不可复制/移动。每阶段达到零时执行完成步骤，随后进入新阶段。
+
+```cpp
+std::barrier<> phase(2);
+// 两个参与线程分别在各自路径执行：
+phase.arrive_and_wait();
+```
+
+局部例需 `<barrier>`，最后一行必须由两个参与者各自调用，不是同线程连续调用两次。`arrive(update)` 返回到达令牌，之后 `wait(std::move(token))` 等待所属阶段；`arrive_and_wait()` 合并二者，`arrive_and_drop()` 同时减少当前及后续参与人数，不等待。完成函数须满足不抛约束，不能遗漏参与者导致永久等待。[barrier](https://timsong-cpp.github.io/cppwp/n4861/thread.barrier)
+
+## std::once_flag 与 std::call_once
+
+**基础操作**。`<mutex>` 的 once_flag 默认构造为未完成，不可复制/移动；`call_once(flag, function, args...)` 对关联 flag 完成一次成功调用。成功后其他调用不再执行 function；若调用抛异常，该次不算完成，后续可重试。
+
+```cpp
+std::once_flag initialized;
+std::call_once(initialized, [] { /* 建立共享资源 */ });
+std::call_once(initialized, [] { /* 已成功完成时不执行 */ });
+```
+
+局部例需 `<mutex>`。成功完成与同一 flag 后续被动调用返回之间有同步；对象后续修改仍另需保护。flag 不能复位，用于一次初始化而非重复阶段。[call_once](https://timsong-cpp.github.io/cppwp/n4659/thread.once)
+
+## 有界队列与关闭
+
+**组合应用**。有界队列把容量限制转为背压：生产者等“未满或关闭”，消费者等“非空或关闭”。mutex 保护内容、容量与 closed；关闭标志在锁下更新后通知两类等待者。
+
+![有界队列中等待与通知的位置](../resources/R21-queue-coordination.svg)
+
+图21-1：通知触发再检查，队列内容才是事实。关闭时先唤醒等待者，再确认所有调用者结束，最后销毁队列。
+
+[r21-bounded-queue.cpp](../examples/r21-bounded-queue.cpp) 保留容量 2 的完整组合程序：push 满时阻塞、关闭后拒绝，pop 关闭后排空已有项并最终返回 false。该 int 队列不承诺泛型元素异常的强保证，也不保证公平；销毁与外部调用不能并发。
+
+容量按条目数还不能限制累计字节。消费者在同一满队列中阻塞提交可能耗尽所有消费能力；是否阻塞、拒绝、按期限等待或丢弃应由接口定义。任务结果交付与队列关闭见 [任务调度](R23-async-execution.zh-CN.md)。
+
+## 协作调查入口
+
+| 现象 | 检查依据 | 处理方向 |
 | --- | --- | --- |
-| 偶发空队列 front 崩溃 | wait 后是否重新检查谓词 | 一次 notify 不代表一项数据归该线程 |
-| 关闭时进程不退出 | 两类等待者是否都被唤醒 | closed=true 自身不会唤醒 wait |
-| 多线程都阻塞 | 锁顺序、持锁等待、递归提交 | 换 recursive_mutex 不能解决循环依赖 |
-| 队列满后吞吐骤降 | 消费耗时、累计字节、提交阻塞时间 | 增大容量只能延后过载表现 |
-| 读锁下仍有竞争 | 真正修改点和借用寿命 | const 与共享锁都不自动保证无写入 |
-
-记录“哪个线程等待哪个状态、谁能够修改它”。若修改者也在等待同一组资源，先修复等待依赖，再讨论线程数。内存模型见 R22，执行资源退出见 R20，网络背压见 R29。
+| 空队列 front 崩溃 | wait 后的谓词循环 | 通知不代表该消费者拥有一项数据 |
+| 关闭不退出 | 两类等待者是否醒来 | 改 closed 后通知并确认结束 |
+| 全部线程阻塞 | 锁顺序、持锁等待、递归提交 | 修复循环依赖，递归锁不能代替 |
+| 队列满后延迟升高 | 消费成本、累计字节、等待时间 | 有界容量传播过载但不增加处理能力 |
+| 读锁下有数据竞争 | 真正修改点与借用寿命 | 共享锁只允许真实只读操作 |
