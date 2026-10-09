@@ -15,13 +15,13 @@
 | 重定位项 | 修改位置、类型、符号、附加值 | 按布局补地址相关字段 |
 | 格式与架构信息 | ELF/COFF、位数、机器类型等 | 让工具正确解释内容 |
 
-GNU 编译驱动可将 `metric.cpp` 编成目标文件：
+GNU/Linux 编译驱动可将 `metric.cpp` 编成目标文件：
 
 ```text
 g++ -std=c++17 -c metric.cpp -o metric.o
 ```
 
-输入为源文件，`-c` 只编译不完成最终链接；产物 metric.o 保留后续链接所需信息。Windows MSVC 对应 `cl /std:c++17 /c metric.cpp`，通常输出 metric.obj。换后缀不改变格式，64 位输入不能直接成为 32 位目标的一部分。LTO 工具链还可能保留中间表示，使代码生成延续到链接阶段。[ELF 符号表](https://gabi.xinuos.com/elf/05-symtab.html)、[PE/COFF 格式](https://learn.microsoft.com/en-us/windows/win32/debug/pe-format)
+输入为源文件，`-c` 只编译不完成最终链接；产物 metric.o 保留后续链接所需信息。Windows MSVC 以 `cl /std:c++17 /DMETRIC_STATIC /c metric.cpp` 编译配套静态版本，通常输出 metric.obj；METRIC_STATIC 是配套接口头选择静态声明的工程宏，作用见“导出可见性与接口标注”。换后缀不改变格式，64 位输入不能直接成为 32 位目标的一部分。LTO 工具链还可能保留中间表示，使代码生成延续到链接阶段。[ELF 符号表](https://gabi.xinuos.com/elf/05-symtab.html)、[PE/COFF 格式](https://learn.microsoft.com/en-us/windows/win32/debug/pe-format)
 
 ## 符号与名称修饰
 
@@ -47,7 +47,7 @@ ar rcs libmetric.a metric.o
 g++ main.o libmetric.a -o app
 ```
 
-`r` 加入/替换成员，`c` 创建归档，`s` 建符号索引；main.o 引用库中的函数，最终 app 包含被选入实现。MSVC 使用 `lib /OUT:metric.lib metric.obj` 创建库，以 `cl main.obj metric.lib /Fe:app.exe` 完成普通链接。头文件仍需提供编译时声明，归档不能替代声明。[GNU ar](https://sourceware.org/binutils/docs/binutils/ar.html)
+`r` 加入/替换成员，`c` 创建归档，`s` 建符号索引；main.o 引用库中的函数，最终 app 包含被选入实现。MSVC 使用 `lib /OUT:metric.lib metric.obj` 创建库，以 `cl main.obj metric.lib /Fe:app.exe` 完成普通链接；配套调用方 main.obj 也须在编译时定义 METRIC_STATIC，使声明对应静态实现。头文件仍需提供编译时声明，归档不能替代声明。[GNU ar](https://sourceware.org/binutils/docs/binutils/ar.html)
 
 ### 归档成员抽取与顺序
 
@@ -81,7 +81,7 @@ g++ -std=c++17 -fPIC -shared metric.cpp -o libmetric.so
 g++ main.o -L. -lmetric -o app
 ```
 
-`-fPIC` 生成位置无关代码，`-shared` 输出共享库，`-L` 指链接搜索目录，`-lmetric` 请求相应库；运行搜索另行配置，不能从 -L 推出部署成功。Windows MSVC 的 `cl /LD metric.cpp` 生成 DLL（源中需定义导出），调用方链接其导入库；只发布 exe 与导入库仍会缺实现。[GCC 代码生成](https://gcc.gnu.org/onlinedocs/gcc/Code-Gen-Options.html)、[PE 导入与导出](https://learn.microsoft.com/en-us/windows/win32/debug/pe-format)
+`-fPIC` 生成位置无关代码，`-shared` 输出共享库，`-L` 指链接搜索目录，`-lmetric` 请求相应库；运行搜索另行配置，不能从 -L 推出部署成功。Windows MSVC 以 `cl /std:c++17 /DMETRIC_BUILD /LD metric.cpp` 生成配套 DLL，METRIC_BUILD 让接口头声明导出；普通调用方采用默认导入声明并链接导入库。只发布 exe 与导入库仍会缺实现。[GCC 代码生成](https://gcc.gnu.org/onlinedocs/gcc/Code-Gen-Options.html)、[PE 导入与导出](https://learn.microsoft.com/en-us/windows/win32/debug/pe-format)
 
 ## 导出可见性与接口标注
 

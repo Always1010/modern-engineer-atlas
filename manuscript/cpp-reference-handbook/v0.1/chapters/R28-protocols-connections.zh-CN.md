@@ -116,7 +116,7 @@ UDP 不保证更快；应用需按需求补丢失、重排、重复与拥塞策�
 双方交换受保护的应用数据记录
 ```
 
-握手消息可合并传输，TLS 记录和 TCP 读取边界均不是业务消息边界。客户端验证证书链、有效期与目标名字；协商加密不自动证明身份正确。ALPN 协商上层协议，例如 HTTP/2，SNI 提供目标服务器名；使用库时需按对应认证与扩展规则配置。[TLS 1.3 RFC 8446](https://www.rfc-editor.org/rfc/rfc8446)、[ALPN RFC 7301](https://www.rfc-editor.org/rfc/rfc7301)
+握手消息可合并传输，TLS 记录和 TCP 读取边界均不是业务消息边界。客户端验证证书链、有效期与目标名字；协商加密不自动证明身份正确。ALPN 协商上层协议，例如 HTTP/2，SNI 提供目标服务器名；使用库时需按对应认证与扩展规则配置。[TLS 1.3 RFC 8446](https://www.rfc-editor.org/rfc/rfc8446)、[ALPN RFC 7301](https://www.rfc-editor.org/rfc/rfc7301.html)
 
 ![首次 HTTPS 请求的分层时间线](../resources/R28-request-layers.svg)
 

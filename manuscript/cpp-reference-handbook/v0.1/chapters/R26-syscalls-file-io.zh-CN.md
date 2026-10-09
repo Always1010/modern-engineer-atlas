@@ -142,14 +142,16 @@ if (!ReadFile(h, buffer, sizeof buffer, &n, nullptr)) {
 
 `WriteFile(h, data, length, &n, nullptr)` 写入当前位置，成功后根据 `n` 推进应用偏移。`SetFilePointerEx` 的 `method` 为 `FILE_BEGIN`、`FILE_CURRENT`、`FILE_END`，`distance.QuadPart` 是有符号位移。`LARGE_INTEGER zero{};` 配合 `SetFilePointerEx(h, zero, nullptr, FILE_BEGIN)` 回到文件头；`newPosition` 可空。共享句柄上“定位后再读”是两个操作，并行调用需协调。[SetFilePointerEx](https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-setfilepointerex)
 
-下面向已打开的同步可写句柄 `h` 写入三字节，再回到文件头；片段需要 `<windows.h>`，`report` 由调用方提供。`n` 小于请求量时按下一节继续写入剩余部分。
+下面向已打开、支持定位的普通文件同步可写句柄 `h` 写入三字节，完整写入成功后再回到文件头；片段需要 `<windows.h>`，`report` 由调用方提供。`n` 小于请求量时先按下一节继续写入剩余部分，期间不改变文件位置。
 
 ```cpp
 const char text[] = "abc";
 DWORD n = 0;
 if (!WriteFile(h, text, 3, &n, nullptr)) report(GetLastError());
-LARGE_INTEGER zero{};
-if (!SetFilePointerEx(h, zero, nullptr, FILE_BEGIN)) report(GetLastError());
+else if (n == 3) {
+    LARGE_INTEGER zero{};
+    if (!SetFilePointerEx(h, zero, nullptr, FILE_BEGIN)) report(GetLastError());
+} else { /* 先继续未完成后缀，完整写入后才能重新定位 */ }
 ```
 
 ## 部分完成与错误
