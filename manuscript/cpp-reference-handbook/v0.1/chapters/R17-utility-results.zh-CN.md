@@ -333,8 +333,4 @@ auto checked = doubled.and_then([](int x) -> std::expected<int, std::string> {
 
 不能假定这些类型都有通用 `std::hash`：C++17 的 `pair`、`tuple` 没有标准通用哈希特化；`optional`、`variant` 的哈希可用性受内部类型限制。比较/等价与哈希的契约见 [R14](R14-associative-adaptors.zh-CN.md)，定制约束见 [N4659 hash requirements](https://timsong-cpp.github.io/cppwp/n4659/unord.hash)。
 
-## 组合应用与参考资料
-
-[配套 C++17 程序](../examples/r17-utility-results.cpp) 组合元组分解、可选值、访问器和类型擦除；预期输出 `id=8 optional=8 variant=Ada any=8`。正文基础操作可独立查阅，完整源码供组合应用参考。
-
-分类与进一步重载可查 [cppreference utility library](https://en.cppreference.com/w/cpp/utility.html)；版本规则以条目附近的 N4659（C++17）和 N4950（C++23）链接为准。
+[配套 C++17 程序](../examples/r17-utility-results.cpp) 组合元组分解、可选值、访问器和类型擦除；分类与进一步重载可查 [cppreference utility library](https://en.cppreference.com/w/cpp/utility.html)。
