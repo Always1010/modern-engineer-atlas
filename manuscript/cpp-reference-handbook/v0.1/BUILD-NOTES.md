@@ -1,53 +1,46 @@
-# 全书修订：核验与重建
+# 核对与阅读制品重建
 
-日期：2026-10-08。分支codex/cpp-reference-handbook，目标WorkTree为C:/Users/always$$$/.codex/worktrees/cpp-reference-handbook/modern-engineer-atlas。版本路径manuscript/cpp-reference-handbook/v0.1。原checkout、complete-edition、cpp-quickstart源码未修改；一个误放原checkout的临时验证目录已移入本WorkTree的QA。
+当前版本：2026-10-09对象条目版，七篇35章。正文、图源、例子和生成工具是编辑源；HTML/PDF生成于output/pdf，检查产物存于qa，两者不入Git。
 
-## 修订范围
+## 代码与资料核对范围
 
-7篇、32章、183个二级条目；数据结构原理融合R13–R16。新增R23异步执行、事件循环与任务调度，R27链接、装载与库；扩充R02/R07对象模型，R30改为构建、依赖与工程交付。目录、文件名、图号、交叉引用和附录按连续编号统一，catalog记录实际条目与机制后查小节。
+按用户明确要求，示例以可移植语法与接口摘录为主，后续不编译或运行C++程序。静态复核关注声明语法、头文件、已存在对象/上下文、参数与结果、版本及前提；它不是编译器证明，也不是所有平台行为的实测保证。
 
-44幅可编辑SVG；29个根目录单文件程序（含R13审阅片段程序），另有R30四文件静态库工程与R27六个代码/构建文件的STATIC/SHARED/MODULE关联工程。图中实现模型不作为标准布局保证；来源就近链接到相应版本公开草案、平台/工具官方文档。
+标准规则采用匹配版本公开草案；平台API、网络协议与工具采用官方资料。需要C++20/23标准库的短例就地标记，OS接口分平台。未运行Linux/Windows端点、任意并发交错、协程调度框架、各厂商标准库或Sanitizer，不根据本机返回值断言可移植语义。
 
-## 历史首稿与本轮验证分别记录
+历史检查保存在Git。2026-10-07/08旧稿曾在有限Windows工具链下运行部分配套程序；本次收到停止运行的要求之前，也做过有限的调试/工具类型/I/O例子检查。这些历史事实不能覆盖重构后的全部短例，不作为当前完成标准。配套工程README只维护接口、源码与适用范围。
 
-2026-10-07首稿的26个单文件程序及原静态库工程在Windows TDM-GCC10.3.0环境通过，R13另以C++20检查erase_if。该历史记录不等于本轮重新运行全部程序。此次只运行新增或实质改变的例子/工程；编号迁移后的正文/源码由对应检查核对。
+## 文档与制品检查
 
-| 本轮范围 | 实际验证 |
-| --- | --- |
-| R02新增存储例子 | C++17，-Wall -Wextra -Wpedantic -Werror；copy=7 reused=23 destroyed=2，退出0 |
-| R16新增查找/选择/堆例子 | C++17，-Wall -Wextra -pedantic；bound=4 rank2=3 popped=9 size=4，退出0；检查语义关系，不固定未规定排列 |
-| R23有界执行器 | C++17，-pthread，-Wall -Wextra -Wpedantic -Werror；accepted=3 rejected=2 result=42 failures=1，退出0；门闩使满队列检查确定，不依赖sleep |
-| R30安装导出 | 原静态库工程配置、构建和定向smoke1/1；安装到项目内stage；另建消费工程只用安装头和导出目标，运行退出0 |
-| R27关联库工程 | 最终编号Windows x64静态/共享/插件CTest3/3；缺文件/缺入口/拒绝版本/缺参数退出3/4/5/2，缺入口和拒绝版本时均释放已加载句柄；中文空格路径退出0 |
-| 正文对应 | 29根目录程序：28个完整代码块、R13的8个片段；R30四文件和R27接口摘录逐字核对 |
-| 技术审查 | 修正委托构造清理例外、GetLastError先保存、Windows固定入口示例限制64位；其余新增内容未发现实质错误 |
+- 目录与索引从实际标题生成，来源R编号和读者章序分离；带片段的链接必须解析到具体条目。
+- catalog中的迁移记录核对32旧章、183旧H2、87旧表及旧图去向，目标为当前真实标题。
+- 源码工具核对显式source摘录；普通配套程序只检查引用关系，不强制全文嵌入正文。
+- HTML检查图片加载、导航锚点、重复ID与候选布局溢出；SVG静态内嵌。
+- PDF检查章节、可检索文字、页边界和替换字符；全页渲染，联系图检查版面，稀疏/密集页进一步复核。HTML/PDF检查不执行C++代码。
 
-TDM-GCC的插件默认运行库配置曾在释放DLL时出现SIGSEGV，改用共享libgcc/libstdc++并复制已有匹配DLL后通过。完整证据与判断边界见[库工程记录](examples/r27-libraries/README.md)。不能据此概括所有静态运行库或所有DLL。
+当前制品为251页，35章、409个二级条目、46幅当前引用SVG。32旧章、183旧H2、87旧表的迁移目标全部解析通过；全文及维护文档的本地引用和表列数检查通过。30个独立配套源码、2个小工程均有正文入口，3个source摘录与实际文件相符。HTML的图片加载、锚点、重复ID和候选溢出检查均通过；PDF章节齐全，越界字形、替换字符和需复核稀疏页均为0。全部251页已渲染并通过联系图目视复核，断表、密集页及孤行候选进一步放大检查；正常的完整章尾留白保留。新增/受改SVG的定向文字边界检查通过。
 
-本机美元字符路径触发CMake MinGW响应文件转义问题；QA消费工程在project之后关闭include/library响应文件，R27最终验证通过CMAKE_PROJECT_INCLUDE加载同一临时片段。只改变项目内验证配置，不修改系统软件、环境变量或PATH。
+所有检查使用已有依赖与无头浏览器；以上结果限于静态内容和阅读制品，不是C++实机测试。未安装工具、启动可见浏览器或改变系统配置。
 
-## 未实测范围
+## 使用已有环境重建
 
-Linux库工程、epoll/映射/IPC/持久化、Windows真实IOCP/Winsock端点、TCP/TLS/HTTP，以及MSVC/Clang和sanitizer未在本轮运行。C++20/23 span/ranges/format/bit/时区/jthread/同步器/expected等继续明确为来源核验或历史有限范围；协程只给入口，未实现框架。未覆盖任意分配失败、任意任务挂起或并发销毁执行器，也没有运行未定义行为证明规则。
-
-## 图解与阅读制品
-
-独立生成器沿用审阅样章风格；不缩小正文以追求固定页数。HTML带章节、条目与索引跳转，SVG内嵌；PDF有可检索文字、页码、书签和链接。新图定向检查实际字体下文字边界/重叠并目视检查。新增章节和重编号影响整书重排，因此检查全书PDF页面；这不是重新运行原书全部程序测试。
-
-生成器按catalog声明检查32个连续唯一章节、全部本地资源与引用、图像加载、锚点和布局边界。source摘录注释只用于核验，不显示给读者。最终PDF为134页，正文包含95张Markdown表；第1–32章齐全，越界字形、替换字符与待复核稀疏页均为0。全部页面经渲染目视复核，10幅新增SVG的边界与重叠定向检查通过；页面渲染与检查结果在ignored qa/fullbook。
-
-output与qa不入Git，正文、图源、例子、目录和工具纳入Git。复制HTML/PDF不等于同时携带源码；源码链接指向本机文件，需要配套版本目录。
-
-## 在已有环境重建
-
-从仓库根目录执行；以下本机路径应换成读者已有依赖，不安装工具：
+在本版本目录执行。Node包目录需要已有marked与playwright，浏览器参数指向已有兼容Chromium程序；变量取值由使用者提供，不安装依赖。
 
 ```powershell
-node manuscript/cpp-reference-handbook/v0.1/tools/build-handbook.mjs 'C:/Users/always$$$/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules' 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe'
-node manuscript/cpp-reference-handbook/v0.1/tools/check-example-sources.mjs
-node manuscript/cpp-reference-handbook/v0.1/tools/check-handbook-svg.mjs 'C:/Users/always$$$/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules' 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe'
-pdftoppm -r 90 -png manuscript/cpp-reference-handbook/v0.1/output/pdf/Cpp-Reference-Handbook-v0.1.pdf manuscript/cpp-reference-handbook/v0.1/qa/fullbook/page
-& 'C:/Users/always$$$/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe' manuscript/cpp-reference-handbook/v0.1/tools/inspect-handbook-pdf.py --sheets
+$nodeModules = '已有Node包目录'
+$browserExe = '已有浏览器程序路径'
+$pythonExe = '已有Python程序路径'
+node tools/sync-handbook-catalog.mjs
+node tools/sync-handbook-index.mjs
+node tools/check-handbook.mjs
+node tools/check-example-sources.mjs
+node tools/build-handbook.mjs $nodeModules $browserExe
+pdftoppm -r 90 -png output/pdf/Cpp-Reference-Handbook-v0.1.pdf qa/fullbook/page
+& $pythonExe tools/inspect-handbook-pdf.py --sheets
 ```
 
-SVG检查可传第三个参数（文件名正则）只检查受改图。示例工具进行源码对应核查，不执行所有程序。完整平台构建入口见各章和库工程README；代码失败退出非零，不能运行旧exe冒充本次编译结果。
+Python检查需要已有pdfplumber、pypdf和Pillow，页图需要已有Poppler。同步目录时保留catalog中已登记的迁移记录；重新追溯基线仅为编辑工作，不要求读者拥有ignored迁移工作文件。源码对应工具只静态读取文件，以上命令不编译执行任何示例。
+
+全部样章与全书共用tools/handbook.css和标题模型。若修改正文，重新同步目录/索引并生成受影响制品；若修改公共样式，重新检查全书页图。短代码尽量整体放置，长代码允许分页，续表重复表头；宽表先拆分内容。
+
+HTML/PDF中的examples链接指向配套本地文件，单独复制PDF不会携带源码。SVG已内嵌HTML并进入PDF，不依赖外部图片加载。
