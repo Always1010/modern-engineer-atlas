@@ -1,69 +1,271 @@
-# 第26章 系统调用与文件 I/O
+# 系统调用与文件 I/O
 
-一次“写成功”可能只表示字节进入缓冲或内核缓存。接口返回、其他读取者可见和断电后仍存在，是三个需要分别确认的边界。
+常规 C++ 文件读写先查 [标准流与文件接口](R34-streams-files.zh-CN.md)。本章维护 OS 层实体、调用机制与平台 API：描述符/句柄、显式偏移、持久化及异步完成；平台接口适用于需要这些能力的程序。
 
-**版本与平台**：C++17/20 标准库只提供部分文件能力；fd、mmap、epoll 为 Linux，HANDLE、OVERLAPPED、IOCP 为 Windows。**先修**：RAII、错误处理、文件流、虚拟内存。首次读第1至3节；异步服务查第4、5节。
+**平台与先修**：示例使用 C++17 调用 OS API；POSIX 接口标为 Linux/POSIX，epoll 为 Linux，Win32 为 Windows。先修为错误处理与 RAII。基础阅读从文件实体到同步读写；缓冲持久化和异步机制可随后查阅。
 
-## 1 系统调用、fd 与 HANDLE 的所有权
+## 系统调用与打开文件实体
 
-系统调用请求内核管理的能力；一次库函数调用可能执行零次、多次系统调用。不要把 C++ 函数、C 库包装与内核入口视为一一对应，也不要由“进入内核”断言一定做了磁盘 I/O。
+**基础概念**。系统调用（system call）是程序请求内核服务的入口，例如打开文件、取得字节或建立映射。应用通常调用 C 库或 Win32 函数；库函数可能在用户态完成，也可能调用一次或多次内核服务。成功读取也可能由缓存满足，不必每次访问磁盘。
 
-Linux 文件描述符是进程表中的整数索引，0也可有效；open 失败返回 -1。dup 等可以让不同 fd 指向同一 open file description，从而共享文件偏移和某些状态。fd 关闭后数值可复用，旧 fd 不是稳定业务身份。
+路径是查找文件的名称；打开后，后续操作使用文件描述符或句柄。路径、文件内容、一次打开保存的状态是不同实体。顺序 I/O 的正常过程是：
 
-Windows HANDLE 是不透明句柄，各 API 的失败哨兵不同，例如 CreateFile 返回 INVALID_HANDLE_VALUE。一般内核句柄用 CloseHandle，Winsock SOCKET 用 closesocket；不能用 C++ delete。RAII 封装应只允许移动、明确无效值、避免重复关闭，并为需检查的结束操作提供显式方法。析构不能抛，重要 close／flush 错误也不能悄悄当成功。[Linux close](https://man7.org/linux/man-pages/man2/close.2.html)、[Windows CreateFile](https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-createfilew)、[CloseHandle](https://learn.microsoft.com/en-us/windows/win32/api/handleapi/nf-handleapi-closehandle)。
+1. 按路径和访问方式打开文件，取得描述符或句柄。
+2. 读取或写入字节，依据返回的实际数量推进。
+3. 随机访问时指定或改变文件偏移。
+4. 业务要求持久化时执行相应刷新，并检查结果。
+5. 关闭本次打开持有的资源。
 
-Linux close 错误后不能盲目重试同一数值，它可能已被其他线程重用；EINTR 处理还存在平台差异。跨线程关闭一个正在 I/O 的 fd 也不是可靠的通用取消协议，要管理活动操作与句柄寿命。
-
-管理 fd 或 HANDLE 要区分所有者和借用者。回调保存数值但不保活资源，关闭后再使用可能操作另一已复用资源；异步任务需把连接与操作状态的寿命纳入完成协议。异常安全封装也不能默默拥有调用方仍负责关闭的句柄，否则发生重复释放。
-
-文件偏移也是共享状态。Linux pread/pwrite 指定偏移而不依赖共享当前位置，适合并行处理互不重叠区间；它们仍有短读写与错误规则，不使重叠区间的业务更新变成事务。[pread/pwrite](https://man7.org/linux/man-pages/man2/pread.2.html)。
-
-## 2 短读写：实际完成量才是进度
-
-Linux read/write 返回 ssize_t：正数为本次字节数，-1 后才读 errno。read 的正数少于请求值合法；对普通文件或 TCP 流，正长度读取返回0分别表示文件结束或对端有序关闭。零长度请求不应用作断连探测。write 也可能只写前缀，剩余部分需要继续；没有正进展时必须避免无限空转。[read](https://man7.org/linux/man-pages/man2/read.2.html)、[write](https://man7.org/linux/man-pages/man2/write.2.html)。
-
-| 返回／错误 | 处理原则 | 条件 |
+| 平台实体 | 表示与有效值 | 本次打开保存的状态 |
 | --- | --- | --- |
-| n > 0 | 推进偏移 n，不重复已完成前缀 | 不假定等于请求量 |
-| read == 0 | 按该对象语义处理 EOF | 请求量需大于0；UDP零长度报文另论 |
-| EINTR | 检查取消与截止时间，再按接口规则重试 | 不把所有中断视为业务失败 |
-| EAGAIN/EWOULDBLOCK | 等待就绪或返回调用方 | 非阻塞操作暂不可进展 |
-| ENOSPC/EIO 等 | 保存错误及已完成量 | 部分写入可能已经发生 |
-| 关闭／刷新失败 | 向显式结束路径报告 | 析构不能提供成功确认 |
+| POSIX 文件描述符（file descriptor，fd） | 进程中的非负整数；0 也有效 | 引用打开文件描述（open file description），其中含文件偏移与状态标志 |
+| Windows 文件句柄（file handle） | `HANDLE` 不透明值；`CreateFileW` 失败为 `INVALID_HANDLE_VALUE` | 指向内核文件对象，记录访问模式、文件位置等状态 |
 
-Windows ReadFile/WriteFile 的同步与 OVERLAPPED 形式另有返回方式，ERROR_IO_PENDING 是操作正在进行，不能照搬 errno 逻辑。提交异步操作后，缓冲和 OVERLAPPED 必须存活到完成；函数返回不意味着可释放它们。[Windows 同步与异步 I/O](https://learn.microsoft.com/en-us/windows/win32/fileio/synchronous-and-asynchronous-i-o)。
+Linux 的 `dup` 与继承的描述符可引用同一打开文件描述，共享文件位置；分别 `open` 通常建立各自的位置。fd 关闭后数值可复用，保存整数不延长资源寿命。[Linux open](https://man7.org/linux/man-pages/man2/open.2.html)
 
-## 3 用户缓冲、页缓存、映射与持久性
+## Linux/POSIX：open 与 close
 
-iostream 或 C stdio 可先保存在用户缓冲；flush 将其交给下层，不承诺持久化。Linux 常见 buffered write 写入页缓存的脏页，再由写回机制提交存储。mmap 让进程访问映射页，减少某些复制但带来缺页、生命周期与同步成本，不是“内存访问永不阻塞”。
+**基础操作**。头文件为 `<fcntl.h>`、`<unistd.h>`；错误码使用 `<cerrno>`。常用声明摘要如下，`mode` 只在创建文件等相应形式中提供：
+
+```cpp
+int open(const char* path, int flags, ... /* mode_t mode */);
+int close(int fd);
+```
+
+`path` 是以空字符结束的路径；相对路径按进程当前目录解析。`flags` 必须包含一种访问模式，再用按位或组合创建与状态标志。
+
+| 标志 | 操作效果 | 条件 |
+| --- | --- | --- |
+| `O_RDONLY` / `O_WRONLY` / `O_RDWR` | 只读 / 只写 / 读写 | 三者选一种；`O_RDONLY` 通常为 0 |
+| `O_CREAT` | 不存在时创建 | 提供 `mode`，例如 `0600`；权限还受 umask 与 ACL 影响 |
+| `O_EXCL` 与 `O_CREAT` | 只创建新文件 | 已存在即失败，避免覆盖已有内容 |
+| `O_TRUNC` | 将现有普通文件截为零长度 | 用于有写权限的打开，原内容会改变 |
+| `O_APPEND` | 每次写从当时文件尾开始 | 多次写仍不组成应用事务 |
+| `O_CLOEXEC` | 执行新程序时自动关闭 | 在支持该标志的环境使用 |
+
+使用已有路径打开只读文件，再关闭本次打开。局部摘录需 `<fcntl.h>`、`<unistd.h>`、`<cerrno>`；`path` 是以空字符结尾的路径，`report` 为调用方错误处理函数。
+
+```cpp
+int fd = open(path, O_RDONLY | O_CLOEXEC);
+if (fd == -1) report(errno);
+else if (close(fd) == -1) report(errno);
+```
+
+`open` 成功返回 fd，失败返回 `-1` 并设置 `errno`；`close` 成功为 0，失败为 `-1`。错误应立即保存，以免后续清理覆盖。Linux 通常在报告关闭错误之前已释放 fd，盲目重试可能关闭其他线程复用的新描述符；`EINTR` 的关闭语义须按目标平台核对，不能把 Linux 方式推广为所有 POSIX 实现。[open](https://man7.org/linux/man-pages/man2/open.2.html)、[close](https://man7.org/linux/man-pages/man2/close.2.html)
+
+## Linux/POSIX：read、write 与文件偏移
+
+**基础操作**。`read` 取得原始字节，`write` 交付原始字节，不做文本编码或格式化。头文件 `<unistd.h>`，声明摘要：
+
+```cpp
+ssize_t read(int fd, void* buffer, size_t count);
+ssize_t write(int fd, const void* buffer, size_t count);
+off_t lseek(int fd, off_t offset, int whence);
+ssize_t pread(int fd, void* buffer, size_t count, off_t offset);
+ssize_t pwrite(int fd, const void* buffer, size_t count, off_t offset);
+```
+
+`buffer` 至少提供 `count` 字节；读缓冲可写，写缓冲可读。`read/write` 从当前位置操作，按实际完成量推进位置。正返回值是本次字节数；`read` 对正长度请求返回 0 表示普通文件末尾；`-1` 后读取 `errno`。请求长度应限制在 `ssize_t` 可表达范围内。[read](https://man7.org/linux/man-pages/man2/read.2.html)、[write](https://man7.org/linux/man-pages/man2/write.2.html)
+
+下面读取至多 64 字节。`fd` 是已打开的只读普通文件，`consume` 是调用方提供的处理函数，接收指针与长度；片段需要 `<unistd.h>`。
+
+```cpp
+char buffer[64];
+ssize_t n = read(fd, buffer, sizeof buffer);
+if (n > 0) consume(buffer, static_cast<size_t>(n));
+else if (n == 0) { /* 文件末尾 */ }
+else { /* 保存 errno 并报告失败或按规则重试 */ }
+```
+
+缓冲不自动补 `\0`，文本也应按实际长度处理。写入使用 `write(fd, data, length)`；返回不足 `length` 时只继续未写完后缀，完整循环见“部分完成与错误”。
+
+`lseek` 的 `whence` 为 `SEEK_SET`（从文件头）、`SEEK_CUR`（从当前位置）、`SEEK_END`（从文件尾）；成功返回新位置，失败为 `-1`。例如 `lseek(fd, 0, SEEK_SET)` 回到开头。管道不能定位。`pread/pwrite` 按显式偏移操作，不改变当前位置，仍可能短读写，重叠区间仍需同步。Linux 在 `O_APPEND` fd 上的 `pwrite` 存在追加行为，不能依赖它忽略追加标志。[lseek](https://man7.org/linux/man-pages/man2/lseek.2.html)、[pread/pwrite](https://man7.org/linux/man-pages/man2/pread.2.html)
+
+## Windows：CreateFileW 与 CloseHandle
+
+**基础操作**。头文件 `<windows.h>`；`W` 接口接收 UTF-16 宽字符路径。完整参数形状如下，修饰与注解从略：
+
+```cpp
+HANDLE CreateFileW(LPCWSTR path, DWORD access, DWORD share,
+    LPSECURITY_ATTRIBUTES security, DWORD disposition,
+    DWORD flagsAndAttributes, HANDLE templateFile);
+BOOL CloseHandle(HANDLE handle);
+```
+
+| 参数 | 常用值与意义 | 条件 |
+| --- | --- | --- |
+| `access` | `GENERIC_READ/GENERIC_WRITE`，或两者按位或 | 请求读取/写入/读写权限 |
+| `share` | `FILE_SHARE_READ/WRITE/DELETE` 的组合 | 允许其他打开请求相应访问；0 使用独占共享模式 |
+| `security` | `nullptr` | 默认安全属性，默认不继承句柄 |
+| `disposition` | `OPEN_EXISTING`、`CREATE_NEW`、`CREATE_ALWAYS` | 打开现有 / 只创建新文件 / 创建并截断现有文件 |
+| `flagsAndAttributes` | `FILE_ATTRIBUTE_NORMAL` | 普通同步文件；异步另加 `FILE_FLAG_OVERLAPPED` |
+| `templateFile` | `nullptr` | 不使用模板文件属性 |
+
+使用已有 UTF-16 路径打开只读文件再关闭。局部摘录需 `<windows.h>`，`path` 是宽字符路径，`report` 为调用方错误处理函数。
+
+```cpp
+HANDLE h = CreateFileW(path, GENERIC_READ, FILE_SHARE_READ,
+    nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
+if (h == INVALID_HANDLE_VALUE) report(GetLastError());
+else if (!CloseHandle(h)) report(GetLastError());
+```
+
+`CreateFileW` 成功返回句柄，失败为 `INVALID_HANDLE_VALUE`，此时用 `GetLastError()` 取得错误。共享模式与已有打开请求不兼容时会出现共享冲突。`CloseHandle` 成功为非零，失败为零；它关闭内核句柄，Winsock socket 另用 `closesocket`。[CreateFileW](https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-createfilew)、[CloseHandle](https://learn.microsoft.com/en-us/windows/win32/api/handleapi/nf-handleapi-closehandle)
+
+## Windows：ReadFile、WriteFile 与文件位置
+
+**基础操作**。先用没有 `FILE_FLAG_OVERLAPPED` 的同步文件句柄。声明摘要：
+
+```cpp
+BOOL ReadFile(HANDLE h, void* buffer, DWORD requested,
+              DWORD* transferred, OVERLAPPED* operation);
+BOOL WriteFile(HANDLE h, const void* buffer, DWORD requested,
+               DWORD* transferred, OVERLAPPED* operation);
+BOOL SetFilePointerEx(HANDLE h, LARGE_INTEGER distance,
+                      LARGE_INTEGER* newPosition, DWORD method);
+```
+
+`requested` 为请求字节数，不能超过缓冲及 `DWORD` 范围；`transferred` 接收实际数量。同步形式使用 `operation == nullptr`，提供有效的 `transferred` 指针。成功为非零；失败为零，立即保存 `GetLastError()`。普通同步文件读到末尾成功且数量为 0；短读是正常结果。[ReadFile](https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-readfile)、[WriteFile](https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-writefile)
+
+从已打开的同步只读句柄 `h` 取得至多 64 字节。`consume` 接收指针与长度，`report` 接收错误码，均由调用方提供；片段需要 `<windows.h>`。
+
+```cpp
+char buffer[64];
+DWORD n = 0;
+if (!ReadFile(h, buffer, sizeof buffer, &n, nullptr)) {
+    DWORD error = GetLastError();
+    report(error);
+} else if (n != 0) {
+    consume(buffer, n);
+} // n == 0 表示这个普通文件已到末尾
+```
+
+`WriteFile(h, data, length, &n, nullptr)` 写入当前位置，成功后根据 `n` 推进应用偏移。`SetFilePointerEx` 的 `method` 为 `FILE_BEGIN`、`FILE_CURRENT`、`FILE_END`，`distance.QuadPart` 是有符号位移。`LARGE_INTEGER zero{};` 配合 `SetFilePointerEx(h, zero, nullptr, FILE_BEGIN)` 回到文件头；`newPosition` 可空。共享句柄上“定位后再读”是两个操作，并行调用需协调。[SetFilePointerEx](https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-setfilepointerex)
+
+下面向已打开的同步可写句柄 `h` 写入三字节，再回到文件头；片段需要 `<windows.h>`，`report` 由调用方提供。`n` 小于请求量时按下一节继续写入剩余部分。
+
+```cpp
+const char text[] = "abc";
+DWORD n = 0;
+if (!WriteFile(h, text, 3, &n, nullptr)) report(GetLastError());
+LARGE_INTEGER zero{};
+if (!SetFilePointerEx(h, zero, nullptr, FILE_BEGIN)) report(GetLastError());
+```
+
+## 部分完成与错误
+
+**机制解释**。短读/短写（partial read/write）表示一次操作只完成请求的一部分。返回数量是进度，重试起点是未完成后缀；错误不回滚之前成功的写入。
+
+| Linux 返回或错误 | 状态 | 后续操作 |
+| --- | --- | --- |
+| 正字节数 | 完成该前缀 | 推进偏移，仅提交剩余部分 |
+| 正长度 `read` 返回 0 | 普通文件 EOF | 结束读取；socket 语义见 [网络收发](R29-sockets-production.zh-CN.md) |
+| `-1` 且 `EINTR` | 本次未完成，受到信号中断 | 按规则重试，或响应取消/期限 |
+| `-1` 且 `EAGAIN/EWOULDBLOCK` | 非阻塞对象暂不可进展 | 等待就绪或交还调用方 |
+| `-1` 且 `ENOSPC/EIO` 等 | 本次失败 | 保存错误和累计量，停止或执行恢复策略 |
+
+下面是 Linux 写完全部字节的局部例。假定 `fd` 为已打开的阻塞普通文件，`data` 有 `size` 字节；`done` 输出累计量，`error` 输出错误码。片段需要 `<unistd.h>`、`<cerrno>`，置于返回 `bool` 的函数内，请求量受 `ssize_t` 范围限制。
+
+```cpp
+done = 0;
+error = 0;
+while (done < size) {
+    ssize_t n = write(fd, data + done, size - done);
+    if (n > 0) done += static_cast<size_t>(n);
+    else if (n == -1 && errno == EINTR) continue;
+    else { error = n == -1 ? errno : EIO; return false; }
+}
+return true;
+```
+
+零进展也退出，避免无限循环；此例将零进展映射为应用错误 `EIO`。非阻塞对象不能在 `EAGAIN` 时忙等。[Linux write](https://man7.org/linux/man-pages/man2/write.2.html)
+
+Windows 同步形式按 `BOOL` 判断成功，按 `DWORD n` 推进数量；失败保存 `GetLastError()`。异步提交返回零且错误为 `ERROR_IO_PENDING` 表示仍在执行。文件 EOF、管道结束、socket 关闭的状态不同，要先明确对象类别。[Windows 同步与异步 I/O](https://learn.microsoft.com/en-us/windows/win32/fileio/synchronous-and-asynchronous-i-o)
+
+## 描述符与句柄所有权
+
+**机制解释**。所有者负责关闭；借用者只能在所有者保证有效期间操作。复制 `int` 或 `HANDLE` 不复制所有权。C++ RAII 封装通常禁止复制、允许移动，用析构兜底释放；需要报告关闭/刷新失败时提供显式结束操作，析构保持不抛异常。
+
+`dup` 取得新的 fd，可独立关闭，但仍共享打开文件描述。Windows `DuplicateHandle` 也是显式取得另一句柄。回调只保存原数值无法保活对象，关闭后的旧 fd 可能已代表别的文件。
+
+异步 I/O 还借用缓冲与操作状态；应先确认活动操作全部结束，再释放对象和句柄。跨线程关闭 fd 不能作为通用可靠取消协议；请求取消也不立即证明内核已停止访问缓冲。[Linux close](https://man7.org/linux/man-pages/man2/close.2.html)、[CancelIoEx](https://learn.microsoft.com/en-us/windows/win32/api/ioapiset/nf-ioapiset-cancelioex)
+
+## 用户缓冲、页缓存与持久化
+
+**机制解释**。用户缓冲是库在进程内积累的数据，例如 iostream 流缓冲；页缓存是内核保存的文件页；持久化是达到相应存储保证。三个边界不能由同一个“写成功”代替。
 
 ![写入的缓冲与持久化边界](../resources/R26-io-durability.svg)
 
-图26-1：箭头是常见 buffered I/O 路径，不覆盖 direct I/O 或所有文件系统。每一层成功只承诺其接口边界；底层设备、文件系统和远端存储仍影响持久性。
+图26-1：常见 buffered I/O 写入路径，不覆盖 direct I/O 或所有文件系统。流 `flush` 将库缓冲交给下层，Linux 常见 `write` 将数据交入内核缓存，写回再提交设备。每层成功仅说明其接口保证；断电故障模型受设备、文件系统和远端存储影响。
 
-Linux fsync 等待文件数据及所需元数据刷新；fdatasync 可减少不影响后续读取的元数据工作。新建／重命名文件要使目录项持久，通常还需要对包含目录 fsync，并检查各返回值。具体文件系统及存储故障模型仍需验证；close 成功不是这个流程的替代。[Linux fsync/fdatasync](https://man7.org/linux/man-pages/man2/fsync.2.html)。
+### Linux：fsync 与 fdatasync
 
-MAP_SHARED 映射的写回按 msync 等平台接口处理；可见性不等于稳定存储。Windows 有 FlushFileBuffers 与映射的 FlushViewOfFile，各自范围不同，应按文档组合与验证。若业务要求“事务式替换”，设计临时文件、完整写入、刷新、替换与目录持久性，而不是只覆盖原文件。本章不运行会修改用户文件的演示。[Linux msync](https://man7.org/linux/man-pages/man2/msync.2.html)、[Windows FlushFileBuffers](https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-flushfilebuffers)、[FlushViewOfFile](https://learn.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-flushviewoffile)。
+接口为 `int fsync(int fd);`、`int fdatasync(int fd);`，头文件 `<unistd.h>`。成功为 0，失败为 `-1` 并设置 `errno`。`fsync` 刷新文件内容及相关元数据；`fdatasync` 可省去不影响随后正确读取的元数据更新。[Linux fsync/fdatasync](https://man7.org/linux/man-pages/man2/fsync.2.html)
 
-## 4 阻塞、非阻塞、就绪与完成
+完整文件写入的确认顺序为：循环写完 → `fsync(fd)` 并检查 → 显式关闭并检查。新建/重命名目录项的持久化通常还要打开父目录并对目录 fd 执行 `fsync`；刷新文件不自动保证目录项。事务式替换需进一步定义临时文件、完整写入、刷新、替换与目录刷新流程。
 
-阻塞调用可能等到能取得进展才返回；非阻塞调用不能立即进展时报告相应错误。就绪通知说“现在可能可以读／写”，实际操作仍须检查；完成通知说“先前提交的操作已有结果”。这是两种不同组织方式。
+### Windows：FlushFileBuffers
 
-Linux epoll 维护关注集合并报告就绪。水平触发在状态仍就绪时可持续报告；边沿触发常用非阻塞 fd，必须处理到 EAGAIN，不能读一小块就假定还会有下一通知。EPOLLOUT 通常只在有待发数据时关注，否则可能持续唤醒。普通磁盘文件不是 epoll 的通用异步完成来源。[epoll](https://man7.org/linux/man-pages/man7/epoll.7.html)。
+`BOOL FlushFileBuffers(HANDLE h);` 刷新指定文件的缓冲信息；成功为非零，失败为零并提供 `GetLastError()`。普通文件句柄应有相应写访问权限。循环写完后调用，再检查关闭结果；根据业务持久化边界决定频率，逐小块刷新可能产生明显成本。[FlushFileBuffers](https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-flushfilebuffers)
 
-Windows IOCP 将关联句柄的异步 I/O 完成包交给工作线程。完成状态、实际字节数和操作对象决定后续动作；完成队列还有并发调度契约，不保证多个操作结果按提交顺序交付。不能把 epoll 的“读到 EAGAIN”循环直接套到 IOCP 缓冲管理。[IOCP](https://learn.microsoft.com/en-us/windows/win32/fileio/i-o-completion-ports)。
+映射通过内存访问修改文件页，仍有缺页、写回与寿命约束。Linux `MAP_SHARED` 可使用 `msync`；Windows `FlushViewOfFile` 与 `FlushFileBuffers` 覆盖不同层，须按文档组合。映射建立/解除接口见 [进程与虚拟内存](R25-process-virtual-memory.zh-CN.md)。[msync](https://man7.org/linux/man-pages/man2/msync.2.html)、[FlushViewOfFile](https://learn.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-flushviewoffile)
 
-每条异步操作应保留提交、处理中、完成或取消完成的状态。请求取消不立即证明内核不再接触缓冲；Windows CancelIoEx 后仍需处理完成结果，再释放关联存储。完成可能正常成功，也可能取消或报其他错误，不能把收到完成包直接当成功。Linux 就绪循环则围绕连接状态与当前可进展操作组织；关闭时需防止旧事件访问已销毁对象。[Windows CancelIoEx](https://learn.microsoft.com/en-us/windows/win32/api/ioapiset/nf-ioapiset-cancelioex)。
+## 阻塞、非阻塞与异步操作
 
-## 5 从症状检查 I/O 边界
+**机制解释**。阻塞调用可以等待取得进展；非阻塞调用无法立即进展时返回相应状态。异步操作先提交，再从其他入口取得完成结果；异步提交并不保证必定立刻返回，完成顺序也不保证等于提交顺序。
 
-| 现象 | 首查 | 工作处理 |
+| 模型 | 通知内容 | 应用下一步 |
 | --- | --- | --- |
-| 文件尾部偶发缺失 | 短写偏移、刷新错误 | 记录每次完成量，明确持久性要求 |
-| 进程退出后内容缺失 | 用户缓冲是否检查；退出方式 | 用显式完成流程报告失败 |
-| 有事件但 read 仍 EAGAIN | 竞争读取、非阻塞状态 | 把通知当提示，依据实际返回推进 |
-| 边沿触发后不再收到数据 | 是否读到 EAGAIN | 恢复正确排空与重挂逻辑 |
-| IOCP 下缓冲偶发损坏 | 是否在完成前复用／销毁 | 操作对象保活至完成 |
-| 写延迟突然上升 | 脏页、写回、设备／文件系统状态 | flush成本与缓存命中分开测量 |
+| 就绪（readiness） | 对象当前可能可读/可写 | 再调用读写接口，以实际结果为准 |
+| 完成（completion） | 已提交操作的状态与字节数 | 消费结果，结束或复用该操作对象 |
 
-本章平台条目经官方文档核验，未在当前 Windows 环境实跑 Linux API 或 IOCP／持久性实验。标准文件流见 R19，映射与地址空间见 R25，网络收发见 R29。
+Linux `O_NONBLOCK` 主要用于 socket、管道等；普通磁盘文件不会因此自动成为 epoll 可监测的异步文件操作。Windows 用 `FILE_FLAG_OVERLAPPED` 打开句柄，每个在途操作使用独立 `OVERLAPPED`，文件操作可在 `Offset/OffsetHigh` 指定位置。缓冲和结构须有效至完成。[epoll](https://man7.org/linux/man-pages/man7/epoll.7.html)、[Windows 同步与异步 I/O](https://learn.microsoft.com/en-us/windows/win32/fileio/synchronous-and-asynchronous-i-o)
+
+单操作完成可用 `GetOverlappedResult(h, &op, &n, TRUE)` 等待并取得实际数量；`FALSE` 形式不等待，未完成给出对应状态。`CancelIoEx(h, &op)` 请求取消，随后仍须观察最终完成，结果可能成功、取消或其他错误。[GetOverlappedResult](https://learn.microsoft.com/en-us/windows/win32/api/ioapiset/nf-ioapiset-getoverlappedresult)、[CancelIoEx](https://learn.microsoft.com/en-us/windows/win32/api/ioapiset/nf-ioapiset-cancelioex)
+
+## Linux：epoll 就绪集合
+
+**进阶后查**。epoll 是内核维护的关注集合与就绪事件队列，头文件 `<sys/epoll.h>`。它监测对象能否进展，不替应用提交读写。
+
+```cpp
+int epoll_create1(int flags);
+int epoll_ctl(int epfd, int operation, int fd, epoll_event* event);
+int epoll_wait(int epfd, epoll_event* events, int capacity, int timeout);
+```
+
+1. `epoll_create1(EPOLL_CLOEXEC)` 创建 epoll fd，失败为 `-1`。
+2. `epoll_ctl` 添加 `EPOLL_CTL_ADD`、修改 `EPOLL_CTL_MOD`、删除 `EPOLL_CTL_DEL`。`event.events` 指定 `EPOLLIN/EPOLLOUT` 等关注项，`event.data` 携带应用标识；成功为 0，失败为 `-1`。
+3. `epoll_wait` 取得至多 `capacity` 项；正返回值是数量，0 表示超时，`-1` 表示错误。`timeout` 单位毫秒，0 立即返回，-1 无限等待。
+4. 检查事件与连接寿命，再执行读写；结束时关闭 epoll fd 和目标资源。
+
+默认水平触发（level-triggered，LT）在仍就绪时可继续报告。`EPOLLET` 开启边沿触发（edge-triggered，ET），常配非阻塞 fd：处理到 `EAGAIN`，或主动保存未排空工作供下一轮继续，不能只读一块便等待必然的新通知。`EPOLLOUT` 通常只在有待发数据时关注，避免持续唤醒。普通磁盘文件不是 epoll 通用完成来源。[epoll 模式](https://man7.org/linux/man-pages/man7/epoll.7.html)、[epoll_wait](https://man7.org/linux/man-pages/man2/epoll_wait.2.html)
+
+## Windows：I/O 完成端口
+
+**进阶后查**。I/O 完成端口（I/O completion port，IOCP）是异步操作完成包的队列及工作线程调度机制。应用关联支持重叠 I/O 的文件或 socket，再取得完成结果。声明摘要：
+
+```cpp
+HANDLE CreateIoCompletionPort(HANDLE file, HANDLE existingPort,
+                             ULONG_PTR key, DWORD concurrency);
+BOOL GetQueuedCompletionStatus(HANDLE port, DWORD* bytes,
+    ULONG_PTR* key, OVERLAPPED** operation, DWORD timeout);
+```
+
+1. `CreateIoCompletionPort(INVALID_HANDLE_VALUE, nullptr, 0, 0)` 创建端口，失败为 `nullptr`；`concurrency == 0` 使用系统默认并发值。
+2. `CreateIoCompletionPort(file, port, key, 0)` 关联重叠 I/O 文件句柄，`key` 用于识别来源。通过 `ReadFile/WriteFile` 与各自 `OVERLAPPED` 提交操作。
+3. `GetQueuedCompletionStatus` 等待完成包，`timeout` 单位毫秒，`INFINITE` 无限等待，输出字节数、关联键和原操作指针。
+4. 非零表示成功取得成功操作的包。零且操作指针非空表示取得失败操作的包，保存 `GetLastError()` 并处理该操作；零且指针为空表示未取得操作包，例如超时，此时不能使用字节数与键作为结果。
+5. 处理全部在途完成后释放缓冲和操作对象，最后关闭文件与端口句柄。
+
+包可表示成功、取消或失败，也可通过 `PostQueuedCompletionStatus` 投递应用控制包。队列顺序与线程获得执行的顺序不同，不能依赖操作按提交顺序交付。默认关联策略下立即成功的重叠 I/O 也会通知；若启用跳过完成通知等选项，须同步调整操作寿命协议。[CreateIoCompletionPort](https://learn.microsoft.com/en-us/windows/win32/api/ioapiset/nf-ioapiset-createiocompletionport)、[GetQueuedCompletionStatus](https://learn.microsoft.com/en-us/windows/win32/api/ioapiset/nf-ioapiset-getqueuedcompletionstatus)、[IOCP 调度](https://learn.microsoft.com/en-us/windows/win32/fileio/i-o-completion-ports)
+
+## I/O 调查入口
+
+| 现象 | 先检查的接口状态 | 调查方向 |
+| --- | --- | --- |
+| 文件尾部缺失 | 每次写量、累计量、刷新与关闭结果 | 短写后是否正确继续，持久化是否满足 |
+| 退出后内容缺失 | 用户流状态、显式 flush 结果 | 异常退出是否跳过缓冲交付 |
+| epoll 返回后读仍 EAGAIN | read 结果、竞争读取 | 通知到操作之间状态可改变 |
+| ET 后续数据不再处理 | 是否排空或保留待处理工作 | 排空规则与事件注册是否一致 |
+| IOCP 缓冲损坏 | 完成前是否复用或销毁 | 操作寿命与取消完成是否闭合 |
+| 写入延迟上升 | 写入、刷新各自耗时 | 区分缓存、写回、设备与文件系统成本 |
