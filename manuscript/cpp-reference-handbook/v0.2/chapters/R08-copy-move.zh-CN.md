@@ -55,7 +55,37 @@ old = std::move(target);       // 移动赋值，旧 int(7) 被释放
 // target 为空，old 拥有 int(42)
 ```
 
-移动赋值不同于移动构造，因为已有目标可能要释放旧资源。删除的移动函数仍参与重载，可使右值调用非法；根本没有适用移动时，右值也可能绑定 const 引用拷贝函数。对 const 对象调用 move 通常产生 `const T&&`，不能绑定常见 `T&&` 移动构造，因此可能复制或报错。`is_move_constructible` 为真只说明可从相应右值构造，不保证调用了移动函数。
+移动赋值不同于移动构造，因为已有目标可能要释放旧资源。**显式写成 `= delete` 的移动函数仍参与重载**，选中它会使调用非法；**默认化后被定义为删除的移动构造或移动赋值会被重载决议忽略**，右值因而可能走可用的 const 引用拷贝路径。根本没有适用移动时，也可能这样拷贝。
+
+| 移动成员的情况 | 重载决议 | 从右值构造或赋值的可能结果 |
+| --- | --- | --- |
+| 未声明，且未隐式生成 | 没有移动候选 | 可选可用的 const 引用拷贝 |
+| 显式 `= delete` | 仍作为候选 | 若它胜出，调用非法 |
+| `= default` 后因成员或基类条件被定义为删除 | 忽略该移动候选 | 可选可用的 const 引用拷贝 |
+
+**独立片段 · `<utility>` · 类型定义放在命名空间作用域，使用语句放在函数体内**。下面让成员的显式删除移动使外层默认化移动被定义为删除：
+
+```cpp
+struct Member {
+    Member() = default;
+    Member(const Member&) = default;
+    Member(Member&&) = delete;
+};
+struct Outer {
+    Member member;
+    Outer() = default;
+    Outer(const Outer&) = default;
+    Outer(Outer&&) = default; // 被定义为删除，重载决议忽略
+};
+// 函数体内：
+Outer source;
+Outer copy(std::move(source)); // 选择 Outer(const Outer&)
+// Member rejected(std::move(source.member)); // 非法：选中显式删除的移动
+```
+
+同样的忽略规则适用于默认化后被定义为删除的移动赋值。依据：[C++17 移动构造规则](https://timsong-cpp.github.io/cppwp/n4659/class.copy.ctor#10)、[移动赋值规则](https://timsong-cpp.github.io/cppwp/n4659/class.copy.assign#7)。
+
+对 const 对象调用 move 通常产生 `const T&&`，不能绑定常见 `T&&` 移动构造，因此可能复制或报错。`is_move_constructible` 为真只说明可从相应右值构造，不保证调用了移动函数。
 
 ## std::move
 

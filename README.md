@@ -9,6 +9,7 @@
 - [正文目录](manuscript/complete-edition/v1.0/README.md)：分章文件、编排与维护入口
 - [章节覆盖说明](manuscript/complete-edition/v1.0/COVERAGE.md)：章节与主题范围
 - [内容核验边界](manuscript/complete-edition/v1.0/EDITION-NOTES.md)：技术资料、示例和阅读制品的验证范围
+- [已确认问题记录](docs/ISSUES.md)：语义勘误、导航及实现问题的处理依据
 - [构建与发布](RELEASE_BUILD.md)：环境、命令、校验和 GitHub Release 发布方式
 
 **分章稿是正文的唯一编辑源。** PDF 与 EPUB 均从当前分章稿、前后附录和编排清单生成。整本 Markdown 只在构建时生成到 `build/book.md`，不在源码中另存一份，也不需要手工同步合并稿。
