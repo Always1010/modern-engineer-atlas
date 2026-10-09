@@ -1,10 +1,33 @@
-# 第15章 迭代器与 ranges
+# 迭代器与 ranges
 
-迭代器描述访问位置，区间描述算法能走到哪里。它们本身通常不拥有元素；类别决定可执行的操作，生命周期决定这些操作此刻是否合法。
+迭代器（iterator）表示序列中的访问位置；区间（range）给出起点和终止条件。传统算法接收迭代器对，C++20 ranges 算法还可直接接收范围并使用投影；视图（view）组织可组合的范围操作。
 
-**版本**：传统迭代器与算法以 C++17 为准；ranges、views、sentinel、投影以 C++20 N4861 为准。**先修**：R05 借用、R13 容器失效。首次读取第1至3条，C++20 项目再查第4至5条。
+**基线**：传统操作为 C++17，ranges/views 为 C++20。借用与容器失效先修见 [R05](R05-pointers-references.zh-CN.md)、[R13](R13-sequence-containers.zh-CN.md)。先读 begin/end 和遍历，再查类别、适配器与管线。
 
-## 1 半开区间与尾后位置
+## std::begin 与 std::end
+
+**基础操作**。`<iterator>` 的自由函数统一取得容器/数组起点与尾后位置。常用形式省略 const 重载：
+
+```cpp
+namespace std {
+    template<class C> auto begin(C& c) -> decltype(c.begin());
+    template<class C> auto end(C& c) -> decltype(c.end());
+    template<class T, size_t N> T* begin(T (&array)[N]) noexcept;
+    template<class T, size_t N> T* end(T (&array)[N]) noexcept;
+}
+```
+
+```cpp
+// 需要 <iterator>；局部摘录
+int values[]{1, 2, 3};
+for (auto it = std::begin(values); it != std::end(values); ++it) {
+    *it += 1;                              // {2,3,4}
+}
+```
+
+`*it` 访问当前元素，`++it` 前进。`cbegin/cend` 取得 const 访问，`rbegin/rend` 取得反向迭代器。对象必须存活，迭代器仍受容器的修改规则约束。
+
+## 半开区间与尾后位置
 
 普通区间 `[first,last)` 包含 first 所指元素，不包含 last。first == last 表示空区间；last 通常等于 end，却不一定是容器的 end。合法区间要求从 first 按允许的递增操作可到达 last，不能把不同容器的两个迭代器拼在一起。
 
@@ -16,7 +39,9 @@ end 是尾后哨兵，不能解引用；对非空双向区间可先 --end 再解
 
 返回迭代器的接口同时返回了一份借用。跨过容器修改后，即使比较两个旧迭代器看似还能工作，也不能用它证明有效性。保存下标可避免存储地址失效，但插删后下标可能指向另一业务对象；稳定位置、稳定地址和稳定身份是三种需求。
 
-## 2 类别、成本与算法要求
+
+## 迭代器类别与访问成本
+
 
 | 类别 | 增加的主要能力 | 常见入口与限制 |
 | --- | --- | --- |
@@ -27,13 +52,9 @@ end 是尾后哨兵，不能解引用；对非空双向区间可先 --end 再解
 | 随机访问 | +=n、相减、下标、位置比较 | vector/deque；std::sort 需要此类 |
 | 连续，20 概念 | 元素地址连续对应 | 一般 vector、array；deque 不满足 |
 
-`iterator_traits<I>` 提供 value_type、difference_type、iterator_category 等传统类型信息；C++20 的迭代器概念表达更细的语义，不能只靠某个 tag 推断全部现代概念。迭代器 category 和容器类型也不必一一对应，例如 const 迭代器限制写入而不必降低导航能力。
-
-`advance(it,n)` 原地移动，不返回新位置；`next(it,n)`、`prev(it,n)` 返回副本。`distance(first,last)` 返回差值类型：随机访问通常常数时间，其他输入迭代器线性。负 advance 要求双向能力，最终位置仍须在有效导航范围；distance 对单遍输入区间可能消费输入，不能算完再假设数据可重读。
-
 线性 distance 往往是隐藏的性能来源。对 list 在循环中反复从 begin 计算距离，累计可能平方；要计数时随遍历维护计数。随机访问不等于可跨不同分配段做裸指针运算，deque 的迭代器能够相减不授予 data 指针形式的连续保证。
 
-### 算法的比较次数与走路次数分开算
+### 比较与导航成本
 
 | 任务 | 随机访问序列 | 前向／双向序列 | 选择接口的含义 |
 | --- | --- | --- | --- |
@@ -50,58 +71,125 @@ end 是尾后哨兵，不能解引用；对非空双向区间可先 --end 再解
 
 距离类型通常有符号，容器 size_type 通常无符号；混合比较或把负距离转成 size_t 都可能得到巨大的值。对同一随机访问序列内、顺序正确的 first/last，差值才适合转为长度。C++20 ranges::distance 还可利用 sized sentinel，复杂度取决于终止器能力，不能仅按迭代器类别一刀切。
 
-## 3 反向与输出适配器
+
+## std::iterator_traits
+
+**机制解释**。`<iterator>` 的 `template<class I> struct iterator_traits;` 提供 `value_type/difference_type/reference/pointer/iterator_category`。`value_type` 是元素值类型，`difference_type` 是表示距离的类型；不以容器 `size_type` 代替它。
+
+```cpp
+// 需要 <iterator>、<vector>；局部摘录
+using I = std::vector<int>::iterator;
+using Value = std::iterator_traits<I>::value_type;     // int
+using Difference = std::iterator_traits<I>::difference_type;
+```
+
+C++20 用迭代器概念表达更细语义，单个传统类别标签不证明全部概念成立。
+
+## std::advance、std::next、std::prev 与 std::distance
+
+**基础操作**。这些函数在 `<iterator>` 中导航或查询距离；常用签名省略完整约束：
+
+```cpp
+namespace std {
+    template<class InputIt, class Distance> void advance(InputIt& it, Distance n);
+    template<class InputIt> InputIt next(InputIt it,
+        typename iterator_traits<InputIt>::difference_type n = 1);
+    template<class BidirectionalIt> BidirectionalIt prev(BidirectionalIt it,
+        typename iterator_traits<BidirectionalIt>::difference_type n = 1);
+    template<class InputIt> typename iterator_traits<InputIt>::difference_type
+        distance(InputIt first, InputIt last);
+}
+```
+
+```cpp
+// 需要 <list>、<iterator>；局部摘录
+std::list<int> values{10, 20, 30};
+auto it = values.begin();
+std::advance(it, 2);                       // 原 it 指向 30
+int middle = *std::prev(it);                // 20，原 it 不变
+auto n = std::distance(values.begin(), values.end()); // 3，线性
+```
+
+负距离前进需要双向能力，结果须处在有效导航范围；从 `end()` 前进一步不合法。`distance` 对单遍输入来源可能消费输入，不能再假定起点副本可重读。
+
+## std::reverse_iterator
+
+**基础操作**。`<iterator>` 的 `template<class Iterator> class reverse_iterator;` 将双向或更强迭代器反向访问。默认构造、从正向基底构造、兼容反向迭代器转换构造可用，公开形状省略成员与约束。
+
+```cpp
+// 需要 <vector>、<iterator>；局部摘录
+std::vector<int> values{1, 2, 3};
+auto it = std::make_reverse_iterator(values.end());
+int last = *it;                            // 3
+++it;
+int middle = *it;                          // 2
+```
 
 `reverse_iterator<I>(base)` 的解引用相当于取得 base 的前一位置，所以 rbegin().base() == end()、rend().base() == begin()。base 指向反向所指元素之后的正向位置。将反向查找结果直接交给 erase(base()) 会删错位置或把 end 当元素；先确认命中，再转换到真正所指位置。[N4659 反向迭代器](https://timsong-cpp.github.io/cppwp/n4659/reverse.iterators)。
 
-`back_inserter(c)` 生成输出适配器，写入转换成 push_back；`front_inserter(c)` 调用 push_front，顺序会反转；`inserter(c,pos)` 围绕给定位置 insert。头文件是 `<iterator>`。适配器不会绕过底层容器的类型、异常与失效要求。
 
-`copy(first,last,out)` 不知道目标缓冲是否足够。用 dest.begin() 前需建立足够元素，单独 reserve 仍不够；用 back_inserter 则由每次写入创建元素。自重叠复制须满足具体算法的方向条件，不能把普通 copy 当任意 memmove。[N4659 插入迭代器](https://timsong-cpp.github.io/cppwp/n4659/insert.iterators)。
+## 插入迭代器
 
-## 4 ranges 算法、sentinel 与投影（C++20）
+**基础操作**。`back_insert_iterator<Container>`、`front_insert_iterator<Container>`、`insert_iterator<Container>` 在 `<iterator>` 中把赋值转换为容器插入。工厂 `back_inserter/front_inserter/inserter` 构造对应适配器，元素仍由容器拥有。
 
-`std::ranges` 算法在 `<algorithm>`，视图在 `<ranges>`。常用形式是 `ranges::find(range,value,proj)`、`ranges::sort(range,comp,proj)`。与传统算法相比，它们提供 range 重载、约束和投影；不能免除排序、写入与边界前提。
+```cpp
+// 需要 <algorithm>、<iterator>、<vector>、<deque>；局部摘录
+std::vector<int> source{1, 2, 3};
+std::vector<int> copied;
+std::copy(source.begin(), source.end(), std::back_inserter(copied));
+std::deque<int> reversed;
+std::copy(source.begin(), source.end(), std::front_inserter(reversed)); // {3,2,1}
+```
 
-range 需要 begin/end；end 可以是与迭代器不同类型的 sentinel，负责判断终止，不一定能递减或相减。sized_range 提供可取的大小，common_range 的迭代器与 sentinel 同类型；这些概念各自表达一种能力，不能从 range 推断全部满足。[N4861 range 概念](https://timsong-cpp.github.io/cppwp/n4861/range.range)。
+尾插要求底层有 `push_back`，头插要求 `push_front`，位置插入要求 `insert`；不会绕过底层类型、异常与失效条件。裸 `dest.begin()` 作为输出前需已建立足够元素，单独 `reserve` 不够。
 
-语法摘录（C++20，假设 `struct Item{int key;}; std::vector<Item> items;` 且已包含相关头文件）：`std::ranges::sort(items, std::less<>{}, &Item::key);`，按 key 排序。投影在比较前提取字段，比较器比较投影后的值；这比在每个算法里重写成员 lambda 更便于保持排序与查找一致。投影若读悬垂对象或有不符合语义的副作用，约束诊断不能替代运行期正确性。此摘录未运行。
+## ranges 算法与投影
 
-## 5 view、惰性求值与借用边界（C++20）
+**基础操作，C++20**。算法在 `<algorithm>` 中，提供迭代器/终止器和范围两组重载；声明为受约束的算法对象，下面列调用形式而非普通自由函数声明：
+
+```cpp
+// C++20；需要 <algorithm>、<vector>、<functional>；局部摘录
+struct Item { int key; };
+std::vector<Item> items{{3}, {1}, {2}};
+std::ranges::sort(items, std::less<>{}, &Item::key);
+auto it = std::ranges::find(items, 2, &Item::key);
+if (it != items.end()) { /* it->key 为 2 */ }
+```
+
+投影（projection）在比较前从元素取出字段；排序与查找使用一致字段和关系。`sort` 返回终止迭代器，`find` 返回首个命中或终止位置。算法约束不免除有效区间与排序前提。[N4861 ranges algorithms](https://timsong-cpp.github.io/cppwp/n4861/algorithms)。
+
+## range、sentinel 与 borrowed_range
+
+**机制解释，C++20**。range 能取得起点和终止条件；终止器（sentinel）可以与迭代器不同类型，只负责判断结束。`common_range` 二者同型，`sized_range` 支持取得大小。`borrowed_range` 表示迭代器可在范围描述对象销毁后保留相应语义，外部元素来源仍须有效；算法可能用 `ranges::dangling` 避免返回明显悬垂的借用。[N4861 range concepts](https://timsong-cpp.github.io/cppwp/n4861/range.range)、[dangling](https://timsong-cpp.github.io/cppwp/n4861/range.dangling)。
+
+## views 与惰性管线
+
+**基础操作，C++20**。`<ranges>` 中的适配器保存基底和操作，遍历时按需计算。重点入口如下：
+
+| 适配器调用 | 输入与结果 | 条件 |
+| --- | --- | --- |
+| `views::filter(pred)` | 保留谓词为真的元素 | 谓词有效，可能扫描并缓存起点 |
+| `views::transform(f)` | 映射每个元素 | 遍历时调用，不自动物化 |
+| `views::take(n)` / `drop(n)` | 前至多 n 项/跳过前 n 项 | 数量合法，范围持续有效 |
+| `views::reverse` | 逆序遍历 | 基底支持必要的双向访问 |
+| `views::iota(first,last)` | 生成值序列 | 终止与递增条件有效 |
+
+```cpp
+// C++20；需要 <ranges>、<vector>；局部摘录
+std::vector<int> values{1, 2, 3, 4};
+auto selected = values
+    | std::views::filter([](int x) { return x % 2 == 0; })
+    | std::views::transform([](int x) { return x * 10; });
+for (int x : selected) { /* 顺序得到 20、40 */ }
+```
 
 view 是适合廉价移动、作为管线组件的 range 类型，不等价于“永远不拥有”，也不等价于“借用一定安全”。例如 ref_view 借用现有范围，span 与 string_view 借用外部元素；iota_view 可按值保存生成所需状态。N4861 的 viewable_range 对临时非 view 容器有约束，不能把较新实现允许的临时 vector 管线反填为原始 C++20 规则。
 
-语法摘录（C++20，`values` 是持续存在的 `vector<int>`）：
-`auto v = values | std::views::filter([](int x){ return x%2==0; }) | std::views::transform([](int x){ return x*10; });`
 构造管线不生成 vector；遍历才筛选和计算。filter::begin 可能扫描并缓存首个匹配，递增仍可能扫描多个输入；随机访问与已知长度能力可能因此丢失。反复遍历可重复计算，不能把构建管线当计算已经完成。[N4861 filter_view](https://timsong-cpp.github.io/cppwp/n4861/range.filter)。
 
 保活要检查三处：基底所有者、视图对象、闭包捕获。返回引用局部容器的管线会悬垂；返回捕获局部变量引用的谓词同样会悬垂。遍历期间结构性修改基底会影响底层迭代器和缓存，应重新建立管线并按容器规则判断。
 
-borrowed_range 表示迭代器可在该范围对象销毁后保留所需语义，前提仍是元素来源有效；它不延长外部所有者生命周期。range 重载在会返回悬垂借用的场景可返回 `ranges::dangling`，帮助阻止误用，却不能检测你提前构造出的坏 span 或坏 string_view。[N4861 dangling](https://timsong-cpp.github.io/cppwp/n4861/range.dangling)。
 
-## 6 完整例子与检索入口
+## 组合应用与参考资料
 
-```cpp
-#include <algorithm>
-#include <iostream>
-#include <iterator>
-#include <list>
-#include <vector>
-
-int main() {
-    std::list<int> source{10, 20, 30};
-    auto it = source.begin();
-    std::advance(it, 2);
-    if (*it != 30 || std::distance(source.begin(), source.end()) != 3) return 1;
-    std::vector<int> out;
-    std::copy(source.rbegin(), source.rend(), std::back_inserter(out));
-    if (out != std::vector<int>{30, 20, 10}) return 2;
-    if (source.rbegin().base() != source.end()) return 3;
-    auto empty = std::find(source.begin(), source.end(), 99);
-    if (empty != source.end()) return 4;
-    std::cout << "distance=3 reverse=30,20,10 miss=end\n";
-}
-```
-
-配套文件：[`r15-iterators-ranges.cpp`](../examples/r15-iterators-ranges.cpp)。C++17；预期输出 `distance=3 reverse=30,20,10 miss=end`，检查失败非零。Windows g++10.3，以 `-std=c++17 -Wall -Wextra -pedantic` 核验。C++20 摘录为版本定位的接口说明，未编译运行。
-
-速查：end 与空区间查第1条；advance/distance 与 sort 能力查第2条；base 与追加目标查第3条；成员排序查投影；返回管线查第5条。连续借用见 R12，失效细表见 R13、R14，算法条件见 R16。
+[配套 C++17 程序](../examples/r15-iterators-ranges.cpp) 组合链表导航、反向复制与未命中处理；完整源码供组合应用参考。算法参数与结果见 [R16](R16-algorithms.zh-CN.md)。

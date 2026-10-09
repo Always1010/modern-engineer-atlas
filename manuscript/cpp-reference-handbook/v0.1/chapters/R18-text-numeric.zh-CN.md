@@ -1,103 +1,150 @@
-# 第18章 文本处理与数值工具
+# 文本转换与格式化
 
-解析把字符转换成数值，格式化把数值转换成字符。边界、错误位置与数值范围都属于接口结果；只得到一个数字不足以证明输入已被完整接受。
+字符转换（charconv）在字符区间与数值之间转换；格式化把多个值按格式串组合成文本。这里分别展开输入范围、结果位置、错误和缓冲要求，数值/随机/位工具见 [R33](R33-numeric-random-bits.zh-CN.md)。
 
-**版本**：charconv 以 C++17 为准，format 与 bit 工具标 C++20，byteswap 标 C++23。**先修**：R12 字节与视图、R16 数值累计。首次查第1至2条；随机复现和协议字段再查第3至4条。
+**基线**：`<charconv>` 为 C++17，`<format>` 为 C++20。先修为 [字符串与视图](R12-strings-views.zh-CN.md)；示例是接口局部摘录，浮点和格式化需要提供相应设施的标准库。
 
-## 1 from_chars 与 to_chars（C++17）
+## std::from_chars
 
-`<charconv>` 的接口接收 [first,last) 字符区间，不依赖零结尾或全局 locale，不分配 string。
-
-| 常用形式 | 参数、返回与边界 |
-| --- | --- |
-| `from_chars(first,last,T& value,int base=10)` | 整数解析，base 为2至36；返回 {ptr,ec} |
-| `from_chars(first,last,Float& value,chars_format fmt=general)` | 浮点解析，fmt 控制语法 |
-| `to_chars(first,last,T value,int base=10)` | 整数输出；返回输出尾位置与错误码 |
-| `to_chars(first,last,Float value,fmt[,precision])` | 浮点输出；重载决定最短表示或精度 |
-
-成功 ec 为 `std::errc{}`，ptr 是首个未解析字符；整字段校验还须 ptr == last。无匹配时为 invalid_argument，ptr == first；结果超范围为 result_out_of_range，原 value 不改变，但 ptr 仍反映已扫描匹配部分。整数不跳过前导空白，不接受前导 +；负号仅对有符号类型允许，base16 也不自动吞掉 0x。浮点同样不跳过空白，十六进制形式不带 0x 前缀。[N4659 charconv](https://timsong-cpp.github.io/cppwp/n4659/charconv)。
-
-to_chars 不补零结尾；成功后用 ptr−first 构造 string_view，不能把缓冲直接交给 strlen。缓冲不足时 ec 为 value_too_large，输出内容不能作为有效结果使用。需要 C 字符串就另留一个字符并在成功位置写零，前提仍是位置在可写范围内。
-
-![字符区间、解析位置与最终提交](../resources/R18-parse-range.svg)
-
-图18-1：解析“42x”能取得数字42但留下 x，整字段策略拒绝；超范围和无匹配另走错误分支。先解析到候选值再提交是工程策略，避免失败后污染调用者结果。
-
-对日志字段可能允许部分消费，对配置项通常要求完整消费。把这两种策略写成独立接口，避免上层忘记检查 ptr。charconv 虽已在标准中提供浮点接口，旧标准库可能尚未实现；本章例子只运行整数重载，浮点接受规则按草案定位。
-
-## 2 format 与数值边界
-
-C++20 `<format>` 的常用族为 `format(fmt,args…)` 返回 string、`format_to(out,fmt,args…)` 返回输出迭代器、`format_to_n(out,n,fmt,args…)` 返回实际终点与完整结果大小、`formatted_size(fmt,args…)` 返回所需字符数。宽度一般是最小宽度，不是最大写入长度；format_to 的裸缓冲需自己保证空间。
-
-N4861 以格式串解析和 format_error 描述错误；后续缺陷修正使许多实现对字面量进行编译期格式检查，不能把当前编译器诊断方式当原始 C++20 的一律保证。动态格式可通过 vformat 与 make_format_args 路径处理。字符编码、区域设置和对齐含义须按具体格式器判断；格式化成功不意味着输出可当协议中的固定宽度字段。[N4861 格式化](https://timsong-cpp.github.io/cppwp/n4861/format)。
-
-语法摘录（C++20，`<format>`）：`auto text = std::format("id={:04d}", 7);`，结果 `id=0007`。当前 g++10.3 标准库不作为 format 验证环境，本章未运行此摘录。
-
-`<limits>` 的 `numeric_limits<T>::max()` 给最大有限值，`lowest()` 给最低有限值；浮点 min() 是最小正规正值，不是最负数。`epsilon()` 是1附近相邻表示的差，不是适用于任意量级的通用误差阈值。比较误差通常同时约束绝对误差与相对误差，业务还须决定 NaN、无穷和舍入的处理。[N4659 numeric_limits](https://timsong-cpp.github.io/cppwp/n4659/numeric.limits)。
-
-整数扩宽前要注意表达式已经按原类型计算；把溢出结果再 cast 为大类型不能补救。解析后检查业务范围也不能替代表示范围检查。整数转换、单位转换与累计分别核对，见 R04、R16。
-
-## 3 随机引擎、分布与复现
-
-`<random>` 将引擎与分布分开：`mt19937 engine(seed)` 生成伪随机位序列；`uniform_int_distribution<int> d(a,b)` 生成闭区间 [a,b] 的整数，要求 a ≤ b；`uniform_real_distribution<double>(a,b)` 定义 [a,b) 上的实数分布。调用 `d(engine)` 消耗引擎状态，其消耗量由分布算法决定。
-
-固定引擎类型与种子可复现规定的引擎序列；不能据此保证所有标准库的分布输出逐项一致。normal_distribution 等还可能缓存状态，重置引擎不等于重置分布；必要时调用分布 reset。记录引擎、种子、分布参数、实现版本和调用次序，才能解释实验的复现边界。[N4659 随机库](https://timsong-cpp.github.io/cppwp/n4659/rand)。
-
-random_device 可以依赖真实非确定源，也可以在实现缺乏来源时以伪随机实现，调用也可能失败；不能将它无条件称为密码学随机接口。mt19937 亦不适合生成密码、令牌或密钥。工程中一次播种后保留引擎，避免每次采样都用时钟重新播种导致相关序列；多线程共享引擎仍须同步或独立状态策略。
-
-## 4 bit、bitset、字节与端序
-
-`<bitset>` 的 `bitset<N>` 以固定 N 表示位集合，支持 set/reset/test、按位操作、count 与字符串转换；test 越界抛 out_of_range，下标形式的边界由调用方保证。to_ulong/to_ullong 在无法表示时抛 overflow_error。位编号0是最低有效位，字符串表示从最高位开始，不等于对象在内存中的字节布局。[N4659 bitset](https://timsong-cpp.github.io/cppwp/n4659/template.bitset)。
-
-C++20 `<bit>` 的常用族包括 popcount、countl_zero、countr_zero、rotl/rotr、has_single_bit、bit_floor/ceil、bit_cast、endian。`bit_cast<To>(from)` 要求大小相等并满足 trivially copyable 等条件；它复制对象表示，不作数值转换，也不保证任意字节都能构成目标类型合法值。bit_ceil 的结果必须可表示，不能把它当任意整数的无条件扩容量函数。[N4861 位工具](https://timsong-cpp.github.io/cppwp/n4861/bit)。
-
-`std::byte` 在 `<cstddef>`（C++17）表示原始字节，不是一般算术整数；用 to_integer 显式取值。char 的一个元素占一个 C++ 字节，CHAR_BIT 不由语言保证是8。协议若定义八位字节，应先核验此平台条件，再使用无符号整数移位组合；位移量必须小于类型宽度，提升类型也应明确。
-
-endian::native 可等于 little、big，也有不属于二者的混合情况；端序枚举只描述平台表示，不执行转换。C++23 byteswap 交换整数的字节表示，同样不替你定义协议字段宽度。不能 `reinterpret_cast<unsigned*>` 直接读取不对齐网络缓冲，这同时涉及对齐、别名、对象生命周期与端序。逐字节组装或合法 memcpy 后再转换更易审核，协议字节序见 R28。[N4950 byteswap，C++23](https://timsong-cpp.github.io/cppwp/n4950/bit.byteswap)。
-
-固定宽度的协议数字需要单独核验格式：例如字段限定四个十进制字符，to_chars 不会自动补零，format 的宽度也不会截断五位数。先检查业务数值范围，再编码到足够空间，最后核对输出长度。解析时允许哪些符号、空白和进制同样应写成协议，而不是让两个端点各自按默认转换猜测。
-
-位操作尽量使用明确宽度的无符号类型。对 char 直接左移会先做整数提升，平台 char 的有符号性还可能使高位字节被解释成负数；先转成足够宽的无符号值再移位。按位交换不能代替数值范围校验，也不能修复越界读取。
-
-## 5 完整例子与检索入口
+**基础操作，C++17**。`<charconv>` 的函数从 `[first,last)` 解析数值，不依赖零结尾，不分配字符串，不使用全局 locale。常用签名摘要选取 int、double 重载，省略其他数值类型：
 
 ```cpp
-#include <array>
-#include <charconv>
-#include <climits>
-#include <cstdint>
-#include <iostream>
-#include <random>
-#include <string_view>
-#include <system_error>
-
-bool parse(std::string_view s, int& value) {
-    if (s.empty()) return false;
-    int candidate = 0;
-    auto r = std::from_chars(s.data(), s.data() + s.size(), candidate);
-    if (r.ec != std::errc{} || r.ptr != s.data() + s.size()) return false;
-    value = candidate;
-    return true;
-}
-
-int main() {
-    int value = 9;
-    if (!parse("42", value) || value != 42) return 1;
-    if (parse("42x", value) || value != 42) return 2;
-    if (parse("999999999999999999999999", value)) return 3;
-    std::array<char, 16> buffer{};
-    auto r = std::to_chars(buffer.data(), buffer.data() + buffer.size(), value);
-    if (r.ec != std::errc{} || std::string_view(buffer.data(), r.ptr - buffer.data()) != "42") return 4;
-    std::mt19937 a(123), b(123);
-    if (a() != b()) return 5;
-    static_assert(CHAR_BIT == 8, "This wire example requires 8-bit bytes");
-    const unsigned char wire[]{0x12, 0x34};
-    auto field = (std::uint32_t{wire[0]} << 8) | wire[1];
-    if (field != 0x1234) return 6;
-    std::cout << "parse=42 suffix=rejected overflow=rejected wire=4660\n";
+namespace std {
+    from_chars_result from_chars(const char* first, const char* last,
+                                 int& value, int base = 10);
+    from_chars_result from_chars(const char* first, const char* last,
+                                 double& value,
+                                 chars_format fmt = chars_format::general);
+    struct from_chars_result { const char* ptr; errc ec; };
 }
 ```
 
-配套文件：[`r18-text-numeric.cpp`](../examples/r18-text-numeric.cpp)，C++17。预期输出 `parse=42 suffix=rejected overflow=rejected wire=4660`；检查失败非零。Windows g++10.3，以 `-std=c++17 -Wall -Wextra -pedantic` 核验。明确假设 CHAR_BIT==8；未运行浮点 charconv、C++20 format/bit 或 C++23 byteswap 摘录。
+### from_chars 的整数解析
 
-速查：数字后有垃圾查 ptr；缓冲不足查 to_chars.ec；最负数查 lowest；复现差异查引擎／分布状态；网络字段查无符号移位与端序。累计见 R16，编码单位见 R12。
+`base` 在 2 至 36，输入范围须有效；返回 `ptr` 是首个未解析字符，`ec` 为错误状态。空输入可按上层策略提前处理，避免从空视图的空指针构造范围。
+
+```cpp
+// 需要 <charconv>、<string_view>、<system_error>；局部摘录
+std::string_view text("42x");
+int candidate = 0;
+auto result = std::from_chars(text.data(), text.data() + text.size(), candidate);
+bool complete = result.ec == std::errc{} && result.ptr == text.data() + text.size();
+// candidate 为 42，ptr 指向 x，complete 为 false
+```
+
+整数不跳过前导空白，不接受前导 `+`；负号只对有符号类型允许，base 16 不自动消费 `0x`。例如 `"0x2a"` 会在初始零之后停止，并不得到 42。
+
+| `ec` | `ptr` 与值 | 调用者处理 |
+| --- | --- | --- |
+| `errc{}` | 值更新，ptr 是未消费位置 | 整字段要求 ptr==last |
+| `invalid_argument` | ptr==first，原值不变 | 没有匹配的数值语法 |
+| `result_out_of_range` | 指向匹配部分结束，原值不变 | 超出目标表示范围 |
+
+先解析候选、完整校验后再提交是上层策略；允许日志前缀消费的接口与要求配置字段完全消费的接口应明确区分。
+
+![字符区间、解析位置与提交](../resources/R18-parse-range.svg)
+
+图：`42x` 的数值前缀可以解析，但整字段校验拒绝后缀；提交候选是应用策略，不是 from_chars 自带事务。
+
+### from_chars 的浮点解析
+
+`chars_format` 为 `scientific/fixed/hex/general`；scientific 要求指数，fixed 不接受指数，general 使用通常的十进制浮点模式。hex 的输入不带 `0x` 前缀，且同样不跳过空白或接受前导加号。
+
+```cpp
+// 需要 <charconv>、<string_view>、<system_error>；局部摘录
+std::string_view text("1.25e2");
+double value = 0;
+auto result = std::from_chars(text.data(), text.data() + text.size(), value,
+                              std::chars_format::scientific);
+// 成功完整消费时 value 为 125；仍须检查 ec 和 ptr
+```
+
+是否允许 NaN、无穷和业务量级由应用另作校验，解析成功不等于业务合法。[N4861 from_chars](https://timsong-cpp.github.io/cppwp/n4861/charconv.from.chars)。
+
+## std::to_chars
+
+**基础操作，C++17**。`<charconv>` 在可写区间 `[first,last)` 输出数字，不补零结尾。签名摘要选取 int、double，省略其他数值类型：
+
+```cpp
+namespace std {
+    to_chars_result to_chars(char* first, char* last, int value, int base = 10);
+    to_chars_result to_chars(char* first, char* last, double value);
+    to_chars_result to_chars(char* first, char* last, double value, chars_format fmt);
+    to_chars_result to_chars(char* first, char* last, double value,
+                             chars_format fmt, int precision);
+    struct to_chars_result { char* ptr; errc ec; };
+}
+```
+
+### to_chars 的整数输出与缓冲
+
+```cpp
+// 需要 <charconv>、<string_view>、<system_error>；局部摘录
+char buffer[32];
+auto result = std::to_chars(buffer, buffer + sizeof buffer, 42);
+if (result.ec == std::errc{}) {
+    std::string_view text(buffer, result.ptr - buffer); // "42"
+}
+```
+
+成功时 ptr 为输出尾后，`ec` 为零；空间不足时 `value_too_large`、ptr==last，缓冲内容不能解释为有效结果。整数进制 2 至 36，输出不带 `0x` 或填充零。
+
+需要 C 字符串时另留一格，例如把 `buffer + sizeof buffer - 1` 作为 last，成功后 `*result.ptr='\0'`。不能把不带零的缓冲直接传 `strlen`。
+
+### to_chars 的浮点输出
+
+无格式参数的形式产生可往返还原的最短表示；带 fmt 的最短形式按对应记法，带 precision 的形式按指定精度产生表示，精度不是缓冲长度。
+
+```cpp
+// 需要 <charconv>、<string_view>、<system_error>；局部摘录
+char buffer[64];
+auto result = std::to_chars(buffer, buffer + sizeof buffer,
+                            3.5, std::chars_format::fixed, 2);
+if (result.ec == std::errc{}) {
+    std::string_view text(buffer, result.ptr - buffer); // "3.50"
+}
+```
+
+缓冲上限仍由调用者提供；特殊值和协议允许的文本形式单独定义。[N4861 to_chars](https://timsong-cpp.github.io/cppwp/n4861/charconv.to.chars)。
+
+## std::format
+
+**基础操作，C++20**。`<format>` 用格式串将实参转换为新字符串。下面是常用调用形式，省略签名中的参数包和格式串检查类型；普通窄字符 `format` 返回 `std::string`。
+
+```cpp
+// C++20；需要 <format>、<string>；局部摘录
+std::string label = std::format("id={:04d}", 7); // "id=0007"
+std::string text = std::format("{}: {:.2f}", "price", 3.5); // "price: 3.50"
+```
+
+`{}` 使用下一个参数，`{0}` 显式索引，两种索引模式不能混合。冒号后是格式说明；`{{` 和 `}}` 输出字面花括号。宽度通常为最小宽度而非长度上限，五位整数不会因 `04d` 变成四位。
+
+N4861 原文用运行期格式解析与 `format_error` 描述失败；应用后续缺陷修正的实现可对字面格式串做编译期检查。动态串在 C++20/23 通常经 `vformat` 与 `make_format_args`；这里用命名对象避免引入临时参数生命周期差异：
+
+```cpp
+// C++20；需要 <format>、<string>；局部摘录
+std::string pattern = "value={}";
+int value = 7;
+std::string text = std::vformat(pattern, std::make_format_args(value));
+```
+
+参数及格式器必须有效，返回文本的编码和数值范围由对应格式器与应用规定。[N4861 format](https://timsong-cpp.github.io/cppwp/n4861/format)。
+
+## std::format_to、std::format_to_n 与 std::formatted_size
+
+**C++20**。`format_to(out,fmt,args...)` 返回输出终点，`formatted_size(fmt,args...)` 返回完整结果大小。`format_to_n(out,n,fmt,args...)` 最多输出 n 个字符，返回 `{out,size}`，size 是未截断结果大小。
+
+```cpp
+// C++20；需要 <format>、<iterator>、<string>；局部摘录
+std::string text;
+std::format_to(std::back_inserter(text), "id={}", 7); // text="id=7"
+char buffer[8];
+auto result = std::format_to_n(buffer, sizeof buffer, "id={:04d}", 7);
+// result.size 为 7，result.out == buffer+7；不自动补零
+```
+
+裸指针输出要保证目标容量；`format_to` 不知道边界，`format_to_n` 的 n 必须合法且范围足够。截断可能切断编码单位或字段，不能将其等同于协议合法格式。
+
+## 组合应用与参考资料
+
+[原配套源码](../examples/r18-text-numeric.cpp) 的整数解析和输出部分演示候选提交与缓冲范围；随机、字节部分归 [R33](R33-numeric-random-bits.zh-CN.md)。进一步重载查 [cppreference charconv](https://en.cppreference.com/w/cpp/header/charconv.html)、[format](https://en.cppreference.com/w/cpp/utility/format.html)。

@@ -1,101 +1,205 @@
-# 第12章 字符串与非拥有视图
+# 字符串与非拥有视图
 
-字符串接口首先回答两个问题：谁保存字符，谁仅记录一段字符的位置。只有所有者持续存在、字符存储没有失效，借用者才能读写那段内容。
+`string` 保存字符，`string_view` 借用字符，`span` 借用任意类型的连续元素。本章分别介绍对象及操作，再说明零结尾与编码。借用是访问外部对象的关系，定义见 [R05](R05-pointers-references.zh-CN.md)。
 
-**版本**：`string` 是既有设施，`string_view` 从 C++17 起，`span` 从 C++20 起。**先修**：R05 的借用与 R09 的所有权。首次阅读第1至3条；处理二进制缓冲、C 接口或 Unicode 时再查第4至6条。
+**基线**：C++17；`string_view` 从 C++17 引入，`span` 从 C++20 引入。先查构造、访问与截取，再查所有者修改造成的失效。
 
-## 1 所有者、视图与传参选择
+## 字符串与视图分类
 
-| 类型与头文件 | 拥有与元素 | 典型接口用途 |
+| 类型与头文件 | 保存内容 | 长度与修改 |
 | --- | --- | --- |
-| `std::string` · `<string>` | 拥有连续 char 序列；末尾另有零字符 | 保存结果、修改文本、跨越调用保存数据 |
-| `std::string_view` · `<string_view>`，17 | 借用连续 const char 序列；指针与长度 | 同步读取文本，不需复制 |
-| `std::span<T, N>` · `<span>`，20 | 借用连续 T 序列；可固定或动态长度 | 数组、缓冲区的带长度参数 |
-| `const char*` | 单独的指针没有长度与保活能力 | 按约定使用零结尾 C 字符串 |
+| `std::string` · `<string>` | 拥有连续 `char` 序列，末尾另有零字符 | 动态长度，可修改字符及序列 |
+| `std::string_view` · `<string_view>` | 借用连续 `const char` 序列 | 保存指针和长度，只修改描述范围 |
+| `std::span<T,N>` · `<span>`，C++20 | 借用连续 `T` 序列 | 长度固定或动态，写权限取决于 `T` |
+| 零结尾 `const char*` | 借用字符；指针本身不带长度 | 依约定扫描至零字符 |
 
-传 `string_view` 的成本不随文本长度增长；它允许接收 string、字面量和指针长度对，不能因此推断输入编码或生存期。接收端若要保存到成员、任务队列或异步回调，应复制为 string，或建立可证明的外部保活协议。按值传视图只是复制描述符，不复制字符。
+![string 拥有存储，视图圈定区间](../resources/R12-string-view-ownership.svg)
 
-![string 拥有存储，视图只圈定区间](../resources/R12-string-view-ownership.svg)
+图：字符位置与描述符的关系；短字符串优化和具体存储位置不由标准规定。视图复制只复制描述符，不复制字符。
 
-图12-1：字符位置与描述符的机制示意；string 的短字符串优化、分配位置和对象布局均未规定。两个视图共享字符，但各自保存长度。
+## std::string
 
-## 2 string 的构造、长度与修改
-
-常用形式省略分配器及 const 重载；`size_type` 是无符号长度类型。
-
-| 常用形式 | 参数、返回与条件 |
-| --- | --- |
-| `string(p, n)` / `string(p)` | 前者复制 n 个字符，p 必须指向有效范围；后者扫描至零 |
-| `size()` / `capacity()` / `reserve(n)` | 长度／存储容量／预留存储；reserve 不创建字符 |
-| `resize(n, c)` | 缩短或补字符 c；单参数形式补零字符 |
-| `char& operator[](i)` / `char& at(i)` | 正文字符要求 i < size；at 越界抛 out_of_range |
-| `append(s)` / `insert(pos, s)` / `erase(pos, count)` | 修改自身并返回 string&；合法 pos 可等于 size |
-| `substr(pos, count)` | 返回独立 string；pos > size 抛 out_of_range |
-| `find(s, pos)` | 返回首次匹配下标，未找到返回 npos |
-
-带长度构造能保存内嵌零，`string("ab\0cd", 5)` 长度为5；指针单参数形式只得到长度2。不要把 npos 转成有符号下标再运算，先与 npos 比较。substr 的 count 会裁到剩余长度，pos 的越界不会自动裁剪。字符串截取的拷贝工作与结果长度相关；中间修改还可能移动后缀，不能称为常数成本。查找的单字符与子串重载也不应混为一次 O(1) 访问。[N4659 字符串操作](https://timsong-cpp.github.io/cppwp/n4659/string.ops)。
-
-size 不含结尾零。string 的 `operator[](size())` 可读取零字符；不要据此把一般下标边界写成 i ≤ size，尤其视图在此位置已越界。reserve 在 C++17 对小于现容量的请求可视为非约束缩容请求；C++20 改变了这个重载的规则，维护旧代码时须按版本判断。shrink_to_fit 是请求，可能重分配。[N4659 容量](https://timsong-cpp.github.io/cppwp/n4659/string.capacity)。
-
-## 3 string_view 的截取与失效
-
-`string_view(p, n)` 要求 [p, p+n) 有效，常数时间构造；`string_view(p)` 要求有效零结尾序列，需线性扫描。`substr(pos, count)` 常数时间返回另一视图；`remove_prefix(n)` 和 `remove_suffix(n)` 只调整本视图，要求 n ≤ size。`at(i)` 检查边界，而 `operator[](i)` 要求 i < size；front/back 要求非空。[N4659 视图构造和访问](https://timsong-cpp.github.io/cppwp/n4659/string.view)。
-
-视图的 const 元素不禁止所有者修改字符。所有者用合法下标改写时，视图会观察到新值；并发改写仍须同步。所有者销毁会悬垂，重新分配会使旧视图失效。string 的非 const 修改接口有各自的失效规则，不能搬用 vector 的“未扩容就保留前缀”结论；借用跨过修改时，重新取得视图最便于审计。[N4659 string 借用失效](https://timsong-cpp.github.io/cppwp/n4659/string.require)。
-
-典型错误是把 `owner.substr(...)` 的结果赋给 string_view：string 的 substr 创建临时所有者，完整表达式结束后借用悬垂。正确写法是在 owner 持续存在时先构造视图，再对视图 substr；若结果要独立保存，直接用 string。字面量对应静态存储，借用它则没有这一临时对象问题。
-
-维护借用时可把规则写到函数契约中：“输入只在本次调用中读取，函数不保存视图”；若函数返回输入的子视图，还要写“返回值借用原输入”。这让调用方知道返回值不能比输入所有者活得更久。参数类型表达了访问能力，注释补足保存策略，两者共同构成接口。
-
-不要通过移动 string 来证明旧视图安全：短文本可能位于 string 对象内部，移动不保证像独立堆对象那样转移同一地址。保存视图到临时结果、把局部 string 的视图作为返回值、在 lambda 中只复制视图而未保活所有者，都是同一类生命周期错误。修复时先确定谁应当拥有数据，再决定复制、共享所有权或缩短使用范围。
-
-视图的比较按字符序列内容执行，不按 data 地址；两段相同内容可以位于不同缓冲。把 string_view 作为 map 或 unordered_map 的键尤其要小心：即使容器本身保留键对象，键所指字符仍可能被销毁或改写，随后比较与哈希结果就不再稳定。长期键通常应保存为 string。
-
-## 4 span 的可写性与边界（C++20）
-
-常用形式为 `span<T>{pointer, count}`、`span<T>{array}`，以及 `first(n)`、`last(n)`、`subspan(offset, count)`。固定 extent 要求输入长度匹配；动态 extent 不编码编译期长度。`size()` 返回元素数，`size_bytes()` 返回字节数；这些成员为常数时间。
-
-`span<const T>` 禁止经该视图修改元素，`const span<T>` 只让描述符为 const，仍能修改 T。span 不扩容、不释放存储；下标在 C++20 没有 at，必须先确保 i < size，子范围也须落在原范围内。vector 扩容、元素删除和所有者销毁仍可能使 span 失效。span 不接受 list 或一般 deque，因为随机访问不代表连续。[N4861 span](https://timsong-cpp.github.io/cppwp/n4861/views.span)。
-
-语法摘录（C++20，假设 `int a[3]{1,2,3};` 且已包含 `<span>`）：`std::span<int> s(a); s.subspan(1)[0] = 9;`，结果 a[1] 为9。此摘录未在当前 g++10.3 的标准库中运行。
-
-## 5 C 字符串与 UTF-8
-
-`c_str()` 提供零结尾读取；C++17 的非 const `data()` 可改写 [0,size) 字符，但不能把末尾零改成非零，也不能把 capacity 当可写长度。C API 若需要“缓冲地址＋容量＋实际写入数”，先 resize 建立字符，再检查返回长度并调整 string；若需要“只读零结尾”，传 c_str 并遵守它的借用有效期。[N4659 字符缓冲入口](https://timsong-cpp.github.io/cppwp/n4659/string.accessors)。
-
-视图 data 不保证零结尾，截取中间一段尤其如此。需要 C 字符串时创建 `string(view)` 再传 c_str；内嵌零仍会使只按零扫描的接口提前停止。它是接口表示差异，不能通过多写一个零解决全部二进制数据问题。
-
-UTF-8 以1至4个八位字节编码一个 Unicode 标量值，非法序列、过长编码与代理码点不能作为合法 UTF-8 接受。string 只存 char 序列，不验证编码；size 和 substr 按元素位置工作，不识别码点边界。一个显示字符还可能由多个码点组成，逐字节截断或逐码点计数均不等于显示宽度。[RFC 3629 UTF-8](https://www.rfc-editor.org/rfc/rfc3629)。C++20 的 `u8"…"` 元素类型为 char8_t，对应 u8string，不能无条件直接传给接受 const char* 的接口；文本转换、规范化和字素分割应由明确的 Unicode 库契约处理。[N4861 字符串字面量](https://timsong-cpp.github.io/cppwp/n4861/lex.string)。
-
-## 6 完整例子与检索入口
-
-以下 C++17 程序验证内嵌零、共享字符、边界异常及保存副本。修改所有者后不再读取旧视图。
+**基础操作**。字符串拥有可变长的字符序列。`string` 是 `basic_string<char>` 的别名；其他字符类型有 `wstring`、`u16string`、`u32string`，C++20 增加 `u8string`。公开声明摘要省略成员与约束：
 
 ```cpp
-#include <iostream>
-#include <stdexcept>
-#include <string>
-#include <string_view>
-
-int main() {
-    std::string owner("ab\0cd", 5);
-    std::string_view all(owner.data(), owner.size());
-    auto tail = all.substr(3);
-    if (owner.size() != 5 || tail != "cd" || all[2] != '\0') return 1;
-    owner[3] = 'X';
-    if (tail != "Xd") return 2;
-    std::string saved(tail);
-    bool checked = false;
-    try { (void)all.at(5); }
-    catch (const std::out_of_range&) { checked = true; }
-    if (!checked) return 3;
-    owner.append(100, '!');
-    // all and tail are not used after modifying owner.
-    if (saved != "Xd") return 4;
-    std::cout << "bytes=5 saved=Xd boundary=checked\n";
+namespace std {
+    template<class CharT, class Traits = char_traits<CharT>,
+             class Allocator = allocator<CharT>> class basic_string;
+    using string = basic_string<char>;
 }
 ```
 
-配套文件：[`r12-strings-views.cpp`](../examples/r12-strings-views.cpp)。预期输出：`bytes=5 saved=Xd boundary=checked`；任一语义检查失败返回非零。Windows g++10.3，使用 `-std=c++17 -Wall -Wextra -pedantic` 核验。
+`CharT` 是字符类型，`Traits` 定义字符比较等操作，`Allocator` 管理字符存储。本节展开 `string` 的常用形式，不覆盖自定义 traits/分配器的全部重载。
 
-速查：保存数据查 string；只读借用查 string_view；连续缓冲查 span；零结尾查 c_str；截取查 substr；查找失败查 npos；编码长度查第5条。所有权延伸见 R09，连续容器失效见 R13，解析范围见 R18。
+### string 的构造与初始化
+
+```cpp
+// 需要 <string>；局部摘录
+std::string empty;
+std::string name("Ada");                    // 扫描至零并复制
+std::string bytes("ab\0cd", 5);            // 复制五个字符，含内嵌零
+std::string fill(3, 'x');                    // "xxx"
+std::string copy(name);                     // 独立字符序列
+```
+
+指针长度构造要求输入的指定范围有效；单指针构造要求有效零结尾序列，长度计算需要扫描。复制建立独立内容，移动后源是有效但未指定状态，不能依赖旧指针仍有效。范围构造 `string(first,last)` 复制有效输入区间；两个整数的含义不能用它推断。
+
+### string 的访问与遍历
+
+常用成员形式为 `size_type size() const`、`bool empty() const`、`char& operator[](size_type)`、`char& at(size_type)`、`char& front()`、`char& back()`，此处省略 const 重载与异常规格。
+
+```cpp
+// 需要 <string>；局部摘录
+std::string text("Ada");
+text.at(0) = 'I';                           // "Ida"
+char last = text.back();                    // 'a'
+for (char& c : text) {
+    if (c == 'a') c = 'A';
+}                                          // "IdA"
+```
+
+`size()` 不含结尾零；下标通常要求 `i < size()`，`at(i)` 越界抛 `out_of_range`，`front/back` 要求非空。`operator[](size())` 在 `string` 上可读取结尾零，但不能将它改成非零；这项例外不适用于视图。
+
+### string 的容量与修改
+
+| 常用成员形式 | 输入与状态变化 | 返回 |
+| --- | --- | --- |
+| `reserve(n)`、`capacity()` | 预留存储/查询容量，预留不增加字符 | `void` / `size_type` |
+| `resize(n,c)` | 缩短或补字符 `c`；单参数形式补零 | `void` |
+| `append(s)`、`insert(pos,s)` | 追加/在位置前插入字符串 | `string&` |
+| `erase(pos,count)` | 从位置删除，数量裁到剩余长度 | `string&` |
+| `replace(pos,count,s)` | 以字符串替换指定子段 | `string&` |
+| `push_back(c)`、`pop_back()`、`clear()` | 加一个字符/删末字符/清空 | `void` |
+
+```cpp
+// 需要 <string>；局部摘录
+std::string text("red");
+text.append(" blue");                       // "red blue"
+text.insert(0, "dark ");                    // "dark red blue"
+text.replace(5, 3, "green");                // "dark green blue"
+text.erase(0, 5);                           // "green blue"
+text.resize(5);                             // "green"
+```
+
+位置参数超过 `size()` 通常抛 `out_of_range`；尾部位置 `size()` 可用于插入。`pop_back` 要求非空。修改可能移动后缀或重新分配，其成本随修改和剩余字符数变化。C++17 的 `reserve(n)` 对小于当前容量的请求允许作为非约束缩容请求；C++20 的该重载不因较小请求缩容。`shrink_to_fit` 始终是非约束请求。[N4659 string capacity](https://timsong-cpp.github.io/cppwp/n4659/string.capacity)、[N4861 string capacity](https://timsong-cpp.github.io/cppwp/n4861/string.capacity)。
+
+### string 的查找、比较与截取
+
+常用形式为 `size_type find(s,pos=0) const`、`rfind(s,pos=npos)`、`int compare(s) const`、`string substr(pos=0,count=npos) const`；字符及指针长度重载也可用。
+
+```cpp
+// 需要 <string>；局部摘录
+std::string text("red blue");
+auto pos = text.find("blue");
+if (pos != std::string::npos) {
+    std::string word = text.substr(pos);    // 独立的 "blue"
+}
+bool before = text.compare("yellow") < 0;  // 字典序，不是长度比较
+```
+
+未找到返回 `npos`，应先比较再用于下标/运算。`substr` 的数量裁到剩余长度，位置超出仍抛异常；拷贝成本随结果长度增长。`compare` 返回负、零或正值，不能依赖精确数值。C++20 增加 `starts_with/ends_with`，C++23 增加 `contains`。[N4659 string operations](https://timsong-cpp.github.io/cppwp/n4659/string.ops)。
+
+### string 的缓冲与失效
+
+`c_str()` 提供零结尾只读指针；C++17 的非 const `data()` 提供可修改字符指针，只能改写 `[0,size())`。给 C API 写入时先 `resize` 建立元素，不能以 `capacity` 代替合法长度。内嵌零会使只扫描至零的 C API 提前停止。
+
+**机制解释**。所有者销毁或存储重分配会使指针、引用与视图失效；某些非 const 字符串操作也允许使它们失效。不能搬用 `vector` 的“未扩容时前缀稳定”规则；跨过结构修改后重新取得视图。[N4659 string requirements](https://timsong-cpp.github.io/cppwp/n4659/string.require)。
+
+## std::string_view
+
+**基础操作，C++17**。视图只描述一段外部字符。公开声明摘要省略成员：
+
+```cpp
+namespace std {
+    template<class CharT, class Traits = char_traits<CharT>>
+        class basic_string_view;
+    using string_view = basic_string_view<char>;
+}
+```
+
+`CharT`、`Traits` 与字符串含义对应；没有分配器，也没有字符所有权。
+
+### string_view 的构造、访问与遍历
+
+```cpp
+// 需要 <string>、<string_view>；局部摘录
+std::string owner("Ada");
+std::string_view all(owner);                // owner 必须持续存活
+std::string_view first(owner.data(), 1);    // "A"，输入范围须有效
+char ch = all.at(1);                        // 'd'
+for (char c : all) { (void)c; }             // 按值读取字符
+```
+
+指针长度构造是常数时间；单指针构造需扫描零结尾。`size/empty/data` 查询描述信息；`operator[]` 要求合法下标，`at` 越界抛异常，`front/back` 要求非空。读取逐元素进行，不复制字符。
+
+### string_view 的截取、查找与比较
+
+常用形式为 `string_view substr(pos=0,count=npos) const`、`void remove_prefix(n)`、`void remove_suffix(n)`；`find/rfind/compare` 按字符内容工作。
+
+```cpp
+// 需要 <string>、<string_view>；局部摘录
+std::string owner("red blue");
+std::string_view words(owner);
+auto tail = words.substr(4);                // 借用 "blue"，常数时间
+words.remove_suffix(5);                     // words 只描述 "red"
+owner[4] = 'B';                             // tail 观察到 "Blue"
+std::string saved(tail);                    // 独立保存内容
+```
+
+`substr` 位置越界抛异常，数量裁剪；prefix/suffix 的数量必须不超过当前长度。它们改变视图范围，不改变所有者。`data()` 不保证视图末尾有零；调用 C 字符串接口可先复制成 `string`。
+
+### string_view 的借用条件
+
+**机制解释**。`string_view view = owner.substr(...)` 会借用临时 `string`，完整表达式结束后悬垂；正确做法是先借用 `owner`，再在视图上截取。返回子视图时须说明它借用输入；跨调用保存、放入任务或异步回调需要所有者保活，或复制内容。
+
+移动所有者不保证旧视图有效，短字符串可位于对象内部。视图作关联容器键时，字符必须长期存活且比较/哈希相关内容保持稳定；容器保存视图对象并不拥有字符。[N4659 string_view](https://timsong-cpp.github.io/cppwp/n4659/string.view)。
+
+## std::span
+
+**基础操作，C++20**。连续元素视图在 `<span>` 中表示连续缓冲。声明摘要：
+
+```cpp
+namespace std {
+    template<class T, size_t Extent = dynamic_extent> class span;
+}
+```
+
+`T` 是元素类型；`Extent` 为编译期固定元素数或 `dynamic_extent`，默认是动态长度。它没有字符零结尾规则。
+
+### span 的构造与访问
+
+```cpp
+// C++20；需要 <span>；局部摘录
+int values[]{1, 2, 3};
+std::span<int, 3> fixed(values);
+std::span<int> all(values, 3);
+const std::span<int> descriptor = all;
+descriptor[1] = 9;                          // 描述符 const，元素可写
+std::span<const int> read_only(all);         // 经此视图只读
+```
+
+指针/数量构造要求有效范围；固定 extent 要求长度匹配。数组、`array` 和满足条件的连续范围可用作输入，`list` 与一般 `deque` 不可。`size()` 返回元素数，`size_bytes()` 返回字节数；C++20 下标没有边界检查成员 `at`，要求下标合法。
+
+### span 的子范围与失效
+
+```cpp
+// C++20；需要 <span>；局部摘录
+int values[]{1, 2, 3, 4};
+std::span<int> all(values);
+auto middle = all.subspan(1, 2);            // {2, 3}
+middle.front() = 8;                         // values[1] 成为 8
+auto head = all.first(2);                   // {1, 8}
+auto tail = all.last(1);                    // {4}
+```
+
+`first/last/subspan` 常数时间产生子视图，数量/偏移必须落在原范围。编译期参数形式还可保留固定 extent。span 不扩容、不释放存储；所有者销毁、容器重分配或相关元素删除会影响借用。[N4861 span](https://timsong-cpp.github.io/cppwp/n4861/views.span)。
+
+## C 字符串与 UTF-8
+
+**基础操作**。C 字符串是以零字符结束的字符序列，不是一种自带长度和所有权的类型。字符串转换接口必须说明是否接受内嵌零、输入长度和保存策略。
+
+UTF-8 使用一至四个八位字节编码一个 Unicode 标量值；`string` 不验证 UTF-8，`size/substr` 按 `char` 元素工作。一个显示字符可能由多个码点组成，字节数量、码点数量和显示宽度不是同一单位。[RFC 3629](https://www.rfc-editor.org/rfc/rfc3629)。C++20 的 `u8"…"` 元素类型是 `char8_t`，不能直接当成 `const char*` 接口的输入；编码转换、规范化和字素分割需要专门库契约。
+
+## 组合应用与参考资料
+
+[配套 C++17 程序](../examples/r12-strings-views.cpp) 演示内嵌零、共享字符、检查访问和保存副本，修改所有者后不再读取旧视图。字符串转换见 [R18](R18-text-numeric.zh-CN.md)，连续容器失效见 [R13](R13-sequence-containers.zh-CN.md)。相关重载查 [cppreference string](https://en.cppreference.com/w/cpp/string/basic_string.html)。
