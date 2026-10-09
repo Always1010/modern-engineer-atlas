@@ -147,6 +147,15 @@ std::mutex mutex;
 
 **基础操作**。`<mutex>` 中 `template<class Mutex> class unique_lock;` 是可移动、不可复制的独占锁管理器。默认构造无 mutex；普通构造立即锁定；标签构造和定时构造分别改变取得方式。
 
+| 构造形式 | 取得方式 | 构造后状态 |
+| --- | --- | --- |
+| `unique_lock<Mutex> lock;` | 无关联 | mutex 为 nullptr，不拥有 |
+| `unique_lock<Mutex> lock(m);` | 调用 lock | 成功后拥有 |
+| `unique_lock<Mutex> lock(m, defer_lock);` | 暂不取得 | 已关联，不拥有 |
+| `unique_lock<Mutex> lock(m, try_to_lock);` | 调用 try_lock | 按 owns_lock 判断 |
+| `unique_lock<Mutex> lock(m, adopt_lock);` | 接管已取得锁 | 调用线程须已拥有 m |
+| `unique_lock<Mutex> lock(m, duration/deadline);` | 定时尝试 | 底层须支持定时，按 owns_lock 判断 |
+
 ```cpp
 std::mutex mutex;
 std::unique_lock<std::mutex> lock(mutex, std::defer_lock);
@@ -159,6 +168,15 @@ lock.lock();
 关联 mutex 与拥有锁是两件事。`lock/try_lock/unlock` 操作对应底层 mutex；定时接口仅用于定时能力类型。`owns_lock()` 或显式 bool 查询所有权，`mutex()` 返回关联指针，`swap` 交换关联与所有权；`release()` 返回指针并解除管理，**不解锁**，调用者接手释放责任。
 
 已拥有时再次 lock 或未拥有时 unlock 报 `system_error`；默认/已移动对象无关联，不能锁定。移动目标接手释放责任，但底层锁的线程所有权要求仍成立。析构仅在 owns_lock 为 true 时解锁。[unique_lock](https://timsong-cpp.github.io/cppwp/n4659/thread.lock.unique)
+
+定时操作用具备能力的 timed_mutex；以下独立局部例需 `<mutex>`、`<chrono>`，取得失败时不能操作受保护状态：
+
+```cpp
+std::timed_mutex mutex;
+std::unique_lock<std::timed_mutex> lock(mutex, std::defer_lock);
+bool acquired = lock.try_lock_for(std::chrono::milliseconds(10));
+if (acquired) { /* 访问受保护状态，析构自动释放 */ }
+```
 
 ## std::scoped_lock
 
@@ -257,6 +275,7 @@ bool available = changed.wait_until(lock, deadline, [] { return ready; });
 ```cpp
 std::recursive_mutex mutex;
 std::condition_variable_any changed;
+bool ready = false;
 std::unique_lock<std::recursive_mutex> lock(mutex);
 changed.wait(lock, [&] { return ready; });
 ```

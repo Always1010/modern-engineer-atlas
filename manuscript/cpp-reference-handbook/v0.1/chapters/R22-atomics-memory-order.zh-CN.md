@@ -108,11 +108,13 @@ flag.clear();
 
 局部例需 `<atomic>`，无其他线程时 old 为 false。重复 test_and_set 会返回 true，直到 clear。自旋锁需要停止与调度考虑，短操作示例不构成通用公平锁。[atomic_flag](https://timsong-cpp.github.io/cppwp/n4659/atomics.flag)
 
-C++20 默认构造也初始化为清除，并增加 `test(order)` 无修改读取及 wait/notify。clear 是写操作，不能使用 acquire/acq_rel。
+C++20 默认构造也初始化为清除，并增加 `test(order)` 无修改读取及 wait/notify。clear 是写操作，仅允许 relaxed/release/seq_cst，不能使用 consume/acquire/acq_rel。
 
 ## 原子等待与通知（C++20）
 
 **基础操作**。`atomic<T>::wait(old, order = seq_cst)` 等待观测值与 old 不同；`notify_one()` / `notify_all()` 唤醒等待者。通知不改变存储值，必须另行 store/exchange 等修改状态。
+
+wait 的 order 用于读取比较值，不允许 release/acq_rel；发布其他普通数据时，采用匹配的 release 写入与 acquire 等待/读取关系。
 
 ```cpp
 std::atomic<int> phase{0};

@@ -161,6 +161,7 @@ struct Pause {
     Handle handle;
     explicit Pause(Handle h) : handle(h) {}
     Pause(const Pause&) = delete;
+    Pause& operator=(const Pause&) = delete;
     ~Pause() { handle.destroy(); }
     struct promise_type {
         Pause get_return_object() { return Pause{Handle::from_promise(*this)}; }
