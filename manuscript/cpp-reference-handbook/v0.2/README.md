@@ -4,12 +4,12 @@ v0.2对象条目版覆盖七个知识领域、35章。正文从分类、具体�
 
 ## 阅读入口
 
-- [完整阅读版PDF](output/pdf/Cpp-Reference-Handbook-v0.2.pdf)：A4、可检索文字、页码、书签与链接。
+- [完整阅读版PDF](output/pdf/Cpp-Reference-Handbook-v0.2.pdf)：A4、可检索文字、页码、书签与链接；目录和索引给出实际入口页码。
 - [完整阅读版HTML](output/pdf/Cpp-Reference-Handbook-v0.2.html)：篇章、章内对象导航与索引，SVG内嵌。
 - [正文目录](TOC.md)：按当前具体对象和规则查阅。
-- [使用指南](reading-guide.zh-CN.md)：首次学习路径、层级、版本与代码摘录说明。
+- [使用指南](reading-guide.zh-CN.md)：四阶段学习路径、出口与自检、层级和代码摘录说明。
 - [附录索引](appendices.zh-CN.md)：语言、标准库符号、任务、系统实体、头文件与工具。
-- [全书审查与修订依据](REVIEW-REPORT.zh-CN.md)：系统性问题、全书处理方式及15条具体审稿意见的落实。
+- [全书审查与修订依据](REVIEW-REPORT.zh-CN.md)：v0.2 的十项读者/审稿复核结论，以及既有审稿依据与处理方式。
 - [编辑规范](EDITORIAL-SPEC.md)：唯一的条目、代码、图表、来源与排版规则。
 - [核对与重建说明](BUILD-NOTES.md)：静态核对和制品检查结果、已有环境重建命令。
 - [样章生成说明](SAMPLE-NOTES.md)：与全书共用生成器的局部审阅入口。
