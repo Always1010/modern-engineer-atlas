@@ -139,14 +139,16 @@ fd 是本条输入的有效 TCP socket，需 `<sys/socket.h>`、`<unistd.h>`、`
 
 ## Windows：Winsock 初始化与地址
 
-**基础操作**。头文件按 `<winsock2.h>`、`<ws2tcpip.h>` 使用，调用者链接系统 Winsock 库 ws2_32。先 `WSAStartup(MAKEWORD(2, 2), &data)` 请求版本，成功返回 0，失败直接返回错误值；每次成功初始化最终由 WSACleanup 配对。
+**基础操作**。头文件按 `<winsock2.h>`、`<ws2tcpip.h>` 使用，调用者链接系统 Winsock 库 ws2_32。先 `WSAStartup(MAKEWORD(2, 2), &data)` 请求版本，成功返回 0，失败直接返回错误值；成功后核对 data.wVersion 是否符合应用要求，每次成功初始化最终由 WSACleanup 配对。
 
 ```cpp
 WSADATA data{};
 int error = WSAStartup(MAKEWORD(2, 2), &data);
 if (error != 0) report(error);
 else {
-    // 本初始化寿命内创建、收发并关闭 socket
+    if (data.wVersion == MAKEWORD(2, 2)) {
+        // 本初始化寿命内创建、收发并关闭 socket
+    } else { /* 协商版本不符合要求，结束初始化 */ }
     if (WSACleanup() == SOCKET_ERROR) report(WSAGetLastError());
 }
 ```

@@ -72,7 +72,7 @@ const auto ns = std::chrono::duration_cast<std::chrono::nanoseconds>(elapsed).co
 | 硬件计数器 | 指令、分支、缓存事件 | 计数变化是否与慢路径有关 |
 | 调度/I/O/等待事件 | 线程等待的先后及持续时间 | 日志覆盖和关联是否完整 |
 
-**Linux 工具入口**：在已有 perf 环境中，`perf stat -- ./app` 查看命令期间的统计，`perf record -g -- ./app` 采样，`perf report` 阅读结果。先看事件单位、总量和热点调用；硬件及权限决定可用事件。本书不实际运行这些工具或修改系统配置。[perf stat](https://man7.org/linux/man-pages/man1/perf-stat.1.html)、[权限与事件](https://docs.kernel.org/admin-guide/perf-security.html)。
+**Linux 工具入口**：在已有 perf 环境中，`perf stat -- ./app` 查看统计，`perf record -g -- ./app` 采样，`perf report` 阅读结果。默认 fp 用户栈展开需要程序保留帧指针；否则按环境选 `--call-graph dwarf`，核对支持与展开质量。先看事件单位、总量和热点路径；硬件及权限决定可用事件。这些是命令示例。[perf stat](https://man7.org/linux/man-pages/man1/perf-stat.1.html)、[perf record](https://man7.org/linux/man-pages/man1/perf-record.1.html)、[权限与事件](https://docs.kernel.org/admin-guide/perf-security.html)。
 
 **Windows 工具入口**：WPR 收集 ETW，WPA 读取跟踪；已有环境的命令形状为 `wpr -start GeneralProfile -filemode`、结束时 `wpr -stop trace.etl`。按具体配置查看 CPU、调度和 I/O 关系；这里是工具语法入口，不是跨平台接口。[WPR 命令](https://learn.microsoft.com/en-us/windows-hardware/test/wpt/wpr-command-line-options)。
 
@@ -89,5 +89,3 @@ const auto ns = std::chrono::duration_cast<std::chrono::nanoseconds>(elapsed).co
 | 内存持续增长 | 活对象、容量、缓存及保活 | 所有权、容器、驻留口径 |
 | 线程卡死 | 全线程栈、锁顺序、等待谓词 | 调试、同步与退出 |
 | 连接耗尽 | 连接状态、池上限、请求寿命 | socket、背压与重试 |
-
-一次只改变能解释的因素，检查正确性、不同数据规模、尾延迟和资源上限。优化交付保留基线、实验条件、结果范围和回退方式；没有数据时说明下一步测什么，不给虚假的速度提升比例。
