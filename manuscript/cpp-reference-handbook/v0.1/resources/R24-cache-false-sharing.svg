@@ -15,5 +15,5 @@
 <text x="28" y="389">隔离写热点：更少行间争用</text>
 <rect x="390" y="360" width="200" height="56" rx="4" class="box"/><text x="490" y="396" text-anchor="middle">A 计数 + 空间</text><rect x="620" y="360" width="200" height="56" rx="4" class="box"/><text x="720" y="396" text-anchor="middle">B 计数 + 空间</text>
 <text x="390" y="448" class="small">代价：额外空间；是否改善应由负载与硬件测量确定。</text>
-<text x="28" y="502" class="small">标准不规定以上缓存结构；伪共享是性能问题，语言数据竞争与内存序另按 R22 判断。</text>
+<text x="28" y="502" class="small">标准不规定以上缓存结构；伪共享是性能问题，数据竞争与内存序见原子章节。</text>
 </svg>

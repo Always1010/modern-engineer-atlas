@@ -1,311 +1,506 @@
-# C++ 与计算机基础图解参考手册：目录
+# 正文目录
 
-7篇、32章、183个二级查阅条目。使用方式见[使用指南](reading-guide.zh-CN.md)，接口、故障与版本速查见[附录A–F](appendices.zh-CN.md)。数据结构机制融入容器与算法章节，链接装载与异步组织独立成章。
+目录由 catalog 与实际标题同步，章序按阅读顺序排列；R 编号用于来源追踪。
 
 ## 第一篇 C++ 语言规则
 
-### [R01 程序结构与第一次编译](chapters/R01-program-build.zh-CN.md)
+### 第1章 程序结构与编译
 
-- 1 从一个可检查的程序进入
-- 2 构建究竟做了什么
-- 3 声明、定义与链接属性
-- 4 ODR 与最小多文件项目
-- 5 诊断入口与排障次序
+- [源文件与 main](chapters/R01-program-build.zh-CN.md#源文件与-main)
+- [编译与运行命令](chapters/R01-program-build.zh-CN.md#编译与运行命令)
+- [翻译单元与构建阶段](chapters/R01-program-build.zh-CN.md#翻译单元与构建阶段)
+- [声明与定义](chapters/R01-program-build.zh-CN.md#声明与定义)
+- [作用域、命名空间与链接属性](chapters/R01-program-build.zh-CN.md#作用域命名空间与链接属性)
+- [头文件与包含保护](chapters/R01-program-build.zh-CN.md#头文件与包含保护)
+- [单一定义规则与多文件程序](chapters/R01-program-build.zh-CN.md#单一定义规则与多文件程序)
+- [GDB 最小调试会话](chapters/R01-program-build.zh-CN.md#gdb-最小调试会话)
+- [构建诊断](chapters/R01-program-build.zh-CN.md#构建诊断)
+### 第2章 类型与对象
 
-### [R02 类型与对象](chapters/R02-types-objects.zh-CN.md)
+- [基础类型分类](chapters/R02-types-objects.zh-CN.md#基础类型分类)
+- [整数类型的大小与范围](chapters/R02-types-objects.zh-CN.md#整数类型的大小与范围)
+- [字符、布尔与空指针类型](chapters/R02-types-objects.zh-CN.md#字符布尔与空指针类型)
+- [浮点类型](chapters/R02-types-objects.zh-CN.md#浮点类型)
+- [类型性质查询与定宽整数](chapters/R02-types-objects.zh-CN.md#类型性质查询与定宽整数)
+- [枚举类型](chapters/R02-types-objects.zh-CN.md#枚举类型)
+- [数组与类型别名](chapters/R02-types-objects.zh-CN.md#数组与类型别名)
+- [存储期、对象生命周期与作用域](chapters/R02-types-objects.zh-CN.md#存储期对象生命周期与作用域)
+- [常见进程存储区域](chapters/R02-types-objects.zh-CN.md#常见进程存储区域)
+- [sizeof、alignof 与对象表示](chapters/R02-types-objects.zh-CN.md#sizeofalignof-与对象表示)
+- [类型特征与字节复制](chapters/R02-types-objects.zh-CN.md#类型特征与字节复制)
+- [placement new 与存储重用](chapters/R02-types-objects.zh-CN.md#placement-new-与存储重用)
+- [对象复制与序列化](chapters/R02-types-objects.zh-CN.md#对象复制与序列化)
+- [结构化绑定](chapters/R02-types-objects.zh-CN.md#结构化绑定)
+### 第3章 初始化与类型推导
 
-- 1 基础类型先看范围，再看名字
-- 2 存储、对象、作用域是三条不同的轴
-- 3 sizeof、alignof 与对象表示
-- 4 数组、退化与类型别名
-- 5 类型性质：字节复制和布局是不同问题
-- 6 placement new：先有存储，再创建对象
-- 7 对象复制与序列化：先确定接收方需要什么
-- 8 工作例子与拆解边界
+- [初始化类别](chapters/R03-initialization-deduction.zh-CN.md#初始化类别)
+- [默认初始化与值初始化](chapters/R03-initialization-deduction.zh-CN.md#默认初始化与值初始化)
+- [直接初始化与拷贝初始化](chapters/R03-initialization-deduction.zh-CN.md#直接初始化与拷贝初始化)
+- [列表初始化与窄化](chapters/R03-initialization-deduction.zh-CN.md#列表初始化与窄化)
+- [initializer_list 与构造选择](chapters/R03-initialization-deduction.zh-CN.md#initializer_list-与构造选择)
+- [聚合初始化与成员默认值](chapters/R03-initialization-deduction.zh-CN.md#聚合初始化与成员默认值)
+- [auto](chapters/R03-initialization-deduction.zh-CN.md#auto)
+- [decltype 与 decltype(auto)](chapters/R03-initialization-deduction.zh-CN.md#decltype-与-decltypeauto)
+- [推导返回类型](chapters/R03-initialization-deduction.zh-CN.md#推导返回类型)
+- [const 与 constexpr](chapters/R03-initialization-deduction.zh-CN.md#const-与-constexpr)
+- [consteval 与 constinit](chapters/R03-initialization-deduction.zh-CN.md#consteval-与-constinit)
+- [静态初始化与局部 static](chapters/R03-initialization-deduction.zh-CN.md#静态初始化与局部-static)
+### 第4章 表达式与类型转换
 
-### [R03 初始化与类型推导](chapters/R03-initialization-deduction.zh-CN.md)
+- [运算符分类](chapters/R04-expressions-conversions.zh-CN.md#运算符分类)
+- [算术运算符](chapters/R04-expressions-conversions.zh-CN.md#算术运算符)
+- [比较与逻辑运算符](chapters/R04-expressions-conversions.zh-CN.md#比较与逻辑运算符)
+- [位运算与移位](chapters/R04-expressions-conversions.zh-CN.md#位运算与移位)
+- [赋值、自增与自减](chapters/R04-expressions-conversions.zh-CN.md#赋值自增与自减)
+- [条件运算符与逗号运算符](chapters/R04-expressions-conversions.zh-CN.md#条件运算符与逗号运算符)
+- [优先级与结合性](chapters/R04-expressions-conversions.zh-CN.md#优先级与结合性)
+- [求值顺序与副作用](chapters/R04-expressions-conversions.zh-CN.md#求值顺序与副作用)
+- [值类别](chapters/R04-expressions-conversions.zh-CN.md#值类别)
+- [隐式转换](chapters/R04-expressions-conversions.zh-CN.md#隐式转换)
+- [整数提升与通常算术转换](chapters/R04-expressions-conversions.zh-CN.md#整数提升与通常算术转换)
+- [数值转换与窄化](chapters/R04-expressions-conversions.zh-CN.md#数值转换与窄化)
+- [显式转换分类](chapters/R04-expressions-conversions.zh-CN.md#显式转换分类)
+- [static_cast](chapters/R04-expressions-conversions.zh-CN.md#static_cast)
+- [dynamic_cast](chapters/R04-expressions-conversions.zh-CN.md#dynamic_cast)
+- [const_cast](chapters/R04-expressions-conversions.zh-CN.md#const_cast)
+- [reinterpret_cast](chapters/R04-expressions-conversions.zh-CN.md#reinterpret_cast)
+- [组合应用：有符号加法检查](chapters/R04-expressions-conversions.zh-CN.md#组合应用有符号加法检查)
+### 第5章 指针与引用
 
-- 1 初始化形式不能机械替换
-- 2 聚合初始化与成员默认值
-- 3 auto、decltype 与括号
-- 4 const 与编译期设施
-- 5 工作例子与初始化顺序
+- [指针声明、取址与解引用](chapters/R05-pointers-references.zh-CN.md#指针声明取址与解引用)
+- [nullptr 与可选借用](chapters/R05-pointers-references.zh-CN.md#nullptr-与可选借用)
+- [左值引用与右值引用](chapters/R05-pointers-references.zh-CN.md#左值引用与右值引用)
+- [const 与多级指针](chapters/R05-pointers-references.zh-CN.md#const-与多级指针)
+- [数组区间与指针算术](chapters/R05-pointers-references.zh-CN.md#数组区间与指针算术)
+- [临时对象与寿命延长](chapters/R05-pointers-references.zh-CN.md#临时对象与寿命延长)
+- [返回借用与非拥有成员](chapters/R05-pointers-references.zh-CN.md#返回借用与非拥有成员)
+- [类型访问与配套例子](chapters/R05-pointers-references.zh-CN.md#类型访问与配套例子)
+### 第6章 语句与函数
 
-### [R04 表达式与类型转换](chapters/R04-expressions-conversions.zh-CN.md)
-
-- 1 优先级不决定所有求值顺序
-- 2 值类别描述表达式，不是变量的永久标签
-- 3 整数提升、混合运算与窄化
-- 4 四种 cast 的责任边界
-- 5 工作例子：先检查，后执行运算
-
-### [R05 指针与引用](chapters/R05-pointers-references.zh-CN.md)
-
-- 1 指针和引用各自表达什么
-- 2 指针算术只在合法数组区间内
-- 3 临时对象延长寿命：允许路径与例外
-- 4 返回借用、成员借用与别名约束
-- 5 工作例子与失败边界
-
-### [R06 语句与函数](chapters/R06-statements-functions.zh-CN.md)
-
-- 1 控制流与局部作用域
-- 2 参数、返回值与默认实参
-- 3 lambda 捕获的是值还是借用
-- 4 函数对象、invoke 与类型擦除
-- 5 工作例子与异步边界
+- [控制语句分类](chapters/R06-statements-functions.zh-CN.md#控制语句分类)
+- [if 与 else](chapters/R06-statements-functions.zh-CN.md#if-与-else)
+- [switch](chapters/R06-statements-functions.zh-CN.md#switch)
+- [for](chapters/R06-statements-functions.zh-CN.md#for)
+- [while 与 do-while](chapters/R06-statements-functions.zh-CN.md#while-与-do-while)
+- [范围 for](chapters/R06-statements-functions.zh-CN.md#范围-for)
+- [break、continue 与 return](chapters/R06-statements-functions.zh-CN.md#breakcontinue-与-return)
+- [函数声明、定义与调用](chapters/R06-statements-functions.zh-CN.md#函数声明定义与调用)
+- [参数与返回值](chapters/R06-statements-functions.zh-CN.md#参数与返回值)
+- [默认实参与函数重载](chapters/R06-statements-functions.zh-CN.md#默认实参与函数重载)
+- [lambda 表达式](chapters/R06-statements-functions.zh-CN.md#lambda-表达式)
+- [lambda 捕获](chapters/R06-statements-functions.zh-CN.md#lambda-捕获)
+- [函数对象与函数指针](chapters/R06-statements-functions.zh-CN.md#函数对象与函数指针)
+- [std::invoke](chapters/R06-statements-functions.zh-CN.md#stdinvoke)
+- [std::function](chapters/R06-statements-functions.zh-CN.md#stdfunction)
+- [延后回调与配套例子](chapters/R06-statements-functions.zh-CN.md#延后回调与配套例子)
 
 ## 第二篇 对象与资源管理
 
-### [R07 类与对象生命周期](chapters/R07-classes-lifetime.zh-CN.md)
+### 第7章 类与对象生命周期
 
-- 1 class、struct 与不变量
-- 2 构造与析构顺序
-- 3 特殊成员与 Rule of Zero
-- 4 组合、继承与多态边界
-- 5 完整对象、子对象与常见多态实现
-- 6 切片、克隆与序列化的选择
-- 7 工作例子：同时检查分派与清理
+- [class、struct 与访问控制](chapters/R07-classes-lifetime.zh-CN.md#classstruct-与访问控制)
+- [数据成员、成员函数与 const](chapters/R07-classes-lifetime.zh-CN.md#数据成员成员函数与-const)
+- [构造函数与成员初始化](chapters/R07-classes-lifetime.zh-CN.md#构造函数与成员初始化)
+- [析构函数](chapters/R07-classes-lifetime.zh-CN.md#析构函数)
+- [特殊成员函数](chapters/R07-classes-lifetime.zh-CN.md#特殊成员函数)
+- [构造与销毁顺序](chapters/R07-classes-lifetime.zh-CN.md#构造与销毁顺序)
+- [组合与继承](chapters/R07-classes-lifetime.zh-CN.md#组合与继承)
+- [虚函数、override 与 final](chapters/R07-classes-lifetime.zh-CN.md#虚函数override-与-final)
+- [抽象类与虚析构](chapters/R07-classes-lifetime.zh-CN.md#抽象类与虚析构)
+- [完整对象、子对象与多态实现](chapters/R07-classes-lifetime.zh-CN.md#完整对象子对象与多态实现)
+- [切片、克隆与外部表示](chapters/R07-classes-lifetime.zh-CN.md#切片克隆与外部表示)
+- [配套对象模型例子](chapters/R07-classes-lifetime.zh-CN.md#配套对象模型例子)
+### 第8章 拷贝与移动
 
-### [R08 拷贝与移动](chapters/R08-copy-move.zh-CN.md)
+- [拷贝与移动操作分类](chapters/R08-copy-move.zh-CN.md#拷贝与移动操作分类)
+- [拷贝构造](chapters/R08-copy-move.zh-CN.md#拷贝构造)
+- [拷贝赋值](chapters/R08-copy-move.zh-CN.md#拷贝赋值)
+- [移动构造与移动赋值](chapters/R08-copy-move.zh-CN.md#移动构造与移动赋值)
+- [std::move](chapters/R08-copy-move.zh-CN.md#stdmove)
+- [移动后状态与借用](chapters/R08-copy-move.zh-CN.md#移动后状态与借用)
+- [转发引用与引用折叠](chapters/R08-copy-move.zh-CN.md#转发引用与引用折叠)
+- [std::forward](chapters/R08-copy-move.zh-CN.md#stdforward)
+- [拷贝消除与返回对象](chapters/R08-copy-move.zh-CN.md#拷贝消除与返回对象)
+- [noexcept 与 move_if_noexcept](chapters/R08-copy-move.zh-CN.md#noexcept-与-move_if_noexcept)
+### 第9章 RAII 与内存管理库
 
-- 1 构造与赋值是两类操作
-- 2 move 是转换，移动后状态来自契约
-- 3 转发引用与 std::forward
-- 4 返回对象、消除复制与 noexcept
-- 5 工作例子与错误边界
+- [RAII 资源对象](chapters/R09-raii-memory.zh-CN.md#raii-资源对象)
+- [new 与 delete](chapters/R09-raii-memory.zh-CN.md#new-与-delete)
+- [智能指针分类](chapters/R09-raii-memory.zh-CN.md#智能指针分类)
+- [unique_ptr 构造与访问](chapters/R09-raii-memory.zh-CN.md#unique_ptr-构造与访问)
+- [unique_ptr 转移、reset 与 release](chapters/R09-raii-memory.zh-CN.md#unique_ptr-转移reset-与-release)
+- [unique_ptr 数组与删除器](chapters/R09-raii-memory.zh-CN.md#unique_ptr-数组与删除器)
+- [shared_ptr 构造、共享与访问](chapters/R09-raii-memory.zh-CN.md#shared_ptr-构造共享与访问)
+- [weak_ptr 构造、lock 与 expired](chapters/R09-raii-memory.zh-CN.md#weak_ptr-构造lock-与-expired)
+- [make_unique、make_shared 与 allocate_shared](chapters/R09-raii-memory.zh-CN.md#make_uniquemake_shared-与-allocate_shared)
+- [控制状态、循环与并发](chapters/R09-raii-memory.zh-CN.md#控制状态循环与并发)
+- [enable_shared_from_this](chapters/R09-raii-memory.zh-CN.md#enable_shared_from_this)
+- [allocator 与 allocator_traits](chapters/R09-raii-memory.zh-CN.md#allocator-与-allocator_traits)
+- [memory_resource 与 polymorphic_allocator](chapters/R09-raii-memory.zh-CN.md#memory_resource-与-polymorphic_allocator)
+- [monotonic_buffer_resource 与池资源](chapters/R09-raii-memory.zh-CN.md#monotonic_buffer_resource-与池资源)
+- [配套所有权例子](chapters/R09-raii-memory.zh-CN.md#配套所有权例子)
+### 第10章 模板与编译期编程
 
-### [R09 RAII 与内存管理库](chapters/R09-raii-memory.zh-CN.md)
+- [函数模板](chapters/R10-templates-compile-time.zh-CN.md#函数模板)
+- [类模板](chapters/R10-templates-compile-time.zh-CN.md#类模板)
+- [模板参数类别](chapters/R10-templates-compile-time.zh-CN.md#模板参数类别)
+- [模板实参推导](chapters/R10-templates-compile-time.zh-CN.md#模板实参推导)
+- [类模板实参推导](chapters/R10-templates-compile-time.zh-CN.md#类模板实参推导)
+- [实例化与定义可见性](chapters/R10-templates-compile-time.zh-CN.md#实例化与定义可见性)
+- [全特化与偏特化](chapters/R10-templates-compile-time.zh-CN.md#全特化与偏特化)
+- [依赖名、typename 与 template](chapters/R10-templates-compile-time.zh-CN.md#依赖名typename-与-template)
+- [实参相关查找](chapters/R10-templates-compile-time.zh-CN.md#实参相关查找)
+- [参数包与折叠表达式](chapters/R10-templates-compile-time.zh-CN.md#参数包与折叠表达式)
+- [if constexpr 与 static_assert](chapters/R10-templates-compile-time.zh-CN.md#if-constexpr-与-static_assert)
+- [SFINAE 与 enable_if](chapters/R10-templates-compile-time.zh-CN.md#sfinae-与-enable_if)
+- [concepts 与 requires](chapters/R10-templates-compile-time.zh-CN.md#concepts-与-requires)
+- [模板诊断与配套例子](chapters/R10-templates-compile-time.zh-CN.md#模板诊断与配套例子)
+### 第11章 错误处理与异常安全
 
-- 1 分配、构造与释放分别负责什么
-- 2 三种智能指针的职责
-- 3 控制块、weak_ptr 与循环
-- 4 allocator 与 pmr 的使用入口
-- 5 工作例子与释放检查
-
-### [R10 模板与编译期编程](chapters/R10-templates-compile-time.zh-CN.md)
-
-- 1 推导、实例化与定义可见性
-- 2 特化、依赖名与 ADL
-- 3 参数包、折叠表达式与 if constexpr
-- 4 C++20 concepts 与 requires
-- 5 工作例子与读报错方法
-
-### [R11 错误处理与异常安全](chapters/R11-errors-exception-safety.zh-CN.md)
-
-- 1 throw、catch 与栈展开
-- 2 noexcept 与析构边界
-- 3 错误码、异常和结果对象怎样选
-- 4 基本、强与不抛保证
-- 5 工作例子：检查失败后的状态
+- [throw 与异常对象](chapters/R11-errors-exception-safety.zh-CN.md#throw-与异常对象)
+- [try、catch 与重新抛出](chapters/R11-errors-exception-safety.zh-CN.md#trycatch-与重新抛出)
+- [栈展开与构造失败](chapters/R11-errors-exception-safety.zh-CN.md#栈展开与构造失败)
+- [标准异常类型](chapters/R11-errors-exception-safety.zh-CN.md#标准异常类型)
+- [noexcept 说明符](chapters/R11-errors-exception-safety.zh-CN.md#noexcept-说明符)
+- [noexcept 运算符](chapters/R11-errors-exception-safety.zh-CN.md#noexcept-运算符)
+- [析构与终止边界](chapters/R11-errors-exception-safety.zh-CN.md#析构与终止边界)
+- [error_code 与状态返回](chapters/R11-errors-exception-safety.zh-CN.md#error_code-与状态返回)
+- [错误表示比较](chapters/R11-errors-exception-safety.zh-CN.md#错误表示比较)
+- [异常安全保证](chapters/R11-errors-exception-safety.zh-CN.md#异常安全保证)
+- [暂存与强保证提交](chapters/R11-errors-exception-safety.zh-CN.md#暂存与强保证提交)
 
 ## 第三篇 标准库与数据结构
 
-### [R12 字符串与非拥有视图](chapters/R12-strings-views.zh-CN.md)
+### 第12章 字符串与非拥有视图
 
-- 1 所有者、视图与传参选择
-- 2 string 的构造、长度与修改
-- 3 string_view 的截取与失效
-- 4 span 的可写性与边界（C++20）
-- 5 C 字符串与 UTF-8
-- 6 完整例子与检索入口
+- [字符串与视图分类](chapters/R12-strings-views.zh-CN.md#字符串与视图分类)
+- [std::string](chapters/R12-strings-views.zh-CN.md#stdstring)
+- [std::string_view](chapters/R12-strings-views.zh-CN.md#stdstring_view)
+- [std::span](chapters/R12-strings-views.zh-CN.md#stdspan)
+- [C 字符串与 UTF-8](chapters/R12-strings-views.zh-CN.md#c-字符串与-utf-8)
+- [组合应用与参考资料](chapters/R12-strings-views.zh-CN.md#组合应用与参考资料)
+### 第13章 顺序容器
 
-### [R13 顺序容器](chapters/R13-sequence-containers.zh-CN.md)
+- [顺序容器分类](chapters/R13-sequence-containers.zh-CN.md#顺序容器分类)
+- [std::array](chapters/R13-sequence-containers.zh-CN.md#stdarray)
+- [std::vector](chapters/R13-sequence-containers.zh-CN.md#stdvector)
+- [vector 的失效与异常保证](chapters/R13-sequence-containers.zh-CN.md#vector-的失效与异常保证)
+- [顺序容器的遍历删除](chapters/R13-sequence-containers.zh-CN.md#顺序容器的遍历删除)
+- [std::deque](chapters/R13-sequence-containers.zh-CN.md#stddeque)
+- [std::list](chapters/R13-sequence-containers.zh-CN.md#stdlist)
+- [std::forward_list](chapters/R13-sequence-containers.zh-CN.md#stdforward_list)
+- [元素地址与业务句柄](chapters/R13-sequence-containers.zh-CN.md#元素地址与业务句柄)
+- [参考资料](chapters/R13-sequence-containers.zh-CN.md#参考资料)
+### 第14章 关联容器与容器适配器
 
-- 1 容器选型速查
-- 2 vector 的构造与核心接口
-- 3 vector 的失效与异常边界
-- 4 删除元素时如何继续遍历
-- 5 deque 的两端操作
-- 6 list 与 forward_list 的位置契约
-- 7 工作中的选型与排障
-- 8 符号索引与进一步查阅
-- 机制与后查：操作成本；怎样读复杂度与空间成本；初始化不是可互换的写法；reserve 与 resize；动态数组为什么需要扩容；失败是否保留原序列；list 的稳定节点与 splice；forward_list 修改的是前驱之后；需要稳定的是哪个对象；典型现象与检查点
+- [关联容器分类](chapters/R14-associative-adaptors.zh-CN.md#关联容器分类)
+- [std::set](chapters/R14-associative-adaptors.zh-CN.md#stdset)
+- [std::multiset](chapters/R14-associative-adaptors.zh-CN.md#stdmultiset)
+- [std::map](chapters/R14-associative-adaptors.zh-CN.md#stdmap)
+- [std::multimap](chapters/R14-associative-adaptors.zh-CN.md#stdmultimap)
+- [std::unordered_set](chapters/R14-associative-adaptors.zh-CN.md#stdunordered_set)
+- [std::unordered_multiset](chapters/R14-associative-adaptors.zh-CN.md#stdunordered_multiset)
+- [std::unordered_map](chapters/R14-associative-adaptors.zh-CN.md#stdunordered_map)
+- [std::unordered_multimap](chapters/R14-associative-adaptors.zh-CN.md#stdunordered_multimap)
+- [键等价、比较与哈希](chapters/R14-associative-adaptors.zh-CN.md#键等价比较与哈希)
+- [关联容器的共享操作](chapters/R14-associative-adaptors.zh-CN.md#关联容器的共享操作)
+- [关联容器失效与哈希桶](chapters/R14-associative-adaptors.zh-CN.md#关联容器失效与哈希桶)
+- [节点句柄](chapters/R14-associative-adaptors.zh-CN.md#节点句柄)
+- [std::stack](chapters/R14-associative-adaptors.zh-CN.md#stdstack)
+- [std::queue](chapters/R14-associative-adaptors.zh-CN.md#stdqueue)
+- [std::priority_queue](chapters/R14-associative-adaptors.zh-CN.md#stdpriority_queue)
+- [组合应用与参考资料](chapters/R14-associative-adaptors.zh-CN.md#组合应用与参考资料)
+### 第15章 迭代器与 ranges
 
-### [R14 关联容器与容器适配器](chapters/R14-associative-adaptors.zh-CN.md)
+- [std::begin 与 std::end](chapters/R15-iterators-ranges.zh-CN.md#stdbegin-与-stdend)
+- [半开区间与尾后位置](chapters/R15-iterators-ranges.zh-CN.md#半开区间与尾后位置)
+- [迭代器类别与访问成本](chapters/R15-iterators-ranges.zh-CN.md#迭代器类别与访问成本)
+- [std::iterator_traits](chapters/R15-iterators-ranges.zh-CN.md#stditerator_traits)
+- [std::advance、std::next、std::prev 与 std::distance](chapters/R15-iterators-ranges.zh-CN.md#stdadvancestdnextstdprev-与-stddistance)
+- [std::reverse_iterator](chapters/R15-iterators-ranges.zh-CN.md#stdreverse_iterator)
+- [插入迭代器](chapters/R15-iterators-ranges.zh-CN.md#插入迭代器)
+- [ranges 算法与投影](chapters/R15-iterators-ranges.zh-CN.md#ranges-算法与投影)
+- [range、sentinel 与 borrowed_range](chapters/R15-iterators-ranges.zh-CN.md#rangesentinel-与-borrowed_range)
+- [views 与惰性管线](chapters/R15-iterators-ranges.zh-CN.md#views-与惰性管线)
+- [组合应用与参考资料](chapters/R15-iterators-ranges.zh-CN.md#组合应用与参考资料)
+### 第16章 算法库
 
-- 1 有序关系与哈希契约
-- 2 查找、插入与更新的接口
-- 3 失效、rehash 与预留
-- 4 节点句柄与失败边界
-- 5 stack、queue 与 priority_queue
-- 6 完整例子与检索入口
-- 机制与后查：有序索引：查找路径为什么取决于树高；桶、冲突与装载不是同一个指标；堆：只维护足够取得优先值的关系
+- [比较器与谓词](chapters/R16-algorithms.zh-CN.md#比较器与谓词)
+- [std::find、std::find_if 与计数](chapters/R16-algorithms.zh-CN.md#stdfindstdfind_if-与计数)
+- [std::all_of、std::any_of 与 std::none_of](chapters/R16-algorithms.zh-CN.md#stdall_ofstdany_of-与-stdnone_of)
+- [std::for_each](chapters/R16-algorithms.zh-CN.md#stdfor_each)
+- [std::copy、std::copy_if 与填充](chapters/R16-algorithms.zh-CN.md#stdcopystdcopy_if-与填充)
+- [std::transform](chapters/R16-algorithms.zh-CN.md#stdtransform)
+- [std::remove、std::remove_if 与 std::unique](chapters/R16-algorithms.zh-CN.md#stdremovestdremove_if-与-stdunique)
+- [std::sort 与 std::stable_sort](chapters/R16-algorithms.zh-CN.md#stdsort-与-stdstable_sort)
+- [std::min_element 与 std::max_element](chapters/R16-algorithms.zh-CN.md#stdmin_element-与-stdmax_element)
+- [std::nth_element 与 std::partial_sort](chapters/R16-algorithms.zh-CN.md#stdnth_element-与-stdpartial_sort)
+- [std::partition 与 std::stable_partition](chapters/R16-algorithms.zh-CN.md#stdpartition-与-stdstable_partition)
+- [std::lower_bound、std::upper_bound 与等价范围](chapters/R16-algorithms.zh-CN.md#stdlower_boundstdupper_bound-与等价范围)
+- [有序集合算法](chapters/R16-algorithms.zh-CN.md#有序集合算法)
+- [堆算法](chapters/R16-algorithms.zh-CN.md#堆算法)
+- [二分查找的分区条件](chapters/R16-algorithms.zh-CN.md#二分查找的分区条件)
+- [堆的结构与操作条件](chapters/R16-algorithms.zh-CN.md#堆的结构与操作条件)
+- [排序、选择与分区的结果差异](chapters/R16-algorithms.zh-CN.md#排序选择与分区的结果差异)
+- [std::accumulate、std::inner_product 与 std::iota](chapters/R16-algorithms.zh-CN.md#stdaccumulatestdinner_product-与-stdiota)
+- [std::reduce 与 std::transform_reduce](chapters/R16-algorithms.zh-CN.md#stdreduce-与-stdtransform_reduce)
+- [std::inclusive_scan 与 std::exclusive_scan](chapters/R16-algorithms.zh-CN.md#stdinclusive_scan-与-stdexclusive_scan)
+- [执行策略](chapters/R16-algorithms.zh-CN.md#执行策略)
+- [组合应用与参考资料](chapters/R16-algorithms.zh-CN.md#组合应用与参考资料)
+### 第17章 通用工具与结果类型
 
-### [R15 迭代器与 ranges](chapters/R15-iterators-ranges.zh-CN.md)
+- [std::pair](chapters/R17-utility-results.zh-CN.md#stdpair)
+- [std::tuple](chapters/R17-utility-results.zh-CN.md#stdtuple)
+- [std::optional](chapters/R17-utility-results.zh-CN.md#stdoptional)
+- [std::variant](chapters/R17-utility-results.zh-CN.md#stdvariant)
+- [std::any](chapters/R17-utility-results.zh-CN.md#stdany)
+- [std::expected](chapters/R17-utility-results.zh-CN.md#stdexpected)
+- [结果状态与借用](chapters/R17-utility-results.zh-CN.md#结果状态与借用)
+- [比较与哈希](chapters/R17-utility-results.zh-CN.md#比较与哈希)
+### 第18章 文本转换与格式化
 
-- 1 半开区间与尾后位置
-- 2 类别、成本与算法要求
-- 3 反向与输出适配器
-- 4 ranges 算法、sentinel 与投影（C++20）
-- 5 view、惰性求值与借用边界（C++20）
-- 6 完整例子与检索入口
-- 机制与后查：算法的比较次数与走路次数分开算
+- [std::from_chars](chapters/R18-text-numeric.zh-CN.md#stdfrom_chars)
+- [std::to_chars](chapters/R18-text-numeric.zh-CN.md#stdto_chars)
+- [std::format](chapters/R18-text-numeric.zh-CN.md#stdformat)
+- [std::format_to、std::format_to_n 与 std::formatted_size](chapters/R18-text-numeric.zh-CN.md#stdformat_tostdformat_to_n-与-stdformatted_size)
+- [组合应用与参考资料](chapters/R18-text-numeric.zh-CN.md#组合应用与参考资料)
+### 第19章 数值、随机与位工具
 
-### [R16 算法库](chapters/R16-algorithms.zh-CN.md)
+- [std::numeric_limits](chapters/R33-numeric-random-bits.zh-CN.md#stdnumeric_limits)
+- [数学函数与舍入](chapters/R33-numeric-random-bits.zh-CN.md#数学函数与舍入)
+- [std::mt19937](chapters/R33-numeric-random-bits.zh-CN.md#stdmt19937)
+- [std::random_device 与 std::seed_seq](chapters/R33-numeric-random-bits.zh-CN.md#stdrandom_device-与-stdseed_seq)
+- [std::uniform_int_distribution](chapters/R33-numeric-random-bits.zh-CN.md#stduniform_int_distribution)
+- [std::uniform_real_distribution](chapters/R33-numeric-random-bits.zh-CN.md#stduniform_real_distribution)
+- [std::normal_distribution](chapters/R33-numeric-random-bits.zh-CN.md#stdnormal_distribution)
+- [std::bitset](chapters/R33-numeric-random-bits.zh-CN.md#stdbitset)
+- [std::byte](chapters/R33-numeric-random-bits.zh-CN.md#stdbyte)
+- [位计数、旋转与二的幂](chapters/R33-numeric-random-bits.zh-CN.md#位计数旋转与二的幂)
+- [std::bit_cast](chapters/R33-numeric-random-bits.zh-CN.md#stdbit_cast)
+- [std::endian 与 std::byteswap](chapters/R33-numeric-random-bits.zh-CN.md#stdendian-与-stdbyteswap)
+- [组合应用与参考资料](chapters/R33-numeric-random-bits.zh-CN.md#组合应用与参考资料)
+### 第20章 时间库
 
-- 1 扫描、变换与目标区间
-- 2 remove、unique 与实际删除
-- 3 排序、二分、集合与堆的前提
-- 4 累计、归约与扫描
-- 5 执行策略的可移植边界（C++17）
-- 6 完整例子与检索入口
-- 机制与后查：线性查找与二分查找：谁提供排除依据；堆算法：范围变换与容器长度各管一步；排序、选择与分区：只建立结果需要的顺序；查找、选择与堆的联合检查
+- [std::chrono::duration](chapters/R19-time-files.zh-CN.md#stdchronoduration)
+- [std::chrono::time_point](chapters/R19-time-files.zh-CN.md#stdchronotime_point)
+- [std::chrono::steady_clock](chapters/R19-time-files.zh-CN.md#stdchronosteady_clock)
+- [std::chrono::system_clock](chapters/R19-time-files.zh-CN.md#stdchronosystem_clock)
+- [std::chrono::high_resolution_clock](chapters/R19-time-files.zh-CN.md#stdchronohigh_resolution_clock)
+- [duration_cast、time_point_cast 与舍入](chapters/R19-time-files.zh-CN.md#duration_casttime_point_cast-与舍入)
+- [时间字面量](chapters/R19-time-files.zh-CN.md#时间字面量)
+- [绝对截止点](chapters/R19-time-files.zh-CN.md#绝对截止点)
+- [日历类型与 std::chrono::year_month_day](chapters/R19-time-files.zh-CN.md#日历类型与-stdchronoyear_month_day)
+- [std::chrono::zoned_time 与时间区](chapters/R19-time-files.zh-CN.md#stdchronozoned_time-与时间区)
+- [组合应用与参考资料](chapters/R19-time-files.zh-CN.md#组合应用与参考资料)
+### 第21章 流与文件读写
 
-### [R17 通用工具与结果类型](chapters/R17-utility-results.zh-CN.md)
+- [流的类型与状态](chapters/R34-streams-files.zh-CN.md#流的类型与状态)
+- [std::ifstream](chapters/R34-streams-files.zh-CN.md#stdifstream)
+- [std::ofstream](chapters/R34-streams-files.zh-CN.md#stdofstream)
+- [std::fstream](chapters/R34-streams-files.zh-CN.md#stdfstream)
+- [std::istringstream](chapters/R34-streams-files.zh-CN.md#stdistringstream)
+- [std::ostringstream](chapters/R34-streams-files.zh-CN.md#stdostringstream)
+- [std::stringstream](chapters/R34-streams-files.zh-CN.md#stdstringstream)
+- [二进制格式与文件提交](chapters/R34-streams-files.zh-CN.md#二进制格式与文件提交)
+- [组合应用与参考资料](chapters/R34-streams-files.zh-CN.md#组合应用与参考资料)
+### 第22章 文件系统
 
-- 1 pair、tuple 与结构化绑定
-- 2 optional：存在或缺失
-- 3 variant：封闭的候选集合
-- 4 any：开放类型与运行期检查
-- 5 expected 与比较／哈希的版本边界
-- 6 完整例子与检索入口
-
-### [R18 文本处理与数值工具](chapters/R18-text-numeric.zh-CN.md)
-
-- 1 from_chars 与 to_chars（C++17）
-- 2 format 与数值边界
-- 3 随机引擎、分布与复现
-- 4 bit、bitset、字节与端序
-- 5 完整例子与检索入口
-
-### [R19 时间与文件接口](chapters/R19-time-files.zh-CN.md)
-
-- 1 duration、time_point 与时钟
-- 2 总预算与绝对截止
-- 3 stream 的状态、文本与二进制
-- 4 filesystem 路径与错误
-- 5 文件更新、持久化与 C++20 扩展
-- 6 完整例子与检索入口
+- [std::filesystem::path](chapters/R35-filesystem.zh-CN.md#stdfilesystempath)
+- [文件状态与错误报告](chapters/R35-filesystem.zh-CN.md#文件状态与错误报告)
+- [std::filesystem::directory_entry](chapters/R35-filesystem.zh-CN.md#stdfilesystemdirectory_entry)
+- [std::filesystem::directory_iterator](chapters/R35-filesystem.zh-CN.md#stdfilesystemdirectory_iterator)
+- [std::filesystem::recursive_directory_iterator](chapters/R35-filesystem.zh-CN.md#stdfilesystemrecursive_directory_iterator)
+- [目录创建、复制、删除与更名](chapters/R35-filesystem.zh-CN.md#目录创建复制删除与更名)
+- [文件更新与组合应用](chapters/R35-filesystem.zh-CN.md#文件更新与组合应用)
 
 ## 第四篇 并发与 C++ 内存模型
 
-### [R20 线程与异步任务](chapters/R20-threads-async.zh-CN.md)
+### 第23章 线程与异步结果
 
-- 1 thread：谁负责收回执行中的工作
-- 2 future：一次结果与异常通道
-- 3 async 的启动策略与隐式等待
-- 4 jthread 与协作取消：请求、观察、退出
-- 5 任务粒度与退出诊断
+- [std::thread](chapters/R20-threads-async.zh-CN.md#stdthread)
+- [std::this_thread](chapters/R20-threads-async.zh-CN.md#stdthis_thread)
+- [异步共享状态](chapters/R20-threads-async.zh-CN.md#异步共享状态)
+- [std::promise](chapters/R20-threads-async.zh-CN.md#stdpromise)
+- [std::future](chapters/R20-threads-async.zh-CN.md#stdfuture)
+- [std::shared_future](chapters/R20-threads-async.zh-CN.md#stdshared_future)
+- [std::packaged_task](chapters/R20-threads-async.zh-CN.md#stdpackaged_task)
+- [std::async 与启动策略](chapters/R20-threads-async.zh-CN.md#stdasync-与启动策略)
+- [std::jthread（C++20）](chapters/R20-threads-async.zh-CN.md#stdjthreadc20)
+- [停止状态与令牌（C++20）](chapters/R20-threads-async.zh-CN.md#停止状态与令牌c20)
+- [线程与结果调查入口](chapters/R20-threads-async.zh-CN.md#线程与结果调查入口)
+### 第24章 互斥与线程协作
 
-### [R21 互斥与线程协作](chapters/R21-mutex-coordination.zh-CN.md)
+- [互斥量与临界区](chapters/R21-mutex-coordination.zh-CN.md#互斥量与临界区)
+- [std::mutex](chapters/R21-mutex-coordination.zh-CN.md#stdmutex)
+- [std::recursive_mutex](chapters/R21-mutex-coordination.zh-CN.md#stdrecursive_mutex)
+- [std::timed_mutex](chapters/R21-mutex-coordination.zh-CN.md#stdtimed_mutex)
+- [std::recursive_timed_mutex](chapters/R21-mutex-coordination.zh-CN.md#stdrecursive_timed_mutex)
+- [std::shared_mutex](chapters/R21-mutex-coordination.zh-CN.md#stdshared_mutex)
+- [std::shared_timed_mutex](chapters/R21-mutex-coordination.zh-CN.md#stdshared_timed_mutex)
+- [锁标签](chapters/R21-mutex-coordination.zh-CN.md#锁标签)
+- [std::lock_guard](chapters/R21-mutex-coordination.zh-CN.md#stdlock_guard)
+- [std::unique_lock](chapters/R21-mutex-coordination.zh-CN.md#stdunique_lock)
+- [std::scoped_lock](chapters/R21-mutex-coordination.zh-CN.md#stdscoped_lock)
+- [std::shared_lock](chapters/R21-mutex-coordination.zh-CN.md#stdshared_lock)
+- [std::lock 与 std::try_lock](chapters/R21-mutex-coordination.zh-CN.md#stdlock-与-stdtry_lock)
+- [std::condition_variable](chapters/R21-mutex-coordination.zh-CN.md#stdcondition_variable)
+- [std::condition_variable_any](chapters/R21-mutex-coordination.zh-CN.md#stdcondition_variable_any)
+- [std::counting_semaphore（C++20）](chapters/R21-mutex-coordination.zh-CN.md#stdcounting_semaphorec20)
+- [std::binary_semaphore（C++20）](chapters/R21-mutex-coordination.zh-CN.md#stdbinary_semaphorec20)
+- [std::latch（C++20）](chapters/R21-mutex-coordination.zh-CN.md#stdlatchc20)
+- [std::barrier（C++20）](chapters/R21-mutex-coordination.zh-CN.md#stdbarrierc20)
+- [std::once_flag 与 std::call_once](chapters/R21-mutex-coordination.zh-CN.md#stdonce_flag-与-stdcall_once)
+- [有界队列与关闭](chapters/R21-mutex-coordination.zh-CN.md#有界队列与关闭)
+- [协作调查入口](chapters/R21-mutex-coordination.zh-CN.md#协作调查入口)
+### 第25章 原子对象与内存序
 
-- 1 锁的所有权与不变量
-- 2 条件变量必须配谓词
-- 3 有界队列：背压与关闭一起设计
-- 4 共享锁与 C++20 同步器速查
-- 5 从现象回到等待条件
+- [原子对象与操作类别](chapters/R22-atomics-memory-order.zh-CN.md#原子对象与操作类别)
+- [std::atomic<T>](chapters/R22-atomics-memory-order.zh-CN.md#stdatomic)
+- [整数与指针的 fetch 操作](chapters/R22-atomics-memory-order.zh-CN.md#整数与指针的-fetch-操作)
+- [比较交换：compare_exchange](chapters/R22-atomics-memory-order.zh-CN.md#比较交换compare_exchange)
+- [std::atomic_flag](chapters/R22-atomics-memory-order.zh-CN.md#stdatomic_flag)
+- [原子等待与通知（C++20）](chapters/R22-atomics-memory-order.zh-CN.md#原子等待与通知c20)
+- [std::atomic_ref（C++20）](chapters/R22-atomics-memory-order.zh-CN.md#stdatomic_refc20)
+- [数据竞争与 happens-before](chapters/R22-atomics-memory-order.zh-CN.md#数据竞争与-happens-before)
+- [内存序](chapters/R22-atomics-memory-order.zh-CN.md#内存序)
+- [release/acquire 发布](chapters/R22-atomics-memory-order.zh-CN.md#releaseacquire-发布)
+- [回收、ABA 与进展保证](chapters/R22-atomics-memory-order.zh-CN.md#回收aba-与进展保证)
+### 第26章 异步执行、事件循环与任务调度
 
-### [R22 原子与内存序](chapters/R22-atomics-memory-order.zh-CN.md)
-
-- 1 数据竞争与 happens-before
-- 2 atomic 的接口与最小内存序
-- 3 CAS：成功写入，失败更新 expected
-- 4 安全发布：读到哪个写入至关重要
-- 5 发布不等于回收，无锁不等于有限等待
-
-### [R23 异步执行、事件循环与任务调度](chapters/R23-async-execution.zh-CN.md)
-
-- 1 线程、任务与执行器：分别由谁负责
-- 2 队列、线程池与背压：等待也是资源消耗
-- 3 事件循环与状态机：一次通知不是整个操作
-- 4 就绪与完成：Linux 与 Windows 的两条路径
-- 5 超时、取消、完成与关闭
-- 6 最小有界执行器：拒绝、异常通道与排空
-- 7 C++20 协程：挂起不决定在哪里恢复
-- 8 从故障回到状态与责任
+- [任务与执行环境](chapters/R23-async-execution.zh-CN.md#任务与执行环境)
+- [执行器与提交协议](chapters/R23-async-execution.zh-CN.md#执行器与提交协议)
+- [队列与工作线程](chapters/R23-async-execution.zh-CN.md#队列与工作线程)
+- [线程池与背压](chapters/R23-async-execution.zh-CN.md#线程池与背压)
+- [事件循环与操作状态](chapters/R23-async-execution.zh-CN.md#事件循环与操作状态)
+- [就绪与完成模型](chapters/R23-async-execution.zh-CN.md#就绪与完成模型)
+- [超时、取消与终态](chapters/R23-async-execution.zh-CN.md#超时取消与终态)
+- [执行资源关闭](chapters/R23-async-execution.zh-CN.md#执行资源关闭)
+- [有界执行器组合应用](chapters/R23-async-execution.zh-CN.md#有界执行器组合应用)
+- [协程语法与帧（C++20）](chapters/R23-async-execution.zh-CN.md#协程语法与帧c20)
+- [std::coroutine_handle 与挂起策略（C++20）](chapters/R23-async-execution.zh-CN.md#stdcoroutine_handle-与挂起策略c20)
+- [调度与关闭调查入口](chapters/R23-async-execution.zh-CN.md#调度与关闭调查入口)
 
 ## 第五篇 计算机组成与操作系统
 
-### [R24 CPU 与程序执行成本](chapters/R24-cpu-memory-cost.zh-CN.md)
+### 第27章 CPU、缓存与程序执行
 
-- 1 从源码到指令：寄存器不是变量的固定住所
-- 2 缓存与局部性：先确定访问模式
-- 3 对齐、填充与访问是否合法
-- 4 端序与数值：编码规则应写出来
-- 5 性能现象与检查依据
+- [CPU 与指令执行](chapters/R24-cpu-memory-cost.zh-CN.md#cpu-与指令执行)
+- [寄存器与指令依赖](chapters/R24-cpu-memory-cost.zh-CN.md#寄存器与指令依赖)
+- [缓存、主存与访问路径](chapters/R24-cpu-memory-cost.zh-CN.md#缓存主存与访问路径)
+- [时间局部性与空间局部性](chapters/R24-cpu-memory-cost.zh-CN.md#时间局部性与空间局部性)
+- [分支预测与推测执行](chapters/R24-cpu-memory-cost.zh-CN.md#分支预测与推测执行)
+- [缓存一致性与伪共享](chapters/R24-cpu-memory-cost.zh-CN.md#缓存一致性与伪共享)
+- [对齐、填充与访问成本](chapters/R24-cpu-memory-cost.zh-CN.md#对齐填充与访问成本)
+- [字节序与字段编码](chapters/R24-cpu-memory-cost.zh-CN.md#字节序与字段编码)
+- [延迟、吞吐与调查入口](chapters/R24-cpu-memory-cost.zh-CN.md#延迟吞吐与调查入口)
+### 第28章 进程与虚拟内存
 
-### [R25 进程与虚拟内存](chapters/R25-process-virtual-memory.zh-CN.md)
+- [进程、线程与执行上下文](chapters/R25-process-virtual-memory.zh-CN.md#进程线程与执行上下文)
+- [Linux/POSIX：创建、执行与回收进程](chapters/R25-process-virtual-memory.zh-CN.md#linuxposix创建执行与回收进程)
+- [Windows：进程创建与句柄](chapters/R25-process-virtual-memory.zh-CN.md#windows进程创建与句柄)
+- [虚拟地址空间与常见区域](chapters/R25-process-virtual-memory.zh-CN.md#虚拟地址空间与常见区域)
+- [页、页表与缺页](chapters/R25-process-virtual-memory.zh-CN.md#页页表与缺页)
+- [Linux/POSIX：mmap 与 munmap](chapters/R25-process-virtual-memory.zh-CN.md#linuxposixmmap-与-munmap)
+- [Windows：VirtualAlloc 与 VirtualFree](chapters/R25-process-virtual-memory.zh-CN.md#windowsvirtualalloc-与-virtualfree)
+- [Windows：文件映射对象与视图](chapters/R25-process-virtual-memory.zh-CN.md#windows文件映射对象与视图)
+- [虚拟量、RSS、PSS 与 working set](chapters/R25-process-virtual-memory.zh-CN.md#虚拟量rsspss-与-working-set)
+- [分配器、碎片与资源持有](chapters/R25-process-virtual-memory.zh-CN.md#分配器碎片与资源持有)
+- [进程间通信与共享内存](chapters/R25-process-virtual-memory.zh-CN.md#进程间通信与共享内存)
+### 第29章 系统调用与文件 I/O
 
-- 1 进程、线程与调度：共享的范围是什么
-- 2 虚拟页、映射与缺页
-- 3 mmap 与地址的有效区间
-- 4 RSS、working set、分配器与泄漏诊断
-- 5 IPC 与动态库的边界
+- [系统调用与打开文件实体](chapters/R26-syscalls-file-io.zh-CN.md#系统调用与打开文件实体)
+- [Linux/POSIX：open 与 close](chapters/R26-syscalls-file-io.zh-CN.md#linuxposixopen-与-close)
+- [Linux/POSIX：read、write 与文件偏移](chapters/R26-syscalls-file-io.zh-CN.md#linuxposixreadwrite-与文件偏移)
+- [Windows：CreateFileW 与 CloseHandle](chapters/R26-syscalls-file-io.zh-CN.md#windowscreatefilew-与-closehandle)
+- [Windows：ReadFile、WriteFile 与文件位置](chapters/R26-syscalls-file-io.zh-CN.md#windowsreadfilewritefile-与文件位置)
+- [部分完成与错误](chapters/R26-syscalls-file-io.zh-CN.md#部分完成与错误)
+- [描述符与句柄所有权](chapters/R26-syscalls-file-io.zh-CN.md#描述符与句柄所有权)
+- [用户缓冲、页缓存与持久化](chapters/R26-syscalls-file-io.zh-CN.md#用户缓冲页缓存与持久化)
+- [阻塞、非阻塞与异步操作](chapters/R26-syscalls-file-io.zh-CN.md#阻塞非阻塞与异步操作)
+- [Linux：epoll 就绪集合](chapters/R26-syscalls-file-io.zh-CN.md#linuxepoll-就绪集合)
+- [Windows：I/O 完成端口](chapters/R26-syscalls-file-io.zh-CN.md#windowsio-完成端口)
+- [I/O 调查入口](chapters/R26-syscalls-file-io.zh-CN.md#io-调查入口)
+### 第30章 链接、装载与库
 
-### [R26 系统调用与文件 I/O](chapters/R26-syscalls-file-io.zh-CN.md)
-
-- 1 系统调用、fd 与 HANDLE 的所有权
-- 2 短读写：实际完成量才是进度
-- 3 用户缓冲、页缓存、映射与持久性
-- 4 阻塞、非阻塞、就绪与完成
-- 5 从症状检查 I/O 边界
-
-### [R27 链接、装载与库](chapters/R27-linking-loading-libraries.zh-CN.md)
-
-- 1 目标文件：机器代码、数据、符号与重定位
-- 2 符号解析：名称修饰、未定义与重复定义
-- 3 静态库：按成员抽取、库顺序与循环依赖
-- 4 动态库：共享对象、DLL、导入库与可见性
-- 5 装载：进程映像、节／段、重定位与位置无关代码
-- 6 运行搜索：Linux 与 Windows 分别检查
-- 7 显式加载插件：查入口、错误、关闭与卸载
-- 8 ABI 边界与工具排障
+- [目标文件与链接产物](chapters/R27-linking-loading-libraries.zh-CN.md#目标文件与链接产物)
+- [符号与名称修饰](chapters/R27-linking-loading-libraries.zh-CN.md#符号与名称修饰)
+- [静态库：创建与链接](chapters/R27-linking-loading-libraries.zh-CN.md#静态库创建与链接)
+- [共享库、DLL 与导入库](chapters/R27-linking-loading-libraries.zh-CN.md#共享库dll-与导入库)
+- [导出可见性与接口标注](chapters/R27-linking-loading-libraries.zh-CN.md#导出可见性与接口标注)
+- [节、段与进程映像](chapters/R27-linking-loading-libraries.zh-CN.md#节段与进程映像)
+- [重定位、PIC、PIE 与绑定](chapters/R27-linking-loading-libraries.zh-CN.md#重定位picpie-与绑定)
+- [Linux ELF/glibc：运行搜索](chapters/R27-linking-loading-libraries.zh-CN.md#linux-elfglibc运行搜索)
+- [Windows：DLL 搜索](chapters/R27-linking-loading-libraries.zh-CN.md#windowsdll-搜索)
+- [Linux/POSIX：dlopen、dlsym 与 dlclose](chapters/R27-linking-loading-libraries.zh-CN.md#linuxposixdlopendlsym-与-dlclose)
+- [Windows：LoadLibraryExW、GetProcAddress 与 FreeLibrary](chapters/R27-linking-loading-libraries.zh-CN.md#windowsloadlibraryexwgetprocaddress-与-freelibrary)
+- [插件协议与卸载](chapters/R27-linking-loading-libraries.zh-CN.md#插件协议与卸载)
+- [ABI 与所有权边界](chapters/R27-linking-loading-libraries.zh-CN.md#abi-与所有权边界)
+- [二进制调查工具](chapters/R27-linking-loading-libraries.zh-CN.md#二进制调查工具)
 
 ## 第六篇 计算机网络与服务通信
 
-### [R28 协议与连接](chapters/R28-protocols-connections.zh-CN.md)
+### 第31章 网络协议与连接
 
-- 1 DNS、IP、端口与路由
-- 2 TCP 与 UDP：传输给应用什么
-- 3 TLS：机密性、完整性与身份边界
-- 4 HTTP 版本、报文完整性与连接复用
-- 5 故障应分层取证
+- [协议层与端点](chapters/R28-protocols-connections.zh-CN.md#协议层与端点)
+- [DNS 名称与记录](chapters/R28-protocols-connections.zh-CN.md#dns-名称与记录)
+- [IP 地址、路由与 MTU](chapters/R28-protocols-connections.zh-CN.md#ip-地址路由与-mtu)
+- [端口与服务身份](chapters/R28-protocols-connections.zh-CN.md#端口与服务身份)
+- [TCP 字节流与报文段](chapters/R28-protocols-connections.zh-CN.md#tcp-字节流与报文段)
+- [TCP 建立与关闭](chapters/R28-protocols-connections.zh-CN.md#tcp-建立与关闭)
+- [UDP 数据报](chapters/R28-protocols-connections.zh-CN.md#udp-数据报)
+- [TLS 1.3 握手与记录](chapters/R28-protocols-connections.zh-CN.md#tls-13-握手与记录)
+- [HTTP 请求与响应](chapters/R28-protocols-connections.zh-CN.md#http-请求与响应)
+- [HTTP/1.1 定界与连接复用](chapters/R28-protocols-connections.zh-CN.md#http11-定界与连接复用)
+- [HTTP/2 与 HTTP/3](chapters/R28-protocols-connections.zh-CN.md#http2-与-http3)
+- [分层调查入口](chapters/R28-protocols-connections.zh-CN.md#分层调查入口)
+### 第32章 socket 编程与网络操作
 
-### [R29 socket 编程与线上故障](chapters/R29-sockets-production.zh-CN.md)
-
-- 1 客户端与服务端的资源流程
-- 2 send/recv：把进度保存到连接状态
-- 3 流式分帧与背压：长度必须先验证
-- 4 超时与重试：失败可能是不知道结果
-- 5 线上故障的最小证据
+- [socket、地址与两种基本流程](chapters/R29-sockets-production.zh-CN.md#socket地址与两种基本流程)
+- [Linux/POSIX：地址解析与地址结构](chapters/R29-sockets-production.zh-CN.md#linuxposix地址解析与地址结构)
+- [Linux/POSIX：socket 与 connect](chapters/R29-sockets-production.zh-CN.md#linuxposixsocket-与-connect)
+- [Linux/POSIX：bind、listen 与 accept](chapters/R29-sockets-production.zh-CN.md#linuxposixbindlisten-与-accept)
+- [Linux/POSIX：send 与 recv](chapters/R29-sockets-production.zh-CN.md#linuxposixsend-与-recv)
+- [Linux/POSIX：shutdown 与 close](chapters/R29-sockets-production.zh-CN.md#linuxposixshutdown-与-close)
+- [Windows：Winsock 初始化与地址](chapters/R29-sockets-production.zh-CN.md#windowswinsock-初始化与地址)
+- [Windows：socket 与 connect](chapters/R29-sockets-production.zh-CN.md#windowssocket-与-connect)
+- [Windows：bind、listen 与 accept](chapters/R29-sockets-production.zh-CN.md#windowsbindlisten-与-accept)
+- [Windows：send 与 recv](chapters/R29-sockets-production.zh-CN.md#windowssend-与-recv)
+- [Windows：shutdown 与 closesocket](chapters/R29-sockets-production.zh-CN.md#windowsshutdown-与-closesocket)
+- [UDP 的 sendto 与 recvfrom](chapters/R29-sockets-production.zh-CN.md#udp-的-sendto-与-recvfrom)
+- [非阻塞连接与部分收发](chapters/R29-sockets-production.zh-CN.md#非阻塞连接与部分收发)
+- [消息定界与解析状态](chapters/R29-sockets-production.zh-CN.md#消息定界与解析状态)
+- [背压、容量与处理预算](chapters/R29-sockets-production.zh-CN.md#背压容量与处理预算)
+- [期限、重试与幂等](chapters/R29-sockets-production.zh-CN.md#期限重试与幂等)
+- [网络操作调查入口](chapters/R29-sockets-production.zh-CN.md#网络操作调查入口)
 
 ## 第七篇 构建调试与生产排障
 
-### [R30 构建、依赖与工程交付](chapters/R30-build.zh-CN.md)
+### 第33章 构建、依赖与工程交付
 
-- 1 构建阶段与失败位置
-- 2 用 target 表达依赖
-- 3 可构建的最小库工程
-- 4 工程接口与二进制边界
-- 5 发布前检查
-- 6 依赖来源、版本与可重复构建
-- 7 从本地库到可消费的安装目录
-- 8 交付程序、依赖与匹配符号
+- [配置、构建与产物](chapters/R30-build.zh-CN.md#配置构建与产物)
+- [可执行目标与库目标](chapters/R30-build.zh-CN.md#可执行目标与库目标)
+- [使用要求：PRIVATE、PUBLIC、INTERFACE](chapters/R30-build.zh-CN.md#使用要求privatepublicinterface)
+- [生成器、配置与缓存](chapters/R30-build.zh-CN.md#生成器配置与缓存)
+- [依赖接入与版本](chapters/R30-build.zh-CN.md#依赖接入与版本)
+- [安装目录与导出目标](chapters/R30-build.zh-CN.md#安装目录与导出目标)
+- [API、ABI 与交付](chapters/R30-build.zh-CN.md#apiabi-与交付)
+### 第34章 调试与正确性检查
 
-### [R31 调试与正确性检查](chapters/R31-debug.zh-CN.md)
+- [调试信息与构建](chapters/R31-debug.zh-CN.md#调试信息与构建)
+- [GDB：一次最小调试会话](chapters/R31-debug.zh-CN.md#gdb一次最小调试会话)
+- [断点、步进与继续](chapters/R31-debug.zh-CN.md#断点步进与继续)
+- [变量、调用栈与线程](chapters/R31-debug.zh-CN.md#变量调用栈与线程)
+- [Sanitizer：内存与未定义行为检查](chapters/R31-debug.zh-CN.md#sanitizer内存与未定义行为检查)
+- [崩溃现场与证据](chapters/R31-debug.zh-CN.md#崩溃现场与证据)
+- [边界验证与回归](chapters/R31-debug.zh-CN.md#边界验证与回归)
+### 第35章 性能与资源调查
 
-- 1 从症状选择证据
-- 2 调试器与故障现场
-- 3 sanitizer 的用途与限制
-- 4 检查正常路径与失败边界
-- 5 故障修复的完成条件
+- [吞吐量、延迟与分位数](chapters/R32-performance.zh-CN.md#吞吐量延迟与分位数)
+- [CPU、内存与队列指标](chapters/R32-performance.zh-CN.md#cpu内存与队列指标)
+- [steady_clock：测量时间区间](chapters/R32-performance.zh-CN.md#steady_clock测量时间区间)
+- [Benchmark：比较两个实现](chapters/R32-performance.zh-CN.md#benchmark比较两个实现)
+- [Profiler：定位时间与事件](chapters/R32-performance.zh-CN.md#profiler定位时间与事件)
+- [计算、等待与积压](chapters/R32-performance.zh-CN.md#计算等待与积压)
 
-### [R32 性能与资源排障](chapters/R32-performance.zh-CN.md)
-
-- 1 指标与观察口径
-- 2 profiler 与 benchmark 分别回答什么
-- 3 测量区间与正确性结果
-- 4 常见排障路径
-- 5 优化交付检查
-
-## 附录
-
-- A 关键词与语法速查
-- B 标准库符号索引
-- C 容器与算法速查
-- D 错误与故障索引
-- E 术语与版本差异
-- F 编译与检查命令
-
-本版保留精简参考手册定位。协程只提供机制入口；modules、完整regex指南、标准库低频接口、无锁容器与分配器实现留待后续扩展。标准保证与常见实现分别标明；平台与验证范围见 BUILD-NOTES。
+- [使用指南](reading-guide.zh-CN.md)
+- [附录与索引](appendices.zh-CN.md)

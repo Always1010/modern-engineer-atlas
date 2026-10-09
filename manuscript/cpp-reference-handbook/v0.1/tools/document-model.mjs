@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-export const plain = text => text.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/[`*_]/g, '').replace(/<[^>]*>/g, '').trim();
+export const plain = text => text.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/[`*]/g, '').replace(/<[^>]*>/g, '').trim();
 export const slug = text => plain(text).replace(/^\d+(?:\.\d+)*[\s、.]+/, '').toLowerCase()
   .replace(/[^\p{L}\p{N}\s_-]/gu, '').replace(/\s+/g, '-');
 

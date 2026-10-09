@@ -23,7 +23,7 @@ for(const part of catalog.parts)for(const c of part.chapters){
  c.anchors=hs.filter(h=>h.level>1).map(({level,title,anchor})=>({level,title,anchor}));
 }
 catalog.chapterCount=number;catalog.status='object-reference-revision';catalog.revisionDate='2026-10-09';
-catalog.languageBaseline=['C++17'];catalog.extensionVersions=['C++20','C++23'];delete catalog.approvedSampleChapter;
+catalog.languageBaseline=['C++17'];catalog.extensionVersions=['C++20','C++23'];delete catalog.approvedSampleChapter;delete catalog.optionalVersion;delete catalog.sampleChapter;
 const migrationArgument=process.argv.find(a=>a.startsWith('--migration='));
 if(migrationArgument){
  const baseline=JSON.parse(await fs.readFile(path.join(edition,'qa/restructure/baseline.json'),'utf8'));
@@ -48,7 +48,7 @@ if(migrationArgument){
 }
 await fs.writeFile(catalogPath,JSON.stringify(catalog,null,2)+'\n');
 let toc='# 正文目录\n\n目录由 catalog 与实际标题同步，章序按阅读顺序排列；R 编号用于来源追踪。\n';
-for(const p of catalog.parts){toc+='\n## '+p.title+'\n\n';for(const c of p.chapters){toc+='### 第'+c.number+'章 '+c.title+'\n\n';for(const h of c.anchors.filter(h=>h.level===2))toc+='- ['+h.title+']('+c.source+'#'+h.anchor+')\n';}}
+for(const p of catalog.parts){toc+='\n## '+p.title+'\n\n';for(const c of p.chapters){toc+='### 第'+c.number+'章 '+c.title+'\n\n';for(const h of c.anchors.filter(h=>h.level===2))toc+='- ['+h.title+']('+c.source+'#'+h.anchor.slice(c.id.length+1)+')\n';}}
 toc+='\n- [使用指南](reading-guide.zh-CN.md)\n- [附录与索引](appendices.zh-CN.md)\n';
 await fs.writeFile(path.join(edition,'TOC.md'),toc);
 console.log(JSON.stringify({chapters:number,entries:catalog.parts.flatMap(p=>p.chapters).reduce((n,c)=>n+c.anchors.filter(h=>h.level===2).length,0)}));
