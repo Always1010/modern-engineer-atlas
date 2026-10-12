@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="780" height="285" viewBox="0 0 780 285" role="img" aria-labelledby="title desc">
+<title id="title">拥有者与借用访问同一个动态整数</title><desc id="desc">owner 管理初值7的动态整数，borrowed由get取得同一整数的地址但没有释放责任。没有转交或重置时，owner销毁会释放整数，借用失效。</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="#365f9c"/></marker></defs>
+<rect width="780" height="285" rx="10" fill="#f7f9fd"/>
+<g font-family="Microsoft YaHei, sans-serif" fill="#26364a" text-anchor="middle">
+<rect x="45" y="35" width="195" height="66" rx="5" fill="#eaf0fa" stroke="#365f9c"/><text x="142" y="63" font-size="21">owner</text><text x="142" y="88" font-size="16">独占拥有者</text>
+<rect x="45" y="143" width="195" height="66" rx="5" fill="#f0ecf8" stroke="#7053a0"/><text x="142" y="171" font-size="21">borrowed</text><text x="142" y="195" font-size="16">借用指针</text>
+<rect x="470" y="83" width="240" height="78" rx="5" fill="#eaf0fa" stroke="#365f9c"/><text x="590" y="115" font-size="21">动态 int：7</text><text x="590" y="144" font-size="16">同一个被访问的对象</text>
+<text x="340" y="52" font-size="17">负责释放</text><text x="335" y="202" font-size="17">提供访问，不负责释放</text>
+<text x="390" y="253" font-size="18">owner 销毁 → 整数销毁并释放 → 借用失效</text>
+</g><path d="M240 68H340L456 103" fill="none" stroke="#365f9c" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M240 176H340L456 142" fill="none" stroke="#365f9c" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#arrow)"/>
+</svg>

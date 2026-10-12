@@ -1,0 +1,36 @@
+{
+  "chapter": "R34",
+  "source": "chapters/R34-streams-files.zh-CN.md",
+  "references": [
+    {
+      "heading": "iostate 与输入循环",
+      "label": "N4659 stream state",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/iostate.flags"
+    },
+    {
+      "heading": "ifstream 的提取与无格式读取",
+      "label": "N4659 input streams",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/istream"
+    },
+    {
+      "heading": "ofstream 的格式控制",
+      "label": "N4659 output streams",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/ostream"
+    },
+    {
+      "heading": "std::fstream",
+      "label": "N4659 filebuf",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/filebuf"
+    },
+    {
+      "heading": "std::ostringstream",
+      "label": "N4659 string streams",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/string.streams"
+    },
+    {
+      "heading": "组合应用与参考资料",
+      "label": "cppreference I/O library",
+      "url": "https://en.cppreference.com/w/cpp/io.html"
+    }
+  ]
+}

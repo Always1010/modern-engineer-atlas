@@ -1,0 +1,21 @@
+{
+  "chapter": "R23",
+  "source": "chapters/R23-async-execution.zh-CN.md",
+  "references": [
+    {
+      "heading": "协程语法与帧（C++20）",
+      "label": "协程定义",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/dcl.fct.def.coroutine"
+    },
+    {
+      "heading": "协程语法与帧（C++20）",
+      "label": "co_await",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/expr.await"
+    },
+    {
+      "heading": "std::coroutine_handle 与挂起策略（C++20）",
+      "label": "协程库",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/support.coroutine"
+    }
+  ]
+}

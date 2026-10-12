@@ -1,5 +1,7 @@
 # 构建与发布说明
 
+适用书稿：现代软件工程师能力地图。日常编辑与模块职责见[维护说明](docs/maintenance.md)，其他项目文档见[维护导航](docs/README.md)。C++ 图解参考手册使用自己的[核对与重建说明](manuscript/cpp-reference-handbook/v1.0/BUILD-NOTES.md)。
+
 ## 输入与生成关系
 
 发布输入为 `manuscript/complete-edition/v1.0/`：58 份分章正文、前后附录、`book-order.json`、图源和许可资料。`planning/` 与 `evidence/` 提供研究依据，不作为出版正文输入。

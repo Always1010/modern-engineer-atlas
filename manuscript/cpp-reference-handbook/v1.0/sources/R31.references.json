@@ -1,0 +1,66 @@
+{
+  "chapter": "R31",
+  "source": "chapters/R31-debug.zh-CN.md",
+  "references": [
+    {
+      "heading": "GDB：一次最小调试会话",
+      "label": "启动程序",
+      "url": "https://sourceware.org/gdb/current/onlinedocs/gdb.html/Starting.html"
+    },
+    {
+      "heading": "GDB：一次最小调试会话",
+      "label": "单步",
+      "url": "https://sourceware.org/gdb/current/onlinedocs/gdb.html/Continuing-and-Stepping.html"
+    },
+    {
+      "heading": "GDB：一次最小调试会话",
+      "label": "查看数据",
+      "url": "https://sourceware.org/gdb/current/onlinedocs/gdb.html/Data.html"
+    },
+    {
+      "heading": "断点、步进与继续",
+      "label": "断点",
+      "url": "https://sourceware.org/gdb/current/onlinedocs/gdb.html/Set-Breaks.html"
+    },
+    {
+      "heading": "变量、调用栈与线程",
+      "label": "GDB 栈",
+      "url": "https://sourceware.org/gdb/current/onlinedocs/gdb.html/Backtrace.html"
+    },
+    {
+      "heading": "变量、调用栈与线程",
+      "label": "线程",
+      "url": "https://sourceware.org/gdb/current/onlinedocs/gdb.html/Threads.html"
+    },
+    {
+      "heading": "变量、调用栈与线程",
+      "label": "LLDB 对照",
+      "url": "https://lldb.llvm.org/use/map.html"
+    },
+    {
+      "heading": "Sanitizer：内存与未定义行为检查",
+      "label": "ASan",
+      "url": "https://clang.llvm.org/docs/AddressSanitizer.html"
+    },
+    {
+      "heading": "Sanitizer：内存与未定义行为检查",
+      "label": "UBSan",
+      "url": "https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html"
+    },
+    {
+      "heading": "Sanitizer：内存与未定义行为检查",
+      "label": "TSan",
+      "url": "https://clang.llvm.org/docs/ThreadSanitizer.html"
+    },
+    {
+      "heading": "Sanitizer：内存与未定义行为检查",
+      "label": "MSVC ASan",
+      "url": "https://learn.microsoft.com/en-us/cpp/sanitizers/asan?view=msvc-170"
+    },
+    {
+      "heading": "崩溃现场与证据",
+      "label": "Windows dump",
+      "url": "https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/user-mode-dump-files"
+    }
+  ]
+}

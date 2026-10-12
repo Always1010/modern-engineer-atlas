@@ -1,0 +1,66 @@
+{
+  "chapter": "R20",
+  "source": "chapters/R20-threads-async.zh-CN.md",
+  "references": [
+    {
+      "heading": "std::thread",
+      "label": "thread 构造",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/thread.thread.constr"
+    },
+    {
+      "heading": "std::thread",
+      "label": "thread 成员",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/thread.thread.member"
+    },
+    {
+      "heading": "std::thread",
+      "label": "thread 析构与赋值",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/thread.thread.destr"
+    },
+    {
+      "heading": "std::this_thread",
+      "label": "this_thread",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/thread.thread.this"
+    },
+    {
+      "heading": "异步共享状态",
+      "label": "共享状态",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/futures.state"
+    },
+    {
+      "heading": "std::promise",
+      "label": "promise",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/futures.promise"
+    },
+    {
+      "heading": "std::future",
+      "label": "future",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/futures.unique_future"
+    },
+    {
+      "heading": "std::shared_future",
+      "label": "shared_future",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/futures.shared_future"
+    },
+    {
+      "heading": "std::packaged_task",
+      "label": "packaged_task",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/futures.task"
+    },
+    {
+      "heading": "std::async 与启动策略",
+      "label": "async",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/futures.async"
+    },
+    {
+      "heading": "std::jthread（C++20）",
+      "label": "C++20 jthread",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/thread.jthread.class"
+    },
+    {
+      "heading": "停止状态与令牌（C++20）",
+      "label": "停止状态",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/thread.stoptoken"
+    }
+  ]
+}

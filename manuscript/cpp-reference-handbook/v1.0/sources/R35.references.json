@@ -1,0 +1,41 @@
+{
+  "chapter": "R35",
+  "source": "chapters/R35-filesystem.zh-CN.md",
+  "references": [
+    {
+      "heading": "path 的规范化与输出",
+      "label": "N4659 path",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/fs.class.path"
+    },
+    {
+      "heading": "文件状态与错误报告",
+      "label": "N4659 filesystem errors",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/fs.err.report"
+    },
+    {
+      "heading": "std::filesystem::directory_iterator",
+      "label": "N4659 directory_iterator",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/fs.class.directory_iterator"
+    },
+    {
+      "heading": "std::filesystem::recursive_directory_iterator",
+      "label": "N4659 recursive iterator",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/fs.class.rec.dir.itr"
+    },
+    {
+      "heading": "目录创建、复制、删除与更名",
+      "label": "N4659 filesystem operations",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/fs.op.funcs"
+    },
+    {
+      "heading": "文件更新与组合应用",
+      "label": "cppreference filesystem",
+      "url": "https://en.cppreference.com/w/cpp/filesystem.html"
+    },
+    {
+      "heading": "path 的规范化与输出",
+      "label": "N4659 符号链接定义",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/fs.definitions"
+    }
+  ]
+}

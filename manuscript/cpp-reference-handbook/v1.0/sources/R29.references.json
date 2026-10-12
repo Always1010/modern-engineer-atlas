@@ -1,0 +1,111 @@
+{
+  "chapter": "R29",
+  "source": "chapters/R29-sockets-production.zh-CN.md",
+  "references": [
+    {
+      "heading": "Linux/POSIX：地址解析与地址结构",
+      "label": "getaddrinfo",
+      "url": "https://man7.org/linux/man-pages/man3/getaddrinfo.3.html"
+    },
+    {
+      "heading": "Linux/POSIX：socket 与 connect",
+      "label": "socket",
+      "url": "https://man7.org/linux/man-pages/man2/socket.2.html"
+    },
+    {
+      "heading": "Linux/POSIX：socket 与 connect",
+      "label": "connect",
+      "url": "https://man7.org/linux/man-pages/man2/connect.2.html"
+    },
+    {
+      "heading": "Linux/POSIX：bind、listen 与 accept",
+      "label": "bind",
+      "url": "https://man7.org/linux/man-pages/man2/bind.2.html"
+    },
+    {
+      "heading": "Linux/POSIX：bind、listen 与 accept",
+      "label": "listen",
+      "url": "https://man7.org/linux/man-pages/man2/listen.2.html"
+    },
+    {
+      "heading": "Linux/POSIX：bind、listen 与 accept",
+      "label": "accept",
+      "url": "https://man7.org/linux/man-pages/man2/accept.2.html"
+    },
+    {
+      "heading": "Linux/POSIX：send 与 recv",
+      "label": "send",
+      "url": "https://man7.org/linux/man-pages/man2/send.2.html"
+    },
+    {
+      "heading": "Linux/POSIX：send 与 recv",
+      "label": "recv",
+      "url": "https://man7.org/linux/man-pages/man2/recv.2.html"
+    },
+    {
+      "heading": "Linux/POSIX：shutdown 与 close",
+      "label": "shutdown",
+      "url": "https://man7.org/linux/man-pages/man2/shutdown.2.html"
+    },
+    {
+      "heading": "Windows：Winsock 初始化与地址",
+      "label": "Winsock 初始化",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/winsock/initialization-2"
+    },
+    {
+      "heading": "Windows：Winsock 初始化与地址",
+      "label": "getaddrinfo",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/ws2tcpip/nf-ws2tcpip-getaddrinfo"
+    },
+    {
+      "heading": "Windows：socket 与 connect",
+      "label": "Windows socket",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/winsock2/nf-winsock2-socket"
+    },
+    {
+      "heading": "Windows：socket 与 connect",
+      "label": "connect",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/winsock2/nf-winsock2-connect"
+    },
+    {
+      "heading": "Windows：bind、listen 与 accept",
+      "label": "Winsock 服务流程",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/winsock/complete-server-code"
+    },
+    {
+      "heading": "Windows：send 与 recv",
+      "label": "Windows send",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/winsock2/nf-winsock2-send"
+    },
+    {
+      "heading": "Windows：send 与 recv",
+      "label": "recv",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/winsock2/nf-winsock2-recv"
+    },
+    {
+      "heading": "Windows：shutdown 与 closesocket",
+      "label": "shutdown",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/winsock2/nf-winsock2-shutdown"
+    },
+    {
+      "heading": "Windows：shutdown 与 closesocket",
+      "label": "closesocket",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/winsock2/nf-winsock2-closesocket"
+    },
+    {
+      "heading": "UDP 的 sendto 与 recvfrom",
+      "label": "Linux recvfrom",
+      "url": "https://man7.org/linux/man-pages/man2/recv.2.html"
+    },
+    {
+      "heading": "UDP 的 sendto 与 recvfrom",
+      "label": "Windows recvfrom",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/winsock2/nf-winsock2-recvfrom"
+    },
+    {
+      "heading": "期限、重试与幂等",
+      "label": "HTTP 幂等 RFC 9110 §9.2.2",
+      "url": "https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.2"
+    }
+  ]
+}

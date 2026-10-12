@@ -1,0 +1,151 @@
+{
+  "chapter": "R26",
+  "source": "chapters/R26-syscalls-file-io.zh-CN.md",
+  "references": [
+    {
+      "heading": "系统调用与打开文件实体",
+      "label": "Linux open",
+      "url": "https://man7.org/linux/man-pages/man2/open.2.html"
+    },
+    {
+      "heading": "Linux/POSIX：open 与 close",
+      "label": "open",
+      "url": "https://man7.org/linux/man-pages/man2/open.2.html"
+    },
+    {
+      "heading": "Linux/POSIX：open 与 close",
+      "label": "close",
+      "url": "https://man7.org/linux/man-pages/man2/close.2.html"
+    },
+    {
+      "heading": "Linux/POSIX：read、write 与文件偏移",
+      "label": "read",
+      "url": "https://man7.org/linux/man-pages/man2/read.2.html"
+    },
+    {
+      "heading": "Linux/POSIX：read、write 与文件偏移",
+      "label": "write",
+      "url": "https://man7.org/linux/man-pages/man2/write.2.html"
+    },
+    {
+      "heading": "Linux/POSIX：read、write 与文件偏移",
+      "label": "lseek",
+      "url": "https://man7.org/linux/man-pages/man2/lseek.2.html"
+    },
+    {
+      "heading": "Linux/POSIX：read、write 与文件偏移",
+      "label": "pread/pwrite",
+      "url": "https://man7.org/linux/man-pages/man2/pread.2.html"
+    },
+    {
+      "heading": "Windows：CreateFileW 与 CloseHandle",
+      "label": "CreateFileW",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-createfilew"
+    },
+    {
+      "heading": "Windows：CreateFileW 与 CloseHandle",
+      "label": "CloseHandle",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/handleapi/nf-handleapi-closehandle"
+    },
+    {
+      "heading": "Windows：ReadFile、WriteFile 与文件位置",
+      "label": "ReadFile",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-readfile"
+    },
+    {
+      "heading": "Windows：ReadFile、WriteFile 与文件位置",
+      "label": "WriteFile",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-writefile"
+    },
+    {
+      "heading": "Windows：ReadFile、WriteFile 与文件位置",
+      "label": "SetFilePointerEx",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-setfilepointerex"
+    },
+    {
+      "heading": "部分完成与错误",
+      "label": "Linux write",
+      "url": "https://man7.org/linux/man-pages/man2/write.2.html"
+    },
+    {
+      "heading": "部分完成与错误",
+      "label": "Windows 同步与异步 I/O",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/fileio/synchronous-and-asynchronous-i-o"
+    },
+    {
+      "heading": "描述符与句柄所有权",
+      "label": "Linux close",
+      "url": "https://man7.org/linux/man-pages/man2/close.2.html"
+    },
+    {
+      "heading": "描述符与句柄所有权",
+      "label": "CancelIoEx",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/ioapiset/nf-ioapiset-cancelioex"
+    },
+    {
+      "heading": "Linux：fsync 与 fdatasync",
+      "label": "Linux fsync/fdatasync",
+      "url": "https://man7.org/linux/man-pages/man2/fsync.2.html"
+    },
+    {
+      "heading": "Windows：FlushFileBuffers",
+      "label": "FlushFileBuffers",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-flushfilebuffers"
+    },
+    {
+      "heading": "Windows：FlushFileBuffers",
+      "label": "msync",
+      "url": "https://man7.org/linux/man-pages/man2/msync.2.html"
+    },
+    {
+      "heading": "Windows：FlushFileBuffers",
+      "label": "FlushViewOfFile",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-flushviewoffile"
+    },
+    {
+      "heading": "阻塞、非阻塞与异步操作",
+      "label": "epoll",
+      "url": "https://man7.org/linux/man-pages/man7/epoll.7.html"
+    },
+    {
+      "heading": "阻塞、非阻塞与异步操作",
+      "label": "Windows 同步与异步 I/O",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/fileio/synchronous-and-asynchronous-i-o"
+    },
+    {
+      "heading": "阻塞、非阻塞与异步操作",
+      "label": "GetOverlappedResult",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/ioapiset/nf-ioapiset-getoverlappedresult"
+    },
+    {
+      "heading": "阻塞、非阻塞与异步操作",
+      "label": "CancelIoEx",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/ioapiset/nf-ioapiset-cancelioex"
+    },
+    {
+      "heading": "Linux：epoll 就绪集合",
+      "label": "epoll 模式",
+      "url": "https://man7.org/linux/man-pages/man7/epoll.7.html"
+    },
+    {
+      "heading": "Linux：epoll 就绪集合",
+      "label": "epoll_wait",
+      "url": "https://man7.org/linux/man-pages/man2/epoll_wait.2.html"
+    },
+    {
+      "heading": "Windows：I/O 完成端口",
+      "label": "CreateIoCompletionPort",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/ioapiset/nf-ioapiset-createiocompletionport"
+    },
+    {
+      "heading": "Windows：I/O 完成端口",
+      "label": "GetQueuedCompletionStatus",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/ioapiset/nf-ioapiset-getqueuedcompletionstatus"
+    },
+    {
+      "heading": "Windows：I/O 完成端口",
+      "label": "IOCP 调度",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/fileio/i-o-completion-ports"
+    }
+  ]
+}

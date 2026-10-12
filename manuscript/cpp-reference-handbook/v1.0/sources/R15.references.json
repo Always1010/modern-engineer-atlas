@@ -1,0 +1,56 @@
+{
+  "chapter": "R15",
+  "source": "chapters/R15-iterators-ranges.zh-CN.md",
+  "references": [
+    {
+      "heading": "半开区间与尾后位置",
+      "label": "N4659 迭代器要求",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/iterator.requirements"
+    },
+    {
+      "heading": "比较与导航成本",
+      "label": "N4659 advance／distance 计量",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/iterator.operations"
+    },
+    {
+      "heading": "比较与导航成本",
+      "label": "二分的比较与导航界",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/alg.binary.search"
+    },
+    {
+      "heading": "比较与导航成本",
+      "label": "N4659 sort 类型要求",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/alg.sort"
+    },
+    {
+      "heading": "比较与导航成本",
+      "label": "输入迭代器单遍语义",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/input.iterators"
+    },
+    {
+      "heading": "std::reverse_iterator",
+      "label": "N4659 反向迭代器",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/reverse.iterators"
+    },
+    {
+      "heading": "ranges 算法与投影",
+      "label": "N4861 ranges algorithms",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/algorithms"
+    },
+    {
+      "heading": "range、sentinel 与 borrowed_range",
+      "label": "N4861 range concepts",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/range.range"
+    },
+    {
+      "heading": "range、sentinel 与 borrowed_range",
+      "label": "dangling",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/range.dangling"
+    },
+    {
+      "heading": "views 与惰性管线",
+      "label": "N4861 filter_view",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/range.filter"
+    }
+  ]
+}

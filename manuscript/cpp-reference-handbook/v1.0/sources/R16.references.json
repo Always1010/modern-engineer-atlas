@@ -1,0 +1,81 @@
+{
+  "chapter": "R16",
+  "source": "chapters/R16-algorithms.zh-CN.md",
+  "references": [
+    {
+      "heading": "二分查找的分区条件",
+      "label": "N4659 advance／distance 计量",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/iterator.operations"
+    },
+    {
+      "heading": "二分查找的分区条件",
+      "label": "二分的比较与导航界",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/alg.binary.search"
+    },
+    {
+      "heading": "二分查找的分区条件",
+      "label": "N4659 sort 类型要求",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/alg.sort"
+    },
+    {
+      "heading": "二分查找的分区条件",
+      "label": "输入迭代器单遍语义",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/input.iterators"
+    },
+    {
+      "heading": "比较器与谓词",
+      "label": "N4659 sorting requirements",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/alg.sorting"
+    },
+    {
+      "heading": "std::remove、std::remove_if 与 std::unique",
+      "label": "N4659 移除算法",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/alg.remove"
+    },
+    {
+      "heading": "二分查找的分区条件",
+      "label": "N4659 二分接口的逐项前提",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/alg.binary.search"
+    },
+    {
+      "heading": "堆的结构与操作条件",
+      "label": "N4659 堆定义与操作界",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/alg.heap.operations"
+    },
+    {
+      "heading": "堆的结构与操作条件",
+      "label": "libstdc++ GCC 10.3 的自底向上建堆实现",
+      "url": "https://gcc.gnu.org/onlinedocs/gcc-10.3.0/libstdc++/api/a00608_source.html"
+    },
+    {
+      "heading": "排序、选择与分区的结果差异",
+      "label": "N4659 排名选择",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/alg.nth.element"
+    },
+    {
+      "heading": "排序、选择与分区的结果差异",
+      "label": "partial_sort 与 stable_sort",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/alg.sort"
+    },
+    {
+      "heading": "排序、选择与分区的结果差异",
+      "label": "最小／最大值",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/alg.min.max"
+    },
+    {
+      "heading": "std::inclusive_scan 与 std::exclusive_scan",
+      "label": "N4659 numeric operations",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/numeric.ops"
+    },
+    {
+      "heading": "执行策略",
+      "label": "N4659 策略与异常",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/algorithms.parallel.exec"
+    },
+    {
+      "heading": "组合应用与参考资料",
+      "label": "cppreference algorithms",
+      "url": "https://en.cppreference.com/w/cpp/algorithm.html"
+    }
+  ]
+}

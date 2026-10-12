@@ -1,0 +1,76 @@
+{
+  "chapter": "R02",
+  "source": "chapters/R02-types-objects.zh-CN.md",
+  "references": [
+    {
+      "heading": "基础类型分类",
+      "label": "C++17 基础类型",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.fundamental"
+    },
+    {
+      "heading": "整数类型的大小与范围",
+      "label": "C 草案 N1570 §5.2.4.2.1",
+      "url": "https://www.open-std.org/jtc1/sc22/wg14/www/docs/n1570.pdf"
+    },
+    {
+      "heading": "整数类型的大小与范围",
+      "label": "Oracle ILP32/LP64 说明",
+      "url": "https://docs.oracle.com/cd/E19205-01/819-5265/bjamj/index.html"
+    },
+    {
+      "heading": "整数类型的大小与范围",
+      "label": "AMD64 ABI §3.1.2",
+      "url": "https://refspecs.linuxbase.org/elf/x86_64-abi-0.99.pdf"
+    },
+    {
+      "heading": "整数类型的大小与范围",
+      "label": "Microsoft 类型范围",
+      "url": "https://learn.microsoft.com/en-us/cpp/cpp/data-type-ranges?view=msvc-170"
+    },
+    {
+      "heading": "浮点类型",
+      "label": "Oracle IEEE 算术说明",
+      "url": "https://docs.oracle.com/cd/E19957-01/806-3568/ncg_math.html"
+    },
+    {
+      "heading": "类型性质查询与定宽整数",
+      "label": "numeric_limits",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/numeric.limits"
+    },
+    {
+      "heading": "类型性质查询与定宽整数",
+      "label": "定宽类型",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/cstdint.syn"
+    },
+    {
+      "heading": "数组与类型别名",
+      "label": "数组声明",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.array"
+    },
+    {
+      "heading": "数组与类型别名",
+      "label": "数组转换",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/conv.array"
+    },
+    {
+      "heading": "存储期、对象生命周期与作用域",
+      "label": "C++17 生命周期",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.life"
+    },
+    {
+      "heading": "存储期、对象生命周期与作用域",
+      "label": "存储期",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.stc"
+    },
+    {
+      "heading": "sizeof、alignof 与对象表示",
+      "label": "对象表示",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.types"
+    },
+    {
+      "heading": "sizeof、alignof 与对象表示",
+      "label": "对齐",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.align"
+    }
+  ]
+}

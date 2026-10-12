@@ -1,0 +1,76 @@
+{
+  "chapter": "R33",
+  "source": "chapters/R33-numeric-random-bits.zh-CN.md",
+  "references": [
+    {
+      "heading": "std::numeric_limits",
+      "label": "N4659 numeric_limits",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/numeric.limits"
+    },
+    {
+      "heading": "数学函数与舍入",
+      "label": "N4659 numerics",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/numerics"
+    },
+    {
+      "heading": "std::mt19937",
+      "label": "N4659 engines",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/rand.eng"
+    },
+    {
+      "heading": "std::random_device 与 std::seed_seq",
+      "label": "N4659 random_device",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/rand.device"
+    },
+    {
+      "heading": "std::random_device 与 std::seed_seq",
+      "label": "seed sequences",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/rand.util.seedseq"
+    },
+    {
+      "heading": "std::normal_distribution",
+      "label": "N4659 distributions",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/rand.dist"
+    },
+    {
+      "heading": "std::bitset",
+      "label": "N4659 bitset",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/template.bitset"
+    },
+    {
+      "heading": "位计数、旋转与二的幂",
+      "label": "N4861 bit",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/bit"
+    },
+    {
+      "heading": "std::endian 与 std::byteswap",
+      "label": "N4950 byteswap",
+      "url": "https://timsong-cpp.github.io/cppwp/n4950/bit.byteswap"
+    },
+    {
+      "heading": "组合应用与参考资料",
+      "label": "cppreference numerics",
+      "url": "https://en.cppreference.com/w/cpp/numeric.html"
+    },
+    {
+      "heading": "组合应用与参考资料",
+      "label": "bit manipulation",
+      "url": "https://en.cppreference.com/w/cpp/utility/bit.html"
+    },
+    {
+      "heading": "std::byte",
+      "label": "N4659 byte",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/support.types.byteops"
+    },
+    {
+      "heading": "std::endian 与 std::byteswap",
+      "label": "N4861 endian",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/bit.endian"
+    },
+    {
+      "heading": "std::endian 与 std::byteswap",
+      "label": "N4659 对象表示",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.types"
+    }
+  ]
+}

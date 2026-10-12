@@ -1,0 +1,51 @@
+{
+  "chapter": "R08",
+  "source": "chapters/R08-copy-move.zh-CN.md",
+  "references": [
+    {
+      "heading": "值类别",
+      "label": "值类别定义",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.lval"
+    },
+    {
+      "heading": "值类别",
+      "label": "临时物化",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/conv.rval"
+    },
+    {
+      "heading": "值类别",
+      "label": "decltype",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.type.simple"
+    },
+    {
+      "heading": "拷贝与移动操作分类",
+      "label": "C++17 拷贝与移动",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/class.copy"
+    },
+    {
+      "heading": "移动构造与移动赋值",
+      "label": "C++17 移动构造规则",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/class.copy.ctor#10"
+    },
+    {
+      "heading": "移动构造与移动赋值",
+      "label": "移动赋值规则",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/class.copy.assign#7"
+    },
+    {
+      "heading": "std::move",
+      "label": "move 与 forward 声明",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/forward"
+    },
+    {
+      "heading": "移动后状态与借用",
+      "label": "库移动后约定",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/lib.types.movedfrom"
+    },
+    {
+      "heading": "拷贝消除与返回对象",
+      "label": "C++17 拷贝消除",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/class.copy.elision"
+    }
+  ]
+}

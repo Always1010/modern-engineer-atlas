@@ -1,0 +1,1958 @@
+{
+  "date": "2026-10-10",
+  "scope": {
+    "chapters": 7,
+    "sections": 35,
+    "readingGuide": true,
+    "purpose": "首次学习所需概念、例子与导航依赖；不代替全书技术勘误或真实读者实验"
+  },
+  "classification": {
+    "P1": "基础路径阻塞或循环，优先处理",
+    "P2": "局部桥接、过量先修或例子密度，随后处理",
+    "P3": "已化解或独立查阅增强，不计确认问题"
+  },
+  "statusCounts": {
+    "需处理": 38,
+    "候选补定义": 3,
+    "复核排除": 2
+  },
+  "sourceBaseline": "source-baseline.json",
+  "coverage": [
+    {
+      "id": "R01",
+      "number": "1.1",
+      "title": "程序结构与编译",
+      "source": "chapters/R01-program-build.zh-CN.md",
+      "lines": 186,
+      "headings": 10,
+      "readScope": "全文",
+      "prerequisites": "类型名字、基本表达式、输出预览",
+      "assessment": "基本构建可进入；链接/ODR例外密度较高",
+      "recommendation": "保留首个程序与多文件普通组织，拆出复杂规则。",
+      "findingIds": [
+        "A01",
+        "A02"
+      ]
+    },
+    {
+      "id": "R02",
+      "number": "1.2",
+      "title": "类型与对象",
+      "source": "chapters/R02-types-objects.zh-CN.md",
+      "lines": 312,
+      "headings": 15,
+      "readScope": "全文",
+      "prerequisites": "变量、基础类型",
+      "assessment": "对象基础与手工存储机制混在同节",
+      "recommendation": "数组先只讲元素；对象表示与重用后置。",
+      "findingIds": [
+        "A03",
+        "A04",
+        "A05",
+        "A06"
+      ]
+    },
+    {
+      "id": "R03",
+      "number": "1.3",
+      "title": "初始化与类型推导",
+      "source": "chapters/R03-initialization-deduction.zh-CN.md",
+      "lines": 199,
+      "headings": 13,
+      "readScope": "全文",
+      "prerequisites": "基础类型、变量",
+      "assessment": "构造、引用、值类别及移动依赖集中",
+      "recommendation": "按样稿01拆基础写法与后续机制。",
+      "findingIds": [
+        "A07",
+        "A08",
+        "A09",
+        "A10"
+      ]
+    },
+    {
+      "id": "R04",
+      "number": "1.4",
+      "title": "表达式与类型转换",
+      "source": "chapters/R04-expressions-conversions.zh-CN.md",
+      "lines": 348,
+      "headings": 19,
+      "readScope": "全文",
+      "prerequisites": "整数初值、常用表达式",
+      "assessment": "普通运算清楚；值类别例先修过密",
+      "recommendation": "普通算术逻辑先进入；引用和三类完整模型分层。",
+      "findingIds": [
+        "A11"
+      ]
+    },
+    {
+      "id": "R05",
+      "number": "1.5",
+      "title": "指针与引用",
+      "source": "chapters/R05-pointers-references.zh-CN.md",
+      "lines": 164,
+      "headings": 9,
+      "readScope": "全文",
+      "prerequisites": "基础初始化、指针操作、简单条件函数",
+      "assessment": "简单解引用可读；数组/临时/成员例需要额外基础",
+      "recommendation": "基本引用不以前置全部值类别为门槛。",
+      "findingIds": [
+        "A12",
+        "A13"
+      ]
+    },
+    {
+      "id": "R06",
+      "number": "1.6",
+      "title": "语句与函数",
+      "source": "chapters/R06-statements-functions.zh-CN.md",
+      "lines": 304,
+      "headings": 17,
+      "readScope": "全文",
+      "prerequisites": "常用表达式、基本条件",
+      "assessment": "普通控制流清楚；成员可调用组合偏早",
+      "recommendation": "分开普通函数、局部lambda与类相关回调。",
+      "findingIds": [
+        "A14"
+      ]
+    },
+    {
+      "id": "R07",
+      "number": "2.1",
+      "title": "类与对象生命周期",
+      "source": "chapters/R07-classes-lifetime.zh-CN.md",
+      "lines": 285,
+      "headings": 14,
+      "readScope": "全文",
+      "prerequisites": "简单类、成员、基本引用函数",
+      "assessment": "重载及完整子对象顺序早于其本节定义",
+      "recommendation": "构造析构前置；多态拥有者clone稍后接资源。",
+      "findingIds": [
+        "A15",
+        "A16",
+        "A17"
+      ]
+    },
+    {
+      "id": "R08",
+      "number": "2.2",
+      "title": "拷贝与移动",
+      "source": "chapters/R08-copy-move.zh-CN.md",
+      "lines": 192,
+      "headings": 11,
+      "readScope": "全文",
+      "prerequisites": "类、引用、最小值类别",
+      "assessment": "智能指针与转发模板形成跨节循环",
+      "recommendation": "独占责任的具体移动与完整泛型规则分别进入。",
+      "findingIds": [
+        "A18",
+        "A19"
+      ]
+    },
+    {
+      "id": "R09",
+      "number": "2.3",
+      "title": "RAII 与内存管理库",
+      "source": "chapters/R09-raii-memory.zh-CN.md",
+      "lines": 259,
+      "headings": 16,
+      "readScope": "全文",
+      "prerequisites": "构造析构、指针、最小异常",
+      "assessment": "RAII 首例尚未教其使用的管理工具",
+      "recommendation": "按样稿02先观察清理，再介绍拥有者。",
+      "findingIds": [
+        "A20"
+      ]
+    },
+    {
+      "id": "R10",
+      "number": "2.4",
+      "title": "模板与编译期编程",
+      "source": "chapters/R10-templates-compile-time.zh-CN.md",
+      "lines": 248,
+      "headings": 15,
+      "readScope": "全文",
+      "prerequisites": "普通函数、简单类",
+      "assessment": "基础函数模板明确；先修转发过宽",
+      "recommendation": "基础模板只需函数；泛型包装再要求转发。",
+      "findingIds": [
+        "A21"
+      ]
+    },
+    {
+      "id": "R11",
+      "number": "2.5",
+      "title": "错误处理与异常安全",
+      "source": "chapters/R11-errors-exception-safety.zh-CN.md",
+      "lines": 191,
+      "headings": 12,
+      "readScope": "全文",
+      "prerequisites": "普通函数、构造析构",
+      "assessment": "异常流程完整；强保证例需要后续容器",
+      "recommendation": "基本失败与清理先进入；提交机制后查。",
+      "findingIds": [
+        "A22",
+        "A23"
+      ]
+    },
+    {
+      "id": "R12",
+      "number": "3.1",
+      "title": "字符串与非拥有视图",
+      "source": "chapters/R12-strings-views.zh-CN.md",
+      "lines": 217,
+      "headings": 17,
+      "readScope": "全文",
+      "prerequisites": "引用、生命周期、const、基本复制",
+      "assessment": "拥有者→视图→范围顺序基本充分",
+      "recommendation": "保留；关联键和异步只作为有条件预告。",
+      "findingIds": []
+    },
+    {
+      "id": "R13",
+      "number": "3.2",
+      "title": "顺序容器",
+      "source": "chapters/R13-sequence-containers.zh-CN.md",
+      "lines": 454,
+      "headings": 31,
+      "readScope": "全文",
+      "prerequisites": "基本容器、引用、对象寿命",
+      "assessment": "位置操作与失效先于迭代器模型",
+      "recommendation": "按样稿03解除循环；复杂度解释先于成本表。",
+      "findingIds": [
+        "L01",
+        "L05"
+      ]
+    },
+    {
+      "id": "R14",
+      "number": "3.3",
+      "title": "关联容器与容器适配器",
+      "source": "chapters/R14-associative-adaptors.zh-CN.md",
+      "lines": 291,
+      "headings": 21,
+      "readScope": "全文",
+      "prerequisites": "最小迭代器、比较与pair",
+      "assessment": "先修指向后续；pair成员未先解释",
+      "recommendation": "先位置与键等价，补pair两成员。",
+      "findingIds": [
+        "L03",
+        "L04"
+      ]
+    },
+    {
+      "id": "R15",
+      "number": "3.4",
+      "title": "迭代器与 ranges",
+      "source": "chapters/R15-iterators-ranges.zh-CN.md",
+      "lines": 205,
+      "headings": 13,
+      "readScope": "全文",
+      "prerequisites": "数组、借用、最小容器",
+      "assessment": "位置首例清楚；容器失效不应作为基础门槛",
+      "recommendation": "基础区间先于失效；导航比较别提前引入二分。",
+      "findingIds": [
+        "L02",
+        "L06"
+      ]
+    },
+    {
+      "id": "R16",
+      "number": "3.5",
+      "title": "算法库",
+      "source": "chapters/R16-algorithms.zh-CN.md",
+      "lines": 385,
+      "headings": 23,
+      "readScope": "全文",
+      "prerequisites": "有效区间、迭代器能力、lambda",
+      "assessment": "比较器先定义，整体可保留",
+      "recommendation": "跳读lower_bound时一并进入分区前提。",
+      "findingIds": []
+    },
+    {
+      "id": "R17",
+      "number": "3.6",
+      "title": "通用工具与结果类型",
+      "source": "chapters/R17-utility-results.zh-CN.md",
+      "lines": 356,
+      "headings": 23,
+      "readScope": "全文",
+      "prerequisites": "初始化、借用、异常、基本移动",
+      "assessment": "pair/optional等入口清楚；visit首例元编程密",
+      "recommendation": "保留顺序；降低visit首例的额外负担。",
+      "findingIds": [
+        "L09"
+      ]
+    },
+    {
+      "id": "R18",
+      "number": "3.7",
+      "title": "文本转换与格式化",
+      "source": "chapters/R18-text-numeric.zh-CN.md",
+      "lines": 160,
+      "headings": 10,
+      "readScope": "全文",
+      "prerequisites": "字符区间、状态返回、字符串",
+      "assessment": "解析候选、结果状态与完整消费明确",
+      "recommendation": "保留；基础解析无需完整系统错误机制。",
+      "findingIds": []
+    },
+    {
+      "id": "R33",
+      "number": "3.8",
+      "title": "数值、随机与位工具",
+      "source": "chapters/R33-numeric-random-bits.zh-CN.md",
+      "lines": 210,
+      "headings": 14,
+      "readScope": "全文",
+      "prerequisites": "基本数值、对象表示",
+      "assessment": "位工具的对象表示回链与端序桥接需调整",
+      "recommendation": "R02承担对象表示；endian前给最小字节排列。",
+      "findingIds": [
+        "L08"
+      ]
+    },
+    {
+      "id": "R19",
+      "number": "3.9",
+      "title": "时间库",
+      "source": "chapters/R19-time-files.zh-CN.md",
+      "lines": 190,
+      "headings": 13,
+      "readScope": "全文",
+      "prerequisites": "数值类型、时长时点",
+      "assessment": "主线合理；单位转换先用后教",
+      "recommendation": "先elapsed再换单位，补纪元与刻度。",
+      "findingIds": [
+        "L07",
+        "L11"
+      ]
+    },
+    {
+      "id": "R34",
+      "number": "3.10",
+      "title": "流与文件读写",
+      "source": "chapters/R34-streams-files.zh-CN.md",
+      "lines": 211,
+      "headings": 15,
+      "readScope": "全文",
+      "prerequisites": "字符串、条件循环、RAII",
+      "assessment": "流状态→文件读写→定位顺序成立",
+      "recommendation": "保留；持久化机制是后查。",
+      "findingIds": []
+    },
+    {
+      "id": "R35",
+      "number": "3.11",
+      "title": "文件系统",
+      "source": "chapters/R35-filesystem.zh-CN.md",
+      "lines": 159,
+      "headings": 10,
+      "readScope": "全文",
+      "prerequisites": "error_code、迭代器、文件",
+      "assessment": "遍历就地条件充分；符号链接概念缺口候选",
+      "recommendation": "保留；在跟随链接操作前解释链接与目标。",
+      "findingIds": [
+        "L10"
+      ]
+    },
+    {
+      "id": "R20",
+      "number": "4.1",
+      "title": "线程与异步结果",
+      "source": "chapters/R20-threads-async.zh-CN.md",
+      "lines": 228,
+      "headings": 12,
+      "readScope": "全文",
+      "prerequisites": "函数lambda、基本移动、RAII、异常",
+      "assessment": "线程→结果状态→future/async链清楚",
+      "recommendation": "保留；共享保护接R21，平台取消后查。",
+      "findingIds": []
+    },
+    {
+      "id": "R21",
+      "number": "4.2",
+      "title": "互斥与线程协作",
+      "source": "chapters/R21-mutex-coordination.zh-CN.md",
+      "lines": 397,
+      "headings": 25,
+      "readScope": "全文",
+      "prerequisites": "对象寿命、RAII、线程",
+      "assessment": "就地共同同步规则已化解对R22的依赖",
+      "recommendation": "保留锁例的最小解释；补死锁术语映射。",
+      "findingIds": [
+        "S01",
+        "S02"
+      ]
+    },
+    {
+      "id": "R22",
+      "number": "4.3",
+      "title": "原子对象与内存序",
+      "source": "chapters/R22-atomics-memory-order.zh-CN.md",
+      "lines": 251,
+      "headings": 15,
+      "readScope": "全文",
+      "prerequisites": "线程、锁、原子操作类别",
+      "assessment": "整节顺读基本成立；指南跳过原子定义",
+      "recommendation": "调整深链；release/acquire先于发布等待组合。",
+      "findingIds": [
+        "S03",
+        "S04"
+      ]
+    },
+    {
+      "id": "R23",
+      "number": "4.4",
+      "title": "异步执行、事件循环与任务调度",
+      "source": "chapters/R23-async-execution.zh-CN.md",
+      "lines": 209,
+      "headings": 13,
+      "readScope": "全文",
+      "prerequisites": "所有权、future、锁与队列",
+      "assessment": "执行器/任务/就绪完成就地定义充分",
+      "recommendation": "保留与平台API分层，不报导航回环为循环。",
+      "findingIds": []
+    },
+    {
+      "id": "R24",
+      "number": "5.1",
+      "title": "CPU、缓存与程序执行",
+      "source": "chapters/R24-cpu-memory-cost.zh-CN.md",
+      "lines": 123,
+      "headings": 10,
+      "readScope": "全文",
+      "prerequisites": "对象、数组、容器、原子正确性",
+      "assessment": "硬件模型和语言保证划界清楚",
+      "recommendation": "保留；页表与ABI深化可后查。",
+      "findingIds": []
+    },
+    {
+      "id": "R25",
+      "number": "5.2",
+      "title": "进程与虚拟内存",
+      "source": "chapters/R25-process-virtual-memory.zh-CN.md",
+      "lines": 183,
+      "headings": 12,
+      "readScope": "全文",
+      "prerequisites": "对象、指针、线程、资源",
+      "assessment": "进程/映射主线清楚，平台实体有局部缺口",
+      "recommendation": "mmap前补fd，Windows前补HANDLE及受限调用语境。",
+      "findingIds": [
+        "S05",
+        "S06"
+      ]
+    },
+    {
+      "id": "R26",
+      "number": "5.3",
+      "title": "系统调用与文件 I/O",
+      "source": "chapters/R26-syscalls-file-io.zh-CN.md",
+      "lines": 274,
+      "headings": 15,
+      "readScope": "全文",
+      "prerequisites": "RAII、错误表示、文件实体",
+      "assessment": "fd/HANDLE、短读写、就绪完成就地充分",
+      "recommendation": "保留；与映射/调度是职责回查。",
+      "findingIds": []
+    },
+    {
+      "id": "R27",
+      "number": "5.4",
+      "title": "链接、装载与库",
+      "source": "chapters/R27-linking-loading-libraries.zh-CN.md",
+      "lines": 245,
+      "headings": 16,
+      "readScope": "全文",
+      "prerequisites": "声明定义、翻译单元、基础ABI、资源",
+      "assessment": "主体可保留；ABI前置已在R02成立",
+      "recommendation": "排除首次定义指控，独立查阅可加回链。",
+      "findingIds": [
+        "S07"
+      ]
+    },
+    {
+      "id": "R28",
+      "number": "6.1",
+      "title": "网络协议与连接",
+      "source": "chapters/R28-protocols-connections.zh-CN.md",
+      "lines": 182,
+      "headings": 13,
+      "readScope": "全文",
+      "prerequisites": "字节、字节序",
+      "assessment": "协议层逐步建立，socket API后置合理",
+      "recommendation": "保留协议→平台操作顺序。",
+      "findingIds": []
+    },
+    {
+      "id": "R29",
+      "number": "6.2",
+      "title": "socket 编程与网络操作",
+      "source": "chapters/R29-sockets-production.zh-CN.md",
+      "lines": 330,
+      "headings": 18,
+      "readScope": "全文",
+      "prerequisites": "协议、错误、资源、就绪完成",
+      "assessment": "短收发→分帧→背压→期限依赖成立",
+      "recommendation": "保留；更详细接口覆盖另行处理。",
+      "findingIds": []
+    },
+    {
+      "id": "R30",
+      "number": "7.1",
+      "title": "构建、依赖与工程交付",
+      "source": "chapters/R30-build.zh-CN.md",
+      "lines": 132,
+      "headings": 8,
+      "readScope": "全文",
+      "prerequisites": "多文件构建、符号库ABI",
+      "assessment": "target与交付链成立",
+      "recommendation": "保留；CMake与二进制回查不是先修循环。",
+      "findingIds": []
+    },
+    {
+      "id": "R31",
+      "number": "7.2",
+      "title": "调试与正确性检查",
+      "source": "chapters/R31-debug.zh-CN.md",
+      "lines": 121,
+      "headings": 8,
+      "readScope": "全文",
+      "prerequisites": "基本构建、函数循环、array/optional",
+      "assessment": "基础会话可进入，现场工具层次明确",
+      "recommendation": "保留；完整工具组合按任务选读。",
+      "findingIds": []
+    },
+    {
+      "id": "R32",
+      "number": "7.3",
+      "title": "性能与资源调查",
+      "source": "chapters/R32-performance.zh-CN.md",
+      "lines": 86,
+      "headings": 7,
+      "readScope": "全文",
+      "prerequisites": "算法、时间、缓存、内存I/O指标",
+      "assessment": "指标→测量→对照→剖析链成立",
+      "recommendation": "保留；线程/连接调查是导航回查。",
+      "findingIds": []
+    }
+  ],
+  "findings": [
+    {
+      "id": "A01",
+      "priority": "P2",
+      "kind": "层次混合",
+      "status": "需处理",
+      "location": {
+        "sourceId": "R01",
+        "source": "chapters/R01-program-build.zh-CN.md",
+        "heading": "作用域、命名空间与链接属性",
+        "headingLine": 88,
+        "line": 108,
+        "fragment": "作用域命名空间与链接属性",
+        "evidence": "非模板非"
+      },
+      "targets": [
+        {
+          "sourceId": "R03",
+          "source": "chapters/R03-initialization-deduction.zh-CN.md",
+          "heading": "const 与 constexpr",
+          "headingLine": 160,
+          "line": 160,
+          "fragment": "const-与-constexpr",
+          "evidence": null
+        }
+      ],
+      "reason": "链接基础同时进入 const、volatile 与模板例外，初学者还未获得这些限定的意义。",
+      "action": "先保留普通函数的跨文件关系；const/inline 的完整例外放到相应概念之后查阅。"
+    },
+    {
+      "id": "A02",
+      "priority": "P2",
+      "kind": "层次混合",
+      "status": "需处理",
+      "location": {
+        "sourceId": "R01",
+        "source": "chapters/R01-program-build.zh-CN.md",
+        "heading": "单一定义规则与多文件程序",
+        "headingLine": 125,
+        "line": 149,
+        "fragment": "单一定义规则与多文件程序",
+        "evidence": "相同记号序列"
+      },
+      "targets": [
+        {
+          "sourceId": "R07",
+          "source": "chapters/R07-classes-lifetime.zh-CN.md",
+          "heading": "class、struct 与访问控制",
+          "headingLine": 7,
+          "line": 7,
+          "fragment": "classstruct-与访问控制",
+          "evidence": null
+        },
+        {
+          "sourceId": "R10",
+          "source": "chapters/R10-templates-compile-time.zh-CN.md",
+          "heading": "实例化与定义可见性",
+          "headingLine": 97,
+          "line": 97,
+          "fragment": "实例化与定义可见性",
+          "evidence": null
+        }
+      ],
+      "reason": "两文件正常组织之后立即解释类、模板、名字查找与无须诊断的例外，超出首个构建任务。",
+      "action": "基础路径在普通函数的正确组织处收束，复杂 ODR 条件作为独立规则入口保留。"
+    },
+    {
+      "id": "A03",
+      "priority": "P1",
+      "kind": "例子硬依赖",
+      "status": "需处理",
+      "location": {
+        "sourceId": "R02",
+        "source": "chapters/R02-types-objects.zh-CN.md",
+        "heading": "数组与类型别名",
+        "headingLine": 126,
+        "line": 136,
+        "fragment": "数组与类型别名",
+        "evidence": "int (&whole)[3]"
+      },
+      "targets": [
+        {
+          "sourceId": "R05",
+          "source": "chapters/R05-pointers-references.zh-CN.md",
+          "heading": "指针声明、取址与解引用",
+          "headingLine": 7,
+          "line": 7,
+          "fragment": "指针声明取址与解引用",
+          "evidence": null
+        },
+        {
+          "sourceId": "R05",
+          "source": "chapters/R05-pointers-references.zh-CN.md",
+          "heading": "左值引用与右值引用",
+          "headingLine": 42,
+          "line": 42,
+          "fragment": "左值引用与右值引用",
+          "evidence": null
+        }
+      ],
+      "reason": "第一次数组例同时要求读懂指针衰变和整个数组引用，正式指针与引用定义在后面。",
+      "action": "先用数组元素、下标和固定长度建立模型；指针衰变及数组引用放到基本借用之后。"
+    },
+    {
+      "id": "A04",
+      "priority": "P2",
+      "kind": "例子硬依赖",
+      "status": "需处理",
+      "location": {
+        "sourceId": "R02",
+        "source": "chapters/R02-types-objects.zh-CN.md",
+        "heading": "类型特征与字节复制",
+        "headingLine": 198,
+        "line": 214,
+        "fragment": "类型特征与字节复制",
+        "evidence": "static_assert(std::is_trivially_copyable_v<Record>)"
+      },
+      "targets": [
+        {
+          "sourceId": "R07",
+          "source": "chapters/R07-classes-lifetime.zh-CN.md",
+          "heading": "class、struct 与访问控制",
+          "headingLine": 7,
+          "line": 7,
+          "fragment": "classstruct-与访问控制",
+          "evidence": null
+        },
+        {
+          "sourceId": "R10",
+          "source": "chapters/R10-templates-compile-time.zh-CN.md",
+          "heading": "if constexpr 与 static_assert",
+          "headingLine": 181,
+          "line": 181,
+          "fragment": "if-constexpr-与-static_assert",
+          "evidence": null
+        }
+      ],
+      "reason": "字节复制例依赖类成员、模板实例和静态断言，且任务需要平凡可复制的语义基础。",
+      "action": "对象基础只介绍类型与普通对象；字节复制保留为后续对象表示专题，入口列明具体先修。"
+    },
+    {
+      "id": "A05",
+      "priority": "P1",
+      "kind": "例子硬依赖",
+      "status": "需处理",
+      "location": {
+        "sourceId": "R02",
+        "source": "chapters/R02-types-objects.zh-CN.md",
+        "heading": "placement new 与存储重用",
+        "headingLine": 221,
+        "line": 232,
+        "fragment": "placement-new-与存储重用",
+        "evidence": "first->~Cell();"
+      },
+      "targets": [
+        {
+          "sourceId": "R07",
+          "source": "chapters/R07-classes-lifetime.zh-CN.md",
+          "heading": "构造函数与成员初始化",
+          "headingLine": 86,
+          "line": 86,
+          "fragment": "构造函数与成员初始化",
+          "evidence": null
+        },
+        {
+          "sourceId": "R07",
+          "source": "chapters/R07-classes-lifetime.zh-CN.md",
+          "heading": "析构函数",
+          "headingLine": 119,
+          "line": 119,
+          "fragment": "析构函数",
+          "evidence": null
+        },
+        {
+          "sourceId": "R09",
+          "source": "chapters/R09-raii-memory.zh-CN.md",
+          "heading": "new 与 delete",
+          "headingLine": 27,
+          "line": 27,
+          "fragment": "new-与-delete",
+          "evidence": null
+        }
+      ],
+      "reason": "手工槽位例在构造、析构、普通动态分配之前组合 placement new、转换、对齐和显式析构。",
+      "action": "迁到对象生命周期、指针与资源管理之后；保留存储与对象不同的基础认识，不在早期展示全套手工机制。"
+    },
+    {
+      "id": "A06",
+      "priority": "P1",
+      "kind": "例子硬依赖",
+      "status": "需处理",
+      "location": {
+        "sourceId": "R02",
+        "source": "chapters/R02-types-objects.zh-CN.md",
+        "heading": "结构化绑定",
+        "headingLine": 266,
+        "line": 282,
+        "fragment": "结构化绑定",
+        "evidence": "auto& [left, right]"
+      },
+      "targets": [
+        {
+          "sourceId": "R03",
+          "source": "chapters/R03-initialization-deduction.zh-CN.md",
+          "heading": "auto",
+          "headingLine": 114,
+          "line": 114,
+          "fragment": "auto",
+          "evidence": null
+        },
+        {
+          "sourceId": "R05",
+          "source": "chapters/R05-pointers-references.zh-CN.md",
+          "heading": "左值引用与右值引用",
+          "headingLine": 42,
+          "line": 42,
+          "fragment": "左值引用与右值引用",
+          "evidence": null
+        },
+        {
+          "sourceId": "R17",
+          "source": "chapters/R17-utility-results.zh-CN.md",
+          "heading": "std::tuple",
+          "headingLine": 52,
+          "line": 52,
+          "fragment": "stdtuple",
+          "evidence": null
+        }
+      ],
+      "reason": "结构化绑定先使用 auto、引用和 tuple 协议；其中 auto 自己也尚未介绍。",
+      "action": "基础拆解安排到 auto、引用和简单类之后；tuple 定制协议与非聚合类例留作后续规则。"
+    },
+    {
+      "id": "A07",
+      "priority": "P1",
+      "kind": "层次混合",
+      "status": "需处理",
+      "location": {
+        "sourceId": "R03",
+        "source": "chapters/R03-initialization-deduction.zh-CN.md",
+        "heading": "初始化类别",
+        "headingLine": 8,
+        "line": 16,
+        "fragment": "初始化类别",
+        "evidence": "可考虑 explicit 构造"
+      },
+      "targets": [
+        {
+          "sourceId": "R07",
+          "source": "chapters/R07-classes-lifetime.zh-CN.md",
+          "heading": "构造函数与成员初始化",
+          "headingLine": 86,
+          "line": 86,
+          "fragment": "构造函数与成员初始化",
+          "evidence": null
+        }
+      ],
+      "reason": "第一张类别表以构造选择和 explicit 解释形式，读者尚未认识构造函数。",
+      "action": "先讲整数初值、赋值与常用写法，再归纳形式；类构造差异接到样稿02。"
+    },
+    {
+      "id": "A08",
+      "priority": "P2",
+      "kind": "例子硬依赖",
+      "status": "需处理",
+      "location": {
+        "sourceId": "R03",
+        "source": "chapters/R03-initialization-deduction.zh-CN.md",
+        "heading": "initializer_list 与构造选择",
+        "headingLine": 82,
+        "line": 91,
+        "fragment": "initializer_list-与构造选择",
+        "evidence": "列出多个 `unique_ptr`"
+      },
+      "targets": [
+        {
+          "sourceId": "R08",
+          "source": "chapters/R08-copy-move.zh-CN.md",
+          "heading": "std::move",
+          "headingLine": 96,
+          "line": 96,
+          "fragment": "stdmove",
+          "evidence": null
+        },
+        {
+          "sourceId": "R09",
+          "source": "chapters/R09-raii-memory.zh-CN.md",
+          "heading": "unique_ptr 构造与访问",
+          "headingLine": 58,
+          "line": 58,
+          "fragment": "unique_ptr-构造与访问",
+          "evidence": null
+        },
+        {
+          "sourceId": "R13",
+          "source": "chapters/R13-sequence-containers.zh-CN.md",
+          "heading": "vector 的插入、删除与替换",
+          "headingLine": 135,
+          "line": 135,
+          "fragment": "vector-的插入删除与替换",
+          "evidence": null
+        }
+      ],
+      "reason": "初始化列表的限制一次依赖独占所有权、不可复制、移动和原位添加。",
+      "action": "数量与列表的正常差异放到容器构造；不可复制元素的限制在移动、智能指针和容器之后展开。"
+    },
+    {
+      "id": "A09",
+      "priority": "P1",
+      "kind": "先修循环",
+      "status": "需处理",
+      "location": {
+        "sourceId": "R03",
+        "source": "chapters/R03-initialization-deduction.zh-CN.md",
+        "heading": "auto",
+        "headingLine": 114,
+        "line": 123,
+        "fragment": "auto",
+        "evidence": "auto&& reference"
+      },
+      "targets": [
+        {
+          "sourceId": "R05",
+          "source": "chapters/R05-pointers-references.zh-CN.md",
+          "heading": "左值引用与右值引用",
+          "headingLine": 42,
+          "line": 42,
+          "fragment": "左值引用与右值引用",
+          "evidence": null
+        },
+        {
+          "sourceId": "R08",
+          "source": "chapters/R08-copy-move.zh-CN.md",
+          "heading": "转发引用与引用折叠",
+          "headingLine": 123,
+          "line": 123,
+          "fragment": "转发引用与引用折叠",
+          "evidence": null
+        }
+      ],
+      "reason": "auto 首例同时使用引用和转发规则，而引用节又将初始化作为先修。",
+      "action": "按值 auto 先教；auto& 在最小引用定义后教；auto&& 在模板推导与值类别之后教。"
+    },
+    {
+      "id": "A10",
+      "priority": "P1",
+      "kind": "先修循环",
+      "status": "需处理",
+      "location": {
+        "sourceId": "R03",
+        "source": "chapters/R03-initialization-deduction.zh-CN.md",
+        "heading": "decltype 与 decltype(auto)",
+        "headingLine": 136,
+        "line": 138,
+        "fragment": "decltype-与-decltypeauto",
+        "evidence": "按[值类别]"
+      },
+      "targets": [
+        {
+          "sourceId": "R04",
+          "source": "chapters/R04-expressions-conversions.zh-CN.md",
+          "heading": "值类别",
+          "headingLine": 159,
+          "line": 159,
+          "fragment": "值类别",
+          "evidence": null
+        },
+        {
+          "sourceId": "R05",
+          "source": "chapters/R05-pointers-references.zh-CN.md",
+          "heading": "左值引用与右值引用",
+          "headingLine": 42,
+          "line": 42,
+          "fragment": "左值引用与右值引用",
+          "evidence": null
+        }
+      ],
+      "reason": "完整 decltype 依赖值类别与引用，R04 又把整个 R03 列为先修。",
+      "action": "先给未加括号名字的查询；括号名字用局部左值定义桥接，完整三类及返回借用规则稍后展开。"
+    },
+    {
+      "id": "A11",
+      "priority": "P1",
+      "kind": "先修循环",
+      "status": "需处理",
+      "location": {
+        "sourceId": "R04",
+        "source": "chapters/R04-expressions-conversions.zh-CN.md",
+        "heading": "值类别",
+        "headingLine": 159,
+        "line": 177,
+        "fragment": "值类别",
+        "evidence": "int&& rr = 8;"
+      },
+      "targets": [
+        {
+          "sourceId": "R05",
+          "source": "chapters/R05-pointers-references.zh-CN.md",
+          "heading": "左值引用与右值引用",
+          "headingLine": 42,
+          "line": 42,
+          "fragment": "左值引用与右值引用",
+          "evidence": null
+        },
+        {
+          "sourceId": "R08",
+          "source": "chapters/R08-copy-move.zh-CN.md",
+          "heading": "std::move",
+          "headingLine": 96,
+          "line": 96,
+          "fragment": "stdmove",
+          "evidence": null
+        }
+      ],
+      "reason": "值类别例要读懂右值引用、move、decltype 和类型断言，引用节又以值类别为整节先修。",
+      "action": "最小左值/计算结果模型支撑基本引用；将五类关系及 move/type_traits 机制例放到引用与移动基础之后。"
+    },
+    {
+      "id": "A12",
+      "priority": "P1",
+      "kind": "例子硬依赖",
+      "status": "需处理",
+      "location": {
+        "sourceId": "R05",
+        "source": "chapters/R05-pointers-references.zh-CN.md",
+        "heading": "nullptr 与可选借用",
+        "headingLine": 24,
+        "line": 32,
+        "fragment": "nullptr-与可选借用",
+        "evidence": "if (value != nullptr)"
+      },
+      "targets": [
+        {
+          "sourceId": "R06",
+          "source": "chapters/R06-statements-functions.zh-CN.md",
+          "heading": "if 与 else",
+          "headingLine": 20,
+          "line": 20,
+          "fragment": "if-与-else",
+          "evidence": null
+        },
+        {
+          "sourceId": "R06",
+          "source": "chapters/R06-statements-functions.zh-CN.md",
+          "heading": "函数声明、定义与调用",
+          "headingLine": 133,
+          "line": 133,
+          "fragment": "函数声明定义与调用",
+          "evidence": null
+        }
+      ],
+      "reason": "可选借用的首个实际操作要用条件与函数，而控制语句正式入口在后面的 R06。",
+      "action": "普通条件、循环与按值函数进入基础主线；之后再扩展可选指针参数。单个首例函数预览不等于完整控制流已教。"
+    },
+    {
+      "id": "A13",
+      "priority": "P2",
+      "kind": "例子硬依赖",
+      "status": "需处理",
+      "location": {
+        "sourceId": "R05",
+        "source": "chapters/R05-pointers-references.zh-CN.md",
+        "heading": "返回借用与非拥有成员",
+        "headingLine": 141,
+        "line": 148,
+        "fragment": "返回借用与非拥有成员",
+        "evidence": "struct Owner { std::string text; };"
+      },
+      "targets": [
+        {
+          "sourceId": "R07",
+          "source": "chapters/R07-classes-lifetime.zh-CN.md",
+          "heading": "数据成员、成员函数与 const",
+          "headingLine": 28,
+          "line": 28,
+          "fragment": "数据成员成员函数与-const",
+          "evidence": null
+        },
+        {
+          "sourceId": "R12",
+          "source": "chapters/R12-strings-views.zh-CN.md",
+          "heading": "std::string",
+          "headingLine": 20,
+          "line": 20,
+          "fragment": "stdstring",
+          "evidence": null
+        }
+      ],
+      "reason": "返回成员借用的例子依赖类成员和字符串接口；整节先修未指出所需的局部模型。",
+      "action": "基础借用先用整数；成员借用例接到简单类之后，若保留字符串则就地说明类型与 size/data 所需接口。"
+    },
+    {
+      "id": "A14",
+      "priority": "P2",
+      "kind": "例子硬依赖",
+      "status": "需处理",
+      "location": {
+        "sourceId": "R06",
+        "source": "chapters/R06-statements-functions.zh-CN.md",
+        "heading": "std::invoke",
+        "headingLine": 263,
+        "line": 272,
+        "fragment": "stdinvoke",
+        "evidence": "&Counter::add"
+      },
+      "targets": [
+        {
+          "sourceId": "R07",
+          "source": "chapters/R07-classes-lifetime.zh-CN.md",
+          "heading": "数据成员、成员函数与 const",
+          "headingLine": 28,
+          "line": 28,
+          "fragment": "数据成员成员函数与-const",
+          "evidence": null
+        },
+        {
+          "sourceId": "R10",
+          "source": "chapters/R10-templates-compile-time.zh-CN.md",
+          "heading": "模板参数类别",
+          "headingLine": 44,
+          "line": 44,
+          "fragment": "模板参数类别",
+          "evidence": null
+        }
+      ],
+      "reason": "普通语句与函数中，成员调用组合例提前使用类成员指针，接口摘要还采用转发及参数包。",
+      "action": "普通函数与局部 lambda 先学；成员指针 invoke 例放到类之后，复杂接口摘要在正常调用之后供查阅。"
+    },
+    {
+      "id": "A15",
+      "priority": "P1",
+      "kind": "节内逆序",
+      "status": "需处理",
+      "location": {
+        "sourceId": "R07",
+        "source": "chapters/R07-classes-lifetime.zh-CN.md",
+        "heading": "运算符重载与 friend",
+        "headingLine": 46,
+        "line": 56,
+        "fragment": "运算符重载与-friend",
+        "evidence": "explicit Distance(int n)"
+      },
+      "targets": [
+        {
+          "sourceId": "R07",
+          "source": "chapters/R07-classes-lifetime.zh-CN.md",
+          "heading": "构造函数与成员初始化",
+          "headingLine": 86,
+          "line": 86,
+          "fragment": "构造函数与成员初始化",
+          "evidence": null
+        }
+      ],
+      "reason": "重载例中的构造函数及成员初始化出现在本节正式构造函数说明之前。",
+      "action": "调整为类成员→构造→析构→基本复制→运算符重载；保留原正常值语义例。"
+    },
+    {
+      "id": "A16",
+      "priority": "P2",
+      "kind": "节内逆序",
+      "status": "需处理",
+      "location": {
+        "sourceId": "R07",
+        "source": "chapters/R07-classes-lifetime.zh-CN.md",
+        "heading": "构造与销毁顺序",
+        "headingLine": 163,
+        "line": 167,
+        "fragment": "构造与销毁顺序",
+        "evidence": "最派生类"
+      },
+      "targets": [
+        {
+          "sourceId": "R07",
+          "source": "chapters/R07-classes-lifetime.zh-CN.md",
+          "heading": "组合与继承",
+          "headingLine": 180,
+          "line": 180,
+          "fragment": "组合与继承",
+          "evidence": null
+        },
+        {
+          "sourceId": "R07",
+          "source": "chapters/R07-classes-lifetime.zh-CN.md",
+          "heading": "虚函数、override 与 final",
+          "headingLine": 197,
+          "line": 197,
+          "fragment": "虚函数override-与-final",
+          "evidence": null
+        }
+      ],
+      "reason": "对象构造顺序从虚基类和最派生类开始，继承与多态在后面的条目才展开。",
+      "action": "先讲普通成员的声明顺序与逆序销毁；完整基类顺序在组合、继承及相关对象模型之后。"
+    },
+    {
+      "id": "A17",
+      "priority": "P2",
+      "kind": "例子硬依赖",
+      "status": "需处理",
+      "location": {
+        "sourceId": "R07",
+        "source": "chapters/R07-classes-lifetime.zh-CN.md",
+        "heading": "切片、克隆与外部表示",
+        "headingLine": 255,
+        "line": 266,
+        "fragment": "切片克隆与外部表示",
+        "evidence": "std::unique_ptr<Cloneable>"
+      },
+      "targets": [
+        {
+          "sourceId": "R09",
+          "source": "chapters/R09-raii-memory.zh-CN.md",
+          "heading": "unique_ptr 构造与访问",
+          "headingLine": 58,
+          "line": 58,
+          "fragment": "unique_ptr-构造与访问",
+          "evidence": null
+        }
+      ],
+      "reason": "clone 的拥有者返回值需要智能指针；这又是后面以类与移动为先修的资源节内容。",
+      "action": "简单切片可先解释，拥有者 clone 接口移到 unique_ptr 基础之后，不将它作为掌握类的门槛。"
+    },
+    {
+      "id": "A18",
+      "priority": "P1",
+      "kind": "先修循环",
+      "status": "需处理",
+      "location": {
+        "sourceId": "R08",
+        "source": "chapters/R08-copy-move.zh-CN.md",
+        "heading": "移动构造与移动赋值",
+        "headingLine": 49,
+        "line": 56,
+        "fragment": "移动构造与移动赋值",
+        "evidence": "auto source = std::make_unique<int>(42);"
+      },
+      "targets": [
+        {
+          "sourceId": "R09",
+          "source": "chapters/R09-raii-memory.zh-CN.md",
+          "heading": "unique_ptr 构造与访问",
+          "headingLine": 58,
+          "line": 58,
+          "fragment": "unique_ptr-构造与访问",
+          "evidence": null
+        }
+      ],
+      "reason": "移动基础用尚未定义的智能指针展开释放责任，智能指针入口又要求已学移动。",
+      "action": "先教独占拥有者的建立、借用和清理，再就地介绍这种类型的责任转交；完整移动规则继续集中维护。"
+    },
+    {
+      "id": "A19",
+      "priority": "P1",
+      "kind": "先修循环",
+      "status": "需处理",
+      "location": {
+        "sourceId": "R08",
+        "source": "chapters/R08-copy-move.zh-CN.md",
+        "heading": "转发引用与引用折叠",
+        "headingLine": 123,
+        "line": 125,
+        "fragment": "转发引用与引用折叠",
+        "evidence": "template<class T> void f(T&&)"
+      },
+      "targets": [
+        {
+          "sourceId": "R10",
+          "source": "chapters/R10-templates-compile-time.zh-CN.md",
+          "heading": "函数模板",
+          "headingLine": 7,
+          "line": 7,
+          "fragment": "函数模板",
+          "evidence": null
+        },
+        {
+          "sourceId": "R10",
+          "source": "chapters/R10-templates-compile-time.zh-CN.md",
+          "heading": "模板实参推导",
+          "headingLine": 70,
+          "line": 70,
+          "fragment": "模板实参推导",
+          "evidence": null
+        }
+      ],
+      "reason": "转发引用需要函数模板推导，而模板节入口反过来要求先修转发。",
+      "action": "把函数/类模板的基本语法从完整泛型机制中拆出，先于转发；转发只作为高级包装接口的先修。"
+    },
+    {
+      "id": "A20",
+      "priority": "P1",
+      "kind": "节内逆序",
+      "status": "需处理",
+      "location": {
+        "sourceId": "R09",
+        "source": "chapters/R09-raii-memory.zh-CN.md",
+        "heading": "RAII 资源对象",
+        "headingLine": 7,
+        "line": 15,
+        "fragment": "raii-资源对象",
+        "evidence": "std::unique_ptr<int[]> data;"
+      },
+      "targets": [
+        {
+          "sourceId": "R09",
+          "source": "chapters/R09-raii-memory.zh-CN.md",
+          "heading": "unique_ptr 构造与访问",
+          "headingLine": 58,
+          "line": 58,
+          "fragment": "unique_ptr-构造与访问",
+          "evidence": null
+        },
+        {
+          "sourceId": "R09",
+          "source": "chapters/R09-raii-memory.zh-CN.md",
+          "heading": "unique_ptr 数组与删除器",
+          "headingLine": 91,
+          "line": 91,
+          "fragment": "unique_ptr-数组与删除器",
+          "evidence": null
+        },
+        {
+          "sourceId": "R09",
+          "source": "chapters/R09-raii-memory.zh-CN.md",
+          "heading": "make_unique、make_shared 与 allocate_shared",
+          "headingLine": 156,
+          "line": 156,
+          "fragment": "make_uniquemake_shared-与-allocate_shared",
+          "evidence": null
+        }
+      ],
+      "reason": "解释 RAII 的第一个例子组合了后面才教的 unique_ptr、数组与工厂。",
+      "action": "用已懂的构造析构先观察自动清理，再定义所有权、动态资源及 scalar unique_ptr；数组随后展开。"
+    },
+    {
+      "id": "A21",
+      "priority": "P1",
+      "kind": "入口过度先修",
+      "status": "需处理",
+      "location": {
+        "sourceId": "R10",
+        "source": "chapters/R10-templates-compile-time.zh-CN.md",
+        "heading": "模板与编译期编程",
+        "headingLine": 1,
+        "line": 5,
+        "fragment": "模板与编译期编程",
+        "evidence": "[转发]"
+      },
+      "targets": [
+        {
+          "sourceId": "R08",
+          "source": "chapters/R08-copy-move.zh-CN.md",
+          "heading": "转发引用与引用折叠",
+          "headingLine": 123,
+          "line": 123,
+          "fragment": "转发引用与引用折叠",
+          "evidence": null
+        }
+      ],
+      "reason": "最简单函数模板不需要转发，但节首整节先修使模板基础与转发构成双向门槛。",
+      "action": "基础模板入口只需要类型、普通函数与简单类；推导/包装接口再分别依赖引用、值类别及转发。"
+    },
+    {
+      "id": "A22",
+      "priority": "P2",
+      "kind": "入口过度先修",
+      "status": "需处理",
+      "location": {
+        "sourceId": "R11",
+        "source": "chapters/R11-errors-exception-safety.zh-CN.md",
+        "heading": "错误处理与异常安全",
+        "headingLine": 1,
+        "line": 5,
+        "fragment": "错误处理与异常安全",
+        "evidence": "[移动]"
+      },
+      "targets": [
+        {
+          "sourceId": "R08",
+          "source": "chapters/R08-copy-move.zh-CN.md",
+          "heading": "拷贝与移动操作分类",
+          "headingLine": 7,
+          "line": 7,
+          "fragment": "拷贝与移动操作分类",
+          "evidence": null
+        },
+        {
+          "sourceId": "R09",
+          "source": "chapters/R09-raii-memory.zh-CN.md",
+          "heading": "RAII 资源对象",
+          "headingLine": 7,
+          "line": 7,
+          "fragment": "raii-资源对象",
+          "evidence": null
+        }
+      ],
+      "reason": "基本 throw/try/catch 不要求完整移动规则；整节先修会让 RAII 中所需的最小异常认识过于昂贵。",
+      "action": "异常基本流程在普通函数后可以单独进入；栈展开接构造析构与 RAII，强保证再接容器与移动。"
+    },
+    {
+      "id": "A23",
+      "priority": "P2",
+      "kind": "例子硬依赖",
+      "status": "需处理",
+      "location": {
+        "sourceId": "R11",
+        "source": "chapters/R11-errors-exception-safety.zh-CN.md",
+        "heading": "暂存与强保证提交",
+        "headingLine": 172,
+        "line": 182,
+        "fragment": "暂存与强保证提交",
+        "evidence": "target.swap(staged);"
+      },
+      "targets": [
+        {
+          "sourceId": "R13",
+          "source": "chapters/R13-sequence-containers.zh-CN.md",
+          "heading": "std::vector",
+          "headingLine": 94,
+          "line": 94,
+          "fragment": "stdvector",
+          "evidence": null
+        },
+        {
+          "sourceId": "R13",
+          "source": "chapters/R13-sequence-containers.zh-CN.md",
+          "heading": "vector 的插入、删除与替换",
+          "headingLine": 135,
+          "line": 135,
+          "fragment": "vector-的插入删除与替换",
+          "evidence": null
+        }
+      ],
+      "reason": "强保证提交例要理解尚未正式展开的 vector 复制、追加与交换，而容器又使用异常保证。",
+      "action": "先给基本失败表示与清理；容器正常操作后再读完整暂存提交机制，不把它设为使用容器的共同先修。"
+    },
+    {
+      "id": "G01",
+      "priority": "P2",
+      "kind": "导航逆序",
+      "status": "需处理",
+      "location": {
+        "sourceId": "guide",
+        "source": "reading-guide.zh-CN.md",
+        "heading": "阶段一：写出并解释一个小程序",
+        "headingLine": 9,
+        "line": 11,
+        "fragment": "阶段一写出并解释一个小程序",
+        "evidence": "遇到类型疑问回查"
+      },
+      "targets": [
+        {
+          "sourceId": "R02",
+          "source": "chapters/R02-types-objects.zh-CN.md",
+          "heading": "基础类型分类",
+          "headingLine": 7,
+          "line": 7,
+          "fragment": "基础类型分类",
+          "evidence": null
+        },
+        {
+          "sourceId": "R03",
+          "source": "chapters/R03-initialization-deduction.zh-CN.md",
+          "heading": "初始化类别",
+          "headingLine": 8,
+          "line": 8,
+          "fragment": "初始化类别",
+          "evidence": null
+        }
+      ],
+      "reason": "指南从 R01 跳到初始化类别，把类型降为疑问回查；R03 入口却要求 R02，且当前目标是复杂类别表。",
+      "action": "阶段一显式安排最小类型、变量、整数初始化，然后常用表达式、分支循环与普通函数；避免要求全文 R02。"
+    },
+    {
+      "id": "G02",
+      "priority": "P1",
+      "kind": "导航逆序",
+      "status": "需处理",
+      "location": {
+        "sourceId": "guide",
+        "source": "reading-guide.zh-CN.md",
+        "heading": "阶段二：管理对象、借用和资源",
+        "headingLine": 17,
+        "line": 19,
+        "fragment": "阶段二管理对象借用和资源",
+        "evidence": "[返回借用]"
+      },
+      "targets": [
+        {
+          "sourceId": "R05",
+          "source": "chapters/R05-pointers-references.zh-CN.md",
+          "heading": "指针声明、取址与解引用",
+          "headingLine": 7,
+          "line": 7,
+          "fragment": "指针声明取址与解引用",
+          "evidence": null
+        },
+        {
+          "sourceId": "R07",
+          "source": "chapters/R07-classes-lifetime.zh-CN.md",
+          "heading": "class、struct 与访问控制",
+          "headingLine": 7,
+          "line": 7,
+          "fragment": "classstruct-与访问控制",
+          "evidence": null
+        }
+      ],
+      "reason": "阶段二直接从左右值引用进入返回成员借用，既跳过指针基本操作，也在简单类之前进入 Owner 成员例。",
+      "action": "改为指针/基本引用→简单类与构造析构→成员借用→资源清理→独占拥有者→基本转交；栈展开需要最小异常桥接。"
+    },
+    {
+      "id": "L01",
+      "priority": "P1",
+      "kind": "例子硬依赖",
+      "status": "需处理",
+      "location": {
+        "sourceId": "R13",
+        "source": "chapters/R13-sequence-containers.zh-CN.md",
+        "heading": "vector 的构造与初始化",
+        "headingLine": 108,
+        "line": 115,
+        "fragment": "vector-的构造与初始化",
+        "evidence": "values.begin() + 1"
+      },
+      "targets": [
+        {
+          "sourceId": "R15",
+          "source": "chapters/R15-iterators-ranges.zh-CN.md",
+          "heading": "std::begin 与 std::end",
+          "headingLine": 7,
+          "line": 7,
+          "fragment": "stdbegin-与-stdend",
+          "evidence": null
+        },
+        {
+          "sourceId": "R15",
+          "source": "chapters/R15-iterators-ranges.zh-CN.md",
+          "heading": "半开区间与尾后位置",
+          "headingLine": 32,
+          "line": 32,
+          "fragment": "半开区间与尾后位置",
+          "evidence": null
+        }
+      ],
+      "reason": "容器先使用位置、区间构造、插删与迭代器递增，读者尚未建立位置及尾后模型。",
+      "action": "vector 首先展示默认/列表/下标/追加；在首个区间或位置参数之前补 begin/end、*it、++it 和有效偏移。"
+    },
+    {
+      "id": "L02",
+      "priority": "P1",
+      "kind": "先修循环",
+      "status": "需处理",
+      "location": {
+        "sourceId": "R15",
+        "source": "chapters/R15-iterators-ranges.zh-CN.md",
+        "heading": "迭代器与 ranges",
+        "headingLine": 1,
+        "line": 5,
+        "fragment": "迭代器与-ranges",
+        "evidence": "借用与容器失效先修"
+      },
+      "targets": [
+        {
+          "sourceId": "R13",
+          "source": "chapters/R13-sequence-containers.zh-CN.md",
+          "heading": "vector 的失效与异常保证",
+          "headingLine": 216,
+          "line": 216,
+          "fragment": "vector-的失效与异常保证",
+          "evidence": null
+        }
+      ],
+      "reason": "迭代器入口要求容器失效，而失效表本身需要迭代器模型；指南也把失效放在半开区间前。",
+      "action": "位置基础只依赖数组与借用；容器修改后再学类型特定失效，类别/ranges 留在后续泛型能力层。"
+    },
+    {
+      "id": "L03",
+      "priority": "P1",
+      "kind": "入口过度先修",
+      "status": "需处理",
+      "location": {
+        "sourceId": "R14",
+        "source": "chapters/R14-associative-adaptors.zh-CN.md",
+        "heading": "关联容器与容器适配器",
+        "headingLine": 1,
+        "line": 5,
+        "fragment": "关联容器与容器适配器",
+        "evidence": "区间和迭代器先修见"
+      },
+      "targets": [
+        {
+          "sourceId": "R15",
+          "source": "chapters/R15-iterators-ranges.zh-CN.md",
+          "heading": "半开区间与尾后位置",
+          "headingLine": 32,
+          "line": 32,
+          "fragment": "半开区间与尾后位置",
+          "evidence": null
+        },
+        {
+          "sourceId": "R16",
+          "source": "chapters/R16-algorithms.zh-CN.md",
+          "heading": "比较器与谓词",
+          "headingLine": 7,
+          "line": 7,
+          "fragment": "比较器与谓词",
+          "evidence": null
+        }
+      ],
+      "reason": "当前关联容器排在迭代器及比较器之前，实际区间循环需要这两类基础。",
+      "action": "首次路线先学最小迭代器；在首个 set 前给默认排序及键等价的最小解释，不要求全部算法。"
+    },
+    {
+      "id": "L04",
+      "priority": "P1",
+      "kind": "例子硬依赖",
+      "status": "需处理",
+      "location": {
+        "sourceId": "R14",
+        "source": "chapters/R14-associative-adaptors.zh-CN.md",
+        "heading": "std::multiset",
+        "headingLine": 36,
+        "line": 46,
+        "fragment": "stdmultiset",
+        "evidence": "range.first"
+      },
+      "targets": [
+        {
+          "sourceId": "R17",
+          "source": "chapters/R17-utility-results.zh-CN.md",
+          "heading": "std::pair",
+          "headingLine": 7,
+          "line": 7,
+          "fragment": "stdpair",
+          "evidence": null
+        }
+      ],
+      "reason": "pair 的 first/second 用于范围边界，map 元素又用 second，而 pair 的具体成员入口在 R17。",
+      "action": "首次使用前解释 pair 保存两项及成员名；区分映射键值与区间端点，完整工具类型仍集中维护。"
+    },
+    {
+      "id": "L05",
+      "priority": "P2",
+      "kind": "节内逆序",
+      "status": "需处理",
+      "location": {
+        "sourceId": "R13",
+        "source": "chapters/R13-sequence-containers.zh-CN.md",
+        "heading": "操作成本",
+        "headingLine": 23,
+        "line": 30,
+        "fragment": "操作成本",
+        "evidence": "尾部摊还 O(1)"
+      },
+      "targets": [
+        {
+          "sourceId": "R13",
+          "source": "chapters/R13-sequence-containers.zh-CN.md",
+          "heading": "复杂度与额外空间",
+          "headingLine": 37,
+          "line": 37,
+          "fragment": "复杂度与额外空间",
+          "evidence": null
+        }
+      ],
+      "reason": "成本表先使用 O 与摊还，增长上界和计量单位的共同定义在后文。",
+      "action": "把复杂度最小解释前置到第一张成本表；成本比较本身仍在正常操作后供选型。"
+    },
+    {
+      "id": "L06",
+      "priority": "P2",
+      "kind": "层次混合",
+      "status": "需处理",
+      "location": {
+        "sourceId": "R15",
+        "source": "chapters/R15-iterators-ranges.zh-CN.md",
+        "heading": "比较与导航成本",
+        "headingLine": 59,
+        "line": 66,
+        "fragment": "比较与导航成本",
+        "evidence": "分区前提成立时"
+      },
+      "targets": [
+        {
+          "sourceId": "R16",
+          "source": "chapters/R16-algorithms.zh-CN.md",
+          "heading": "二分查找的分区条件",
+          "headingLine": 250,
+          "line": 250,
+          "fragment": "二分查找的分区条件",
+          "evidence": null
+        }
+      ],
+      "reason": "导航能力比较先借 lower_bound 及分区解释成本，正式算法前提稍后才展开。",
+      "action": "首个导航比较用 next/distance；二分成本移到分区定义之后，或保留精确的后查入口。"
+    },
+    {
+      "id": "L07",
+      "priority": "P2",
+      "kind": "节内逆序",
+      "status": "需处理",
+      "location": {
+        "sourceId": "R19",
+        "source": "chapters/R19-time-files.zh-CN.md",
+        "heading": "std::chrono::steady_clock",
+        "headingLine": 50,
+        "line": 60,
+        "fragment": "stdchronosteady_clock",
+        "evidence": "duration_cast<std::chrono::microseconds>"
+      },
+      "targets": [
+        {
+          "sourceId": "R19",
+          "source": "chapters/R19-time-files.zh-CN.md",
+          "heading": "duration_cast、time_point_cast 与舍入",
+          "headingLine": 92,
+          "line": 92,
+          "fragment": "duration_casttime_point_cast-与舍入",
+          "evidence": null
+        }
+      ],
+      "reason": "取时间差的首例同时使用后面才定义的单位转换。",
+      "action": "首例只观察 elapsed；定义指定单位转换后再取微秒计数，或者就地补其最小用途。"
+    },
+    {
+      "id": "L08",
+      "priority": "P1",
+      "kind": "定义定位与桥接",
+      "status": "需处理",
+      "location": {
+        "sourceId": "R33",
+        "source": "chapters/R33-numeric-random-bits.zh-CN.md",
+        "heading": "std::endian 与 std::byteswap",
+        "headingLine": 192,
+        "line": 194,
+        "fragment": "stdendian-与-stdbyteswap",
+        "evidence": "little/big/native"
+      },
+      "targets": [
+        {
+          "sourceId": "R02",
+          "source": "chapters/R02-types-objects.zh-CN.md",
+          "heading": "sizeof、alignof 与对象表示",
+          "headingLine": 184,
+          "line": 184,
+          "fragment": "sizeofalignof-与对象表示",
+          "evidence": null
+        },
+        {
+          "sourceId": "R24",
+          "source": "chapters/R24-cpu-memory-cost.zh-CN.md",
+          "heading": "字节序与字段编码",
+          "headingLine": 86,
+          "line": 86,
+          "fragment": "字节序与字段编码",
+          "evidence": null
+        }
+      ],
+      "reason": "入口把对象表示指向 R24，正式定义在 R02；大小端枚举需要 R24 的字节序意义。",
+      "action": "对象表示回链 R02；在 endian 前给多字节值的字节排列及一个最小例，完整编码留 R24。"
+    },
+    {
+      "id": "L09",
+      "priority": "P2",
+      "kind": "定义缺口候选",
+      "status": "候选补定义",
+      "location": {
+        "sourceId": "R17",
+        "source": "chapters/R17-utility-results.zh-CN.md",
+        "heading": "variant 的修改与 visit",
+        "headingLine": 226,
+        "line": 235,
+        "fragment": "variant-的修改与-visit",
+        "evidence": "std::decay_t<decltype(x)>"
+      },
+      "targets": [
+        {
+          "sourceId": "R10",
+          "source": "chapters/R10-templates-compile-time.zh-CN.md",
+          "heading": "if constexpr 与 static_assert",
+          "headingLine": 181,
+          "line": 181,
+          "fragment": "if-constexpr-与-static_assert",
+          "evidence": null
+        }
+      ],
+      "reason": "visit 首个实际例同时使用未展开的 decay_t 与编译期分支；不是简单的名称预告。",
+      "action": "首例用共同可调用操作；异型转字符串例在类型特征之后展开，或就地解释去引用与顶层 const。"
+    },
+    {
+      "id": "L10",
+      "priority": "P2",
+      "kind": "定义缺口候选",
+      "status": "候选补定义",
+      "location": {
+        "sourceId": "R35",
+        "source": "chapters/R35-filesystem.zh-CN.md",
+        "heading": "path 的规范化与输出",
+        "headingLine": 32,
+        "line": 45,
+        "fragment": "path-的规范化与输出",
+        "evidence": "解析符号链接"
+      },
+      "targets": [],
+      "reason": "规范化、状态查询和递归条件需要区分链接与目标；正文未找到符号链接的概念定义。",
+      "action": "在 canonical/status 前说明符号链接保存另一名称，区分查询链接本身与跟随目标。"
+    },
+    {
+      "id": "L11",
+      "priority": "P2",
+      "kind": "定义缺口候选",
+      "status": "候选补定义",
+      "location": {
+        "sourceId": "R19",
+        "source": "chapters/R19-time-files.zh-CN.md",
+        "heading": "std::chrono::time_point",
+        "headingLine": 34,
+        "line": 36,
+        "fragment": "stdchronotime_point",
+        "evidence": "纪元"
+      },
+      "targets": [],
+      "reason": "time_point 的初始化结果用纪元解释，但正文没有建立计时零点的最小定义；ratio 也只以名称出现。",
+      "action": "补纪元是时钟计时零点、单调性是读数不倒退、ratio 是编译期有理数刻度；不扩成整节模板先修。"
+    },
+    {
+      "id": "S01",
+      "priority": "P3",
+      "kind": "已化解预告",
+      "status": "复核排除",
+      "location": {
+        "sourceId": "R21",
+        "source": "chapters/R21-mutex-coordination.zh-CN.md",
+        "heading": "std::mutex",
+        "headingLine": 23,
+        "line": 32,
+        "fragment": "stdmutex",
+        "evidence": "std::lock_guard<std::mutex>"
+      },
+      "targets": [
+        {
+          "sourceId": "R21",
+          "source": "chapters/R21-mutex-coordination.zh-CN.md",
+          "heading": "std::lock_guard",
+          "headingLine": 141,
+          "line": 141,
+          "fragment": "stdlock_guard",
+          "evidence": null
+        }
+      ],
+      "reason": "独立复核确认例后已解释作用域释放、同锁保护和 RAII；后面的完整接口不是理解首例的必要前置。",
+      "action": "保留例子，按需加完整条目回链；不得计为确认依赖问题。"
+    },
+    {
+      "id": "S02",
+      "priority": "P2",
+      "kind": "局部定义桥接",
+      "status": "需处理",
+      "location": {
+        "sourceId": "R21",
+        "source": "chapters/R21-mutex-coordination.zh-CN.md",
+        "heading": "std::scoped_lock",
+        "headingLine": 195,
+        "line": 197,
+        "fragment": "stdscoped_lock",
+        "evidence": "死锁"
+      },
+      "targets": [],
+      "reason": "循环等待已出现，但 scoped_lock 的价值以死锁表述，缺少术语与已有情形的对应。",
+      "action": "首次使用死锁时给循环等待导致无法继续的最小例，保留只处理取得阶段的边界。"
+    },
+    {
+      "id": "S03",
+      "priority": "P1",
+      "kind": "导航逆序",
+      "status": "需处理",
+      "location": {
+        "sourceId": "R22",
+        "source": "chapters/R22-atomics-memory-order.zh-CN.md",
+        "heading": "数据竞争与 happens-before",
+        "headingLine": 156,
+        "line": 158,
+        "fragment": "数据竞争与-happens-before",
+        "evidence": "至少一方非原子"
+      },
+      "targets": [
+        {
+          "sourceId": "R22",
+          "source": "chapters/R22-atomics-memory-order.zh-CN.md",
+          "heading": "原子对象与操作类别",
+          "headingLine": 7,
+          "line": 7,
+          "fragment": "原子对象与操作类别",
+          "evidence": null
+        }
+      ],
+      "reason": "指南先深链到数据竞争，再跳 std::atomic，两次都绕过原子操作类别定义；判定条件却依赖非原子的意义。",
+      "action": "入口先补原子/非原子最小区别，或改指南深链；保留先问题后工具的教学目标。"
+    },
+    {
+      "id": "S04",
+      "priority": "P2",
+      "kind": "节内逆序",
+      "status": "需处理",
+      "location": {
+        "sourceId": "R22",
+        "source": "chapters/R22-atomics-memory-order.zh-CN.md",
+        "heading": "原子等待与通知（C++20）",
+        "headingLine": 121,
+        "line": 125,
+        "fragment": "原子等待与通知c20",
+        "evidence": "release"
+      },
+      "targets": [
+        {
+          "sourceId": "R22",
+          "source": "chapters/R22-atomics-memory-order.zh-CN.md",
+          "heading": "内存序",
+          "headingLine": 164,
+          "line": 164,
+          "fragment": "内存序",
+          "evidence": null
+        },
+        {
+          "sourceId": "R22",
+          "source": "chapters/R22-atomics-memory-order.zh-CN.md",
+          "heading": "release/acquire 发布",
+          "headingLine": 180,
+          "line": 180,
+          "fragment": "releaseacquire-发布",
+          "evidence": null
+        }
+      ],
+      "reason": "C++20 等待条目提前以 release/acquire 规定普通数据发布条件，而完整内存序解释在后面。",
+      "action": "发布机制例接在内存序之后；基础等待先使用默认序并明确通知不能代替条件。"
+    },
+    {
+      "id": "S05",
+      "priority": "P2",
+      "kind": "局部定义桥接",
+      "status": "需处理",
+      "location": {
+        "sourceId": "R25",
+        "source": "chapters/R25-process-virtual-memory.zh-CN.md",
+        "heading": "Linux/POSIX：创建、执行与回收进程",
+        "headingLine": 15,
+        "line": 27,
+        "fragment": "linuxposix创建执行与回收进程",
+        "evidence": "async-signal-safe"
+      },
+      "targets": [],
+      "reason": "平台 fork 限制中的函数集合没有就地含义，影响受限路径正确使用；它是后查项内部的必要条件。",
+      "action": "在 fork 后 exec 前的语境解释 POSIX 允许调用的受限函数集合，并提供平台资料入口。"
+    },
+    {
+      "id": "S06",
+      "priority": "P2",
+      "kind": "局部定义桥接",
+      "status": "需处理",
+      "location": {
+        "sourceId": "R25",
+        "source": "chapters/R25-process-virtual-memory.zh-CN.md",
+        "heading": "Linux/POSIX：mmap 与 munmap",
+        "headingLine": 71,
+        "line": 81,
+        "fragment": "linuxposixmmap-与-munmap",
+        "evidence": "打开的 fd"
+      },
+      "targets": [
+        {
+          "sourceId": "R26",
+          "source": "chapters/R26-syscalls-file-io.zh-CN.md",
+          "heading": "系统调用与打开文件实体",
+          "headingLine": 7,
+          "line": 7,
+          "fragment": "系统调用与打开文件实体",
+          "evidence": null
+        }
+      ],
+      "reason": "映射 API 要区分路径、打开句柄、映射和视图，但 fd/HANDLE 的资源实体到下一节才正式解释。",
+      "action": "平台映射前分别定义 fd 与不透明 HANDLE 的最小用途；打开关闭和完整 API 留 R26，不交换两节。"
+    },
+    {
+      "id": "S07",
+      "priority": "P3",
+      "kind": "已有前置定义",
+      "status": "复核排除",
+      "location": {
+        "sourceId": "R27",
+        "source": "chapters/R27-linking-loading-libraries.zh-CN.md",
+        "heading": "符号与名称修饰",
+        "headingLine": 26,
+        "line": 37,
+        "fragment": "符号与名称修饰",
+        "evidence": "ABI"
+      },
+      "targets": [
+        {
+          "sourceId": "R02",
+          "source": "chapters/R02-types-objects.zh-CN.md",
+          "heading": "整数类型的大小与范围",
+          "headingLine": 22,
+          "line": 22,
+          "fragment": "整数类型的大小与范围",
+          "evidence": null
+        },
+        {
+          "sourceId": "R27",
+          "source": "chapters/R27-linking-loading-libraries.zh-CN.md",
+          "heading": "ABI 与所有权边界",
+          "headingLine": 217,
+          "line": 217,
+          "fragment": "abi-与所有权边界",
+          "evidence": null
+        }
+      ],
+      "reason": "独立复核确认 R02 已定义 ABI；R27 的后文是深化，不是第一次定义。",
+      "action": "全书顺读保留；独立查阅可增加回链，不计为确认依赖问题。"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="780" height="230" viewBox="0 0 780 230" role="img" aria-labelledby="title desc">
+<title id="title">begin、元素位置与 end 尾后位置</title><desc id="desc">三个整数10、20、30从begin起逐个前进，第三次前进到end。end是没有元素可读取的终点。</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="#365f9c"/></marker></defs>
+<rect width="780" height="230" rx="10" fill="#f7f9fd"/>
+<g font-family="Microsoft YaHei, sans-serif" fill="#26364a" text-anchor="middle">
+<text x="130" y="42" font-size="20">begin()</text><text x="650" y="42" font-size="20">end()</text>
+<rect x="70" y="84" width="120" height="68" rx="5" fill="#eaf0fa" stroke="#365f9c"/><text x="130" y="126" font-size="25">10</text>
+<rect x="245" y="84" width="120" height="68" rx="5" fill="#eaf0fa" stroke="#365f9c"/><text x="305" y="126" font-size="25">20</text>
+<rect x="420" y="84" width="120" height="68" rx="5" fill="#eaf0fa" stroke="#365f9c"/><text x="480" y="126" font-size="25">30</text>
+<rect x="590" y="84" width="120" height="68" rx="5" fill="#fffefb" stroke="#707887" stroke-dasharray="6 4"/><text x="650" y="125" font-size="19">没有元素</text>
+<text x="215" y="107" font-size="17">++</text><text x="390" y="107" font-size="17">++</text><text x="565" y="107" font-size="17">++</text>
+<text x="130" y="196" font-size="17">可读取起点</text><text x="650" y="196" font-size="17">仅作为终点</text>
+</g><path d="M130 48V77M650 48V77M194 129H237M369 129H412M544 129H582" fill="none" stroke="#365f9c" stroke-width="2" marker-end="url(#arrow)"/>
+</svg>

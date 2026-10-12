@@ -1,0 +1,41 @@
+{
+  "chapter": "R24",
+  "source": "chapters/R24-cpu-memory-cost.zh-CN.md",
+  "references": [
+    {
+      "heading": "CPU、缓存与程序执行",
+      "label": "基本架构与指令手册",
+      "url": "https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html"
+    },
+    {
+      "heading": "CPU 与指令执行",
+      "label": "C++ 抽象机器",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/intro.execution"
+    },
+    {
+      "heading": "缓存一致性与伪共享",
+      "label": "Linux 内核伪共享分析",
+      "url": "https://www.kernel.org/doc/html/latest/kernel-hacking/false-sharing.html"
+    },
+    {
+      "heading": "缓存一致性与伪共享",
+      "label": "C++17 干扰尺寸",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/support.types.layout"
+    },
+    {
+      "heading": "对齐、填充与访问成本",
+      "label": "Linux 未对齐访问说明",
+      "url": "https://www.kernel.org/doc/html/latest/core-api/unaligned-memory-access.html"
+    },
+    {
+      "heading": "字节序与字段编码",
+      "label": "endian",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/bit.endian"
+    },
+    {
+      "heading": "缓存一致性与伪共享",
+      "label": "C++17 硬件干扰尺寸常量",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/hardware.interference"
+    }
+  ]
+}

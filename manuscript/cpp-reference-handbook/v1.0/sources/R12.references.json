@@ -1,0 +1,56 @@
+{
+  "chapter": "R12",
+  "source": "chapters/R12-strings-views.zh-CN.md",
+  "references": [
+    {
+      "heading": "字符串临时对象与借用寿命",
+      "label": "C++17 临时对象",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/class.temporary"
+    },
+    {
+      "heading": "字符串临时对象与借用寿命",
+      "label": "C++20 临时对象",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/class.temporary"
+    },
+    {
+      "heading": "string 的容量与修改",
+      "label": "N4659 string capacity",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/string.capacity"
+    },
+    {
+      "heading": "string 的容量与修改",
+      "label": "N4861 string capacity",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/string.capacity"
+    },
+    {
+      "heading": "string 的查找、比较与截取",
+      "label": "N4659 string operations",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/string.ops"
+    },
+    {
+      "heading": "string 的缓冲与失效",
+      "label": "N4659 string requirements",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/string.require"
+    },
+    {
+      "heading": "string_view 的借用条件",
+      "label": "N4659 string_view",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/string.view"
+    },
+    {
+      "heading": "span 的子范围与失效",
+      "label": "N4861 span",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/views.span"
+    },
+    {
+      "heading": "C 字符串与 UTF-8",
+      "label": "RFC 3629",
+      "url": "https://www.rfc-editor.org/rfc/rfc3629"
+    },
+    {
+      "heading": "组合应用与参考资料",
+      "label": "cppreference string",
+      "url": "https://en.cppreference.com/w/cpp/string/basic_string.html"
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "edition": "v0.2",
+  "files": [
+    {
+      "path": "chapters/R01-program-build.zh-CN.md",
+      "sha256": "9bb25a244c7e4d457174dd53a3e439453ad42216093caa62250c90b6c88c678c"
+    },
+    {
+      "path": "chapters/R02-types-objects.zh-CN.md",
+      "sha256": "3dcf13e64d3d4d70a149d579f4703314bfeab0fbdc2b90d695a07101a19b9a57"
+    },
+    {
+      "path": "chapters/R03-initialization-deduction.zh-CN.md",
+      "sha256": "13474aaf0c0d29f0807119e8c615600f51a7a4f9673140dea66ebc6f58968cd5"
+    },
+    {
+      "path": "chapters/R04-expressions-conversions.zh-CN.md",
+      "sha256": "8fb37803f03530704fd41bced7c13ba3beaa33b5a798acf39565d8150ebfa550"
+    },
+    {
+      "path": "chapters/R05-pointers-references.zh-CN.md",
+      "sha256": "87517d66707d02551f00b16a941293998b0c1bdfb6dfa8752ea5267cf6159b9a"
+    },
+    {
+      "path": "chapters/R06-statements-functions.zh-CN.md",
+      "sha256": "0c24eebc676abf047ef3a4ccdc1d4e3b6cbe8da6a08c9cacc27640069e7d139a"
+    },
+    {
+      "path": "chapters/R07-classes-lifetime.zh-CN.md",
+      "sha256": "2415963fdbd9f83b3b51276c251ef1bcae5e29c0e4e3fc725ea17acb27118138"
+    },
+    {
+      "path": "chapters/R08-copy-move.zh-CN.md",
+      "sha256": "3ce22134be26bbd289498365abc5ad5abfc30d29b09619f0004b66312c7d6d01"
+    },
+    {
+      "path": "chapters/R09-raii-memory.zh-CN.md",
+      "sha256": "b3272b7f3412c462ab846303bbddb0f771043bd25d456bc30c6028ac0fa58104"
+    },
+    {
+      "path": "chapters/R10-templates-compile-time.zh-CN.md",
+      "sha256": "20bb7c1ffe1b73bbbdcd5d62668d93e801ca5b0f278bb90c5e792fbdf3cdf139"
+    },
+    {
+      "path": "chapters/R11-errors-exception-safety.zh-CN.md",
+      "sha256": "c2b34b64314e4577ca7bf3eb7e33bc9bcb862f6cfdbfc684368ea59fbe4526bd"
+    },
+    {
+      "path": "chapters/R12-strings-views.zh-CN.md",
+      "sha256": "665c11193ba66b7c052c3dedc7572427b2d45e3f0261afccdacba6f626fcdfc5"
+    },
+    {
+      "path": "chapters/R13-sequence-containers.zh-CN.md",
+      "sha256": "a7958c53279b8d5be745f3ce50b3a89d1e20ee23567f54845e9974c41de2cf6d"
+    },
+    {
+      "path": "chapters/R14-associative-adaptors.zh-CN.md",
+      "sha256": "60100bee9256d435b7052a860d866c04590293f4353c92f74d9db733ff29f53e"
+    },
+    {
+      "path": "chapters/R15-iterators-ranges.zh-CN.md",
+      "sha256": "63c1b9571a094429fbdaf05e234f30440ec3abc884172ab7aae758db5f6e9cd5"
+    },
+    {
+      "path": "chapters/R16-algorithms.zh-CN.md",
+      "sha256": "53ef4809fc75a84913d10619412cd0e61acd3938b131d0f3ab9db0a5f5ee84ca"
+    },
+    {
+      "path": "chapters/R17-utility-results.zh-CN.md",
+      "sha256": "64842bc4467a81bea52361599938d146e136f71298185c36b2573098a6e980b2"
+    },
+    {
+      "path": "chapters/R18-text-numeric.zh-CN.md",
+      "sha256": "905808386bcdb7378c12839ec44c26c59be6a1419a2a6c6b9d7ded6c84a28781"
+    },
+    {
+      "path": "chapters/R19-time-files.zh-CN.md",
+      "sha256": "de8464436f8613e703c4f7b677981be61eead6349dd65522f2dcf64c072b312b"
+    },
+    {
+      "path": "chapters/R20-threads-async.zh-CN.md",
+      "sha256": "1f1671264219986018ff6833b4698e7bc3f5ea38076ca8b8372ba1b168e08145"
+    },
+    {
+      "path": "chapters/R21-mutex-coordination.zh-CN.md",
+      "sha256": "3ec1ecf62c51e2675bb788e23d0156d754840df1e39899b2d23f1a7059ffc09a"
+    },
+    {
+      "path": "chapters/R22-atomics-memory-order.zh-CN.md",
+      "sha256": "21f329a5cb0e5f7dcd6c6831fd2997d1a425b4ade7a82748f50cf83f965116ef"
+    },
+    {
+      "path": "chapters/R23-async-execution.zh-CN.md",
+      "sha256": "41c2973399c4c0afc2364a721847e65431d7044a2c6a25b4265fd2e9647c5760"
+    },
+    {
+      "path": "chapters/R24-cpu-memory-cost.zh-CN.md",
+      "sha256": "ae40e53c66736d7e496250435a8b0ba08995ab2c912f9223cbf6613ed141cec0"
+    },
+    {
+      "path": "chapters/R25-process-virtual-memory.zh-CN.md",
+      "sha256": "8d71dede59bf7f0198abe3966e3a237ca280db5b76720a58f0cebfe4ae0508ee"
+    },
+    {
+      "path": "chapters/R26-syscalls-file-io.zh-CN.md",
+      "sha256": "8a506328089decad90e7e4ba0c742774c3c3c8f43eab7017ab26a161a4ba61f4"
+    },
+    {
+      "path": "chapters/R27-linking-loading-libraries.zh-CN.md",
+      "sha256": "edcd58c4955b8419abd81159e04d8fa36666bf9c881aca7b460f078e25cfc4b2"
+    },
+    {
+      "path": "chapters/R28-protocols-connections.zh-CN.md",
+      "sha256": "94a0b4e6dc69cd272ab1b3e55b269a989277b445cb441508cbf355448ffa0bfd"
+    },
+    {
+      "path": "chapters/R29-sockets-production.zh-CN.md",
+      "sha256": "14705550116e7aa9c5da5a957f56dfc9931cef5f69bdf9f763dcc5142ea120fc"
+    },
+    {
+      "path": "chapters/R30-build.zh-CN.md",
+      "sha256": "53f62efa8a651405570f72303efd9e7ca38dfc714567c343a5b8795c5d528a87"
+    },
+    {
+      "path": "chapters/R31-debug.zh-CN.md",
+      "sha256": "63ae1edefd18ab85bdb78e352e394c1f65605cc32ba625c2b884c6b18fd49790"
+    },
+    {
+      "path": "chapters/R32-performance.zh-CN.md",
+      "sha256": "115322e6e73db1259eae3851f5082026cb9f03ba07beee5b3e2897f5d093650b"
+    },
+    {
+      "path": "chapters/R33-numeric-random-bits.zh-CN.md",
+      "sha256": "b19c5b798c03e5c779e637f44e21859a0da0daca0606752546b8d66fa7236c66"
+    },
+    {
+      "path": "chapters/R34-streams-files.zh-CN.md",
+      "sha256": "2ce4bf3bc6a887bfe45a10da40547e0a06a3a7891e2b226aa1b689b1bb134d9e"
+    },
+    {
+      "path": "chapters/R35-filesystem.zh-CN.md",
+      "sha256": "c30ce933ef04d4662b0165a932d5ea210c6ddf6a8024734bb1effeb2b10017a7"
+    },
+    {
+      "path": "catalog.json",
+      "sha256": "a449b107b9e9b56c68ac9f24a5a9d867459d4ed1b286341c0392b32e5d22cc71"
+    },
+    {
+      "path": "TOC.md",
+      "sha256": "298a5fb2a867d2697e34563f52f4d7e0fc05f9384be7ac4d43d3cfeef6a42512"
+    },
+    {
+      "path": "appendices.zh-CN.md",
+      "sha256": "48445fc6f4831c2c03f315cec990fd10c6dfafa3ae1bc3b8b2036a73b4dd62b0"
+    },
+    {
+      "path": "reading-guide.zh-CN.md",
+      "sha256": "0ca714681170de4ef947b59f584370ae0507b76a032df9c007bf3fc954154533"
+    },
+    {
+      "path": "EDITORIAL-SPEC.md",
+      "sha256": "e29dccf738b3fc2aaa807cd138f5e3f1c0ef063916a6edfb6b767f203c037666"
+    },
+    {
+      "path": "tools/handbook.css",
+      "sha256": "4707fd527b8defa9fc3323183ba745224f8aaa4d73545ee00e3bc24e1cfb856c"
+    },
+    {
+      "path": "tools/handbook-typography.mjs",
+      "sha256": "6fa81560d63cbb461e5e0bd7744902a204373ff2caa4b6d47df3209f6ed59c5a"
+    },
+    {
+      "path": "tools/document-model.mjs",
+      "sha256": "dfe9549d9522113b2fc3d399a90fa802bd428e4ca4a4f565c64fd790a555849d"
+    }
+  ],
+  "sectionCount": 35,
+  "chapterCount": 7,
+  "date": "2026-10-10"
+}

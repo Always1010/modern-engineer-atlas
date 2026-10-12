@@ -1,0 +1,61 @@
+{
+  "chapter": "R19",
+  "source": "chapters/R19-time-files.zh-CN.md",
+  "references": [
+    {
+      "heading": "std::chrono::time_point",
+      "label": "N4659 time_point",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/time.point"
+    },
+    {
+      "heading": "std::chrono::steady_clock",
+      "label": "N4659 steady_clock",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/time.clock.steady"
+    },
+    {
+      "heading": "std::chrono::system_clock",
+      "label": "N4659 system_clock",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/time.clock.system"
+    },
+    {
+      "heading": "std::chrono::system_clock",
+      "label": "N4861 system_clock",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/time.clock.system"
+    },
+    {
+      "heading": "std::chrono::high_resolution_clock",
+      "label": "N4659 clocks",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/time.clock"
+    },
+    {
+      "heading": "duration_cast、time_point_cast 与舍入",
+      "label": "N4659 duration",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/time.duration"
+    },
+    {
+      "heading": "日历类型与 std::chrono::year_month_day",
+      "label": "N4861 calendars",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/time.cal"
+    },
+    {
+      "heading": "std::chrono::zoned_time 与时间区",
+      "label": "N4861 time zones",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/time.zone"
+    },
+    {
+      "heading": "组合应用与参考资料",
+      "label": "cppreference chrono",
+      "url": "https://en.cppreference.com/w/cpp/chrono.html"
+    },
+    {
+      "heading": "std::chrono::duration",
+      "label": "N4659 ratio 编译期有理数",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/ratio"
+    },
+    {
+      "heading": "std::chrono::duration",
+      "label": "N4659 duration 刻度",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/time.duration"
+    }
+  ]
+}
