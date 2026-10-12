@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="780" height="240" viewBox="0 0 780 240" role="img" aria-labelledby="title desc">
+<title id="title">初始化建立对象，赋值修改对象</title><desc id="desc">三步依次为建立 count 值为3，赋值使 count 为5，建立独立的 saved 值为5。执行箭头不表示对象地址。</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="#365f9c"/></marker></defs>
+<rect width="780" height="240" rx="10" fill="#f7f9fd"/>
+<g font-family="Microsoft YaHei, sans-serif" fill="#26364a" text-anchor="middle">
+<text x="135" y="38" font-size="19">建立 count</text><text x="390" y="38" font-size="19">修改 count</text><text x="645" y="38" font-size="19">建立 saved</text>
+<rect x="50" y="66" width="170" height="62" rx="5" fill="#eaf0fa" stroke="#365f9c"/><text x="135" y="105" font-size="21">count = 3</text>
+<rect x="305" y="66" width="170" height="62" rx="5" fill="#eaf0fa" stroke="#365f9c"/><text x="390" y="105" font-size="21">count = 5</text>
+<rect x="560" y="66" width="170" height="62" rx="5" fill="#eaf0fa" stroke="#365f9c"/><text x="645" y="105" font-size="21">count = 5</text>
+<rect x="560" y="148" width="170" height="54" rx="5" fill="#f0ecf8" stroke="#7053a0"/><text x="645" y="182" font-size="21">saved = 5</text>
+<text x="135" y="178" font-size="17">新对象的初始值</text><text x="390" y="178" font-size="17">同一对象的新值</text>
+</g><path d="M230 97H293M485 97H548" stroke="#365f9c" stroke-width="2" marker-end="url(#arrow)" fill="none"/>
+</svg>

@@ -1,0 +1,136 @@
+{
+  "chapter": "R07",
+  "source": "chapters/R07-classes-lifetime.zh-CN.md",
+  "references": [
+    {
+      "heading": "类成员的大小与对齐",
+      "label": "对象表示",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.types"
+    },
+    {
+      "heading": "类成员的大小与对齐",
+      "label": "对齐",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.align"
+    },
+    {
+      "heading": "类对象的初始化类别",
+      "label": "C++17 初始化",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.init"
+    },
+    {
+      "heading": "类对象的初始化类别",
+      "label": "列表初始化",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.init.list"
+    },
+    {
+      "heading": "聚合初始化与成员默认值",
+      "label": "C++17 聚合",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.init.aggr"
+    },
+    {
+      "heading": "聚合初始化与成员默认值",
+      "label": "C++20 聚合",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/dcl.init.aggr"
+    },
+    {
+      "heading": "类层次中的 static_cast",
+      "label": "static_cast 规则",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.static.cast"
+    },
+    {
+      "heading": "dynamic_cast",
+      "label": "dynamic_cast 规则",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.dynamic.cast"
+    },
+    {
+      "heading": "引用成员与临时对象寿命",
+      "label": "C++17 临时对象",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/class.temporary"
+    },
+    {
+      "heading": "引用成员与临时对象寿命",
+      "label": "C++20 临时对象",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/class.temporary"
+    },
+    {
+      "heading": "虚函数调用的默认实参",
+      "label": "默认实参",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.fct.default"
+    },
+    {
+      "heading": "虚函数调用的默认实参",
+      "label": "重载决议",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/over.match"
+    },
+    {
+      "heading": "lambda 的类成员捕获",
+      "label": "C++17 lambda",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.prim.lambda"
+    },
+    {
+      "heading": "class、struct 与访问控制",
+      "label": "C++17 类",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/class"
+    },
+    {
+      "heading": "class、struct 与访问控制",
+      "label": "成员访问",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/class.access"
+    },
+    {
+      "heading": "运算符重载与 friend",
+      "label": "C++17 重载运算符",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/over.oper"
+    },
+    {
+      "heading": "运算符重载与 friend",
+      "label": "friend",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/class.friend"
+    },
+    {
+      "heading": "构造函数与成员初始化",
+      "label": "构造与初始化",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/class.base.init"
+    },
+    {
+      "heading": "特殊成员函数",
+      "label": "特殊成员",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/special"
+    },
+    {
+      "heading": "特殊成员函数",
+      "label": "拷贝与移动",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/class.copy"
+    },
+    {
+      "heading": "构造与销毁顺序",
+      "label": "构造顺序",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/class.base.init"
+    },
+    {
+      "heading": "构造与销毁顺序",
+      "label": "构造失败",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/except.ctor"
+    },
+    {
+      "heading": "虚函数、override 与 final",
+      "label": "虚函数",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/class.virtual"
+    },
+    {
+      "heading": "虚函数、override 与 final",
+      "label": "构造析构中的调用",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/class.cdtor"
+    },
+    {
+      "heading": "抽象类与虚析构",
+      "label": "抽象类",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/class.abstract"
+    },
+    {
+      "heading": "抽象类与虚析构",
+      "label": "delete",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.delete"
+    }
+  ]
+}

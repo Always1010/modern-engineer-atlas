@@ -1,0 +1,108 @@
+/* Canonical blue handbook stylesheet. Screen and print share semantic rules. */
+:root { color-scheme:light; --ink:#26364a; --muted:#707887; --accent:#365f9c; --line:#cad8ec; --paper:#fffefb; }
+* { box-sizing:border-box; }
+body { margin:0;background:#e9edf4;color:var(--ink);font-family:"SimSun","Noto Serif CJK SC",serif;font-size:17px;line-height:1.85; }
+.layout { display:grid;grid-template-columns:220px minmax(0,870px);max-width:1160px;gap:30px;margin:36px auto;padding:0 20px;align-items:start; }
+main { min-width:0;background:var(--paper);padding:50px 56px;box-shadow:0 8px 36px #26364a0b; }
+nav { position:sticky;top:20px;max-height:calc(100vh - 40px);overflow:auto;font-family:"Microsoft YaHei",sans-serif;font-size:12px;line-height:1.6; }
+nav p { font-size:16px;font-weight:600; }
+nav a { display:block;padding:4px 0;color:var(--muted);text-decoration:none; }
+nav details { margin:7px 0; } nav summary { cursor:pointer; } nav summary a { display:inline; } nav details div { padding:4px 0 6px 12px; }
+a { color:inherit;text-decoration:none; } a:hover { color:var(--accent);text-decoration:underline;text-underline-offset:3px; }
+h1,h2,h3,h4 { font-family:"Microsoft YaHei","Noto Sans CJK SC",sans-serif;color:var(--ink);line-height:1.4;scroll-margin-top:24px; }
+h1 { font-size:31px;margin:0 0 24px; }
+h2 { font-size:21px;margin:36px 0 14px; }
+h3 { font-size:18px;margin:26px 0 10px; }
+h4 { font-size:17px;margin:24px 0 10px; }
+p { margin:12px 0; } ul,ol { padding-left:24px; } li { margin:4px 0; }
+.edition-label { font-family:"Segoe UI","Microsoft YaHei",sans-serif;color:var(--muted);font-size:12px;margin:0 0 7px; }
+.cover { padding:50px 0 65px; } .cover h1 { font-size:36px; } .subtitle { color:var(--muted);font-size:20px; }
+.contents { margin-bottom:40px; } .contents ol { list-style:none;padding:0; } .contents h2 { font-size:18px; } .contents a { display:block; } .contents .pdf-page { float:right; }
+.chapter-opener { position:relative;padding:35px 0 48px;border-bottom:1px solid var(--line);margin-bottom:48px;scroll-margin-top:24px; }
+.chapter-opener::before { content:"";display:block;width:54px;height:5px;background:var(--accent);margin-bottom:30px; }
+.chapter-number { font-family:"Microsoft YaHei",sans-serif;font-size:104px;line-height:1;letter-spacing:-.07em;font-weight:700;color:#dfe8f6;position:absolute;top:22px;right:2px; }
+.chapter-label { font-family:"Microsoft YaHei",sans-serif;color:var(--accent);font-size:24px;font-weight:600;margin:0 0 12px; }
+.chapter-name { position:relative;max-width:80%;font-size:38px;margin:0 0 28px;letter-spacing:.02em; }
+.chapter-deck { max-width:31em;margin-bottom:40px;font-size:17px;line-height:1.9; }
+.chapter-map { position:relative;border-top:1px solid var(--line); }
+.chapter-map a { display:grid;grid-template-columns:48px 1fr;padding:13px 0;border-bottom:1px solid var(--line);align-items:baseline; }
+.map-number { font-family:"Microsoft YaHei",sans-serif;color:var(--accent);font-size:15px;font-weight:600; }
+.map-title { font-family:"Microsoft YaHei",sans-serif;font-size:15px; }
+.book-section { margin:45px 0 55px; }
+.section-kicker { font-family:"Microsoft YaHei",sans-serif;color:var(--accent);font-size:12px;margin:0 0 14px; }
+.book-section > h2 { display:flex;gap:14px;align-items:baseline;font-size:31px;margin:0 0 20px; }
+.book-section h3 { display:flex;gap:14px;align-items:baseline;font-size:21px;line-height:1.45;margin:36px 0 14px; }
+.section-number,.topic-number { font-family:inherit;color:var(--accent);font-size:inherit;font-weight:inherit;white-space:nowrap; }
+.section-toc { font-family:"Microsoft YaHei",sans-serif;font-size:12px;line-height:1.65;color:var(--muted);border-left:2px solid var(--line);padding-left:14px;margin:16px 0 24px; }
+.section-toc a { display:inline-block;margin:3px 12px 3px 0; }
+.chapter-intro { margin:0 0 20px; }
+.chapter-meta { font-family:"Microsoft YaHei",sans-serif;font-size:12px;line-height:1.75;color:var(--muted);padding:10px 0 10px 13px;border-left:2px solid #a9bdd9;margin:0 0 28px; }
+.version-chip { font-family:"Segoe UI",sans-serif;display:inline-block;color:#47668e;font-size:.9em;margin-right:7px;padding:0 6px;border:1px solid #c6d4e8;border-radius:3px;background:#fcfdff;line-height:1.5;vertical-align:1px; }
+code { font-family:Consolas,"Microsoft YaHei",monospace;font-size:.88em;overflow-wrap:anywhere; }
+.prose-english,code.prose-code { font-family:"Segoe UI","Microsoft YaHei",sans-serif;font-size:.96em;font-weight:400; }
+article code.prose-code { color:var(--accent); }
+article strong { font-family:"Microsoft YaHei",sans-serif;font-size:.96em;font-weight:600; }
+article strong code.prose-code { font-size:1em;font-weight:600; }
+strong .prose-english,h1 .prose-english,h2 .prose-english,h3 .prose-english,h4 .prose-english { font-weight:inherit; }
+article .chapter-meta strong { font-weight:400; }
+pre { border:1px solid #d4deed;border-left:2px solid #a9bdd9;border-radius:3px;background:#f1f5fc;padding:15px 18px;margin:14px 0 18px;font-size:14px;line-height:1.6;overflow:auto; }
+pre code { font-size:1em;white-space:pre;overflow-wrap:normal; }
+.syntax-comment { color:var(--muted); } .syntax-keyword { color:var(--accent);font-weight:600; } .syntax-type { color:#7053a0;font-weight:500; }
+.syntax-number { color:#8b6740; } .syntax-string { color:#805b44; }
+.table-wrap { overflow-x:auto;margin:15px 0; }
+table { border-collapse:collapse;width:100%;font-family:"Microsoft YaHei",sans-serif;font-size:13px;line-height:1.7; }
+th,td { border:0;border-bottom:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top;overflow-wrap:anywhere; }
+th { background:#eaf0fa;font-weight:600; }
+article tbody td,article tbody td code.prose-code,article tbody td strong,article tbody td .prose-english { color:var(--ink);font-weight:400; }
+.version-table th:first-child,.version-table td:first-child { white-space:nowrap; }
+#appendices td:first-child { width:42%; }
+figure { margin:26px 0; } figure img { max-width:100%;height:auto;display:block; }
+figcaption { font-family:"Microsoft YaHei",sans-serif;font-size:12px;color:var(--muted);line-height:1.65;margin-top:10px; }
+.pdf-page { white-space:nowrap;font-family:"Segoe UI",sans-serif;font-variant-numeric:tabular-nums;font-size:.85em;margin-left:.5em;color:var(--muted); }
+@media(max-width:1050px) { .layout { display:block; } nav { position:static;max-height:none;margin-bottom:25px; } main { padding:35px; } }
+@media(max-width:560px) { body { font-size:16px; } .layout { padding:0 8px;margin:12px auto; } main { padding:25px 18px; } .chapter-name { font-size:29px; } .chapter-number { font-size:76px; } .chapter-deck { margin-top:35px; } .book-section > h2 { font-size:27px; } .book-section h3 { font-size:20px;gap:9px; } table { min-width:480px; } }
+@page { size:A4;margin:21mm 18mm 19mm; }
+@media print {
+ body { background:white;font-size:10.7pt;line-height:1.62; }
+ .layout { display:block;margin:0;padding:0;max-width:none; } nav { display:none; } main { background:white;padding:0;box-shadow:none; }
+ h1 { font-size:23pt; } h2 { font-size:13.5pt;margin:18pt 0 8pt; } h3,h4 { font-size:11.5pt;margin:15pt 0 7pt; }
+ h1,h2,h3,h4 { break-after:avoid; } p,li { orphans:3;widows:3; } p { margin:7pt 0; }
+ p:has(+pre),p:has(+.table-wrap),p:has(+figure) { break-after:avoid; }
+ .edition-label { font-size:8.5pt; }
+ .cover { height:240mm;padding-top:40mm;break-after:page; } .cover h1 { font-size:28pt; } .subtitle { font-size:13pt; }
+ .contents { break-after:page;margin:0; } .contents section { break-inside:avoid; } .contents h2 { font-size:12pt;margin:12pt 0 6pt; } .contents li { font-size:10pt; }
+ .chapter-opener { break-before:page;height:auto;min-height:247mm;padding:12mm 0 0;margin:0;border:0;break-after:page; }
+ .chapter-opener::before { width:15mm;height:1.4mm;margin-bottom:12mm; }
+ .chapter-number { font-size:108pt;top:9mm;right:2mm; }
+ .chapter-label { font-size:19pt;margin-bottom:10pt; } .chapter-name { font-size:30pt;margin:0 0 20pt; }
+ .chapter-deck { font-size:12pt;line-height:1.9;max-width:112mm;margin:0 0 14mm; }
+ .chapter-map a { grid-template-columns:16mm 1fr;padding:8pt 0; } .map-number,.map-title { font-size:12pt; }
+ .book-section { margin:0 0 27pt;break-before:page; } .book-section > .section-kicker { display:none; }
+ .book-section > h2 { font-size:23pt;margin:0 0 15pt; } .book-section h3 { font-size:13.5pt;margin:18pt 0 8pt;gap:11pt; }
+ .book-section h3,.book-section h4 { break-before:auto; }
+ .chapter-opener + .book-section { margin-top:0; }
+ .section-toc { font-size:8.5pt;margin:10pt 0 14pt; } .section-toc a { margin:2pt 8pt 2pt 0; }
+ .chapter-intro { margin-bottom:12pt; } .chapter-meta { font-size:8.5pt;margin:0 0 17pt;padding:5pt 0 5pt 9pt; }
+ pre { font-size:9pt;line-height:1.55;padding:9pt 11pt;margin:9pt 0 11pt;border-radius:2pt;overflow:visible;break-inside:avoid; }
+ pre.long-code { break-inside:auto; } pre code { white-space:pre-wrap;overflow-wrap:break-word; }
+ .table-wrap { overflow:visible;margin:10pt 0; } .compact-table { break-inside:avoid; }
+ table { font-size:9pt;line-height:1.5;min-width:0; } th,td { padding:5pt 6pt; }
+ thead { display:table-header-group; } tr { break-inside:avoid; } tbody tr:first-child,tbody tr:nth-last-child(2) { break-after:avoid; }
+ .section-opening { break-inside:avoid; }
+ .section-closing { break-inside:avoid; }
+ figure { break-inside:avoid;margin:15pt 0; } figure img { max-height:170mm;margin:auto; }
+ figcaption { font-size:8pt;line-height:1.6;margin-top:7pt; }
+ .appendices { break-before:page; }
+ a { color:inherit;text-decoration:none; }
+}
+
+.book-section h2 > span:last-child,.book-section h3 > span:last-child { min-width:0;overflow-wrap:anywhere; }
+article .prose-english { overflow-wrap:anywhere; }
+
+/* The chapter label belongs to its H1 so PDF bookmarks retain chapter numbers. */
+.chapter-heading { max-width:80%;font-size:38px;margin:0 0 28px; }
+.chapter-heading .chapter-label { display:block;line-height:1.85; }
+.chapter-heading .chapter-name { display:block;max-width:none;margin:0;font-size:inherit; }
+.contents-heading { font-family:"Microsoft YaHei",sans-serif;font-size:18px;font-weight:700;line-height:1.4;margin:36px 0 14px; }
+@media(max-width:560px) { .chapter-heading { font-size:29px; } }
+@media print { .chapter-heading { font-size:30pt;margin:0 0 20pt; } .chapter-heading .chapter-label { line-height:1.62; } .contents-heading { font-size:12pt;margin:12pt 0 6pt; } }

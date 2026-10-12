@@ -1,0 +1,31 @@
+{
+  "chapter": "R03",
+  "source": "chapters/R03-initialization-deduction.zh-CN.md",
+  "references": [
+    {
+      "heading": "初始化类别",
+      "label": "C++17 初始化",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.init"
+    },
+    {
+      "heading": "初始化类别",
+      "label": "列表初始化",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.init.list"
+    },
+    {
+      "heading": "auto",
+      "label": "auto 推导",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.spec.auto"
+    },
+    {
+      "heading": "decltype 与 decltype(auto)",
+      "label": "decltype",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.type.simple"
+    },
+    {
+      "heading": "const 与 constexpr",
+      "label": "C++17 constexpr",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.constexpr"
+    }
+  ]
+}

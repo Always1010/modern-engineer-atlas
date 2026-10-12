@@ -1,0 +1,61 @@
+{
+  "chapter": "R06",
+  "source": "chapters/R06-statements-functions.zh-CN.md",
+  "references": [
+    {
+      "heading": "静态初始化与局部 static",
+      "label": "静态初始化",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.start.static"
+    },
+    {
+      "heading": "静态初始化与局部 static",
+      "label": "动态初始化",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.start.dynamic"
+    },
+    {
+      "heading": "静态初始化与局部 static",
+      "label": "局部静态声明",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/stmt.dcl"
+    },
+    {
+      "heading": "范围 for",
+      "label": "C++17 范围 for",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/stmt.ranged"
+    },
+    {
+      "heading": "break、continue 与 return",
+      "label": "跳转语句",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/stmt.jump"
+    },
+    {
+      "heading": "参数与返回值",
+      "label": "函数调用",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.call"
+    },
+    {
+      "heading": "默认实参与函数重载",
+      "label": "默认实参",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.fct.default"
+    },
+    {
+      "heading": "默认实参与函数重载",
+      "label": "重载决议",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/over.match"
+    },
+    {
+      "heading": "lambda 捕获",
+      "label": "C++17 lambda",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.prim.lambda"
+    },
+    {
+      "heading": "std::invoke",
+      "label": "invoke 规则",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/func.invoke"
+    },
+    {
+      "heading": "std::function",
+      "label": "function 接口",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/func.wrap.func"
+    }
+  ]
+}

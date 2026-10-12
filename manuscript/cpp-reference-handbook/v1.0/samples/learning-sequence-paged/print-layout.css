@@ -1,0 +1,7 @@
+/* Review edition: chapters and sections start on new pages; topics flow. */
+@media print {
+  .chapter-opener { break-before:page; break-after:page; }
+  .book-section { break-before:page; margin-top:0; }
+  .book-section h3,.book-section h4 { break-before:auto; }
+  .section-closing { break-inside:avoid; }
+}

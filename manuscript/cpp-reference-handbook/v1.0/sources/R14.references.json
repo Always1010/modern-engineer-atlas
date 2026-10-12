@@ -1,0 +1,71 @@
+{
+  "chapter": "R14",
+  "source": "chapters/R14-associative-adaptors.zh-CN.md",
+  "references": [
+    {
+      "heading": "组合应用与参考资料",
+      "label": "cppreference containers",
+      "url": "https://en.cppreference.com/w/cpp/container.html"
+    },
+    {
+      "heading": "键等价、比较与哈希",
+      "label": "N4659 有序关联要求",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/associative.reqmts"
+    },
+    {
+      "heading": "键等价、比较与哈希",
+      "label": "N4659 无序关联要求",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/unord.req"
+    },
+    {
+      "heading": "有序索引：查找路径为什么取决于树高",
+      "label": "N4659 有序关联接口要求",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/associative.reqmts"
+    },
+    {
+      "heading": "有序索引：查找路径为什么取决于树高",
+      "label": "libstdc++ GCC 14.3 树实现",
+      "url": "https://gcc.gnu.org/onlinedocs/gcc-14.3.0/libstdc++/api/a00401_source.html"
+    },
+    {
+      "heading": "关联容器的共享操作",
+      "label": "N4659 map 访问",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/map.access"
+    },
+    {
+      "heading": "关联容器失效与哈希桶",
+      "label": "N4659 装载与重建",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/unord.req"
+    },
+    {
+      "heading": "桶、冲突与装载不是同一个指标",
+      "label": "N4659 无序容器桶与查找",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/unord.req"
+    },
+    {
+      "heading": "桶、冲突与装载不是同一个指标",
+      "label": "N4659 桶、装载与失效",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/unord.req"
+    },
+    {
+      "heading": "节点句柄",
+      "label": "N4659 节点句柄",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/container.node"
+    },
+    {
+      "heading": "堆的父子关系",
+      "label": "N4659 堆的下标关系",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/alg.heap.operations"
+    },
+    {
+      "heading": "std::set",
+      "label": "N4659 有序键等价",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/associative.reqmts"
+    },
+    {
+      "heading": "std::set",
+      "label": "N4659 pair 两成员",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/pairs"
+    }
+  ]
+}

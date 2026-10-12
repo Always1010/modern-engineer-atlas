@@ -1,0 +1,131 @@
+{
+  "chapter": "R27",
+  "source": "chapters/R27-linking-loading-libraries.zh-CN.md",
+  "references": [
+    {
+      "heading": "链接属性与 inline 定义",
+      "label": "C++17 链接属性",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.link"
+    },
+    {
+      "heading": "目标文件与链接产物",
+      "label": "ELF 符号表",
+      "url": "https://gabi.xinuos.com/elf/05-symtab.html"
+    },
+    {
+      "heading": "目标文件与链接产物",
+      "label": "PE/COFF 格式",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/debug/pe-format"
+    },
+    {
+      "heading": "符号与名称修饰",
+      "label": "Microsoft 修饰名",
+      "url": "https://learn.microsoft.com/en-us/cpp/build/reference/decorated-names?view=msvc-170"
+    },
+    {
+      "heading": "符号与名称修饰",
+      "label": "语言链接",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.link"
+    },
+    {
+      "heading": "符号与名称修饰",
+      "label": "ODR",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.def.odr"
+    },
+    {
+      "heading": "静态库：创建与链接",
+      "label": "GNU ar",
+      "url": "https://sourceware.org/binutils/docs/binutils/ar.html"
+    },
+    {
+      "heading": "归档成员抽取与顺序",
+      "label": "GNU ld 归档与组",
+      "url": "https://sourceware.org/binutils/docs/ld/Options.html"
+    },
+    {
+      "heading": "共享库、DLL 与导入库",
+      "label": "GCC 代码生成",
+      "url": "https://gcc.gnu.org/onlinedocs/gcc/Code-Gen-Options.html"
+    },
+    {
+      "heading": "共享库、DLL 与导入库",
+      "label": "PE 导入与导出",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/debug/pe-format"
+    },
+    {
+      "heading": "导出可见性与接口标注",
+      "label": "GCC visibility",
+      "url": "https://gcc.gnu.org/onlinedocs/gcc/Code-Gen-Options.html"
+    },
+    {
+      "heading": "节、段与进程映像",
+      "label": "ELF 程序装载",
+      "url": "https://gabi.xinuos.com/elf/07-pheader.html"
+    },
+    {
+      "heading": "重定位、PIC、PIE 与绑定",
+      "label": "ELF 重定位",
+      "url": "https://gabi.xinuos.com/elf/06-reloc.html"
+    },
+    {
+      "heading": "重定位、PIC、PIE 与绑定",
+      "label": "ELF 动态链接",
+      "url": "https://gabi.xinuos.com/elf/08-dynamic.html"
+    },
+    {
+      "heading": "Linux ELF/glibc：运行搜索",
+      "label": "ld.so",
+      "url": "https://man7.org/linux/man-pages/man8/ld.so.8.html"
+    },
+    {
+      "heading": "Windows：DLL 搜索",
+      "label": "Windows DLL 搜索顺序",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/dlls/dynamic-link-library-search-order"
+    },
+    {
+      "heading": "Linux/POSIX：dlopen、dlsym 与 dlclose",
+      "label": "dlopen/dlclose",
+      "url": "https://man7.org/linux/man-pages/man3/dlopen.3.html"
+    },
+    {
+      "heading": "Linux/POSIX：dlopen、dlsym 与 dlclose",
+      "label": "dlsym",
+      "url": "https://man7.org/linux/man-pages/man3/dlsym.3.html"
+    },
+    {
+      "heading": "Windows：LoadLibraryExW、GetProcAddress 与 FreeLibrary",
+      "label": "LoadLibraryExW",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-loadlibraryexw"
+    },
+    {
+      "heading": "Windows：LoadLibraryExW、GetProcAddress 与 FreeLibrary",
+      "label": "GetProcAddress",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-getprocaddress"
+    },
+    {
+      "heading": "Windows：LoadLibraryExW、GetProcAddress 与 FreeLibrary",
+      "label": "FreeLibrary",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-freelibrary"
+    },
+    {
+      "heading": "ABI 与所有权边界",
+      "label": "Microsoft x64 调用约定",
+      "url": "https://learn.microsoft.com/en-us/cpp/build/x64-calling-convention?view=msvc-170"
+    },
+    {
+      "heading": "ABI 与所有权边界",
+      "label": "DLL 与 CRT 对象",
+      "url": "https://learn.microsoft.com/en-us/cpp/c-runtime-library/potential-errors-passing-crt-objects-across-dll-boundaries?view=msvc-170"
+    },
+    {
+      "heading": "二进制调查工具",
+      "label": "GNU 工具",
+      "url": "https://sourceware.org/binutils/docs/binutils/"
+    },
+    {
+      "heading": "二进制调查工具",
+      "label": "DUMPBIN",
+      "url": "https://learn.microsoft.com/en-us/cpp/build/reference/dumpbin-reference?view=msvc-170"
+    }
+  ]
+}

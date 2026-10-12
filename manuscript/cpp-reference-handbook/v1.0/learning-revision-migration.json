@@ -1,0 +1,6976 @@
+{
+  "baselineDate": "2026-10-10",
+  "sections": 35,
+  "originalTopics": 478,
+  "mappings": [
+    {
+      "sourceId": "R01",
+      "oldHeading": "源文件与 main",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R01",
+          "heading": "源文件与 main"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R01",
+      "oldHeading": "编译与运行命令",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R01",
+          "heading": "编译与运行命令"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R01",
+      "oldHeading": "翻译单元与构建阶段",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R01",
+          "heading": "翻译单元与构建阶段"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R01",
+      "oldHeading": "声明与定义",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R01",
+          "heading": "声明与定义"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R01",
+      "oldHeading": "作用域、命名空间与链接属性",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R01",
+          "heading": "作用域、命名空间与链接属性"
+        },
+        {
+          "chapter": "R27",
+          "heading": "链接属性与 inline 定义"
+        }
+      ],
+      "action": "拆分",
+      "reason": "const、volatile、inline和匿名命名空间规则放在类型限定与多文件构建之后查阅。"
+    },
+    {
+      "sourceId": "R01",
+      "oldHeading": "头文件与包含保护",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R01",
+          "heading": "头文件与包含保护"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R01",
+      "oldHeading": "单一定义规则与多文件程序",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R01",
+          "heading": "单一定义规则与多文件程序"
+        },
+        {
+          "chapter": "R10",
+          "heading": "类、模板与 inline 的单一定义规则"
+        }
+      ],
+      "action": "拆分",
+      "reason": "完整ODR条件需要类、模板及名字查找，普通函数多文件组织仍在R01。"
+    },
+    {
+      "sourceId": "R01",
+      "oldHeading": "GDB 最小调试会话",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R01",
+          "heading": "GDB 最小调试会话"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R01",
+      "oldHeading": "构建诊断",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R01",
+          "heading": "构建诊断"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R02",
+      "oldHeading": "基础类型分类",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R02",
+          "heading": "基础类型分类"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R02",
+      "oldHeading": "整数类型的大小与范围",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R02",
+          "heading": "整数类型的大小与范围"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R02",
+      "oldHeading": "字符、布尔与空指针类型",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R02",
+          "heading": "字符、布尔与空指针类型"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R02",
+      "oldHeading": "浮点类型",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R02",
+          "heading": "浮点类型"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R02",
+      "oldHeading": "类型性质查询与定宽整数",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R02",
+          "heading": "类型性质查询与定宽整数"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R02",
+      "oldHeading": "枚举类型",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R02",
+          "heading": "枚举类型"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R02",
+      "oldHeading": "数组与类型别名",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R02",
+          "heading": "数组与类型别名"
+        },
+        {
+          "chapter": "R05",
+          "heading": "数组身份与指针转换"
+        }
+      ],
+      "action": "拆分",
+      "reason": "数组元素和别名留R02，转换/数组引用/长度接口在借用之后。"
+    },
+    {
+      "sourceId": "R02",
+      "oldHeading": "存储期、对象生命周期与作用域",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R02",
+          "heading": "存储期、对象生命周期与作用域"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R02",
+      "oldHeading": "常见进程存储区域",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R02",
+          "heading": "常见进程存储区域"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R02",
+      "oldHeading": "sizeof、alignof 与对象表示",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R02",
+          "heading": "sizeof、alignof 与对象表示"
+        },
+        {
+          "chapter": "R07",
+          "heading": "类成员的大小与对齐"
+        }
+      ],
+      "action": "拆分",
+      "reason": "整数sizeof/alignof留R02，结构成员查询例在成员定义之后。"
+    },
+    {
+      "sourceId": "R02",
+      "oldHeading": "类型特征与字节复制",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R10",
+          "heading": "类型特征与字节复制"
+        }
+      ],
+      "action": "迁移",
+      "reason": "平凡可复制特征和静态断言需要简单类、模板实例和static_assert。"
+    },
+    {
+      "sourceId": "R02",
+      "oldHeading": "placement new 与存储重用",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R09",
+          "heading": "placement new 与存储重用"
+        }
+      ],
+      "action": "迁移",
+      "reason": "手工构造需要普通new、构造析构及基本指针。"
+    },
+    {
+      "sourceId": "R02",
+      "oldHeading": "对象复制与序列化",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R02",
+          "heading": "对象复制与序列化"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R02",
+      "oldHeading": "结构化绑定",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R17",
+          "heading": "结构化绑定"
+        }
+      ],
+      "action": "迁移",
+      "reason": "数组、auto、引用、简单类与tuple已有正常入口后再拆解。"
+    },
+    {
+      "sourceId": "R03",
+      "oldHeading": "初始化类别",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R03",
+          "heading": "初始化类别"
+        },
+        {
+          "chapter": "R07",
+          "heading": "类对象的初始化类别"
+        }
+      ],
+      "action": "拆分",
+      "reason": "原完整分类中的类语义接在构造函数后；整数对应表留在R03。"
+    },
+    {
+      "sourceId": "R03",
+      "oldHeading": "默认初始化与值初始化",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R03",
+          "heading": "默认初始化与值初始化"
+        },
+        {
+          "chapter": "R07",
+          "heading": "类对象的默认初始化与值初始化"
+        }
+      ],
+      "action": "拆分",
+      "reason": "用户提供默认构造和聚合零值须认识类后展开。"
+    },
+    {
+      "sourceId": "R03",
+      "oldHeading": "直接初始化与拷贝初始化",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R07",
+          "heading": "直接初始化与拷贝初始化"
+        }
+      ],
+      "action": "迁移",
+      "reason": "explicit和类构造选择放在构造函数之后。"
+    },
+    {
+      "sourceId": "R03",
+      "oldHeading": "列表初始化与窄化",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R03",
+          "heading": "列表初始化与窄化"
+        },
+        {
+          "chapter": "R07",
+          "heading": "类的列表初始化与构造选择"
+        }
+      ],
+      "action": "拆分",
+      "reason": "类的列表重载优先级与explicit需构造基础；数值窄化完整条件留R03。"
+    },
+    {
+      "sourceId": "R03",
+      "oldHeading": "initializer_list 与构造选择",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R13",
+          "heading": "initializer_list 与构造选择"
+        }
+      ],
+      "action": "迁移",
+      "reason": "列表与数量构造差异和不可拷贝元素接在vector普通构造、资源所有权之后。"
+    },
+    {
+      "sourceId": "R03",
+      "oldHeading": "聚合初始化与成员默认值",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R07",
+          "heading": "聚合初始化与成员默认值"
+        }
+      ],
+      "action": "迁移",
+      "reason": "聚合条件及C++20成员指定初始化接在简单类成员之后。"
+    },
+    {
+      "sourceId": "R03",
+      "oldHeading": "auto",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R03",
+          "heading": "auto"
+        },
+        {
+          "chapter": "R10",
+          "heading": "auto 的完整推导与列表初值"
+        }
+      ],
+      "action": "拆分",
+      "reason": "数组衰变、引用折叠和转发引用需要函数模板；按值auto和基本auto&留R03。"
+    },
+    {
+      "sourceId": "R03",
+      "oldHeading": "decltype 与 decltype(auto)",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R03",
+          "heading": "decltype 与 decltype(auto)"
+        },
+        {
+          "chapter": "R10",
+          "heading": "decltype 与 decltype(auto) 的完整推导"
+        }
+      ],
+      "action": "拆分",
+      "reason": "完整三类查询和返回借用须已学引用、值类别与函数。"
+    },
+    {
+      "sourceId": "R03",
+      "oldHeading": "推导返回类型",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R06",
+          "heading": "推导返回类型"
+        }
+      ],
+      "action": "迁移",
+      "reason": "返回类型推导接在普通按值函数之后。"
+    },
+    {
+      "sourceId": "R03",
+      "oldHeading": "const 与 constexpr",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R03",
+          "heading": "const 与 constexpr"
+        },
+        {
+          "chapter": "R10",
+          "heading": "constexpr、consteval 与 constinit"
+        }
+      ],
+      "action": "拆分",
+      "reason": "常量函数放在普通函数之后，const基本只读访问留R03。"
+    },
+    {
+      "sourceId": "R03",
+      "oldHeading": "consteval 与 constinit",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R10",
+          "heading": "constexpr、consteval 与 constinit"
+        }
+      ],
+      "action": "迁移",
+      "reason": "与constexpr共同比较；保留C++20和静态存储期条件。"
+    },
+    {
+      "sourceId": "R03",
+      "oldHeading": "静态初始化与局部 static",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R06",
+          "heading": "静态初始化与局部 static"
+        }
+      ],
+      "action": "迁移",
+      "reason": "先认识函数体与重复调用；返回引用改按值计数，原共享引用接口由R05承接。"
+    },
+    {
+      "sourceId": "R04",
+      "oldHeading": "运算符分类",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R04",
+          "heading": "运算符分类"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R04",
+      "oldHeading": "算术运算符",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R04",
+          "heading": "算术运算符"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R04",
+      "oldHeading": "比较与逻辑运算符",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R04",
+          "heading": "比较与逻辑运算符"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R04",
+      "oldHeading": "位运算与移位",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R04",
+          "heading": "位运算与移位"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R04",
+      "oldHeading": "赋值、自增与自减",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R04",
+          "heading": "赋值、自增与自减"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R04",
+      "oldHeading": "条件运算符与逗号运算符",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R04",
+          "heading": "条件运算符与逗号运算符"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R04",
+      "oldHeading": "优先级与结合性",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R04",
+          "heading": "优先级与结合性"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R04",
+      "oldHeading": "求值顺序与副作用",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R04",
+          "heading": "求值顺序与副作用"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R04",
+      "oldHeading": "值类别",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R04",
+          "heading": "值类别"
+        },
+        {
+          "chapter": "R08",
+          "heading": "值类别"
+        },
+        {
+          "chapter": "R10",
+          "heading": "值类别与类型查询"
+        }
+      ],
+      "action": "拆分",
+      "reason": "五类关系及临时物化在基本引用和std::move之后。"
+    },
+    {
+      "sourceId": "R04",
+      "oldHeading": "隐式转换",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R04",
+          "heading": "隐式转换"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R04",
+      "oldHeading": "整数提升与通常算术转换",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R04",
+          "heading": "整数提升与通常算术转换"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R04",
+      "oldHeading": "数值转换与窄化",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R04",
+          "heading": "数值转换与窄化"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R04",
+      "oldHeading": "显式转换分类",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R04",
+          "heading": "显式转换分类"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R04",
+      "oldHeading": "static_cast",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R04",
+          "heading": "static_cast"
+        },
+        {
+          "chapter": "R07",
+          "heading": "类层次中的 static_cast"
+        }
+      ],
+      "action": "拆分",
+      "reason": "向上/向下转换条件需要基类和子对象。"
+    },
+    {
+      "sourceId": "R04",
+      "oldHeading": "dynamic_cast",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R07",
+          "heading": "dynamic_cast"
+        }
+      ],
+      "action": "迁移",
+      "reason": "完整多态转换必须在虚函数、继承和基本指针之后。"
+    },
+    {
+      "sourceId": "R04",
+      "oldHeading": "const_cast",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R05",
+          "heading": "const_cast"
+        }
+      ],
+      "action": "迁移",
+      "reason": "指针、普通函数和引用已有实际定义后再给转换或输出参数例。"
+    },
+    {
+      "sourceId": "R04",
+      "oldHeading": "reinterpret_cast",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R05",
+          "heading": "reinterpret_cast"
+        }
+      ],
+      "action": "迁移",
+      "reason": "指针、普通函数和引用已有实际定义后再给转换或输出参数例。"
+    },
+    {
+      "sourceId": "R04",
+      "oldHeading": "组合应用：有符号加法检查",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R05",
+          "heading": "组合应用：有符号加法检查"
+        }
+      ],
+      "action": "迁移",
+      "reason": "指针、普通函数和引用已有实际定义后再给转换或输出参数例。"
+    },
+    {
+      "sourceId": "R05",
+      "oldHeading": "指针声明、取址与解引用",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R05",
+          "heading": "指针声明、取址与解引用"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R05",
+      "oldHeading": "nullptr 与可选借用",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R05",
+          "heading": "nullptr 与可选借用"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R05",
+      "oldHeading": "左值引用与右值引用",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R05",
+          "heading": "左值引用与右值引用"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R05",
+      "oldHeading": "const 与多级指针",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R05",
+          "heading": "const 与多级指针"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R05",
+      "oldHeading": "数组区间与指针算术",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R05",
+          "heading": "数组区间与指针算术"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R05",
+      "oldHeading": "临时对象与寿命延长",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R05",
+          "heading": "临时对象与寿命延长"
+        },
+        {
+          "chapter": "R07",
+          "heading": "引用成员与临时对象寿命"
+        },
+        {
+          "chapter": "R12",
+          "heading": "字符串临时对象与借用寿命"
+        }
+      ],
+      "action": "拆分",
+      "reason": "new和聚合引用成员边界在成员/构造后，并回链R09分配规则。"
+    },
+    {
+      "sourceId": "R05",
+      "oldHeading": "返回借用与非拥有成员",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R05",
+          "heading": "返回借用与非拥有成员"
+        },
+        {
+          "chapter": "R07",
+          "heading": "返回借用与非拥有成员"
+        }
+      ],
+      "action": "拆分",
+      "reason": "成员借用和默认复制借用关系在类成员之后；string在局部明确用途。"
+    },
+    {
+      "sourceId": "R05",
+      "oldHeading": "类型访问与配套例子",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R05",
+          "heading": "类型访问与配套例子"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R06",
+      "oldHeading": "控制语句分类",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R06",
+          "heading": "控制语句分类"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R06",
+      "oldHeading": "if 与 else",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R06",
+          "heading": "if 与 else"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R06",
+      "oldHeading": "switch",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R06",
+          "heading": "switch"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R06",
+      "oldHeading": "for",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R06",
+          "heading": "for"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R06",
+      "oldHeading": "while 与 do-while",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R06",
+          "heading": "while 与 do-while"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R06",
+      "oldHeading": "范围 for",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R06",
+          "heading": "范围 for"
+        },
+        {
+          "chapter": "R05",
+          "heading": "范围 for 的引用元素"
+        }
+      ],
+      "action": "拆分",
+      "reason": "按值遍历先教；引用修改、auto&&和临时所有者边界在借用后展开。"
+    },
+    {
+      "sourceId": "R06",
+      "oldHeading": "break、continue 与 return",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R06",
+          "heading": "break、continue 与 return"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R06",
+      "oldHeading": "函数声明、定义与调用",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R06",
+          "heading": "函数声明、定义与调用"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R06",
+      "oldHeading": "参数与返回值",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R06",
+          "heading": "参数与返回值"
+        },
+        {
+          "chapter": "R05",
+          "heading": "引用与指针参数"
+        }
+      ],
+      "action": "拆分",
+      "reason": "按值留R06，引用和指针参数接在基本借用定义之后。"
+    },
+    {
+      "sourceId": "R06",
+      "oldHeading": "默认实参与函数重载",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R06",
+          "heading": "默认实参与函数重载"
+        },
+        {
+          "chapter": "R07",
+          "heading": "虚函数调用的默认实参"
+        }
+      ],
+      "action": "拆分",
+      "reason": "静态默认实参和动态分派的区别需要先学虚函数。"
+    },
+    {
+      "sourceId": "R06",
+      "oldHeading": "lambda 表达式",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R06",
+          "heading": "lambda 表达式"
+        },
+        {
+          "chapter": "R10",
+          "heading": "泛型 lambda"
+        }
+      ],
+      "action": "拆分",
+      "reason": "普通固定参数lambda先教，实例化语义在模板后。"
+    },
+    {
+      "sourceId": "R06",
+      "oldHeading": "lambda 捕获",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R06",
+          "heading": "lambda 捕获"
+        },
+        {
+          "chapter": "R07",
+          "heading": "lambda 的类成员捕获"
+        },
+        {
+          "chapter": "R09",
+          "heading": "拥有资源的 lambda 捕获"
+        }
+      ],
+      "action": "拆分",
+      "reason": "this和当前对象副本须先认识类成员。"
+    },
+    {
+      "sourceId": "R06",
+      "oldHeading": "函数对象与函数指针",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R07",
+          "heading": "函数对象"
+        },
+        {
+          "chapter": "R05",
+          "heading": "函数指针与无捕获 lambda"
+        }
+      ],
+      "action": "拆分",
+      "reason": "类调用运算符需成员函数与运算符基础。"
+    },
+    {
+      "sourceId": "R06",
+      "oldHeading": "std::invoke",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R06",
+          "heading": "std::invoke"
+        },
+        {
+          "chapter": "R10",
+          "heading": "std::invoke 的成员指针与转发接口"
+        }
+      ],
+      "action": "拆分",
+      "reason": "成员指针、参数包与转发返回接口在类和模板基础之后。"
+    },
+    {
+      "sourceId": "R06",
+      "oldHeading": "std::function",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R06",
+          "heading": "std::function"
+        },
+        {
+          "chapter": "R10",
+          "heading": "std::function 的签名模板"
+        }
+      ],
+      "action": "拆分",
+      "reason": "template声明及参数包摘要在模板语法之后。"
+    },
+    {
+      "sourceId": "R06",
+      "oldHeading": "延后回调与配套例子",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R06",
+          "heading": "延后回调与配套例子"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R07",
+      "oldHeading": "class、struct 与访问控制",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R07",
+          "heading": "class、struct 与访问控制"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R07",
+      "oldHeading": "数据成员、成员函数与 const",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R07",
+          "heading": "数据成员、成员函数与 const"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R07",
+      "oldHeading": "运算符重载与 friend",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R07",
+          "heading": "运算符重载与 friend"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R07",
+      "oldHeading": "构造函数与成员初始化",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R07",
+          "heading": "构造函数与成员初始化"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R07",
+      "oldHeading": "析构函数",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R07",
+          "heading": "析构函数"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R07",
+      "oldHeading": "特殊成员函数",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R07",
+          "heading": "特殊成员函数"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R07",
+      "oldHeading": "构造与销毁顺序",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R07",
+          "heading": "构造与销毁顺序"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R07",
+      "oldHeading": "组合与继承",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R07",
+          "heading": "组合与继承"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R07",
+      "oldHeading": "虚函数、override 与 final",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R07",
+          "heading": "虚函数、override 与 final"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R07",
+      "oldHeading": "抽象类与虚析构",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R07",
+          "heading": "抽象类与虚析构"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R07",
+      "oldHeading": "完整对象、子对象与多态实现",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R07",
+          "heading": "完整对象、子对象与多态实现"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R07",
+      "oldHeading": "切片、克隆与外部表示",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R09",
+          "heading": "切片、克隆与外部表示"
+        }
+      ],
+      "action": "迁移",
+      "reason": "将完整机制置于所依赖概念之后，保留代码、条件、配图与配套文件入口。"
+    },
+    {
+      "sourceId": "R07",
+      "oldHeading": "配套对象模型例子",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R07",
+          "heading": "配套对象模型例子"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R08",
+      "oldHeading": "拷贝与移动操作分类",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R08",
+          "heading": "拷贝与移动操作分类"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R08",
+      "oldHeading": "拷贝构造",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R08",
+          "heading": "拷贝构造"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R08",
+      "oldHeading": "拷贝赋值",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R08",
+          "heading": "拷贝赋值"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R08",
+      "oldHeading": "移动构造与移动赋值",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R08",
+          "heading": "移动构造与移动赋值"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R08",
+      "oldHeading": "std::move",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R08",
+          "heading": "std::move"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R08",
+      "oldHeading": "移动后状态与借用",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R08",
+          "heading": "移动后状态与借用"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R08",
+      "oldHeading": "转发引用与引用折叠",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R10",
+          "heading": "转发引用与引用折叠"
+        }
+      ],
+      "action": "迁移",
+      "reason": "将完整机制置于所依赖概念之后，保留代码、条件、配图与配套文件入口。"
+    },
+    {
+      "sourceId": "R08",
+      "oldHeading": "std::forward",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R10",
+          "heading": "std::forward"
+        }
+      ],
+      "action": "迁移",
+      "reason": "将完整机制置于所依赖概念之后，保留代码、条件、配图与配套文件入口。"
+    },
+    {
+      "sourceId": "R08",
+      "oldHeading": "拷贝消除与返回对象",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R08",
+          "heading": "拷贝消除与返回对象"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R08",
+      "oldHeading": "noexcept 与 move_if_noexcept",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R11",
+          "heading": "noexcept 与 move_if_noexcept"
+        }
+      ],
+      "action": "迁移",
+      "reason": "将完整机制置于所依赖概念之后，保留代码、条件、配图与配套文件入口。"
+    },
+    {
+      "sourceId": "R09",
+      "oldHeading": "RAII 资源对象",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R09",
+          "heading": "RAII 资源对象"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R09",
+      "oldHeading": "new 与 delete",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R09",
+          "heading": "new 与 delete"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R09",
+      "oldHeading": "智能指针分类",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R09",
+          "heading": "智能指针分类"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R09",
+      "oldHeading": "unique_ptr 构造与访问",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R09",
+          "heading": "unique_ptr 构造与访问"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R09",
+      "oldHeading": "unique_ptr 转移、reset 与 release",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R09",
+          "heading": "unique_ptr 转移、reset 与 release"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R09",
+      "oldHeading": "unique_ptr 数组与删除器",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R09",
+          "heading": "unique_ptr 数组与删除器"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R09",
+      "oldHeading": "shared_ptr 构造、共享与访问",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R09",
+          "heading": "shared_ptr 构造、共享与访问"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R09",
+      "oldHeading": "weak_ptr 构造、lock 与 expired",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R09",
+          "heading": "weak_ptr 构造、lock 与 expired"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R09",
+      "oldHeading": "make_unique、make_shared 与 allocate_shared",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R09",
+          "heading": "make_unique、make_shared 与 allocate_shared"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R09",
+      "oldHeading": "控制状态、循环与并发",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R09",
+          "heading": "控制状态、循环与并发"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R09",
+      "oldHeading": "enable_shared_from_this",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R09",
+          "heading": "enable_shared_from_this"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R09",
+      "oldHeading": "allocator 与 allocator_traits",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R09",
+          "heading": "allocator 与 allocator_traits"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R09",
+      "oldHeading": "memory_resource 与 polymorphic_allocator",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R09",
+          "heading": "memory_resource 与 polymorphic_allocator"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R09",
+      "oldHeading": "monotonic_buffer_resource 与池资源",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R09",
+          "heading": "monotonic_buffer_resource 与池资源"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R09",
+      "oldHeading": "配套所有权例子",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R09",
+          "heading": "配套所有权例子"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R10",
+      "oldHeading": "函数模板",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R10",
+          "heading": "函数模板"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R10",
+      "oldHeading": "类模板",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R10",
+          "heading": "类模板"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R10",
+      "oldHeading": "模板参数类别",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R10",
+          "heading": "模板参数类别"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R10",
+      "oldHeading": "模板实参推导",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R10",
+          "heading": "模板实参推导"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R10",
+      "oldHeading": "类模板实参推导",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R10",
+          "heading": "类模板实参推导"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R10",
+      "oldHeading": "实例化与定义可见性",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R10",
+          "heading": "实例化与定义可见性"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R10",
+      "oldHeading": "全特化与偏特化",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R10",
+          "heading": "全特化与偏特化"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R10",
+      "oldHeading": "依赖名、typename 与 template",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R10",
+          "heading": "依赖名、typename 与 template"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R10",
+      "oldHeading": "实参相关查找",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R10",
+          "heading": "实参相关查找"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R10",
+      "oldHeading": "参数包与折叠表达式",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R10",
+          "heading": "参数包与折叠表达式"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R10",
+      "oldHeading": "if constexpr 与 static_assert",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R10",
+          "heading": "if constexpr 与 static_assert"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R10",
+      "oldHeading": "SFINAE 与 enable_if",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R10",
+          "heading": "SFINAE 与 enable_if"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R10",
+      "oldHeading": "concepts 与 requires",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R10",
+          "heading": "concepts 与 requires"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R10",
+      "oldHeading": "模板诊断与配套例子",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R10",
+          "heading": "模板诊断与配套例子"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R11",
+      "oldHeading": "throw 与异常对象",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R11",
+          "heading": "throw 与异常对象"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R11",
+      "oldHeading": "try、catch 与重新抛出",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R11",
+          "heading": "try、catch 与重新抛出"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R11",
+      "oldHeading": "栈展开与构造失败",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R11",
+          "heading": "栈展开与构造失败"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R11",
+      "oldHeading": "标准异常类型",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R11",
+          "heading": "标准异常类型"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R11",
+      "oldHeading": "noexcept 说明符",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R11",
+          "heading": "noexcept 说明符"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R11",
+      "oldHeading": "noexcept 运算符",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R11",
+          "heading": "noexcept 运算符"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R11",
+      "oldHeading": "析构与终止边界",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R11",
+          "heading": "析构与终止边界"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R11",
+      "oldHeading": "error_code 与状态返回",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R11",
+          "heading": "error_code 与状态返回"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R11",
+      "oldHeading": "错误表示比较",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R11",
+          "heading": "错误表示比较"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R11",
+      "oldHeading": "异常安全保证",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R11",
+          "heading": "异常安全保证"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R11",
+      "oldHeading": "暂存与强保证提交",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R13",
+          "heading": "暂存与强保证提交"
+        }
+      ],
+      "action": "迁移",
+      "reason": "将完整机制置于所依赖概念之后，保留代码、条件、配图与配套文件入口。"
+    },
+    {
+      "sourceId": "R12",
+      "oldHeading": "字符串与视图分类",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R12",
+          "heading": "字符串与视图分类"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R12",
+      "oldHeading": "std::string",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R12",
+          "heading": "std::string"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R12",
+      "oldHeading": "string 的构造与初始化",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R12",
+          "heading": "string 的构造与初始化"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R12",
+      "oldHeading": "string 的访问与遍历",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R12",
+          "heading": "string 的访问与遍历"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R12",
+      "oldHeading": "string 的容量与修改",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R12",
+          "heading": "string 的容量与修改"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R12",
+      "oldHeading": "string 的查找、比较与截取",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R12",
+          "heading": "string 的查找、比较与截取"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R12",
+      "oldHeading": "string 的缓冲与失效",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R12",
+          "heading": "string 的缓冲与失效"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R12",
+      "oldHeading": "std::string_view",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R12",
+          "heading": "std::string_view"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R12",
+      "oldHeading": "string_view 的构造、访问与遍历",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R12",
+          "heading": "string_view 的构造、访问与遍历"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R12",
+      "oldHeading": "string_view 的截取、查找与比较",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R12",
+          "heading": "string_view 的截取、查找与比较"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R12",
+      "oldHeading": "string_view 的借用条件",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R12",
+          "heading": "string_view 的借用条件"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R12",
+      "oldHeading": "std::span",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R12",
+          "heading": "std::span"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R12",
+      "oldHeading": "span 的构造与访问",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R12",
+          "heading": "span 的构造与访问"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R12",
+      "oldHeading": "span 的子范围与失效",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R12",
+          "heading": "span 的子范围与失效"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R12",
+      "oldHeading": "C 字符串与 UTF-8",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R12",
+          "heading": "C 字符串与 UTF-8"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R12",
+      "oldHeading": "组合应用与参考资料",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R12",
+          "heading": "组合应用与参考资料"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R13",
+      "oldHeading": "顺序容器分类",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R13",
+          "heading": "顺序容器分类"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R13",
+      "oldHeading": "操作成本",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R13",
+          "heading": "操作成本"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R13",
+      "oldHeading": "复杂度与额外空间",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R13",
+          "heading": "复杂度与额外空间"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R13",
+      "oldHeading": "std::array",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R13",
+          "heading": "std::array"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R13",
+      "oldHeading": "array 的初始化、访问与遍历",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R13",
+          "heading": "array 的初始化、访问与遍历"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R13",
+      "oldHeading": "array 的修改与失效",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R13",
+          "heading": "array 的修改与失效"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R13",
+      "oldHeading": "std::vector",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R13",
+          "heading": "std::vector"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R13",
+      "oldHeading": "vector 的构造与初始化",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R13",
+          "heading": "vector 的构造与初始化"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R13",
+      "oldHeading": "vector 的访问与遍历",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R13",
+          "heading": "vector 的访问与遍历"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R13",
+      "oldHeading": "vector 的插入、删除与替换",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R13",
+          "heading": "vector 的插入、删除与替换"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R13",
+      "oldHeading": "vector 的核心接口",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R13",
+          "heading": "vector 的核心接口"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R13",
+      "oldHeading": "数量构造与初始化列表",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R13",
+          "heading": "数量构造与初始化列表"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R13",
+      "oldHeading": "reserve 与 resize",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R13",
+          "heading": "reserve 与 resize"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R13",
+      "oldHeading": "动态数组扩容",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R13",
+          "heading": "动态数组扩容"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R13",
+      "oldHeading": "vector 的失效与异常保证",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R13",
+          "heading": "vector 的失效与异常保证"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R13",
+      "oldHeading": "元素操作的异常保证",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R13",
+          "heading": "元素操作的异常保证"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R13",
+      "oldHeading": "顺序容器的遍历删除",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R13",
+          "heading": "顺序容器的遍历删除"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R13",
+      "oldHeading": "std::deque",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R13",
+          "heading": "std::deque"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R13",
+      "oldHeading": "deque 的构造与操作",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R13",
+          "heading": "deque 的构造与操作"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R13",
+      "oldHeading": "deque 的存储与失效",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R13",
+          "heading": "deque 的存储与失效"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R13",
+      "oldHeading": "std::list",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R13",
+          "heading": "std::list"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R13",
+      "oldHeading": "list 的构造与常用成员",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R13",
+          "heading": "list 的构造与常用成员"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R13",
+      "oldHeading": "list 的位置与 splice",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R13",
+          "heading": "list 的位置与 splice"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R13",
+      "oldHeading": "std::forward_list",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R13",
+          "heading": "std::forward_list"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R13",
+      "oldHeading": "forward_list 的构造与成员",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R13",
+          "heading": "forward_list 的构造与成员"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R13",
+      "oldHeading": "forward_list 的前驱与 splice_after",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R13",
+          "heading": "forward_list 的前驱与 splice_after"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R13",
+      "oldHeading": "元素地址与业务句柄",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R13",
+          "heading": "元素地址与业务句柄"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R13",
+      "oldHeading": "拥有者与所指对象",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R13",
+          "heading": "拥有者与所指对象"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R13",
+      "oldHeading": "典型现象与检查点",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R13",
+          "heading": "典型现象与检查点"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R13",
+      "oldHeading": "参考资料",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R13",
+          "heading": "参考资料"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R14",
+      "oldHeading": "关联容器分类",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R14",
+          "heading": "关联容器分类"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R14",
+      "oldHeading": "组合应用与参考资料",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R14",
+          "heading": "组合应用与参考资料"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R14",
+      "oldHeading": "std::set",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R14",
+          "heading": "std::set"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R14",
+      "oldHeading": "std::multiset",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R14",
+          "heading": "std::multiset"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R14",
+      "oldHeading": "std::map",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R14",
+          "heading": "std::map"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R14",
+      "oldHeading": "std::multimap",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R14",
+          "heading": "std::multimap"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R14",
+      "oldHeading": "std::unordered_set",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R14",
+          "heading": "std::unordered_set"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R14",
+      "oldHeading": "std::unordered_multiset",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R14",
+          "heading": "std::unordered_multiset"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R14",
+      "oldHeading": "std::unordered_map",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R14",
+          "heading": "std::unordered_map"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R14",
+      "oldHeading": "std::unordered_multimap",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R14",
+          "heading": "std::unordered_multimap"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R14",
+      "oldHeading": "键等价、比较与哈希",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R14",
+          "heading": "键等价、比较与哈希"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R14",
+      "oldHeading": "有序索引：查找路径为什么取决于树高",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R14",
+          "heading": "有序索引：查找路径为什么取决于树高"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R14",
+      "oldHeading": "关联容器的共享操作",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R14",
+          "heading": "关联容器的共享操作"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R14",
+      "oldHeading": "关联容器失效与哈希桶",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R14",
+          "heading": "关联容器失效与哈希桶"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R14",
+      "oldHeading": "桶、冲突与装载不是同一个指标",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R14",
+          "heading": "桶、冲突与装载不是同一个指标"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R14",
+      "oldHeading": "节点句柄",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R14",
+          "heading": "节点句柄"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R14",
+      "oldHeading": "std::stack",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R14",
+          "heading": "std::stack"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R14",
+      "oldHeading": "std::queue",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R14",
+          "heading": "std::queue"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R14",
+      "oldHeading": "std::priority_queue",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R14",
+          "heading": "std::priority_queue"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R14",
+      "oldHeading": "堆的父子关系",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R14",
+          "heading": "堆的父子关系"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R15",
+      "oldHeading": "std::begin 与 std::end",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R15",
+          "heading": "std::begin 与 std::end"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R15",
+      "oldHeading": "半开区间与尾后位置",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R15",
+          "heading": "半开区间与尾后位置"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R15",
+      "oldHeading": "迭代器类别与访问成本",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R15",
+          "heading": "迭代器类别与访问成本"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R15",
+      "oldHeading": "比较与导航成本",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R15",
+          "heading": "比较与导航成本"
+        },
+        {
+          "chapter": "R16",
+          "heading": "二分查找的分区条件"
+        }
+      ],
+      "action": "拆分",
+      "reason": "原导航表行和机制段已在R16该条目以等价解释保留；合并意义，不重复插入。"
+    },
+    {
+      "sourceId": "R15",
+      "oldHeading": "std::iterator_traits",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R15",
+          "heading": "std::iterator_traits"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R15",
+      "oldHeading": "std::advance、std::next、std::prev 与 std::distance",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R15",
+          "heading": "std::advance、std::next、std::prev 与 std::distance"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R15",
+      "oldHeading": "std::reverse_iterator",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R15",
+          "heading": "std::reverse_iterator"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R15",
+      "oldHeading": "插入迭代器",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R15",
+          "heading": "插入迭代器"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R15",
+      "oldHeading": "ranges 算法与投影",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R15",
+          "heading": "ranges 算法与投影"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R15",
+      "oldHeading": "range、sentinel 与 borrowed_range",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R15",
+          "heading": "range、sentinel 与 borrowed_range"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R15",
+      "oldHeading": "views 与惰性管线",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R15",
+          "heading": "views 与惰性管线"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R15",
+      "oldHeading": "组合应用与参考资料",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R15",
+          "heading": "组合应用与参考资料"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R16",
+      "oldHeading": "比较器与谓词",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R16",
+          "heading": "比较器与谓词"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R16",
+      "oldHeading": "std::find、std::find_if 与计数",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R16",
+          "heading": "std::find、std::find_if 与计数"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R16",
+      "oldHeading": "std::all_of、std::any_of 与 std::none_of",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R16",
+          "heading": "std::all_of、std::any_of 与 std::none_of"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R16",
+      "oldHeading": "std::for_each",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R16",
+          "heading": "std::for_each"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R16",
+      "oldHeading": "std::copy、std::copy_if 与填充",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R16",
+          "heading": "std::copy、std::copy_if 与填充"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R16",
+      "oldHeading": "std::transform",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R16",
+          "heading": "std::transform"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R16",
+      "oldHeading": "std::remove、std::remove_if 与 std::unique",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R16",
+          "heading": "std::remove、std::remove_if 与 std::unique"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R16",
+      "oldHeading": "std::sort 与 std::stable_sort",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R16",
+          "heading": "std::sort 与 std::stable_sort"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R16",
+      "oldHeading": "std::min_element 与 std::max_element",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R16",
+          "heading": "std::min_element 与 std::max_element"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R16",
+      "oldHeading": "std::nth_element 与 std::partial_sort",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R16",
+          "heading": "std::nth_element 与 std::partial_sort"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R16",
+      "oldHeading": "std::partition 与 std::stable_partition",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R16",
+          "heading": "std::partition 与 std::stable_partition"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R16",
+      "oldHeading": "std::lower_bound、std::upper_bound 与等价范围",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R16",
+          "heading": "std::lower_bound、std::upper_bound 与等价范围"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R16",
+      "oldHeading": "有序集合算法",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R16",
+          "heading": "有序集合算法"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R16",
+      "oldHeading": "堆算法",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R16",
+          "heading": "堆算法"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R16",
+      "oldHeading": "二分查找的分区条件",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R16",
+          "heading": "二分查找的分区条件"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R16",
+      "oldHeading": "堆的结构与操作条件",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R16",
+          "heading": "堆的结构与操作条件"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R16",
+      "oldHeading": "排序、选择与分区的结果差异",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R16",
+          "heading": "排序、选择与分区的结果差异"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R16",
+      "oldHeading": "std::accumulate、std::inner_product 与 std::iota",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R16",
+          "heading": "std::accumulate、std::inner_product 与 std::iota"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R16",
+      "oldHeading": "std::reduce 与 std::transform_reduce",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R16",
+          "heading": "std::reduce 与 std::transform_reduce"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R16",
+      "oldHeading": "std::inclusive_scan 与 std::exclusive_scan",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R16",
+          "heading": "std::inclusive_scan 与 std::exclusive_scan"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R16",
+      "oldHeading": "执行策略",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R16",
+          "heading": "执行策略"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R16",
+      "oldHeading": "组合应用与参考资料",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R16",
+          "heading": "组合应用与参考资料"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R17",
+      "oldHeading": "std::pair",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R17",
+          "heading": "std::pair"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R17",
+      "oldHeading": "pair 的构造与访问",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R17",
+          "heading": "pair 的构造与访问"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R17",
+      "oldHeading": "pair 的修改与分解",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R17",
+          "heading": "pair 的修改与分解"
+        },
+        {
+          "chapter": "R17",
+          "heading": "结构化绑定"
+        }
+      ],
+      "action": "拆分",
+      "reason": "完整结构化绑定定义及tuple在首次绑定使用前；保留原pair分解例并合并R02转入内容。"
+    },
+    {
+      "sourceId": "R17",
+      "oldHeading": "std::tuple",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R17",
+          "heading": "std::tuple"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R17",
+      "oldHeading": "tuple 的构造与元素访问",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R17",
+          "heading": "tuple 的构造与元素访问"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R17",
+      "oldHeading": "make_tuple、tie 与 apply",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R17",
+          "heading": "make_tuple、tie 与 apply"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R17",
+      "oldHeading": "std::optional",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R17",
+          "heading": "std::optional"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R17",
+      "oldHeading": "optional 的构造与初始化",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R17",
+          "heading": "optional 的构造与初始化"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R17",
+      "oldHeading": "optional 的状态检查与访问",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R17",
+          "heading": "optional 的状态检查与访问"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R17",
+      "oldHeading": "optional 的赋值、重建与清空",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R17",
+          "heading": "optional 的赋值、重建与清空"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R17",
+      "oldHeading": "optional 的机制与扩展",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R17",
+          "heading": "optional 的机制与扩展"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R17",
+      "oldHeading": "std::variant",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R17",
+          "heading": "std::variant"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R17",
+      "oldHeading": "variant 的构造、检查与候选访问",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R17",
+          "heading": "variant 的构造、检查与候选访问"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R17",
+      "oldHeading": "variant 的修改与 visit",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R17",
+          "heading": "variant 的修改与 visit"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R17",
+      "oldHeading": "std::any",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R17",
+          "heading": "std::any"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R17",
+      "oldHeading": "any 的构造、检查与读取",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R17",
+          "heading": "any 的构造、检查与读取"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R17",
+      "oldHeading": "any 的修改与存储机制",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R17",
+          "heading": "any 的修改与存储机制"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R17",
+      "oldHeading": "std::expected",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R17",
+          "heading": "std::expected"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R17",
+      "oldHeading": "expected 的构造与分支访问",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R17",
+          "heading": "expected 的构造与分支访问"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R17",
+      "oldHeading": "expected 的修改与结果组合",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R17",
+          "heading": "expected 的修改与结果组合"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R17",
+      "oldHeading": "结果状态与借用",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R17",
+          "heading": "结果状态与借用"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R17",
+      "oldHeading": "比较与哈希",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R17",
+          "heading": "比较与哈希"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R18",
+      "oldHeading": "std::from_chars",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R18",
+          "heading": "std::from_chars"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R18",
+      "oldHeading": "from_chars 的整数解析",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R18",
+          "heading": "from_chars 的整数解析"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R18",
+      "oldHeading": "from_chars 的浮点解析",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R18",
+          "heading": "from_chars 的浮点解析"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R18",
+      "oldHeading": "std::to_chars",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R18",
+          "heading": "std::to_chars"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R18",
+      "oldHeading": "to_chars 的整数输出与缓冲",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R18",
+          "heading": "to_chars 的整数输出与缓冲"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R18",
+      "oldHeading": "to_chars 的浮点输出",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R18",
+          "heading": "to_chars 的浮点输出"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R18",
+      "oldHeading": "std::format",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R18",
+          "heading": "std::format"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R18",
+      "oldHeading": "std::format_to、std::format_to_n 与 std::formatted_size",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R18",
+          "heading": "std::format_to、std::format_to_n 与 std::formatted_size"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R18",
+      "oldHeading": "组合应用与参考资料",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R18",
+          "heading": "组合应用与参考资料"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R33",
+      "oldHeading": "std::numeric_limits",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R33",
+          "heading": "std::numeric_limits"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R33",
+      "oldHeading": "数学函数与舍入",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R33",
+          "heading": "数学函数与舍入"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R33",
+      "oldHeading": "std::mt19937",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R33",
+          "heading": "std::mt19937"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R33",
+      "oldHeading": "std::random_device 与 std::seed_seq",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R33",
+          "heading": "std::random_device 与 std::seed_seq"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R33",
+      "oldHeading": "std::uniform_int_distribution",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R33",
+          "heading": "std::uniform_int_distribution"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R33",
+      "oldHeading": "std::uniform_real_distribution",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R33",
+          "heading": "std::uniform_real_distribution"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R33",
+      "oldHeading": "std::normal_distribution",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R33",
+          "heading": "std::normal_distribution"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R33",
+      "oldHeading": "std::bitset",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R33",
+          "heading": "std::bitset"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R33",
+      "oldHeading": "std::byte",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R33",
+          "heading": "std::byte"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R33",
+      "oldHeading": "位计数、旋转与二的幂",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R33",
+          "heading": "位计数、旋转与二的幂"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R33",
+      "oldHeading": "std::bit_cast",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R33",
+          "heading": "std::bit_cast"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R33",
+      "oldHeading": "std::endian 与 std::byteswap",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R33",
+          "heading": "std::endian 与 std::byteswap"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R33",
+      "oldHeading": "组合应用与参考资料",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R33",
+          "heading": "组合应用与参考资料"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R19",
+      "oldHeading": "std::chrono::duration",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R19",
+          "heading": "std::chrono::duration"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R19",
+      "oldHeading": "duration 的构造与算术",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R19",
+          "heading": "duration 的构造与算术"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R19",
+      "oldHeading": "std::chrono::time_point",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R19",
+          "heading": "std::chrono::time_point"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R19",
+      "oldHeading": "std::chrono::steady_clock",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R19",
+          "heading": "std::chrono::steady_clock"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R19",
+      "oldHeading": "std::chrono::system_clock",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R19",
+          "heading": "std::chrono::system_clock"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R19",
+      "oldHeading": "std::chrono::high_resolution_clock",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R19",
+          "heading": "std::chrono::high_resolution_clock"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R19",
+      "oldHeading": "duration_cast、time_point_cast 与舍入",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R19",
+          "heading": "duration_cast、time_point_cast 与舍入"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R19",
+      "oldHeading": "时间字面量",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R19",
+          "heading": "时间字面量"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R19",
+      "oldHeading": "绝对截止点",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R19",
+          "heading": "绝对截止点"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R19",
+      "oldHeading": "日历类型与 std::chrono::year_month_day",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R19",
+          "heading": "日历类型与 std::chrono::year_month_day"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R19",
+      "oldHeading": "std::chrono::zoned_time 与时间区",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R19",
+          "heading": "std::chrono::zoned_time 与时间区"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R19",
+      "oldHeading": "组合应用与参考资料",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R19",
+          "heading": "组合应用与参考资料"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R34",
+      "oldHeading": "流的类型与状态",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R34",
+          "heading": "流的类型与状态"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R34",
+      "oldHeading": "iostate 与输入循环",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R34",
+          "heading": "iostate 与输入循环"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R34",
+      "oldHeading": "std::ifstream",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R34",
+          "heading": "std::ifstream"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R34",
+      "oldHeading": "ifstream 的打开与按行读取",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R34",
+          "heading": "ifstream 的打开与按行读取"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R34",
+      "oldHeading": "ifstream 的提取与无格式读取",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R34",
+          "heading": "ifstream 的提取与无格式读取"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R34",
+      "oldHeading": "std::ofstream",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R34",
+          "heading": "std::ofstream"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R34",
+      "oldHeading": "ofstream 的打开与输出",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R34",
+          "heading": "ofstream 的打开与输出"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R34",
+      "oldHeading": "ofstream 的格式控制",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R34",
+          "heading": "ofstream 的格式控制"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R34",
+      "oldHeading": "std::fstream",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R34",
+          "heading": "std::fstream"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R34",
+      "oldHeading": "std::istringstream",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R34",
+          "heading": "std::istringstream"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R34",
+      "oldHeading": "std::ostringstream",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R34",
+          "heading": "std::ostringstream"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R34",
+      "oldHeading": "std::stringstream",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R34",
+          "heading": "std::stringstream"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R34",
+      "oldHeading": "二进制格式与文件提交",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R34",
+          "heading": "二进制格式与文件提交"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R34",
+      "oldHeading": "组合应用与参考资料",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R34",
+          "heading": "组合应用与参考资料"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R35",
+      "oldHeading": "std::filesystem::path",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R35",
+          "heading": "std::filesystem::path"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R35",
+      "oldHeading": "path 的构造与组件",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R35",
+          "heading": "path 的构造与组件"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R35",
+      "oldHeading": "path 的规范化与输出",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R35",
+          "heading": "path 的规范化与输出"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R35",
+      "oldHeading": "文件状态与错误报告",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R35",
+          "heading": "文件状态与错误报告"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R35",
+      "oldHeading": "std::filesystem::directory_entry",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R35",
+          "heading": "std::filesystem::directory_entry"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R35",
+      "oldHeading": "std::filesystem::directory_iterator",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R35",
+          "heading": "std::filesystem::directory_iterator"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R35",
+      "oldHeading": "std::filesystem::recursive_directory_iterator",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R35",
+          "heading": "std::filesystem::recursive_directory_iterator"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R35",
+      "oldHeading": "目录创建、复制、删除与更名",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R35",
+          "heading": "目录创建、复制、删除与更名"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R35",
+      "oldHeading": "文件更新与组合应用",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R35",
+          "heading": "文件更新与组合应用"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R20",
+      "oldHeading": "std::thread",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R20",
+          "heading": "std::thread"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R20",
+      "oldHeading": "std::this_thread",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R20",
+          "heading": "std::this_thread"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R20",
+      "oldHeading": "异步共享状态",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R20",
+          "heading": "异步共享状态"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R20",
+      "oldHeading": "std::promise",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R20",
+          "heading": "std::promise"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R20",
+      "oldHeading": "std::future",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R20",
+          "heading": "std::future"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R20",
+      "oldHeading": "std::shared_future",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R20",
+          "heading": "std::shared_future"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R20",
+      "oldHeading": "std::packaged_task",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R20",
+          "heading": "std::packaged_task"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R20",
+      "oldHeading": "std::async 与启动策略",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R20",
+          "heading": "std::async 与启动策略"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R20",
+      "oldHeading": "std::jthread（C++20）",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R20",
+          "heading": "std::jthread（C++20）"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R20",
+      "oldHeading": "停止状态与令牌（C++20）",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R20",
+          "heading": "停止状态与令牌（C++20）"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R20",
+      "oldHeading": "线程与结果调查入口",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R20",
+          "heading": "线程与结果调查入口"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R21",
+      "oldHeading": "互斥量与临界区",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R21",
+          "heading": "互斥量与临界区"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R21",
+      "oldHeading": "std::mutex",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R21",
+          "heading": "std::mutex"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R21",
+      "oldHeading": "std::recursive_mutex",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R21",
+          "heading": "std::recursive_mutex"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R21",
+      "oldHeading": "std::timed_mutex",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R21",
+          "heading": "std::timed_mutex"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R21",
+      "oldHeading": "std::recursive_timed_mutex",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R21",
+          "heading": "std::recursive_timed_mutex"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R21",
+      "oldHeading": "std::shared_mutex",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R21",
+          "heading": "std::shared_mutex"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R21",
+      "oldHeading": "std::shared_timed_mutex",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R21",
+          "heading": "std::shared_timed_mutex"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R21",
+      "oldHeading": "锁标签",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R21",
+          "heading": "锁标签"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R21",
+      "oldHeading": "std::lock_guard",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R21",
+          "heading": "std::lock_guard"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R21",
+      "oldHeading": "std::unique_lock",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R21",
+          "heading": "std::unique_lock"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R21",
+      "oldHeading": "unique_lock 的所有权查询与 release",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R21",
+          "heading": "unique_lock 的所有权查询与 release"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R21",
+      "oldHeading": "std::scoped_lock",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R21",
+          "heading": "std::scoped_lock"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R21",
+      "oldHeading": "std::shared_lock",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R21",
+          "heading": "std::shared_lock"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R21",
+      "oldHeading": "std::lock 与 std::try_lock",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R21",
+          "heading": "std::lock 与 std::try_lock"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R21",
+      "oldHeading": "std::condition_variable",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R21",
+          "heading": "std::condition_variable"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R21",
+      "oldHeading": "定时等待",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R21",
+          "heading": "定时等待"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R21",
+      "oldHeading": "std::condition_variable_any",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R21",
+          "heading": "std::condition_variable_any"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R21",
+      "oldHeading": "std::counting_semaphore（C++20）",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R21",
+          "heading": "std::counting_semaphore（C++20）"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R21",
+      "oldHeading": "std::binary_semaphore（C++20）",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R21",
+          "heading": "std::binary_semaphore（C++20）"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R21",
+      "oldHeading": "std::latch（C++20）",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R21",
+          "heading": "std::latch（C++20）"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R21",
+      "oldHeading": "std::barrier（C++20）",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R21",
+          "heading": "std::barrier（C++20）"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R21",
+      "oldHeading": "std::once_flag 与 std::call_once",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R21",
+          "heading": "std::once_flag 与 std::call_once"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R21",
+      "oldHeading": "有界队列与关闭",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R21",
+          "heading": "有界队列与关闭"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R21",
+      "oldHeading": "协作调查入口",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R21",
+          "heading": "协作调查入口"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R22",
+      "oldHeading": "原子对象与操作类别",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R22",
+          "heading": "原子对象与操作类别"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R22",
+      "oldHeading": "std::atomic<T>",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R22",
+          "heading": "std::atomic<T>"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R22",
+      "oldHeading": "load、store 与 exchange",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R22",
+          "heading": "load、store 与 exchange"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R22",
+      "oldHeading": "整数与指针的 fetch 操作",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R22",
+          "heading": "整数与指针的 fetch 操作"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R22",
+      "oldHeading": "比较交换：compare_exchange",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R22",
+          "heading": "比较交换：compare_exchange"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R22",
+      "oldHeading": "CAS 重试",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R22",
+          "heading": "CAS 重试"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R22",
+      "oldHeading": "std::atomic_flag",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R22",
+          "heading": "std::atomic_flag"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R22",
+      "oldHeading": "原子等待与通知（C++20）",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R22",
+          "heading": "原子等待与通知（C++20）"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R22",
+      "oldHeading": "std::atomic_ref（C++20）",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R22",
+          "heading": "std::atomic_ref（C++20）"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R22",
+      "oldHeading": "数据竞争与 happens-before",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R22",
+          "heading": "数据竞争与 happens-before"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R22",
+      "oldHeading": "内存序",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R22",
+          "heading": "内存序"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R22",
+      "oldHeading": "release/acquire 发布",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R22",
+          "heading": "release/acquire 发布"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R22",
+      "oldHeading": "原子共享指针",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R22",
+          "heading": "原子共享指针"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R22",
+      "oldHeading": "回收、ABA 与进展保证",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R22",
+          "heading": "回收、ABA 与进展保证"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R23",
+      "oldHeading": "任务与执行环境",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R23",
+          "heading": "任务与执行环境"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R23",
+      "oldHeading": "执行器与提交协议",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R23",
+          "heading": "执行器与提交协议"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R23",
+      "oldHeading": "队列与工作线程",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R23",
+          "heading": "队列与工作线程"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R23",
+      "oldHeading": "线程池与背压",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R23",
+          "heading": "线程池与背压"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R23",
+      "oldHeading": "事件循环与操作状态",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R23",
+          "heading": "事件循环与操作状态"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R23",
+      "oldHeading": "就绪与完成模型",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R23",
+          "heading": "就绪与完成模型"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R23",
+      "oldHeading": "超时、取消与终态",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R23",
+          "heading": "超时、取消与终态"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R23",
+      "oldHeading": "执行资源关闭",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R23",
+          "heading": "执行资源关闭"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R23",
+      "oldHeading": "有界执行器组合应用",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R23",
+          "heading": "有界执行器组合应用"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R23",
+      "oldHeading": "协程语法与帧（C++20）",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R23",
+          "heading": "协程语法与帧（C++20）"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R23",
+      "oldHeading": "std::coroutine_handle 与挂起策略（C++20）",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R23",
+          "heading": "std::coroutine_handle 与挂起策略（C++20）"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R23",
+      "oldHeading": "调度与关闭调查入口",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R23",
+          "heading": "调度与关闭调查入口"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R24",
+      "oldHeading": "CPU 与指令执行",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R24",
+          "heading": "CPU 与指令执行"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R24",
+      "oldHeading": "寄存器与指令依赖",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R24",
+          "heading": "寄存器与指令依赖"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R24",
+      "oldHeading": "缓存、主存与访问路径",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R24",
+          "heading": "缓存、主存与访问路径"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R24",
+      "oldHeading": "时间局部性与空间局部性",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R24",
+          "heading": "时间局部性与空间局部性"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R24",
+      "oldHeading": "分支预测与推测执行",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R24",
+          "heading": "分支预测与推测执行"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R24",
+      "oldHeading": "缓存一致性与伪共享",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R24",
+          "heading": "缓存一致性与伪共享"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R24",
+      "oldHeading": "对齐、填充与访问成本",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R24",
+          "heading": "对齐、填充与访问成本"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R24",
+      "oldHeading": "字节序与字段编码",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R24",
+          "heading": "字节序与字段编码"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R24",
+      "oldHeading": "延迟、吞吐与调查入口",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R24",
+          "heading": "延迟、吞吐与调查入口"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R25",
+      "oldHeading": "进程、线程与执行上下文",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R25",
+          "heading": "进程、线程与执行上下文"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R25",
+      "oldHeading": "Linux/POSIX：创建、执行与回收进程",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R25",
+          "heading": "Linux/POSIX：创建、执行与回收进程"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R25",
+      "oldHeading": "Windows：进程创建与句柄",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R25",
+          "heading": "Windows：进程创建与句柄"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R25",
+      "oldHeading": "虚拟地址空间与常见区域",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R25",
+          "heading": "虚拟地址空间与常见区域"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R25",
+      "oldHeading": "页、页表与缺页",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R25",
+          "heading": "页、页表与缺页"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R25",
+      "oldHeading": "Linux/POSIX：mmap 与 munmap",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R25",
+          "heading": "Linux/POSIX：mmap 与 munmap"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R25",
+      "oldHeading": "Windows：VirtualAlloc 与 VirtualFree",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R25",
+          "heading": "Windows：VirtualAlloc 与 VirtualFree"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R25",
+      "oldHeading": "Windows：文件映射对象与视图",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R25",
+          "heading": "Windows：文件映射对象与视图"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R25",
+      "oldHeading": "虚拟量、RSS、PSS 与 working set",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R25",
+          "heading": "虚拟量、RSS、PSS 与 working set"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R25",
+      "oldHeading": "分配器、碎片与资源持有",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R25",
+          "heading": "分配器、碎片与资源持有"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R25",
+      "oldHeading": "进程间通信与共享内存",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R25",
+          "heading": "进程间通信与共享内存"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R26",
+      "oldHeading": "系统调用与打开文件实体",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R26",
+          "heading": "系统调用与打开文件实体"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R26",
+      "oldHeading": "Linux/POSIX：open 与 close",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R26",
+          "heading": "Linux/POSIX：open 与 close"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R26",
+      "oldHeading": "Linux/POSIX：read、write 与文件偏移",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R26",
+          "heading": "Linux/POSIX：read、write 与文件偏移"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R26",
+      "oldHeading": "Windows：CreateFileW 与 CloseHandle",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R26",
+          "heading": "Windows：CreateFileW 与 CloseHandle"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R26",
+      "oldHeading": "Windows：ReadFile、WriteFile 与文件位置",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R26",
+          "heading": "Windows：ReadFile、WriteFile 与文件位置"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R26",
+      "oldHeading": "部分完成与错误",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R26",
+          "heading": "部分完成与错误"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R26",
+      "oldHeading": "描述符与句柄所有权",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R26",
+          "heading": "描述符与句柄所有权"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R26",
+      "oldHeading": "用户缓冲、页缓存与持久化",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R26",
+          "heading": "用户缓冲、页缓存与持久化"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R26",
+      "oldHeading": "Linux：fsync 与 fdatasync",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R26",
+          "heading": "Linux：fsync 与 fdatasync"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R26",
+      "oldHeading": "Windows：FlushFileBuffers",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R26",
+          "heading": "Windows：FlushFileBuffers"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R26",
+      "oldHeading": "阻塞、非阻塞与异步操作",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R26",
+          "heading": "阻塞、非阻塞与异步操作"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R26",
+      "oldHeading": "Linux：epoll 就绪集合",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R26",
+          "heading": "Linux：epoll 就绪集合"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R26",
+      "oldHeading": "Windows：I/O 完成端口",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R26",
+          "heading": "Windows：I/O 完成端口"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R26",
+      "oldHeading": "I/O 调查入口",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R26",
+          "heading": "I/O 调查入口"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R27",
+      "oldHeading": "目标文件与链接产物",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R27",
+          "heading": "目标文件与链接产物"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R27",
+      "oldHeading": "符号与名称修饰",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R27",
+          "heading": "符号与名称修饰"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R27",
+      "oldHeading": "静态库：创建与链接",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R27",
+          "heading": "静态库：创建与链接"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R27",
+      "oldHeading": "归档成员抽取与顺序",
+      "oldLevel": 3,
+      "targets": [
+        {
+          "chapter": "R27",
+          "heading": "归档成员抽取与顺序"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R27",
+      "oldHeading": "共享库、DLL 与导入库",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R27",
+          "heading": "共享库、DLL 与导入库"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R27",
+      "oldHeading": "导出可见性与接口标注",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R27",
+          "heading": "导出可见性与接口标注"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R27",
+      "oldHeading": "节、段与进程映像",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R27",
+          "heading": "节、段与进程映像"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R27",
+      "oldHeading": "重定位、PIC、PIE 与绑定",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R27",
+          "heading": "重定位、PIC、PIE 与绑定"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R27",
+      "oldHeading": "Linux ELF/glibc：运行搜索",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R27",
+          "heading": "Linux ELF/glibc：运行搜索"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R27",
+      "oldHeading": "Windows：DLL 搜索",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R27",
+          "heading": "Windows：DLL 搜索"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R27",
+      "oldHeading": "Linux/POSIX：dlopen、dlsym 与 dlclose",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R27",
+          "heading": "Linux/POSIX：dlopen、dlsym 与 dlclose"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R27",
+      "oldHeading": "Windows：LoadLibraryExW、GetProcAddress 与 FreeLibrary",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R27",
+          "heading": "Windows：LoadLibraryExW、GetProcAddress 与 FreeLibrary"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R27",
+      "oldHeading": "插件协议与卸载",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R27",
+          "heading": "插件协议与卸载"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R27",
+      "oldHeading": "ABI 与所有权边界",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R27",
+          "heading": "ABI 与所有权边界"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R27",
+      "oldHeading": "二进制调查工具",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R27",
+          "heading": "二进制调查工具"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R28",
+      "oldHeading": "协议层与端点",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R28",
+          "heading": "协议层与端点"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R28",
+      "oldHeading": "DNS 名称与记录",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R28",
+          "heading": "DNS 名称与记录"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R28",
+      "oldHeading": "IP 地址、路由与 MTU",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R28",
+          "heading": "IP 地址、路由与 MTU"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R28",
+      "oldHeading": "端口与服务身份",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R28",
+          "heading": "端口与服务身份"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R28",
+      "oldHeading": "TCP 字节流与报文段",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R28",
+          "heading": "TCP 字节流与报文段"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R28",
+      "oldHeading": "TCP 建立与关闭",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R28",
+          "heading": "TCP 建立与关闭"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R28",
+      "oldHeading": "UDP 数据报",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R28",
+          "heading": "UDP 数据报"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R28",
+      "oldHeading": "TLS 1.3 握手与记录",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R28",
+          "heading": "TLS 1.3 握手与记录"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R28",
+      "oldHeading": "HTTP 请求与响应",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R28",
+          "heading": "HTTP 请求与响应"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R28",
+      "oldHeading": "HTTP/1.1 定界与连接复用",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R28",
+          "heading": "HTTP/1.1 定界与连接复用"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R28",
+      "oldHeading": "HTTP/2 与 HTTP/3",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R28",
+          "heading": "HTTP/2 与 HTTP/3"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R28",
+      "oldHeading": "分层调查入口",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R28",
+          "heading": "分层调查入口"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R29",
+      "oldHeading": "socket、地址与两种基本流程",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R29",
+          "heading": "socket、地址与两种基本流程"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R29",
+      "oldHeading": "Linux/POSIX：地址解析与地址结构",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R29",
+          "heading": "Linux/POSIX：地址解析与地址结构"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R29",
+      "oldHeading": "Linux/POSIX：socket 与 connect",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R29",
+          "heading": "Linux/POSIX：socket 与 connect"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R29",
+      "oldHeading": "Linux/POSIX：bind、listen 与 accept",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R29",
+          "heading": "Linux/POSIX：bind、listen 与 accept"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R29",
+      "oldHeading": "Linux/POSIX：send 与 recv",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R29",
+          "heading": "Linux/POSIX：send 与 recv"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R29",
+      "oldHeading": "Linux/POSIX：shutdown 与 close",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R29",
+          "heading": "Linux/POSIX：shutdown 与 close"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R29",
+      "oldHeading": "Windows：Winsock 初始化与地址",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R29",
+          "heading": "Windows：Winsock 初始化与地址"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R29",
+      "oldHeading": "Windows：socket 与 connect",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R29",
+          "heading": "Windows：socket 与 connect"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R29",
+      "oldHeading": "Windows：bind、listen 与 accept",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R29",
+          "heading": "Windows：bind、listen 与 accept"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R29",
+      "oldHeading": "Windows：send 与 recv",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R29",
+          "heading": "Windows：send 与 recv"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R29",
+      "oldHeading": "Windows：shutdown 与 closesocket",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R29",
+          "heading": "Windows：shutdown 与 closesocket"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R29",
+      "oldHeading": "UDP 的 sendto 与 recvfrom",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R29",
+          "heading": "UDP 的 sendto 与 recvfrom"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R29",
+      "oldHeading": "非阻塞连接与部分收发",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R29",
+          "heading": "非阻塞连接与部分收发"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R29",
+      "oldHeading": "消息定界与解析状态",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R29",
+          "heading": "消息定界与解析状态"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R29",
+      "oldHeading": "背压、容量与处理预算",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R29",
+          "heading": "背压、容量与处理预算"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R29",
+      "oldHeading": "期限、重试与幂等",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R29",
+          "heading": "期限、重试与幂等"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R29",
+      "oldHeading": "网络操作调查入口",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R29",
+          "heading": "网络操作调查入口"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R30",
+      "oldHeading": "配置、构建与产物",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R30",
+          "heading": "配置、构建与产物"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R30",
+      "oldHeading": "可执行目标与库目标",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R30",
+          "heading": "可执行目标与库目标"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R30",
+      "oldHeading": "使用要求：PRIVATE、PUBLIC、INTERFACE",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R30",
+          "heading": "使用要求：PRIVATE、PUBLIC、INTERFACE"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R30",
+      "oldHeading": "生成器、配置与缓存",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R30",
+          "heading": "生成器、配置与缓存"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R30",
+      "oldHeading": "依赖接入与版本",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R30",
+          "heading": "依赖接入与版本"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R30",
+      "oldHeading": "安装目录与导出目标",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R30",
+          "heading": "安装目录与导出目标"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R30",
+      "oldHeading": "API、ABI 与交付",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R30",
+          "heading": "API、ABI 与交付"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R31",
+      "oldHeading": "调试信息与构建",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R31",
+          "heading": "调试信息与构建"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R31",
+      "oldHeading": "GDB：一次最小调试会话",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R31",
+          "heading": "GDB：一次最小调试会话"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R31",
+      "oldHeading": "断点、步进与继续",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R31",
+          "heading": "断点、步进与继续"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R31",
+      "oldHeading": "变量、调用栈与线程",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R31",
+          "heading": "变量、调用栈与线程"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R31",
+      "oldHeading": "Sanitizer：内存与未定义行为检查",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R31",
+          "heading": "Sanitizer：内存与未定义行为检查"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R31",
+      "oldHeading": "崩溃现场与证据",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R31",
+          "heading": "崩溃现场与证据"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R31",
+      "oldHeading": "边界验证与回归",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R31",
+          "heading": "边界验证与回归"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R32",
+      "oldHeading": "吞吐量、延迟与分位数",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R32",
+          "heading": "吞吐量、延迟与分位数"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R32",
+      "oldHeading": "CPU、内存与队列指标",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R32",
+          "heading": "CPU、内存与队列指标"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R32",
+      "oldHeading": "steady_clock：测量时间区间",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R32",
+          "heading": "steady_clock：测量时间区间"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R32",
+      "oldHeading": "Benchmark：比较两个实现",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R32",
+          "heading": "Benchmark：比较两个实现"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R32",
+      "oldHeading": "Profiler：定位时间与事件",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R32",
+          "heading": "Profiler：定位时间与事件"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    },
+    {
+      "sourceId": "R32",
+      "oldHeading": "计算、等待与积压",
+      "oldLevel": 2,
+      "targets": [
+        {
+          "chapter": "R32",
+          "heading": "计算、等待与积压"
+        }
+      ],
+      "action": "保留或改写",
+      "reason": "在原知识群中保留规则、接口与必要条件；按正常用法和实际先修调整衔接。"
+    }
+  ],
+  "appliedTransfers": [
+    {
+      "fromId": "R01",
+      "heading": "作用域、命名空间与链接属性",
+      "targetId": "R27",
+      "targetHeading": "链接属性与 inline 定义",
+      "reason": "const、volatile、inline和匿名命名空间规则放在类型限定与多文件构建之后查阅。",
+      "resources": [],
+      "referenceRecords": [
+        {
+          "heading": "链接属性与 inline 定义",
+          "label": "C++17 链接属性",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.link",
+          "originalHeading": "作用域、命名空间与链接属性",
+          "originalSourceId": "R01"
+        }
+      ],
+      "targetAfterHeading": "符号与名称修饰",
+      "targetLevel": 2
+    },
+    {
+      "fromId": "R01",
+      "heading": "单一定义规则与多文件程序",
+      "targetId": "R10",
+      "targetHeading": "类、模板与 inline 的单一定义规则",
+      "reason": "完整ODR条件需要类、模板及名字查找，普通函数多文件组织仍在R01。",
+      "resources": [],
+      "referenceRecords": [
+        {
+          "heading": "类、模板与 inline 的单一定义规则",
+          "label": "C++17 ODR",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.def.odr",
+          "originalHeading": "单一定义规则与多文件程序",
+          "originalSourceId": "R01"
+        }
+      ],
+      "targetAfterHeading": "实例化与定义可见性",
+      "targetLevel": 2
+    },
+    {
+      "fromId": "R02",
+      "heading": "sizeof、alignof 与对象表示",
+      "targetId": "R07",
+      "targetHeading": "类成员的大小与对齐",
+      "reason": "整数sizeof/alignof留R02，结构成员查询例在成员定义之后。",
+      "resources": [],
+      "referenceRecords": [
+        {
+          "heading": "类成员的大小与对齐",
+          "label": "对象表示",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.types",
+          "originalHeading": "sizeof、alignof 与对象表示",
+          "originalSourceId": "R02"
+        },
+        {
+          "heading": "类成员的大小与对齐",
+          "label": "对齐",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.align",
+          "originalHeading": "sizeof、alignof 与对象表示",
+          "originalSourceId": "R02"
+        }
+      ],
+      "targetAfterHeading": "数据成员、成员函数与 const",
+      "targetLevel": 2
+    },
+    {
+      "fromId": "R02",
+      "heading": "类型特征与字节复制",
+      "targetId": "R10",
+      "targetHeading": "类型特征与字节复制",
+      "reason": "平凡可复制特征和静态断言需要简单类、模板实例和static_assert。",
+      "resources": [],
+      "referenceRecords": [
+        {
+          "heading": "类型特征与字节复制",
+          "label": "字节复制条件",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.types",
+          "originalHeading": "类型特征与字节复制",
+          "originalSourceId": "R02"
+        },
+        {
+          "heading": "类型特征与字节复制",
+          "label": "类型特征",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/meta.unary.prop",
+          "originalHeading": "类型特征与字节复制",
+          "originalSourceId": "R02"
+        }
+      ],
+      "targetAfterHeading": "if constexpr 与 static_assert",
+      "targetLevel": 2
+    },
+    {
+      "fromId": "R02",
+      "heading": "placement new 与存储重用",
+      "targetId": "R09",
+      "targetHeading": "placement new 与存储重用",
+      "reason": "手工构造需要普通new、构造析构及基本指针。",
+      "resources": [
+        "../resources/R02-storage-reuse.svg"
+      ],
+      "referenceRecords": [
+        {
+          "heading": "placement new 与存储重用",
+          "label": "生命周期与重用",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.life",
+          "originalHeading": "placement new 与存储重用",
+          "originalSourceId": "R02"
+        },
+        {
+          "heading": "placement new 与存储重用",
+          "label": "字节数组提供存储",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/intro.object",
+          "originalHeading": "placement new 与存储重用",
+          "originalSourceId": "R02"
+        },
+        {
+          "heading": "placement new 与存储重用",
+          "label": "launder",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/ptr.launder",
+          "originalHeading": "placement new 与存储重用",
+          "originalSourceId": "R02"
+        }
+      ],
+      "targetAfterHeading": "new 与 delete",
+      "targetLevel": 2
+    },
+    {
+      "fromId": "R02",
+      "heading": "结构化绑定",
+      "targetId": "R17",
+      "targetHeading": "结构化绑定",
+      "reason": "数组、auto、引用、简单类与tuple已有正常入口后再拆解。",
+      "resources": [],
+      "referenceRecords": [
+        {
+          "heading": "结构化绑定",
+          "label": "结构化绑定规则",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.struct.bind",
+          "originalHeading": "结构化绑定",
+          "originalSourceId": "R02"
+        }
+      ],
+      "targetAfterHeading": "std::tuple",
+      "targetLevel": 2
+    },
+    {
+      "fromId": "R03",
+      "heading": "初始化类别",
+      "targetId": "R07",
+      "targetHeading": "类对象的初始化类别",
+      "reason": "原完整分类中的类语义接在构造函数后；整数对应表留在R03。",
+      "resources": [],
+      "referenceRecords": [
+        {
+          "heading": "类对象的初始化类别",
+          "label": "C++17 初始化",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.init",
+          "originalHeading": "初始化类别",
+          "originalSourceId": "R03"
+        },
+        {
+          "heading": "类对象的初始化类别",
+          "label": "列表初始化",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.init.list",
+          "originalHeading": "初始化类别",
+          "originalSourceId": "R03"
+        }
+      ],
+      "targetAfterHeading": "构造函数与成员初始化",
+      "targetLevel": 2
+    },
+    {
+      "fromId": "R03",
+      "heading": "默认初始化与值初始化",
+      "targetId": "R07",
+      "targetHeading": "类对象的默认初始化与值初始化",
+      "reason": "用户提供默认构造和聚合零值须认识类后展开。",
+      "resources": [],
+      "referenceRecords": [],
+      "targetAfterHeading": "类对象的初始化类别",
+      "targetLevel": 2
+    },
+    {
+      "fromId": "R03",
+      "heading": "直接初始化与拷贝初始化",
+      "targetId": "R07",
+      "targetHeading": "直接初始化与拷贝初始化",
+      "reason": "explicit和类构造选择放在构造函数之后。",
+      "resources": [],
+      "referenceRecords": [],
+      "targetAfterHeading": "类对象的默认初始化与值初始化",
+      "targetLevel": 2
+    },
+    {
+      "fromId": "R03",
+      "heading": "列表初始化与窄化",
+      "targetId": "R07",
+      "targetHeading": "类的列表初始化与构造选择",
+      "reason": "类的列表重载优先级与explicit需构造基础；数值窄化完整条件留R03。",
+      "resources": [],
+      "referenceRecords": [],
+      "targetAfterHeading": "直接初始化与拷贝初始化",
+      "targetLevel": 2
+    },
+    {
+      "fromId": "R03",
+      "heading": "initializer_list 与构造选择",
+      "targetId": "R13",
+      "targetHeading": "initializer_list 与构造选择",
+      "reason": "列表与数量构造差异和不可拷贝元素接在vector普通构造、资源所有权之后。",
+      "resources": [],
+      "referenceRecords": [
+        {
+          "heading": "initializer_list 与构造选择",
+          "label": "初始化列表规则",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.init.list",
+          "originalHeading": "initializer_list 与构造选择",
+          "originalSourceId": "R03"
+        }
+      ],
+      "targetAfterHeading": "数量构造与初始化列表",
+      "targetLevel": 3
+    },
+    {
+      "fromId": "R03",
+      "heading": "聚合初始化与成员默认值",
+      "targetId": "R07",
+      "targetHeading": "聚合初始化与成员默认值",
+      "reason": "聚合条件及C++20成员指定初始化接在简单类成员之后。",
+      "resources": [],
+      "referenceRecords": [
+        {
+          "heading": "聚合初始化与成员默认值",
+          "label": "C++17 聚合",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.init.aggr",
+          "originalHeading": "聚合初始化与成员默认值",
+          "originalSourceId": "R03"
+        },
+        {
+          "heading": "聚合初始化与成员默认值",
+          "label": "C++20 聚合",
+          "url": "https://timsong-cpp.github.io/cppwp/n4861/dcl.init.aggr",
+          "originalHeading": "聚合初始化与成员默认值",
+          "originalSourceId": "R03"
+        }
+      ],
+      "targetAfterHeading": "类的列表初始化与构造选择",
+      "targetLevel": 2
+    },
+    {
+      "fromId": "R03",
+      "heading": "auto",
+      "targetId": "R10",
+      "targetHeading": "auto 的完整推导与列表初值",
+      "reason": "数组衰变、引用折叠和转发引用需要函数模板；按值auto和基本auto&留R03。",
+      "resources": [
+        "../resources/R03-deduction-rules.svg"
+      ],
+      "referenceRecords": [
+        {
+          "heading": "auto 的完整推导与列表初值",
+          "label": "auto 推导",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.spec.auto",
+          "originalHeading": "auto",
+          "originalSourceId": "R03"
+        }
+      ],
+      "targetAfterHeading": "std::forward",
+      "targetLevel": 2
+    },
+    {
+      "fromId": "R03",
+      "heading": "decltype 与 decltype(auto)",
+      "targetId": "R10",
+      "targetHeading": "decltype 与 decltype(auto) 的完整推导",
+      "reason": "完整三类查询和返回借用须已学引用、值类别与函数。",
+      "resources": [],
+      "referenceRecords": [
+        {
+          "heading": "decltype 与 decltype(auto) 的完整推导",
+          "label": "decltype",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.type.simple",
+          "originalHeading": "decltype 与 decltype(auto)",
+          "originalSourceId": "R03"
+        }
+      ],
+      "targetAfterHeading": "auto 的完整推导与列表初值",
+      "targetLevel": 2
+    },
+    {
+      "fromId": "R03",
+      "heading": "const 与 constexpr",
+      "targetId": "R10",
+      "targetHeading": "constexpr、consteval 与 constinit",
+      "reason": "常量函数放在普通函数之后，const基本只读访问留R03。",
+      "resources": [],
+      "referenceRecords": [
+        {
+          "heading": "constexpr、consteval 与 constinit",
+          "label": "C++17 constexpr",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.constexpr",
+          "originalHeading": "const 与 constexpr",
+          "originalSourceId": "R03"
+        },
+        {
+          "heading": "constexpr、consteval 与 constinit",
+          "label": "C++20 常量声明",
+          "url": "https://timsong-cpp.github.io/cppwp/n4861/dcl.constexpr",
+          "originalHeading": "consteval 与 constinit",
+          "originalSourceId": "R03"
+        },
+        {
+          "heading": "constexpr、consteval 与 constinit",
+          "label": "constinit",
+          "url": "https://timsong-cpp.github.io/cppwp/n4861/dcl.constinit",
+          "originalHeading": "consteval 与 constinit",
+          "originalSourceId": "R03"
+        }
+      ],
+      "targetAfterHeading": "类模板",
+      "targetLevel": 2
+    },
+    {
+      "fromId": "R04",
+      "heading": "值类别",
+      "targetId": "R08",
+      "targetHeading": "值类别",
+      "reason": "五类关系及临时物化在基本引用和std::move之后。",
+      "resources": [
+        "../resources/R04-value-categories.svg"
+      ],
+      "referenceRecords": [
+        {
+          "heading": "值类别",
+          "label": "值类别定义",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.lval",
+          "originalHeading": "值类别",
+          "originalSourceId": "R04"
+        },
+        {
+          "heading": "值类别",
+          "label": "临时物化",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/conv.rval",
+          "originalHeading": "值类别",
+          "originalSourceId": "R04"
+        },
+        {
+          "heading": "值类别",
+          "label": "decltype",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.type.simple",
+          "originalHeading": "值类别",
+          "originalSourceId": "R04"
+        }
+      ],
+      "targetAfterHeading": "std::move",
+      "targetLevel": 2
+    },
+    {
+      "fromId": "R04",
+      "heading": "值类别",
+      "targetId": "R10",
+      "targetHeading": "值类别与类型查询",
+      "reason": "decltype、右值引用和is_same静态断言机制放在对应定义之后。",
+      "resources": [],
+      "referenceRecords": [
+        {
+          "heading": "值类别与类型查询",
+          "label": "值类别定义",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.lval",
+          "originalHeading": "值类别",
+          "originalSourceId": "R04"
+        },
+        {
+          "heading": "值类别与类型查询",
+          "label": "临时物化",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/conv.rval",
+          "originalHeading": "值类别",
+          "originalSourceId": "R04"
+        },
+        {
+          "heading": "值类别与类型查询",
+          "label": "decltype",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.type.simple",
+          "originalHeading": "值类别",
+          "originalSourceId": "R04"
+        }
+      ],
+      "targetAfterHeading": "decltype 与 decltype(auto) 的完整推导",
+      "targetLevel": 2
+    },
+    {
+      "fromId": "R04",
+      "heading": "static_cast",
+      "targetId": "R07",
+      "targetHeading": "类层次中的 static_cast",
+      "reason": "向上/向下转换条件需要基类和子对象。",
+      "resources": [],
+      "referenceRecords": [
+        {
+          "heading": "类层次中的 static_cast",
+          "label": "static_cast 规则",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.static.cast",
+          "originalHeading": "static_cast",
+          "originalSourceId": "R04"
+        }
+      ],
+      "targetAfterHeading": "完整对象、子对象与多态实现",
+      "targetLevel": 2
+    },
+    {
+      "fromId": "R04",
+      "heading": "dynamic_cast",
+      "targetId": "R07",
+      "targetHeading": "dynamic_cast",
+      "reason": "完整多态转换必须在虚函数、继承和基本指针之后。",
+      "resources": [],
+      "referenceRecords": [
+        {
+          "heading": "dynamic_cast",
+          "label": "dynamic_cast 规则",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.dynamic.cast",
+          "originalHeading": "dynamic_cast",
+          "originalSourceId": "R04"
+        }
+      ],
+      "targetAfterHeading": "完整对象、子对象与多态实现",
+      "targetLevel": 2
+    },
+    {
+      "fromId": "R05",
+      "heading": "临时对象与寿命延长",
+      "targetId": "R07",
+      "targetHeading": "引用成员与临时对象寿命",
+      "reason": "new和聚合引用成员边界在成员/构造后，并回链R09分配规则。",
+      "resources": [],
+      "referenceRecords": [
+        {
+          "heading": "引用成员与临时对象寿命",
+          "label": "C++17 临时对象",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/class.temporary",
+          "originalHeading": "临时对象与寿命延长",
+          "originalSourceId": "R05"
+        },
+        {
+          "heading": "引用成员与临时对象寿命",
+          "label": "C++20 临时对象",
+          "url": "https://timsong-cpp.github.io/cppwp/n4861/class.temporary",
+          "originalHeading": "临时对象与寿命延长",
+          "originalSourceId": "R05"
+        }
+      ],
+      "targetAfterHeading": "数据成员、成员函数与 const",
+      "targetLevel": 2
+    },
+    {
+      "fromId": "R05",
+      "heading": "临时对象与寿命延长",
+      "targetId": "R12",
+      "targetHeading": "字符串临时对象与借用寿命",
+      "reason": "string构造与size/data接口在字符串入口之后。",
+      "resources": [],
+      "referenceRecords": [
+        {
+          "heading": "字符串临时对象与借用寿命",
+          "label": "C++17 临时对象",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/class.temporary",
+          "originalHeading": "临时对象与寿命延长",
+          "originalSourceId": "R05"
+        },
+        {
+          "heading": "字符串临时对象与借用寿命",
+          "label": "C++20 临时对象",
+          "url": "https://timsong-cpp.github.io/cppwp/n4861/class.temporary",
+          "originalHeading": "临时对象与寿命延长",
+          "originalSourceId": "R05"
+        }
+      ],
+      "targetAfterHeading": "string 的缓冲与失效",
+      "targetLevel": 3
+    },
+    {
+      "fromId": "R05",
+      "heading": "返回借用与非拥有成员",
+      "targetId": "R07",
+      "targetHeading": "返回借用与非拥有成员",
+      "reason": "成员借用和默认复制借用关系在类成员之后；string在局部明确用途。",
+      "resources": [],
+      "referenceRecords": [],
+      "targetAfterHeading": "引用成员与临时对象寿命",
+      "targetLevel": 2
+    },
+    {
+      "fromId": "R06",
+      "heading": "默认实参与函数重载",
+      "targetId": "R07",
+      "targetHeading": "虚函数调用的默认实参",
+      "reason": "静态默认实参和动态分派的区别需要先学虚函数。",
+      "resources": [],
+      "referenceRecords": [
+        {
+          "heading": "虚函数调用的默认实参",
+          "label": "默认实参",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.fct.default",
+          "originalHeading": "默认实参与函数重载",
+          "originalSourceId": "R06"
+        },
+        {
+          "heading": "虚函数调用的默认实参",
+          "label": "重载决议",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/over.match",
+          "originalHeading": "默认实参与函数重载",
+          "originalSourceId": "R06"
+        }
+      ],
+      "targetAfterHeading": "虚函数、override 与 final",
+      "targetLevel": 2
+    },
+    {
+      "fromId": "R06",
+      "heading": "lambda 表达式",
+      "targetId": "R10",
+      "targetHeading": "泛型 lambda",
+      "reason": "普通固定参数lambda先教，实例化语义在模板后。",
+      "resources": [],
+      "referenceRecords": [],
+      "targetAfterHeading": "函数模板",
+      "targetLevel": 2
+    },
+    {
+      "fromId": "R06",
+      "heading": "lambda 捕获",
+      "targetId": "R07",
+      "targetHeading": "lambda 的类成员捕获",
+      "reason": "this和当前对象副本须先认识类成员。",
+      "resources": [],
+      "referenceRecords": [
+        {
+          "heading": "lambda 的类成员捕获",
+          "label": "C++17 lambda",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.prim.lambda",
+          "originalHeading": "lambda 捕获",
+          "originalSourceId": "R06"
+        }
+      ],
+      "targetAfterHeading": "数据成员、成员函数与 const",
+      "targetLevel": 2
+    },
+    {
+      "fromId": "R06",
+      "heading": "lambda 捕获",
+      "targetId": "R09",
+      "targetHeading": "拥有资源的 lambda 捕获",
+      "reason": "移动资源与不可拷贝闭包需unique_ptr与move基础。",
+      "resources": [],
+      "referenceRecords": [
+        {
+          "heading": "拥有资源的 lambda 捕获",
+          "label": "C++17 lambda",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.prim.lambda",
+          "originalHeading": "lambda 捕获",
+          "originalSourceId": "R06"
+        },
+        {
+          "heading": "拥有资源的 lambda 捕获",
+          "label": "function 接口",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/func.wrap.func",
+          "originalHeading": "std::function",
+          "originalSourceId": "R06"
+        }
+      ],
+      "targetAfterHeading": "unique_ptr 构造与访问",
+      "targetLevel": 2
+    },
+    {
+      "fromId": "R06",
+      "heading": "函数对象与函数指针",
+      "targetId": "R07",
+      "targetHeading": "函数对象",
+      "reason": "类调用运算符需成员函数与运算符基础。",
+      "resources": [],
+      "referenceRecords": [],
+      "targetAfterHeading": "运算符重载与 friend",
+      "targetLevel": 2
+    },
+    {
+      "fromId": "R06",
+      "heading": "std::invoke",
+      "targetId": "R10",
+      "targetHeading": "std::invoke 的成员指针与转发接口",
+      "reason": "成员指针、参数包与转发返回接口在类和模板基础之后。",
+      "resources": [],
+      "referenceRecords": [
+        {
+          "heading": "std::invoke 的成员指针与转发接口",
+          "label": "invoke 规则",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/func.invoke",
+          "originalHeading": "std::invoke",
+          "originalSourceId": "R06"
+        }
+      ],
+      "targetAfterHeading": "参数包与折叠表达式",
+      "targetLevel": 2
+    },
+    {
+      "fromId": "R06",
+      "heading": "std::function",
+      "targetId": "R10",
+      "targetHeading": "std::function 的签名模板",
+      "reason": "template声明及参数包摘要在模板语法之后。",
+      "resources": [],
+      "referenceRecords": [
+        {
+          "heading": "std::function 的签名模板",
+          "label": "function 接口",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/func.wrap.func",
+          "originalHeading": "std::function",
+          "originalSourceId": "R06"
+        }
+      ],
+      "targetAfterHeading": "std::invoke 的成员指针与转发接口",
+      "targetLevel": 2
+    },
+    {
+      "source": "R11",
+      "sourceHeading": "暂存与强保证提交",
+      "target": "R13",
+      "targetAfterHeading": "vector 的失效与异常保证",
+      "targetHeading": "暂存与强保证提交",
+      "targetLevel": 3
+    },
+    {
+      "fromId": "R17",
+      "heading": "pair 的修改与分解",
+      "targetId": "R17",
+      "targetHeading": "结构化绑定",
+      "targetAfterHeading": "std::tuple",
+      "reason": "完整结构化绑定定义及tuple在首次绑定使用前；保留原pair分解例并合并R02转入内容。",
+      "referenceRecords": [
+        {
+          "heading": "结构化绑定",
+          "label": "N4659 结构化绑定",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.struct.bind"
+        }
+      ],
+      "targetLevel": 3
+    }
+  ]
+}

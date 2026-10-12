@@ -1,0 +1,1036 @@
+{
+  "date": "2026-10-10",
+  "sectionCount": 10,
+  "topicCount": 147,
+  "records": [
+    {
+      "sourceId": "R02",
+      "source": "chapters/R02-types-objects.zh-CN.md",
+      "title": "基础类型分类",
+      "fragment": "基础类型分类",
+      "destination": "首次学习变量之前；样稿01将int/double列作先修。"
+    },
+    {
+      "sourceId": "R02",
+      "source": "chapters/R02-types-objects.zh-CN.md",
+      "title": "整数类型的大小与范围",
+      "fragment": "整数类型的大小与范围",
+      "destination": "继续保留在类型与对象的规则入口；基础类型先进入，存储机制后查；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R02",
+      "source": "chapters/R02-types-objects.zh-CN.md",
+      "title": "字符、布尔与空指针类型",
+      "fragment": "字符布尔与空指针类型",
+      "destination": "继续保留在类型与对象的规则入口；基础类型先进入，存储机制后查；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R02",
+      "source": "chapters/R02-types-objects.zh-CN.md",
+      "title": "浮点类型",
+      "fragment": "浮点类型",
+      "destination": "继续保留在类型与对象的规则入口；基础类型先进入，存储机制后查；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R02",
+      "source": "chapters/R02-types-objects.zh-CN.md",
+      "title": "类型性质查询与定宽整数",
+      "fragment": "类型性质查询与定宽整数",
+      "destination": "继续保留在类型与对象的规则入口；基础类型先进入，存储机制后查；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R02",
+      "source": "chapters/R02-types-objects.zh-CN.md",
+      "title": "枚举类型",
+      "fragment": "枚举类型",
+      "destination": "继续保留在类型与对象的规则入口；基础类型先进入，存储机制后查；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R02",
+      "source": "chapters/R02-types-objects.zh-CN.md",
+      "title": "数组与类型别名",
+      "fragment": "数组与类型别名",
+      "destination": "元素/下标先进入；衰变、数组指针与整个数组引用在基本借用之后。"
+    },
+    {
+      "sourceId": "R02",
+      "source": "chapters/R02-types-objects.zh-CN.md",
+      "title": "存储期、对象生命周期与作用域",
+      "fragment": "存储期对象生命周期与作用域",
+      "destination": "局部对象部分接样稿02；静态、线程与动态存储期仍在本条目完整维护。"
+    },
+    {
+      "sourceId": "R02",
+      "source": "chapters/R02-types-objects.zh-CN.md",
+      "title": "常见进程存储区域",
+      "fragment": "常见进程存储区域",
+      "destination": "继续保留在类型与对象的规则入口；基础类型先进入，存储机制后查；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R02",
+      "source": "chapters/R02-types-objects.zh-CN.md",
+      "title": "sizeof、alignof 与对象表示",
+      "fragment": "sizeofalignof-与对象表示",
+      "destination": "继续保留在类型与对象的规则入口；基础类型先进入，存储机制后查；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R02",
+      "source": "chapters/R02-types-objects.zh-CN.md",
+      "title": "类型特征与字节复制",
+      "fragment": "类型特征与字节复制",
+      "destination": "简单类、类型特征、静态断言之后，继续维护平凡可复制条件。"
+    },
+    {
+      "sourceId": "R02",
+      "source": "chapters/R02-types-objects.zh-CN.md",
+      "title": "placement new 与存储重用",
+      "fragment": "placement-new-与存储重用",
+      "destination": "构造析构、指针、new/delete及对齐之后；保留显式销毁和存储重用规则。"
+    },
+    {
+      "sourceId": "R02",
+      "source": "chapters/R02-types-objects.zh-CN.md",
+      "title": "对象复制与序列化",
+      "fragment": "对象复制与序列化",
+      "destination": "继续保留在类型与对象的规则入口；基础类型先进入，存储机制后查；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R02",
+      "source": "chapters/R02-types-objects.zh-CN.md",
+      "title": "结构化绑定",
+      "fragment": "结构化绑定",
+      "destination": "auto、引用与简单类之后进入基础拆解；tuple协议和高级约束继续保留。"
+    },
+    {
+      "sourceId": "R03",
+      "source": "chapters/R03-initialization-deduction.zh-CN.md",
+      "title": "初始化类别",
+      "fragment": "初始化类别",
+      "destination": "样稿01先用整数对照名称；完整分类表接构造基础之后。"
+    },
+    {
+      "sourceId": "R03",
+      "source": "chapters/R03-initialization-deduction.zh-CN.md",
+      "title": "默认初始化与值初始化",
+      "fragment": "默认初始化与值初始化",
+      "destination": "样稿01解释局部int/空列表；类对象与用户提供构造的完整差异继续维护。"
+    },
+    {
+      "sourceId": "R03",
+      "source": "chapters/R03-initialization-deduction.zh-CN.md",
+      "title": "直接初始化与拷贝初始化",
+      "fragment": "直接初始化与拷贝初始化",
+      "destination": "整数写法在样稿01；构造/explicit差异接样稿02，重载选择完整规则保留。"
+    },
+    {
+      "sourceId": "R03",
+      "source": "chapters/R03-initialization-deduction.zh-CN.md",
+      "title": "列表初始化与窄化",
+      "fragment": "列表初始化与窄化",
+      "destination": "样稿01解释浮点转整数；完整窄化条件与常量表达式豁免保留本条目。"
+    },
+    {
+      "sourceId": "R03",
+      "source": "chapters/R03-initialization-deduction.zh-CN.md",
+      "title": "initializer_list 与构造选择",
+      "fragment": "initializer_list-与构造选择",
+      "destination": "容器基本构造之后；不可复制元素部分还需移动、unique_ptr与插入基础。"
+    },
+    {
+      "sourceId": "R03",
+      "source": "chapters/R03-initialization-deduction.zh-CN.md",
+      "title": "聚合初始化与成员默认值",
+      "fragment": "聚合初始化与成员默认值",
+      "destination": "简单struct成员之后；聚合定义的版本差异仍完整维护。"
+    },
+    {
+      "sourceId": "R03",
+      "source": "chapters/R03-initialization-deduction.zh-CN.md",
+      "title": "auto",
+      "fragment": "auto",
+      "destination": "样稿01含按值、const与auto&；auto&&/列表特殊规则分别接引用推导和列表基础。"
+    },
+    {
+      "sourceId": "R03",
+      "source": "chapters/R03-initialization-deduction.zh-CN.md",
+      "title": "decltype 与 decltype(auto)",
+      "fragment": "decltype-与-decltypeauto",
+      "destination": "样稿01含名字与括号名字；完整三类推导、返回借用接值类别和函数返回。"
+    },
+    {
+      "sourceId": "R03",
+      "source": "chapters/R03-initialization-deduction.zh-CN.md",
+      "title": "推导返回类型",
+      "fragment": "推导返回类型",
+      "destination": "普通函数与auto之后；引用返回风险接借用生命周期。"
+    },
+    {
+      "sourceId": "R03",
+      "source": "chapters/R03-initialization-deduction.zh-CN.md",
+      "title": "const 与 constexpr",
+      "fragment": "const-与-constexpr",
+      "destination": "样稿01含const与副本；常量表达式及constexpr函数接普通函数与常量求值。"
+    },
+    {
+      "sourceId": "R03",
+      "source": "chapters/R03-initialization-deduction.zh-CN.md",
+      "title": "consteval 与 constinit",
+      "fragment": "consteval-与-constinit",
+      "destination": "保持C++20标识，接常量求值与静态初始化，不能从样稿中推断已覆盖。"
+    },
+    {
+      "sourceId": "R03",
+      "source": "chapters/R03-initialization-deduction.zh-CN.md",
+      "title": "静态初始化与局部 static",
+      "fragment": "静态初始化与局部-static",
+      "destination": "存储期、构造析构与必要线程认识之后完整维护。"
+    },
+    {
+      "sourceId": "R05",
+      "source": "chapters/R05-pointers-references.zh-CN.md",
+      "title": "指针声明、取址与解引用",
+      "fragment": "指针声明取址与解引用",
+      "destination": "样稿02之前先学；样稿02只复用这些操作，不替代其完整教学。"
+    },
+    {
+      "sourceId": "R05",
+      "source": "chapters/R05-pointers-references.zh-CN.md",
+      "title": "nullptr 与可选借用",
+      "fragment": "nullptr-与可选借用",
+      "destination": "普通if和函数之后；先明确无目标状态，再用可选参数。"
+    },
+    {
+      "sourceId": "R05",
+      "source": "chapters/R05-pointers-references.zh-CN.md",
+      "title": "左值引用与右值引用",
+      "fragment": "左值引用与右值引用",
+      "destination": "基本int&接样稿01；右值引用接最小值类别，完整绑定条件继续维护。"
+    },
+    {
+      "sourceId": "R05",
+      "source": "chapters/R05-pointers-references.zh-CN.md",
+      "title": "const 与多级指针",
+      "fragment": "const-与多级指针",
+      "destination": "继续保留在借用、指针与引用的完整规则入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R05",
+      "source": "chapters/R05-pointers-references.zh-CN.md",
+      "title": "数组区间与指针算术",
+      "fragment": "数组区间与指针算术",
+      "destination": "继续保留在借用、指针与引用的完整规则入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R05",
+      "source": "chapters/R05-pointers-references.zh-CN.md",
+      "title": "临时对象与寿命延长",
+      "fragment": "临时对象与寿命延长",
+      "destination": "继续保留在借用、指针与引用的完整规则入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R05",
+      "source": "chapters/R05-pointers-references.zh-CN.md",
+      "title": "返回借用与非拥有成员",
+      "fragment": "返回借用与非拥有成员",
+      "destination": "简单类、成员与函数返回之后；string例还需相应最小接口。"
+    },
+    {
+      "sourceId": "R05",
+      "source": "chapters/R05-pointers-references.zh-CN.md",
+      "title": "类型访问与配套例子",
+      "fragment": "类型访问与配套例子",
+      "destination": "继续保留在借用、指针与引用的完整规则入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R07",
+      "source": "chapters/R07-classes-lifetime.zh-CN.md",
+      "title": "class、struct 与访问控制",
+      "fragment": "classstruct-与访问控制",
+      "destination": "样稿02先给公开struct与成员；访问控制完整条目继续保留。"
+    },
+    {
+      "sourceId": "R07",
+      "source": "chapters/R07-classes-lifetime.zh-CN.md",
+      "title": "数据成员、成员函数与 const",
+      "fragment": "数据成员成员函数与-const",
+      "destination": "简单记录之后；const成员函数和隐含对象参数不由样稿替代。"
+    },
+    {
+      "sourceId": "R07",
+      "source": "chapters/R07-classes-lifetime.zh-CN.md",
+      "title": "运算符重载与 friend",
+      "fragment": "运算符重载与-friend",
+      "destination": "构造析构与基本值语义之后，不再先于构造解释。"
+    },
+    {
+      "sourceId": "R07",
+      "source": "chapters/R07-classes-lifetime.zh-CN.md",
+      "title": "构造函数与成员初始化",
+      "fragment": "构造函数与成员初始化",
+      "destination": "样稿02先解释普通成员初始化；委托、默认构造及完整选择继续维护。"
+    },
+    {
+      "sourceId": "R07",
+      "source": "chapters/R07-classes-lifetime.zh-CN.md",
+      "title": "析构函数",
+      "fragment": "析构函数",
+      "destination": "样稿02含自动销毁观察；虚析构、不抛清理等在相应基础之后完整维护。"
+    },
+    {
+      "sourceId": "R07",
+      "source": "chapters/R07-classes-lifetime.zh-CN.md",
+      "title": "特殊成员函数",
+      "fragment": "特殊成员函数",
+      "destination": "简单类和复制基础之后；默认/删除/隐式生成条件保留。"
+    },
+    {
+      "sourceId": "R07",
+      "source": "chapters/R07-classes-lifetime.zh-CN.md",
+      "title": "构造与销毁顺序",
+      "fragment": "构造与销毁顺序",
+      "destination": "普通成员顺序先讲；完整基类/虚基类顺序接组合继承与对象模型。"
+    },
+    {
+      "sourceId": "R07",
+      "source": "chapters/R07-classes-lifetime.zh-CN.md",
+      "title": "组合与继承",
+      "fragment": "组合与继承",
+      "destination": "继续保留在类与对象模型的完整规则入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R07",
+      "source": "chapters/R07-classes-lifetime.zh-CN.md",
+      "title": "虚函数、override 与 final",
+      "fragment": "虚函数override-与-final",
+      "destination": "继续保留在类与对象模型的完整规则入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R07",
+      "source": "chapters/R07-classes-lifetime.zh-CN.md",
+      "title": "抽象类与虚析构",
+      "fragment": "抽象类与虚析构",
+      "destination": "继续保留在类与对象模型的完整规则入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R07",
+      "source": "chapters/R07-classes-lifetime.zh-CN.md",
+      "title": "完整对象、子对象与多态实现",
+      "fragment": "完整对象子对象与多态实现",
+      "destination": "继续保留在类与对象模型的完整规则入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R07",
+      "source": "chapters/R07-classes-lifetime.zh-CN.md",
+      "title": "切片、克隆与外部表示",
+      "fragment": "切片克隆与外部表示",
+      "destination": "切片接继承；拥有者clone接unique_ptr；外部表示继续接序列化规则。"
+    },
+    {
+      "sourceId": "R07",
+      "source": "chapters/R07-classes-lifetime.zh-CN.md",
+      "title": "配套对象模型例子",
+      "fragment": "配套对象模型例子",
+      "destination": "继续保留在类与对象模型的完整规则入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R08",
+      "source": "chapters/R08-copy-move.zh-CN.md",
+      "title": "拷贝与移动操作分类",
+      "fragment": "拷贝与移动操作分类",
+      "destination": "继续保留在复制、移动与转发的完整规则入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R08",
+      "source": "chapters/R08-copy-move.zh-CN.md",
+      "title": "拷贝构造",
+      "fragment": "拷贝构造",
+      "destination": "继续保留在复制、移动与转发的完整规则入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R08",
+      "source": "chapters/R08-copy-move.zh-CN.md",
+      "title": "拷贝赋值",
+      "fragment": "拷贝赋值",
+      "destination": "继续保留在复制、移动与转发的完整规则入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R08",
+      "source": "chapters/R08-copy-move.zh-CN.md",
+      "title": "移动构造与移动赋值",
+      "fragment": "移动构造与移动赋值",
+      "destination": "样稿02用已定义unique_ptr解释具体责任转交；用户类型特殊成员规则继续维护。"
+    },
+    {
+      "sourceId": "R08",
+      "source": "chapters/R08-copy-move.zh-CN.md",
+      "title": "std::move",
+      "fragment": "stdmove",
+      "destination": "样稿02含允许作为转交源的用途；完整类型转换与重载机制接值类别。"
+    },
+    {
+      "sourceId": "R08",
+      "source": "chapters/R08-copy-move.zh-CN.md",
+      "title": "移动后状态与借用",
+      "fragment": "移动后状态与借用",
+      "destination": "样稿02限定unique_ptr同一动态int；通用状态与借用规则继续按类型维护。"
+    },
+    {
+      "sourceId": "R08",
+      "source": "chapters/R08-copy-move.zh-CN.md",
+      "title": "转发引用与引用折叠",
+      "fragment": "转发引用与引用折叠",
+      "destination": "函数模板语法、推导、引用和值类别之后；解除模板基础先修转发的循环。"
+    },
+    {
+      "sourceId": "R08",
+      "source": "chapters/R08-copy-move.zh-CN.md",
+      "title": "std::forward",
+      "fragment": "stdforward",
+      "destination": "函数模板推导和引用折叠之后，保留包装接口与转交区别。"
+    },
+    {
+      "sourceId": "R08",
+      "source": "chapters/R08-copy-move.zh-CN.md",
+      "title": "拷贝消除与返回对象",
+      "fragment": "拷贝消除与返回对象",
+      "destination": "继续保留在复制、移动与转发的完整规则入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R08",
+      "source": "chapters/R08-copy-move.zh-CN.md",
+      "title": "noexcept 与 move_if_noexcept",
+      "fragment": "noexcept-与-move_if_noexcept",
+      "destination": "异常说明、复制移动与容器操作之后，保留退回复制与保证条件。"
+    },
+    {
+      "sourceId": "R09",
+      "source": "chapters/R09-raii-memory.zh-CN.md",
+      "title": "RAII 资源对象",
+      "fragment": "raii-资源对象",
+      "destination": "样稿02先观察普通自动析构，再解释取得/释放责任；数组拥有者例后置。"
+    },
+    {
+      "sourceId": "R09",
+      "source": "chapters/R09-raii-memory.zh-CN.md",
+      "title": "new 与 delete",
+      "fragment": "new-与-delete",
+      "destination": "样稿02含单个动态int；数组、配对、失败与完整规则继续维护。"
+    },
+    {
+      "sourceId": "R09",
+      "source": "chapters/R09-raii-memory.zh-CN.md",
+      "title": "智能指针分类",
+      "fragment": "智能指针分类",
+      "destination": "样稿02只选独占拥有者；共享/弱引用模型各自单独展开。"
+    },
+    {
+      "sourceId": "R09",
+      "source": "chapters/R09-raii-memory.zh-CN.md",
+      "title": "unique_ptr 构造与访问",
+      "fragment": "unique_ptr-构造与访问",
+      "destination": "样稿02含make_unique/get/借用；构造重载、空状态和接口摘要保留。"
+    },
+    {
+      "sourceId": "R09",
+      "source": "chapters/R09-raii-memory.zh-CN.md",
+      "title": "unique_ptr 转移、reset 与 release",
+      "fragment": "unique_ptr-转移reset-与-release",
+      "destination": "移动基础接样稿02；reset/release完整契约保留，不混同get。"
+    },
+    {
+      "sourceId": "R09",
+      "source": "chapters/R09-raii-memory.zh-CN.md",
+      "title": "unique_ptr 数组与删除器",
+      "fragment": "unique_ptr-数组与删除器",
+      "destination": "单个对象独占责任之后，保留数组与自定义释放策略。"
+    },
+    {
+      "sourceId": "R09",
+      "source": "chapters/R09-raii-memory.zh-CN.md",
+      "title": "shared_ptr 构造、共享与访问",
+      "fragment": "shared_ptr-构造共享与访问",
+      "destination": "继续保留在资源与内存管理的完整规则入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R09",
+      "source": "chapters/R09-raii-memory.zh-CN.md",
+      "title": "weak_ptr 构造、lock 与 expired",
+      "fragment": "weak_ptr-构造lock-与-expired",
+      "destination": "继续保留在资源与内存管理的完整规则入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R09",
+      "source": "chapters/R09-raii-memory.zh-CN.md",
+      "title": "make_unique、make_shared 与 allocate_shared",
+      "fragment": "make_uniquemake_shared-与-allocate_shared",
+      "destination": "样稿02提前给scalar make_unique的最小用途；所有工厂完整条目仍集中维护。"
+    },
+    {
+      "sourceId": "R09",
+      "source": "chapters/R09-raii-memory.zh-CN.md",
+      "title": "控制状态、循环与并发",
+      "fragment": "控制状态循环与并发",
+      "destination": "继续保留在资源与内存管理的完整规则入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R09",
+      "source": "chapters/R09-raii-memory.zh-CN.md",
+      "title": "enable_shared_from_this",
+      "fragment": "enable_shared_from_this",
+      "destination": "继续保留在资源与内存管理的完整规则入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R09",
+      "source": "chapters/R09-raii-memory.zh-CN.md",
+      "title": "allocator 与 allocator_traits",
+      "fragment": "allocator-与-allocator_traits",
+      "destination": "继续保留在资源与内存管理的完整规则入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R09",
+      "source": "chapters/R09-raii-memory.zh-CN.md",
+      "title": "memory_resource 与 polymorphic_allocator",
+      "fragment": "memory_resource-与-polymorphic_allocator",
+      "destination": "继续保留在资源与内存管理的完整规则入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R09",
+      "source": "chapters/R09-raii-memory.zh-CN.md",
+      "title": "monotonic_buffer_resource 与池资源",
+      "fragment": "monotonic_buffer_resource-与池资源",
+      "destination": "继续保留在资源与内存管理的完整规则入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R09",
+      "source": "chapters/R09-raii-memory.zh-CN.md",
+      "title": "配套所有权例子",
+      "fragment": "配套所有权例子",
+      "destination": "继续保留在资源与内存管理的完整规则入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R11",
+      "source": "chapters/R11-errors-exception-safety.zh-CN.md",
+      "title": "throw 与异常对象",
+      "fragment": "throw-与异常对象",
+      "destination": "普通函数后可先学最小失败流程；样稿02给一组匹配try/catch。"
+    },
+    {
+      "sourceId": "R11",
+      "source": "chapters/R11-errors-exception-safety.zh-CN.md",
+      "title": "try、catch 与重新抛出",
+      "fragment": "trycatch-与重新抛出",
+      "destination": "样稿02仅含匹配处理；捕获次序、传播与重抛继续维护。"
+    },
+    {
+      "sourceId": "R11",
+      "source": "chapters/R11-errors-exception-safety.zh-CN.md",
+      "title": "栈展开与构造失败",
+      "fragment": "栈展开与构造失败",
+      "destination": "样稿02含已完成构造的自动对象清理；部分构造失败规则继续维护。"
+    },
+    {
+      "sourceId": "R11",
+      "source": "chapters/R11-errors-exception-safety.zh-CN.md",
+      "title": "标准异常类型",
+      "fragment": "标准异常类型",
+      "destination": "继续保留在失败表示与异常安全的完整规则入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R11",
+      "source": "chapters/R11-errors-exception-safety.zh-CN.md",
+      "title": "noexcept 说明符",
+      "fragment": "noexcept-说明符",
+      "destination": "继续保留在失败表示与异常安全的完整规则入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R11",
+      "source": "chapters/R11-errors-exception-safety.zh-CN.md",
+      "title": "noexcept 运算符",
+      "fragment": "noexcept-运算符",
+      "destination": "继续保留在失败表示与异常安全的完整规则入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R11",
+      "source": "chapters/R11-errors-exception-safety.zh-CN.md",
+      "title": "析构与终止边界",
+      "fragment": "析构与终止边界",
+      "destination": "继续保留在失败表示与异常安全的完整规则入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R11",
+      "source": "chapters/R11-errors-exception-safety.zh-CN.md",
+      "title": "error_code 与状态返回",
+      "fragment": "error_code-与状态返回",
+      "destination": "继续保留在失败表示与异常安全的完整规则入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R11",
+      "source": "chapters/R11-errors-exception-safety.zh-CN.md",
+      "title": "错误表示比较",
+      "fragment": "错误表示比较",
+      "destination": "继续保留在失败表示与异常安全的完整规则入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R11",
+      "source": "chapters/R11-errors-exception-safety.zh-CN.md",
+      "title": "异常安全保证",
+      "fragment": "异常安全保证",
+      "destination": "构造析构、资源责任、失败流程之后进入保证层次。"
+    },
+    {
+      "sourceId": "R11",
+      "source": "chapters/R11-errors-exception-safety.zh-CN.md",
+      "title": "暂存与强保证提交",
+      "fragment": "暂存与强保证提交",
+      "destination": "vector复制/追加/swap与保证层次之后，保留完整提交机制。"
+    },
+    {
+      "sourceId": "R13",
+      "source": "chapters/R13-sequence-containers.zh-CN.md",
+      "title": "顺序容器分类",
+      "fragment": "顺序容器分类",
+      "destination": "继续保留在顺序容器的完整接口与操作契约入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R13",
+      "source": "chapters/R13-sequence-containers.zh-CN.md",
+      "title": "操作成本",
+      "fragment": "操作成本",
+      "destination": "基本操作之后比较选型；复杂度最小定义前置到第一张成本表。"
+    },
+    {
+      "sourceId": "R13",
+      "source": "chapters/R13-sequence-containers.zh-CN.md",
+      "title": "复杂度与额外空间",
+      "fragment": "复杂度与额外空间",
+      "destination": "O记号、计量单位及摊还的最小解释先于成本表；完整比较留本条目。"
+    },
+    {
+      "sourceId": "R13",
+      "source": "chapters/R13-sequence-containers.zh-CN.md",
+      "title": "std::array",
+      "fragment": "stdarray",
+      "destination": "继续保留在顺序容器的完整接口与操作契约入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R13",
+      "source": "chapters/R13-sequence-containers.zh-CN.md",
+      "title": "array 的初始化、访问与遍历",
+      "fragment": "array-的初始化访问与遍历",
+      "destination": "继续保留在顺序容器的完整接口与操作契约入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R13",
+      "source": "chapters/R13-sequence-containers.zh-CN.md",
+      "title": "array 的修改与失效",
+      "fragment": "array-的修改与失效",
+      "destination": "继续保留在顺序容器的完整接口与操作契约入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R13",
+      "source": "chapters/R13-sequence-containers.zh-CN.md",
+      "title": "std::vector",
+      "fragment": "stdvector",
+      "destination": "样稿03只走int基础链；完整接口、限制与其他元素类型继续维护。"
+    },
+    {
+      "sourceId": "R13",
+      "source": "chapters/R13-sequence-containers.zh-CN.md",
+      "title": "vector 的构造与初始化",
+      "fragment": "vector-的构造与初始化",
+      "destination": "基础列表先讲；区间构造接begin/end与半开区间之后。"
+    },
+    {
+      "sourceId": "R13",
+      "source": "chapters/R13-sequence-containers.zh-CN.md",
+      "title": "vector 的访问与遍历",
+      "fragment": "vector-的访问与遍历",
+      "destination": "样稿03含下标、at与范围for；front/back/data的契约保留。"
+    },
+    {
+      "sourceId": "R13",
+      "source": "chapters/R13-sequence-containers.zh-CN.md",
+      "title": "vector 的插入、删除与替换",
+      "fragment": "vector-的插入删除与替换",
+      "destination": "样稿03含单位置insert/erase返回值；区间、原位与替换接口保留。"
+    },
+    {
+      "sourceId": "R13",
+      "source": "chapters/R13-sequence-containers.zh-CN.md",
+      "title": "vector 的核心接口",
+      "fragment": "vector-的核心接口",
+      "destination": "正常用例之后供查阅，摘要不充当基础学习的首个说明。"
+    },
+    {
+      "sourceId": "R13",
+      "source": "chapters/R13-sequence-containers.zh-CN.md",
+      "title": "数量构造与初始化列表",
+      "fragment": "数量构造与初始化列表",
+      "destination": "初始化与vector基础之后，保留数量/列表构造差异。"
+    },
+    {
+      "sourceId": "R13",
+      "source": "chapters/R13-sequence-containers.zh-CN.md",
+      "title": "reserve 与 resize",
+      "fragment": "reserve-与-resize",
+      "destination": "样稿03先区别容量与元素数量；默认值及增长契约继续维护。"
+    },
+    {
+      "sourceId": "R13",
+      "source": "chapters/R13-sequence-containers.zh-CN.md",
+      "title": "动态数组扩容",
+      "fragment": "动态数组扩容",
+      "destination": "容量与有效位置之后，继续维护重分配模型。"
+    },
+    {
+      "sourceId": "R13",
+      "source": "chapters/R13-sequence-containers.zh-CN.md",
+      "title": "vector 的失效与异常保证",
+      "fragment": "vector-的失效与异常保证",
+      "destination": "样稿03先定义位置再归纳int的成功操作失效；完整类型条件保留。"
+    },
+    {
+      "sourceId": "R13",
+      "source": "chapters/R13-sequence-containers.zh-CN.md",
+      "title": "元素操作的异常保证",
+      "fragment": "元素操作的异常保证",
+      "destination": "完整复制移动、异常层次之后，保持条件精度。"
+    },
+    {
+      "sourceId": "R13",
+      "source": "chapters/R13-sequence-containers.zh-CN.md",
+      "title": "顺序容器的遍历删除",
+      "fragment": "顺序容器的遍历删除",
+      "destination": "erase返回位置及有效区间之后；erase-remove、C++20辅助等继续保留。"
+    },
+    {
+      "sourceId": "R13",
+      "source": "chapters/R13-sequence-containers.zh-CN.md",
+      "title": "std::deque",
+      "fragment": "stddeque",
+      "destination": "继续保留在顺序容器的完整接口与操作契约入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R13",
+      "source": "chapters/R13-sequence-containers.zh-CN.md",
+      "title": "deque 的构造与操作",
+      "fragment": "deque-的构造与操作",
+      "destination": "继续保留在顺序容器的完整接口与操作契约入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R13",
+      "source": "chapters/R13-sequence-containers.zh-CN.md",
+      "title": "deque 的存储与失效",
+      "fragment": "deque-的存储与失效",
+      "destination": "继续保留在顺序容器的完整接口与操作契约入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R13",
+      "source": "chapters/R13-sequence-containers.zh-CN.md",
+      "title": "std::list",
+      "fragment": "stdlist",
+      "destination": "继续保留在顺序容器的完整接口与操作契约入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R13",
+      "source": "chapters/R13-sequence-containers.zh-CN.md",
+      "title": "list 的构造与常用成员",
+      "fragment": "list-的构造与常用成员",
+      "destination": "继续保留在顺序容器的完整接口与操作契约入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R13",
+      "source": "chapters/R13-sequence-containers.zh-CN.md",
+      "title": "list 的位置与 splice",
+      "fragment": "list-的位置与-splice",
+      "destination": "继续保留在顺序容器的完整接口与操作契约入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R13",
+      "source": "chapters/R13-sequence-containers.zh-CN.md",
+      "title": "std::forward_list",
+      "fragment": "stdforward_list",
+      "destination": "继续保留在顺序容器的完整接口与操作契约入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R13",
+      "source": "chapters/R13-sequence-containers.zh-CN.md",
+      "title": "forward_list 的构造与成员",
+      "fragment": "forward_list-的构造与成员",
+      "destination": "继续保留在顺序容器的完整接口与操作契约入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R13",
+      "source": "chapters/R13-sequence-containers.zh-CN.md",
+      "title": "forward_list 的前驱与 splice_after",
+      "fragment": "forward_list-的前驱与-splice_after",
+      "destination": "继续保留在顺序容器的完整接口与操作契约入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R13",
+      "source": "chapters/R13-sequence-containers.zh-CN.md",
+      "title": "元素地址与业务句柄",
+      "fragment": "元素地址与业务句柄",
+      "destination": "继续保留在顺序容器的完整接口与操作契约入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R13",
+      "source": "chapters/R13-sequence-containers.zh-CN.md",
+      "title": "拥有者与所指对象",
+      "fragment": "拥有者与所指对象",
+      "destination": "unique_ptr及容器位置之后；不把容器元素地址与动态目标地址混同。"
+    },
+    {
+      "sourceId": "R13",
+      "source": "chapters/R13-sequence-containers.zh-CN.md",
+      "title": "典型现象与检查点",
+      "fragment": "典型现象与检查点",
+      "destination": "继续保留在顺序容器的完整接口与操作契约入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R13",
+      "source": "chapters/R13-sequence-containers.zh-CN.md",
+      "title": "参考资料",
+      "fragment": "参考资料",
+      "destination": "继续保留在顺序容器的完整接口与操作契约入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R15",
+      "source": "chapters/R15-iterators-ranges.zh-CN.md",
+      "title": "std::begin 与 std::end",
+      "fragment": "stdbegin-与-stdend",
+      "destination": "样稿03先给vector成员begin/end；数组和非成员泛型入口继续维护。"
+    },
+    {
+      "sourceId": "R15",
+      "source": "chapters/R15-iterators-ranges.zh-CN.md",
+      "title": "半开区间与尾后位置",
+      "fragment": "半开区间与尾后位置",
+      "destination": "样稿03在位置操作前解释；完整合法区间规则继续维护。"
+    },
+    {
+      "sourceId": "R15",
+      "source": "chapters/R15-iterators-ranges.zh-CN.md",
+      "title": "迭代器类别与访问成本",
+      "fragment": "迭代器类别与访问成本",
+      "destination": "最小位置/区间模型之后，不作为vector首例共同先修。"
+    },
+    {
+      "sourceId": "R15",
+      "source": "chapters/R15-iterators-ranges.zh-CN.md",
+      "title": "比较与导航成本",
+      "fragment": "比较与导航成本",
+      "destination": "基本next/distance先比较；lower_bound成本接分区前提之后。"
+    },
+    {
+      "sourceId": "R15",
+      "source": "chapters/R15-iterators-ranges.zh-CN.md",
+      "title": "std::iterator_traits",
+      "fragment": "stditerator_traits",
+      "destination": "最小迭代器及模板类型查询之后。"
+    },
+    {
+      "sourceId": "R15",
+      "source": "chapters/R15-iterators-ranges.zh-CN.md",
+      "title": "std::advance、std::next、std::prev 与 std::distance",
+      "fragment": "stdadvancestdnextstdprev-与-stddistance",
+      "destination": "能力类别之后，完整负偏移/复杂度条件保留。"
+    },
+    {
+      "sourceId": "R15",
+      "source": "chapters/R15-iterators-ranges.zh-CN.md",
+      "title": "std::reverse_iterator",
+      "fragment": "stdreverse_iterator",
+      "destination": "正向半开区间之后，保留base与逆向访问差别。"
+    },
+    {
+      "sourceId": "R15",
+      "source": "chapters/R15-iterators-ranges.zh-CN.md",
+      "title": "插入迭代器",
+      "fragment": "插入迭代器",
+      "destination": "容器插入与算法输出之后，保留各适配器前提。"
+    },
+    {
+      "sourceId": "R15",
+      "source": "chapters/R15-iterators-ranges.zh-CN.md",
+      "title": "ranges 算法与投影",
+      "fragment": "ranges-算法与投影",
+      "destination": "保持C++20标识，接普通算法、可调用对象与最小range模型。"
+    },
+    {
+      "sourceId": "R15",
+      "source": "chapters/R15-iterators-ranges.zh-CN.md",
+      "title": "range、sentinel 与 borrowed_range",
+      "fragment": "rangesentinel-与-borrowed_range",
+      "destination": "保持C++20标识，接区间与借用生命周期，完整模型仍在此维护。"
+    },
+    {
+      "sourceId": "R15",
+      "source": "chapters/R15-iterators-ranges.zh-CN.md",
+      "title": "views 与惰性管线",
+      "fragment": "views-与惰性管线",
+      "destination": "ranges基础之后，保留惰性求值、拥有/借用及寿命条件。"
+    },
+    {
+      "sourceId": "R15",
+      "source": "chapters/R15-iterators-ranges.zh-CN.md",
+      "title": "组合应用与参考资料",
+      "fragment": "组合应用与参考资料",
+      "destination": "继续保留在迭代器能力与ranges的完整规则入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R16",
+      "source": "chapters/R16-algorithms.zh-CN.md",
+      "title": "比较器与谓词",
+      "fragment": "比较器与谓词",
+      "destination": "排序/关联键前最小解释；完整严格弱序保留。"
+    },
+    {
+      "sourceId": "R16",
+      "source": "chapters/R16-algorithms.zh-CN.md",
+      "title": "std::find、std::find_if 与计数",
+      "fragment": "stdfindstdfind_if-与计数",
+      "destination": "样稿03含find返回位置与末端判断；谓词/计数接口继续保留。"
+    },
+    {
+      "sourceId": "R16",
+      "source": "chapters/R16-algorithms.zh-CN.md",
+      "title": "std::all_of、std::any_of 与 std::none_of",
+      "fragment": "stdall_ofstdany_of-与-stdnone_of",
+      "destination": "继续保留在算法的完整操作与前提入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R16",
+      "source": "chapters/R16-algorithms.zh-CN.md",
+      "title": "std::for_each",
+      "fragment": "stdfor_each",
+      "destination": "继续保留在算法的完整操作与前提入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R16",
+      "source": "chapters/R16-algorithms.zh-CN.md",
+      "title": "std::copy、std::copy_if 与填充",
+      "fragment": "stdcopystdcopy_if-与填充",
+      "destination": "继续保留在算法的完整操作与前提入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R16",
+      "source": "chapters/R16-algorithms.zh-CN.md",
+      "title": "std::transform",
+      "fragment": "stdtransform",
+      "destination": "继续保留在算法的完整操作与前提入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R16",
+      "source": "chapters/R16-algorithms.zh-CN.md",
+      "title": "std::remove、std::remove_if 与 std::unique",
+      "fragment": "stdremovestdremove_if-与-stdunique",
+      "destination": "继续保留在算法的完整操作与前提入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R16",
+      "source": "chapters/R16-algorithms.zh-CN.md",
+      "title": "std::sort 与 std::stable_sort",
+      "fragment": "stdsort-与-stdstable_sort",
+      "destination": "继续保留在算法的完整操作与前提入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R16",
+      "source": "chapters/R16-algorithms.zh-CN.md",
+      "title": "std::min_element 与 std::max_element",
+      "fragment": "stdmin_element-与-stdmax_element",
+      "destination": "继续保留在算法的完整操作与前提入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R16",
+      "source": "chapters/R16-algorithms.zh-CN.md",
+      "title": "std::nth_element 与 std::partial_sort",
+      "fragment": "stdnth_element-与-stdpartial_sort",
+      "destination": "继续保留在算法的完整操作与前提入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R16",
+      "source": "chapters/R16-algorithms.zh-CN.md",
+      "title": "std::partition 与 std::stable_partition",
+      "fragment": "stdpartition-与-stdstable_partition",
+      "destination": "继续保留在算法的完整操作与前提入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R16",
+      "source": "chapters/R16-algorithms.zh-CN.md",
+      "title": "std::lower_bound、std::upper_bound 与等价范围",
+      "fragment": "stdlower_boundstdupper_bound-与等价范围",
+      "destination": "继续保留在算法的完整操作与前提入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R16",
+      "source": "chapters/R16-algorithms.zh-CN.md",
+      "title": "有序集合算法",
+      "fragment": "有序集合算法",
+      "destination": "继续保留在算法的完整操作与前提入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R16",
+      "source": "chapters/R16-algorithms.zh-CN.md",
+      "title": "堆算法",
+      "fragment": "堆算法",
+      "destination": "继续保留在算法的完整操作与前提入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R16",
+      "source": "chapters/R16-algorithms.zh-CN.md",
+      "title": "二分查找的分区条件",
+      "fragment": "二分查找的分区条件",
+      "destination": "第一次lower_bound之前最小解释，完整反例及前提继续维护。"
+    },
+    {
+      "sourceId": "R16",
+      "source": "chapters/R16-algorithms.zh-CN.md",
+      "title": "堆的结构与操作条件",
+      "fragment": "堆的结构与操作条件",
+      "destination": "第一次堆算法之前最小解释；完整操作继续维护。"
+    },
+    {
+      "sourceId": "R16",
+      "source": "chapters/R16-algorithms.zh-CN.md",
+      "title": "排序、选择与分区的结果差异",
+      "fragment": "排序选择与分区的结果差异",
+      "destination": "继续保留在算法的完整操作与前提入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R16",
+      "source": "chapters/R16-algorithms.zh-CN.md",
+      "title": "std::accumulate、std::inner_product 与 std::iota",
+      "fragment": "stdaccumulatestdinner_product-与-stdiota",
+      "destination": "继续保留在算法的完整操作与前提入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R16",
+      "source": "chapters/R16-algorithms.zh-CN.md",
+      "title": "std::reduce 与 std::transform_reduce",
+      "fragment": "stdreduce-与-stdtransform_reduce",
+      "destination": "继续保留在算法的完整操作与前提入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R16",
+      "source": "chapters/R16-algorithms.zh-CN.md",
+      "title": "std::inclusive_scan 与 std::exclusive_scan",
+      "fragment": "stdinclusive_scan-与-stdexclusive_scan",
+      "destination": "继续保留在算法的完整操作与前提入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R16",
+      "source": "chapters/R16-algorithms.zh-CN.md",
+      "title": "执行策略",
+      "fragment": "执行策略",
+      "destination": "继续保留在算法的完整操作与前提入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    },
+    {
+      "sourceId": "R16",
+      "source": "chapters/R16-algorithms.zh-CN.md",
+      "title": "组合应用与参考资料",
+      "fragment": "组合应用与参考资料",
+      "destination": "继续保留在算法的完整操作与前提入口；所需基础满足后进入。本轮样稿不替代这项规则。"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "chapter": "R05",
+  "source": "chapters/R05-pointers-references.zh-CN.md",
+  "references": [
+    {
+      "heading": "数组身份与指针转换",
+      "label": "数组声明",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.array"
+    },
+    {
+      "heading": "数组身份与指针转换",
+      "label": "数组转换",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/conv.array"
+    },
+    {
+      "heading": "const_cast",
+      "label": "const_cast 规则",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.const.cast"
+    },
+    {
+      "heading": "const_cast",
+      "label": "cv 限定",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.type.cv"
+    },
+    {
+      "heading": "reinterpret_cast",
+      "label": "reinterpret_cast 规则",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.reinterpret.cast"
+    },
+    {
+      "heading": "reinterpret_cast",
+      "label": "对象类型访问",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.lval#11"
+    },
+    {
+      "heading": "nullptr 与可选借用",
+      "label": "空指针转换",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/conv.ptr"
+    },
+    {
+      "heading": "左值引用与右值引用",
+      "label": "引用声明",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.ref"
+    },
+    {
+      "heading": "左值引用与右值引用",
+      "label": "引用初始化",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.init.ref"
+    },
+    {
+      "heading": "const 与多级指针",
+      "label": "限定转换",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/conv.qual"
+    },
+    {
+      "heading": "数组区间与指针算术",
+      "label": "指针加减规则",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.add"
+    },
+    {
+      "heading": "临时对象与寿命延长",
+      "label": "C++17 临时对象",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/class.temporary"
+    },
+    {
+      "heading": "临时对象与寿命延长",
+      "label": "C++20 临时对象",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/class.temporary"
+    },
+    {
+      "heading": "类型访问与配套例子",
+      "label": "C++17 类型访问规则",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.lval"
+    },
+    {
+      "heading": "范围 for 的引用元素",
+      "label": "C++17 范围 for",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/stmt.ranged"
+    },
+    {
+      "heading": "引用与指针参数",
+      "label": "函数调用",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.call"
+    }
+  ]
+}

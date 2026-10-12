@@ -1,0 +1,81 @@
+{
+  "chapter": "R17",
+  "source": "chapters/R17-utility-results.zh-CN.md",
+  "references": [
+    {
+      "heading": "结构化绑定",
+      "label": "结构化绑定规则",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.struct.bind"
+    },
+    {
+      "heading": "pair 的修改与分解",
+      "label": "N4659 pair",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/pairs"
+    },
+    {
+      "heading": "结构化绑定",
+      "label": "N4659 pair",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/pairs"
+    },
+    {
+      "heading": "make_tuple、tie 与 apply",
+      "label": "N4659 tuple",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/tuple"
+    },
+    {
+      "heading": "optional 的状态检查与访问",
+      "label": "N4659 optional observers",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/optional.observe"
+    },
+    {
+      "heading": "optional 的赋值、重建与清空",
+      "label": "N4659 optional assignment",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/optional.assign"
+    },
+    {
+      "heading": "optional 的赋值、重建与清空",
+      "label": "reset",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/optional.mod"
+    },
+    {
+      "heading": "optional 的机制与扩展",
+      "label": "N4950 optional",
+      "url": "https://timsong-cpp.github.io/cppwp/n4950/optional"
+    },
+    {
+      "heading": "variant 的修改与 visit",
+      "label": "N4659 variant",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/variant"
+    },
+    {
+      "heading": "any 的修改与存储机制",
+      "label": "N4659 any",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/any"
+    },
+    {
+      "heading": "expected 的修改与结果组合",
+      "label": "N4950 expected",
+      "url": "https://timsong-cpp.github.io/cppwp/n4950/expected"
+    },
+    {
+      "heading": "比较与哈希",
+      "label": "N4659 hash requirements",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/unord.hash"
+    },
+    {
+      "heading": "比较与哈希",
+      "label": "cppreference utility library",
+      "url": "https://en.cppreference.com/w/cpp/utility.html"
+    },
+    {
+      "heading": "variant 的修改与 visit",
+      "label": "N4659 decay 的完整变换",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/meta.trans.other"
+    },
+    {
+      "heading": "结构化绑定",
+      "label": "N4659 结构化绑定",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.struct.bind"
+    }
+  ]
+}

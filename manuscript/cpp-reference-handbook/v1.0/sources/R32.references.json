@@ -1,0 +1,36 @@
+{
+  "chapter": "R32",
+  "source": "chapters/R32-performance.zh-CN.md",
+  "references": [
+    {
+      "heading": "steady_clock：测量时间区间",
+      "label": "steady_clock",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/time.clock.steady"
+    },
+    {
+      "heading": "Benchmark：比较两个实现",
+      "label": "Google Benchmark 指南",
+      "url": "https://github.com/google/benchmark/blob/main/docs/user_guide.md"
+    },
+    {
+      "heading": "Profiler：定位时间与事件",
+      "label": "perf stat",
+      "url": "https://man7.org/linux/man-pages/man1/perf-stat.1.html"
+    },
+    {
+      "heading": "Profiler：定位时间与事件",
+      "label": "perf record",
+      "url": "https://man7.org/linux/man-pages/man1/perf-record.1.html"
+    },
+    {
+      "heading": "Profiler：定位时间与事件",
+      "label": "权限与事件",
+      "url": "https://docs.kernel.org/admin-guide/perf-security.html"
+    },
+    {
+      "heading": "Profiler：定位时间与事件",
+      "label": "WPR 命令",
+      "url": "https://learn.microsoft.com/en-us/windows-hardware/test/wpt/wpr-command-line-options"
+    }
+  ]
+}

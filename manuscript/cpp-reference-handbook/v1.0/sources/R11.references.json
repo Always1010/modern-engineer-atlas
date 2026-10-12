@@ -1,0 +1,51 @@
+{
+  "chapter": "R11",
+  "source": "chapters/R11-errors-exception-safety.zh-CN.md",
+  "references": [
+    {
+      "heading": "throw 与异常对象",
+      "label": "C++17 throw",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/except.throw"
+    },
+    {
+      "heading": "try、catch 与重新抛出",
+      "label": "处理器规则",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/except.handle"
+    },
+    {
+      "heading": "栈展开与构造失败",
+      "label": "展开与构造清理",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/except.ctor"
+    },
+    {
+      "heading": "标准异常类型",
+      "label": "标准异常",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/support.exception"
+    },
+    {
+      "heading": "标准异常类型",
+      "label": "标准逻辑/运行期异常",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/std.exceptions"
+    },
+    {
+      "heading": "noexcept 说明符",
+      "label": "异常说明",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/except.spec"
+    },
+    {
+      "heading": "noexcept 说明符",
+      "label": "异常终止",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/except.terminate"
+    },
+    {
+      "heading": "noexcept 运算符",
+      "label": "noexcept 运算符",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.unary.noexcept"
+    },
+    {
+      "heading": "error_code 与状态返回",
+      "label": "error_code",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/syserr.errcode"
+    }
+  ]
+}

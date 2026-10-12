@@ -1,0 +1,106 @@
+{
+  "chapter": "R21",
+  "source": "chapters/R21-mutex-coordination.zh-CN.md",
+  "references": [
+    {
+      "heading": "互斥量与临界区",
+      "label": "互斥量要求",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/thread.mutex.requirements"
+    },
+    {
+      "heading": "std::mutex",
+      "label": "mutex",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/thread.mutex.class"
+    },
+    {
+      "heading": "std::recursive_mutex",
+      "label": "recursive_mutex",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/thread.mutex.recursive"
+    },
+    {
+      "heading": "std::timed_mutex",
+      "label": "timed_mutex",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/thread.timedmutex.class"
+    },
+    {
+      "heading": "std::recursive_timed_mutex",
+      "label": "recursive_timed_mutex",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/thread.timedmutex.recursive"
+    },
+    {
+      "heading": "std::shared_mutex",
+      "label": "shared_mutex",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/thread.sharedmutex.class"
+    },
+    {
+      "heading": "std::shared_timed_mutex",
+      "label": "shared_timed_mutex",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/thread.sharedtimedmutex.class"
+    },
+    {
+      "heading": "锁标签",
+      "label": "锁标签",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/thread.lock"
+    },
+    {
+      "heading": "std::lock_guard",
+      "label": "lock_guard",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/thread.lock.guard"
+    },
+    {
+      "heading": "unique_lock 的所有权查询与 release",
+      "label": "unique_lock",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/thread.lock.unique"
+    },
+    {
+      "heading": "std::scoped_lock",
+      "label": "scoped_lock",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/thread.lock.scoped"
+    },
+    {
+      "heading": "std::shared_lock",
+      "label": "shared_lock",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/thread.lock.shared"
+    },
+    {
+      "heading": "std::lock 与 std::try_lock",
+      "label": "多锁函数",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/thread.lock.algorithm"
+    },
+    {
+      "heading": "std::condition_variable",
+      "label": "condition_variable",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/thread.condition.condvar"
+    },
+    {
+      "heading": "std::condition_variable_any",
+      "label": "condition_variable_any",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/thread.condition.condvarany"
+    },
+    {
+      "heading": "std::condition_variable_any",
+      "label": "C++20 停止等待",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/thread.condition.condvarany"
+    },
+    {
+      "heading": "std::binary_semaphore（C++20）",
+      "label": "semaphore",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/thread.sema"
+    },
+    {
+      "heading": "std::latch（C++20）",
+      "label": "latch",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/thread.latch"
+    },
+    {
+      "heading": "std::barrier（C++20）",
+      "label": "barrier",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/thread.barrier"
+    },
+    {
+      "heading": "std::once_flag 与 std::call_once",
+      "label": "call_once",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/thread.once"
+    }
+  ]
+}

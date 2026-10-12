@@ -1,0 +1,256 @@
+{
+  "chapter": "R13",
+  "source": "chapters/R13-sequence-containers.zh-CN.md",
+  "references": [
+    {
+      "heading": "initializer_list 与构造选择",
+      "label": "初始化列表规则",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.init.list"
+    },
+    {
+      "heading": "暂存与强保证提交",
+      "label": "vector swap",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/vector.special"
+    },
+    {
+      "heading": "暂存与强保证提交",
+      "label": "容器交换条件",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/container.requirements.general"
+    },
+    {
+      "heading": "顺序容器分类",
+      "label": "顺序容器要求",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/sequence.reqmts"
+    },
+    {
+      "heading": "顺序容器分类",
+      "label": "array",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/array"
+    },
+    {
+      "heading": "顺序容器分类",
+      "label": "vector",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/vector.overview"
+    },
+    {
+      "heading": "顺序容器分类",
+      "label": "deque",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/deque.overview"
+    },
+    {
+      "heading": "顺序容器分类",
+      "label": "list",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/list.overview"
+    },
+    {
+      "heading": "顺序容器分类",
+      "label": "forward_list",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/forwardlist.overview"
+    },
+    {
+      "heading": "操作成本",
+      "label": "容器复杂度定义",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/container.requirements.general"
+    },
+    {
+      "heading": "操作成本",
+      "label": "vector 操作",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/vector.modifiers"
+    },
+    {
+      "heading": "操作成本",
+      "label": "deque 操作",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/deque.modifiers"
+    },
+    {
+      "heading": "操作成本",
+      "label": "list 插删",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/list.modifiers"
+    },
+    {
+      "heading": "复杂度与额外空间",
+      "label": "N4659 容器复杂度计量",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/container.requirements.general"
+    },
+    {
+      "heading": "复杂度与额外空间",
+      "label": "vector 删除的析构与赋值次数",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/vector.modifiers"
+    },
+    {
+      "heading": "array 的修改与失效",
+      "label": "N4659 array",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/array"
+    },
+    {
+      "heading": "vector 的核心接口",
+      "label": "vector 声明",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/vector.overview"
+    },
+    {
+      "heading": "vector 的核心接口",
+      "label": "区间与类型要求",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/sequence.reqmts"
+    },
+    {
+      "heading": "vector 的核心接口",
+      "label": "data",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/vector.data"
+    },
+    {
+      "heading": "数量构造与初始化列表",
+      "label": "vector 构造",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/vector.cons"
+    },
+    {
+      "heading": "数量构造与初始化列表",
+      "label": "聚合与 array",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/array"
+    },
+    {
+      "heading": "reserve 与 resize",
+      "label": "容量与调整长度",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/vector.capacity"
+    },
+    {
+      "heading": "动态数组扩容",
+      "label": "N4659 vector 连续与均摊保证",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/vector.overview"
+    },
+    {
+      "heading": "动态数组扩容",
+      "label": "容量与重分配",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/vector.capacity"
+    },
+    {
+      "heading": "vector 的失效与异常保证",
+      "label": "vector 容量",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/vector.capacity"
+    },
+    {
+      "heading": "vector 的失效与异常保证",
+      "label": "vector 修改",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/vector.modifiers"
+    },
+    {
+      "heading": "vector 的失效与异常保证",
+      "label": "clear 与 assign",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/sequence.reqmts"
+    },
+    {
+      "heading": "元素操作的异常保证",
+      "label": "容量异常条件",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/vector.capacity"
+    },
+    {
+      "heading": "元素操作的异常保证",
+      "label": "修改异常条件",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/vector.modifiers"
+    },
+    {
+      "heading": "顺序容器的遍历删除",
+      "label": "remove 算法",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/alg.remove"
+    },
+    {
+      "heading": "顺序容器的遍历删除",
+      "label": "C++20 vector erasure",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/vector.erasure"
+    },
+    {
+      "heading": "deque 的存储与失效",
+      "label": "N4659 deque 能力",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/deque.overview"
+    },
+    {
+      "heading": "deque 的存储与失效",
+      "label": "libstdc++ GCC 10.1 的分段实现说明",
+      "url": "https://gcc.gnu.org/onlinedocs/gcc-10.1.0/libstdc++/api/a00605_source.html"
+    },
+    {
+      "heading": "deque 的存储与失效",
+      "label": "deque 接口",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/deque.overview"
+    },
+    {
+      "heading": "deque 的存储与失效",
+      "label": "deque 修改与失效",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/deque.modifiers"
+    },
+    {
+      "heading": "list 的位置与 splice",
+      "label": "list 插删",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/list.modifiers"
+    },
+    {
+      "heading": "list 的位置与 splice",
+      "label": "list 专用操作",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/list.ops"
+    },
+    {
+      "heading": "list 的位置与 splice",
+      "label": "sort 的要求",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/alg.sort"
+    },
+    {
+      "heading": "list 的位置与 splice",
+      "label": "N4659 list 修改",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/list.modifiers"
+    },
+    {
+      "heading": "list 的位置与 splice",
+      "label": "forward_list 修改",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/forwardlist.modifiers"
+    },
+    {
+      "heading": "list 的位置与 splice",
+      "label": "splice 条件",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/list.ops"
+    },
+    {
+      "heading": "forward_list 的前驱与 splice_after",
+      "label": "forward_list 接口",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/forwardlist.overview"
+    },
+    {
+      "heading": "forward_list 的前驱与 splice_after",
+      "label": "修改",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/forwardlist.modifiers"
+    },
+    {
+      "heading": "forward_list 的前驱与 splice_after",
+      "label": "转移",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/forwardlist.ops"
+    },
+    {
+      "heading": "拥有者与所指对象",
+      "label": "unique_ptr 移动",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/unique.ptr.single.ctor"
+    },
+    {
+      "heading": "拥有者与所指对象",
+      "label": "所有权替换",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/unique.ptr.single.asgn"
+    },
+    {
+      "heading": "参考资料",
+      "label": "cppreference 顺序容器入口",
+      "url": "https://en.cppreference.com/cpp/container"
+    },
+    {
+      "heading": "参考资料",
+      "label": "C++17 N4659 标准公开草案",
+      "url": "https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/n4659.pdf"
+    },
+    {
+      "heading": "参考资料",
+      "label": "C++20 N4861 标准公开草案",
+      "url": "https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2020/n4861.pdf"
+    },
+    {
+      "heading": "迭代器、begin 与 end",
+      "label": "N4659 有效区间与尾后位置",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/iterator.requirements.general"
+    }
+  ]
+}

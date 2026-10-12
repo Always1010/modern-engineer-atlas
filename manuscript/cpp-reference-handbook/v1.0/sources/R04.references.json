@@ -1,0 +1,131 @@
+{
+  "chapter": "R04",
+  "source": "chapters/R04-expressions-conversions.zh-CN.md",
+  "references": [
+    {
+      "heading": "算术运算符",
+      "label": "C++17 乘法、除法与余数",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.mul"
+    },
+    {
+      "heading": "算术运算符",
+      "label": "加减运算",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.add"
+    },
+    {
+      "heading": "比较与逻辑运算符",
+      "label": "逻辑与",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.log.and"
+    },
+    {
+      "heading": "比较与逻辑运算符",
+      "label": "逻辑或",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.log.or"
+    },
+    {
+      "heading": "比较与逻辑运算符",
+      "label": "重载运算符表达式",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/over.match.oper"
+    },
+    {
+      "heading": "位运算与移位",
+      "label": "移位规则",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.shift"
+    },
+    {
+      "heading": "位运算与移位",
+      "label": "按位与",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.bit.and"
+    },
+    {
+      "heading": "赋值、自增与自减",
+      "label": "赋值",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.ass"
+    },
+    {
+      "heading": "赋值、自增与自减",
+      "label": "前置增减",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.pre.incr"
+    },
+    {
+      "heading": "赋值、自增与自减",
+      "label": "后置增减",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.post.incr"
+    },
+    {
+      "heading": "条件运算符与逗号运算符",
+      "label": "条件运算符",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.cond"
+    },
+    {
+      "heading": "条件运算符与逗号运算符",
+      "label": "逗号运算符",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.comma"
+    },
+    {
+      "heading": "优先级与结合性",
+      "label": "运算符优先级表",
+      "url": "https://en.cppreference.com/w/cpp/language/operator_precedence.html"
+    },
+    {
+      "heading": "求值顺序与副作用",
+      "label": "执行与序列",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/intro.execution"
+    },
+    {
+      "heading": "求值顺序与副作用",
+      "label": "函数调用",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.call"
+    },
+    {
+      "heading": "值类别",
+      "label": "值类别定义",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.lval"
+    },
+    {
+      "heading": "值类别",
+      "label": "临时物化",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/conv.rval"
+    },
+    {
+      "heading": "值类别",
+      "label": "decltype",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.type.simple"
+    },
+    {
+      "heading": "隐式转换",
+      "label": "C++17 标准转换",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/conv"
+    },
+    {
+      "heading": "整数提升与通常算术转换",
+      "label": "整数提升",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/conv.prom"
+    },
+    {
+      "heading": "整数提升与通常算术转换",
+      "label": "通常算术转换",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr#11"
+    },
+    {
+      "heading": "数值转换与窄化",
+      "label": "整数转换",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/conv.integral"
+    },
+    {
+      "heading": "数值转换与窄化",
+      "label": "浮点与整数转换",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/conv.fpint"
+    },
+    {
+      "heading": "显式转换分类",
+      "label": "C++17 显式转换",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.cast"
+    },
+    {
+      "heading": "static_cast",
+      "label": "static_cast 规则",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.static.cast"
+    }
+  ]
+}

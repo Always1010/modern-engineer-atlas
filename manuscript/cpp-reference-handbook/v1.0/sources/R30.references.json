@@ -1,0 +1,46 @@
+{
+  "chapter": "R30",
+  "source": "chapters/R30-build.zh-CN.md",
+  "references": [
+    {
+      "heading": "配置、构建与产物",
+      "label": "CMake 构建模型",
+      "url": "https://cmake.org/cmake/help/v3.16/manual/cmake-buildsystem.7.html"
+    },
+    {
+      "heading": "使用要求：PRIVATE、PUBLIC、INTERFACE",
+      "label": "链接范围",
+      "url": "https://cmake.org/cmake/help/v3.16/command/target_link_libraries.html"
+    },
+    {
+      "heading": "使用要求：PRIVATE、PUBLIC、INTERFACE",
+      "label": "包含目录",
+      "url": "https://cmake.org/cmake/help/v3.16/command/target_include_directories.html"
+    },
+    {
+      "heading": "生成器、配置与缓存",
+      "label": "构建配置",
+      "url": "https://cmake.org/cmake/help/v3.16/manual/cmake-buildsystem.7.html#build-configurations"
+    },
+    {
+      "heading": "依赖接入与版本",
+      "label": "Imported targets",
+      "url": "https://cmake.org/cmake/help/v3.16/guide/importing-exporting/index.html"
+    },
+    {
+      "heading": "安装目录与导出目标",
+      "label": "安装导出",
+      "url": "https://cmake.org/cmake/help/v3.16/guide/importing-exporting/index.html"
+    },
+    {
+      "heading": "API、ABI 与交付",
+      "label": "特性宏",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/version.syn"
+    },
+    {
+      "heading": "API、ABI 与交付",
+      "label": "MSVC",
+      "url": "https://learn.microsoft.com/en-us/cpp/build/reference/zc-cplusplus?view=msvc-170"
+    }
+  ]
+}

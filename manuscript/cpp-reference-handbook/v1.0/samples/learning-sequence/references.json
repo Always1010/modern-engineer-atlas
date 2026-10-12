@@ -1,0 +1,26 @@
+{
+  "reviewDate": "2026-10-10",
+  "edition": "C++17",
+  "basis": "ISO C++工作草案N4659的HTML转写；只核对样稿中实际使用的规则范围，不以现行C++26规则替换C++17契约。来源集中维护在本文件，样稿正文不插入外部资料列表。",
+  "method": "静态语义与匹配版本条文核对，没有编译或执行C++例子；示例为本轮编写的局部片段。",
+  "references": [
+    {"clause": "dcl.init", "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.init", "sample": "01", "checked": "初始化形式、自动局部int默认初始化和值初始化的范围"},
+    {"clause": "dcl.init.list", "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.init.list", "sample": "01", "checked": "直接/拷贝列表初始化、空列表的int零值、浮点到整数窄化"},
+    {"clause": "dcl.spec.auto", "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.spec.auto", "sample": "01", "checked": "按值auto、auto&和const auto的推导范围"},
+    {"clause": "temp.deduct.call", "url": "https://timsong-cpp.github.io/cppwp/n4659/temp.deduct.call", "sample": "01", "checked": "auto推导所用模板推导规则，按值忽略顶层const与引用形式"},
+    {"clause": "dcl.init.ref", "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.init.ref", "sample": "01", "checked": "int&和const int&绑定现存整数对象、赋值不改绑"},
+    {"clause": "dcl.type.simple", "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.type.simple", "sample": "01", "checked": "未加括号变量名及括号名字的decltype结果，查询不执行表达式"},
+    {"clause": "basic.life", "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.life", "sample": "02", "checked": "对象生命周期与访问前提，局部目标消失后借用不能继续访问"},
+    {"clause": "class.ctor", "url": "https://timsong-cpp.github.io/cppwp/n4659/class.ctor", "sample": "02", "checked": "构造函数的名称、初始化用途与explicit单参数构造的直接初始化"},
+    {"clause": "class.dtor", "url": "https://timsong-cpp.github.io/cppwp/n4659/class.dtor", "sample": "02", "checked": "析构函数与正常块退出清理；Active只建立和销毁，不复制"},
+    {"clause": "except.ctor", "url": "https://timsong-cpp.github.io/cppwp/n4659/except.ctor", "sample": "02", "checked": "存在匹配处理器时栈展开销毁已完成构造的自动对象，不外推所有终止路径"},
+    {"clause": "unique.ptr.single", "url": "https://timsong-cpp.github.io/cppwp/n4659/unique.ptr.single", "sample": "02", "checked": "scalar unique_ptr独占责任、get借用与析构清理"},
+    {"clause": "unique.ptr.single.ctor", "url": "https://timsong-cpp.github.io/cppwp/n4659/unique.ptr.single.ctor", "sample": "02", "checked": "unique_ptr移动构造接管同一指针、源为空；不是所有类型移动后的通则"},
+    {"clause": "unique.ptr.create", "url": "https://timsong-cpp.github.io/cppwp/n4659/unique.ptr.create", "sample": "02", "checked": "make_unique<int>(7)创建并初始化单个动态int"},
+    {"clause": "vector.cons", "url": "https://timsong-cpp.github.io/cppwp/n4659/vector.cons", "sample": "03", "checked": "vector<int>列表构造与默认分配器的范围"},
+    {"clause": "vector.capacity", "url": "https://timsong-cpp.github.io/cppwp/n4659/vector.capacity", "sample": "03", "checked": "size/capacity、reserve不建立元素、默认分配器resize新增int的零值与重分配"},
+    {"clause": "vector.modifiers", "url": "https://timsong-cpp.github.io/cppwp/n4659/vector.modifiers", "sample": "03", "checked": "insert/erase返回位置与失效；clear后重新取得位置；成功操作条件"},
+    {"clause": "stmt.ranged", "url": "https://timsong-cpp.github.io/cppwp/n4659/stmt.ranged", "sample": "03", "checked": "范围for中的int值副本与int&元素访问"},
+    {"clause": "alg.find", "url": "https://timsong-cpp.github.io/cppwp/n4659/alg.find", "sample": "03", "checked": "find在半开区间内返回首个相等元素或last，访问前检查末端"}
+  ]
+}

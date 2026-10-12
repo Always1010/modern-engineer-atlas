@@ -1,0 +1,101 @@
+{
+  "chapter": "R22",
+  "source": "chapters/R22-atomics-memory-order.zh-CN.md",
+  "references": [
+    {
+      "heading": "std::atomic<T>",
+      "label": "atomic 类型",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/atomics.types.generic"
+    },
+    {
+      "heading": "load、store 与 exchange",
+      "label": "原子操作",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/atomics.types.operations"
+    },
+    {
+      "heading": "整数与指针的 fetch 操作",
+      "label": "整数与指针特化",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/atomics.types.generic"
+    },
+    {
+      "heading": "CAS 重试",
+      "label": "C++17 CAS",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/atomics.types.operations"
+    },
+    {
+      "heading": "CAS 重试",
+      "label": "C++20 CAS",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/atomics.types.operations"
+    },
+    {
+      "heading": "std::atomic_flag",
+      "label": "atomic_flag",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/atomics.flag"
+    },
+    {
+      "heading": "原子等待与通知（C++20）",
+      "label": "C++20 原子等待",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/atomics.wait"
+    },
+    {
+      "heading": "std::atomic_ref（C++20）",
+      "label": "atomic_ref",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/atomics.ref.generic"
+    },
+    {
+      "heading": "数据竞争与 happens-before",
+      "label": "C++17 线程与竞争",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/intro.multithread"
+    },
+    {
+      "heading": "数据竞争与 happens-before",
+      "label": "C++20 数据竞争",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/intro.races"
+    },
+    {
+      "heading": "内存序",
+      "label": "内存序",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/atomics.order"
+    },
+    {
+      "heading": "release/acquire 发布",
+      "label": "C++17 顺序",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/intro.multithread"
+    },
+    {
+      "heading": "release/acquire 发布",
+      "label": "C++20 顺序",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/intro.races"
+    },
+    {
+      "heading": "原子共享指针",
+      "label": "C++17 shared_ptr 原子自由函数",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/util.smartptr.shared.atomic"
+    },
+    {
+      "heading": "原子共享指针",
+      "label": "C++20 atomic shared_ptr",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/util.smartptr.atomic.shared"
+    },
+    {
+      "heading": "原子共享指针",
+      "label": "C++20 弃用接口",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/depr.util.smartptr.shared.atomic"
+    },
+    {
+      "heading": "原子对象与操作类别",
+      "label": "C++17 原子与非原子访问",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/intro.multithread"
+    },
+    {
+      "heading": "原子对象与操作类别",
+      "label": "C++17 原子初始化不是原子操作",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/atomics.types.operations"
+    },
+    {
+      "heading": "原子等待与通知（C++20）",
+      "label": "C++20 wait 的读取语义与有效内存序",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/atomics.types.operations"
+    }
+  ]
+}

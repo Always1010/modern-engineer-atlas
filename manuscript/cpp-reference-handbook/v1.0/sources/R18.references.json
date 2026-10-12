@@ -1,0 +1,31 @@
+{
+  "chapter": "R18",
+  "source": "chapters/R18-text-numeric.zh-CN.md",
+  "references": [
+    {
+      "heading": "from_chars 的浮点解析",
+      "label": "N4861 from_chars",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/charconv.from.chars"
+    },
+    {
+      "heading": "to_chars 的浮点输出",
+      "label": "N4861 to_chars",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/charconv.to.chars"
+    },
+    {
+      "heading": "std::format",
+      "label": "N4861 format",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/format"
+    },
+    {
+      "heading": "组合应用与参考资料",
+      "label": "cppreference charconv",
+      "url": "https://en.cppreference.com/w/cpp/header/charconv.html"
+    },
+    {
+      "heading": "组合应用与参考资料",
+      "label": "format",
+      "url": "https://en.cppreference.com/w/cpp/utility/format.html"
+    }
+  ]
+}

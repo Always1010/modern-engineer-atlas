@@ -1,0 +1,41 @@
+{
+  "chapter": "R01",
+  "source": "chapters/R01-program-build.zh-CN.md",
+  "references": [
+    {
+      "heading": "源文件与 main",
+      "label": "C++17 main",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.start.main"
+    },
+    {
+      "heading": "编译与运行命令",
+      "label": "GCC 输出与阶段选项",
+      "url": "https://gcc.gnu.org/onlinedocs/gcc/Overall-Options.html"
+    },
+    {
+      "heading": "翻译单元与构建阶段",
+      "label": "C++17 翻译阶段",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/lex.phases"
+    },
+    {
+      "heading": "声明与定义",
+      "label": "C++17 声明与定义",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.def"
+    },
+    {
+      "heading": "作用域、命名空间与链接属性",
+      "label": "C++17 链接属性",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.link"
+    },
+    {
+      "heading": "单一定义规则与多文件程序",
+      "label": "C++17 ODR",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.def.odr"
+    },
+    {
+      "heading": "GDB 最小调试会话",
+      "label": "GDB 手册",
+      "url": "https://sourceware.org/gdb/current/onlinedocs/gdb.html/Continuing-and-Stepping.html"
+    }
+  ]
+}

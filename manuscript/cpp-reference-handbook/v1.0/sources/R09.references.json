@@ -1,0 +1,76 @@
+{
+  "chapter": "R09",
+  "source": "chapters/R09-raii-memory.zh-CN.md",
+  "references": [
+    {
+      "heading": "placement new 与存储重用",
+      "label": "生命周期与重用",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.life"
+    },
+    {
+      "heading": "placement new 与存储重用",
+      "label": "字节数组提供存储",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/intro.object"
+    },
+    {
+      "heading": "placement new 与存储重用",
+      "label": "launder",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/ptr.launder"
+    },
+    {
+      "heading": "拥有资源的 lambda 捕获",
+      "label": "C++17 lambda",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.prim.lambda"
+    },
+    {
+      "heading": "new 与 delete",
+      "label": "new",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.new"
+    },
+    {
+      "heading": "new 与 delete",
+      "label": "delete",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.delete"
+    },
+    {
+      "heading": "unique_ptr 构造与访问",
+      "label": "unique_ptr 声明及构造",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/unique.ptr"
+    },
+    {
+      "heading": "shared_ptr 构造、共享与访问",
+      "label": "shared_ptr",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/util.smartptr.shared"
+    },
+    {
+      "heading": "weak_ptr 构造、lock 与 expired",
+      "label": "weak_ptr",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/util.smartptr.weak"
+    },
+    {
+      "heading": "enable_shared_from_this",
+      "label": "enable_shared_from_this",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/util.smartptr.enab"
+    },
+    {
+      "heading": "allocator 与 allocator_traits",
+      "label": "allocator_traits",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/allocator.traits"
+    },
+    {
+      "heading": "monotonic_buffer_resource 与池资源",
+      "label": "内存资源",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/mem.res"
+    },
+    {
+      "heading": "monotonic_buffer_resource 与池资源",
+      "label": "多态分配器",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/mem.poly.allocator.class"
+    },
+    {
+      "heading": "拥有资源的 lambda 捕获",
+      "label": "function 接口",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/func.wrap.func"
+    }
+  ]
+}

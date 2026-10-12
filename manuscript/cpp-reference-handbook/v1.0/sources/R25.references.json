@@ -1,0 +1,116 @@
+{
+  "chapter": "R25",
+  "source": "chapters/R25-process-virtual-memory.zh-CN.md",
+  "references": [
+    {
+      "heading": "进程、线程与执行上下文",
+      "label": "Windows 进程与线程",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/procthread/processes-and-threads"
+    },
+    {
+      "heading": "Linux/POSIX：创建、执行与回收进程",
+      "label": "fork",
+      "url": "https://man7.org/linux/man-pages/man2/fork.2.html"
+    },
+    {
+      "heading": "Linux/POSIX：创建、执行与回收进程",
+      "label": "exec",
+      "url": "https://man7.org/linux/man-pages/man3/exec.3.html"
+    },
+    {
+      "heading": "Linux/POSIX：创建、执行与回收进程",
+      "label": "waitpid",
+      "url": "https://man7.org/linux/man-pages/man2/waitpid.2.html"
+    },
+    {
+      "heading": "Windows：进程创建与句柄",
+      "label": "CreateProcessW",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessw"
+    },
+    {
+      "heading": "Windows：进程创建与句柄",
+      "label": "进程退出",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/procthread/terminating-a-process"
+    },
+    {
+      "heading": "虚拟地址空间与常见区域",
+      "label": "Windows 虚拟地址空间",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/memory/virtual-address-space"
+    },
+    {
+      "heading": "页、页表与缺页",
+      "label": "Windows 虚拟内存",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/memory/virtual-memory"
+    },
+    {
+      "heading": "Linux/POSIX：mmap 与 munmap",
+      "label": "mmap/munmap",
+      "url": "https://man7.org/linux/man-pages/man2/mmap.2.html"
+    },
+    {
+      "heading": "Windows：VirtualAlloc 与 VirtualFree",
+      "label": "VirtualAlloc",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-virtualalloc"
+    },
+    {
+      "heading": "Windows：VirtualAlloc 与 VirtualFree",
+      "label": "VirtualFree",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-virtualfree"
+    },
+    {
+      "heading": "Windows：文件映射对象与视图",
+      "label": "CreateFileMappingW",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-createfilemappingw"
+    },
+    {
+      "heading": "Windows：文件映射对象与视图",
+      "label": "MapViewOfFile",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-mapviewoffile"
+    },
+    {
+      "heading": "虚拟量、RSS、PSS 与 working set",
+      "label": "Linux status",
+      "url": "https://man7.org/linux/man-pages/man5/proc_pid_status.5.html"
+    },
+    {
+      "heading": "虚拟量、RSS、PSS 与 working set",
+      "label": "smaps",
+      "url": "https://man7.org/linux/man-pages/man5/proc_pid_smaps.5.html"
+    },
+    {
+      "heading": "虚拟量、RSS、PSS 与 working set",
+      "label": "Windows working set",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/memory/working-set"
+    },
+    {
+      "heading": "进程间通信与共享内存",
+      "label": "POSIX shared memory",
+      "url": "https://man7.org/linux/man-pages/man7/shm_overview.7.html"
+    },
+    {
+      "heading": "进程间通信与共享内存",
+      "label": "Windows 命名共享内存",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/memory/creating-named-shared-memory"
+    },
+    {
+      "heading": "Linux/POSIX：创建、执行与回收进程",
+      "label": "Linux man-pages：POSIX 异步信号安全函数集合及实现差异",
+      "url": "https://man7.org/linux/man-pages/man7/signal-safety.7.html"
+    },
+    {
+      "heading": "Windows：进程创建与句柄",
+      "label": "Windows 句柄与 OS 对象",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/sysinfo/handles-and-objects"
+    },
+    {
+      "heading": "Linux/POSIX：mmap 与 munmap",
+      "label": "Linux fd 与打开文件描述",
+      "url": "https://man7.org/linux/man-pages/man2/open.2.html"
+    },
+    {
+      "heading": "Windows：文件映射对象与视图",
+      "label": "Windows 文件映射对象与视图区分",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/memory/file-mapping"
+    }
+  ]
+}

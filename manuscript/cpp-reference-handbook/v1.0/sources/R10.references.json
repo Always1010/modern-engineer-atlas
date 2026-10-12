@@ -1,0 +1,161 @@
+{
+  "chapter": "R10",
+  "source": "chapters/R10-templates-compile-time.zh-CN.md",
+  "references": [
+    {
+      "heading": "类、模板与 inline 的单一定义规则",
+      "label": "C++17 ODR",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.def.odr"
+    },
+    {
+      "heading": "类型特征与字节复制",
+      "label": "字节复制条件",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.types"
+    },
+    {
+      "heading": "类型特征与字节复制",
+      "label": "类型特征",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/meta.unary.prop"
+    },
+    {
+      "heading": "auto 的完整推导与列表初值",
+      "label": "auto 推导",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.spec.auto"
+    },
+    {
+      "heading": "decltype 与 decltype(auto) 的完整推导",
+      "label": "decltype",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.type.simple"
+    },
+    {
+      "heading": "constexpr、consteval 与 constinit",
+      "label": "C++17 constexpr",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.constexpr"
+    },
+    {
+      "heading": "constexpr、consteval 与 constinit",
+      "label": "C++20 常量声明",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/dcl.constexpr"
+    },
+    {
+      "heading": "constexpr、consteval 与 constinit",
+      "label": "constinit",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/dcl.constinit"
+    },
+    {
+      "heading": "值类别与类型查询",
+      "label": "值类别定义",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.lval"
+    },
+    {
+      "heading": "值类别与类型查询",
+      "label": "临时物化",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/conv.rval"
+    },
+    {
+      "heading": "值类别与类型查询",
+      "label": "decltype",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.type.simple"
+    },
+    {
+      "heading": "std::invoke 的成员指针与转发接口",
+      "label": "invoke 规则",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/func.invoke"
+    },
+    {
+      "heading": "std::function 的签名模板",
+      "label": "function 接口",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/func.wrap.func"
+    },
+    {
+      "heading": "转发引用与引用折叠",
+      "label": "模板实参推导",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/temp.deduct.call"
+    },
+    {
+      "heading": "转发引用与引用折叠",
+      "label": "引用折叠",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.ref"
+    },
+    {
+      "heading": "函数模板",
+      "label": "函数模板",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/temp.fct"
+    },
+    {
+      "heading": "模板实参推导",
+      "label": "函数模板推导",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/temp.deduct.call"
+    },
+    {
+      "heading": "类模板实参推导",
+      "label": "类模板推导",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/over.match.class.deduct"
+    },
+    {
+      "heading": "实例化与定义可见性",
+      "label": "实例化",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/temp.inst"
+    },
+    {
+      "heading": "实例化与定义可见性",
+      "label": "显式实例化",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/temp.explicit"
+    },
+    {
+      "heading": "全特化与偏特化",
+      "label": "全特化",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/temp.expl.spec"
+    },
+    {
+      "heading": "全特化与偏特化",
+      "label": "类偏特化",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/temp.class.spec"
+    },
+    {
+      "heading": "依赖名、typename 与 template",
+      "label": "依赖名",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/temp.dep"
+    },
+    {
+      "heading": "依赖名、typename 与 template",
+      "label": "模板名字解析",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/temp.res"
+    },
+    {
+      "heading": "实参相关查找",
+      "label": "ADL",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.lookup.argdep"
+    },
+    {
+      "heading": "参数包与折叠表达式",
+      "label": "参数包",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/temp.variadic"
+    },
+    {
+      "heading": "参数包与折叠表达式",
+      "label": "折叠",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.prim.fold"
+    },
+    {
+      "heading": "if constexpr 与 static_assert",
+      "label": "constexpr if",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/stmt.if"
+    },
+    {
+      "heading": "SFINAE 与 enable_if",
+      "label": "推导与替换失败",
+      "url": "https://timsong-cpp.github.io/cppwp/n4659/temp.deduct"
+    },
+    {
+      "heading": "concepts 与 requires",
+      "label": "C++20 约束",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/temp.constr"
+    },
+    {
+      "heading": "concepts 与 requires",
+      "label": "requires 表达式",
+      "url": "https://timsong-cpp.github.io/cppwp/n4861/expr.prim.req"
+    }
+  ]
+}
