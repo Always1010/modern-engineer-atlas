@@ -5,10 +5,13 @@ from pathlib import Path
 import tempfile
 import unittest
 import zipfile
+import sys
 
 from pypdf import PdfWriter
-from pypdf.generic import ArrayObject, DictionaryObject, FloatObject, NameObject, TextStringObject
+from pypdf.generic import ArrayObject, DictionaryObject, FloatObject, NameObject, TextStringObject, DecodedStreamObject
 from release_lib import digest, names, source_url, local_target
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from pdf_fonts import embedded_font
 
 spec = importlib.util.spec_from_file_location("verify_release", Path(__file__).with_name("verify-release.py"))
 verifier = importlib.util.module_from_spec(spec)
@@ -89,6 +92,24 @@ class PublicationGates(unittest.TestCase):
         self.rehash()
         with self.assertRaisesRegex(ValueError, "release ref"):
             self.verify()
+
+
+class FontEmbeddingGates(unittest.TestCase):
+    def test_type3_glyph_programs_are_embedded(self):
+        glyph = DecodedStreamObject()
+        glyph.set_data(b"500 0 d0 0 0 10 10 re f")
+        font = DictionaryObject({NameObject('/Subtype'): NameObject('/Type3'),
+                                 NameObject('/CharProcs'): DictionaryObject({NameObject('/g1'): glyph})})
+        self.assertTrue(embedded_font(font))
+
+    def test_missing_type3_glyph_programs_are_rejected(self):
+        font = DictionaryObject({NameObject('/Subtype'): NameObject('/Type3'),
+                                 NameObject('/CharProcs'): DictionaryObject({NameObject('/g1'): NameObject('/missing')})})
+        self.assertFalse(embedded_font(font))
+
+    def test_unembedded_truetype_is_rejected(self):
+        font = DictionaryObject({NameObject('/Subtype'): NameObject('/TrueType')})
+        self.assertFalse(embedded_font(font))
 
 
 if __name__ == "__main__":

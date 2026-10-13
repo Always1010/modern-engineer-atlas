@@ -4,6 +4,7 @@ from pathlib import Path
 from urllib.parse import unquote
 import pdfplumber
 from pypdf import PdfReader
+from pdf_fonts import embedded_font
 
 edition = Path(__file__).resolve().parents[1]
 pdf_path = edition / "output/pdf/Cpp-Reference-Handbook-v1.0.pdf"
@@ -50,27 +51,26 @@ if len({r["page"] for r in section_pages + chapter_pages}) != 42:
     errors.append("Chapter/section start pages overlap")
 if not any(t["flows_in_page"] for t in topics):
     errors.append("No flowing subsection found")
-fonts = {}
+fonts, font_details = {}, {}
 for page in reader.pages:
     for font_ref in page["/Resources"].get("/Font", {}).values():
         font = font_ref.get_object()
         for actual in font.get("/DescendantFonts", [font]):
             actual = actual.get_object()
-            name = str(actual.get("/BaseFont", font.get("/BaseFont")))
-            descriptor = actual.get("/FontDescriptor")
-            embedded = bool(descriptor and any(k in descriptor.get_object()
-                            for k in ["/FontFile", "/FontFile2", "/FontFile3"]))
-            fonts[name] = embedded
+            name = str(actual.get("/BaseFont", font.get("/BaseFont", "Type3:" + str(font_ref))))
+            embedded = embedded_font(actual)
+            fonts[name] = fonts.get(name, True) and embedded
+            font_details[name] = {"subtype": str(actual.get("/Subtype")), "char_procs": len(actual.get("/CharProcs", {})), "embedded": embedded}
 if not fonts or not all(fonts.values()):
     errors.append("Unembedded font")
 report = {"version": "1.0", "pages": len(reader.pages), "chapter_starts": chapter_pages,
           "section_starts": section_pages, "checked_subsections": len(topics),
           "flowing_subsections": sum(t["flows_in_page"] for t in topics),
-          "embedded_fonts": fonts, "topic_positions": topics, "errors": errors}
+          "embedded_fonts": fonts, "font_details": font_details, "topic_positions": topics, "errors": errors}
 qa = edition / "qa/learning-revision"
 (qa / "pagination-check.json").write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
 print(json.dumps({k: v for k, v in report.items()
-                  if k not in ["topic_positions", "embedded_fonts", "chapter_starts", "section_starts"]}
+                  if k not in ["topic_positions", "embedded_fonts", "font_details", "chapter_starts", "section_starts"]}
                  | {"embedded_font_count": len(fonts), "chapter_count": len(chapter_pages),
                     "section_count": len(section_pages)}, ensure_ascii=False))
 if errors:
