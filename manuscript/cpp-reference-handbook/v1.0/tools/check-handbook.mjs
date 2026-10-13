@@ -14,7 +14,7 @@ for(const name of ['README.md','BUILD-NOTES.md','REVIEW-REPORT.zh-CN.md','EDITOR
  const text=await fs.readFile(path.join(edition,name),'utf8');files.set(path.resolve(edition,name),{id:name,source:name,text,headings:headings(text,name)});
 }
 if(selection?.some(id=>![...files.values()].some(model=>model.id===id)))throw new Error('Unknown selected document');
-let localLinks=0,tables=0;
+let localLinks=0,tables=0;const historicalInputs=[];
 for(const [file,model] of files){
  if(selection&&!selection.includes(model.id))continue;
  const hs=model.headings;
@@ -24,6 +24,12 @@ for(const [file,model] of files){
  for(const match of prose.matchAll(/!?\[[^\]]*\]\((<[^>]+>|[^)\s]+)\)/g)){
   const link=match[1].replace(/^<|>$/g,'');if(/^(https?:|mailto:)/.test(link))continue;
   const [relative,fragment]=link.split('#'),target=relative?path.resolve(path.dirname(file),decodeURIComponent(relative)):file;
+  // This historical maintenance report records personal review attachments,
+  // not inputs to the distributed handbook. Publication still checks every
+  // relative repository link and every reader/source link.
+  if(process.argv.includes('--publication')&&model.source==='REVIEW-REPORT.zh-CN.md'&&path.isAbsolute(decodeURIComponent(relative))&&!target.startsWith(edition+path.sep)){
+   historicalInputs.push({document:model.source,link,checked:false,reason:'External historical review input; not a publication dependency'});continue;
+  }
   // Generated reading artifacts are optional in a fresh source checkout.
   if(target.startsWith(path.join(edition,'output')+path.sep)&&!process.argv.includes('--artifacts'))continue;
   await fs.access(target);if(files.has(target))resolveFragment(files.get(target),fragment);localLinks++;
@@ -50,4 +56,4 @@ if(migration&&!selection){
  console.log(JSON.stringify({sourceChapters:sourceIds.length,mappedSections:sectionCount,mappedTables:tableCount}));
 }
 const checked=selection?chapters.filter(c=>selection.includes(c.id)):chapters;
-console.log(JSON.stringify({chapters:catalog.chapterCount,sections:checked.length,entries:checked.reduce((n,c)=>n+c.headings.filter(h=>h.level===2).length,0),localLinks,tables,execution:'Static documents, metadata and references only; no C++ programs are compiled or run.'}));
+console.log(JSON.stringify({chapters:catalog.chapterCount,sections:checked.length,entries:checked.reduce((n,c)=>n+c.headings.filter(h=>h.level===2).length,0),localLinks,tables,historicalInputs,execution:'Static documents, metadata and references only; no C++ programs are compiled or run.'}));

@@ -118,7 +118,8 @@ jobs:
         working-directory: manuscript/cpp-reference-handbook/v1.0
         run: |
           foreach ($tool in @('check-handbook', 'check-example-sources', 'check-learning-revision', 'check-handbook-style')) {
-            node "tools/$tool.mjs"
+            if ($tool -eq 'check-handbook') { node "tools/$tool.mjs" --publication }
+            else { node "tools/$tool.mjs" }
             if ($LASTEXITCODE -ne 0) { throw "$tool failed" }
           }
 
