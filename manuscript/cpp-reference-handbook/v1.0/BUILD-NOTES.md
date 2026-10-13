@@ -57,7 +57,7 @@ HTML/PDF中的examples链接指向配套本地文件，单独复制PDF不会携�
 
 工作流检出事件对应提交，采用 Windows 2022 runner、固定 Node/Python 和锁定的 Node/Python 包，使用匹配 Playwright 的 Chromium。Poppler、Noto CJK 字体及其许可证来源和 SHA-256 固定在 `tools/release/runtime-sources.json`。安装脚本只允许 GitHub Actions 环境执行；本机继续使用已有依赖，不因发布测试自动安装软件。CI 检查必需字体并记录 runner、工具、字体与源文件摘要；首次或字体/排版变更时审阅全页联系图及报告提示页。
 
-目录、catalog 和索引同步后若与提交内容不同，CI 失败，需先在源分支修正并提交。检查覆盖已有源稿、源码摘录、修订覆盖、样式、HTML 导航、PDF 分页、字体嵌入、可检索文字、页边界及全页渲染，不编译或执行 C++ 示例。全新检出没有 ignored 历史基线，构建记录明确标记这项检查未执行。
+目录、catalog 和索引同步后若与提交内容不同，CI 失败，需先在源分支修正并提交。检查覆盖已有源稿、源码摘录、修订覆盖、样式、HTML 导航、PDF 分页、字体嵌入、可检索文字、页边界及全页渲染，不编译或执行 C++ 示例。`check-handbook.mjs --publication` 仅将历史 `REVIEW-REPORT.zh-CN.md` 中仓库外的绝对附件路径记录为非发布依赖；仍核对全部仓库内链接和阅读正文，不跳过它们。全新检出没有 ignored 历史基线，构建记录明确标记这项检查未执行。
 
 `tools/release/package-handbook.py` 只收集正式手册与 tracked 配套文件。单独下载的 HTML/PDF 源码链接指向本发行标签；离线 HTML 使用配套包相对路径。PDF 外部链接修改后检查页内容、书签、命名目标和链接数量保持一致。`verify-release.py` 校验完整五文件清单、摘要、来源提交及 ZIP 内容和链接，不信任校验文件或归档中的路径。
 
