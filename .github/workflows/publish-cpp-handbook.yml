@@ -1,0 +1,234 @@
+name: Publish Cpp Reference Handbook
+
+on:
+  push:
+    branches:
+      - 'codex/cpp-reference-handbook'
+    tags:
+      - 'cpp-handbook-v*'
+    paths:
+      - 'manuscript/cpp-reference-handbook/v1.0/**'
+      - '.github/workflows/publish-cpp-handbook.yml'
+      - 'revisions/cpp-handbook-*.md'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cpp-handbook-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  EDITION: manuscript/cpp-reference-handbook/v1.0
+  NODE_VERSION: '22.23.2'
+  PYTHON_VERSION: '3.12.10'
+
+jobs:
+  build:
+    name: Build and validate the handbook
+    runs-on: windows-2022
+    timeout-minutes: 60
+    defaults:
+      run:
+        shell: pwsh
+    outputs:
+      version: ${{ steps.meta.outputs.version }}
+      source_ref: ${{ steps.meta.outputs.source_ref }}
+      source_commit: ${{ steps.meta.outputs.source_commit }}
+      publish: ${{ steps.meta.outputs.publish }}
+    steps:
+      - name: Check out the event's exact source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Validate tag and prepare metadata
+        id: meta
+        env:
+          REF_TYPE: ${{ github.ref_type }}
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $commit = (git rev-parse HEAD).Trim()
+          if ($LASTEXITCODE -ne 0) { throw 'Cannot resolve source commit' }
+          $version = '1.0.0'
+          $sourceRef = $commit
+          $publish = 'false'
+          if ($env:REF_TYPE -eq 'tag') {
+            if ($env:REF_NAME -notmatch '^cpp-handbook-v((0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*))$') {
+              throw "Invalid handbook release tag: $env:REF_NAME"
+            }
+            $version = $Matches[1]
+            if (-not $version.StartsWith('1.0.')) { throw 'This source configuration publishes content edition 1.0 only' }
+            $sourceRef = $env:REF_NAME
+            $publish = 'true'
+            if (-not (Test-Path -LiteralPath "revisions/$sourceRef.md")) { throw 'Missing handbook release notes' }
+          }
+          "version=$version" >> $env:GITHUB_OUTPUT
+          "source_ref=$sourceRef" >> $env:GITHUB_OUTPUT
+          "source_commit=$commit" >> $env:GITHUB_OUTPUT
+          "publish=$publish" >> $env:GITHUB_OUTPUT
+
+      - name: Set up pinned Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: manuscript/cpp-reference-handbook/v1.0/tools/release/package-lock.json
+
+      - name: Set up pinned Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+          cache-dependency-path: manuscript/cpp-reference-handbook/v1.0/tools/release/requirements.txt
+
+      - name: Install locked handbook dependencies on the runner
+        working-directory: manuscript/cpp-reference-handbook/v1.0/tools/release
+        run: |
+          npm ci --ignore-scripts --no-audit --no-fund
+          if ($LASTEXITCODE -ne 0) { throw 'npm ci failed' }
+          python -m pip install --requirement requirements.txt
+          if ($LASTEXITCODE -ne 0) { throw 'PDF dependency installation failed' }
+          python -m pip check
+          if ($LASTEXITCODE -ne 0) { throw 'Conflicting Python dependencies' }
+          node node_modules/playwright/cli.js install chromium
+          if ($LASTEXITCODE -ne 0) { throw 'Pinned Chromium installation failed' }
+
+      - name: Prepare verified Poppler and licensed fonts on the runner
+        run: '& "$env:EDITION/tools/release/prepare-runtime.ps1"'
+
+      - name: Test publication corruption and portability gates
+        working-directory: manuscript/cpp-reference-handbook/v1.0
+        run: |
+          python -m unittest discover -s tools/release -p test_release.py -v
+          if ($LASTEXITCODE -ne 0) { throw 'Publication failure gates failed' }
+
+      - name: Require committed catalog and index to be current
+        working-directory: manuscript/cpp-reference-handbook/v1.0
+        run: |
+          foreach ($tool in @('sync-handbook-catalog', 'sync-handbook-index')) {
+            node "tools/$tool.mjs"
+            if ($LASTEXITCODE -ne 0) { throw "$tool failed" }
+          }
+          git diff --exit-code -- catalog.json TOC.md appendices.zh-CN.md
+          if ($LASTEXITCODE -ne 0) { throw 'Commit synchronized catalog, TOC and index before publishing' }
+
+      - name: Check source, excerpts, revision coverage and style
+        working-directory: manuscript/cpp-reference-handbook/v1.0
+        run: |
+          foreach ($tool in @('check-handbook', 'check-example-sources', 'check-learning-revision', 'check-handbook-style')) {
+            node "tools/$tool.mjs"
+            if ($LASTEXITCODE -ne 0) { throw "$tool failed" }
+          }
+
+      - name: Build complete handbook with stable index pages
+        working-directory: manuscript/cpp-reference-handbook/v1.0
+        run: |
+          $packages = (Resolve-Path -LiteralPath tools/release).Path
+          $python = (Get-Command python).Source
+          node tools/build-handbook.mjs $packages $env:HANDBOOK_BROWSER "--python=$python"
+          if ($LASTEXITCODE -ne 0) { throw 'Handbook build failed' }
+
+      - name: Check pagination and render every PDF page
+        working-directory: manuscript/cpp-reference-handbook/v1.0
+        run: |
+          python tools/inspect-learning-pagination.py
+          if ($LASTEXITCODE -ne 0) { throw 'Pagination or embedded font check failed' }
+          $qa = 'qa/learning-revision/final-render'
+          New-Item -ItemType Directory -Force -Path $qa | Out-Null
+          & $env:HANDBOOK_PDFTOPPM -r 60 -png output/pdf/Cpp-Reference-Handbook-v1.0.pdf "$qa/page"
+          if ($LASTEXITCODE -ne 0) { throw 'Full PDF rendering failed' }
+          python tools/inspect-handbook-pdf.py --pdf output/pdf/Cpp-Reference-Handbook-v1.0.pdf --qa $qa --sheets
+          if ($LASTEXITCODE -ne 0) { throw 'PDF text, bounds or chapter check failed' }
+
+      - name: Package portable handbook assets and verify them
+        env:
+          VERSION: ${{ steps.meta.outputs.version }}
+          SOURCE_REF: ${{ steps.meta.outputs.source_ref }}
+          SOURCE_COMMIT: ${{ steps.meta.outputs.source_commit }}
+        run: |
+          $common = @('--version', $env:VERSION, '--repository', $env:GITHUB_REPOSITORY, '--commit', $env:SOURCE_COMMIT, '--ref', $env:SOURCE_REF)
+          python "$env:EDITION/tools/release/package-handbook.py" @common --output dist/cpp-handbook --runtime "$env:EDITION/qa/learning-revision/runtime.json" --font-licenses $env:HANDBOOK_FONT_LICENSES
+          if ($LASTEXITCODE -ne 0) { throw 'Release packaging failed' }
+          python "$env:EDITION/tools/release/verify-release.py" dist/cpp-handbook @common
+          if ($LASTEXITCODE -ne 0) { throw 'Release asset verification failed' }
+
+      - name: Preserve source and PDF validation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cpp-handbook-evidence-${{ github.run_id }}
+          path: |
+            manuscript/cpp-reference-handbook/v1.0/qa/learning-revision/
+            manuscript/cpp-reference-handbook/v1.0/qa/fullbook/source-example-report.json
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Upload only verified handbook release files
+        uses: actions/upload-artifact@v4
+        with:
+          name: cpp-handbook-files-${{ github.run_id }}
+          path: dist/cpp-handbook/
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Record the verified source for release tagging
+        env:
+          SOURCE_COMMIT: ${{ steps.meta.outputs.source_commit }}
+        run: |
+          "Verified handbook source: $env:SOURCE_COMMIT" >> $env:GITHUB_STEP_SUMMARY
+          'C++ examples were checked statically; none were compiled or executed.' >> $env:GITHUB_STEP_SUMMARY
+
+  publish:
+    name: Publish handbook-only Release
+    needs: build
+    if: github.event_name == 'push' && github.ref_type == 'tag' && needs.build.outputs.publish == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      TAG: ${{ needs.build.outputs.source_ref }}
+      VERSION: ${{ needs.build.outputs.version }}
+      SOURCE_COMMIT: ${{ needs.build.outputs.source_commit }}
+    steps:
+      - name: Check out validated source for notes and verification
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.build.outputs.source_commit }}
+      - name: Set up pinned Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Install PDF verifier on the runner
+        run: python -m pip install pypdf==6.10.0
+      - name: Download this run's verified assets
+        uses: actions/download-artifact@v4
+        with:
+          name: cpp-handbook-files-${{ github.run_id }}
+          path: dist/cpp-handbook
+      - name: Verify downloaded assets and exact remote tag
+        shell: bash
+        run: |
+          set -euo pipefail
+          python "$EDITION/tools/release/verify-release.py" dist/cpp-handbook \
+            --version "$VERSION" --repository "$GITHUB_REPOSITORY" --commit "$SOURCE_COMMIT" --ref "$TAG"
+          git fetch --no-tags origin "refs/tags/$TAG:refs/tags/$TAG"
+          test "$(git rev-parse "refs/tags/$TAG^{commit}")" = "$SOURCE_COMMIT"
+          existing="$(gh api "repos/$GITHUB_REPOSITORY/releases" --paginate --jq ".[] | select(.tag_name == \"$TAG\") | .id")"
+          test -z "$existing" || { echo 'Release or draft already exists; refusing to overwrite.' >&2; exit 1; }
+      - name: Create draft, upload, verify remote assets and publish
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh release create "$TAG" --repo "$GITHUB_REPOSITORY" --verify-tag \
+            --title "C++ Reference Handbook v$VERSION" --notes-file "revisions/$TAG.md" \
+            --draft --latest=false
+          gh release upload "$TAG" --repo "$GITHUB_REPOSITORY" dist/cpp-handbook/*
+          gh api "repos/$GITHUB_REPOSITORY/releases/tags/$TAG" > "$RUNNER_TEMP/handbook-release.json"
+          python "$EDITION/tools/release/verify-remote-assets.py" dist/cpp-handbook "$RUNNER_TEMP/handbook-release.json" \
+            --version "$VERSION" --tag "$TAG"
+          gh release edit "$TAG" --repo "$GITHUB_REPOSITORY" --draft=false --latest=false
+          echo "Published https://github.com/$GITHUB_REPOSITORY/releases/tag/$TAG" >> "$GITHUB_STEP_SUMMARY"

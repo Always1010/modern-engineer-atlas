@@ -1,0 +1,11 @@
+{
+  "name": "cpp-reference-handbook-release",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Pinned dependencies for the handbook-only GitHub Actions build",
+  "engines": { "node": ">=22" },
+  "dependencies": {
+    "marked": "17.0.5",
+    "playwright": "1.62.1"
+  }
+}
