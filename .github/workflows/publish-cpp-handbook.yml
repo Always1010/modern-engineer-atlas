@@ -228,8 +228,12 @@ jobs:
             --title "C++ Reference Handbook v$VERSION" --notes-file "revisions/$TAG.md" \
             --draft --latest=false
           gh release upload "$TAG" --repo "$GITHUB_REPOSITORY" dist/cpp-handbook/*
-          gh api "repos/$GITHUB_REPOSITORY/releases/tags/$TAG" > "$RUNNER_TEMP/handbook-release.json"
+          release_id="$(gh api "repos/$GITHUB_REPOSITORY/releases" --paginate --jq ".[] | select(.tag_name == \"$TAG\" and .draft == true) | .id")"
+          [[ "$release_id" =~ ^[0-9]+$ ]] || { echo 'Expected exactly one handbook draft Release ID.' >&2; exit 1; }
+          gh api "repos/$GITHUB_REPOSITORY/releases/$release_id" > "$RUNNER_TEMP/handbook-release.json"
           python "$EDITION/tools/release/verify-remote-assets.py" dist/cpp-handbook "$RUNNER_TEMP/handbook-release.json" \
             --version "$VERSION" --tag "$TAG"
-          gh release edit "$TAG" --repo "$GITHUB_REPOSITORY" --draft=false --latest=false
+          gh api --method PATCH "repos/$GITHUB_REPOSITORY/releases/$release_id" \
+            -F draft=false -f make_latest=false --silent
+          test "$(gh api "repos/$GITHUB_REPOSITORY/releases/$release_id" --jq .draft)" = false
           echo "Published https://github.com/$GITHUB_REPOSITORY/releases/tag/$TAG" >> "$GITHUB_STEP_SUMMARY"
