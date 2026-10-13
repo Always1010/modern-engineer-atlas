@@ -49,6 +49,37 @@ Python检查需要已有pdfplumber、pypdf和Pillow，页图需要已有Poppler�
 
 HTML/PDF中的examples链接指向配套本地文件，单独复制PDF不会携带源码。SVG已内嵌HTML并进入PDF，不依赖外部图片加载。
 
+## 独立 GitHub Release
+
+专用工作流为 [publish-cpp-handbook.yml](../../../.github/workflows/publish-cpp-handbook.yml)。能力地图的 `book-v*` 标签使用自己的发布工作流；手册使用 `cpp-handbook-v*` 标签。
+
+推送 `codex/cpp-reference-handbook` 分支且手册、专用工作流或手册发行说明变化时，工作流只构建和检查，成功后保存 `cpp-handbook-files-运行ID` 与 `cpp-handbook-evidence-运行ID`。标签推送不受路径过滤限制；合法 `cpp-handbook-v1.0.0` 形式的标签在检查成功后创建 Release。当前配置限于内容版 `v1.0`，发行版为 `1.0.x`，内部构建保留原文件名，发布附件使用三段发行版本。
+
+工作流检出事件对应提交，采用 Windows 2022 runner、固定 Node/Python 和锁定的 Node/Python 包，使用匹配 Playwright 的 Chromium。Poppler、Noto CJK 字体及其许可证来源和 SHA-256 固定在 `tools/release/runtime-sources.json`。安装脚本只允许 GitHub Actions 环境执行；本机继续使用已有依赖，不因发布测试自动安装软件。CI 检查必需字体并记录 runner、工具、字体与源文件摘要；首次或字体/排版变更时审阅全页联系图及报告提示页。
+
+目录、catalog 和索引同步后若与提交内容不同，CI 失败，需先在源分支修正并提交。检查覆盖已有源稿、源码摘录、修订覆盖、样式、HTML 导航、PDF 分页、字体嵌入、可检索文字、页边界及全页渲染，不编译或执行 C++ 示例。全新检出没有 ignored 历史基线，构建记录明确标记这项检查未执行。
+
+`tools/release/package-handbook.py` 只收集正式手册与 tracked 配套文件。单独下载的 HTML/PDF 源码链接指向本发行标签；离线 HTML 使用配套包相对路径。PDF 外部链接修改后检查页内容、书签、命名目标和链接数量保持一致。`verify-release.py` 校验完整五文件清单、摘要、来源提交及 ZIP 内容和链接，不信任校验文件或归档中的路径。
+
+正式附件：`Cpp-Reference-Handbook-v1.0.x.pdf`、同名 HTML、`Cpp-Reference-Handbook-v1.0.x-bundle.zip`、`build-info.json` 和 `SHA256SUMS.txt`。ZIP 包含 PDF、离线 HTML、examples、sources、字体许可证和构建记录；不含旧版或排版样稿。QA 页图和报告保留为 Actions 证据。GitHub 自动 Source code ZIP/TAR 是整个仓库的标签快照。
+
+### 首次发行与后续补丁
+
+1. 提交专用工作流、发布工具和对应 `revisions/cpp-handbook-v1.0.x.md`；推送当前分支。
+2. 等待该提交的手册预构建成功，检查 QA 报告及首次 CI 联系图。从 Actions Summary 获取完整源提交 SHA。
+3. 给这个已验证提交创建新的 annotated 标签，并只推送该标签：
+
+```powershell
+$releaseCommit = '预构建成功并完成版面核验的完整提交SHA'
+$releaseTag = 'cpp-handbook-v1.0.0'
+git tag -a $releaseTag $releaseCommit -m "C++ Reference Handbook $releaseTag"
+git push origin $releaseTag
+```
+
+4. 标签构建成功后，发布任务下载并复核附件及远端标签提交，以 `--verify-tag` 创建草稿，上传全部附件，核对远端名称、大小和 SHA-256 后公开。手册使用 `--latest=false`，不会替换能力地图的 Latest 入口。下载后可使用 SHA256SUMS 核对文件。
+
+重复标签格式、缺少专属发行说明、任何检查失败或已有同名 Release/草稿时停止，不覆盖。上传失败保留草稿并报告失败；检查失败原因及草稿状态后再决定恢复，不自动删除公开发行或移动已发布标签。后续内容修正用新提交、新发行说明与新版本标签。内容版升级需同步封面、catalog、检查规则及构建配置。
+
 ## 局部审阅制品生成
 
 样章与全书共用正文、标题模型、生成器及CSS。局部制品用于审查对象条目和分页，不另维护一套内容或样式。R13仍可单独输出；跨领域模板选择R04、R17、R26、R31。

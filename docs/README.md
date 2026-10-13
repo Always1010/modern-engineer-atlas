@@ -11,7 +11,7 @@
 | 找到编辑源与编排 | [书稿说明](../manuscript/complete-edition/v1.0/README.md)、[编排清单](../manuscript/complete-edition/v1.0/book-order.json) | [手册说明](../manuscript/cpp-reference-handbook/v1.0/README.md)、[目录数据](../manuscript/cpp-reference-handbook/v1.0/catalog.json) |
 | 确认范围与编写规则 | [主题覆盖](../manuscript/complete-edition/v1.0/COVERAGE.md)、[核验边界](../manuscript/complete-edition/v1.0/EDITION-NOTES.md) | [编辑规范](../manuscript/cpp-reference-handbook/v1.0/EDITORIAL-SPEC.md) |
 | 构建或检查制品 | [构建与发布](../RELEASE_BUILD.md)、[维护与构建模块](maintenance.md) | [核对、全书重建与局部审阅](../manuscript/cpp-reference-handbook/v1.0/BUILD-NOTES.md) |
-| 查修订依据与验证记录 | [v1.1.0 修订记录](../revisions/book-v1.1.0.md) | [v1.0 学习顺序修订](../manuscript/cpp-reference-handbook/v1.0/LEARNING-REVISION.zh-CN.md)、[历史审查依据](../manuscript/cpp-reference-handbook/v1.0/REVIEW-REPORT.zh-CN.md) |
+| 查修订依据与验证记录 | [v1.1.0 修订记录](../revisions/book-v1.1.0.md) | [手册 v1.0.0 发行说明](../revisions/cpp-handbook-v1.0.0.md)、[v1.0 学习顺序修订](../manuscript/cpp-reference-handbook/v1.0/LEARNING-REVISION.zh-CN.md)、[历史审查依据](../manuscript/cpp-reference-handbook/v1.0/REVIEW-REPORT.zh-CN.md) |
 
 [已确认问题记录](ISSUES.md)集中记录语义勘误、导航和实现问题。`HB-` 编号对应 C++ 参考手册；状态与验证范围在各条记录中维护。普通内容扩展通过正文及 Git 提交追溯。
 
