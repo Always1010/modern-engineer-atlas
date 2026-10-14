@@ -53,7 +53,9 @@ HTML/PDF中的examples链接指向配套本地文件，单独复制PDF不会携�
 
 专用工作流为 [publish-cpp-handbook.yml](../../../.github/workflows/publish-cpp-handbook.yml)。能力地图的 `book-v*` 标签使用自己的发布工作流；手册使用 `cpp-handbook-v*` 标签。
 
-推送 `codex/cpp-reference-handbook` 分支且手册、专用工作流或手册发行说明变化时，工作流只构建和检查，成功后保存 `cpp-handbook-files-运行ID` 与 `cpp-handbook-evidence-运行ID`。标签推送不受路径过滤限制；合法 `cpp-handbook-v1.0.0` 形式的标签在检查成功后创建 Release。当前配置限于内容版 `v1.0`，发行版为 `1.0.x`，内部构建保留原文件名，发布附件使用三段发行版本。
+推送 `codex/cpp-reference-handbook` 分支且手册、专用工作流或手册发行说明变化时，工作流只构建和检查，成功后保存 `cpp-handbook-files-运行ID` 与 `cpp-handbook-evidence-运行ID`。标签推送不受路径过滤限制；合法 `cpp-handbook-vMAJOR.MINOR.PATCH` 形式的标签在检查成功后创建 Release。发行版本由标签指定，支持 `1.0.1`、`1.1.0`、`2.0.0` 等三段非负整数版本号，每段不含多余的前导零，并要求存在对应的发行说明。
+
+当前书稿内容版为 `v1.0`，内部构建保留原文件名，发布附件使用标签中的发行版本。书稿内容版和发行版本分别记录在 `build-info.json` 中；提升发行版本号不会自动修改书稿目录、内容版或正文中的版本信息。升级书稿内容版时，需要同步修改编排、构建与核验配置。
 
 工作流检出事件对应提交，采用 Windows 2022 runner、固定 Node/Python 和锁定的 Node/Python 包，使用匹配 Playwright 的 Chromium。Poppler、Noto CJK 字体及其许可证来源和 SHA-256 固定在 `tools/release/runtime-sources.json`。安装脚本只允许 GitHub Actions 环境执行；本机继续使用已有依赖，不因发布测试自动安装软件。CI 检查必需字体并记录 runner、工具、字体与源文件摘要；首次或字体/排版变更时审阅全页联系图及报告提示页。
 
@@ -61,17 +63,17 @@ HTML/PDF中的examples链接指向配套本地文件，单独复制PDF不会携�
 
 `tools/release/package-handbook.py` 只收集正式手册与 tracked 配套文件。单独下载的 HTML/PDF 源码链接指向本发行标签；离线 HTML 使用配套包相对路径。PDF 外部链接修改后检查页内容、书签、命名目标和链接数量保持一致。`verify-release.py` 校验完整五文件清单、摘要、来源提交及 ZIP 内容和链接，不信任校验文件或归档中的路径。
 
-正式附件：`Cpp-Reference-Handbook-v1.0.x.pdf`、同名 HTML、`Cpp-Reference-Handbook-v1.0.x-bundle.zip`、`build-info.json` 和 `SHA256SUMS.txt`。ZIP 包含 PDF、离线 HTML、examples、sources、字体许可证和构建记录；不含旧版或排版样稿。QA 页图和报告保留为 Actions 证据。GitHub 自动 Source code ZIP/TAR 是整个仓库的标签快照。
+正式附件：`Cpp-Reference-Handbook-v<发行版本>.pdf`、同名 HTML、`Cpp-Reference-Handbook-v<发行版本>-bundle.zip`、`build-info.json` 和 `SHA256SUMS.txt`。ZIP 包含 PDF、离线 HTML、examples、sources、字体许可证和构建记录；不含旧版或排版样稿。QA 页图和报告保留为 Actions 证据。GitHub 自动 Source code ZIP/TAR 是整个仓库的标签快照。
 
-### 首次发行与后续补丁
+### 发行步骤
 
-1. 提交专用工作流、发布工具和对应 `revisions/cpp-handbook-v1.0.x.md`；推送当前分支。
+1. 提交专用工作流、发布工具和对应 `revisions/cpp-handbook-v<发行版本>.md`；推送当前分支。
 2. 等待该提交的手册预构建成功，检查 QA 报告及首次 CI 联系图。从 Actions Summary 获取完整源提交 SHA。
 3. 给这个已验证提交创建新的 annotated 标签，并只推送该标签：
 
 ```powershell
 $releaseCommit = '预构建成功并完成版面核验的完整提交SHA'
-$releaseTag = 'cpp-handbook-v1.0.0'
+$releaseTag = 'cpp-handbook-v1.1.0' # 示例；选择尚未发布的版本
 git tag -a $releaseTag $releaseCommit -m "C++ Reference Handbook $releaseTag"
 git push origin $releaseTag
 ```
