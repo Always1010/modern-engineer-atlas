@@ -1,0 +1,14 @@
+# Local editor and operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~
+
+# Local generated files and caches
+/build/
+/dist/
+/qa/
+__pycache__/
+*.pyc
