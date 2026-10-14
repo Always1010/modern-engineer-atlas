@@ -151,15 +151,15 @@ python build_source.py \
 工作流为 `.github/workflows/publish-book.yml`：
 
 - 推送 `book-vMAJOR.MINOR.PATCH` 标签，构建并校验，再创建 GitHub Release。工作流接收 `book-v*`，并在入口严格检查三段数字的版本格式
-- `workflow_dispatch` 手动运行仅构建，可指定制品版本标签，不创建 Release
-- 普通 `main` 推送不会触发此工作流
+- 普通 `codex/modern-engineer-atlas` 分支推送不会触发此工作流
+- 工作流保留 `workflow_dispatch` 配置；默认分支 `main` 只维护导航，没有本书工作流，暂不提供 GitHub 手动构建入口。发行前检查使用本地完整构建；恢复手动入口需要另行配置默认分支中的调度工作流
 - 构建任务只有 `contents: read`；发布任务单独取得 `contents: write`，使用 GitHub 临时工作流令牌
 
 ### 发布步骤
 
-1. 将需要发行的章节、资源、管线和文档提交到 `main`，完成审阅并确认最终提交 SHA
-2. 从该提交进行本地完整构建，或在该分支手动运行工作流检查构建；查看源稿校验、制品校验、破坏测试和 EPUBCheck 的实际结果
-3. 选择尚未使用的发行版本，将新的 `book-vMAJOR.MINOR.PATCH` 标签指向已确认的最终 `main` 提交，再推送该标签
+1. 将需要发行的章节、资源、管线和文档提交到 `codex/modern-engineer-atlas`，完成审阅并确认最终提交 SHA
+2. 从该提交进行本地完整构建；查看源稿校验、制品校验、破坏测试和 EPUBCheck 的实际结果
+3. 选择尚未使用的发行版本，将新的 `book-vMAJOR.MINOR.PATCH` 标签指向已确认的最终 `codex/modern-engineer-atlas` 提交，再推送该标签
 4. 检查标签对应的 Actions 运行。仅在全部门禁成功后，发布任务才上传 PDF、EPUB 和 `SHA256SUMS.txt`
 5. 检查 Release 的标签提交、三个附件和下载文件的 SHA-256，确认实际发布内容
 

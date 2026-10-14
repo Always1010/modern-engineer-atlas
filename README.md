@@ -4,6 +4,12 @@
 
 正文包含 **13 篇、58 章、232 个主题**，覆盖公共基础、现代 C++、并发与性能、可靠交付、嵌入式产品与工业设备软件、服务与数据、音视频与图形、编译器、HPC 与 GPU、AI 基础设施、机器人、LLM 应用与 Agent 工程。章节采用中文标题与分节编号，文件使用稳定的 `C01` 至 `C58` 编号。
 
+## 分支归属
+
+本书在 `codex/modern-engineer-atlas` 分支维护。该分支于 2026-10-14 从原 `main` 提交 `0842f624995d2fd99f46c68426c9a33a73610cbb` 完整迁移，保留原有书稿、素材、构建工具和提交历史。
+
+正文、素材、构建工具和本书维护文档的后续修改提交到本分支；仓库的 `main` 维护两本书的介绍与入口。新发行标签指向本分支中已核验的最终提交，既有标签和发行附件保留原状。仓库导航见[项目首页](https://github.com/Always1010/modern-engineer-atlas/tree/main)。
+
 ## 阅读与维护入口
 
 - [正文目录](manuscript/complete-edition/v1.0/README.md)：分章文件、编排与维护入口
@@ -42,7 +48,7 @@
 ├── checksums.py                        # 发布文件 SHA-256 生成与核对
 ├── create_map.py                       # 项目知识地图绘制脚本
 ├── requirements-export.txt             # 固定版本的 Python 导出依赖
-├── .github/workflows/publish-book.yml  # 标签发布与手动构建工作流
+├── .github/workflows/publish-book.yml  # 标签发布工作流
 ├── .gitignore                         # 排除生成文件和本地缓存
 ├── build/                             # 生成的中间文件，不入库
 └── dist/                              # PDF、EPUB 与校验和，不入库
@@ -122,7 +128,9 @@ BOOK_TEST_EPUB=dist/modern-engineer-atlas-local.epub \
 
 生成 `dist/modern-engineer-atlas-local.pdf`、`dist/modern-engineer-atlas-local.epub` 与 `dist/SHA256SUMS.txt`。源稿快照、组装结果和校验报告保存在 `build/`。这些目录均被 Git 忽略。
 
-GitHub Actions 只在推送 `book-vMAJOR.MINOR.PATCH` 标签或手动运行时构建；普通 `main` 推送不会触发。手动运行只提供构建产物，标签运行通过全部门禁后才创建 Release。新发行标签应指向包含完整章节和当前管线的最终 `main` 提交；既有历史标签不移动、不覆盖。
+当前发布流程采用本地完整构建与 `book-vMAJOR.MINOR.PATCH` 标签发布；普通书籍分支推送不触发此工作流。新发行标签应指向 `codex/modern-engineer-atlas` 分支中包含完整章节和当前管线的已核验最终提交，通过全部门禁后才创建 Release。既有历史标签不移动、不覆盖。
+
+工作流仍保留 `workflow_dispatch` 配置，但默认分支 `main` 只维护导航，没有本书工作流，因此暂不提供 GitHub 手动构建入口。需要预先核对制品时使用上面的本地构建流程。恢复手动入口需要另行配置默认分支中的调度工作流，详见[构建与发布](RELEASE_BUILD.md)。
 
 ## 核验范围与素材权利
 
