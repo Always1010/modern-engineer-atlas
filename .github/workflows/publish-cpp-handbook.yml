@@ -59,7 +59,6 @@ jobs:
               throw "Invalid handbook release tag: $env:REF_NAME"
             }
             $version = $Matches[1]
-            if (-not $version.StartsWith('1.0.')) { throw 'This source configuration publishes content edition 1.0 only' }
             $sourceRef = $env:REF_NAME
             $publish = 'true'
             if (-not (Test-Path -LiteralPath "revisions/$sourceRef.md")) { throw 'Missing handbook release notes' }
